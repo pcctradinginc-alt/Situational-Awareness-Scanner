@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="refresh" content="3600">
+<title>Situational Awareness Scanner — Dashboard</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Bebas+Neue&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
+  :root {
+    --bg:#0a0b0d;--surface:#10131a;--surface2:#161c28;
+    --border:#1f2d42;--border-bright:#2a3f5c;
+    --accent:#00d4ff;--text:#c8d8e8;--text-dim:#5a7a9a;--text-bright:#eaf4ff;
+    --green:#44ff88;--red:#ff4444;--amber:#ffd166;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);
+        font-family:'IBM Plex Sans',sans-serif;font-size:13px;
+        padding:20px;max-width:1200px;margin:0 auto}
+  h1{font-family:'Bebas Neue';font-size:36px;letter-spacing:4px;
+      color:var(--accent);margin-bottom:4px}
+  .subtitle{font-family:'IBM Plex Mono';font-size:10px;color:var(--text-dim);
+             letter-spacing:2px;margin-bottom:24px}
+  .regime-banner{padding:12px 16px;border:1px solid #00d4ff;
+                  color:#00d4ff;font-family:'IBM Plex Mono';
+                  font-size:11px;letter-spacing:2px;margin-bottom:20px;
+                  display:flex;justify-content:space-between}
+  .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px}
+  .stat-box{background:var(--surface);border:1px solid var(--border);
+             padding:16px;text-align:center}
+  .stat-num{font-family:'Bebas Neue';font-size:42px;color:var(--accent)}
+  .stat-label{font-family:'IBM Plex Mono';font-size:9px;color:var(--text-dim);
+               letter-spacing:2px}
+  .section{background:var(--surface);border:1px solid var(--border);
+            padding:16px;margin-bottom:16px}
+  .section-title{font-family:'IBM Plex Mono';font-size:9px;letter-spacing:3px;
+                  color:var(--text-dim);margin-bottom:12px;
+                  padding-bottom:6px;border-bottom:1px solid var(--border)}
+  .cards-grid{display:flex;flex-wrap:wrap;gap:10px}
+  .card-link{text-decoration:none}
+  .mini-card{background:var(--surface2);border:1px solid var(--accent);
+              padding:12px 14px;min-width:120px;transition:border-color 0.2s}
+  .mini-card:hover{border-color:var(--green)}
+  .mini-ticker{font-family:'Bebas Neue';font-size:28px;color:var(--accent)}
+  .mini-conviction{font-family:'IBM Plex Mono';font-size:18px;color:var(--green)}
+  .mini-laufzeit{font-family:'IBM Plex Mono';font-size:10px;color:var(--amber)}
+  .mini-date{font-family:'IBM Plex Mono';font-size:9px;color:var(--text-dim)}
+  .no-cards{font-family:'IBM Plex Mono';font-size:11px;color:var(--text-dim);padding:10px}
+  table{width:100%;border-collapse:collapse;font-family:'IBM Plex Mono';font-size:11px}
+  th{color:var(--text-dim);font-weight:400;letter-spacing:1px;text-align:left;
+      padding:4px 8px;border-bottom:1px solid var(--border)}
+  td{padding:5px 8px;border-bottom:1px solid var(--border);color:var(--text)}
+  tr:last-child td{border-bottom:none}
+  .footer{font-family:'IBM Plex Mono';font-size:9px;color:var(--text-dim);
+           text-align:center;margin-top:20px;padding-top:10px;
+           border-top:1px solid var(--border)}
+  @media(max-width:700px){.grid-3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<h1>SITUATIONAL AWARENESS</h1>
+<div class="subtitle">SCANNER · CALL-OPTIONS INTELLIGENCE · v4.0 · 2026-04-04 06:49 UTC</div>
+
+<div class="regime-banner">
+  <span>REGIME: NORMAL | IV-Rank Avg: 50.0% |
+    Energy Breadth: 80% |
+    Stability: 0.40</span>
+  <span>CONVICTION THRESHOLD: 7.5</span>
+</div>
+
+<div class="grid-3">
+  <div class="stat-box">
+    <div class="stat-num">0</div>
+    <div class="stat-label">TRADING CARDS (14 TAGE)</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num">0</div>
+    <div class="stat-label">SIGNALE (7 TAGE)</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num" style="color:#00d4ff">NORMAL</div>
+    <div class="stat-label">AKTUELLES REGIME</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">AKTIVE TRADING CARDS — PASS</div>
+  <div class="cards-grid"><div class="no-cards">Keine Trading Cards in den letzten 14 Tagen</div></div>
+</div>
+
+<div class="section">
+  <div class="section-title">SIGNAL-LOG (LETZTE 7 TAGE)</div>
+  <table>
+    <thead><tr>
+      <th>TICKER</th><th>CONVICTION</th><th>STATUS</th><th>REGIME</th><th>DATUM</th>
+    </tr></thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<div class="section">
+  <div class="section-title">SCANNER RUNS</div>
+  <table>
+    <thead><tr>
+      <th>ZEIT</th><th>REGIME</th><th>KANDIDATEN</th><th>CLAUDE CALLS</th><th>CARDS</th>
+    </tr></thead>
+    <tbody>
+        <tr>
+          <td>2026-04-04T06:46</td>
+          <td style="color:#00d4ff">NORMAL</td>
+          <td>9</td>
+          <td>0</td>
+          <td style="color:var(--accent)">0</td>
+        </tr>
+        <tr>
+          <td>2026-04-04T06:38</td>
+          <td style="color:#00d4ff">NORMAL</td>
+          <td>9</td>
+          <td>0</td>
+          <td style="color:var(--accent)">0</td>
+        </tr></tbody>
+  </table>
+</div>
+
+<div class="section">
+  <div class="section-title">REGIME-TREND (30 TAGE)</div>
+  <div style="font-family:'IBM Plex Mono';font-size:11px;padding:8px">
+    Trend: <span style="color:#00d4ff">STABLE</span> |
+    Stress: <span style="color:#ff4444">0.0%</span> |
+    Normal: <span style="color:#44ff88">100.0%</span>
+  </div>
+</div>
+
+<div class="footer">
+  SA SCANNER v4.0 · Anthropic API + Tradier (Vollzugriff) + yfinance + EIA + FRED + EDGAR · 2026-04-04 06:49 UTC
+</div>
+
+</body>
+</html>

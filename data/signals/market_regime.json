@@ -80,7 +80,7 @@
         "above": "True"
       }
     },
-    "fetched_at": "2026-04-04T06:39:35.985622"
+    "fetched_at": "2026-04-04T06:47:25.302824"
   },
   "hyperscaler_capex": {
     "by_ticker": {
@@ -103,7 +103,7 @@
     "avg_growth_yoy": null,
     "capex_trend": "unknown",
     "empirical_point": 0,
-    "fetched_at": "2026-04-04T06:39:48.250971"
+    "fetched_at": "2026-04-04T06:47:35.125857"
   },
   "fred": {
     "electric_power_production": {
@@ -118,7 +118,7 @@
       "growth_yoy": 0.0144,
       "period": "2026-02-01"
     },
-    "fetched_at": "2026-04-04T06:39:44.108593"
+    "fetched_at": "2026-04-04T06:47:30.835274"
   },
   "eia": {
     "growth_yoy": null

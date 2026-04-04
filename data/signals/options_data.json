@@ -743,7 +743,7 @@
       "options_bullish": false
     },
     "laufzeit_months": 6,
-    "fetched_at": "2026-04-04T06:40:03.422610",
+    "fetched_at": "2026-04-04T06:47:50.654037",
     "rsi": 44.1
   },
   "CEG": {
@@ -1711,7 +1711,7 @@
       "options_bullish": true
     },
     "laufzeit_months": 6,
-    "fetched_at": "2026-04-04T06:40:17.424491",
+    "fetched_at": "2026-04-04T06:48:04.656077",
     "rsi": 37.5
   },
   "NRG": {
@@ -2283,12 +2283,12 @@
       "put_volume": 99,
       "put_call_volume": 0.221,
       "call_oi": 4689,
-      "put_oi": 2732,
-      "put_call_oi": 0.583,
+      "put_oi": 2725,
+      "put_call_oi": 0.581,
       "options_bullish": true
     },
     "laufzeit_months": 6,
-    "fetched_at": "2026-04-04T06:40:31.426047",
+    "fetched_at": "2026-04-04T06:48:18.657563",
     "rsi": 49.8
   },
   "PLTR": {
@@ -3281,16 +3281,16 @@
     },
     "options_flow": {
       "ticker": "PLTR",
-      "call_volume": 99305,
-      "put_volume": 65776,
-      "put_call_volume": 0.662,
+      "call_volume": 99414,
+      "put_volume": 65746,
+      "put_call_volume": 0.661,
       "call_oi": 309119,
       "put_oi": 257131,
       "put_call_oi": 0.832,
       "options_bullish": true
     },
     "laufzeit_months": 6,
-    "fetched_at": "2026-04-04T06:40:45.427982",
+    "fetched_at": "2026-04-04T06:48:32.658907",
     "rsi": 47.9
   },
   "NVDA": {
@@ -4547,7 +4547,7 @@
       "options_bullish": false
     },
     "laufzeit_months": 6,
-    "fetched_at": "2026-04-04T06:40:59.429636",
+    "fetched_at": "2026-04-04T06:48:46.660130",
     "rsi": 46.9
   },
   "TSM": {
@@ -5549,7 +5549,7 @@
       "options_bullish": false
     },
     "laufzeit_months": 6,
-    "fetched_at": "2026-04-04T06:41:13.431326",
+    "fetched_at": "2026-04-04T06:49:00.661656",
     "rsi": 50.8
   },
   "AVGO": {
@@ -6704,7 +6704,7 @@
       "options_bullish": true
     },
     "laufzeit_months": 6,
-    "fetched_at": "2026-04-04T06:41:27.433142",
+    "fetched_at": "2026-04-04T06:49:14.663816",
     "rsi": 46.1
   },
   "LMT": {
@@ -8284,7 +8284,7 @@
       "options_bullish": false
     },
     "laufzeit_months": 6,
-    "fetched_at": "2026-04-04T06:41:41.434991",
+    "fetched_at": "2026-04-04T06:49:28.664505",
     "rsi": 40.2
   },
   "RTX": {
@@ -8963,7 +8963,7 @@
       "options_bullish": true
     },
     "laufzeit_months": 6,
-    "fetched_at": "2026-04-04T06:41:55.436784",
+    "fetched_at": "2026-04-04T06:49:42.665810",
     "rsi": 37.8
   }
 }
