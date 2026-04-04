@@ -1,5 +1,5 @@
 {
-  "new_filings_found": 40,
+  "new_filings_found": 30,
   "new_filings": [
     {
       "entity": "thiel_capital",
@@ -82,32 +82,6 @@
     {
       "entity": "thiel_capital",
       "cik": "0001418819",
-      "filing_type": "SC 13D",
-      "filing_date": "2014-05-20T15:04:25-04:00",
-      "filing_url": "https://www.sec.gov/Archives/edgar/data/1418819/000103347514000009/0001033475-14-000009-index.htm",
-      "title": "SC 13D/A [Amend]  - General Statement of Acquisition of Beneficial Ownership",
-      "weight": 1.5,
-      "description": "Strategic Stake >5% (STRONGEST)",
-      "signal_strength": "VERY_STRONG",
-      "positions": [],
-      "classifications": []
-    },
-    {
-      "entity": "thiel_capital",
-      "cik": "0001418819",
-      "filing_type": "SC 13D",
-      "filing_date": "2014-03-31T18:29:08-04:00",
-      "filing_url": "https://www.sec.gov/Archives/edgar/data/1418819/000103347514000007/0001033475-14-000007-index.htm",
-      "title": "SC 13D/A [Amend]  - General Statement of Acquisition of Beneficial Ownership",
-      "weight": 1.5,
-      "description": "Strategic Stake >5% (STRONGEST)",
-      "signal_strength": "VERY_STRONG",
-      "positions": [],
-      "classifications": []
-    },
-    {
-      "entity": "thiel_capital",
-      "cik": "0001418819",
       "filing_type": "SC 13D/A",
       "filing_date": "2022-03-11T16:24:31-05:00",
       "filing_url": "https://www.sec.gov/Archives/edgar/data/1418819/000119312522073433/0001193125-22-073433-index.htm",
@@ -186,32 +160,6 @@
     {
       "entity": "thiel_capital",
       "cik": "0001418819",
-      "filing_type": "SC 13D/A",
-      "filing_date": "2014-05-20T15:04:25-04:00",
-      "filing_url": "https://www.sec.gov/Archives/edgar/data/1418819/000103347514000009/0001033475-14-000009-index.htm",
-      "title": "SC 13D/A [Amend]  - General Statement of Acquisition of Beneficial Ownership",
-      "weight": 1.3,
-      "description": "Amended Strategic Stake",
-      "signal_strength": "VERY_STRONG",
-      "positions": [],
-      "classifications": []
-    },
-    {
-      "entity": "thiel_capital",
-      "cik": "0001418819",
-      "filing_type": "SC 13D/A",
-      "filing_date": "2014-03-31T18:29:08-04:00",
-      "filing_url": "https://www.sec.gov/Archives/edgar/data/1418819/000103347514000007/0001033475-14-000007-index.htm",
-      "title": "SC 13D/A [Amend]  - General Statement of Acquisition of Beneficial Ownership",
-      "weight": 1.3,
-      "description": "Amended Strategic Stake",
-      "signal_strength": "VERY_STRONG",
-      "positions": [],
-      "classifications": []
-    },
-    {
-      "entity": "thiel_capital",
-      "cik": "0001418819",
       "filing_type": "SC 13G",
       "filing_date": "2024-11-13T10:22:19-05:00",
       "filing_url": "https://www.sec.gov/Archives/edgar/data/1418819/000156223024000055/0001562230-24-000055-index.htm",
@@ -290,32 +238,6 @@
     {
       "entity": "thiel_capital",
       "cik": "0001418819",
-      "filing_type": "SC 13G",
-      "filing_date": "2023-02-14T08:38:48-05:00",
-      "filing_url": "https://www.sec.gov/Archives/edgar/data/1418819/000156761923002667/0001567619-23-002667-index.htm",
-      "title": "SC 13G/A [Amend]  - Statement of Beneficial Ownership by Certain Investors",
-      "weight": 0.8,
-      "description": "Passive Stake >5%",
-      "signal_strength": "MODERATE_PASSIVE",
-      "positions": [],
-      "classifications": []
-    },
-    {
-      "entity": "thiel_capital",
-      "cik": "0001418819",
-      "filing_type": "SC 13G",
-      "filing_date": "2023-02-13T15:54:29-05:00",
-      "filing_url": "https://www.sec.gov/Archives/edgar/data/1418819/000156223023000052/0001562230-23-000052-index.htm",
-      "title": "SC 13G/A [Amend]  - Statement of Beneficial Ownership by Certain Investors",
-      "weight": 0.8,
-      "description": "Passive Stake >5%",
-      "signal_strength": "MODERATE_PASSIVE",
-      "positions": [],
-      "classifications": []
-    },
-    {
-      "entity": "thiel_capital",
-      "cik": "0001418819",
       "filing_type": "SC 13G/A",
       "filing_date": "2024-11-13T10:22:19-05:00",
       "filing_url": "https://www.sec.gov/Archives/edgar/data/1418819/000156223024000055/0001562230-24-000055-index.htm",
@@ -384,32 +306,6 @@
       "filing_type": "SC 13G/A",
       "filing_date": "2024-01-24T17:23:57-05:00",
       "filing_url": "https://www.sec.gov/Archives/edgar/data/1418819/000108636424002761/0001086364-24-002761-index.htm",
-      "title": "SC 13G/A [Amend]  - Statement of Beneficial Ownership by Certain Investors",
-      "weight": 0.6,
-      "description": "Amended Passive Stake",
-      "signal_strength": "MODERATE_PASSIVE",
-      "positions": [],
-      "classifications": []
-    },
-    {
-      "entity": "thiel_capital",
-      "cik": "0001418819",
-      "filing_type": "SC 13G/A",
-      "filing_date": "2023-02-14T08:38:48-05:00",
-      "filing_url": "https://www.sec.gov/Archives/edgar/data/1418819/000156761923002667/0001567619-23-002667-index.htm",
-      "title": "SC 13G/A [Amend]  - Statement of Beneficial Ownership by Certain Investors",
-      "weight": 0.6,
-      "description": "Amended Passive Stake",
-      "signal_strength": "MODERATE_PASSIVE",
-      "positions": [],
-      "classifications": []
-    },
-    {
-      "entity": "thiel_capital",
-      "cik": "0001418819",
-      "filing_type": "SC 13G/A",
-      "filing_date": "2023-02-13T15:54:29-05:00",
-      "filing_url": "https://www.sec.gov/Archives/edgar/data/1418819/000156223023000052/0001562230-23-000052-index.htm",
       "title": "SC 13G/A [Amend]  - Statement of Beneficial Ownership by Certain Investors",
       "weight": 0.6,
       "description": "Amended Passive Stake",
@@ -488,32 +384,6 @@
       "filing_type": "4",
       "filing_date": "2026-04-02T17:13:29-04:00",
       "filing_url": "https://www.sec.gov/Archives/edgar/data/1418819/000112329226000540/0001123292-26-000540-index.htm",
-      "title": "4  - Statement of changes in beneficial ownership of securities",
-      "weight": 1.2,
-      "description": "Insider Transaction (REAL-TIME)",
-      "signal_strength": "MODERATE",
-      "positions": [],
-      "classifications": []
-    },
-    {
-      "entity": "thiel_capital",
-      "cik": "0001418819",
-      "filing_type": "4",
-      "filing_date": "2026-04-02T17:13:12-04:00",
-      "filing_url": "https://www.sec.gov/Archives/edgar/data/1418819/000112329226000539/0001123292-26-000539-index.htm",
-      "title": "4  - Statement of changes in beneficial ownership of securities",
-      "weight": 1.2,
-      "description": "Insider Transaction (REAL-TIME)",
-      "signal_strength": "MODERATE",
-      "positions": [],
-      "classifications": []
-    },
-    {
-      "entity": "thiel_capital",
-      "cik": "0001418819",
-      "filing_type": "4",
-      "filing_date": "2026-04-02T17:12:30-04:00",
-      "filing_url": "https://www.sec.gov/Archives/edgar/data/1418819/000112329226000538/0001123292-26-000538-index.htm",
       "title": "4  - Statement of changes in beneficial ownership of securities",
       "weight": 1.2,
       "description": "Insider Transaction (REAL-TIME)",
@@ -606,32 +476,6 @@
     {
       "entity": "thiel_capital",
       "cik": "0001418819",
-      "filing_type": "SC 13D",
-      "filing_date": "2014-05-20T15:04:25-04:00",
-      "filing_url": "https://www.sec.gov/Archives/edgar/data/1418819/000103347514000009/0001033475-14-000009-index.htm",
-      "title": "SC 13D/A [Amend]  - General Statement of Acquisition of Beneficial Ownership",
-      "weight": 1.5,
-      "description": "Strategic Stake >5% (STRONGEST)",
-      "signal_strength": "VERY_STRONG",
-      "positions": [],
-      "classifications": []
-    },
-    {
-      "entity": "thiel_capital",
-      "cik": "0001418819",
-      "filing_type": "SC 13D",
-      "filing_date": "2014-03-31T18:29:08-04:00",
-      "filing_url": "https://www.sec.gov/Archives/edgar/data/1418819/000103347514000007/0001033475-14-000007-index.htm",
-      "title": "SC 13D/A [Amend]  - General Statement of Acquisition of Beneficial Ownership",
-      "weight": 1.5,
-      "description": "Strategic Stake >5% (STRONGEST)",
-      "signal_strength": "VERY_STRONG",
-      "positions": [],
-      "classifications": []
-    },
-    {
-      "entity": "thiel_capital",
-      "cik": "0001418819",
       "filing_type": "SC 13D/A",
       "filing_date": "2022-03-11T16:24:31-05:00",
       "filing_url": "https://www.sec.gov/Archives/edgar/data/1418819/000119312522073433/0001193125-22-073433-index.htm",
@@ -706,32 +550,6 @@
       "signal_strength": "VERY_STRONG",
       "positions": [],
       "classifications": []
-    },
-    {
-      "entity": "thiel_capital",
-      "cik": "0001418819",
-      "filing_type": "SC 13D/A",
-      "filing_date": "2014-05-20T15:04:25-04:00",
-      "filing_url": "https://www.sec.gov/Archives/edgar/data/1418819/000103347514000009/0001033475-14-000009-index.htm",
-      "title": "SC 13D/A [Amend]  - General Statement of Acquisition of Beneficial Ownership",
-      "weight": 1.3,
-      "description": "Amended Strategic Stake",
-      "signal_strength": "VERY_STRONG",
-      "positions": [],
-      "classifications": []
-    },
-    {
-      "entity": "thiel_capital",
-      "cik": "0001418819",
-      "filing_type": "SC 13D/A",
-      "filing_date": "2014-03-31T18:29:08-04:00",
-      "filing_url": "https://www.sec.gov/Archives/edgar/data/1418819/000103347514000007/0001033475-14-000007-index.htm",
-      "title": "SC 13D/A [Amend]  - General Statement of Acquisition of Beneficial Ownership",
-      "weight": 1.3,
-      "description": "Amended Strategic Stake",
-      "signal_strength": "VERY_STRONG",
-      "positions": [],
-      "classifications": []
     }
   ],
   "strong_signals": [],
@@ -751,5 +569,5 @@
   ],
   "salp_score_override": 10.0,
   "trigger_pipeline": true,
-  "checked_at": "2026-04-04T14:09:15.096146"
+  "checked_at": "2026-04-04T19:50:02.683474"
 }
