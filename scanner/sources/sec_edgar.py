@@ -2,18 +2,17 @@
 scanner/sources/sec_edgar.py
 SEC EDGAR Monitor mit vollständigem 13F-XML-Parser.
 
+WICHTIGE ÄNDERUNG v2:
+    Harter Datums-Filter: Nur Filings jünger als MAX_FILING_AGE_DAYS
+    werden verarbeitet. Verhindert dass alte Amendments (2012, 2014 etc.)
+    beim ersten Run als "neu" erkannt werden und unnötige Claude-Calls
+    verursachen.
+
 FILING-TYPEN:
     13F-HR  : Quartalsweise Portfolio-Holdings (mit XML-Parser)
     SC 13D  : Strategische Beteiligung > 5% (stärkstes Signal)
     SC 13G  : Passive Beteiligung > 5%
     Form 4  : Insider-Transaktionen (Echtzeit)
-
-13F-XML-PARSER:
-    Lädt das primäre XML-Dokument des Filings
-    Extrahiert alle Positionen (Ticker, CUSIP, Anteile, Wert)
-    Vergleicht mit Vorquartal aus SQLite
-    Klassifiziert Änderungen in Klassen A-D
-    Neue Positionen (Klasse A) werden automatisch analysiert
 """
 
 import json
@@ -21,7 +20,7 @@ import logging
 import re
 import sqlite3
 import xml.etree.ElementTree as ET
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Optional
 
@@ -40,6 +39,10 @@ HEADERS = {
     "Accept-Encoding": "gzip, deflate",
 }
 
+# Maximales Alter eines Filings in Tagen
+# 90 Tage = ein Quartal — alles älter ist keine neue Information
+MAX_FILING_AGE_DAYS = 90
+
 FILING_TYPES = {
     "13F-HR":   {"weight": 1.0, "description": "Quarterly Portfolio Holdings"},
     "13F-HR/A": {"weight": 0.8, "description": "Amended Quarterly Holdings"},
@@ -56,7 +59,7 @@ EDGAR_RSS = (
     "&CIK={cik}"
     "&type={filing_type}"
     "&dateb=&owner=include"
-    "&count=5"
+    "&count=10"
     "&search_text=&output=atom"
 )
 
@@ -102,6 +105,34 @@ KNOWN_NAMES = {
 }
 
 
+# ── DATUMS-FILTER ─────────────────────────────────────────────────────────────
+
+def get_cutoff_date() -> str:
+    """
+    Gibt ISO-Datum für maximales Filing-Alter zurück.
+    Alles vor diesem Datum wird ignoriert.
+    """
+    cutoff = datetime.utcnow() - timedelta(days=MAX_FILING_AGE_DAYS)
+    return cutoff.isoformat()
+
+
+def is_filing_recent(filing_date: str, cutoff: str) -> bool:
+    """
+    Prüft ob ein Filing-Datum jünger als der Cutoff ist.
+    Robustes Parsing für verschiedene Datumsformate von EDGAR.
+    """
+    if not filing_date:
+        return False
+    try:
+        # EDGAR nutzt verschiedene Formate
+        # z.B. "2026-04-05T14:07:00-04:00" oder "2026-04-05"
+        date_clean = filing_date[:10]  # Nur YYYY-MM-DD
+        cutoff_clean = cutoff[:10]
+        return date_clean >= cutoff_clean
+    except Exception:
+        return False
+
+
 # ── 13F XML PARSER ────────────────────────────────────────────────────────────
 
 def get_xml_url_from_filing(filing_url: str) -> Optional[str]:
@@ -114,7 +145,6 @@ def get_xml_url_from_filing(filing_url: str) -> Optional[str]:
         r.raise_for_status()
         content = r.text
 
-        # Suche nach Information Table XML
         patterns = [
             r'href="(/Archives/[^"]+information[Tt]able[^"]*\.xml)"',
             r'href="(/Archives/[^"]+13[fF][^"]*\.xml)"',
@@ -135,14 +165,11 @@ def get_xml_url_from_filing(filing_url: str) -> Optional[str]:
 
 
 def _extract_text(element, tags: list) -> str:
-    """Flexibles Tag-Matching für verschiedene 13F XML-Versionen."""
     NS = "http://www.sec.gov/edgar/document/thirteenf/informationtable"
     for tag in tags:
-        # Ohne Namespace
         el = element.find(tag)
         if el is not None and el.text:
             return el.text.strip()
-        # Mit Namespace
         el = element.find(f"{{{NS}}}{tag}")
         if el is not None and el.text:
             return el.text.strip()
@@ -150,7 +177,6 @@ def _extract_text(element, tags: list) -> str:
 
 
 def _name_to_ticker(name: str) -> str:
-    """Versucht Ticker aus Unternehmensname zu extrahieren."""
     ticker = mapper.name_to_ticker(name)
     if ticker:
         return ticker
@@ -162,20 +188,16 @@ def _name_to_ticker(name: str) -> str:
 
 
 def parse_13f_xml(xml_url: str) -> list:
-    """
-    Parst 13F Information Table XML.
-    Gibt Liste von Positionen zurück.
-    """
+    """Parst 13F Information Table XML."""
     positions = []
     try:
         rate_limiter.wait("sec_edgar")
         r = requests.get(xml_url, headers=HEADERS, timeout=30)
         r.raise_for_status()
 
+        NS = "http://www.sec.gov/edgar/document/thirteenf/informationtable"
         root = ET.fromstring(r.content)
 
-        # Finde alle infoTable Einträge (mit oder ohne Namespace)
-        NS = "http://www.sec.gov/edgar/document/thirteenf/informationtable"
         info_tables = (
             root.findall(".//infoTable") or
             root.findall(f".//{{{NS}}}infoTable")
@@ -189,16 +211,14 @@ def parse_13f_xml(xml_url: str) -> list:
             value    = _extract_text(entry, ["value"])
             put_call = _extract_text(entry, ["putCall"])
 
-            # Shares (verschachtelt in shrsOrPrnAmt)
             shares_el = (
                 entry.find(".//sshPrnamt") or
                 entry.find(f".//{{{NS}}}sshPrnamt")
             )
-            shares = shares_el.text.strip() if (
-                shares_el is not None and shares_el.text
-            ) else "0"
+            shares = (shares_el.text.strip()
+                      if shares_el is not None and shares_el.text
+                      else "0")
 
-            # Ticker bestimmen
             ticker = CUSIP_TO_TICKER.get(cusip, "")
             if not ticker and name:
                 ticker = _name_to_ticker(name)
@@ -234,12 +254,10 @@ def parse_13f_xml(xml_url: str) -> list:
 
 
 def get_previous_holdings(entity: str) -> dict:
-    """Lädt letzte bekannte Holdings aus SQLite → {ticker: shares}."""
+    """Lädt letzte bekannte Holdings aus SQLite."""
     try:
         conn = sqlite3.connect(str(Config.DB_PATH))
         conn.row_factory = sqlite3.Row
-
-        # Tabelle erstellen falls nicht vorhanden
         conn.execute("""
             CREATE TABLE IF NOT EXISTS filing_holdings (
                 entity       TEXT,
@@ -253,7 +271,6 @@ def get_previous_holdings(entity: str) -> dict:
         """)
         conn.commit()
 
-        # Neuestes Filing-Datum für diese Entity
         latest = conn.execute(
             """SELECT MAX(filing_date) as max_date
                FROM filing_holdings WHERE entity = ?""",
@@ -310,10 +327,7 @@ def save_current_holdings(entity: str, filing_date: str,
 
 def classify_position_delta(current_positions: list,
                               previous_holdings: dict) -> list:
-    """
-    Vergleicht aktuelle Positionen mit Vorquartal.
-    Klassifiziert Änderungen in Klassen A-D.
-    """
+    """Vergleicht aktuelle mit vorherigen Positionen."""
     classifications = []
     current = {p["ticker"]: p["shares"] for p in current_positions}
     all_tickers = set(list(current.keys()) + list(previous_holdings.keys()))
@@ -338,7 +352,6 @@ def classify_position_delta(current_positions: list,
             change_pct = abs(curr_shares - prev_shares) / prev_shares * 100
             direction  = ("INCREASED" if curr_shares > prev_shares
                           else "REDUCED")
-
             if change_pct > 20:
                 cls   = "B"
                 score = min(7.5 + change_pct / 100, 9.0)
@@ -400,11 +413,23 @@ def _assess_signal_strength(filing_type: str, title: str) -> str:
     return "UNKNOWN"
 
 
-# ── MAIN ─────────────────────────────────────────────────────────────────────
+# ── MAIN EDGAR MONITOR ───────────────────────────────────────────────────────
 
 def check_new_filings(state_manager) -> list:
-    """Checkt alle Filing-Typen für alle CIK-Targets."""
+    """
+    Checkt alle Filing-Typen für alle CIK-Targets.
+
+    DATUMS-FILTER (wichtigste Änderung):
+    - Nur Filings jünger als MAX_FILING_AGE_DAYS (90 Tage)
+    - Beim ersten Run: verhindert dass historische Amendments
+      aus 2012-2022 als "neu" erkannt werden
+    - Bei Folge-Runs: nur wirklich neue Filings seit letztem Check
+    """
     new_filings = []
+
+    # Harter Cutoff — alles älter als 90 Tage ignorieren
+    cutoff = get_cutoff_date()
+    logger.info(f"EDGAR date filter: only filings after {cutoff[:10]}")
 
     for entity, cik in Config.SEC_CIK_TARGETS.items():
         for filing_type, type_info in FILING_TYPES.items():
@@ -417,10 +442,19 @@ def check_new_filings(state_manager) -> list:
                 feed = feedparser.parse(url, request_headers=HEADERS)
 
                 key       = f"{entity}_{filing_type.replace(' ', '_')}"
-                last_date = state_manager.get_last_filing_date(key) or ""
+                last_date = state_manager.get_last_filing_date(key) or cutoff
+
+                skipped_old = 0
 
                 for entry in feed.entries:
                     filing_date = entry.get("updated", "")
+
+                    # FILTER 1: Nicht älter als MAX_FILING_AGE_DAYS
+                    if not is_filing_recent(filing_date, cutoff):
+                        skipped_old += 1
+                        continue
+
+                    # FILTER 2: Neuer als letztes bekanntes Filing
                     if filing_date <= last_date:
                         continue
 
@@ -442,7 +476,9 @@ def check_new_filings(state_manager) -> list:
 
                     # 13F: vollständiger XML-Parse
                     if filing_type in ("13F-HR", "13F-HR/A"):
-                        logger.info(f"Parsing 13F for {entity}")
+                        logger.info(
+                            f"Parsing 13F XML for {entity}: {entry.link}"
+                        )
                         xml_url = get_xml_url_from_filing(entry.link)
                         if xml_url:
                             positions = parse_13f_xml(xml_url)
@@ -458,7 +494,8 @@ def check_new_filings(state_manager) -> list:
                                 filing_info["classifications"] = classifications
                                 filing_info["shulman_begleit"] = (
                                     check_begleittext_for_shulman(
-                                        entry.get("summary", "") + entry.title
+                                        entry.get("summary", "") +
+                                        entry.title
                                     )
                                 )
                                 new_pos = sum(
@@ -478,7 +515,14 @@ def check_new_filings(state_manager) -> list:
                     )
                     logger.info(
                         f"NEW FILING: {entity} | {filing_type} | "
-                        f"{entry.title[:50]}"
+                        f"{filing_date[:10]} | {entry.title[:50]}"
+                    )
+
+                if skipped_old > 0:
+                    logger.debug(
+                        f"Skipped {skipped_old} old filings "
+                        f"({entity} / {filing_type}) — older than "
+                        f"{MAX_FILING_AGE_DAYS} days"
                     )
 
             except Exception as e:
@@ -490,8 +534,9 @@ def check_new_filings(state_manager) -> list:
 def run_edgar_monitor(state_manager) -> dict:
     """Vollständiger EDGAR-Monitor für alle Filing-Typen."""
     logger.info(
-        "Running SEC EDGAR monitor "
-        "(13F-XML + SC13D + SC13G + Form4)"
+        f"Running SEC EDGAR monitor "
+        f"(13F-XML + SC13D + SC13G + Form4 | "
+        f"max age: {MAX_FILING_AGE_DAYS} days)"
     )
 
     new_filings = check_new_filings(state_manager)
@@ -543,6 +588,7 @@ def run_edgar_monitor(state_manager) -> dict:
         "checked_types":       list(FILING_TYPES.keys()),
         "salp_score_override": salp_score,
         "trigger_pipeline":    len(new_filings) > 0,
+        "date_filter_cutoff":  get_cutoff_date()[:10],
         "checked_at":          datetime.utcnow().isoformat(),
     }
 
@@ -553,13 +599,14 @@ def run_edgar_monitor(state_manager) -> dict:
 
     if new_filings:
         logger.info(
-            f"EDGAR ALERT: {len(new_filings)} filings | "
-            f"New Tickers: {new_tickers}"
+            f"EDGAR ALERT: {len(new_filings)} new filings | "
+            f"New Tickers: {new_tickers} | "
+            f"Very Strong: {len(very_strong)}"
         )
     else:
         logger.info(
-            f"No new filings — entities checked: "
-            f"{list(Config.SEC_CIK_TARGETS.keys())}"
+            f"No new filings within {MAX_FILING_AGE_DAYS} days — "
+            f"entities: {list(Config.SEC_CIK_TARGETS.keys())}"
         )
 
     return result
@@ -572,6 +619,8 @@ if __name__ == "__main__":
     from scanner.utils.state_manager import StateManager
     with StateManager() as sm:
         result = run_edgar_monitor(sm)
-        print(f"\nNew Tickers: {result['new_tickers']}")
+        print(f"\nCutoff: {result['date_filter_cutoff']}")
+        print(f"New Filings: {result['new_filings_found']}")
+        print(f"New Tickers: {result['new_tickers']}")
         for cls in result["classifications"][:10]:
             print(f"  {cls['ticker']}: {cls['class']} | {cls['description']}")
