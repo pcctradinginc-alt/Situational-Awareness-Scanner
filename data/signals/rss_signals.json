@@ -2,10 +2,10 @@
   {
     "source": "Yahoo_Finance",
     "credibility": 0.75,
-    "title": "Foxconn first-quarter revenue jumps 30% y/y",
-    "summary": "Taiwan's Foxconn, the \u200cworld's largest contract \u200celectronics maker and Nvidia's \u200bbiggest server maker, reported on Sunday a jump of \u200c29.7% in \u2060first-quarter revenue year on year, \u2060fuelled by strong AI-related demand. Revenue for \u200bthe quarter \u200bfrom \u200bJanuary to \u200cMarch was T$2.13 trillion ($66.60 billion), Foxconn said in a statement, versus an LSEG \u200cSmartEstimate of \u200bT$2.148 trillion \u200bthat \u200bgives greater \u200cweight to forecasts from \u200banalysts \u200bwho are more consistently accurate. ($1 = 31.9800 \u200bTaiwan",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/foxconn-first-quarter-revenue-jumps-074035924.html?.tsrc=rss",
-    "published": "2026-04-05T07:40:35",
+    "title": "The 1 Stat That Proves Nvidia Remains a Screaming Buy Below $200",
+    "summary": "The AI infrastructure buildout keeps accelerating. Hyperscalers and enterprises spent record sums on data-center chips last year, and spending shows no sign of peaking. Yet Nvidia (NASDAQ:NVDA) shares trade under $200, as they have since last November. Yet, one number explains why this is not the top, but rather the entry point savvy investors should ... The 1 Stat That Proves Nvidia Remains a Screaming Buy Below $200",
+    "url": "https://247wallst.com/investing/2026/04/05/the-1-stat-that-proves-nvidia-remains-a-screaming-buy-below-200/?.tsrc=rss",
+    "published": "2026-04-05T13:32:40",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -22,10 +22,10 @@
   {
     "source": "Yahoo_Finance",
     "credibility": 0.75,
-    "title": "Nvidia vs. CoreWeave: The Better AI Supercycle Stock Might Surprise You",
-    "summary": "The choice between the two may come down to investment approaches.",
-    "url": "https://www.fool.com/investing/2026/04/05/nvidia-vs-coreweave-the-better-ai-supercycle-stock/?.tsrc=rss",
-    "published": "2026-04-05T07:35:00",
+    "title": "Is This ETF the Safest Way to Benefit From AI?",
+    "summary": "Every major AI buildout has needed one thing before the servers could run: reliable power. The electricity grid is the binding constraint on how fast AI can scale, making utilities one of the most structurally important beneficiaries of the AI era, even if the sector rarely gets mentioned alongside Nvidia (NASDAQ:NVDA) or Microsoft (NASDAQ:MSFT). What ... Is This ETF the Safest Way to Benefit From AI?",
+    "url": "https://247wallst.com/investing/2026/04/05/is-this-etf-the-safest-way-to-benefit-from-ai/?.tsrc=rss",
+    "published": "2026-04-05T11:10:10",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -35,66 +35,9 @@
       "salp": false
     },
     "tickers": [
-      "NVDA"
+      "NVDA",
+      "MSFT"
     ],
-    "weighted_relevance": 0.75
-  },
-  {
-    "source": "Yahoo_Finance",
-    "credibility": 0.75,
-    "title": "Were You Wrong to Sell Nvidia? Here's What GTC 2026 Revealed About the Next 2 Years.",
-    "summary": "Management thinks that Nvidia sales are about to go through the roof.",
-    "url": "https://www.fool.com/investing/2026/04/05/were-you-wrong-to-sell-nvidia-heres-what-gtc-2026/?.tsrc=rss",
-    "published": "2026-04-05T06:40:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "tickers": [
-      "NVDA"
-    ],
-    "weighted_relevance": 0.75
-  },
-  {
-    "source": "Yahoo_Finance",
-    "credibility": 0.75,
-    "title": "Jim Cramer Says \u201cNVIDIA Deserves a Premium Price-to-Earnings Multiple\u201d",
-    "summary": "NVIDIA Corporation (NASDAQ:NVDA) is among the stocks in focus, as Jim Cramer analyzed the broader market impact of the recent AI data center rally. Cramer said that the company \u201creally hasn\u2019t done much of late,\u201d as he remarked: It\u2019s worth filling you in on the disappointment\u2026 Because I want you to understand my skepticism now [\u2026]",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-says-nvidia-deserves-225741088.html?.tsrc=rss",
-    "published": "2026-04-04T22:57:41",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "tickers": [
-      "NVDA"
-    ],
-    "weighted_relevance": 0.75
-  },
-  {
-    "source": "Yahoo_Finance",
-    "credibility": 0.75,
-    "title": "Peter Thiel\u2019s big bet on solar-powered cow collars",
-    "summary": "Why did Founders Fund invest $220 million in cattle management startup Halter?",
-    "url": "https://finance.yahoo.com/sectors/technology/articles/unpacking-peter-thiel-big-bet-213000078.html?.tsrc=rss",
-    "published": "2026-04-04T21:30:00",
-    "signals": {
-      "thiel": true,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "tickers": [],
     "weighted_relevance": 0.75
   }
 ]
