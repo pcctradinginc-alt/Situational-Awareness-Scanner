@@ -90,6 +90,13 @@ class ShulmanLayer:
         # Score < 2 + Daten verfügbar: halbes Gewicht (echtes Signal)
         # Daten fehlen (Gap): Viertel-Gewicht (Unsicherheit, kein Signal)
 
+        # ── R-04 FIX: GEWICHTS-ANPASSUNG ─────────────────────────
+        # Drei Stufen mit klarer Semantik:
+        # 1. Score >= 2 + Daten verfügbar: volles Gewicht (echtes Signal)
+        # 2. Daten fehlen (any_gap, score=0): Gewicht auf 0 — kein Signal
+        #    KEIN PreFilter-Malus — Data Gap ist neutral, nicht negativ
+        # 3. Daten verfügbar, Schwellenwert verfehlt: halbes Gewicht
+
         if empirical_score >= Config.SHULMAN_EMPIRICAL_FULL_WEIGHT:
             weight_modifier    = 1.0
             weight_reason      = "FULL_WEIGHT_empirical_confirmed"
@@ -98,24 +105,22 @@ class ShulmanLayer:
                 if empirical_score >= 3 else 0.0
             )
         elif all_gaps:
-            # R3: Alle Daten fehlen — minimales Gewicht,
-            # kein Einfluss auf Score
-            weight_modifier    = 0.25
-            weight_reason      = "QUARTER_WEIGHT_all_data_gaps"
+            # R-04 KORREKTUR: 0.0 statt 0.25 — kein Einfluss bei vollständigem Gap
+            # KEIN PreFilter-Malus — fehlende API-Daten sind nicht bearish
+            weight_modifier    = 0.0
+            weight_reason      = "ZERO_WEIGHT_complete_data_unavailability"
             conviction_bonus   = 0.0
             logger.warning(
-                f"Shulman [{ticker}]: weight reduced to 25% "
-                f"due to complete data unavailability"
+                f"Shulman [{ticker}]: weight=0.0 — complete data gap. "
+                f"Signal neutralized, NOT treated as negative signal."
             )
         elif any_gap and empirical_score == 0:
-            # R3: Teilweise Daten fehlen und Score 0
-            # Könnte echter Score oder Data Gap sein — mittlere Unsicherheit
-            weight_modifier    = 0.35
-            weight_reason      = "REDUCED_WEIGHT_partial_data_gaps_score_zero"
+            # Teilweise Daten fehlen, Score 0 — Unsicherheit, stark reduziert
+            weight_modifier    = 0.25
+            weight_reason      = "QUARTER_WEIGHT_partial_gap_score_zero"
             conviction_bonus   = 0.0
         else:
-            # Daten verfügbar, Schwellenwert nicht erreicht
-            # Echtes Negativsignal — halbes Gewicht
+            # Daten verfügbar, Schwellenwert nicht erreicht — echtes Negativsignal
             weight_modifier    = 0.5
             weight_reason      = "HALF_WEIGHT_threshold_not_met"
             conviction_bonus   = 0.0
