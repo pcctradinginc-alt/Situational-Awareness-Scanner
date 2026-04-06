@@ -143,11 +143,18 @@ class StateManager:
         data_points = len(rows)
 
         if data_points < Config.IV_RANK_MIN_DATAPOINTS:
+            # R-03 FIX: None statt IV_RANK_WARMUP_DEFAULT=50.0
+            # RegimeDetector muss explizit mit fehlenden Daten umgehen
+            # statt einen verzerrenden Default-Wert zu verarbeiten
             return {
-                "iv_rank":     Config.IV_RANK_WARMUP_DEFAULT,
-                "confidence":  "WARMUP",
+                "iv_rank":     None,  # Kein Default — RegimeDetector entscheidet
+                "confidence":  "INSUFFICIENT_DATA",
                 "data_points": data_points,
-                "warning":     f"Nur {data_points} Datenpunkte. IV-Rank zuverlässig ab {Config.IV_RANK_MIN_DATAPOINTS}.",
+                "warning": (
+                    f"Only {data_points} datapoints. "
+                    f"IV-Rank reliable from {Config.IV_RANK_MIN_DATAPOINTS}. "
+                    f"Regime score set to neutral=5.0."
+                ),
             }
 
         confidence = (
@@ -396,8 +403,14 @@ class StateManager:
             return True
 
         except subprocess.CalledProcessError as e:
-            logger.error(
-                f"Git commit failed: {e.stderr.decode() if e.stderr else e}"
+            stderr = e.stderr.decode() if e.stderr else str(e)
+            logger.error(f"Git commit failed: {stderr}")
+            # R-05 FIX: Kein sys.exit() — SQLite-Daten sind konsistent gespeichert.
+            # Git-Fehler (z.B. Netzwerk-Timeout) dürfen Pipeline nicht abbrechen.
+            # GitHub Actions markiert nur den Git-Schritt als failed, nicht die Analyse.
+            logger.warning(
+                "Git push failed — analysis results are saved in SQLite. "
+                "Dashboard update will occur on next successful run."
             )
             return False
         except Exception as e:
