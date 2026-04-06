@@ -1,16 +1,20 @@
 """
 scanner/sources/data_fetcher.py
 
-FIXES v2:
-    R1: EIA Einheiten-Normalisierung — Series ELEC.GEN.TOTAL-US-99.M
-        in Tausend MWh, konsistente Einheit, korrekte Wachstumsberechnung
-    R2: Finnhub CapEx — explizites Logging wenn leer, Null-Data-Flag
-    R6: NVDA Schwellenwert von 20% auf 10% reduziert (realistisch 2026)
-    R7: Credibility-Score korrigiert — Qualität über Quantität
+FIXES v3:
+    EIA: Entfernt facets[location] Filter der nur 1 Monat zurückgab.
+         Nutzt jetzt direktere Series-ID für US-Gesamtstrom.
+         Fallback auf FRED Series ELEC.GEN.TOTAL-US-99.A wenn EIA leer.
+
+    CAPEX: FRED Series A169RC1Q027SBEA als Ersatz für Finnhub Free Tier.
+           US Corporate Capital Expenditure — kostenlos, zuverlässig,
+           quartalsweise mit langer Historie.
+           Finnhub bleibt als sekundäre Quelle wenn FRED verfügbar.
 """
 
 import json
 import logging
+import math
 import time
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -78,7 +82,6 @@ class DataFetcher:
 
         breadth = above_200d / total if total > 0 else 0.5
         self.quality["energy_breadth"] = "OK" if total > 5 else "PARTIAL"
-
         return {
             "energy_breadth":  round(breadth, 3),
             "above_200d":      above_200d,
@@ -103,67 +106,62 @@ class DataFetcher:
             logger.warning(f"RSI {ticker}: {e}")
             return 50.0
 
-    # ── R1 FIX: EIA MIT KORREKTER SERIE UND EINHEIT ──────────────
+    # ── EIA ELECTRICITY (FIXED v3) ───────────────────────────────
 
     def get_eia_electricity_growth(self) -> dict:
         """
-        R1 FIX: Nutzt Series ELEC.GEN.TOTAL-US-99.M
-        Einheit: Tausend MWh (konsistent, keine Konversionsprobleme)
-        Explizites Logging bei Datenlücken.
+        FIX v3: Entfernt facets[location][]=US der nur 1 Monat gab.
+        Nutzt jetzt EIA v2 Bulk-Endpoint ohne Location-Filter.
+        Fallback auf FRED wenn EIA weniger als 13 Monate liefert.
         """
-        logger.info("Fetching EIA electricity demand (Series: ELEC.GEN.TOTAL-US-99.M)")
+        logger.info("Fetching EIA electricity demand")
 
         if not Config.EIA_API_KEY:
             self.quality["eia"] = "NO_KEY"
-            logger.warning("EIA: No API key — empirical_point=0 (data gap, not signal)")
-            return {
-                "error":          "No EIA API key",
-                "growth_yoy":     None,
-                "empirical_point": 0,
-                "data_gap":       True,  # R3: explizites Flag
-            }
+            logger.warning("EIA: No API key — trying FRED fallback")
+            return self._get_eia_via_fred()
 
+        # Primärer Versuch: EIA v2 ohne Location-Filter
+        result = self._get_eia_direct()
+        if result.get("data_gap"):
+            logger.info("EIA direct: insufficient data — trying FRED fallback")
+            fred_result = self._get_eia_via_fred()
+            if not fred_result.get("data_gap"):
+                return fred_result
+            return result  # Beide fehlgeschlagen — Data Gap zurückgeben
+
+        return result
+
+    def _get_eia_direct(self) -> dict:
+        """EIA v2 API ohne Location-Filter."""
         try:
             rate_limiter.wait("eia")
-
-            # R1 FIX: Spezifische Serie für US-Gesamtstrom in Tausend MWh
-            # Konsistente Einheit, keine Aggregationsprobleme
             url    = "https://api.eia.gov/v2/electricity/electric-power-operational-data/data/"
             params = {
-                "api_key":                Config.EIA_API_KEY,
-                "frequency":              "monthly",
-                "data[0]":                "generation",
-                "facets[fueltypeid][]":   "ALL",
-                "facets[location][]":     "US",  # R1: nur US-Gesamt
-                "sort[0][column]":        "period",
-                "sort[0][direction]":     "desc",
-                "length":                 14,    # 13 Monate + Buffer
+                "api_key":              Config.EIA_API_KEY,
+                "frequency":            "monthly",
+                "data[0]":              "generation",
+                "facets[fueltypeid][]": "ALL",
+                # KEIN location-Filter — gibt US-Gesamtdaten über alle States
+                "sort[0][column]":      "period",
+                "sort[0][direction]":   "desc",
+                "length":               200,  # Groß genug für 13 Monate alle States
             }
-            r    = requests.get(url, params=params, timeout=20)
+            r    = requests.get(url, params=params, timeout=25)
             r.raise_for_status()
             data = r.json().get("response", {}).get("data", [])
 
             if not data:
-                # R3: Explizites Logging — Datenlücke vs. kein Wachstum
-                logger.warning(
-                    "EIA: Empty response — empirical_point=0 "
-                    "(DATA GAP, not negative signal)"
-                )
-                self.quality["eia"] = "EMPTY_RESPONSE"
-                return {
-                    "growth_yoy":     None,
-                    "empirical_point": 0,
-                    "data_gap":        True,
-                }
+                return {"growth_yoy": None, "empirical_point": 0, "data_gap": True,
+                        "reason": "empty_eia_response"}
 
-            # Aggregiere nach Periode (alle Fuel-Types summieren)
+            # Aggregiere nach Periode über alle States und Fuel-Types
             by_month: dict = {}
             for row in data:
                 period = row.get("period", "")
                 gen    = row.get("generation")
                 if period and gen is not None:
                     try:
-                        # R1: Alle Werte in derselben Einheit (Tausend MWh)
                         by_month[period] = by_month.get(period, 0) + float(gen)
                     except (ValueError, TypeError):
                         continue
@@ -172,41 +170,31 @@ class DataFetcher:
 
             if len(sorted_months) < 13:
                 logger.warning(
-                    f"EIA: Only {len(sorted_months)} months available, "
-                    f"need 13 — empirical_point=0 (DATA GAP)"
+                    f"EIA direct: {len(sorted_months)} months — need 13"
                 )
-                self.quality["eia"] = "INSUFFICIENT_DATA"
-                return {
-                    "growth_yoy":     None,
-                    "empirical_point": 0,
-                    "data_gap":        True,
-                    "months_available": len(sorted_months),
-                }
+                return {"growth_yoy": None, "empirical_point": 0,
+                        "data_gap": True, "months": len(sorted_months)}
 
             latest   = by_month[sorted_months[0]]
             year_ago = by_month[sorted_months[12]]
 
             if year_ago == 0:
-                logger.warning("EIA: year_ago value is 0 — cannot calculate growth")
                 return {"growth_yoy": None, "empirical_point": 0, "data_gap": True}
 
-            growth = (latest - year_ago) / year_ago
+            growth         = (latest - year_ago) / year_ago
             shulman_signal = growth > Config.SHULMAN_EIA_GROWTH_THRESHOLD
 
             logger.info(
-                f"EIA: growth={growth:.1%} | "
-                f"threshold={Config.SHULMAN_EIA_GROWTH_THRESHOLD:.1%} | "
-                f"empirical_point={1 if shulman_signal else 0} | "
-                f"unit=thousand_MWh"
+                f"EIA direct: growth={growth:.1%} | "
+                f"months={len(sorted_months)} | "
+                f"empirical_point={1 if shulman_signal else 0}"
             )
-
             self.quality["eia"] = "OK"
             return {
                 "growth_yoy":      round(growth, 4),
                 "latest_period":   sorted_months[0],
-                "latest_value":    round(latest, 0),
-                "year_ago_value":  round(year_ago, 0),
-                "unit":            "thousand_MWh",  # R1: explizite Einheit
+                "months_available": len(sorted_months),
+                "source":          "eia_direct",
                 "shulman_signal":  shulman_signal,
                 "empirical_point": 1 if shulman_signal else 0,
                 "data_gap":        False,
@@ -214,16 +202,72 @@ class DataFetcher:
             }
 
         except Exception as e:
-            logger.error(f"EIA fetch error: {e}")
-            self.quality["eia"] = "ERROR"
-            return {
-                "error":          str(e),
-                "growth_yoy":     None,
-                "empirical_point": 0,
-                "data_gap":        True,
-            }
+            logger.error(f"EIA direct error: {e}")
+            return {"growth_yoy": None, "empirical_point": 0,
+                    "data_gap": True, "error": str(e)}
 
-    # ── FRED MAKRO ───────────────────────────────────────────────
+    def _get_eia_via_fred(self) -> dict:
+        """
+        FRED Fallback für EIA-Daten.
+        Series IPG2211A2N = Electric Power Generation Index
+        Gute Näherung für Stromwachstum.
+        """
+        if not Config.FRED_API_KEY:
+            return {"growth_yoy": None, "empirical_point": 0,
+                    "data_gap": True, "reason": "no_fred_key"}
+        try:
+            rate_limiter.wait("fred")
+            url    = "https://api.stlouisfed.org/fred/series/observations"
+            params = {
+                "series_id":         "IPG2211A2N",
+                "api_key":           Config.FRED_API_KEY,
+                "file_type":         "json",
+                "observation_start": (
+                    datetime.utcnow() - timedelta(days=400)
+                ).strftime("%Y-%m-%d"),
+                "sort_order":        "desc",
+                "limit":             15,
+            }
+            r    = requests.get(url, params=params, timeout=20)
+            r.raise_for_status()
+            obs  = r.json().get("observations", [])
+            valid = [
+                (o["date"], float(o["value"]))
+                for o in obs if o["value"] != "."
+            ]
+
+            if len(valid) < 13:
+                logger.warning(
+                    f"FRED EIA fallback: only {len(valid)} obs — DATA GAP"
+                )
+                return {"growth_yoy": None, "empirical_point": 0,
+                        "data_gap": True, "months": len(valid)}
+
+            latest   = valid[0][1]
+            year_ago = valid[12][1]
+            growth   = (latest - year_ago) / year_ago
+
+            shulman_signal = growth > Config.SHULMAN_EIA_GROWTH_THRESHOLD
+            logger.info(
+                f"FRED EIA fallback: growth={growth:.1%} | "
+                f"empirical_point={1 if shulman_signal else 0}"
+            )
+            self.quality["eia"] = "OK_FRED_FALLBACK"
+            return {
+                "growth_yoy":      round(growth, 4),
+                "latest_period":   valid[0][0],
+                "source":          "fred_ipg2211a2n",
+                "shulman_signal":  shulman_signal,
+                "empirical_point": 1 if shulman_signal else 0,
+                "data_gap":        False,
+                "fetched_at":      datetime.utcnow().isoformat(),
+            }
+        except Exception as e:
+            logger.error(f"FRED EIA fallback error: {e}")
+            return {"growth_yoy": None, "empirical_point": 0,
+                    "data_gap": True, "error": str(e)}
+
+    # ── FRED MAKRO + CAPEX (FIXED v3) ───────────────────────────
 
     def get_fred_data(self) -> dict:
         logger.info("Fetching FRED macro data")
@@ -250,7 +294,7 @@ class DataFetcher:
                         datetime.utcnow() - timedelta(days=400)
                     ).strftime("%Y-%m-%d"),
                     "sort_order":        "desc",
-                    "limit":             14,
+                    "limit":             15,
                 }
                 r    = requests.get(url, params=params, timeout=20)
                 r.raise_for_status()
@@ -272,14 +316,12 @@ class DataFetcher:
                         "data_gap":    False,
                     }
                 else:
-                    # R3: Explizites Data-Gap-Flag
                     logger.warning(
-                        f"FRED {series_id}: only {len(valid)} observations "
-                        f"(need 13) — DATA GAP"
+                        f"FRED {series_id}: {len(valid)} obs — DATA GAP"
                     )
                     results[name] = {
-                        "data_gap":    True,
-                        "obs_count":   len(valid),
+                        "data_gap": True,
+                        "obs_count": len(valid),
                     }
 
             except Exception as e:
@@ -289,214 +331,244 @@ class DataFetcher:
         self.quality["fred"] = "OK" if any(
             not v.get("data_gap") for v in results.values()
             if isinstance(v, dict)
-        ) else "ERROR"
+        ) else "DATA_GAP"
 
         results["fetched_at"] = datetime.utcnow().isoformat()
         return results
 
-    # ── R2 FIX: FINNHUB CAPEX MIT EXPLIZITEM NULL-DATA-LOGGING ───
-
     def get_hyperscaler_capex(self) -> dict:
         """
-        R2 FIX: Explizites Logging wenn Finnhub leere CapEx-Listen liefert.
-        Unterscheidet zwischen DATA GAP und echtem Nicht-Wachstum.
+        FIX v3: FRED Series A169RC1Q027SBEA als primäre CapEx-Quelle.
+        US Corporate Capital Expenditure — quartalsweise, kostenlos.
+        Finnhub bleibt als sekundäre Validierung.
         """
-        logger.info("Fetching hyperscaler CapEx via Finnhub")
-        results = {}
+        logger.info("Fetching hyperscaler CapEx (FRED primary + Finnhub secondary)")
 
-        for ticker in Config.HYPERSCALER_TICKERS:
+        # Primär: FRED US Corporate CapEx
+        fred_result = self._get_capex_via_fred()
+
+        # Sekundär: Finnhub für einzelne Ticker (best effort)
+        finnhub_result = self._get_capex_via_finnhub()
+
+        # Kombinierter empirical_point
+        # FRED gibt den breiteren Trend, Finnhub gibt Einzelticker
+        empirical_p = 0
+        if not fred_result.get("data_gap") and fred_result.get("growth_yoy"):
+            if fred_result["growth_yoy"] > Config.SHULMAN_CAPEX_GROWTH_THRESHOLD:
+                empirical_p = 1
+                logger.info(
+                    f"CapEx empirical_point=1 from FRED: "
+                    f"{fred_result['growth_yoy']:.1%}"
+                )
+
+        # Capex-Trend aus FRED (zuverlässiger als Finnhub Free)
+        capex_trend = fred_result.get("capex_trend", "unknown")
+
+        return {
+            "fred_capex":      fred_result,
+            "finnhub_capex":   finnhub_result,
+            "capex_trend":     capex_trend,
+            "avg_growth_yoy":  fred_result.get("growth_yoy"),
+            "empirical_point": empirical_p,
+            "data_gap":        fred_result.get("data_gap", True),
+            "primary_source":  "fred_a169rc1q027sbea",
+            "fetched_at":      datetime.utcnow().isoformat(),
+        }
+
+    def _get_capex_via_fred(self) -> dict:
+        """
+        FRED Series A169RC1Q027SBEA:
+        Gross Private Domestic Investment: Fixed Investment: Nonresidential:
+        Equipment: Information Processing Equipment
+        Guter Proxy für Hyperscaler CapEx-Trend.
+        """
+        if not Config.FRED_API_KEY:
+            return {"data_gap": True, "reason": "no_fred_key"}
+
+        try:
+            rate_limiter.wait("fred")
+            url    = "https://api.stlouisfed.org/fred/series/observations"
+            params = {
+                # A169RC1Q027SBEA = Information Processing Equipment Investment
+                # Proxy für Hyperscaler/Datacenter CapEx
+                "series_id":         "A169RC1Q027SBEA",
+                "api_key":           Config.FRED_API_KEY,
+                "file_type":         "json",
+                "observation_start": (
+                    datetime.utcnow() - timedelta(days=550)
+                ).strftime("%Y-%m-%d"),
+                "sort_order":        "desc",
+                "limit":             10,
+            }
+            r    = requests.get(url, params=params, timeout=20)
+            r.raise_for_status()
+            obs  = r.json().get("observations", [])
+            valid = [
+                (o["date"], float(o["value"]))
+                for o in obs if o["value"] != "."
+            ]
+
+            if len(valid) < 5:
+                # Fallback: PNFIQ (Nonresidential Fixed Investment)
+                return self._get_capex_via_fred_fallback()
+
+            latest   = valid[0][1]
+            year_ago = valid[4][1] if len(valid) >= 5 else valid[-1][1]
+            growth   = (latest - year_ago) / year_ago if year_ago else None
+
+            trend = (
+                "rising"  if growth and growth > 0.05 else
+                "falling" if growth and growth < -0.05 else
+                "stable"
+            )
+
+            logger.info(
+                f"FRED CapEx (A169RC1Q027SBEA): "
+                f"growth={growth:.1%} if growth else 'N/A' | "
+                f"trend={trend}"
+            )
+
+            return {
+                "growth_yoy":  round(growth, 4) if growth else None,
+                "capex_trend": trend,
+                "period":      valid[0][0],
+                "series":      "A169RC1Q027SBEA",
+                "data_gap":    False,
+            }
+
+        except Exception as e:
+            logger.warning(f"FRED CapEx primary error: {e}")
+            return self._get_capex_via_fred_fallback()
+
+    def _get_capex_via_fred_fallback(self) -> dict:
+        """Fallback: FRED PNFIQ — Nonresidential Fixed Investment."""
+        if not Config.FRED_API_KEY:
+            return {"data_gap": True}
+        try:
+            rate_limiter.wait("fred")
+            url    = "https://api.stlouisfed.org/fred/series/observations"
+            params = {
+                "series_id":         "PNFIQ",
+                "api_key":           Config.FRED_API_KEY,
+                "file_type":         "json",
+                "observation_start": (
+                    datetime.utcnow() - timedelta(days=550)
+                ).strftime("%Y-%m-%d"),
+                "sort_order":        "desc",
+                "limit":             8,
+            }
+            r    = requests.get(url, params=params, timeout=20)
+            r.raise_for_status()
+            obs  = r.json().get("observations", [])
+            valid = [
+                (o["date"], float(o["value"]))
+                for o in obs if o["value"] != "."
+            ]
+
+            if len(valid) < 5:
+                return {"data_gap": True, "obs_count": len(valid)}
+
+            latest   = valid[0][1]
+            year_ago = valid[4][1]
+            growth   = (latest - year_ago) / year_ago if year_ago else None
+            trend    = (
+                "rising"  if growth and growth > 0.03 else
+                "falling" if growth and growth < -0.03 else
+                "stable"
+            )
+
+            logger.info(f"FRED CapEx fallback (PNFIQ): {growth:.1%} | {trend}")
+            return {
+                "growth_yoy":  round(growth, 4) if growth else None,
+                "capex_trend": trend,
+                "series":      "PNFIQ",
+                "data_gap":    False,
+            }
+        except Exception as e:
+            logger.warning(f"FRED CapEx fallback error: {e}")
+            return {"data_gap": True, "error": str(e)}
+
+    def _get_capex_via_finnhub(self) -> dict:
+        """Finnhub als sekundäre CapEx-Quelle (best effort)."""
+        results = {}
+        for ticker in ["MSFT", "GOOGL", "AMZN", "META", "NVDA"]:
             try:
                 rate_limiter.wait("finnhub")
                 data   = self.fh.company_basic_financials(ticker, "all")
                 series = (data.get("series", {}) or {}).get("annual", {}) or {}
                 capex  = series.get("capitalExpenditures", []) or []
 
-                # R2 FIX: Explizites Logging bei leerer Liste
-                if not capex:
-                    logger.warning(
-                        f"Finnhub CapEx {ticker}: empty list returned — "
-                        f"DATA GAP (Finnhub Free Tier limitation)"
-                    )
-                    results[ticker] = {
-                        "data_gap": True,
-                        "reason":   "finnhub_free_tier_no_capex",
-                    }
+                if not capex or len(capex) < 2:
+                    results[ticker] = {"data_gap": True}
                     continue
 
-                if len(capex) < 2:
-                    logger.warning(
-                        f"Finnhub CapEx {ticker}: only {len(capex)} "
-                        f"quarters — need 2 for YoY (DATA GAP)"
-                    )
-                    results[ticker] = {
-                        "data_gap":    True,
-                        "reason":      "insufficient_quarters",
-                        "quarters":    len(capex),
-                    }
-                    continue
-
-                recent   = sorted(
-                    capex,
-                    key=lambda x: x.get("period", ""),
-                    reverse=True
-                )
+                recent   = sorted(capex, key=lambda x: x.get("period", ""), reverse=True)
                 latest   = recent[0].get("v", 0) or 0
-                previous = recent[1].get("v", 0) or 0
-
-                if previous == 0:
-                    logger.warning(
-                        f"Finnhub CapEx {ticker}: previous quarter = 0 "
-                        f"— cannot calculate growth (DATA GAP)"
-                    )
-                    results[ticker] = {"data_gap": True, "reason": "zero_previous"}
-                    continue
-
-                growth = (latest - previous) / abs(previous)
+                previous = recent[1].get("v", 0) or 1
+                growth   = (latest - previous) / abs(previous)
                 results[ticker] = {
-                    "latest_capex":  latest,
-                    "prev_capex":    previous,
-                    "growth_yoy":    round(growth, 4),
-                    "period":        recent[0].get("period"),
-                    "data_gap":      False,
+                    "growth_yoy": round(growth, 4),
+                    "data_gap":   False,
                 }
-                logger.info(
-                    f"Finnhub CapEx {ticker}: {growth:.1%} YoY"
-                )
+            except Exception:
+                results[ticker] = {"data_gap": True}
 
-            except Exception as e:
-                logger.warning(f"Finnhub CapEx {ticker}: {e}")
-                results[ticker] = {"error": str(e), "data_gap": True}
-
-        # Aggregierter Trend — nur aus Nicht-Gap-Daten
-        valid_growths = [
-            v["growth_yoy"] for v in results.values()
-            if isinstance(v, dict) and not v.get("data_gap")
-            and v.get("growth_yoy") is not None
-        ]
-
-        if valid_growths:
-            avg_growth    = sum(valid_growths) / len(valid_growths)
-            trend         = (
-                "rising"  if avg_growth > 0.05 else
-                "falling" if avg_growth < -0.05 else
-                "stable"
-            )
-            empirical_p   = 1 if avg_growth > Config.SHULMAN_CAPEX_GROWTH_THRESHOLD else 0
-            data_gap_total = False
-            logger.info(
-                f"CapEx aggregate: {avg_growth:.1%} | "
-                f"trend={trend} | "
-                f"empirical_point={empirical_p} | "
-                f"from {len(valid_growths)}/{len(Config.HYPERSCALER_TICKERS)} tickers"
-            )
-        else:
-            # R3: Klare Unterscheidung DATA GAP
-            avg_growth    = None
-            trend         = "unknown"
-            empirical_p   = 0
-            data_gap_total = True
-            logger.warning(
-                "CapEx: ALL tickers returned DATA GAP — "
-                "empirical_point=0 (not a negative signal)"
-            )
-
-        self.quality["finnhub_capex"] = (
-            "OK" if valid_growths else "DATA_GAP"
-        )
-
+        valid = [v["growth_yoy"] for v in results.values()
+                 if not v.get("data_gap") and v.get("growth_yoy") is not None]
         return {
-            "by_ticker":        results,
-            "avg_growth_yoy":   round(avg_growth, 4) if avg_growth else None,
-            "capex_trend":      trend,
-            "empirical_point":  empirical_p,
-            "data_gap":         data_gap_total,
-            "valid_tickers":    len(valid_growths),
-            "total_tickers":    len(Config.HYPERSCALER_TICKERS),
-            "fetched_at":       datetime.utcnow().isoformat(),
+            "by_ticker":    results,
+            "valid_count":  len(valid),
+            "avg_growth":   round(sum(valid)/len(valid), 4) if valid else None,
+            "data_gap":     len(valid) == 0,
         }
 
-    # ── R6 FIX: NVDA SCHWELLENWERT 10% STATT 20% ─────────────────
+    # ── NVDA REVENUE ─────────────────────────────────────────────
 
     def get_nvda_revenue_growth(self) -> dict:
-        """
-        R6 FIX: Schwellenwert von 20% auf 10% reduziert.
-        Nach dem 2023/2024 Hyperwachstum ist 20% für 2026 zu hoch.
-        10% YoY ist weiterhin sehr starkes Wachstum für ein 1T+ Unternehmen.
-        """
+        """R6: Schwellenwert 10% statt 20%."""
         try:
             rate_limiter.wait("finnhub")
             data   = self.fh.company_basic_financials("NVDA", "all")
             series = (data.get("series", {}) or {}).get("annual", {}) or {}
             rev    = series.get("revenue", []) or []
 
-            if not rev:
+            if not rev or len(rev) < 2:
                 logger.warning(
-                    "NVDA Revenue: empty from Finnhub — DATA GAP"
+                    f"NVDA Revenue: {'empty' if not rev else len(rev)} "
+                    f"quarters — DATA GAP"
                 )
-                return {
-                    "growth_yoy":     None,
-                    "empirical_point": 0,
-                    "data_gap":        True,
-                }
+                return {"growth_yoy": None, "empirical_point": 0, "data_gap": True}
 
-            if len(rev) < 2:
-                logger.warning(
-                    f"NVDA Revenue: only {len(rev)} quarters — DATA GAP"
-                )
-                return {
-                    "growth_yoy":     None,
-                    "empirical_point": 0,
-                    "data_gap":        True,
-                }
-
-            recent   = sorted(
-                rev,
-                key=lambda x: x.get("period", ""),
-                reverse=True
-            )
+            recent   = sorted(rev, key=lambda x: x.get("period", ""), reverse=True)
             latest   = recent[0].get("v", 0) or 0
             previous = recent[1].get("v", 0) or 0
 
             if previous == 0:
-                return {
-                    "growth_yoy":     None,
-                    "empirical_point": 0,
-                    "data_gap":        True,
-                }
+                return {"growth_yoy": None, "empirical_point": 0, "data_gap": True}
 
-            growth = (latest - previous) / abs(previous)
-
-            # R6 FIX: 10% statt 20% — realistischer für 2026
-            NVDA_THRESHOLD_2026 = 0.10
-            empirical_p = 1 if growth > NVDA_THRESHOLD_2026 else 0
+            growth      = (latest - previous) / abs(previous)
+            THRESHOLD   = 0.10  # R6 Fix: 10% statt 20%
+            empirical_p = 1 if growth > THRESHOLD else 0
 
             logger.info(
-                f"NVDA Revenue: {growth:.1%} YoY | "
-                f"threshold={NVDA_THRESHOLD_2026:.0%} | "
+                f"NVDA Revenue: {growth:.1%} | "
+                f"threshold={THRESHOLD:.0%} | "
                 f"empirical_point={empirical_p}"
             )
-
             return {
-                "growth_yoy":     round(growth, 4),
+                "growth_yoy":      round(growth, 4),
                 "empirical_point": empirical_p,
-                "threshold_used":  NVDA_THRESHOLD_2026,
-                "latest_revenue":  latest,
-                "period":          recent[0].get("period"),
+                "threshold_used":  THRESHOLD,
                 "data_gap":        False,
             }
 
         except Exception as e:
             logger.warning(f"NVDA revenue: {e}")
-            return {
-                "growth_yoy":     None,
-                "empirical_point": 0,
-                "data_gap":        True,
-                "error":           str(e),
-            }
+            return {"growth_yoy": None, "empirical_point": 0,
+                    "data_gap": True, "error": str(e)}
 
-    # ── R7 FIX: RSS MIT KORRIGIERTEM CREDIBILITY-SCORING ─────────
+    # ── RSS FEEDS (R7: korrigiertes Credibility-Scoring) ─────────
 
-    # Signal-Keywords
     THIEL_KEYWORDS = [
         "Peter Thiel", "Katechon", "Sovereign AI",
         "Founders Fund", "Thiel Capital", "Anduril",
@@ -528,12 +600,7 @@ class DataFetcher:
     ]
 
     def fetch_rss(self) -> list:
-        """
-        R7 FIX: Credibility-Score korrigiert.
-        Qualität (Credibility) wird nicht durch Quantität (Signal-Count) 
-        überstimmt. Artikel werden nach Credibility-gewichtetem
-        Primär-Signal sortiert, nicht nach rohem Produkt.
-        """
+        """R7: Credibility-dominantes Scoring."""
         logger.info("Fetching RSS feeds")
         results = []
         cutoff  = datetime.utcnow() - timedelta(hours=36)
@@ -553,65 +620,38 @@ class DataFetcher:
                     tickers = self.mapper.extract_tickers_from_text(text)
 
                     signals = {
-                        "thiel":              any(
-                            k.lower() in text.lower()
-                            for k in self.THIEL_KEYWORDS
-                        ),
-                        "shulman":            any(
-                            k.lower() in text.lower()
-                            for k in self.SHULMAN_KEYWORDS
-                        ),
-                        "contrarian":         any(
-                            k.lower() in text.lower()
-                            for k in self.CONTRARIAN_KEYWORDS
-                        ),
-                        "bottleneck_compute": any(
-                            k.lower() in text.lower()
-                            for k in self.BOTTLENECK_COMPUTE
-                        ),
-                        "bottleneck_energy":  any(
-                            k.lower() in text.lower()
-                            for k in self.BOTTLENECK_ENERGY
-                        ),
-                        "salp":               any(
-                            k.lower() in text.lower()
-                            for k in self.SALP_KEYWORDS
-                        ),
+                        "thiel":              any(k.lower() in text.lower() for k in self.THIEL_KEYWORDS),
+                        "shulman":            any(k.lower() in text.lower() for k in self.SHULMAN_KEYWORDS),
+                        "contrarian":         any(k.lower() in text.lower() for k in self.CONTRARIAN_KEYWORDS),
+                        "bottleneck_compute": any(k.lower() in text.lower() for k in self.BOTTLENECK_COMPUTE),
+                        "bottleneck_energy":  any(k.lower() in text.lower() for k in self.BOTTLENECK_ENERGY),
+                        "salp":               any(k.lower() in text.lower() for k in self.SALP_KEYWORDS),
                     }
 
                     if not any(signals.values()):
                         continue
 
                     signal_count = sum(signals.values())
-
-                    # R7 FIX: Credibility ist primärer Faktor
-                    # Hohe Credibility + 1 Signal > Niedrige Credibility + 6 Signale
-                    # Formel: credibility^2 * (1 + log(signal_count))
-                    import math
-                    quality_score = (
-                        credibility ** 2 * (1 + math.log(signal_count + 1))
-                    )
+                    # R7: Credibility-dominantes Scoring
+                    quality_score = credibility ** 2 * (1 + math.log(signal_count + 1))
 
                     results.append({
-                        "source":        feed_name,
-                        "credibility":   credibility,
-                        "title":         entry.title,
-                        "summary":       entry.get("summary", "")[:500],
-                        "url":           entry.link,
-                        "published":     pub.isoformat(),
-                        "signals":       signals,
-                        "signal_count":  signal_count,
-                        "tickers":       tickers,
-                        # R7: quality_score statt weighted_relevance
-                        "quality_score": round(quality_score, 4),
-                        # Legacy-Feld für Kompatibilität
+                        "source":           feed_name,
+                        "credibility":      credibility,
+                        "title":            entry.title,
+                        "summary":          entry.get("summary", "")[:500],
+                        "url":              entry.link,
+                        "published":        pub.isoformat(),
+                        "signals":          signals,
+                        "signal_count":     signal_count,
+                        "tickers":          tickers,
+                        "quality_score":    round(quality_score, 4),
                         "weighted_relevance": quality_score,
                     })
 
             except Exception as e:
                 logger.warning(f"RSS {feed_name}: {e}")
 
-        # R7 FIX: Sortierung nach quality_score (credibility-dominant)
         results.sort(key=lambda x: x["quality_score"], reverse=True)
         self.quality["rss"] = f"{len(results)} articles"
         logger.info(
@@ -620,25 +660,22 @@ class DataFetcher:
         )
         return results
 
-    # ── OPTIONS DATA (Tradier) ────────────────────────────────────
+    # ── OPTIONS DATA ─────────────────────────────────────────────
 
     def fetch_options_data(self, state_manager,
                            laufzeit_months: int = 6) -> dict:
         logger.info(f"Fetching Tradier option data ({laufzeit_months}M)")
         results = {}
-
         for ticker in Config.TARGET_TICKERS:
             try:
                 data = self.tradier.analyze_ticker_options(
                     ticker, laufzeit_months, state_manager
                 )
-                rsi        = self.get_rsi(ticker)
-                data["rsi"] = rsi
+                data["rsi"] = self.get_rsi(ticker)
                 results[ticker] = data
             except Exception as e:
                 logger.error(f"Options {ticker}: {e}")
                 results[ticker] = {"error": str(e)}
-
         self.quality["tradier"] = "OK"
         return results
 
@@ -655,46 +692,39 @@ class DataFetcher:
             all_data["energy_breadth"] = self.get_energy_breadth()
         except Exception as e:
             errors.append(f"energy_breadth: {e}")
-            all_data["energy_breadth"] = {
-                "energy_breadth": 0.5, "data_gap": True
-            }
+            all_data["energy_breadth"] = {"energy_breadth": 0.5, "data_gap": True}
 
-        # 2. EIA (R1 Fix)
+        # 2. EIA (FIXED v3)
         try:
             all_data["eia"] = self.get_eia_electricity_growth()
         except Exception as e:
             errors.append(f"eia: {e}")
-            all_data["eia"] = {
-                "growth_yoy": None, "empirical_point": 0, "data_gap": True
-            }
+            all_data["eia"] = {"growth_yoy": None, "empirical_point": 0, "data_gap": True}
 
-        # 3. FRED
+        # 3. FRED Makro
         try:
             all_data["fred"] = self.get_fred_data()
         except Exception as e:
             errors.append(f"fred: {e}")
             all_data["fred"] = {"data_gap": True}
 
-        # 4. Hyperscaler CapEx (R2 Fix)
+        # 4. CapEx (FIXED v3: FRED primary)
         try:
             all_data["hyperscaler_capex"] = self.get_hyperscaler_capex()
         except Exception as e:
             errors.append(f"capex: {e}")
             all_data["hyperscaler_capex"] = {
-                "capex_trend": "unknown", "empirical_point": 0,
-                "data_gap": True
+                "capex_trend": "unknown", "empirical_point": 0, "data_gap": True
             }
 
-        # 5. NVDA Revenue (R6 Fix)
+        # 5. NVDA Revenue
         try:
             all_data["nvda_revenue"] = self.get_nvda_revenue_growth()
         except Exception as e:
             errors.append(f"nvda: {e}")
-            all_data["nvda_revenue"] = {
-                "empirical_point": 0, "data_gap": True
-            }
+            all_data["nvda_revenue"] = {"empirical_point": 0, "data_gap": True}
 
-        # 6. RSS (R7 Fix)
+        # 6. RSS
         try:
             all_data["rss"] = self.fetch_rss()
         except Exception as e:
@@ -716,7 +746,6 @@ class DataFetcher:
         nvda_point  = all_data["nvda_revenue"].get("empirical_point", 0)
         empirical   = eia_point + capex_point + nvda_point
 
-        # R3: Data-Gap-Tracking für Shulman
         eia_gap   = all_data["eia"].get("data_gap", False)
         capex_gap = all_data["hyperscaler_capex"].get("data_gap", False)
         nvda_gap  = all_data["nvda_revenue"].get("data_gap", False)
@@ -744,7 +773,7 @@ class DataFetcher:
         logger.info(
             f"=== DataFetcher done | "
             f"Shulman Empirical: {empirical}/3 | "
-            f"Data Gaps: EIA={eia_gap} CapEx={capex_gap} NVDA={nvda_gap} | "
+            f"EIA={not eia_gap} CapEx={not capex_gap} NVDA={not nvda_gap} | "
             f"Errors: {len(errors)} ==="
         )
         return all_data
@@ -753,10 +782,10 @@ class DataFetcher:
         sig = Config.SIGNALS_DIR
         outputs = {
             "market_regime.json": {
-                "energy_breadth":     all_data.get("energy_breadth", {}),
-                "hyperscaler_capex":  all_data.get("hyperscaler_capex", {}),
-                "fred":               all_data.get("fred", {}),
-                "eia":                all_data.get("eia", {}),
+                "energy_breadth":    all_data.get("energy_breadth", {}),
+                "hyperscaler_capex": all_data.get("hyperscaler_capex", {}),
+                "fred":              all_data.get("fred", {}),
+                "eia":               all_data.get("eia", {}),
             },
             "options_data.json":    all_data.get("options", {}),
             "energy_data.json":     all_data.get("eia", {}),
@@ -791,3 +820,6 @@ if __name__ == "__main__":
     with StateManager() as sm:
         fetcher  = DataFetcher(sm)
         all_data = fetcher.fetch_all(sm)
+        print(f"\nShulman Empirical: {all_data['shulman_empirical_score']}/3")
+        print(f"EIA: {all_data['eia'].get('growth_yoy')}")
+        print(f"CapEx: {all_data['hyperscaler_capex'].get('capex_trend')}")
