@@ -1,8 +1,6 @@
 {
   "energy_breadth": "OK",
-  "eia": "INSUFFICIENT_DATA",
-  "fred": "ERROR",
-  "finnhub_capex": "DATA_GAP",
+  "fred": "DATA_GAP",
   "rss": "2 articles",
   "tradier": "OK",
   "errors": [],
@@ -14,5 +12,5 @@
     "any_gap": true,
     "all_gaps": true
   },
-  "fetched_at": "2026-04-06T08:36:09.136734"
+  "fetched_at": "2026-04-06T08:47:21.200795"
 }

@@ -1,34 +1,37 @@
 {
   "hyperscaler_capex": {
-    "by_ticker": {
-      "MSFT": {
-        "data_gap": true,
-        "reason": "finnhub_free_tier_no_capex"
-      },
-      "GOOGL": {
-        "data_gap": true,
-        "reason": "finnhub_free_tier_no_capex"
-      },
-      "AMZN": {
-        "data_gap": true,
-        "reason": "finnhub_free_tier_no_capex"
-      },
-      "META": {
-        "data_gap": true,
-        "reason": "finnhub_free_tier_no_capex"
-      },
-      "NVDA": {
-        "data_gap": true,
-        "reason": "finnhub_free_tier_no_capex"
-      }
+    "fred_capex": {
+      "data_gap": true,
+      "error": "400 Client Error: Bad Request for url: https://api.stlouisfed.org/fred/series/observations?series_id=PNFIQ&api_key=35eef949b71aa59c6b22e9e515090d0c&file_type=json&observation_start=2024-10-03&sort_order=desc&limit=8"
     },
-    "avg_growth_yoy": null,
+    "finnhub_capex": {
+      "by_ticker": {
+        "MSFT": {
+          "data_gap": true
+        },
+        "GOOGL": {
+          "data_gap": true
+        },
+        "AMZN": {
+          "data_gap": true
+        },
+        "META": {
+          "data_gap": true
+        },
+        "NVDA": {
+          "data_gap": true
+        }
+      },
+      "valid_count": 0,
+      "avg_growth": null,
+      "data_gap": true
+    },
     "capex_trend": "unknown",
+    "avg_growth_yoy": null,
     "empirical_point": 0,
     "data_gap": true,
-    "valid_tickers": 0,
-    "total_tickers": 5,
-    "fetched_at": "2026-04-06T08:33:59.666367"
+    "primary_source": "fred_a169rc1q027sbea",
+    "fetched_at": "2026-04-06T08:45:12.491609"
   },
   "nvda_revenue": {
     "growth_yoy": null,
