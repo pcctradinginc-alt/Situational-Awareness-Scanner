@@ -1,32 +1,30 @@
 """
 scanner/sources/data_fetcher.py
 
-FIXES v3:
-    EIA: Entfernt facets[location] Filter der nur 1 Monat zurückgab.
-         Nutzt jetzt direktere Series-ID für US-Gesamtstrom.
-         Fallback auf FRED Series ELEC.GEN.TOTAL-US-99.A wenn EIA leer.
+FIXES v4:
+    EIA: length=10000 statt 200 (EIA gibt Daten pro State×FuelType zurück,
+         200 Zeilen reichen nicht für 13 Monate aggregiert)
+         observation_start auf 500 Tage erhöht für sicheren 13-Monats-Buffer
 
-    CAPEX: FRED Series A169RC1Q027SBEA als Ersatz für Finnhub Free Tier.
-           US Corporate Capital Expenditure — kostenlos, zuverlässig,
-           quartalsweise mit langer Historie.
-           Finnhub bleibt als sekundäre Quelle wenn FRED verfügbar.
+    FRED: Korrekte verifizierte Series-IDs:
+         - PNFI  (Private Nonresidential Fixed Investment, quartalsweise)
+         - IPB51020S (Information Processing Equipment, monatlich)
+         observation_start auf 600 Tage erhöht, limit auf 20
+         
+    FRED EIA Fallback: 600 Tage statt 400, limit=20 für 13+ Monate
 """
 
 import json
 import logging
 import math
-import time
 from datetime import datetime, timedelta
 from pathlib import Path
-from typing import Optional
 
 import requests
 import requests_cache
 import feedparser
 import yfinance as yf
 import finnhub
-import pandas as pd
-import numpy as np
 
 from ..utils.config import Config
 from ..utils.rate_limiter import rate_limiter
@@ -83,11 +81,11 @@ class DataFetcher:
         breadth = above_200d / total if total > 0 else 0.5
         self.quality["energy_breadth"] = "OK" if total > 5 else "PARTIAL"
         return {
-            "energy_breadth":  round(breadth, 3),
-            "above_200d":      above_200d,
-            "total_checked":   total,
-            "details":         details,
-            "fetched_at":      datetime.utcnow().isoformat(),
+            "energy_breadth": round(breadth, 3),
+            "above_200d":     above_200d,
+            "total_checked":  total,
+            "details":        details,
+            "fetched_at":     datetime.utcnow().isoformat(),
         }
 
     def get_rsi(self, ticker: str, period: int = 14) -> float:
@@ -106,34 +104,31 @@ class DataFetcher:
             logger.warning(f"RSI {ticker}: {e}")
             return 50.0
 
-    # ── EIA ELECTRICITY (FIXED v3) ───────────────────────────────
+    # ── EIA ELECTRICITY (FIXED v4) ───────────────────────────────
 
     def get_eia_electricity_growth(self) -> dict:
-        """
-        FIX v3: Entfernt facets[location][]=US der nur 1 Monat gab.
-        Nutzt jetzt EIA v2 Bulk-Endpoint ohne Location-Filter.
-        Fallback auf FRED wenn EIA weniger als 13 Monate liefert.
-        """
         logger.info("Fetching EIA electricity demand")
 
         if not Config.EIA_API_KEY:
-            self.quality["eia"] = "NO_KEY"
             logger.warning("EIA: No API key — trying FRED fallback")
             return self._get_eia_via_fred()
 
-        # Primärer Versuch: EIA v2 ohne Location-Filter
         result = self._get_eia_direct()
         if result.get("data_gap"):
-            logger.info("EIA direct: insufficient data — trying FRED fallback")
+            logger.info(
+                f"EIA direct insufficient ({result.get('months', 0)} months)"
+                f" — trying FRED fallback"
+            )
             fred_result = self._get_eia_via_fred()
             if not fred_result.get("data_gap"):
                 return fred_result
-            return result  # Beide fehlgeschlagen — Data Gap zurückgeben
-
         return result
 
     def _get_eia_direct(self) -> dict:
-        """EIA v2 API ohne Location-Filter."""
+        """
+        FIX v4: length=10000 — EIA gibt Daten pro State×FuelType zurück.
+        Bei ~50 States × 10 FuelTypes × 13 Monate = 6500+ Zeilen nötig.
+        """
         try:
             rate_limiter.wait("eia")
             url    = "https://api.eia.gov/v2/electricity/electric-power-operational-data/data/"
@@ -142,18 +137,17 @@ class DataFetcher:
                 "frequency":            "monthly",
                 "data[0]":              "generation",
                 "facets[fueltypeid][]": "ALL",
-                # KEIN location-Filter — gibt US-Gesamtdaten über alle States
                 "sort[0][column]":      "period",
                 "sort[0][direction]":   "desc",
-                "length":               200,  # Groß genug für 13 Monate alle States
+                "length":               10000,  # FIX v4: groß genug für alle States
             }
-            r    = requests.get(url, params=params, timeout=25)
+            r    = requests.get(url, params=params, timeout=30)
             r.raise_for_status()
             data = r.json().get("response", {}).get("data", [])
 
             if not data:
-                return {"growth_yoy": None, "empirical_point": 0, "data_gap": True,
-                        "reason": "empty_eia_response"}
+                return {"growth_yoy": None, "empirical_point": 0,
+                        "data_gap": True, "reason": "empty_response"}
 
             # Aggregiere nach Periode über alle States und Fuel-Types
             by_month: dict = {}
@@ -167,6 +161,7 @@ class DataFetcher:
                         continue
 
             sorted_months = sorted(by_month.keys(), reverse=True)
+            logger.info(f"EIA direct: {len(sorted_months)} months aggregated")
 
             if len(sorted_months) < 13:
                 logger.warning(
@@ -179,7 +174,8 @@ class DataFetcher:
             year_ago = by_month[sorted_months[12]]
 
             if year_ago == 0:
-                return {"growth_yoy": None, "empirical_point": 0, "data_gap": True}
+                return {"growth_yoy": None, "empirical_point": 0,
+                        "data_gap": True}
 
             growth         = (latest - year_ago) / year_ago
             shulman_signal = growth > Config.SHULMAN_EIA_GROWTH_THRESHOLD
@@ -191,14 +187,14 @@ class DataFetcher:
             )
             self.quality["eia"] = "OK"
             return {
-                "growth_yoy":      round(growth, 4),
-                "latest_period":   sorted_months[0],
+                "growth_yoy":       round(growth, 4),
+                "latest_period":    sorted_months[0],
                 "months_available": len(sorted_months),
-                "source":          "eia_direct",
-                "shulman_signal":  shulman_signal,
-                "empirical_point": 1 if shulman_signal else 0,
-                "data_gap":        False,
-                "fetched_at":      datetime.utcnow().isoformat(),
+                "source":           "eia_direct",
+                "shulman_signal":   shulman_signal,
+                "empirical_point":  1 if shulman_signal else 0,
+                "data_gap":         False,
+                "fetched_at":       datetime.utcnow().isoformat(),
             }
 
         except Exception as e:
@@ -208,9 +204,8 @@ class DataFetcher:
 
     def _get_eia_via_fred(self) -> dict:
         """
-        FRED Fallback für EIA-Daten.
-        Series IPG2211A2N = Electric Power Generation Index
-        Gute Näherung für Stromwachstum.
+        FIX v4: 600 Tage Rückblick, limit=20 für sichere 13+ Monate.
+        Series IPG2211A2N = Electric Power Generation Index (verifiziert).
         """
         if not Config.FRED_API_KEY:
             return {"growth_yoy": None, "empirical_point": 0,
@@ -219,14 +214,14 @@ class DataFetcher:
             rate_limiter.wait("fred")
             url    = "https://api.stlouisfed.org/fred/series/observations"
             params = {
-                "series_id":         "IPG2211A2N",
+                "series_id":         "IPG2211A2N",  # Verifiziert
                 "api_key":           Config.FRED_API_KEY,
                 "file_type":         "json",
                 "observation_start": (
-                    datetime.utcnow() - timedelta(days=400)
+                    datetime.utcnow() - timedelta(days=600)  # FIX v4
                 ).strftime("%Y-%m-%d"),
                 "sort_order":        "desc",
-                "limit":             15,
+                "limit":             20,  # FIX v4
             }
             r    = requests.get(url, params=params, timeout=20)
             r.raise_for_status()
@@ -235,6 +230,8 @@ class DataFetcher:
                 (o["date"], float(o["value"]))
                 for o in obs if o["value"] != "."
             ]
+
+            logger.info(f"FRED EIA fallback: {len(valid)} observations")
 
             if len(valid) < 13:
                 logger.warning(
@@ -252,7 +249,7 @@ class DataFetcher:
                 f"FRED EIA fallback: growth={growth:.1%} | "
                 f"empirical_point={1 if shulman_signal else 0}"
             )
-            self.quality["eia"] = "OK_FRED_FALLBACK"
+            self.quality["eia"] = "OK_FRED"
             return {
                 "growth_yoy":      round(growth, 4),
                 "latest_period":   valid[0][0],
@@ -267,7 +264,7 @@ class DataFetcher:
             return {"growth_yoy": None, "empirical_point": 0,
                     "data_gap": True, "error": str(e)}
 
-    # ── FRED MAKRO + CAPEX (FIXED v3) ───────────────────────────
+    # ── FRED MAKRO ───────────────────────────────────────────────
 
     def get_fred_data(self) -> dict:
         logger.info("Fetching FRED macro data")
@@ -291,10 +288,10 @@ class DataFetcher:
                     "api_key":           Config.FRED_API_KEY,
                     "file_type":         "json",
                     "observation_start": (
-                        datetime.utcnow() - timedelta(days=400)
+                        datetime.utcnow() - timedelta(days=600)  # FIX v4
                     ).strftime("%Y-%m-%d"),
                     "sort_order":        "desc",
-                    "limit":             15,
+                    "limit":             20,  # FIX v4
                 }
                 r    = requests.get(url, params=params, timeout=20)
                 r.raise_for_status()
@@ -309,20 +306,18 @@ class DataFetcher:
                     year_ago = valid[12][1]
                     growth   = (latest - year_ago) / year_ago
                     results[name] = {
-                        "latest":      round(latest, 2),
-                        "year_ago":    round(year_ago, 2),
-                        "growth_yoy":  round(growth, 4),
-                        "period":      valid[0][0],
-                        "data_gap":    False,
+                        "latest":     round(latest, 2),
+                        "year_ago":   round(year_ago, 2),
+                        "growth_yoy": round(growth, 4),
+                        "period":     valid[0][0],
+                        "data_gap":   False,
                     }
+                    logger.info(f"FRED {series_id}: {growth:.1%} YoY")
                 else:
                     logger.warning(
                         f"FRED {series_id}: {len(valid)} obs — DATA GAP"
                     )
-                    results[name] = {
-                        "data_gap": True,
-                        "obs_count": len(valid),
-                    }
+                    results[name] = {"data_gap": True, "obs_count": len(valid)}
 
             except Exception as e:
                 logger.warning(f"FRED {series_id}: {e}")
@@ -336,22 +331,20 @@ class DataFetcher:
         results["fetched_at"] = datetime.utcnow().isoformat()
         return results
 
+    # ── CAPEX (FIXED v4) ─────────────────────────────────────────
+
     def get_hyperscaler_capex(self) -> dict:
         """
-        FIX v3: FRED Series A169RC1Q027SBEA als primäre CapEx-Quelle.
-        US Corporate Capital Expenditure — quartalsweise, kostenlos.
-        Finnhub bleibt als sekundäre Validierung.
+        FIX v4: Verifizierte FRED Series-IDs.
+        PNFI = Private Nonresidential Fixed Investment (quartalsweise).
+        IPB51020S = Information Processing Equipment (monatlich, verifiziert).
+        600 Tage Rückblick für sichere 5+ Quartale.
         """
         logger.info("Fetching hyperscaler CapEx (FRED primary + Finnhub secondary)")
 
-        # Primär: FRED US Corporate CapEx
-        fred_result = self._get_capex_via_fred()
-
-        # Sekundär: Finnhub für einzelne Ticker (best effort)
+        fred_result    = self._get_capex_via_fred()
         finnhub_result = self._get_capex_via_finnhub()
 
-        # Kombinierter empirical_point
-        # FRED gibt den breiteren Trend, Finnhub gibt Einzelticker
         empirical_p = 0
         if not fred_result.get("data_gap") and fred_result.get("growth_yoy"):
             if fred_result["growth_yoy"] > Config.SHULMAN_CAPEX_GROWTH_THRESHOLD:
@@ -360,45 +353,70 @@ class DataFetcher:
                     f"CapEx empirical_point=1 from FRED: "
                     f"{fred_result['growth_yoy']:.1%}"
                 )
-
-        # Capex-Trend aus FRED (zuverlässiger als Finnhub Free)
-        capex_trend = fred_result.get("capex_trend", "unknown")
+            else:
+                logger.info(
+                    f"CapEx empirical_point=0: "
+                    f"{fred_result['growth_yoy']:.1%} < "
+                    f"{Config.SHULMAN_CAPEX_GROWTH_THRESHOLD:.0%} threshold"
+                )
 
         return {
             "fred_capex":      fred_result,
             "finnhub_capex":   finnhub_result,
-            "capex_trend":     capex_trend,
+            "capex_trend":     fred_result.get("capex_trend", "unknown"),
             "avg_growth_yoy":  fred_result.get("growth_yoy"),
             "empirical_point": empirical_p,
             "data_gap":        fred_result.get("data_gap", True),
-            "primary_source":  "fred_a169rc1q027sbea",
+            "primary_source":  "fred",
             "fetched_at":      datetime.utcnow().isoformat(),
         }
 
     def _get_capex_via_fred(self) -> dict:
         """
-        FRED Series A169RC1Q027SBEA:
-        Gross Private Domestic Investment: Fixed Investment: Nonresidential:
-        Equipment: Information Processing Equipment
-        Guter Proxy für Hyperscaler CapEx-Trend.
+        FIX v4: Verifizierte Series-IDs.
+        Primär: IPB51020S (Information Processing Equipment, monatlich)
+        Fallback: PNFI (Private Nonresidential Fixed Investment, quartalsweise)
         """
         if not Config.FRED_API_KEY:
             return {"data_gap": True, "reason": "no_fred_key"}
 
+        # Primär: Information Processing Equipment
+        result = self._fred_series(
+            series_id="IPB51020S",
+            days_back=600,
+            min_obs=13,
+            label="IPB51020S (Info Processing Equipment)"
+        )
+        if not result.get("data_gap"):
+            return result
+
+        # Fallback: Private Nonresidential Fixed Investment
+        logger.info("FRED CapEx primary failed — trying PNFI fallback")
+        result = self._fred_series(
+            series_id="PNFI",
+            days_back=600,
+            min_obs=5,  # Quartalsweise — 5 Quartale für YoY
+            quarters=True,
+            label="PNFI (Private Nonresidential Fixed Investment)"
+        )
+        return result
+
+    def _fred_series(self, series_id: str, days_back: int,
+                     min_obs: int, label: str,
+                     quarters: bool = False) -> dict:
+        """Generischer FRED Series Fetcher mit Fehlerbehandlung."""
         try:
             rate_limiter.wait("fred")
             url    = "https://api.stlouisfed.org/fred/series/observations"
             params = {
-                # A169RC1Q027SBEA = Information Processing Equipment Investment
-                # Proxy für Hyperscaler/Datacenter CapEx
-                "series_id":         "A169RC1Q027SBEA",
+                "series_id":         series_id,
                 "api_key":           Config.FRED_API_KEY,
                 "file_type":         "json",
                 "observation_start": (
-                    datetime.utcnow() - timedelta(days=550)
+                    datetime.utcnow() - timedelta(days=days_back)
                 ).strftime("%Y-%m-%d"),
                 "sort_order":        "desc",
-                "limit":             10,
+                "limit":             25,
             }
             r    = requests.get(url, params=params, timeout=20)
             r.raise_for_status()
@@ -408,68 +426,22 @@ class DataFetcher:
                 for o in obs if o["value"] != "."
             ]
 
-            if len(valid) < 5:
-                # Fallback: PNFIQ (Nonresidential Fixed Investment)
-                return self._get_capex_via_fred_fallback()
+            logger.info(f"FRED {label}: {len(valid)} observations")
 
-            latest   = valid[0][1]
-            year_ago = valid[4][1] if len(valid) >= 5 else valid[-1][1]
-            growth   = (latest - year_ago) / year_ago if year_ago else None
-
-            trend = (
-                "rising"  if growth and growth > 0.05 else
-                "falling" if growth and growth < -0.05 else
-                "stable"
-            )
-
-            logger.info(
-                f"FRED CapEx (A169RC1Q027SBEA): "
-                f"growth={growth:.1%} if growth else 'N/A' | "
-                f"trend={trend}"
-            )
-
-            return {
-                "growth_yoy":  round(growth, 4) if growth else None,
-                "capex_trend": trend,
-                "period":      valid[0][0],
-                "series":      "A169RC1Q027SBEA",
-                "data_gap":    False,
-            }
-
-        except Exception as e:
-            logger.warning(f"FRED CapEx primary error: {e}")
-            return self._get_capex_via_fred_fallback()
-
-    def _get_capex_via_fred_fallback(self) -> dict:
-        """Fallback: FRED PNFIQ — Nonresidential Fixed Investment."""
-        if not Config.FRED_API_KEY:
-            return {"data_gap": True}
-        try:
-            rate_limiter.wait("fred")
-            url    = "https://api.stlouisfed.org/fred/series/observations"
-            params = {
-                "series_id":         "PNFIQ",
-                "api_key":           Config.FRED_API_KEY,
-                "file_type":         "json",
-                "observation_start": (
-                    datetime.utcnow() - timedelta(days=550)
-                ).strftime("%Y-%m-%d"),
-                "sort_order":        "desc",
-                "limit":             8,
-            }
-            r    = requests.get(url, params=params, timeout=20)
-            r.raise_for_status()
-            obs  = r.json().get("observations", [])
-            valid = [
-                (o["date"], float(o["value"]))
-                for o in obs if o["value"] != "."
-            ]
-
-            if len(valid) < 5:
+            if len(valid) < min_obs:
+                logger.warning(
+                    f"FRED {label}: {len(valid)} obs < {min_obs} — DATA GAP"
+                )
                 return {"data_gap": True, "obs_count": len(valid)}
 
             latest   = valid[0][1]
-            year_ago = valid[4][1]
+            # Für quartalsweise: 4 Quartale zurück = Index 4
+            # Für monatlich: 12 Monate zurück = Index 12
+            idx      = 4 if quarters else 12
+            if len(valid) <= idx:
+                return {"data_gap": True, "insufficient_for_yoy": True}
+
+            year_ago = valid[idx][1]
             growth   = (latest - year_ago) / year_ago if year_ago else None
             trend    = (
                 "rising"  if growth and growth > 0.03 else
@@ -477,15 +449,19 @@ class DataFetcher:
                 "stable"
             )
 
-            logger.info(f"FRED CapEx fallback (PNFIQ): {growth:.1%} | {trend}")
+            logger.info(
+                f"FRED {label}: growth={growth:.1%} | trend={trend}"
+            )
             return {
                 "growth_yoy":  round(growth, 4) if growth else None,
                 "capex_trend": trend,
-                "series":      "PNFIQ",
+                "period":      valid[0][0],
+                "series":      series_id,
                 "data_gap":    False,
             }
+
         except Exception as e:
-            logger.warning(f"FRED CapEx fallback error: {e}")
+            logger.warning(f"FRED {label} error: {e}")
             return {"data_gap": True, "error": str(e)}
 
     def _get_capex_via_finnhub(self) -> dict:
@@ -502,7 +478,9 @@ class DataFetcher:
                     results[ticker] = {"data_gap": True}
                     continue
 
-                recent   = sorted(capex, key=lambda x: x.get("period", ""), reverse=True)
+                recent   = sorted(
+                    capex, key=lambda x: x.get("period", ""), reverse=True
+                )
                 latest   = recent[0].get("v", 0) or 0
                 previous = recent[1].get("v", 0) or 1
                 growth   = (latest - previous) / abs(previous)
@@ -513,13 +491,15 @@ class DataFetcher:
             except Exception:
                 results[ticker] = {"data_gap": True}
 
-        valid = [v["growth_yoy"] for v in results.values()
-                 if not v.get("data_gap") and v.get("growth_yoy") is not None]
+        valid = [
+            v["growth_yoy"] for v in results.values()
+            if not v.get("data_gap") and v.get("growth_yoy") is not None
+        ]
         return {
-            "by_ticker":    results,
-            "valid_count":  len(valid),
-            "avg_growth":   round(sum(valid)/len(valid), 4) if valid else None,
-            "data_gap":     len(valid) == 0,
+            "by_ticker":   results,
+            "valid_count": len(valid),
+            "avg_growth":  round(sum(valid)/len(valid), 4) if valid else None,
+            "data_gap":    len(valid) == 0,
         }
 
     # ── NVDA REVENUE ─────────────────────────────────────────────
@@ -534,12 +514,13 @@ class DataFetcher:
 
             if not rev or len(rev) < 2:
                 logger.warning(
-                    f"NVDA Revenue: {'empty' if not rev else len(rev)} "
-                    f"quarters — DATA GAP"
+                    f"NVDA Revenue: {len(rev)} quarters — DATA GAP"
                 )
                 return {"growth_yoy": None, "empirical_point": 0, "data_gap": True}
 
-            recent   = sorted(rev, key=lambda x: x.get("period", ""), reverse=True)
+            recent   = sorted(
+                rev, key=lambda x: x.get("period", ""), reverse=True
+            )
             latest   = recent[0].get("v", 0) or 0
             previous = recent[1].get("v", 0) or 0
 
@@ -547,7 +528,7 @@ class DataFetcher:
                 return {"growth_yoy": None, "empirical_point": 0, "data_gap": True}
 
             growth      = (latest - previous) / abs(previous)
-            THRESHOLD   = 0.10  # R6 Fix: 10% statt 20%
+            THRESHOLD   = 0.10
             empirical_p = 1 if growth > THRESHOLD else 0
 
             logger.info(
@@ -567,7 +548,7 @@ class DataFetcher:
             return {"growth_yoy": None, "empirical_point": 0,
                     "data_gap": True, "error": str(e)}
 
-    # ── RSS FEEDS (R7: korrigiertes Credibility-Scoring) ─────────
+    # ── RSS FEEDS ─────────────────────────────────────────────────
 
     THIEL_KEYWORDS = [
         "Peter Thiel", "Katechon", "Sovereign AI",
@@ -631,8 +612,7 @@ class DataFetcher:
                     if not any(signals.values()):
                         continue
 
-                    signal_count = sum(signals.values())
-                    # R7: Credibility-dominantes Scoring
+                    signal_count  = sum(signals.values())
                     quality_score = credibility ** 2 * (1 + math.log(signal_count + 1))
 
                     results.append({
@@ -682,7 +662,7 @@ class DataFetcher:
     # ── MAIN ORCHESTRATION ───────────────────────────────────────
 
     def fetch_all(self, state_manager, laufzeit_months: int = 6) -> dict:
-        logger.info("=== DataFetcher: starting full fetch ===")
+        logger.info("=== DataFetcher v4: starting full fetch ===")
         Config.ensure_dirs()
         all_data = {}
         errors   = []
@@ -694,7 +674,7 @@ class DataFetcher:
             errors.append(f"energy_breadth: {e}")
             all_data["energy_breadth"] = {"energy_breadth": 0.5, "data_gap": True}
 
-        # 2. EIA (FIXED v3)
+        # 2. EIA
         try:
             all_data["eia"] = self.get_eia_electricity_growth()
         except Exception as e:
@@ -708,7 +688,7 @@ class DataFetcher:
             errors.append(f"fred: {e}")
             all_data["fred"] = {"data_gap": True}
 
-        # 4. CapEx (FIXED v3: FRED primary)
+        # 4. CapEx
         try:
             all_data["hyperscaler_capex"] = self.get_hyperscaler_capex()
         except Exception as e:
@@ -731,7 +711,7 @@ class DataFetcher:
             errors.append(f"rss: {e}")
             all_data["rss"] = []
 
-        # 7. Options (Tradier)
+        # 7. Options
         try:
             all_data["options"] = self.fetch_options_data(
                 state_manager, laufzeit_months
@@ -796,7 +776,7 @@ class DataFetcher:
             },
             "data_quality.json":    all_data.get("data_quality", {}),
             "shulman_empirical.json": {
-                "score":       all_data.get("shulman_empirical_score", 0),
+                "score":       empirical   := all_data.get("shulman_empirical_score", 0),
                 "eia_point":   all_data["eia"].get("empirical_point", 0),
                 "capex_point": all_data["hyperscaler_capex"].get("empirical_point", 0),
                 "nvda_point":  all_data["nvda_revenue"].get("empirical_point", 0),
@@ -821,5 +801,7 @@ if __name__ == "__main__":
         fetcher  = DataFetcher(sm)
         all_data = fetcher.fetch_all(sm)
         print(f"\nShulman Empirical: {all_data['shulman_empirical_score']}/3")
-        print(f"EIA: {all_data['eia'].get('growth_yoy')}")
-        print(f"CapEx: {all_data['hyperscaler_capex'].get('capex_trend')}")
+        print(f"EIA source: {all_data['eia'].get('source', 'N/A')}")
+        print(f"EIA growth: {all_data['eia'].get('growth_yoy', 'N/A')}")
+        print(f"CapEx trend: {all_data['hyperscaler_capex'].get('capex_trend', 'N/A')}")
+        print(f"Data gaps: {all_data['shulman_data_gaps']}")
