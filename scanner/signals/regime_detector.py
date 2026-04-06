@@ -29,15 +29,30 @@ class RegimeDetector:
         if capex_data.get("capex_trend"):
             capex_trend = capex_data["capex_trend"]
 
-        # IV-Rank: Durchschnitt über alle Target-Ticker aus Tradier
-        iv_ranks = []
+        # R-03 FIX: IV-Rank None bei INSUFFICIENT_DATA nicht als 50.0 behandeln
+        iv_ranks       = []
+        iv_warmup_count = 0
         for ticker, odata in options_data.items():
             iv_rank_info = odata.get("iv_rank", {})
-            if isinstance(iv_rank_info, dict) and iv_rank_info.get("confidence") != "WARMUP":
-                iv_ranks.append(iv_rank_info.get("iv_rank", 50.0))
+            if not isinstance(iv_rank_info, dict):
+                continue
+            confidence = iv_rank_info.get("confidence", "")
+            iv_val     = iv_rank_info.get("iv_rank")
+            if confidence == "INSUFFICIENT_DATA" or iv_val is None:
+                iv_warmup_count += 1
+            else:
+                iv_ranks.append(iv_val)
 
-        avg_iv_rank = sum(iv_ranks) / len(iv_ranks) if iv_ranks else Config.IV_RANK_WARMUP_DEFAULT
-        iv_confidence = "HIGH" if len(iv_ranks) >= 5 else "LOW"
+        if iv_ranks:
+            avg_iv_rank   = sum(iv_ranks) / len(iv_ranks)
+            iv_confidence = "HIGH" if len(iv_ranks) >= 5 else "LOW"
+        else:
+            avg_iv_rank   = None  # Kein Default — explizit neutral behandeln
+            iv_confidence = "INSUFFICIENT_DATA"
+            logger.warning(
+                f"IV-Rank: {iv_warmup_count} tickers in warmup — "
+                f"regime score set to neutral=5.0"
+            )
 
         # Grid Queue (vereinfacht: EIA als Proxy)
         eia_data     = all_data.get("eia", {})
@@ -49,7 +64,8 @@ class RegimeDetector:
 
         # Stress-Bedingungen prüfen
         stress_reasons = []
-        if avg_iv_rank > Config.IV_RANK_STRESS_THRESHOLD:
+        # R-03: avg_iv_rank kann None sein — kein Stress-Signal bei Warmup
+        if avg_iv_rank is not None and avg_iv_rank > Config.IV_RANK_STRESS_THRESHOLD:
             stress_reasons.append(f"IV-Rank {avg_iv_rank:.1f} > {Config.IV_RANK_STRESS_THRESHOLD}")
         if capex_trend == "falling_two_quarters":
             stress_reasons.append("Hyperscaler CapEx falling two quarters")
@@ -60,14 +76,15 @@ class RegimeDetector:
         weights  = Config.WEIGHTS_STRESS if mode == "STRESS" else Config.WEIGHTS_NORMAL
         threshold = Config.CONVICTION_STRESS if mode == "STRESS" else Config.CONVICTION_NORMAL
 
-        # Markt-Regime-Score (1-10)
+        # R-03: Regime-Score bei None IV-Rank neutral setzen (5.0)
+        iv_for_score = avg_iv_rank if avg_iv_rank is not None else 50.0
         regime_score = self._calculate_regime_score(
-            energy_breadth, avg_iv_rank, capex_trend, eia_growth
+            energy_breadth, iv_for_score, capex_trend, eia_growth
         )
 
         result = {
             "mode":               mode,
-            "iv_rank_avg":        round(avg_iv_rank, 1),
+            "iv_rank_avg":        round(avg_iv_rank, 1) if avg_iv_rank is not None else None,
             "iv_confidence":      iv_confidence,
             "energy_breadth":     round(energy_breadth, 3),
             "capex_trend":        capex_trend,
