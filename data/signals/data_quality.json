@@ -8,10 +8,10 @@
   "shulman_empirical_score": 0,
   "shulman_data_gaps": {
     "eia_gap": false,
-    "capex_gap": true,
+    "capex_gap": false,
     "nvda_gap": true,
     "any_gap": true,
     "all_gaps": false
   },
-  "fetched_at": "2026-04-07T06:03:02.530909"
+  "fetched_at": "2026-04-07T06:25:18.779265"
 }

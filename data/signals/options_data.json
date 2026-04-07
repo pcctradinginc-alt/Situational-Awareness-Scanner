@@ -590,7 +590,7 @@
       "options_bullish": true
     },
     "laufzeit_months": 6,
-    "fetched_at": "2026-04-07T06:01:10.310305",
+    "fetched_at": "2026-04-07T06:23:26.442870",
     "rsi": 41.7
   },
   "CEG": {
@@ -1558,7 +1558,7 @@
       "options_bullish": true
     },
     "laufzeit_months": 6,
-    "fetched_at": "2026-04-07T06:01:24.311892",
+    "fetched_at": "2026-04-07T06:23:40.444860",
     "rsi": 36.7
   },
   "NRG": {
@@ -2135,7 +2135,7 @@
       "options_bullish": true
     },
     "laufzeit_months": 6,
-    "fetched_at": "2026-04-07T06:01:38.313491",
+    "fetched_at": "2026-04-07T06:23:54.446785",
     "rsi": 47.7
   },
   "PLTR": {
@@ -2882,7 +2882,7 @@
       "options_bullish": true
     },
     "laufzeit_months": 6,
-    "fetched_at": "2026-04-07T06:01:52.315284",
+    "fetched_at": "2026-04-07T06:24:08.448625",
     "rsi": 45.9
   },
   "NVDA": {
@@ -4037,7 +4037,7 @@
       "options_bullish": false
     },
     "laufzeit_months": 6,
-    "fetched_at": "2026-04-07T06:02:06.317087",
+    "fetched_at": "2026-04-07T06:24:22.450855",
     "rsi": 43.6
   },
   "TSM": {
@@ -4767,7 +4767,7 @@
       "options_bullish": true
     },
     "laufzeit_months": 6,
-    "fetched_at": "2026-04-07T06:02:20.318081",
+    "fetched_at": "2026-04-07T06:24:36.452697",
     "rsi": 51.2
   },
   "AVGO": {
@@ -5480,7 +5480,7 @@
       "options_bullish": false
     },
     "laufzeit_months": 6,
-    "fetched_at": "2026-04-07T06:02:34.319841",
+    "fetched_at": "2026-04-07T06:24:50.454865",
     "rsi": 44.3
   },
   "LMT": {
@@ -7060,7 +7060,7 @@
       "options_bullish": false
     },
     "laufzeit_months": 6,
-    "fetched_at": "2026-04-07T06:02:48.321620",
+    "fetched_at": "2026-04-07T06:25:04.456584",
     "rsi": 47.2
   },
   "RTX": {
@@ -7739,7 +7739,7 @@
       "options_bullish": true
     },
     "laufzeit_months": 6,
-    "fetched_at": "2026-04-07T06:03:02.323155",
+    "fetched_at": "2026-04-07T06:25:18.458555",
     "rsi": 39.0
   }
 }

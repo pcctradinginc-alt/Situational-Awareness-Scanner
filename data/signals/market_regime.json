@@ -80,12 +80,15 @@
         "above": true
       }
     },
-    "fetched_at": "2026-04-07T06:00:33.591544"
+    "fetched_at": "2026-04-07T06:22:36.876382"
   },
   "hyperscaler_capex": {
     "fred_capex": {
-      "data_gap": true,
-      "error": "500 Server Error: Internal Server Error for url: https://api.stlouisfed.org/fred/series/observations?series_id=PNFI&api_key=35eef949b71aa59c6b22e9e515090d0c&file_type=json&observation_start=2024-08-15&sort_order=desc&limit=25"
+      "growth_yoy": 0.0789,
+      "capex_trend": "rising",
+      "period": "2025-10-01",
+      "series": "PNFI",
+      "data_gap": false
     },
     "finnhub_capex": {
       "by_ticker": {
@@ -109,12 +112,12 @@
       "avg_growth": null,
       "data_gap": true
     },
-    "capex_trend": "unknown",
-    "avg_growth_yoy": null,
+    "capex_trend": "rising",
+    "avg_growth_yoy": 0.0789,
     "empirical_point": 0,
-    "data_gap": true,
+    "data_gap": false,
     "primary_source": "fred",
-    "fetched_at": "2026-04-07T06:00:53.935986"
+    "fetched_at": "2026-04-07T06:23:09.005806"
   },
   "fred": {
     "electric_power_production": {
@@ -125,14 +128,20 @@
       "data_gap": false
     },
     "industrial_production": {
-      "error": "500 Server Error: Internal Server Error for url: https://api.stlouisfed.org/fred/series/observations?series_id=INDPRO&api_key=35eef949b71aa59c6b22e9e515090d0c&file_type=json&observation_start=2024-08-15&sort_order=desc&limit=20",
-      "data_gap": true
+      "latest": 102.55,
+      "year_ago": 101.1,
+      "growth_yoy": 0.0144,
+      "period": "2026-02-01",
+      "data_gap": false
     },
     "cpi_inflation": {
-      "error": "500 Server Error: Internal Server Error for url: https://api.stlouisfed.org/fred/series/observations?series_id=CPIAUCSL&api_key=35eef949b71aa59c6b22e9e515090d0c&file_type=json&observation_start=2024-08-15&sort_order=desc&limit=20",
-      "data_gap": true
+      "latest": 327.46,
+      "year_ago": 318.96,
+      "growth_yoy": 0.0266,
+      "period": "2026-02-01",
+      "data_gap": false
     },
-    "fetched_at": "2026-04-07T06:00:47.286359"
+    "fetched_at": "2026-04-07T06:23:03.858391"
   },
   "eia": {
     "growth_yoy": 0.0217,
@@ -141,6 +150,6 @@
     "shulman_signal": false,
     "empirical_point": 0,
     "data_gap": false,
-    "fetched_at": "2026-04-07T06:00:44.175881"
+    "fetched_at": "2026-04-07T06:23:02.347121"
   }
 }
