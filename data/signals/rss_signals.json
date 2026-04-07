@@ -1,11 +1,11 @@
 [
   {
-    "source": "Axios_Tech",
-    "credibility": 0.76,
-    "title": "Iran mediators make last-ditch push for 45-day ceasefire",
-    "summary": "<p>The U.S., <a href=\"https://www.axios.com/world/iran\" target=\"_blank\">Iran</a> and a group of regional mediators are discussing the terms for a potential 45-day ceasefire that could lead to a permanent end to the war, according to four U.S., Israeli and regional sources with knowledge of the talks.</p><p><strong>Why it matters:</strong> The sources said the chances for <a href=\"https://www.axios.com/2026/04/05/trump-iran-deal-power-plants\" target=\"_blank\">reaching a partial deal</a> over the n",
-    "url": "https://www.axios.com/2026/04/06/iran-war-us-tehran-ceasefire-talks",
-    "published": "2026-04-06T01:58:16",
+    "source": "Yahoo_Finance",
+    "credibility": 0.75,
+    "title": "AI Data Center Energy Storage Market Outlook, 2030: AI Workloads and Faster Grid Interconnection Needs Driving the Market at 28-38% CAGR",
+    "summary": "Dublin, April 07, 2026 (GLOBE NEWSWIRE) -- The \"AI Data Center Energy Storage - How Workload Volatility and Grid Bottlenecks Are Creating a $4-6 Billion Market (2025-2030)\" has been added to ResearchAndMarkets.com's offering. The global energy storage market for AI data centers is poised to achieve $4.1-6.0 billion in annual revenue by 2030, experiencing a 28-38% compound annual growth rate from approximately $1.2 billion in 2025. This expansion is two to three times larger than prior UPS-centri",
+    "url": "https://finance.yahoo.com/sectors/energy/articles/ai-data-center-energy-storage-163200272.html?.tsrc=rss",
+    "published": "2026-04-07T16:32:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -18,16 +18,16 @@
     "tickers": [
       "VST"
     ],
-    "quality_score": 0.978,
-    "weighted_relevance": 0.9779618114914245
+    "quality_score": 0.9524,
+    "weighted_relevance": 0.9523952890649693
   },
   {
     "source": "Yahoo_Finance",
     "credibility": 0.75,
-    "title": "Here is Why Texas Instruments (TXN) is Highly Favored by Hedge Funds",
-    "summary": "Texas Instruments Inc. (NASDAQ:TXN) is one of the 10 best AI chip stocks to buy according to hedge funds. On March 5, Texas Instruments Inc. (NASDAQ:TXN) announced a collaboration with NVIDIA Corporation (NASDAQ:NVDA) to ensure fast and safe integration of humanoid robots in the real-world environment. Through this cooperation between TI\u2019s real-time motor control, sensing, [\u2026]",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/why-texas-instruments-txn-highly-091840247.html?.tsrc=rss",
-    "published": "2026-04-07T09:18:40",
+    "title": "Will Super Micro Computer's Smuggling Scandal Hurt Its Critical Ties With Nvidia? One Expert Says The Fallout May Not Be So Simple",
+    "summary": "The ongoing scandal involving SuperMicro Computer Inc. poses a significant challenge to its longstanding partnership with Nvidia, but the impact may not be too harsh, says one expert. Sachin Ohal, CTO at International Systems Technologies, told Fortune that Nvidia's reputation won't affect chip sales, and Supermicro customers' vendor choices are separate from the ongoing smuggling allegations. Customers leaving Supermicro face a 3\u20136 month transition involving board-level vendor reviews, cybersec",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/super-micro-computers-smuggling-scandal-163107064.html?.tsrc=rss",
+    "published": "2026-04-07T16:31:07",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -46,35 +46,34 @@
   {
     "source": "Yahoo_Finance",
     "credibility": 0.75,
-    "title": "Nvidia, Apple, Alphabet, Amazon, and Microsoft Are Sending Shockwaves Through Wall Street With This $16 Billion Warning",
-    "summary": "The people who know Wall Street's $2 trillion-and-up businesses best are sending all the wrong signals to investors.",
-    "url": "https://www.fool.com/investing/2026/04/07/nvda-aapl-googl-amzn-msft-send-16-billion-warning/?.tsrc=rss",
-    "published": "2026-04-07T08:26:00",
+    "title": "Are AI giants coming for bitcoin miners' power?",
+    "summary": "Anthropic's multi-gigawatt compute deal with Google and Broadcom highlights how AI companies are now directly competing with bitcoin miners for the same energy infrastructure. Several major miners have already started converting capacity to AI hosting, but does this mean that bitcoin mining is dying? CoinDesk's Jennifer Sanasie hosts \"CoinDesk Daily.\"",
+    "url": "http://videos.coindesk.com/previews/f3fC6L8B?.tsrc=rss",
+    "published": "2026-04-07T16:18:06",
     "signals": {
       "thiel": false,
       "shulman": false,
       "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": true,
       "salp": false
     },
     "signal_count": 1,
     "tickers": [
-      "MSFT",
-      "NVDA",
-      "AMZN",
+      "AVGO",
+      "VST",
       "GOOGL"
     ],
     "quality_score": 0.9524,
     "weighted_relevance": 0.9523952890649693
   },
   {
-    "source": "Yahoo_Finance",
-    "credibility": 0.75,
-    "title": "A Look At Super Micro Computer (SMCI) Valuation As Legal And Governance Scrutiny Intensifies",
-    "summary": "Super Micro Computer (SMCI) is under heavy scrutiny after U.S. authorities unsealed an indictment against several associated individuals for allegedly diverting Nvidia powered AI servers to China in violation of export controls, triggering multiple securities class actions. See our latest analysis for Super Micro Computer. The legal headlines have coincided with sharp share price volatility, with a 30 day share price return of about a 30% decline and a 1 year total shareholder return of...",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/look-super-micro-computer-smci-081432767.html?.tsrc=rss",
-    "published": "2026-04-07T08:14:32",
+    "source": "Seeking_Alpha_NVDA",
+    "credibility": 0.7,
+    "title": "Foxconn's results, buoyed by Nvidia, provide positive indicator for AI supply chain: Wedbush",
+    "summary": "",
+    "url": "https://seekingalpha.com/symbol/NVDA/news?source=feed_symbol_NVDA",
+    "published": "2026-04-07T13:20:23",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -87,8 +86,8 @@
     "tickers": [
       "NVDA"
     ],
-    "quality_score": 0.9524,
-    "weighted_relevance": 0.9523952890649693
+    "quality_score": 0.8296,
+    "weighted_relevance": 0.8296421184743731
   },
   {
     "source": "Seeking_Alpha_NVDA",
