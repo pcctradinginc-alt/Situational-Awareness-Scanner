@@ -18,11 +18,9 @@ logger = logging.getLogger(__name__)
 def build_dashboard(state_manager: StateManager, regime: dict):
     Config.ensure_dirs()
 
-    # Daten aus SQLite
     conn = sqlite3.connect(str(Config.DB_PATH))
     conn.row_factory = sqlite3.Row
 
-    # Letzte 7 Tage Signals
     cutoff = (datetime.utcnow() - timedelta(days=7)).date().isoformat()
     recent_signals = conn.execute(
         """SELECT ticker, conviction, gate_status, regime_mode, date
@@ -30,7 +28,6 @@ def build_dashboard(state_manager: StateManager, regime: dict):
         (cutoff,)
     ).fetchall()
 
-    # Aktive Trading Cards (letzte 14 Tage)
     cutoff14 = (datetime.utcnow() - timedelta(days=14)).date().isoformat()
     cards = conn.execute(
         """SELECT ticker, conviction, gate_status, laufzeit_months, date, html_path
@@ -39,12 +36,10 @@ def build_dashboard(state_manager: StateManager, regime: dict):
         (cutoff14,)
     ).fetchall()
 
-    # Aktive Positionen
     positions = conn.execute(
         "SELECT * FROM active_positions WHERE status = 'OPEN'"
     ).fetchall()
 
-    # Run-Log letzte 10 Runs
     runs = conn.execute(
         """SELECT run_id, started_at, regime_mode, candidates,
                   claude_calls, cards_generated
@@ -53,14 +48,22 @@ def build_dashboard(state_manager: StateManager, regime: dict):
 
     conn.close()
 
-    # Regime-Trend
     regime_trend = state_manager.get_regime_trend(30)
 
-    now = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
-    mode = regime.get("mode", "NORMAL")
+    now        = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+    mode       = regime.get("mode", "NORMAL")
     mode_color = "#ff4444" if mode == "STRESS" else "#00d4ff"
 
-    # Cards HTML
+    # FIX: iv_rank_avg kann None sein (Warmup) — None-sicheres Format
+    iv_raw     = regime.get("iv_rank_avg")
+    iv_display = f"{iv_raw:.1f}%" if iv_raw is not None else "N/A (warmup)"
+
+    energy_raw     = regime.get("energy_breadth", 0.5)
+    energy_display = f"{energy_raw:.0%}" if energy_raw is not None else "N/A"
+
+    stability_raw     = regime.get("regime_stability", 0.5)
+    stability_display = f"{stability_raw:.2f}" if stability_raw is not None else "N/A"
+
     cards_html = ""
     for c in cards:
         fname = Path(c["html_path"]).name if c["html_path"] else f"{c['ticker']}.html"
@@ -77,12 +80,15 @@ def build_dashboard(state_manager: StateManager, regime: dict):
     if not cards_html:
         cards_html = '<div class="no-cards">Keine Trading Cards in den letzten 14 Tagen</div>'
 
-    # Signals HTML
     signals_html = ""
     for s in recent_signals[:20]:
-        gate_c = {"PASS": "#44ff88", "WATCHLIST": "#ffd166",
-                  "NO_SIGNAL": "#5a7a9a", "BLOCKED_CONTRARIAN": "#ff4444"}.get(
-            s["gate_status"], "#5a7a9a")
+        gate_c = {
+            "PASS": "#44ff88",
+            "WATCHLIST": "#ffd166",
+            "NO_SIGNAL": "#5a7a9a",
+            "BLOCKED_CONTRARIAN": "#ff4444",
+            "CLAUDE_PARSE_FAILED": "#ff9944",
+        }.get(s["gate_status"], "#5a7a9a")
         signals_html += f"""
         <tr>
           <td style="color:var(--accent)">{s['ticker']}</td>
@@ -92,7 +98,6 @@ def build_dashboard(state_manager: StateManager, regime: dict):
           <td>{s['date']}</td>
         </tr>"""
 
-    # Runs HTML
     runs_html = ""
     for r in runs:
         runs_html += f"""
@@ -169,9 +174,9 @@ def build_dashboard(state_manager: StateManager, regime: dict):
 <div class="subtitle">SCANNER · CALL-OPTIONS INTELLIGENCE · v4.0 · {now}</div>
 
 <div class="regime-banner">
-  <span>REGIME: {mode} | IV-Rank Avg: {regime.get('iv_rank_avg', 50):.1f}% |
-    Energy Breadth: {regime.get('energy_breadth', 0.5):.0%} |
-    Stability: {regime.get('regime_stability', 0.5):.2f}</span>
+  <span>REGIME: {mode} | IV-Rank Avg: {iv_display} |
+    Energy Breadth: {energy_display} |
+    Stability: {stability_display}</span>
   <span>CONVICTION THRESHOLD: {regime.get('conviction_threshold', 7.5)}</span>
 </div>
 
