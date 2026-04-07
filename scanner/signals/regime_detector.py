@@ -102,7 +102,8 @@ class RegimeDetector:
         out = Config.SIGNALS_DIR / "regime.json"
         out.write_text(json.dumps(result, indent=2))
 
-        logger.info(f"Regime: {mode} | IV-Rank: {avg_iv_rank:.1f} | "
+        iv_display = f"{avg_iv_rank:.1f}" if avg_iv_rank is not None else "N/A (warmup)"
+        logger.info(f"Regime: {mode} | IV-Rank: {iv_display} | "
                     f"Energy Breadth: {energy_breadth:.2f} | "
                     f"CapEx: {capex_trend} | Score: {regime_score}")
         return result
