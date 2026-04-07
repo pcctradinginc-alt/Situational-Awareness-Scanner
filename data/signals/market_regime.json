@@ -5,67 +5,67 @@
     "total_checked": 15,
     "details": {
       "VST": {
-        "current": 151.5,
+        "current": 151.59,
         "ma200": 180.39,
         "above": false
       },
       "CEG": {
-        "current": 275.29,
+        "current": 275.16,
         "ma200": 328.36,
         "above": false
       },
       "NRG": {
-        "current": 150.56,
+        "current": 149.8,
         "ma200": 158.66,
         "above": false
       },
       "XEL": {
-        "current": 80.32,
+        "current": 80.39,
         "ma200": 75.16,
         "above": true
       },
       "SO": {
-        "current": 97.25,
-        "ma200": 91.24,
+        "current": 96.94,
+        "ma200": 91.23,
         "above": true
       },
       "DUK": {
-        "current": 131.61,
+        "current": 131.41,
         "ma200": 121.08,
         "above": true
       },
       "NEE": {
-        "current": 92.66,
+        "current": 92.73,
         "ma200": 80.35,
         "above": true
       },
       "AEP": {
-        "current": 132.58,
+        "current": 132.36,
         "ma200": 115.74,
         "above": true
       },
       "EXC": {
-        "current": 49.07,
+        "current": 48.94,
         "ma200": 44.7,
         "above": true
       },
       "ETR": {
-        "current": 115.0,
+        "current": 114.57,
         "ma200": 93.29,
         "above": true
       },
       "D": {
-        "current": 62.32,
+        "current": 62.22,
         "ma200": 59.18,
         "above": true
       },
       "PCG": {
-        "current": 17.65,
+        "current": 17.67,
         "ma200": 15.71,
         "above": true
       },
       "ES": {
-        "current": 69.16,
+        "current": 69.44,
         "ma200": 67.23,
         "above": true
       },
@@ -75,20 +75,17 @@
         "above": true
       },
       "PPL": {
-        "current": 38.74,
+        "current": 38.72,
         "ma200": 35.72,
         "above": true
       }
     },
-    "fetched_at": "2026-04-06T18:05:48.522305"
+    "fetched_at": "2026-04-07T06:00:33.591544"
   },
   "hyperscaler_capex": {
     "fred_capex": {
-      "growth_yoy": 0.0789,
-      "capex_trend": "rising",
-      "period": "2025-10-01",
-      "series": "PNFI",
-      "data_gap": false
+      "data_gap": true,
+      "error": "500 Server Error: Internal Server Error for url: https://api.stlouisfed.org/fred/series/observations?series_id=PNFI&api_key=35eef949b71aa59c6b22e9e515090d0c&file_type=json&observation_start=2024-08-15&sort_order=desc&limit=25"
     },
     "finnhub_capex": {
       "by_ticker": {
@@ -112,12 +109,12 @@
       "avg_growth": null,
       "data_gap": true
     },
-    "capex_trend": "rising",
-    "avg_growth_yoy": 0.0789,
+    "capex_trend": "unknown",
+    "avg_growth_yoy": null,
     "empirical_point": 0,
-    "data_gap": false,
+    "data_gap": true,
     "primary_source": "fred",
-    "fetched_at": "2026-04-06T18:05:59.796103"
+    "fetched_at": "2026-04-07T06:00:53.935986"
   },
   "fred": {
     "electric_power_production": {
@@ -128,20 +125,14 @@
       "data_gap": false
     },
     "industrial_production": {
-      "latest": 102.55,
-      "year_ago": 101.1,
-      "growth_yoy": 0.0144,
-      "period": "2026-02-01",
-      "data_gap": false
+      "error": "500 Server Error: Internal Server Error for url: https://api.stlouisfed.org/fred/series/observations?series_id=INDPRO&api_key=35eef949b71aa59c6b22e9e515090d0c&file_type=json&observation_start=2024-08-15&sort_order=desc&limit=20",
+      "data_gap": true
     },
     "cpi_inflation": {
-      "latest": 327.46,
-      "year_ago": 318.96,
-      "growth_yoy": 0.0266,
-      "period": "2026-02-01",
-      "data_gap": false
+      "error": "500 Server Error: Internal Server Error for url: https://api.stlouisfed.org/fred/series/observations?series_id=CPIAUCSL&api_key=35eef949b71aa59c6b22e9e515090d0c&file_type=json&observation_start=2024-08-15&sort_order=desc&limit=20",
+      "data_gap": true
     },
-    "fetched_at": "2026-04-06T18:05:54.708540"
+    "fetched_at": "2026-04-07T06:00:47.286359"
   },
   "eia": {
     "growth_yoy": 0.0217,
@@ -150,6 +141,6 @@
     "shulman_signal": false,
     "empirical_point": 0,
     "data_gap": false,
-    "fetched_at": "2026-04-06T18:05:53.313890"
+    "fetched_at": "2026-04-07T06:00:44.175881"
   }
 }

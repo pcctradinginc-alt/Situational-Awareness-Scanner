@@ -3,7 +3,7 @@
   "iv_rank_avg": null,
   "iv_confidence": "INSUFFICIENT_DATA",
   "energy_breadth": 0.8,
-  "capex_trend": "rising",
+  "capex_trend": "unknown",
   "regime_stability": 0.411,
   "conviction_threshold": 7.5,
   "weights": {
@@ -15,6 +15,6 @@
     "contrarian": 0.12
   },
   "stress_reasons": [],
-  "regime_score": 8.5,
-  "determined_at": "2026-04-06T18:08:09.564595"
+  "regime_score": 7.0,
+  "determined_at": "2026-04-07T06:03:02.545095"
 }
