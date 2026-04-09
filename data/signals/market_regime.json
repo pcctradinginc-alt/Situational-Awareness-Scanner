@@ -5,86 +5,86 @@
     "total_checked": 15,
     "details": {
       "VST": {
-        "current": 155.89,
-        "ma200": 180.11,
+        "current": 159.46,
+        "ma200": 179.98,
         "above": false
       },
       "CEG": {
-        "current": 284.27,
-        "ma200": 328.09,
+        "current": 290.11,
+        "ma200": 327.97,
         "above": false
       },
       "NRG": {
-        "current": 160.3,
-        "ma200": 158.71,
+        "current": 166.24,
+        "ma200": 158.79,
         "above": true
       },
       "XEL": {
-        "current": 81.46,
-        "ma200": 75.32,
+        "current": 83.06,
+        "ma200": 75.4,
         "above": true
       },
       "SO": {
-        "current": 97.17,
-        "ma200": 91.34,
+        "current": 98.02,
+        "ma200": 91.38,
         "above": true
       },
       "DUK": {
-        "current": 131.6,
-        "ma200": 121.28,
+        "current": 133.44,
+        "ma200": 121.37,
         "above": true
       },
       "NEE": {
-        "current": 94.17,
-        "ma200": 80.58,
+        "current": 95.41,
+        "ma200": 80.72,
         "above": true
       },
       "AEP": {
-        "current": 134.71,
-        "ma200": 116.09,
+        "current": 137.41,
+        "ma200": 116.27,
         "above": true
       },
       "EXC": {
-        "current": 49.17,
-        "ma200": 44.78,
+        "current": 49.95,
+        "ma200": 44.82,
         "above": true
       },
       "ETR": {
-        "current": 114.61,
-        "ma200": 93.64,
+        "current": 117.41,
+        "ma200": 93.82,
         "above": true
       },
       "D": {
-        "current": 63.2,
-        "ma200": 59.28,
+        "current": 64.19,
+        "ma200": 59.33,
         "above": true
       },
       "PCG": {
-        "current": 18.39,
-        "ma200": 15.75,
+        "current": 18.75,
+        "ma200": 15.77,
         "above": true
       },
       "ES": {
-        "current": 69.95,
-        "ma200": 67.33,
+        "current": 70.82,
+        "ma200": 67.38,
         "above": true
       },
       "FE": {
-        "current": 51.4,
-        "ma200": 45.03,
+        "current": 52.07,
+        "ma200": 45.09,
         "above": true
       },
       "PPL": {
-        "current": 39.15,
-        "ma200": 35.79,
+        "current": 39.62,
+        "ma200": 35.82,
         "above": true
       }
     },
-    "fetched_at": "2026-04-09T10:23:26.044440"
+    "fetched_at": "2026-04-09T16:55:55.626200"
   },
   "hyperscaler_capex": {
     "fred_capex": {
-      "growth_yoy": 0.0789,
+      "growth_yoy": 0.0786,
       "capex_trend": "rising",
       "period": "2025-10-01",
       "series": "PNFI",
@@ -113,11 +113,11 @@
       "data_gap": true
     },
     "capex_trend": "rising",
-    "avg_growth_yoy": 0.0789,
+    "avg_growth_yoy": 0.0786,
     "empirical_point": 0,
     "data_gap": false,
     "primary_source": "fred",
-    "fetched_at": "2026-04-09T10:23:38.093266"
+    "fetched_at": "2026-04-09T16:56:07.804132"
   },
   "fred": {
     "electric_power_production": {
@@ -141,7 +141,7 @@
       "period": "2026-02-01",
       "data_gap": false
     },
-    "fetched_at": "2026-04-09T10:23:32.713366"
+    "fetched_at": "2026-04-09T16:56:02.099646"
   },
   "eia": {
     "growth_yoy": 0.0217,
@@ -150,6 +150,6 @@
     "shulman_signal": false,
     "empirical_point": 0,
     "data_gap": false,
-    "fetched_at": "2026-04-09T10:23:31.361367"
+    "fetched_at": "2026-04-09T16:56:00.688885"
   }
 }

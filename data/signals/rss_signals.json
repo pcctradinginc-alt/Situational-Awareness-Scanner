@@ -2,6 +2,28 @@
   {
     "source": "CNBC_Tech",
     "credibility": 0.83,
+    "title": "OpenAI halts UK stargate project amid regulatory and energy price concerns",
+    "summary": "The major AI infrastructure was announced in September in partnership was with Nvidia and Nscale.",
+    "url": "https://www.cnbc.com/2026/04/09/openai-halts-uk-stargate-project.html",
+    "published": "2026-04-09T11:42:23",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.1664,
+    "weighted_relevance": 1.1664090926877464
+  },
+  {
+    "source": "CNBC_Tech",
+    "credibility": 0.83,
     "title": "Alphabet, Meta, Amazon, Nvidia lead tech rally after Trump announces ceasefire with Iran",
     "summary": "President Donald Trump's Iran ceasefire announcement provided some relief to Wall Street and tech stocks shared in the rally.",
     "url": "https://www.cnbc.com/2026/04/08/alphabet-nvidia-microsoft-tech-stocks-iran-ceasefire.html",
@@ -16,10 +38,10 @@
     },
     "signal_count": 1,
     "tickers": [
-      "META",
+      "GOOGL",
       "AMZN",
       "NVDA",
-      "GOOGL"
+      "META"
     ],
     "quality_score": 1.1664,
     "weighted_relevance": 1.1664090926877464
@@ -41,8 +63,8 @@
     },
     "signal_count": 1,
     "tickers": [
-      "NVDA",
-      "TSM"
+      "TSM",
+      "NVDA"
     ],
     "quality_score": 1.1664,
     "weighted_relevance": 1.1664090926877464
@@ -84,42 +106,22 @@
     },
     "signal_count": 1,
     "tickers": [
-      "GOOGL",
+      "AMZN",
+      "NVDA",
       "AVGO",
       "MSFT",
-      "AMZN",
-      "NVDA"
+      "GOOGL"
     ],
     "quality_score": 0.978,
     "weighted_relevance": 0.9779618114914245
   },
   {
-    "source": "Axios_Tech",
-    "credibility": 0.76,
-    "title": "Iran ceasefire fails to quiet Democrats as over 85 lawmakers demand Trump's removal",
-    "summary": "<p>President Trump's announcement of a <a href=\"https://www.axios.com/2026/04/07/iran-2-week-ceasfire-trump-pakistan\" target=\"_blank\">ceasefire with Iran</a> on Tuesday did little to stem the growing tide of calls from congressional Democrats for his impeachment or <a href=\"https://www.axios.com/2026/04/07/trump-iran-impeachment-25th-amendment-war-crimes\" target=\"_blank\">removal via the 25th Amendment</a>.</p><p><strong>Why it matters: </strong>The Republican support needed for these efforts to ",
-    "url": "https://www.axios.com/2026/04/08/trump-impeachment-25th-amendment-iran-democrats",
-    "published": "2026-04-08T00:52:32",
-    "signals": {
-      "thiel": true,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 0.978,
-    "weighted_relevance": 0.9779618114914245
-  },
-  {
     "source": "Yahoo_Finance",
     "credibility": 0.75,
-    "title": "Nvidia Stock Just Jumped After Its $2 Billion AI Investment. Here's What History Says Happens Next.",
-    "summary": "The chipmaker's latest artificial intelligence (AI) deal could prove rewarding for shareholders in the long run.",
-    "url": "https://www.fool.com/investing/2026/04/09/nvidia-stock-just-jumped-after-its-2-billion-ai-in/?.tsrc=rss",
-    "published": "2026-04-09T09:40:00",
+    "title": "UBS has a stark message for investors on Nvidia stock",
+    "summary": "Most Wall Street analysts cover Nvidia with spreadsheets built on earnings estimates and price-to-earnings ratios. UBS has a different tool entirely, and what it is saying about Nvidia is striking. UBS HOLT, the firm's proprietary cash flow-based valuation framework, says Nvidia's share price ...",
+    "url": "https://www.thestreet.com/investing/stocks/ubs-has-a-stark-message-for-investors-on-nvidia-stock?.tsrc=rss",
+    "published": "2026-04-09T16:40:14",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -136,12 +138,12 @@
     "weighted_relevance": 0.9523952890649693
   },
   {
-    "source": "Yahoo_Finance",
-    "credibility": 0.75,
-    "title": "Nvidia\u2019s Lunar AI And Cybersecurity Push Deepen Its Critical Infrastructure Role",
-    "summary": "Nvidia is extending its Jetson edge AI platform to the Moon through a new collaboration with Firefly Aerospace to enable real time AI data processing in lunar orbit. The company is also joining Project Glasswing, an urgent multi company effort to apply advanced AI models to emerging cybersecurity threats. NVIDIA (NasdaqGS:NVDA) is moving its AI footprint beyond traditional data centers, with Jetson hardware and software now aimed at on orbit analytics around the Moon. For investors tracking...",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/nvidia-lunar-ai-cybersecurity-push-071038001.html?.tsrc=rss",
-    "published": "2026-04-09T07:10:38",
+    "source": "Seeking_Alpha_NVDA",
+    "credibility": 0.7,
+    "title": "Nvidia: Why 2026 Could Be A Game Changer",
+    "summary": "",
+    "url": "https://seekingalpha.com/article/4888727-nvidia-why-2026-could-be-a-game-changer?source=feed_symbol_NVDA",
+    "published": "2026-04-09T13:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -154,31 +156,8 @@
     "tickers": [
       "NVDA"
     ],
-    "quality_score": 0.9524,
-    "weighted_relevance": 0.9523952890649693
-  },
-  {
-    "source": "Yahoo_Finance",
-    "credibility": 0.75,
-    "title": "Prediction: This Trillion-Dollar AI Titan Will Outperform Nvidia Through the End of 2027",
-    "summary": "Broadcom's custom AI chips are competing with Nvidia's GPUs.",
-    "url": "https://www.fool.com/investing/2026/04/09/prediction-this-trillion-dollar-ai-titan-will-outp/?.tsrc=rss",
-    "published": "2026-04-09T06:45:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA",
-      "AVGO"
-    ],
-    "quality_score": 0.9524,
-    "weighted_relevance": 0.9523952890649693
+    "quality_score": 0.8296,
+    "weighted_relevance": 0.8296421184743731
   },
   {
     "source": "Seeking_Alpha_NVDA",
