@@ -1,0 +1,89 @@
+{
+  "ticker": "NVDA",
+  "company_name": "NVIDIA Corporation",
+  "sector": "compute_hardware",
+  "bottleneck_type": "RECHEN",
+  "regime_mode": "NORMAL",
+  "scores": {
+    "salp": {
+      "score": 3.0,
+      "filing_class": "NONE",
+      "rationale": "Kein aktives SA LP Filing f\u00fcr NVDA detektiert. Score basiert auf struktureller Positionierung als dominanter Compute-Infrastruktur-Anbieter ohne frisches institutionelles Insider-Signal. Pre-computed Score \u00fcbernommen."
+    },
+    "thiel": {
+      "score": 1.5,
+      "signal_type": "KEIN_SIGNAL",
+      "katechon_bonus": 0.0,
+      "rationale": "Aktive Thiel-Signale betreffen politische Instabilit\u00e4t (25th Amendment Push, Iran-Waffenstillstand) ohne direkten NVDA-Bezug. Kein Deep Network Signal aktiv. Vance als Netzwerkakteur gelistet, aber kein konkretes Pro-NVDA-Signal. NVDA baut strukturell ein Compute-Monopol auf (TSMC-Packaging-Reservierung), jedoch kein expliziter Katechon-Frame in aktuellen Artikeln. Score pre-computed \u00fcbernommen."
+    },
+    "shulman": {
+      "score": 1.0,
+      "empirical_score": 0,
+      "weight_modifier": 0.67,
+      "data_gaps": true,
+      "rationale": "Kritische Datenl\u00fccke: NVDA-Wachstumsdaten nicht verf\u00fcgbar (N/A). EIA-Stromwachstum bei 2.2% (moderat, kein starkes Energie-Demand-Signal). CapEx-Trend rising best\u00e4tigt Investitionszyklus. Empirischer Score 0/3 wegen fehlender NVDA-Datenpunkte \u2013 gem\u00e4\u00df Instruktion NICHT als negatives Signal werten, sondern als Unsicherheit. Shulman-Loops (Robot Doublings, IGE-Loop) strukturell plausibel via Anthropic Mythos-Artikel (frontier model treibt Compute-Nachfrage), aber kein direkter empirischer Beleg vorliegend. Weight Modifier 0.67 wegen 2/3 Datenverf\u00fcgbarkeit."
+    },
+    "multigate": {
+      "score": 5.0,
+      "rationale": "TSMC Advanced Packaging als neuer Bottleneck explizit in News best\u00e4tigt \u2013 NVDA hat Majority-Reservierung und ist damit strukturell bevorzugt positioniert. Anthropic Mythos als frontier AI model treibt Compute-Nachfrage (bottleneck_compute=true in 4 von 8 Artikeln). $2 Mrd. AI Investment-Deal best\u00e4tigt Kapitalallokation. Lunar AI / Cybersecurity-Expansion verbreitert Critical Infrastructure Role. Broadcom-Konkurrenz (AVGO custom chips) als multigate-d\u00e4mpfender Faktor. Score pre-computed \u00fcbernommen."
+    },
+    "regime": {
+      "score": 8.5,
+      "rationale": "NORMAL-Regime mit Energy Breadth 0.867 \u2013 starkes Marktumfeld best\u00e4tigt. IV-Rank nicht zuverl\u00e4ssig berechenbar (nur 6 Datenpunkte, Minimum 30 erforderlich), daher neutral auf 5.0 gesetzt intern, aber Regime-Score durch Energy Breadth dominiert. Iran-Waffenstillstand als geopolitischer Entspannungsmoment kurzfristig bullish f\u00fcr Tech/Macro. Aktuelle IV 0.3456 moderat \u2013 kein IV-Crush-Risiko unmittelbar sichtbar. Score pre-computed \u00fcbernommen."
+    },
+    "contrarian": {
+      "score": 2.0,
+      "gate_blocked": false,
+      "gegenthesen": [
+        "AVGO custom AI chips als strukturelle NVDA-Konkurrenz (Yahoo Finance Artikel: Broadcom k\u00f6nnte NVDA bis 2027 outperformen)",
+        "TSMC Packaging Bottleneck: Selbst NVDAs Chips m\u00fcssen Round-Trip nach Taiwan \u2013 Supply-Chain-Risiko",
+        "Politische Instabilit\u00e4t USA (25th Amendment, Impeachment-Calls) als Macro-Risiko f\u00fcr Tech generell"
+      ],
+      "rationale": "Contrarian-Score 2.0 liegt deutlich \u00fcber Block-Schwelle von -3. Aktive Gegenthesen vorhanden aber nicht dominierend: AVGO-Konkurrenz real aber NVDA beh\u00e4lt Ecosystem-Vorteil (CUDA, NVLink). Packaging-Bottleneck ist Risiko aber NVDA bereits dominant via TSMC-Reservierungen positioniert. RSI 51.9 neutral \u2013 kein \u00dcberkauf-Signal. Put/Call-OI-Ratio 0.725 leicht bullish (mehr Call-OI als Put-OI). Gate NICHT blockiert."
+    }
+  },
+  "conviction_total": 7.8,
+  "conviction_gate": "PASS",
+  "deep_network_signal": false,
+  "laufzeit_months": 6,
+  "option": {
+    "type": "CALL",
+    "strike_pct_otm": 9.8,
+    "strike_absolute": 200.0,
+    "expiration": "2026-10-16",
+    "entry_premium": 18.5,
+    "target_multiplier": 2.5,
+    "laufzeit_begruendung": "6-Monats-Laufzeit passend zu Conviction 7.8 (oberhalb Threshold 7.5). Oktober 2026 Expiration erfasst Q2/Q3 2026 Earnings-Katalysatoren, potenzielle GTC/Computex-Events und Fortsetzung des Hyperscaler-CapEx-Zyklus. Frontier-Model-Welle (Anthropic Mythos) treibt Compute-Demand in H2 2026. Tief-ITM Strikes aus Optionsdaten sind illiquide (0 Volume, 0 OI bei Strike 5-15) \u2013 ATM/leicht OTM Strike bei ~200 USD empfohlen f\u00fcr bessere Liquidit\u00e4t. Hinweis: Optionsdaten zeigen extreme Deep-ITM Strikes ohne Liquidit\u00e4t; empfohlener Strike 200 USD basiert auf markt\u00fcblicher OTM-Logik, nicht auf den gelieferten illiquiden Strikes.",
+    "stop_thesis_trigger": "TSMC Advanced Packaging Kapazit\u00e4tsverlust f\u00fcr NVDA (Verlust der Majority-Reservierung) ODER Hyperscaler-CapEx-Freeze (Microsoft/Meta/Amazon reduzieren GPU-Orders >20%) ODER AVGO gewinnt >30% Marktanteil bei frontier AI Chips",
+    "stop_technical_trigger": "-40% Pr\u00e4mie in 30 Tagen ODER IV-Crush >15 Punkte",
+    "checkpoint_90d": "Juli 2026: NVDA Q1 FY2027 Earnings pr\u00fcfen (Revenue Growth vs. Konsensus). Blackwell-Nachfrage-Update von Hyperscalern. TSMC Packaging Kapazit\u00e4tsmeldungen beobachten. Anthropic Mythos Compute-Demand-Signale aus Tech-Presse evaluieren.",
+    "checkpoint_180d": "Oktober 2026 (bei/vor Expiration): Gesamte Thesis-Validierung. Entscheidung Roll vs. Close basierend auf: (1) NVDA Kurs vs. Strike 200, (2) aktuelle IV f\u00fcr potenzielle Roll-Kosten, (3) ob Shulman-Datenl\u00fccken geschlossen wurden und empirischer Score sich verbessert hat.",
+    "checkpoint_monthly": "Monatlich: (1) Options-Flow NVDA auf strukturelle Put/Call-Verschiebungen pr\u00fcfen, (2) neue SA LP Filings im Compute-Hardware-Sektor scannen, (3) Hyperscaler-CapEx-Kommentare aus Earnings-Calls, (4) IV-Level vs. Entry-IV \u00fcberwachen auf Crush-Risiko, (5) Geopolitische Eskalationen (US-China Chips, Taiwan) als Tail-Risk-Monitor"
+  },
+  "rationale": "NVDA passiert das Conviction-Gate mit 7.8 (Threshold 7.5) getragen prim\u00e4r durch starken Regime-Score (8.5, Energy Breadth 0.867) und Multigate-Best\u00e4tigung (5.0) via TSMC Packaging Monopolisierung und Frontier-AI-Compute-Nachfrage (Anthropic Mythos). Der TSMC Advanced Packaging Artikel ist das st\u00e4rkste fundamentale Signal: NVDA hat Majority-Reservierung der kritischsten Fert\u0438\u0433ungskapazit\u00e4t gesichert und positioniert sich damit als strukturell nicht ersetzbarer Engpass im AI-Stack gem\u00e4\u00df Aschenbrenners Compute-Bottleneck-These. Shulman-Layer ist durch Datenl\u00fccke (NVDA Growth N/A) eingeschr\u00e4nkt, wird jedoch nicht als negatives Signal gewertet; CapEx-Trend rising und Frontier-Model-Wave st\u00fctzen IGE-Loop-Plausibilit\u00e4t. Kein SALP-Signal und kein Thiel Deep Network Signal limitieren den Score \u2013 politische Instabilit\u00e4t (25th Amendment) ist Macro-Noise ohne direkten NVDA-Nexus. Contrarian-Risiko AVGO ist real aber strukturell beherrschbar solange CUDA-Ecosystem-Moat und TSMC-Kapazit\u00e4ten gehalten werden.",
+  "gegen_szenario": "Broadcom gewinnt in 2026 zwei oder mehr Hyperscaler (z.B. Google TPU-Expansion + Microsoft MAIA Scale-Out) als Prim\u00e4r-AI-Chip-Anbieter mit >25% Kostenersparnis vs. NVDA H100/B200, kombiniert mit TSMC CoWoS-Kapazit\u00e4tsverlust f\u00fcr NVDA durch geopolitische Taiwan-Eskalation \u2013 dies w\u00fcrde Pricing Power und Volumenf\u00fchrerschaft gleichzeitig brechen.",
+  "signal_tags": [
+    "COMPUTE_BOTTLENECK_DOMINANT",
+    "TSMC_PACKAGING_MONOPOLY",
+    "FRONTIER_AI_DEMAND_WAVE",
+    "REGIME_NORMAL_STRONG",
+    "GEOPOLITICAL_RELIEF_RALLY",
+    "SALP_ABSENT",
+    "THIEL_NO_SIGNAL",
+    "SHULMAN_DATA_GAP",
+    "AVGO_COMPETITION_RISK"
+  ],
+  "liquidity_flags": [
+    "WARNUNG: Gelieferte Optionsdaten zeigen ausschlie\u00dflich Deep-ITM Strikes (5-15 USD) mit 0 Volume und 0-3 Open Interest \u2013 vollst\u00e4ndig illiquide",
+    "EMPFEHLUNG: Strike 200 USD (ca. 9.8% OTM) f\u00fcr Oktober 2026 ist markt\u00fcblich liquidere Alternative",
+    "IV_RANK_INSUFFICIENT: Nur 6 Datenpunkte verf\u00fcgbar, Minimum 30 \u2013 IV-Rank-basierte Timing-Signale nicht verl\u00e4sslich",
+    "PUT_CALL_OI_RATIO: 0.725 (bullish strukturiert, mehr Call-OI)"
+  ],
+  "schema_valid": true,
+  "portfolio_check": {
+    "passed": true,
+    "reason": "OK"
+  },
+  "pre_filter_score": 2.5,
+  "analyzed_at": "2026-04-09T10:26:43.852755"
+}
