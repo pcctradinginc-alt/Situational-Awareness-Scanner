@@ -17,19 +17,43 @@
     "signal_count": 2,
     "tickers": [
       "META",
-      "NVDA",
-      "GOOGL"
+      "GOOGL",
+      "NVDA"
     ],
     "quality_score": 1.2122,
     "weighted_relevance": 1.2121584579347005
   },
   {
+    "source": "Axios_Tech",
+    "credibility": 0.76,
+    "title": "OpenAI rips Anthropic, distances itself from Microsoft",
+    "summary": "<p><a href=\"https://www.axios.com/2026/04/09/openai-100-billion-in-ad-revenue\" target=\"_blank\">OpenAI</a> is tightening its ties with Amazon, saying its early investor and partner <a href=\"https://www.axios.com/2025/10/29/microsoft-openai-azure-deal-agi\" target=\"_blank\">Microsoft</a> was holding it back.  </p><p><strong>Why it matters: </strong>The ChatGPT creator is under pressure to keep pace with its competitors as the AI economy evolves and <a href=\"https://www.axios.com/2026/04/03/anthropic",
+    "url": "https://www.axios.com/2026/04/13/openai-microsoft-anthropic-amazon",
+    "published": "2026-04-13T19:24:33",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "AMZN",
+      "NVDA",
+      "MSFT"
+    ],
+    "quality_score": 0.978,
+    "weighted_relevance": 0.9779618114914245
+  },
+  {
     "source": "Yahoo_Finance",
     "credibility": 0.75,
-    "title": "Caterpillar Excavates Buy Zone Boosted By Nvidia AI Prowess",
-    "summary": "Building on its AI partnership with Nvidia since CES 2026, Caterpillar stock digs into buy range as market rebounds.",
-    "url": "https://finance.yahoo.com/m/d9ebee7c-b675-38e3-8c56-58d914718cf2/caterpillar-excavates-buy.html?.tsrc=rss",
-    "published": "2026-04-13T16:38:34",
+    "title": "HP M&A Rumors With Nvidia Refocus Attention On AI PC Story",
+    "summary": "Rumors have emerged that Nvidia is considering a large acquisition in the PC space, with HP (NYSE:HPQ) widely discussed as a possible target. The speculation has triggered strong interest from investors and commentators, given the potential scale of a deal involving a major PC and printing company. This potential M&amp;A angle comes at a time when HP shares trade around $19.23, drawing fresh attention to the company beyond recent product and valuation discussions. For HPQ shareholders, the...",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/hp-m-rumors-nvidia-refocus-100433970.html?.tsrc=rss",
+    "published": "2026-04-14T10:04:33",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -48,32 +72,10 @@
   {
     "source": "Yahoo_Finance",
     "credibility": 0.75,
-    "title": "Dell, HP Inc. Shares Jump on Acquisition Speculation Report",
-    "summary": "(Bloomberg) -- Shares of Dell Technologies Inc. and HP Inc. jumped after a report from website SemiAccurate that Nvidia Corp. was seeking an acquisition that would \u201creshape the PC landscape.\u201dThe website said Nvidia has been negotiating for more than a year to buy \u201ca large company.\u201d Dell and HP are among the top PC vendors in the world. HP, based in Palo Alto, California, has 19% of the global market in the first quarter, trailing just Lenovo Group Ltd., which had a share of almost 27%, according",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/dell-hp-inc-shares-jump-160746167.html?.tsrc=rss",
-    "published": "2026-04-13T16:07:46",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 0.9524,
-    "weighted_relevance": 0.9523952890649693
-  },
-  {
-    "source": "Yahoo_Finance",
-    "credibility": 0.75,
-    "title": "Is Nvidia buying a major PC maker? Why DELL and HPQ stocks are rallying today",
-    "summary": "Investing.com -- Dell Technologies (NYSE:DELL) shares rose 6% Monday, while HP Inc. (NYSE:HPQ) gained 5%, following reports that Nvidia (NASDAQ:NVDA) has been in negotiations to acquire a major PC manufacturer.",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/nvidia-buying-major-pc-maker-160440883.html?.tsrc=rss",
-    "published": "2026-04-13T16:04:40",
+    "title": "Nvidia Could Be the First $22 Trillion Stock, According to 1 Top Analyst. But There's a Big Catch.",
+    "summary": "A key assumption in UBS' valuation model for Nvidia may not hold up.",
+    "url": "https://www.fool.com/investing/2026/04/14/nvidia-could-be-the-first-22-trillion-stock-accord/?.tsrc=rss",
+    "published": "2026-04-14T09:30:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -92,10 +94,54 @@
   {
     "source": "Seeking_Alpha_NVDA",
     "credibility": 0.7,
-    "title": "PC stocks surge after report of Nvidia in talks to buy a PC-focused company",
+    "title": "PC stocks fall after Nvidia denies report in talks to buy a PC-focused company (update)",
     "summary": "",
     "url": "https://seekingalpha.com/symbol/NVDA/news?source=feed_symbol_NVDA",
-    "published": "2026-04-13T16:37:09",
+    "published": "2026-04-14T08:18:46",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 0.8296,
+    "weighted_relevance": 0.8296421184743731
+  },
+  {
+    "source": "Seeking_Alpha_NVDA",
+    "credibility": 0.7,
+    "title": "Dell, HP fall after Nvidia says not in talks to buy a PC maker",
+    "summary": "",
+    "url": "https://seekingalpha.com/symbol/NVDA/news?source=feed_symbol_NVDA",
+    "published": "2026-04-13T20:17:51",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 0.8296,
+    "weighted_relevance": 0.8296421184743731
+  },
+  {
+    "source": "Seeking_Alpha_NVDA",
+    "credibility": 0.7,
+    "title": "Nvidia surges into ninth straight day of gains",
+    "summary": "",
+    "url": "https://seekingalpha.com/symbol/NVDA/news?source=feed_symbol_NVDA",
+    "published": "2026-04-13T20:01:29",
     "signals": {
       "thiel": false,
       "shulman": false,
