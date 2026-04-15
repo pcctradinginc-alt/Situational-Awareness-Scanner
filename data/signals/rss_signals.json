@@ -1,27 +1,25 @@
 [
   {
-    "source": "Axios_Tech",
-    "credibility": 0.76,
-    "title": "AI's power demands give carbon capture a new push",
-    "summary": "<p>Technology that captures carbon emissions from power plants may finally get a breakthrough as deep-pocketed tech companies try to meet climate goals while powering the AI race.\n\n<strong>Why it matters:</strong> It could help make natural gas electricity cleaner, but it's long been too expensive. The AI boom could change that.</p><hr /><p><strong>Driving the news:</strong> At least five projects under consideration across the U.S. would capture carbon dioxide emissions from natural gas plants ",
-    "url": "https://www.axios.com/2026/04/13/carbon-capture-ai-power-tech",
-    "published": "2026-04-13T12:50:10",
+    "source": "CNBC_Tech",
+    "credibility": 0.83,
+    "title": "Nvidia stock is on a 10-day winning streak and up 18% over that stretch",
+    "summary": "Nvidia denied rumors that it's in talks to buy a large PC company, telling CNBC in a statement that it's \"not engaged in discussions.\"",
+    "url": "https://www.cnbc.com/2026/04/14/nvidia-stock-nvda-ai-streak.html",
+    "published": "2026-04-14T21:01:37",
     "signals": {
       "thiel": false,
       "shulman": false,
       "contrarian": false,
       "bottleneck_compute": true,
-      "bottleneck_energy": true,
+      "bottleneck_energy": false,
       "salp": false
     },
-    "signal_count": 2,
+    "signal_count": 1,
     "tickers": [
-      "NVDA",
-      "META",
-      "GOOGL"
+      "NVDA"
     ],
-    "quality_score": 1.2122,
-    "weighted_relevance": 1.2121584579347005
+    "quality_score": 1.1664,
+    "weighted_relevance": 1.1664090926877464
   },
   {
     "source": "Axios_Tech",
@@ -46,12 +44,12 @@
     "weighted_relevance": 0.9779618114914245
   },
   {
-    "source": "Axios_Tech",
-    "credibility": 0.76,
-    "title": "OpenAI rips Anthropic, distances itself from Microsoft",
-    "summary": "<p><a href=\"https://www.axios.com/2026/04/09/openai-100-billion-in-ad-revenue\" target=\"_blank\">OpenAI</a> is tightening its ties with Amazon, saying its early investor and partner <a href=\"https://www.axios.com/2025/10/29/microsoft-openai-azure-deal-agi\" target=\"_blank\">Microsoft</a> was holding it back.  </p><p><strong>Why it matters: </strong>The ChatGPT creator is under pressure to keep pace with its competitors as the AI economy evolves and <a href=\"https://www.axios.com/2026/04/03/anthropic",
-    "url": "https://www.axios.com/2026/04/13/openai-microsoft-anthropic-amazon",
-    "published": "2026-04-13T19:24:33",
+    "source": "Yahoo_Finance",
+    "credibility": 0.75,
+    "title": "Dow Jones Futures: Nasdaq Win Streak Hits 10 Days As Nvidia, Google Flash Buy Signals; What To Do Now",
+    "summary": "The stock market rally powers higher with the Nasdaq and Nvidia up for 10 days. Here's what to do now. ASML beat views overnight.",
+    "url": "https://finance.yahoo.com/m/eca7c0e2-0be2-3fcd-82d4-5949478b56f5/dow-jones-futures%3A-nasdaq-win.html?.tsrc=rss",
+    "published": "2026-04-15T10:35:20",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -63,280 +61,187 @@
     "signal_count": 1,
     "tickers": [
       "NVDA",
-      "AMZN",
-      "MSFT"
-    ],
-    "quality_score": 0.978,
-    "weighted_relevance": 0.9779618114914245
-  },
-  {
-    "source": "Yahoo_Finance",
-    "credibility": 0.75,
-    "title": "Citi Initiates Infleqtion At Buy On Nvidia Pact. Quantum Computing Stocks Rally.",
-    "summary": "Citi initiated coverage of quantum firm Infleqtion with a buy rating. Quantum computing stocks rallied.",
-    "url": "https://finance.yahoo.com/m/e4f55f69-a219-3819-b7b7-a8a36c501dea/citi-initiates-infleqtion-at.html?.tsrc=rss",
-    "published": "2026-04-14T16:13:27",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 0.9524,
-    "weighted_relevance": 0.9523952890649693
-  },
-  {
-    "source": "Yahoo_Finance",
-    "credibility": 0.75,
-    "title": "Here\u2019s What CoreWeave\u2019s (CRWV) Partnership With Meta Platforms Means For Investors",
-    "summary": "CoreWeave Inc. (NASDAQ:CRWV) is one of the 10 Companies That Partnered With Nvidia in 2026. CoreWeave Inc. (NASDAQ:CRWV) signed a $21 billion agreement with Meta Platforms, offering its AI cloud capacity to the company. This agreement is in addition to the existing $14.2 billion deal between the two companies. The company\u2019s stock has reacted positively [\u2026]",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/coreweave-crwv-partnership-meta-platforms-155617857.html?.tsrc=rss",
-    "published": "2026-04-14T15:56:17",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA",
-      "META"
-    ],
-    "quality_score": 0.9524,
-    "weighted_relevance": 0.9523952890649693
-  },
-  {
-    "source": "Yahoo_Finance",
-    "credibility": 0.75,
-    "title": "Hewlett Packard (HPE) Price Target Cut Despite Nvidia Partnership",
-    "summary": "Hewlett Packard Enterprise Company (NYSE:HPE) is one of the 10 Companies That Partnered With Nvidia in 2026. According to a report released on April 7, Goldman Sachs analyst Katherine Murphy reaffirmed a Buy rating on Hewlett Packard Enterprise Company (NYSE:HPE) while cutting the firm\u2019s price target on the stock. The analyst lowered the firm\u2019s price [\u2026]",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/hewlett-packard-hpe-price-target-155615627.html?.tsrc=rss",
-    "published": "2026-04-14T15:56:15",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 0.9524,
-    "weighted_relevance": 0.9523952890649693
-  },
-  {
-    "source": "Yahoo_Finance",
-    "credibility": 0.75,
-    "title": "Stifel Nicolaus Updates International Business Machines (IBM) Price Target Ahead Of Earnings",
-    "summary": "International Business Machines Corporation (NYSE:IBM) is one of the 10 Companies That Partnered With Nvidia in 2026. On April 8, David Grossman from Stifel Nicolaus reduced the firm\u2019s price target on International Business Machines Corporation (NYSE:IBM) from $340 to $290 while maintaining a Buy rating on the stock. The firm\u2019s downward-adjusted price target implies an [\u2026]",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/stifel-nicolaus-updates-international-business-155614640.html?.tsrc=rss",
-    "published": "2026-04-14T15:56:14",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 0.9524,
-    "weighted_relevance": 0.9523952890649693
-  },
-  {
-    "source": "Yahoo_Finance",
-    "credibility": 0.75,
-    "title": "What Are Analysts Saying About CrowdStrike (CRWD) Stock?",
-    "summary": "CrowdStrike Holdings Inc. (NASDAQ:CRWD) is one of the 10 Companies That Partnered With Nvidia in 2026. According to a report released on April 8, Robert W. Baird analyst Shrenik Kothari reiterated a Hold rating on CrowdStrike Holdings Inc. (NASDAQ:CRWD) and set a price target of $460. The firm\u2019s price target reflects an additional 7.8% upside [\u2026]",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/analysts-saying-crowdstrike-crwd-stock-155612328.html?.tsrc=rss",
-    "published": "2026-04-14T15:56:12",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 0.9524,
-    "weighted_relevance": 0.9523952890649693
-  },
-  {
-    "source": "Yahoo_Finance",
-    "credibility": 0.75,
-    "title": "Vertiv Holdings (VRT) Is Among The Companies That Partnered With Nvidia in 2026",
-    "summary": "Vertiv Holdings Co. (NYSE:VRT) is one of the 10 Companies That Partnered With Nvidia in 2026. On April 7, Amit Daryanani from Evercore ISI reaffirmed a Buy rating on Vertiv Holdings Co. (NYSE:VRT) with a price target of $280. Earlier on April 1, Barclays analyst Julian Mitchell maintained an Overweight rating on Vertiv Holdings Co. [\u2026]",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/vertiv-holdings-vrt-among-companies-155611215.html?.tsrc=rss",
-    "published": "2026-04-14T15:56:11",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 0.9524,
-    "weighted_relevance": 0.9523952890649693
-  },
-  {
-    "source": "Yahoo_Finance",
-    "credibility": 0.75,
-    "title": "Here\u2019s Why Synopsys Inc\u2019s (SNPS) Partnership With Nvidia Is Important",
-    "summary": "Synopsys, Inc. (NASDAQ:SNPS) is one of the 10 Companies That Partnered With Nvidia in 2026. According to a report released on April 8, KeyBanc analyst Jason Celino reiterated his Buy rating on Synopsys, Inc. (NASDAQ:SNPS) with a price target of $600. The firm\u2019s price target suggests an additional 53% upside from the current levels. NVIDIA [\u2026]",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/why-synopsys-inc-snps-partnership-155609045.html?.tsrc=rss",
-    "published": "2026-04-14T15:56:09",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 0.9524,
-    "weighted_relevance": 0.9523952890649693
-  },
-  {
-    "source": "Yahoo_Finance",
-    "credibility": 0.75,
-    "title": "Here\u2019s Why Marvell Technology (MRVL) Partnered With Rival Nvidia",
-    "summary": "Marvell Technology, Inc. (NASDAQ:MRVL) is one of the 10 Companies That Partnered With Nvidia in 2026. Marvell Technology, Inc. (NASDAQ:MRVL) received an upgrade from Barclays analyst Tom O\u2019Malley on April 9. He upgraded the stock from Equal Weight to Overweight while also raising the firm\u2019s price target from $105 to $150. The upward-adjusted price target [\u2026]",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/why-marvell-technology-mrvl-partnered-155607952.html?.tsrc=rss",
-    "published": "2026-04-14T15:56:07",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 0.9524,
-    "weighted_relevance": 0.9523952890649693
-  },
-  {
-    "source": "Yahoo_Finance",
-    "credibility": 0.75,
-    "title": "T-Mobile (TMUS) To Fulfill Its 5G Ambitions Together With Nvidia",
-    "summary": "T-Mobile US Inc. (NASDAQ:TMUS) is one of the 10 Companies That Partnered With Nvidia in 2026. On April 8, MoffettNathanson analyst Craig Moffet upgraded T-Mobile US Inc. (NASDAQ:TMUS) from Neutral to Buy while setting a price target of $254. The firm\u2019s assigned price target implies an additional 28% upside from the current levels. According to [\u2026]",
-    "url": "https://finance.yahoo.com/sectors/technology/articles/t-mobile-tmus-fulfill-5g-155606527.html?.tsrc=rss",
-    "published": "2026-04-14T15:56:06",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 0.9524,
-    "weighted_relevance": 0.9523952890649693
-  },
-  {
-    "source": "Yahoo_Finance",
-    "credibility": 0.75,
-    "title": "Why Did Analysts Lower Meta Platforms (META) Price Target Despite Nvidia Partnership?",
-    "summary": "Meta Platforms, Inc. (NASDAQ:META) is one of the 10 Companies That Partnered With Nvidia in 2026. Justin Patterson from KeyBanc reiterated a Buy rating on Meta Platforms, Inc. (NASDAQ:META) while cutting the firm\u2019s price target on the shares on April 9. He reduced the firm\u2019s price target on the stock from $855 to $760 due [\u2026]",
-    "url": "https://finance.yahoo.com/markets/stocks/articles/why-did-analysts-lower-meta-155604613.html?.tsrc=rss",
-    "published": "2026-04-14T15:56:04",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA",
-      "META"
-    ],
-    "quality_score": 0.9524,
-    "weighted_relevance": 0.9523952890649693
-  },
-  {
-    "source": "Yahoo_Finance",
-    "credibility": 0.75,
-    "title": "Can Microsoft\u2019s (MSFT) New Copilot Strategy Work In Its Favor?",
-    "summary": "Microsoft Corporation (NASDAQ:MSFT) is one of the 10 Companies That Partnered With Nvidia in 2026. According to a Bloomberg report released on April 3, Microsoft Corporation (NASDAQ:MSFT) has shifted its artificial intelligence sales strategy following feedback from Wall Street, selling Copilot as a standalone product rather than offering it for free within broader software bundles. [\u2026]",
-    "url": "https://finance.yahoo.com/sectors/technology/articles/microsoft-msft-copilot-strategy-favor-155602348.html?.tsrc=rss",
-    "published": "2026-04-14T15:56:02",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA",
-      "MSFT"
-    ],
-    "quality_score": 0.9524,
-    "weighted_relevance": 0.9523952890649693
-  },
-  {
-    "source": "Yahoo_Finance",
-    "credibility": 0.75,
-    "title": "Why Lowe's is investing in skilled trades and partnering with Nvidia",
-    "summary": "Yahoo Finance Senior Reporter Brooke DiPalma shares insights from her conversation with Lowe's (LOW) CEO Marvin Ellison. Ellison shared why the company is investing $250M in skilled trade positions and partnering with tech giants Nvidia (NVDA), Palantir (PLTR), and Alphabet (GOOG, GOOGL).",
-    "url": "https://finance.yahoo.com/video/why-lowes-is-investing-in-skilled-trades-and-partnering-with-nvidia-155009051.html?.tsrc=rss",
-    "published": "2026-04-14T15:50:09",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA",
-      "PLTR",
       "GOOGL"
     ],
     "quality_score": 0.9524,
     "weighted_relevance": 0.9523952890649693
+  },
+  {
+    "source": "Yahoo_Finance",
+    "credibility": 0.75,
+    "title": "Quantum stocks surge as Nvidia launches new AI models",
+    "summary": "Investing.com -- Shares in quantum computing companies rose in premarket trading Wednesday after Nvidia unveiled the world\u2019s first family of open-source quantum AI models, designed to accelerate progress in the space.",
+    "url": "https://finance.yahoo.com/sectors/technology/articles/quantum-stocks-surge-nvidia-launches-101936882.html?.tsrc=rss",
+    "published": "2026-04-15T10:19:36",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 0.9524,
+    "weighted_relevance": 0.9523952890649693
+  },
+  {
+    "source": "Yahoo_Finance",
+    "credibility": 0.75,
+    "title": "US Senator Warren voices concern over Nvidia's acquisition of Slurm",
+    "summary": "U.S. Democratic Senator Elizabeth Warren sent a letter to the U.S. secretaries of the Department of Energy and Department of Defense on Tuesday, questioning them about Nvidia's acquisition \u200cof SchedMD, which makes Slurm software.  Warren's letter to Energy Department Secretary Chris Wright and Defense Department Secretary Pete \u200cHegseth expressed worries about Nvidia's acquisition of SchedMD and requested \"information about the government's dependency on NVIDIA hardware and software.\"",
+    "url": "https://finance.yahoo.com/sectors/technology/articles/us-senator-warren-voices-concern-100555487.html?.tsrc=rss",
+    "published": "2026-04-15T10:05:55",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 0.9524,
+    "weighted_relevance": 0.9523952890649693
+  },
+  {
+    "source": "Yahoo_Finance",
+    "credibility": 0.75,
+    "title": "ASML lifts 2026 forecast as surging AI chip demand boosts new orders",
+    "summary": "<p>STORY: ASML reported stronger-than-expected first-quarter earnings on Wednesday (April 15).</p><p>It hit $3.2 billion on sales of $10.3 billion - up from the same period a year ago.</p><p>The world's largest supplier of chipmaking tools also raised its revenue outlook for the year.</p><p>It comes as the AI boom lifted demand for the firm's equipment.</p><p>ASML is the only provider of the EUV lithography tools needed to print cutting-edge AI chips for firms like Nvidia.</p><p>The stronger for",
+    "url": "https://finance.yahoo.com/video/asml-lifts-2026-forecast-surging-100345649.html?.tsrc=rss",
+    "published": "2026-04-15T10:03:45",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 0.9524,
+    "weighted_relevance": 0.9523952890649693
+  },
+  {
+    "source": "Yahoo_Finance",
+    "credibility": 0.75,
+    "title": "FriendliAI and Samsung Cloud Platform Forge Strategic Alliance to Power Frontier Model AI Inference on NVIDIA B300 GPUs",
+    "summary": "SAN FRANCISCO, April 15, 2026--FriendliAI, The Frontier AI Inference Cloud, is collaborating with Samsung SDS, a leading GPU infrastructure-as-a-service (IaaS) provider in South Korea, to deliver frontier model AI inference services to global startups and enterprises. The initiative brings together FriendliAI's high-performance inference stack and Samsung Cloud Platform (SCP)'s scalable NVIDIA B300 GPU infrastructure.",
+    "url": "https://finance.yahoo.com/sectors/technology/articles/friendliai-samsung-cloud-platform-forge-100000000.html?.tsrc=rss",
+    "published": "2026-04-15T10:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 0.9524,
+    "weighted_relevance": 0.9523952890649693
+  },
+  {
+    "source": "Yahoo_Finance",
+    "credibility": 0.75,
+    "title": "Nokia and Orange advance AI\u2011RAN innovation with NVIDIA",
+    "summary": "Nokia and Orange advance AI\u2011RAN innovation with NVIDIA Nokia and Orange expand their strategic relationship to jointly co\u2011create and co\u2011innovate AI\u2011RAN use cases, supported by NVIDIA AI infrastructure.Collaboration explores how the AI-RAN solution can enable greater spectral efficiency, AI-enhanced radio performance with predictive optimization, and AI-processing for new services such as integrated sensing and communication (ISAC).Innovation initiative supports Orange\u2019s evolution toward flexible",
+    "url": "https://finance.yahoo.com/sectors/technology/articles/nokia-orange-advance-ai-ran-090000872.html?.tsrc=rss",
+    "published": "2026-04-15T09:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 0.9524,
+    "weighted_relevance": 0.9523952890649693
+  },
+  {
+    "source": "Seeking_Alpha_NVDA",
+    "credibility": 0.7,
+    "title": "Nokia and Orange partner on AI-RAN using Nvidia tech",
+    "summary": "",
+    "url": "https://seekingalpha.com/symbol/NVDA/news?source=feed_symbol_NVDA",
+    "published": "2026-04-15T09:36:17",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 0.8296,
+    "weighted_relevance": 0.8296421184743731
+  },
+  {
+    "source": "Seeking_Alpha_NVDA",
+    "credibility": 0.7,
+    "title": "Nvidia\u2019s newest AI models spark rally in quantum computing stocks; INFQ, QBTS, and XNDU see notable gains",
+    "summary": "",
+    "url": "https://seekingalpha.com/symbol/NVDA/news?source=feed_symbol_NVDA",
+    "published": "2026-04-15T09:13:31",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 0.8296,
+    "weighted_relevance": 0.8296421184743731
+  },
+  {
+    "source": "Seeking_Alpha_NVDA",
+    "credibility": 0.7,
+    "title": "Microsoft will rent 30,000 Nvidia chips from Nscale in Norway deal; expands Wyoming ops",
+    "summary": "",
+    "url": "https://seekingalpha.com/symbol/NVDA/news?source=feed_symbol_NVDA",
+    "published": "2026-04-14T18:52:28",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA",
+      "MSFT"
+    ],
+    "quality_score": 0.8296,
+    "weighted_relevance": 0.8296421184743731
   },
   {
     "source": "Seeking_Alpha_NVDA",
@@ -389,50 +294,6 @@
     "summary": "",
     "url": "https://seekingalpha.com/symbol/NVDA/news?source=feed_symbol_NVDA",
     "published": "2026-04-14T08:18:46",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 0.8296,
-    "weighted_relevance": 0.8296421184743731
-  },
-  {
-    "source": "Seeking_Alpha_NVDA",
-    "credibility": 0.7,
-    "title": "Dell, HP fall after Nvidia says not in talks to buy a PC maker",
-    "summary": "",
-    "url": "https://seekingalpha.com/symbol/NVDA/news?source=feed_symbol_NVDA",
-    "published": "2026-04-13T20:17:51",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 0.8296,
-    "weighted_relevance": 0.8296421184743731
-  },
-  {
-    "source": "Seeking_Alpha_NVDA",
-    "credibility": 0.7,
-    "title": "Nvidia surges into ninth straight day of gains",
-    "summary": "",
-    "url": "https://seekingalpha.com/symbol/NVDA/news?source=feed_symbol_NVDA",
-    "published": "2026-04-13T20:01:29",
     "signals": {
       "thiel": false,
       "shulman": false,
