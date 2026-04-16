@@ -5,7 +5,7 @@
     "title": "TSMC first-quarter profit rises 58%, beats estimates as AI demand fuels record run",
     "summary": "TSMC reported another quarter of record profit, with the company expecting AI demand to continue to grow.",
     "url": "https://www.cnbc.com/2026/04/16/tsmc-q1-profit-58-percent-ai-chip-demand-record.html",
-    "published": "2026-04-16T08:13:48",
+    "published": "2026-04-16T12:23:25",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -24,10 +24,57 @@
   {
     "source": "CNBC_Tech",
     "credibility": 0.83,
+    "title": "Quantum stocks on pace for a massive week after Nvidia debuts AI models to boost the tech",
+    "summary": "Hyperscalers Alphabet, Amazon and Microsoft have been investing heavily in chips to power quantum computing",
+    "url": "https://www.cnbc.com/2026/04/16/quantum-stocks-nvidia-ai-models.html",
+    "published": "2026-04-16T15:13:30",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "GOOGL",
+      "MSFT",
+      "NVDA",
+      "AMZN"
+    ],
+    "quality_score": 1.1664,
+    "weighted_relevance": 1.1664090926877464
+  },
+  {
+    "source": "CNBC_Tech",
+    "credibility": 0.83,
+    "title": "TSMC and ASML post-earnings stock moves could be a sign of what's to come from chip companies",
+    "summary": "Two of the biggest chipmakers, TSMC and ASML, failed to catch major tailwinds from strong earnings. It could be a bellwether for the chip industry as a whole.",
+    "url": "https://www.cnbc.com/2026/04/16/taiwan-semi-tsm-asml-stock-earnings-ai-chips.html",
+    "published": "2026-04-16T17:08:47",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "TSM"
+    ],
+    "quality_score": 1.1664,
+    "weighted_relevance": 1.1664090926877464
+  },
+  {
+    "source": "CNBC_Tech",
+    "credibility": 0.83,
     "title": "TSMC first-quarter profit rises 58%, beats estimates as AI demand fuels record run",
     "summary": "TSMC reported another quarter of record profit, with the company expecting AI demand to continue to grow.",
     "url": "https://www.cnbc.com/2026/04/16/tsmc-q1-profit-58-percent-ai-chip-demand-record.html",
-    "published": "2026-04-16T08:13:48",
+    "published": "2026-04-16T12:23:25",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -112,10 +159,10 @@
   {
     "source": "Yahoo_Finance",
     "credibility": 0.75,
-    "title": "TSMC lifts revenue forecast, pledges spending to meet AI chip demand",
-    "summary": "<p>STORY: TSMC raised its annual revenue forecast on Thursday (April 16).</p><p>The tech giant further said it's stepping up capital spending this year.</p><p>That as the world's biggest contract manufacturer of advanced AI chips tries to meet massive demand for its products.</p><p>The bullish outlook comes after the company - which is a major Nvidia supplier - said first-quarter profit leapt 58% to a record $18.2 billion.</p><p>That was well ahead of expectations and marked its eighth straight ",
-    "url": "https://finance.yahoo.com/video/tsmc-lifts-revenue-forecast-pledges-102739895.html?.tsrc=rss",
-    "published": "2026-04-16T10:27:39",
+    "title": "Nvidia CEO Urges US-China AI Dialogue As $10 Billion Anthropic Tie Deepens",
+    "summary": "Huang highlights cooperation needs while export limits persist and Nvidia expands investment and supply commitments to Anthropic.",
+    "url": "https://finance.yahoo.com/sectors/technology/articles/nvidia-ceo-urges-us-china-173807022.html?.tsrc=rss",
+    "published": "2026-04-16T17:38:07",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -126,7 +173,6 @@
     },
     "signal_count": 1,
     "tickers": [
-      "TSM",
       "NVDA"
     ],
     "quality_score": 0.9524,
@@ -135,21 +181,21 @@
   {
     "source": "Yahoo_Finance",
     "credibility": 0.75,
-    "title": "Chip Maker TSMC Is More Bullish Than Ever on AI, Despite Iran War",
-    "summary": "The Taiwan company expects revenue to grow by more than 30% and played down the risk of war-related disruptions to the supply chain.",
-    "url": "https://finance.yahoo.com/m/e5986d5b-4109-3c36-aca8-908ae4805f5e/chip-maker-tsmc-is-more.html?.tsrc=rss",
-    "published": "2026-04-16T10:14:00",
+    "title": "From PayPal to Palantir: What Peter Thiel's Track Record Means for Patient Shareholders Today",
+    "summary": "The Silicon Valley investor co-founded both world-changing tech companies.",
+    "url": "https://www.fool.com/investing/2026/04/16/from-paypal-to-palantir-what-peter-thiels-track-re/?.tsrc=rss",
+    "published": "2026-04-16T17:30:00",
     "signals": {
-      "thiel": false,
+      "thiel": true,
       "shulman": false,
       "contrarian": false,
-      "bottleneck_compute": true,
+      "bottleneck_compute": false,
       "bottleneck_energy": false,
       "salp": false
     },
     "signal_count": 1,
     "tickers": [
-      "TSM"
+      "PLTR"
     ],
     "quality_score": 0.9524,
     "weighted_relevance": 0.9523952890649693
@@ -157,10 +203,10 @@
   {
     "source": "Yahoo_Finance",
     "credibility": 0.75,
-    "title": "Taiwan's chipmaker TSMC reports 58% jump in profit, warns about Iran war impacts",
-    "summary": "Taiwan\u2019s chipmaker TSMC, one of the world\u2019s largest companies, reported a 58% jump in profit on Thursday for the January-March quarter, thanks to strong demand driven by the artificial intelligence boom even as the Iran war was driving up costs.  Taiwan Semiconductor Manufacturing Corp., a key supplier for Apple and Nvidia and the largest contract chipmaker in the world, reported a record net quarterly profit of 572.5 billion new Taiwan dollars ($18.1 billion) for the first three months of the y",
-    "url": "https://finance.yahoo.com/sectors/technology/articles/taiwans-chipmaker-tsmc-reports-58-100501312.html?.tsrc=rss",
-    "published": "2026-04-16T10:05:01",
+    "title": "Marvell's AI Role Expands As Nvidia Joins Microsoft And Amazon",
+    "summary": "Nvidia has agreed to invest $2b in Marvell Technology (NasdaqGS:MRVL) and expand their work together around the NVLink Fusion ecosystem for high-speed AI data center interconnects. Marvell is also collaborating with Microsoft and Amazon on custom AI chips, supplying core technology and engineering support. These agreements place Marvell in a central role across multiple hyperscale cloud providers as AI infrastructure spending evolves. Marvell, long known for data infrastructure and...",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/marvells-ai-role-expands-nvidia-170318934.html?.tsrc=rss",
+    "published": "2026-04-16T17:03:18",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -171,103 +217,9 @@
     },
     "signal_count": 1,
     "tickers": [
-      "TSM",
-      "NVDA"
-    ],
-    "quality_score": 0.9524,
-    "weighted_relevance": 0.9523952890649693
-  },
-  {
-    "source": "Yahoo_Finance",
-    "credibility": 0.75,
-    "title": "These Stocks Are Today\u2019s Movers: TSMC, AMD, J.B. Hunt, Nvidia, Hims & Hers, and More",
-    "summary": "TSMC rises after the chip manufacturer\u2019s earnings beat expectations, while Nvidia and AMD are poised for 12-day winning streaks.",
-    "url": "https://finance.yahoo.com/m/5370e667-4977-33cd-bc67-4e37e5dfb2d5/these-stocks-are-today%E2%80%99s.html?.tsrc=rss",
-    "published": "2026-04-16T09:48:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "TSM",
-      "NVDA"
-    ],
-    "quality_score": 0.9524,
-    "weighted_relevance": 0.9523952890649693
-  },
-  {
-    "source": "Yahoo_Finance",
-    "credibility": 0.75,
-    "title": "TSMC Earnings Beat Expectations. Why That\u2019s Good News for Nvidia, Apple Stocks.",
-    "summary": "Taiwan Semiconductor Manufacturing reported a 58% jump in quarterly net profit. Its investment plans could shape the outlook for the broader chip sector.",
-    "url": "https://finance.yahoo.com/m/23acebc7-e54e-3194-9cee-292042f2f056/tsmc-earnings-beat.html?.tsrc=rss",
-    "published": "2026-04-16T09:46:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "TSM",
-      "NVDA"
-    ],
-    "quality_score": 0.9524,
-    "weighted_relevance": 0.9523952890649693
-  },
-  {
-    "source": "Yahoo_Finance",
-    "credibility": 0.75,
-    "title": "Stocks to Watch: TSMC, PepsiCo, Netflix",
-    "summary": "\u2197\ufe0f Taiwan Semiconductor Manufacturing (TW:2330, (TSM): The world\u2019s largest contract chip maker beat profit expectations and raised its revenue outlook for the year, in a sign of strong demand for AI chips despite uncertainties from the war.",
-    "url": "https://finance.yahoo.com/m/19f95ae1-0c4d-374d-8981-5816ba60063e/stocks-to-watch%3A-tsmc%2C.html?.tsrc=rss",
-    "published": "2026-04-16T09:39:58",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "TSM",
-      "NVDA"
-    ],
-    "quality_score": 0.9524,
-    "weighted_relevance": 0.9523952890649693
-  },
-  {
-    "source": "Yahoo_Finance",
-    "credibility": 0.75,
-    "title": "Global Market for Computing and AI for Data Centers 2026-2040: AI ASICs is the Fastest-growing Processor Category, As Companies Including Google, Amazon, Microsoft, Meta Invest Heavily",
-    "summary": "The \"Global Market for Computing and AI for Data Centers 2026-2040\" report highlights a booming semiconductor industry driven by generative AI, large language models, and AI ASICs. Nvidia leads GPU advancements, while custom silicon from hyperscalers like Google, Amazon, and Meta reshapes market dynamics. With projected exponential growth from $215 billion in 2025, strategic insights into US-China tech divides and emerging computing paradigms are imperative.Dublin, April 16, 2026 (GLOBE NEWSWIRE",
-    "url": "https://finance.yahoo.com/sectors/technology/articles/global-market-computing-ai-data-093100837.html?.tsrc=rss",
-    "published": "2026-04-16T09:31:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "AMZN",
-      "NVDA",
-      "META",
       "MSFT",
-      "GOOGL"
+      "NVDA",
+      "AMZN"
     ],
     "quality_score": 0.9524,
     "weighted_relevance": 0.9523952890649693
@@ -275,10 +227,10 @@
   {
     "source": "Yahoo_Finance",
     "credibility": 0.75,
-    "title": "NVIDIA Corporation (NVDA) Turns to AI-Powered Robots to Power Industrial Revolution",
-    "summary": "NVIDIA Corporation (NASDAQ:NVDA) is one of the best data center stocks to buy right now. The company is pioneering the AI infrastructure, including GPU systems and software that power data centers for inference and training. On April 10, NVIDIA Corporation (NASDAQ:NVDA) highlighted the breakthroughs it is making to bring AI into the physical world. Its [\u2026]",
-    "url": "https://finance.yahoo.com/sectors/technology/articles/nvidia-corporation-nvda-turns-ai-092713301.html?.tsrc=rss",
-    "published": "2026-04-16T09:27:13",
+    "title": "Backdoor AI Play And Cool Nvidia Partner Warms Up A Breakout",
+    "summary": "A key collaborator with Nvidia on AI infrastructure, Trane Technologies looks to forge a breakout in new market uptrend.",
+    "url": "https://finance.yahoo.com/m/d9b81941-4fca-3a44-9529-e940319fc3c9/backdoor-ai-play-and-cool.html?.tsrc=rss",
+    "published": "2026-04-16T16:55:14",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -290,6 +242,94 @@
     "signal_count": 1,
     "tickers": [
       "NVDA"
+    ],
+    "quality_score": 0.9524,
+    "weighted_relevance": 0.9523952890649693
+  },
+  {
+    "source": "Yahoo_Finance",
+    "credibility": 0.75,
+    "title": "Michael Burry Thinks Anthropic is Eating the Lunch of Palantir \u2014 Is He Right?",
+    "summary": "Dr. Michael Burry of The Big Short fame doesn\u2019t seem to be willing to back down as a bear in the epic tug-of-war with Palantir (NASDAQ:PLTR) shareholders and the great CEO Alex Karp. Undoubtedly, Burry seemed to have been getting his way, with shares of Palantir plunging viciously into a bear market amid one of ... Michael Burry Thinks Anthropic is Eating the Lunch of Palantir \u2014 Is He Right?",
+    "url": "https://247wallst.com/investing/2026/04/16/michael-burry-thinks-anthropic-is-eating-the-lunch-of-palantir-is-he-right/?.tsrc=rss",
+    "published": "2026-04-16T16:53:12",
+    "signals": {
+      "thiel": true,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "PLTR"
+    ],
+    "quality_score": 0.9524,
+    "weighted_relevance": 0.9523952890649693
+  },
+  {
+    "source": "Yahoo_Finance",
+    "credibility": 0.75,
+    "title": "Jim Cramer Still Hasn\u2019t Figured Out Why NVIDIA (NVDA) Stock is Down",
+    "summary": "We recently published Jim Cramer Said Allbirds Management Are \u201cJokers\u201d & Discussed These 18 Stocks. Nvidia Corporation (NASDAQ:NVDA) is one of the stocks discussed by Jim Cramer. Nvidia Corporation (NASDAQ:NVDA) is one of Jim Cramer\u2019s favorite stocks. Despite the fact that the shares have struggled lately, as reflected by them being up by a modest [\u2026]",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-still-hasn-t-164445479.html?.tsrc=rss",
+    "published": "2026-04-16T16:44:45",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 0.9524,
+    "weighted_relevance": 0.9523952890649693
+  },
+  {
+    "source": "Yahoo_Finance",
+    "credibility": 0.75,
+    "title": "Nvidia's explosive rally faces one big test soon",
+    "summary": "Be on the lookout, Nvidia bulls.",
+    "url": "https://finance.yahoo.com/news/nvidias-explosive-rally-faces-one-big-test-soon-163054893.html?.tsrc=rss",
+    "published": "2026-04-16T16:30:54",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 0.9524,
+    "weighted_relevance": 0.9523952890649693
+  },
+  {
+    "source": "Yahoo_Finance",
+    "credibility": 0.75,
+    "title": "As Iran Keeps Oil Markets on Edge, 3 North American Pipeline Stocks Look Hard to Replace",
+    "summary": "These pipeline companies operate irreplaceable energy infrastructure across North America.",
+    "url": "https://www.fool.com/investing/2026/04/16/as-iran-keeps-oil-markets-on-edge-3-north-american/?.tsrc=rss",
+    "published": "2026-04-16T16:28:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": true,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "VST"
     ],
     "quality_score": 0.9524,
     "weighted_relevance": 0.9523952890649693
