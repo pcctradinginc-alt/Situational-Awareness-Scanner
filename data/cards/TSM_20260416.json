@@ -1,0 +1,91 @@
+{
+  "ticker": "TSM",
+  "company_name": "Taiwan Semiconductor Manufacturing Company",
+  "sector": "compute_hardware",
+  "bottleneck_type": "RECHEN",
+  "regime_mode": "NORMAL",
+  "scores": {
+    "salp": {
+      "score": 3.0,
+      "filing_class": "NONE",
+      "rationale": "Kein aktives SA LP Filing f\u00fcr TSM detektiert. Kein institutionelles Smart-Money-Signal via 13F/Form D. Score bleibt bei Basis 3.0 ohne Verst\u00e4rker."
+    },
+    "thiel": {
+      "score": 5.5,
+      "signal_type": "THESE",
+      "katechon_bonus": 0.3,
+      "rationale": "TSMC ist strukturell ein Katechon im Sinne Aschenbrenners: Als einziger Produzent von 3nm/2nm-Chips h\u00e4lt TSMC den westlichen Compute-Vorsprung gegen\u00fcber China aufrecht. Das ist eine dezentrale, souver\u00e4ne L\u00f6sung (Arizona-Fabs, CHIPS Act-Alignment). Kein Deep Network Signal (Vance/Musk), kein aktiver Thiel-Kontext. Katechon-Bonus +0.3 gerechtfertigt. Kein echter Monopol-Aufbau im Zero-to-One-Sinne, da Intel/Samsung als potenzielle Alternativen existieren, aber Fertigungsvorsprung ist faktisch monopolartig auf 2nm. Gesamtscore 5.5+0.3 eingerechnet im conviction_total."
+    },
+    "shulman": {
+      "score": 1.0,
+      "empirical_score": 0,
+      "weight_modifier": 0.67,
+      "data_gaps": true,
+      "rationale": "Datenl\u00fccken bei EIA-Stromwachstum und CapEx-Trend (beide nicht verf\u00fcgbar als bin\u00e4re Signale). NVDA-Datenpunkt vorhanden. Empirischer Score 0/3 da Schwellenwerte nicht best\u00e4tigt. Gem\u00e4\u00df Instruktion: Datenl\u00fccken nicht als negatives Signal werten, daher kein Abzug. Score bleibt bei 1.0 (Baseline). Weight-Modifier 0.67 (2/3 Datenpunkte verf\u00fcgbar). Shulman-Loop nicht best\u00e4tigt: IGE-Loop w\u00fcrde steigende Compute-Ausgaben + Energiekorrelation erfordern \u2013 nur NVDA-Wachstumsdaten fehlen f\u00fcr vollst\u00e4ndige Verifikation."
+    },
+    "multigate": {
+      "score": 5.0,
+      "rationale": "Mehrfach-Gate-Analyse: (1) Compute-Bottleneck klar best\u00e4tigt \u2013 TSMC als einziger Lieferant von HPC/AI-Chips f\u00fcr NVDA, Apple, AMD. (2) Q1-Gewinn +58% YoY, Revenue-Guidance angehoben, CapEx-Erh\u00f6hung signalisiert strukturelle Kapazit\u00e4tsausweitung. (3) Iran-Kriegsrisiko als Geopolitik-Overlay bleibt aktiv aber wird von Management heruntergespielt. (4) Keine Energie-Dimension im News-Kontext. Multigate-Score 5.0 reflektiert solide Fundamentalbest\u00e4tigung ohne exceptional catalyst."
+    },
+    "regime": {
+      "score": 8.5,
+      "rationale": "NORMAL-Regime mit hoher Energy-Breadth (0.867) \u2013 Markt in Risk-On-Modus. IV-Rank nicht verl\u00e4sslich (nur 11 Datenpunkte, Schwellenwert 30), daher neutral auf 5.0 gesetzt f\u00fcr IV-Komponente. Pre-computed Regime-Score 8.5 basiert auf Energy-Breadth-Dominanz. Hohe Current-IV (0.81) deutet auf Options-Pr\u00e4mien-Druck hin \u2013 tiefe ITM-Calls bevorzugen."
+    },
+    "contrarian": {
+      "score": 2.0,
+      "gate_blocked": false,
+      "gegenthesen": [
+        "Taiwan-Geopolitik: China-Invasion-Risiko als permanenter Tail-Risk",
+        "Iran-Krieg treibt Materialkosten (Neon-Gas, Helium-Abh\u00e4ngigkeiten)",
+        "US-Exportkontrollen k\u00f6nnten TSMC-Kundenkreis beschr\u00e4nken",
+        "Zyklische Chip-Nachfrage k\u00f6nnte AI-CapEx-Zyklus overextenden"
+      ],
+      "rationale": "Contrarian-Score 2.0 \u2013 kein Gate-Block (Schwellenwert: <-3.0). RSI 62.6 leicht erh\u00f6ht aber nicht \u00fcberkauft. Put/Call-OI-Ratio 1.326 zeigt strukturellen Absicherungsdruck (mehr Puts als Calls im Open Interest) \u2013 Markt preist Tail-Risks ein. Iran-Kriegswarnung in Headlines als aktive Gegenthese. Kein Momentum-Extremum das Contrarian-Umkehr signalisiert."
+    }
+  },
+  "conviction_total": 7.56,
+  "conviction_gate": "PASS",
+  "deep_network_signal": false,
+  "laufzeit_months": 6,
+  "option": {
+    "type": "CALL",
+    "strike_pct_otm": -54.7,
+    "strike_absolute": 170.0,
+    "expiration": "2026-10-16",
+    "entry_premium": 209.25,
+    "target_multiplier": 1.35,
+    "laufzeit_begruendung": "6-Monate-Conviction maps auf Oktober 2026 Expiration (n\u00e4chster verf\u00fcgbarer LEAPS-Termin). Tief-ITM Strike $170 (Delta 0.98) gew\u00e4hlt wegen hoher Current-IV (0.81) \u2013 minimiert Vega-Risiko durch fast reinen Deltaausdruck. Open Interest 150 ist die liquideste verf\u00fcgbare Option. Spread 2.2% akzeptabel f\u00fcr diese Moneyness. Bei IV 81% sind ATM-Optionen prohibitiv teuer; ITM-Calls funktionieren als Stock-Ersatz mit definiertem Risiko.",
+    "stop_thesis_trigger": "TSMC senkt Revenue-Guidance oder k\u00fcndigt CapEx-Freeze an; OR US-Exportkontrollen treffen TSMC-Hauptkunden (NVDA/Apple) direkt; OR China milit\u00e4rische Eskalation in Taiwan-Stra\u00dfe (DEFCON-3-\u00e4quivalent)",
+    "stop_technical_trigger": "-40% Pr\u00e4mie in 30 Tagen ODER IV-Crush >15 Punkte",
+    "checkpoint_90d": "Q2 2025 Earnings-Release pr\u00fcfen: Revenue-Wachstum >25% YoY best\u00e4tigt Thesis. CapEx-Ausf\u00fchrungsrate vs. Guidance vergleichen. Geopolitische Lagebeurteilung Taiwan-Stra\u00dfe. Bei Delta-Drift unter 0.90 Position reassessen.",
+    "checkpoint_180d": "Q3 2025 Earnings + N2-Node-Ramp-Status (2nm Massenproduktion 2025 erwartet). AI-CapEx-Zyklus der Hyperscaler (MSFT/GOOG/META/AMZN) auf K\u00fcrzungssignale monitoren. Position bei >35% Gewinn partiell sichern (50% Exit). IV-Normalisierung pr\u00fcfen.",
+    "checkpoint_monthly": "Monatlich: (1) NVDA-Umsatz als Proxy f\u00fcr TSM-Auslastung, (2) Taiwan-Geopolitik-News-Monitoring (China-Milit\u00e4r\u00fcbungen), (3) Put/Call-OI-Ratio-Verschiebung als Sentiment-Indikator, (4) Energy-Breadth-Regime-Status \u2013 bei Wechsel zu STRESS-Regime Stop-Levels versch\u00e4rfen"
+  },
+  "rationale": "TSMC liefert strukturellen Beweis f\u00fcr die Aschenbrenner-These: Als faktisch einziger Produzent von Sub-3nm-Chips ist TSM der prim\u00e4re Rechen-Flaschenhals-L\u00f6ser der AI-Skalierungs-\u00c4ra. Q1-Ergebnis (+58% Gewinn, angehobene Guidance) best\u00e4tigt anhaltende Nachfragedynamik. Regime-Score 8.5 in NORMAL-Modus mit starker Energy-Breadth unterst\u00fctzt Risk-On-Positionierung. Contrarian-Risiken (Taiwan-Geopolitik, Iran-Kosten, Put/Call-OI 1.33) sind eingepreist aber kein Gate-Blocker. Tief-ITM Call-Strategie bei hoher IV (0.81) sichert Delta-Exposition ohne exzessives Vega-Risiko; Conviction 7.56 \u00fcberschreitet Threshold 7.5 marginal \u2013 Position sizing sollte konservativ bleiben.",
+  "gegen_szenario": "US-Regierung verh\u00e4ngt vollst\u00e4ndige Chip-Exportbeschr\u00e4nkungen gegen TSMC-Kunden in China UND Taiwan-Stra\u00dfe-Eskalation f\u00fchrt zu Versicherungs-Pr\u00e4mien-Spike f\u00fcr Fab-Betrieb \u2013 w\u00fcrde Revenue-Guidance-Senkung und multiplen Compression auf P/E triggern; alternativ: AI-CapEx-Superzyklus pausiert durch Hyperscaler-Earnings-Miss Q2 2025",
+  "signal_tags": [
+    "bottleneck_compute",
+    "earnings_beat",
+    "guidance_raise",
+    "capex_expansion",
+    "ai_demand_confirmation",
+    "katechon_semiconductor",
+    "regime_normal_risk_on"
+  ],
+  "liquidity_flags": [
+    "STRIKE_170_OI_150_ACCEPTABLE",
+    "STRIKE_165_OI_1_AVOID",
+    "STRIKE_175_OI_2_AVOID",
+    "IV_RANK_INSUFFICIENT_DATA_11_POINTS",
+    "OPTIONS_FLOW_ZERO_DAILY_VOLUME_ALL_STRIKES",
+    "PUT_CALL_OI_ELEVATED_1_326",
+    "HIGH_ABSOLUTE_PREMIUM_209_USD_POSITION_SIZE_CRITICAL"
+  ],
+  "schema_valid": true,
+  "portfolio_check": {
+    "passed": true,
+    "reason": "OK"
+  },
+  "pre_filter_score": 2.0,
+  "analyzed_at": "2026-04-16T10:50:24.887484"
+}

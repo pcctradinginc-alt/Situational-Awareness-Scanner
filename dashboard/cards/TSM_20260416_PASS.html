@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SA Scanner — TSM Trading Card</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;700&family=Bebas+Neue&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
+  :root {
+    --bg:#0a0b0d;--surface:#10131a;--surface2:#161c28;--surface3:#1e2635;
+    --border:#1f2d42;--border-bright:#2a3f5c;
+    --accent:#00d4ff;--accent2:#ff6b35;--accent3:#7fff6e;--accent4:#ffd166;
+    --text:#c8d8e8;--text-dim:#5a7a9a;--text-bright:#eaf4ff;
+    --red:#ff4444;--green:#44ff88;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;
+        font-size:13px;line-height:1.5;padding:20px;max-width:900px;margin:0 auto}
+  .card{background:var(--surface);border:1px solid #44ff88;position:relative;
+         overflow:hidden;margin-bottom:16px}
+  .card-header{background:var(--surface2);padding:16px 20px;
+                border-bottom:1px solid var(--border-bright);
+                display:flex;justify-content:space-between;align-items:flex-start}
+  .ticker{font-family:'Bebas Neue',sans-serif;font-size:52px;
+           color:var(--accent);letter-spacing:4px;line-height:1}
+  .company{font-family:'IBM Plex Mono',monospace;font-size:10px;
+            color:var(--text-dim);letter-spacing:1px;margin-top:4px}
+  .header-right{text-align:right}
+  .gate-badge{font-family:'IBM Plex Mono',monospace;font-size:9px;
+               letter-spacing:3px;padding:4px 10px;
+               border:1px solid #44ff88;color:#44ff88;margin-bottom:6px}
+  .regime-badge{font-family:'IBM Plex Mono',monospace;font-size:9px;
+                 color:var(--text-dim);letter-spacing:2px}
+  .conviction-block{display:flex;align-items:center;gap:20px;padding:16px 20px;
+                     border-bottom:1px solid var(--border)}
+  .conviction-num{font-family:'Bebas Neue',sans-serif;font-size:72px;
+                   line-height:1;color:#ffd166}
+  .conviction-label{font-family:'IBM Plex Mono',monospace;font-size:9px;
+                     color:var(--text-dim);letter-spacing:3px}
+  .conviction-meta{font-size:11px;color:var(--text);margin-top:4px}
+  .bt-tag{display:inline-flex;align-items:center;gap:6px;
+           border:1px solid #00d4ff;padding:4px 10px;
+           font-family:'IBM Plex Mono',monospace;font-size:10px;color:#00d4ff;
+           letter-spacing:1px;margin-bottom:8px}
+  .dot{width:6px;height:6px;border-radius:50%;background:#00d4ff}
+  .body{padding:16px 20px}
+  .section-title{font-family:'IBM Plex Mono',monospace;font-size:9px;
+                  letter-spacing:3px;color:var(--text-dim);margin-bottom:8px;
+                  padding-bottom:4px;border-bottom:1px solid var(--border)}
+  .section{margin-bottom:16px}
+  /* Score bars */
+  .score-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .score-label{min-width:220px}
+  .score-name{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text)}
+  .score-weight{font-family:'IBM Plex Mono',monospace;font-size:9px;
+                 color:var(--text-dim);margin-left:6px}
+  .score-sub{display:block;font-family:'IBM Plex Mono',monospace;font-size:9px;
+              color:var(--text-dim)}
+  .score-track{flex:1;height:6px;background:var(--surface3)}
+  .score-fill{height:100%;transition:width 0.3s}
+  .score-num{font-family:'Bebas Neue',sans-serif;font-size:22px;
+              min-width:36px;text-align:right;line-height:1}
+  /* Option fields */
+  .opt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+  .opt-field-label{font-family:'IBM Plex Mono',monospace;font-size:9px;
+                    color:var(--text-dim);letter-spacing:2px}
+  .opt-field-val{font-family:'IBM Plex Mono',monospace;font-size:14px;
+                  color:var(--text-bright);margin-top:2px}
+  .opt-field-val.green{color:var(--green)}
+  .opt-field-val.red{color:var(--red)}
+  .opt-field-val.amber{color:var(--accent4)}
+  /* Stop blocks */
+  .stop-block{padding:10px 12px;font-size:11px;line-height:1.6;margin-bottom:8px}
+  .stop-thesis{background:var(--surface2);border-left:2px solid var(--accent3)}
+  .stop-tech{background:var(--surface2);border-left:2px solid var(--red)}
+  .rationale-block{background:var(--surface2);border-left:2px solid var(--accent3);
+                    padding:10px 12px;font-size:11px;line-height:1.6;margin-bottom:8px}
+  .against-block{background:var(--surface2);border-left:2px solid var(--red);
+                  padding:10px 12px;font-size:11px;line-height:1.6;margin-bottom:8px}
+  .block-label{font-family:'IBM Plex Mono',monospace;font-size:9px;
+                color:var(--text-dim);letter-spacing:2px;margin-bottom:5px}
+  .checkpoint-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+  .checkpoint{background:var(--surface2);padding:8px 10px}
+  .checkpoint-title{font-family:'IBM Plex Mono',monospace;font-size:9px;
+                     color:var(--accent);letter-spacing:2px;margin-bottom:4px}
+  .checkpoint-body{font-size:10px;color:var(--text)}
+  .gegenthesen-list{list-style:none;padding:0}
+  .gegenthesen-list li{font-family:'IBM Plex Mono',monospace;font-size:10px;
+                        color:var(--red);padding:2px 0}
+  .gegenthesen-list li::before{content:"▸ ";color:var(--red)}
+  .tags-row{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px}
+  .tag{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1px;
+        padding:2px 8px;border:1px solid var(--border-bright);color:var(--text-dim)}
+  .tag-warn{border-color:var(--accent2);color:var(--accent2)}
+  .tag-ok{border-color:var(--accent3);color:var(--accent3)}
+  .portfolio-row{font-family:'IBM Plex Mono',monospace;font-size:10px;
+                  color:#44ff88;padding:6px 10px;
+                  background:var(--surface2);margin-bottom:8px}
+  .footer{font-family:'IBM Plex Mono',monospace;font-size:9px;
+           color:var(--text-dim);display:flex;justify-content:space-between;
+           padding:10px 20px;border-top:1px solid var(--border)}
+  .deep-net{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;
+             color:var(--accent);margin-top:4px}
+  @media(max-width:600px){
+    .opt-grid,.checkpoint-grid{grid-template-columns:1fr}
+    .conviction-num{font-size:52px}
+    .ticker{font-size:38px}
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <!-- HEADER -->
+  <div class="card-header">
+    <div>
+      <div class="ticker">TSM</div>
+      <div class="company">Taiwan Semiconductor Manufacturing Company</div>
+      <div class="company" style="margin-top:2px">COMPUTE HARDWARE</div>
+      
+    </div>
+    <div class="header-right">
+      <div class="gate-badge">PASS</div>
+      <div class="regime-badge">NORMAL MODE · 2026-04-16</div>
+      
+    </div>
+  </div>
+
+  <!-- CONVICTION -->
+  <div class="conviction-block">
+    <div>
+      <div class="conviction-label">GESAMT-CONVICTION</div>
+      <div class="conviction-num">7.6</div>
+      <div class="conviction-meta">Schwellenwert: 7.5 | Laufzeit: 6M</div>
+    </div>
+    <div style="flex:1">
+      <div class="bt-tag"><div class="dot"></div>RECHEN-FLASCHENHALS</div>
+      <div style="font-family:IBM Plex Mono,monospace;font-size:10px;color:#b48eff">K-BONUS: +0.3</div>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <!-- SCORES -->
+    <div class="section">
+      <div class="section-title">SCORING BREAKDOWN</div>
+      
+    <div class="score-row">
+      <div class="score-label">
+        <span class="score-name">SA LP ALIGN</span>
+        <span class="score-weight">40%</span>
+        <span class="score-sub">Filing: NONE</span>
+      </div>
+      <div class="score-track">
+        <div class="score-fill" style="width:30%;background:#ff4444"></div>
+      </div>
+      <div class="score-num" style="color:#ff4444">3.0</div>
+    </div>
+    <div class="score-row">
+      <div class="score-label">
+        <span class="score-name">THIEL ALIGN</span>
+        <span class="score-weight">14%</span>
+        <span class="score-sub">THESE | K-Bonus: +0.3</span>
+      </div>
+      <div class="score-track">
+        <div class="score-fill" style="width:55%;background:#ff9f6e"></div>
+      </div>
+      <div class="score-num" style="color:#ff9f6e">5.5</div>
+    </div>
+    <div class="score-row">
+      <div class="score-label">
+        <span class="score-name">SHULMAN</span>
+        <span class="score-weight">15%</span>
+        <span class="score-sub">Empirical: 0/3</span>
+      </div>
+      <div class="score-track">
+        <div class="score-fill" style="width:10%;background:#ff4444"></div>
+      </div>
+      <div class="score-num" style="color:#ff4444">1.0</div>
+    </div>
+    <div class="score-row">
+      <div class="score-label">
+        <span class="score-name">MULTI-SIGNAL</span>
+        <span class="score-weight">4%</span>
+        
+      </div>
+      <div class="score-track">
+        <div class="score-fill" style="width:50%;background:#ff9f6e"></div>
+      </div>
+      <div class="score-num" style="color:#ff9f6e">5.0</div>
+    </div>
+    <div class="score-row">
+      <div class="score-label">
+        <span class="score-name">MARKT-REGIME</span>
+        <span class="score-weight">15%</span>
+        <span class="score-sub">Mode: NORMAL</span>
+      </div>
+      <div class="score-track">
+        <div class="score-fill" style="width:85%;background:#00d4ff"></div>
+      </div>
+      <div class="score-num" style="color:#00d4ff">8.5</div>
+    </div>
+    <div class="score-row">
+      <div class="score-label">
+        <span class="score-name">CONTRARIAN</span>
+        <span class="score-weight">12%</span>
+        <span class="score-sub">Score: +2.0</span>
+      </div>
+      <div class="score-track">
+        <div class="score-fill" style="width:20%;background:#ff4444"></div>
+      </div>
+      <div class="score-num" style="color:#ff4444">2.0</div>
+    </div>
+    </div>
+
+    <!-- OPTION PARAMETERS -->
+    <div class="section">
+      <div class="section-title">CALL OPTION PARAMETER</div>
+      <div class="opt-grid">
+        <div>
+          <div class="opt-field-label">TYP</div>
+          <div class="opt-field-val green">CALL</div>
+        </div>
+        <div>
+          <div class="opt-field-label">STRIKE (OTM)</div>
+          <div class="opt-field-val">+-54.7% / $170</div>
+        </div>
+        <div>
+          <div class="opt-field-label">EXPIRATION</div>
+          <div class="opt-field-val">2026-10-16</div>
+        </div>
+        <div>
+          <div class="opt-field-label">ENTRY-PRÄMIE</div>
+          <div class="opt-field-val">$209.25</div>
+        </div>
+        <div>
+          <div class="opt-field-label">TARGET</div>
+          <div class="opt-field-val green">1.4x Prämie</div>
+        </div>
+        <div>
+          <div class="opt-field-label">LAUFZEIT</div>
+          <div class="opt-field-val amber">6 Monate</div>
+        </div>
+      </div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;
+                  color:var(--text-dim);margin-bottom:10px">6-Monate-Conviction maps auf Oktober 2026 Expiration (nächster verfügbarer LEAPS-Termin). Tief-ITM Strike $170 (Delta 0.98) gewählt wegen hoher Current-IV (0.81) – minimiert Vega-Risiko durch fast reinen Deltaausdruck. Open Interest 150 ist die liquideste verfügbare Option. Spread 2.2% akzeptabel für diese Moneyness. Bei IV 81% sind ATM-Optionen prohibitiv teuer; ITM-Calls funktionieren als Stock-Ersatz mit definiertem Risiko.</div>
+    </div>
+
+    <!-- STOP LOSS -->
+    <div class="section">
+      <div class="section-title">STOP-LOSS (ZWEI SCHICHTEN)</div>
+      <div class="stop-block stop-thesis">
+        <div class="block-label">SCHICHT 1 · THESIS-TRIGGER (VOLLSTÄNDIGER EXIT)</div>
+        TSMC senkt Revenue-Guidance oder kündigt CapEx-Freeze an; OR US-Exportkontrollen treffen TSMC-Hauptkunden (NVDA/Apple) direkt; OR China militärische Eskalation in Taiwan-Straße (DEFCON-3-äquivalent)
+      </div>
+      <div class="stop-block stop-tech">
+        <div class="block-label">SCHICHT 2 · TECHNISCHER TEIL-EXIT (50%)</div>
+        -40% Prämie in 30 Tagen ODER IV-Crush >15 Punkte
+      </div>
+    </div>
+
+    <!-- CHECKPOINTS -->
+    <div class="section">
+      <div class="section-title">POSITIONS-MANAGEMENT CHECKPOINTS</div>
+      <div class="checkpoint-grid">
+        <div class="checkpoint">
+          <div class="checkpoint-title">90 TAGE</div>
+          <div class="checkpoint-body">Q2 2025 Earnings-Release prüfen: Revenue-Wachstum >25% YoY bestätigt Thesis. CapEx-Ausführungsrate vs. Guidance vergleichen. Geopolitische Lagebeurteilung Taiwan-Straße. Bei Delta-Drift unter 0.90 Position reassessen.</div>
+        </div>
+        <div class="checkpoint">
+          <div class="checkpoint-title">180 TAGE</div>
+          <div class="checkpoint-body">Q3 2025 Earnings + N2-Node-Ramp-Status (2nm Massenproduktion 2025 erwartet). AI-CapEx-Zyklus der Hyperscaler (MSFT/GOOG/META/AMZN) auf Kürzungssignale monitoren. Position bei >35% Gewinn partiell sichern (50% Exit). IV-Normalisierung prüfen.</div>
+        </div>
+        <div class="checkpoint">
+          <div class="checkpoint-title">MONATLICH</div>
+          <div class="checkpoint-body">Monatlich: (1) NVDA-Umsatz als Proxy für TSM-Auslastung, (2) Taiwan-Geopolitik-News-Monitoring (China-Militärübungen), (3) Put/Call-OI-Ratio-Verschiebung als Sentiment-Indikator, (4) Energy-Breadth-Regime-Status – bei Wechsel zu STRESS-Regime Stop-Levels verschärfen</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RATIONALE -->
+    <div class="section">
+      <div class="section-title">ANALYSEBEGRÜNDUNG</div>
+      <div class="rationale-block">
+        <div class="block-label">THESIS</div>
+        TSMC liefert strukturellen Beweis für die Aschenbrenner-These: Als faktisch einziger Produzent von Sub-3nm-Chips ist TSM der primäre Rechen-Flaschenhals-Löser der AI-Skalierungs-Ära. Q1-Ergebnis (+58% Gewinn, angehobene Guidance) bestätigt anhaltende Nachfragedynamik. Regime-Score 8.5 in NORMAL-Modus mit starker Energy-Breadth unterstützt Risk-On-Positionierung. Contrarian-Risiken (Taiwan-Geopolitik, Iran-Kosten, Put/Call-OI 1.33) sind eingepreist aber kein Gate-Blocker. Tief-ITM Call-Strategie bei hoher IV (0.81) sichert Delta-Exposition ohne exzessives Vega-Risiko; Conviction 7.56 überschreitet Threshold 7.5 marginal – Position sizing sollte konservativ bleiben.
+      </div>
+    </div>
+
+    <!-- GEGEN-SZENARIO -->
+    <div class="section">
+      <div class="section-title">GEGEN-SZENARIO</div>
+      <div class="against-block">
+        <div class="block-label">TRADE UNGÜLTIG WENN</div>
+        US-Regierung verhängt vollständige Chip-Exportbeschränkungen gegen TSMC-Kunden in China UND Taiwan-Straße-Eskalation führt zu Versicherungs-Prämien-Spike für Fab-Betrieb – würde Revenue-Guidance-Senkung und multiplen Compression auf P/E triggern; alternativ: AI-CapEx-Superzyklus pausiert durch Hyperscaler-Earnings-Miss Q2 2025
+        <ul class="gegenthesen-list" style="margin-top:8px"><li>Taiwan-Geopolitik: China-Invasion-Risiko als permanenter Tail-Risk</li><li>Iran-Krieg treibt Materialkosten (Neon-Gas, Helium-Abhängigkeiten)</li><li>US-Exportkontrollen könnten TSMC-Kundenkreis beschränken</li><li>Zyklische Chip-Nachfrage könnte AI-CapEx-Zyklus overextenden</li></ul>
+      </div>
+    </div>
+
+    <!-- LIQUIDITY + TAGS -->
+    <div class="section">
+      <div class="section-title">LIQUIDITY FLAGS</div>
+      <div class="tags-row"><span class="tag tag-warn">STRIKE_170_OI_150_ACCEPTABLE</span><span class="tag tag-warn">STRIKE_165_OI_1_AVOID</span><span class="tag tag-warn">STRIKE_175_OI_2_AVOID</span><span class="tag tag-warn">IV_RANK_INSUFFICIENT_DATA_11_POINTS</span><span class="tag tag-warn">OPTIONS_FLOW_ZERO_DAILY_VOLUME_ALL_STRIKES</span><span class="tag tag-warn">PUT_CALL_OI_ELEVATED_1_326</span><span class="tag tag-warn">HIGH_ABSOLUTE_PREMIUM_209_USD_POSITION_SIZE_CRITICAL</span></div>
+    </div>
+
+    <div class="tags-row"><span class="tag">bottleneck_compute</span><span class="tag">earnings_beat</span><span class="tag">guidance_raise</span><span class="tag">capex_expansion</span><span class="tag">ai_demand_confirmation</span><span class="tag">katechon_semiconductor</span><span class="tag">regime_normal_risk_on</span></div>
+    <div class="portfolio-row">
+      PORTFOLIO: OK
+    </div>
+
+  </div><!-- /body -->
+
+  <div class="footer">
+    <span>SA SCANNER v4.0</span>
+    <span>TSM · 2026-04-16</span>
+    <span>CONVICTION 7.56 · PASS</span>
+  </div>
+
+</div><!-- /card -->
+
+</body>
+</html>

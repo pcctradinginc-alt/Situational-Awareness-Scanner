@@ -1,5 +1,71 @@
 [
   {
+    "source": "CNBC_Investing",
+    "credibility": 0.84,
+    "title": "TSMC first-quarter profit rises 58%, beats estimates as AI demand fuels record run",
+    "summary": "TSMC reported another quarter of record profit, with the company expecting AI demand to continue to grow.",
+    "url": "https://www.cnbc.com/2026/04/16/tsmc-q1-profit-58-percent-ai-chip-demand-record.html",
+    "published": "2026-04-16T08:13:48",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "TSM"
+    ],
+    "quality_score": 1.1947,
+    "weighted_relevance": 1.1946846506030973
+  },
+  {
+    "source": "CNBC_Tech",
+    "credibility": 0.83,
+    "title": "TSMC first-quarter profit rises 58%, beats estimates as AI demand fuels record run",
+    "summary": "TSMC reported another quarter of record profit, with the company expecting AI demand to continue to grow.",
+    "url": "https://www.cnbc.com/2026/04/16/tsmc-q1-profit-58-percent-ai-chip-demand-record.html",
+    "published": "2026-04-16T08:13:48",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "TSM"
+    ],
+    "quality_score": 1.1664,
+    "weighted_relevance": 1.1664090926877464
+  },
+  {
+    "source": "CNBC_Tech",
+    "credibility": 0.83,
+    "title": "Nvidia's long-awaited stock breakout is proof that patience pays off",
+    "summary": "Every weekday, the Investing Club releases the Homestretch; an actionable afternoon update just in time for the last hour of trading.",
+    "url": "https://www.cnbc.com/2026/04/15/nvidias-long-awaited-stock-breakout-is-proof-that-patience-pays-off.html",
+    "published": "2026-04-15T19:01:12",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.1664,
+    "weighted_relevance": 1.1664090926877464
+  },
+  {
     "source": "CNBC_Tech",
     "credibility": 0.83,
     "title": "Chip giants AMD, Qualcomm and Arm back driverless car startup Wayve with fresh funds",
@@ -44,12 +110,12 @@
     "weighted_relevance": 1.1664090926877464
   },
   {
-    "source": "CNBC_Tech",
-    "credibility": 0.83,
-    "title": "Nvidia stock is on a 10-day winning streak and up 18% over that stretch",
-    "summary": "Nvidia denied rumors that it's in talks to buy a large PC company, telling CNBC in a statement that it's \"not engaged in discussions.\"",
-    "url": "https://www.cnbc.com/2026/04/14/nvidia-stock-nvda-ai-streak.html",
-    "published": "2026-04-14T21:01:37",
+    "source": "Yahoo_Finance",
+    "credibility": 0.75,
+    "title": "TSMC lifts revenue forecast, pledges spending to meet AI chip demand",
+    "summary": "<p>STORY: TSMC raised its annual revenue forecast on Thursday (April 16).</p><p>The tech giant further said it's stepping up capital spending this year.</p><p>That as the world's biggest contract manufacturer of advanced AI chips tries to meet massive demand for its products.</p><p>The bullish outlook comes after the company - which is a major Nvidia supplier - said first-quarter profit leapt 58% to a record $18.2 billion.</p><p>That was well ahead of expectations and marked its eighth straight ",
+    "url": "https://finance.yahoo.com/video/tsmc-lifts-revenue-forecast-pledges-102739895.html?.tsrc=rss",
+    "published": "2026-04-16T10:27:39",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -60,40 +126,159 @@
     },
     "signal_count": 1,
     "tickers": [
+      "TSM",
       "NVDA"
     ],
-    "quality_score": 1.1664,
-    "weighted_relevance": 1.1664090926877464
-  },
-  {
-    "source": "Axios_Tech",
-    "credibility": 0.76,
-    "title": "IMF says Iran war \"halted\" global economic momentum, expects hotter inflation",
-    "summary": "<p>The Iran war brought global economic momentum to a halt, the <a href=\"https://www.axios.com/2026/04/09/supply-chain-energy-iran-imf\" target=\"_blank\">International Monetary Fund</a> said Tuesday, providing new projections for slower growth and higher inflation.</p><p><strong>Why it matters: </strong>It is the latest major economic institution to warn about stagflation-like global economic fallout from the war. The conflict upended what was shaping up to be a solid year for the global economy.<",
-    "url": "https://www.axios.com/2026/04/14/imf-iran-inflation-economy",
-    "published": "2026-04-14T13:01:04",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": true,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "VST"
-    ],
-    "quality_score": 0.978,
-    "weighted_relevance": 0.9779618114914245
+    "quality_score": 0.9524,
+    "weighted_relevance": 0.9523952890649693
   },
   {
     "source": "Yahoo_Finance",
     "credibility": 0.75,
-    "title": "Why Rigetti Computing Stock Keeps Going Up",
-    "summary": "What's good news for Nvidia could be great news for Rigetti.",
-    "url": "https://www.fool.com/investing/2026/04/15/why-rigetti-computing-stock-keeps-going-up/?.tsrc=rss",
-    "published": "2026-04-15T16:23:23",
+    "title": "Chip Maker TSMC Is More Bullish Than Ever on AI, Despite Iran War",
+    "summary": "The Taiwan company expects revenue to grow by more than 30% and played down the risk of war-related disruptions to the supply chain.",
+    "url": "https://finance.yahoo.com/m/e5986d5b-4109-3c36-aca8-908ae4805f5e/chip-maker-tsmc-is-more.html?.tsrc=rss",
+    "published": "2026-04-16T10:14:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "TSM"
+    ],
+    "quality_score": 0.9524,
+    "weighted_relevance": 0.9523952890649693
+  },
+  {
+    "source": "Yahoo_Finance",
+    "credibility": 0.75,
+    "title": "Taiwan's chipmaker TSMC reports 58% jump in profit, warns about Iran war impacts",
+    "summary": "Taiwan\u2019s chipmaker TSMC, one of the world\u2019s largest companies, reported a 58% jump in profit on Thursday for the January-March quarter, thanks to strong demand driven by the artificial intelligence boom even as the Iran war was driving up costs.  Taiwan Semiconductor Manufacturing Corp., a key supplier for Apple and Nvidia and the largest contract chipmaker in the world, reported a record net quarterly profit of 572.5 billion new Taiwan dollars ($18.1 billion) for the first three months of the y",
+    "url": "https://finance.yahoo.com/sectors/technology/articles/taiwans-chipmaker-tsmc-reports-58-100501312.html?.tsrc=rss",
+    "published": "2026-04-16T10:05:01",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "TSM",
+      "NVDA"
+    ],
+    "quality_score": 0.9524,
+    "weighted_relevance": 0.9523952890649693
+  },
+  {
+    "source": "Yahoo_Finance",
+    "credibility": 0.75,
+    "title": "These Stocks Are Today\u2019s Movers: TSMC, AMD, J.B. Hunt, Nvidia, Hims & Hers, and More",
+    "summary": "TSMC rises after the chip manufacturer\u2019s earnings beat expectations, while Nvidia and AMD are poised for 12-day winning streaks.",
+    "url": "https://finance.yahoo.com/m/5370e667-4977-33cd-bc67-4e37e5dfb2d5/these-stocks-are-today%E2%80%99s.html?.tsrc=rss",
+    "published": "2026-04-16T09:48:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "TSM",
+      "NVDA"
+    ],
+    "quality_score": 0.9524,
+    "weighted_relevance": 0.9523952890649693
+  },
+  {
+    "source": "Yahoo_Finance",
+    "credibility": 0.75,
+    "title": "TSMC Earnings Beat Expectations. Why That\u2019s Good News for Nvidia, Apple Stocks.",
+    "summary": "Taiwan Semiconductor Manufacturing reported a 58% jump in quarterly net profit. Its investment plans could shape the outlook for the broader chip sector.",
+    "url": "https://finance.yahoo.com/m/23acebc7-e54e-3194-9cee-292042f2f056/tsmc-earnings-beat.html?.tsrc=rss",
+    "published": "2026-04-16T09:46:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "TSM",
+      "NVDA"
+    ],
+    "quality_score": 0.9524,
+    "weighted_relevance": 0.9523952890649693
+  },
+  {
+    "source": "Yahoo_Finance",
+    "credibility": 0.75,
+    "title": "Stocks to Watch: TSMC, PepsiCo, Netflix",
+    "summary": "\u2197\ufe0f Taiwan Semiconductor Manufacturing (TW:2330, (TSM): The world\u2019s largest contract chip maker beat profit expectations and raised its revenue outlook for the year, in a sign of strong demand for AI chips despite uncertainties from the war.",
+    "url": "https://finance.yahoo.com/m/19f95ae1-0c4d-374d-8981-5816ba60063e/stocks-to-watch%3A-tsmc%2C.html?.tsrc=rss",
+    "published": "2026-04-16T09:39:58",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "TSM",
+      "NVDA"
+    ],
+    "quality_score": 0.9524,
+    "weighted_relevance": 0.9523952890649693
+  },
+  {
+    "source": "Yahoo_Finance",
+    "credibility": 0.75,
+    "title": "Global Market for Computing and AI for Data Centers 2026-2040: AI ASICs is the Fastest-growing Processor Category, As Companies Including Google, Amazon, Microsoft, Meta Invest Heavily",
+    "summary": "The \"Global Market for Computing and AI for Data Centers 2026-2040\" report highlights a booming semiconductor industry driven by generative AI, large language models, and AI ASICs. Nvidia leads GPU advancements, while custom silicon from hyperscalers like Google, Amazon, and Meta reshapes market dynamics. With projected exponential growth from $215 billion in 2025, strategic insights into US-China tech divides and emerging computing paradigms are imperative.Dublin, April 16, 2026 (GLOBE NEWSWIRE",
+    "url": "https://finance.yahoo.com/sectors/technology/articles/global-market-computing-ai-data-093100837.html?.tsrc=rss",
+    "published": "2026-04-16T09:31:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "AMZN",
+      "NVDA",
+      "META",
+      "MSFT",
+      "GOOGL"
+    ],
+    "quality_score": 0.9524,
+    "weighted_relevance": 0.9523952890649693
+  },
+  {
+    "source": "Yahoo_Finance",
+    "credibility": 0.75,
+    "title": "NVIDIA Corporation (NVDA) Turns to AI-Powered Robots to Power Industrial Revolution",
+    "summary": "NVIDIA Corporation (NASDAQ:NVDA) is one of the best data center stocks to buy right now. The company is pioneering the AI infrastructure, including GPU systems and software that power data centers for inference and training. On April 10, NVIDIA Corporation (NASDAQ:NVDA) highlighted the breakthroughs it is making to bring AI into the physical world. Its [\u2026]",
+    "url": "https://finance.yahoo.com/sectors/technology/articles/nvidia-corporation-nvda-turns-ai-092713301.html?.tsrc=rss",
+    "published": "2026-04-16T09:27:13",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -110,12 +295,12 @@
     "weighted_relevance": 0.9523952890649693
   },
   {
-    "source": "Yahoo_Finance",
-    "credibility": 0.75,
-    "title": "Mirantis Automates AI Factory Deployments with k0rdent AI and NVIDIA Run:ai",
-    "summary": "CAMPBELL, Calif., April 15, 2026--Mirantis, delivering Kubernetes-native infrastructure for AI, today announced the company is enabling enterprises and neocloud providers to deploy production-ready AI platforms in minutes, not weeks which is achieved by automated deployment and lifecycle management of NVIDIA Run:ai through the Mirantis k0rdent AI platform. The integration closes the gap between GPU infrastructure provisioning and a fully operational AI factory.",
-    "url": "https://finance.yahoo.com/sectors/technology/articles/mirantis-automates-ai-factory-deployments-160000960.html?.tsrc=rss",
-    "published": "2026-04-15T16:00:00",
+    "source": "Seeking_Alpha_NVDA",
+    "credibility": 0.7,
+    "title": "Cadence Design rises as it unveils Google Cloud, Nvidia deals",
+    "summary": "",
+    "url": "https://seekingalpha.com/symbol/NVDA/news?source=feed_symbol_NVDA",
+    "published": "2026-04-15T18:42:14",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -126,18 +311,19 @@
     },
     "signal_count": 1,
     "tickers": [
+      "GOOGL",
       "NVDA"
     ],
-    "quality_score": 0.9524,
-    "weighted_relevance": 0.9523952890649693
+    "quality_score": 0.8296,
+    "weighted_relevance": 0.8296421184743731
   },
   {
-    "source": "Yahoo_Finance",
-    "credibility": 0.75,
-    "title": "Nvidia Rode the Chip Sector to a 6-Month Breakout: Can It Lead Now?",
-    "summary": "Nvidia stock price broke a 6-month channel but the chip sector outpaced it by 24 points. A proprietary tool reveals who drove the move.",
-    "url": "https://beincrypto.com/nvidia-stock-price-breakout-soxx-sector-analysis/?.tsrc=rss",
-    "published": "2026-04-15T16:00:00",
+    "source": "Seeking_Alpha_NVDA",
+    "credibility": 0.7,
+    "title": "Nvidia And AMD: Trim Your Hare, Buy A Tortoise",
+    "summary": "",
+    "url": "https://seekingalpha.com/article/4890971-nvidia-and-amd-trim-your-hare-buy-a-tortoise?source=feed_symbol_NVDA",
+    "published": "2026-04-15T16:59:31",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -150,30 +336,8 @@
     "tickers": [
       "NVDA"
     ],
-    "quality_score": 0.9524,
-    "weighted_relevance": 0.9523952890649693
-  },
-  {
-    "source": "Yahoo_Finance",
-    "credibility": 0.75,
-    "title": "Why D-Wave Quantum Stock Keeps Going Up",
-    "summary": "D-Wave stock is on a tear. Nvidia is the reason -- whether D-Wave likes it or not.",
-    "url": "https://www.fool.com/investing/2026/04/15/why-d-wave-quantum-stock-keeps-going-up/?.tsrc=rss",
-    "published": "2026-04-15T15:44:32",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 0.9524,
-    "weighted_relevance": 0.9523952890649693
+    "quality_score": 0.8296,
+    "weighted_relevance": 0.8296421184743731
   },
   {
     "source": "Seeking_Alpha_NVDA",
@@ -270,95 +434,6 @@
     "summary": "",
     "url": "https://seekingalpha.com/symbol/NVDA/news?source=feed_symbol_NVDA",
     "published": "2026-04-15T09:13:31",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 0.8296,
-    "weighted_relevance": 0.8296421184743731
-  },
-  {
-    "source": "Seeking_Alpha_NVDA",
-    "credibility": 0.7,
-    "title": "Microsoft will rent 30,000 Nvidia chips from Nscale in Norway deal; expands Wyoming ops",
-    "summary": "",
-    "url": "https://seekingalpha.com/symbol/NVDA/news?source=feed_symbol_NVDA",
-    "published": "2026-04-14T18:52:28",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "MSFT",
-      "NVDA"
-    ],
-    "quality_score": 0.8296,
-    "weighted_relevance": 0.8296421184743731
-  },
-  {
-    "source": "Seeking_Alpha_NVDA",
-    "credibility": 0.7,
-    "title": "Nvidia: Multiple Compression Is No Compliment (Rating Upgrade)",
-    "summary": "",
-    "url": "https://seekingalpha.com/article/4890601-nvidia-multiple-compression-is-no-compliment-rating-upgrade?source=feed_symbol_NVDA",
-    "published": "2026-04-14T16:29:35",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 0.8296,
-    "weighted_relevance": 0.8296421184743731
-  },
-  {
-    "source": "Seeking_Alpha_NVDA",
-    "credibility": 0.7,
-    "title": "Nvidia adds Ising to its growing portfolio of open AI models",
-    "summary": "",
-    "url": "https://seekingalpha.com/symbol/NVDA/news?source=feed_symbol_NVDA",
-    "published": "2026-04-14T15:45:09",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 0.8296,
-    "weighted_relevance": 0.8296421184743731
-  },
-  {
-    "source": "Seeking_Alpha_NVDA",
-    "credibility": 0.7,
-    "title": "PC stocks fall after Nvidia denies report in talks to buy a PC-focused company (update)",
-    "summary": "",
-    "url": "https://seekingalpha.com/symbol/NVDA/news?source=feed_symbol_NVDA",
-    "published": "2026-04-14T08:18:46",
     "signals": {
       "thiel": false,
       "shulman": false,
