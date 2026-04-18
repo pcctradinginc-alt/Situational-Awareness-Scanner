@@ -4,7 +4,7 @@ Vollständige Scanner-Pipeline Orchestrierung.
 Einstiegspunkt für GitHub Actions und lokalen Betrieb.
 
 WICHTIG: EDGAR läuft VOR dem Datenfetch damit Filing-Ticker
-automatisch in die Tradier-Abfrage aufgenommen werden.
+automatisch dauerhaft in den Ticker-Pool übernommen werden.
 
 Usage:
     python main.py                      # Vollständiger Daily Run
@@ -56,8 +56,6 @@ def run_full_pipeline(args=None):
     with StateManager() as sm:
         try:
             # ── 1. SEC EDGAR MONITOR ─────────────────────────────
-            # MUSS vor dem Datenfetch laufen damit Filing-Ticker
-            # in die Tradier-Abfrage aufgenommen werden
             logger.info("Step 1: SEC EDGAR monitor")
             sec_data = run_edgar_monitor(sm)
 
@@ -66,58 +64,67 @@ def run_full_pipeline(args=None):
                 sm.commit_state("EDGAR-only run")
                 return
 
-            # ── 2. FILING-TICKER IN TARGET_TICKERS INJIZIEREN ────
-            # Klasse A und B Ticker aus neuen Filings automatisch
-            # hinzufügen damit Tradier-Daten für sie abgerufen werden
+            # ── 2. EDGAR → DAUERHAFTE TICKER-VERWALTUNG (neu) ─────────────────────
+            logger.info("Step 2: EDGAR → dynamische Ticker-Update")
             filing_tickers = []
+            closed_tickers = []
+
             for cls in sec_data.get("classifications", []):
-                ticker = cls.get("ticker", "")
-                if (cls.get("class") in ["A", "B"] and
-                        ticker and
-                        ticker not in Config.TARGET_TICKERS):
-                    filing_tickers.append(ticker)
+                ticker = cls.get("ticker", "").strip()
+                if not ticker:
+                    continue
+                if cls.get("class") in ["A", "B"]:                    # NEW oder INCREASED
+                    if ticker not in filing_tickers:
+                        filing_tickers.append(ticker)
+                elif cls.get("class") == "CLOSED_POSITION" or "CLOSED" in cls.get("description", "").upper():
+                    if ticker not in closed_tickers:
+                        closed_tickers.append(ticker)
 
-            # Auch Ticker aus sehr starken Signalen (SC 13D, Form4)
-            for signal in sec_data.get("very_strong_signals", []):
-                title = signal.get("title", "")
-                # Einfacher Ticker-Extraktor aus Filing-Titel
-                import re
-                found = re.findall(r'\b([A-Z]{2,5})\b', title)
-                for t in found:
-                    if (len(t) >= 2 and
-                            t not in Config.TARGET_TICKERS and
-                            t not in ["SEC", "LLC", "INC", "CORP",
-                                      "LTD", "LP", "ETF", "USA"]):
-                        filing_tickers.append(t)
+            # Dynamische Liste persistent aktualisieren
+            if filing_tickers or closed_tickers:
+                Config.ensure_dirs()
+                dynamic_path = Config.DYNAMIC_TICKERS_PATH
+                
+                if dynamic_path.exists():
+                    dynamic_data = json.loads(dynamic_path.read_text())
+                else:
+                    dynamic_data = {"tickers": [], "last_updated": "", "source": "edgar_monitor"}
 
-            if filing_tickers:
-                filing_tickers = list(set(filing_tickers))
-                logger.info(
-                    f"Filing-Ticker injected into TARGET_TICKERS: "
-                    f"{filing_tickers}"
-                )
-                Config.TARGET_TICKERS = list(
-                    set(Config.TARGET_TICKERS + filing_tickers)
-                )
+                current_dynamic = set(dynamic_data.get("tickers", []))
 
-            # Ticker-Override aus CLI
-            if args and args.ticker:
-                Config.TARGET_TICKERS = args.ticker
-                logger.info(f"Ticker override: {args.ticker}")
+                # Neue Positionen dauerhaft hinzufügen
+                for t in filing_tickers:
+                    if t not in current_dynamic:
+                        current_dynamic.add(t)
+                        logger.info(f"✅ DAUERHAFT hinzugefügt: {t} (Aschenbrenner / Smart-Money)")
 
+                # Verkaufte Positionen dauerhaft entfernen
+                for t in closed_tickers:
+                    if t in current_dynamic:
+                        current_dynamic.remove(t)
+                        logger.info(f"❌ DAUERHAFT entfernt: {t} (Aschenbrenner hat verkauft)")
+
+                dynamic_data["tickers"] = sorted(list(current_dynamic))
+                dynamic_data["last_updated"] = datetime.utcnow().isoformat()
+                dynamic_data["source"] = "edgar_monitor"
+
+                dynamic_path.write_text(json.dumps(dynamic_data, indent=2))
+                logger.info(f"Dynamische Ticker-Liste aktualisiert → {len(dynamic_data['tickers'])} Ticker")
+
+            # ── 3. Alle Ticker (fest + dynamisch) für diesen Run verwenden ───────
+            Config.TARGET_TICKERS = Config.get_all_target_tickers()
             logger.info(
                 f"Active TARGET_TICKERS ({len(Config.TARGET_TICKERS)}): "
                 f"{Config.TARGET_TICKERS}"
             )
 
-            # ── 3. DATEN FETCHEN ──────────────────────────────────
-            # Jetzt mit allen Tickern inkl. Filing-Ticker
-            logger.info("Step 2: Data fetch")
+            # ── 4. DATEN FETCHEN ──────────────────────────────────
+            logger.info("Step 3: Data fetch")
             fetcher  = DataFetcher(sm)
             all_data = fetcher.fetch_all(sm)
 
-            # ── 4. REGIME BESTIMMEN ───────────────────────────────
-            logger.info("Step 3: Regime detection")
+            # ── 5. REGIME BESTIMMEN ───────────────────────────────
+            logger.info("Step 4: Regime detection")
             detector = RegimeDetector()
             regime   = detector.detect(all_data, sm)
 
@@ -130,19 +137,19 @@ def run_full_pipeline(args=None):
                 f"Threshold: {regime.get('conviction_threshold', 7.5)}"
             )
 
-            # ── 5. CLAUDE ANALYSE ─────────────────────────────────
+            # ── 6. CLAUDE ANALYSE ─────────────────────────────────
             cards = []
             if not (args and args.no_claude):
-                logger.info("Step 4: Claude analysis")
+                logger.info("Step 5: Claude analysis")
                 analyzer = ClaudeAnalyzer()
                 cards    = analyzer.run_daily_analysis(
                     all_data, regime, sec_data, sm
                 )
             else:
-                logger.info("Step 4: Skipped (--no-claude)")
+                logger.info("Step 5: Skipped (--no-claude)")
 
-            # ── 6. TRADING CARDS GENERIEREN ───────────────────────
-            logger.info("Step 5: Trading card generation")
+            # ── 7. TRADING CARDS GENERIEREN ───────────────────────
+            logger.info("Step 6: Trading card generation")
             import sqlite3
             conn = sqlite3.connect(str(Config.DB_PATH))
             conn.row_factory = sqlite3.Row
@@ -159,19 +166,18 @@ def run_full_pipeline(args=None):
             n_cards   = generate_all_cards(all_cards)
             logger.info(f"Generated {n_cards} HTML cards")
 
-            # ── 7. DASHBOARD ──────────────────────────────────────
-            logger.info("Step 6: Dashboard generation")
+            # ── 8. DASHBOARD ──────────────────────────────────────
+            logger.info("Step 7: Dashboard generation")
             build_dashboard(sm, regime)
 
-            # ── 8. EMAIL BENACHRICHTIGUNG ─────────────────────────
-            # Nur wenn PASS-Cards vorhanden
+            # ── 9. EMAIL BENACHRICHTIGUNG ─────────────────────────
             pass_cards = [
                 c for c in all_cards
                 if c.get("conviction_gate") == "PASS"
             ]
             if pass_cards:
                 logger.info(
-                    f"Step 7: Sending email for {len(pass_cards)} PASS cards"
+                    f"Step 8: Sending email for {len(pass_cards)} PASS cards"
                 )
                 try:
                     send_email(pass_cards, regime)
@@ -179,9 +185,9 @@ def run_full_pipeline(args=None):
                     logger.error(f"Email error (non-fatal): {e}")
                     errors.append(f"email: {e}")
             else:
-                logger.info("Step 7: No PASS cards — email skipped")
+                logger.info("Step 8: No PASS cards — email skipped")
 
-            # ── 9. SUMMARY ────────────────────────────────────────
+            # ── 10. SUMMARY ────────────────────────────────────────
             duration = (datetime.utcnow() - start).total_seconds()
             logger.info(
                 f"=== SA SCANNER DONE: {duration:.0f}s | "
@@ -192,7 +198,7 @@ def run_full_pipeline(args=None):
                 f"Tickers: {len(Config.TARGET_TICKERS)} ==="
             )
 
-            # GitHub Actions Environment Variable für Commit-Message
+            # GitHub Actions Environment Variable
             try:
                 env_file = Path("/tmp/scanner_stats.env")
                 env_file.write_text(
@@ -203,19 +209,18 @@ def run_full_pipeline(args=None):
             except Exception:
                 pass
 
-            # ── 10. GIT COMMIT ────────────────────────────────────
+            # ── 11. GIT COMMIT ────────────────────────────────────
             extra = (
                 f"Regime: {regime['mode']} | "
                 f"Cards: {n_cards} | "
                 f"PASS: {len(pass_cards)}"
             )
             if sec_data.get("new_filings_found", 0) > 0:
-                extra += (
-                    f" | 13F ALERT: "
-                    f"{sec_data['new_filings_found']} new filings"
-                )
+                extra += f" | 13F ALERT: {sec_data['new_filings_found']} new filings"
             if filing_tickers:
-                extra += f" | Filing-Ticker: {filing_tickers}"
+                extra += f" | New dynamic tickers: {filing_tickers}"
+            if closed_tickers:
+                extra += f" | Removed tickers: {closed_tickers}"
 
             sm.commit_state(extra)
 
@@ -237,9 +242,7 @@ def run_edgar_only():
     with StateManager() as sm:
         result = run_edgar_monitor(sm)
         if result.get("trigger_pipeline"):
-            logger.info(
-                "New filings detected — triggering full pipeline"
-            )
+            logger.info("New filings detected — triggering full pipeline")
             run_full_pipeline()
         else:
             sm.commit_state("EDGAR check — no new filings")
@@ -247,18 +250,9 @@ def run_edgar_only():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="SA Scanner")
-    parser.add_argument(
-        "--edgar-only", action="store_true",
-        help="Run only EDGAR 13F check"
-    )
-    parser.add_argument(
-        "--no-claude", action="store_true",
-        help="Skip Claude analysis (data fetch only)"
-    )
-    parser.add_argument(
-        "--ticker", nargs="+",
-        help="Analyze specific tickers only"
-    )
+    parser.add_argument("--edgar-only", action="store_true", help="Run only EDGAR 13F check")
+    parser.add_argument("--no-claude", action="store_true", help="Skip Claude analysis (data fetch only)")
+    parser.add_argument("--ticker", nargs="+", help="Analyze specific tickers only")
     args = parser.parse_args()
 
     if args.edgar_only:
