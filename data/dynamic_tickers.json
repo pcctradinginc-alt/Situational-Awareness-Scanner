@@ -1,0 +1,5 @@
+{
+  "tickers": ["VST", "CEG", "NRG", "PLTR", "NVDA", "TSM", "AVGO", "LMT", "RTX"],
+  "last_updated": "2026-04-18",
+  "source": "edgar_monitor"
+}
