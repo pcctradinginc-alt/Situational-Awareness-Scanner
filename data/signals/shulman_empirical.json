@@ -4,7 +4,7 @@
   "capex_point": 0,
   "nvda_point": 0,
   "data_gaps": {
-    "eia_gap": false,
+    "eia_gap": true,
     "capex_gap": false,
     "nvda_gap": true,
     "any_gap": true,

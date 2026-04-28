@@ -4,7 +4,7 @@
   "iv_confidence": "INSUFFICIENT_DATA",
   "energy_breadth": 0.5,
   "capex_trend": "rising",
-  "regime_stability": 0.265,
+  "regime_stability": 0.25,
   "conviction_threshold": 8.0,
   "weights": {
     "salp": 0.5,
@@ -15,8 +15,8 @@
     "contrarian": 0.12
   },
   "stress_reasons": [
-    "Regime stability 0.27 < 0.4"
+    "Regime stability 0.25 < 0.4"
   ],
   "regime_score": 6.5,
-  "determined_at": "2026-04-28T08:35:18.163047"
+  "determined_at": "2026-04-28T18:38:17.705000"
 }
