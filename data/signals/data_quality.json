@@ -1,4 +1,5 @@
 {
+  "eia": "OK_FRED",
   "fred": "OK",
   "tradier": "OK",
   "errors": [
@@ -7,11 +8,11 @@
   ],
   "shulman_empirical_score": 0,
   "shulman_data_gaps": {
-    "eia_gap": true,
+    "eia_gap": false,
     "capex_gap": false,
     "nvda_gap": true,
     "any_gap": true,
     "all_gaps": false
   },
-  "fetched_at": "2026-04-28T18:38:17.694742"
+  "fetched_at": "2026-04-29T08:29:04.024736"
 }
