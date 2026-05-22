@@ -2,10 +2,10 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Nvidia's Next AI Growth Driver",
-    "summary": "Nvidia's latest earnings reveal a major shift in AI demand. TD Cowen analyst Joshua Buchalter explains why hyperscalers are no longer the whole story, how AI is moving beyond data centers into the real world, and why the company's massive supply chain commitments could cement its dominance for years. (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-05-21/nvidia-s-next-ai-growth-driver-video",
-    "published": "2026-05-21T15:36:26",
+    "title": "Kawasaki Heavy Shares Rally on AI Tie-Up Plan With Nvidia",
+    "summary": "Kawasaki Heavy Industries Ltd. shares rallied as much as 12%, the most since February, on the company\u2019s plan to collaborate with US tech company Nvidia Corp. and others on physical AI robot technology.",
+    "url": "https://www.bloomberg.com/news/articles/2026-05-22/kawasaki-heavy-shares-rally-on-ai-tie-up-plan-with-nvidia",
+    "published": "2026-05-22T02:08:58",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -24,10 +24,10 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Nvidia's Huang Is 'Dunking' on Competition, Luria Says",
-    "summary": "Gil Luria, DA Davidson head of technology research, says Nvidia CEO Jensen Huang is \"dunking\" on all the competition. Joe Kaiser of Switchyard Partners also reacts to Nvidia's earnings and SpaceX going public. They are on \"Bloomberg Open Interest.\" (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-05-21/nvidia-s-huang-is-dunking-on-competition-luria-says-video",
-    "published": "2026-05-21T15:35:12",
+    "title": "Investors Look Beyond TSMC as AI Boom Spreads to New Winners",
+    "summary": "After several years flying high as Asia\u2019s best Nvidia Corp. proxy, Taiwan Semiconductor Manufacturing Co. is increasingly vying with other artificial intelligence stocks for investor attention.",
+    "url": "https://www.bloomberg.com/news/articles/2026-05-21/investors-look-beyond-tsmc-as-ai-boom-spreads-to-new-winners",
+    "published": "2026-05-21T23:30:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -38,73 +38,8 @@
     },
     "signal_count": 1,
     "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "Nvidia Tells Skeptical Investors AI Is Ready to Go Mainstream",
-    "summary": "Nvidia Corp., facing more investor skepticism, used its latest quarterly report to tout progress in diversifying the company, which aims to rely less on the giant data center operators that have fueled its runaway growth.",
-    "url": "https://www.bloomberg.com/news/articles/2026-05-20/nvidia-gives-disappointing-forecast-as-chip-competition-mounts",
-    "published": "2026-05-20T20:23:51",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "Nvidia\u2019s Huang Tries to Get Investors to See the Future of AI",
-    "summary": "The chipmaker\u2019s CEO argues another big wave of AI demand is coming",
-    "url": "https://www.bloomberg.com/news/newsletters/2026-05-21/nvidia-ceo-jensen-huang-urges-investors-to-see-the-future-of-ai",
-    "published": "2026-05-21T11:02:01",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "Taiwan Seeks to Detain Three in Nvidia Smuggling Crackdown",
-    "summary": "Taiwanese officials are seeking to detain three individuals for forging documents in order to export Nvidia Corp. AI chips to China, the island democracy\u2019s first such crackdown on semiconductor smuggling.",
-    "url": "https://www.bloomberg.com/news/articles/2026-05-21/taiwan-seeks-to-detain-three-in-ai-chip-smuggling-crackdown",
-    "published": "2026-05-21T07:39:11",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
+      "NVDA",
+      "TSM"
     ],
     "quality_score": 1.3112,
     "weighted_relevance": 1.3111731766256216
@@ -148,12 +83,12 @@
     },
     "signal_count": 1,
     "tickers": [
-      "NVDA",
-      "MSFT",
+      "RTX",
       "GOOGL",
-      "PLTR",
+      "MSFT",
+      "NVDA",
       "META",
-      "RTX"
+      "PLTR"
     ],
     "quality_score": 1.2233,
     "weighted_relevance": 1.2232988379545604
@@ -162,9 +97,9 @@
     "source": "ft_tech",
     "credibility": 0.85,
     "title": "Nvidia fails to dazzle investors despite lifting dividends",
-    "summary": "Shares in world\u2019s most valuable company steady after announcing better than expected revenue and forecasts",
+    "summary": "Shares in world\u2019s most valuable company slip despite announcing better than expected revenue and forecasts",
     "url": "https://www.ft.com/content/a7aa26d1-1bad-407f-8bff-4ae491cb8ce0",
-    "published": "2026-05-21T14:09:18",
+    "published": "2026-05-21T16:33:35",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -183,10 +118,10 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Real-Time Parallel Counterfactual Regret Minimization",
-    "summary": "arXiv:2605.19928v1 Announce Type: cross \nAbstract: Counterfactual Regret Minimization (CFR) is the dominant algorithmic family for solving large imperfect-information games, underpinning breakthroughs such as Libratus and Pluribus in No-Limit Texas Hold'em poker. In real-time game-playing systems, the solver must compute a near-equilibrium strategy within a strict time budget of only a few seconds per decision, and the number of CFR iterations completed in this window directly determines play st",
-    "url": "https://arxiv.org/abs/2605.19928",
-    "published": "2026-05-21T04:00:00",
+    "title": "Mahjax: A GPU-Accelerated Mahjong Simulator for Reinforcement Learning in JAX",
+    "summary": "arXiv:2605.20577v1 Announce Type: new \nAbstract: Riichi Mahjong is a multi-player, imperfect-information game characterized by stochasticity and high-dimensional state spaces. These attributes present a unique combination of challenges that mirror complex real-world decision-making problems in reinforcement learning. While prior research has heavily relied on supervised learning from human play logs to pre-train the policy, algorithms capable of learning \\textit{tabula rasa} (from scratch) offer",
+    "url": "https://arxiv.org/abs/2605.20577",
+    "published": "2026-05-22T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -205,10 +140,10 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "2.5-D Decomposition for LLM-Based Spatial Construction",
-    "summary": "arXiv:2605.07066v2 Announce Type: replace \nAbstract: Autonomous systems that build structures from natural-language instructions need reliable spatial reasoning, yet large language models (LLMs) make systematic coordinate errors when generating three-dimensional block placements. We present a neuro-symbolic pipeline based on \\emph{2.5-D decomposition}: the LLM plans in the two-dimensional horizontal plane while a deterministic executor computes all vertical placement from column occupancy, elimi",
-    "url": "https://arxiv.org/abs/2605.07066",
-    "published": "2026-05-21T04:00:00",
+    "title": "Diagnosing Overhead in Dispatch Operations: Cross-architecture Observatory",
+    "summary": "arXiv:2605.20982v1 Announce Type: cross \nAbstract: AlltoAll dispatch is the dominant bottleneck of MoE expert parallelism, and the interconnect community has responded with four families of mitigations: predictive sample placement, adaptive expert relayout, hierarchical collectives, and EP-aware topology. All four rest on two assumptions about the workload. The first is that routing imbalance is correctable by the system layer. The second is that the mock-token benchmarks evaluating them faithfu",
+    "url": "https://arxiv.org/abs/2605.20982",
+    "published": "2026-05-22T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -227,61 +162,17 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "SuperInfer: SLO-Aware Rotary Scheduling and Memory Management for LLM Inference on Superchips",
-    "summary": "arXiv:2601.20309v2 Announce Type: replace-cross \nAbstract: Large Language Model (LLM) serving faces a fundamental tension between stringent latency Service Level Objectives (SLOs) and limited GPU memory capacity. When high request rates exhaust the KV cache budget, existing LLM inference systems often suffer severe head-of-line (HOL) blocking. While prior work explored PCIe-based offloading, these approaches cannot sustain responsiveness under high request rates, often failing to meet tight Time",
-    "url": "https://arxiv.org/abs/2601.20309",
-    "published": "2026-05-21T04:00:00",
+    "title": "Comparing Explanations is Not Enough, Explain the Change: New Standards are Needed to Explain Behavioral Shifts in Large Language Models",
+    "summary": "arXiv:2602.02304v2 Announce Type: replace \nAbstract: Large-scale foundation models exhibit \\emph{behavioral shifts} when subjected to interventions such as scaling, fine-tuning, reinforcement learning with human feedback, or in-context learning. Current explainability methods are structurally ill-suited to explain these shifts, because they either treat models as static objects, as traditional eXplainable AI (XAI) approaches do, or merely compare independent explanations across different checkpo",
+    "url": "https://arxiv.org/abs/2602.02304",
+    "published": "2026-05-22T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Motif-Video 2B: Technical Report",
-    "summary": "arXiv:2604.16503v2 Announce Type: replace-cross \nAbstract: Training strong video generation models usually requires massive datasets, large parameter counts, and substantial compute. In this work, we ask whether strong text-to-video quality is possible at a much smaller budget: fewer than 10M clips and less than 100,000 H200 GPU hours. Our core claim is that part of the answer lies in how model capacity is organized, not only in how much of it is used. In video generation, prompt alignment, temp",
-    "url": "https://arxiv.org/abs/2604.16503",
-    "published": "2026-05-21T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Addressing the Reality Gap: A Three-Tension Framework for Agentic AI Adoption",
-    "summary": "arXiv:2604.27245v2 Announce Type: replace-cross \nAbstract: Generative AI has rapidly entered education through free consumer tools, outpacing the ability of schools and universities to respond. Now a new wave of more autonomous agentic AI systems--with the capacity to plan and act towards goals--promises both greater educational personalization and greater disruption. This chapter argues that successfully navigating these innovations requires balancing three core tensions: (1) Implementation Fea",
-    "url": "https://arxiv.org/abs/2604.27245",
-    "published": "2026-05-21T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
+      "contrarian": true,
       "bottleneck_compute": false,
       "bottleneck_energy": false,
-      "salp": true
+      "salp": false
     },
     "signal_count": 1,
     "tickers": [],
