@@ -45,55 +45,6 @@
     "weighted_relevance": 1.3111731766256216
   },
   {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "Loss of Oversight: How AI Systems May Become Harder to Audit, Monitor, and Investigate",
-    "summary": "<p><i><span>Produced by </span></i><a href=\"https://www.aisi.gov.uk/\" rel=\"noreferrer\"><i><span>UK AISI</span></i></a><i><span> Model Transparency and Situational Awareness teams. If\u00a0you\u2019re\u00a0a\u00a0Research\u00a0Scientist or\u00a0Research Engineer,\u00a0we\u2019re\u00a0hiring \u2013 apply\u00a0</span></i><a href=\"https://job-boards.eu.greenhouse.io/aisi/jobs/4848454101\" rel=\"noreferrer noopener\" target=\"_blank\"><i><span>here</span></i></a><i><span>\u00a0and come and work with us!\u00a0</span></i></p><h3><b><span>TL;DR </span></b></h3><ul><li val",
-    "url": "https://www.lesswrong.com/posts/JvZxp554WxcZ8BQvM/loss-of-oversight-how-ai-systems-may-become-harder-to-audit-1",
-    "published": "2026-05-21T14:52:07",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": true
-    },
-    "signal_count": 1,
-    "tickers": [
-      "GOOGL"
-    ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "AI #169: New Knowledge",
-    "summary": "<p>Even in a relatively quiet period, AI is out there creating new knowledge. The new knowledge in question is OpenAI getting us the first truly impressive math result that comes from an AI, a solution to the unit distance problem.</p>\n<p>We\u2019re about to learn a different kind of knowledge later today when the White House issues its executive order, or when the judges rule in Anthropic\u2019s DC case.</p>\n<p>And then there\u2019s the other kind of new knowledge, which is the knowledge that things are fake ",
-    "url": "https://www.lesswrong.com/posts/xWsBwrboYDEMdj8TC/ai-169-new-knowledge",
-    "published": "2026-05-21T13:20:11",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "RTX",
-      "GOOGL",
-      "MSFT",
-      "NVDA",
-      "META",
-      "PLTR"
-    ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
     "source": "ft_tech",
     "credibility": 0.85,
     "title": "Nvidia fails to dazzle investors despite lifting dividends",
