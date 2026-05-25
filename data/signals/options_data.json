@@ -510,7 +510,7 @@
     "oi_delta_pct": -0.304,
     "oi_unusual": false,
     "laufzeit_months": 6,
-    "fetched_at": "2026-05-25T10:19:02.638059",
+    "fetched_at": "2026-05-25T15:51:36.789610",
     "rsi": 45.9
   },
   "CEG": {
@@ -1279,7 +1279,7 @@
     "oi_delta_pct": -0.256,
     "oi_unusual": false,
     "laufzeit_months": 6,
-    "fetched_at": "2026-05-25T10:19:17.069069",
+    "fetched_at": "2026-05-25T15:51:50.762379",
     "rsi": 36.6
   },
   "NRG": {
@@ -2014,7 +2014,7 @@
     "oi_delta_pct": -0.381,
     "oi_unusual": false,
     "laufzeit_months": 6,
-    "fetched_at": "2026-05-25T10:19:31.074790",
+    "fetched_at": "2026-05-25T15:52:04.752657",
     "rsi": 35.1
   },
   "PLTR": {
@@ -3021,7 +3021,7 @@
     "oi_delta_pct": -0.426,
     "oi_unusual": false,
     "laufzeit_months": 6,
-    "fetched_at": "2026-05-25T10:19:45.074994",
+    "fetched_at": "2026-05-25T15:52:18.759119",
     "rsi": 35.7
   },
   "NVDA": {
@@ -4206,16 +4206,16 @@
       "call_volume": 763598,
       "put_volume": 399031,
       "put_call_volume": 0.523,
-      "call_oi": 662276,
-      "put_oi": 367389,
-      "put_call_oi": 0.555,
+      "call_oi": 686596,
+      "put_oi": 373877,
+      "put_call_oi": 0.545,
       "options_bullish": true
     },
-    "total_oi": 1029665,
-    "oi_delta_pct": -0.272,
+    "total_oi": 1060473,
+    "oi_delta_pct": -0.253,
     "oi_unusual": false,
     "laufzeit_months": 6,
-    "fetched_at": "2026-05-25T10:19:59.058350",
+    "fetched_at": "2026-05-25T15:52:32.755937",
     "rsi": 62.5
   },
   "TSM": {
@@ -5103,7 +5103,7 @@
     "oi_delta_pct": -0.288,
     "oi_unusual": false,
     "laufzeit_months": 6,
-    "fetched_at": "2026-05-25T10:20:13.084121",
+    "fetched_at": "2026-05-25T15:52:46.761185",
     "rsi": 51.2
   },
   "AVGO": {
@@ -5974,7 +5974,7 @@
     "oi_delta_pct": -0.232,
     "oi_unusual": false,
     "laufzeit_months": 6,
-    "fetched_at": "2026-05-25T10:20:27.078125",
+    "fetched_at": "2026-05-25T15:53:00.759648",
     "rsi": 49.0
   },
   "LMT": {
@@ -7831,7 +7831,7 @@
     "oi_delta_pct": -0.036,
     "oi_unusual": false,
     "laufzeit_months": 6,
-    "fetched_at": "2026-05-25T10:20:41.058689",
+    "fetched_at": "2026-05-25T15:53:14.772822",
     "rsi": 60.6
   },
   "RTX": {
@@ -8413,7 +8413,7 @@
     "oi_delta_pct": -0.429,
     "oi_unusual": false,
     "laufzeit_months": 6,
-    "fetched_at": "2026-05-25T10:20:55.081703",
+    "fetched_at": "2026-05-25T15:53:28.762643",
     "rsi": 59.8
   }
 }
