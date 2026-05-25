@@ -2,10 +2,10 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Kawasaki Heavy Shares Rally on AI Tie-Up Plan With Nvidia",
-    "summary": "Kawasaki Heavy Industries Ltd. shares rallied as much as 12%, the most since February, on the company\u2019s plan to collaborate with US tech company Nvidia Corp. and others on physical AI robot technology.",
-    "url": "https://www.bloomberg.com/news/articles/2026-05-22/kawasaki-heavy-shares-rally-on-ai-tie-up-plan-with-nvidia",
-    "published": "2026-05-22T02:08:58",
+    "title": "Huawei Touts Chip Breakthrough to Shorten Gap With TSMC",
+    "summary": "Huawei Technologies Co. said it has come up with a new pathway to shorten its gap with industry leader Taiwan Semiconductor Manufacturing Co., potentially achieving a breakthrough in making advanced semiconductors without cutting-edge equipment.",
+    "url": "https://www.bloomberg.com/news/articles/2026-05-25/huawei-touts-chipmaking-breakthrough-to-shorten-gap-with-tsmc",
+    "published": "2026-05-25T01:30:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -16,63 +16,38 @@
     },
     "signal_count": 1,
     "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "Investors Look Beyond TSMC as AI Boom Spreads to New Winners",
-    "summary": "After several years flying high as Asia\u2019s best Nvidia Corp. proxy, Taiwan Semiconductor Manufacturing Co. is increasingly vying with other artificial intelligence stocks for investor attention.",
-    "url": "https://www.bloomberg.com/news/articles/2026-05-21/investors-look-beyond-tsmc-as-ai-boom-spreads-to-new-winners",
-    "published": "2026-05-21T23:30:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA",
       "TSM"
     ],
     "quality_score": 1.3112,
     "weighted_relevance": 1.3111731766256216
   },
   {
-    "source": "ft_tech",
+    "source": "lesswrong",
     "credibility": 0.85,
-    "title": "Nvidia fails to dazzle investors despite lifting dividends",
-    "summary": "Shares in world\u2019s most valuable company slip despite announcing better than expected revenue and forecasts",
-    "url": "https://www.ft.com/content/a7aa26d1-1bad-407f-8bff-4ae491cb8ce0",
-    "published": "2026-05-21T16:33:35",
+    "title": "We Need Unhobbled Donors",
+    "summary": "<p><i><span>Epistemic status: I work on AI safety communications, policy, and field-building. High confidence in the core claim that donors should be front-loading their giving. Lower confidence on magnitudes, recruitment strategies, and the activities of existing funders.</span></i></p><p><b><span>TL;DR: </span></b><span>A large wave of philanthropic capital will enter the field, but it will arrive slowly and unevenly. This means that the neglectedness and tractability of different intervention",
+    "url": "https://www.lesswrong.com/posts/BwydHxPMarK7ukBrN/we-need-unhobbled-donors",
+    "published": "2026-05-25T06:06:28",
     "signals": {
       "thiel": false,
       "shulman": false,
       "contrarian": false,
-      "bottleneck_compute": true,
+      "bottleneck_compute": false,
       "bottleneck_energy": false,
-      "salp": false
+      "salp": true
     },
     "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
+    "tickers": [],
     "quality_score": 1.2233,
     "weighted_relevance": 1.2232988379545604
   },
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Mahjax: A GPU-Accelerated Mahjong Simulator for Reinforcement Learning in JAX",
-    "summary": "arXiv:2605.20577v1 Announce Type: new \nAbstract: Riichi Mahjong is a multi-player, imperfect-information game characterized by stochasticity and high-dimensional state spaces. These attributes present a unique combination of challenges that mirror complex real-world decision-making problems in reinforcement learning. While prior research has heavily relied on supervised learning from human play logs to pre-train the policy, algorithms capable of learning \\textit{tabula rasa} (from scratch) offer",
-    "url": "https://arxiv.org/abs/2605.20577",
-    "published": "2026-05-22T04:00:00",
+    "title": "The Cognitive Kardashev Scale: Quantifying the Material Envelope of Civilisational Computation",
+    "summary": "arXiv:2605.22840v1 Announce Type: cross \nAbstract: How much thinking can a civilisation do? Kardashev's (1964) typology ranks civilisations by total power: planetary (Type I, ~10^16 W), stellar (Type II, ~10^26 W), galactic (Type III). This paper builds an analogous Cognitive Kardashev Scale: how much sustained AI-grade computation each tier could support. Four ingredients enter the calculation: total power P (watts), the share f of it devoted to cognition, the efficiency $\\eta$ at which energy ",
+    "url": "https://arxiv.org/abs/2605.22840",
+    "published": "2026-05-25T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -91,42 +66,64 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Diagnosing Overhead in Dispatch Operations: Cross-architecture Observatory",
-    "summary": "arXiv:2605.20982v1 Announce Type: cross \nAbstract: AlltoAll dispatch is the dominant bottleneck of MoE expert parallelism, and the interconnect community has responded with four families of mitigations: predictive sample placement, adaptive expert relayout, hierarchical collectives, and EP-aware topology. All four rest on two assumptions about the workload. The first is that routing imbalance is correctable by the system layer. The second is that the mock-token benchmarks evaluating them faithfu",
-    "url": "https://arxiv.org/abs/2605.20982",
-    "published": "2026-05-22T04:00:00",
+    "title": "XWind: A Cross-site Router for Large Language Model Inference Serving at Renewable Energy Farms",
+    "summary": "arXiv:2605.23348v1 Announce Type: cross \nAbstract: AI power demand is growing at an unprecedented rate while power grids are often ailing and struggle to keep up. Grid expansion comes with high capital expenditure and long-distance transmission losses, yet there is abundant renewable energy at the source, just not matched to demand.\n  This paper proposes a complementary AI infrastructure deployment model, AI Greenferencing, that brings modular AI compute to renewable energy sources, focusing on ",
+    "url": "https://arxiv.org/abs/2605.23348",
+    "published": "2026-05-25T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
       "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Comparing Explanations is Not Enough, Explain the Change: New Standards are Needed to Explain Behavioral Shifts in Large Language Models",
-    "summary": "arXiv:2602.02304v2 Announce Type: replace \nAbstract: Large-scale foundation models exhibit \\emph{behavioral shifts} when subjected to interventions such as scaling, fine-tuning, reinforcement learning with human feedback, or in-context learning. Current explainability methods are structurally ill-suited to explain these shifts, because they either treat models as static objects, as traditional eXplainable AI (XAI) approaches do, or merely compare independent explanations across different checkpo",
-    "url": "https://arxiv.org/abs/2602.02304",
-    "published": "2026-05-22T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": true,
       "bottleneck_compute": false,
-      "bottleneck_energy": false,
+      "bottleneck_energy": true,
       "salp": false
     },
     "signal_count": 1,
     "tickers": [],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "HARNESS-LM: A Three-Phase Training Recipe for Harnessing SLMs in Sponsored Search Retrieval",
+    "summary": "arXiv:2605.23572v1 Announce Type: cross \nAbstract: In the competitive landscape of sponsored search, balancing retrieval quality with production latency is a critical challenge. While large retrieval models based on Small Language Models (SLMs) such as Qwen3-Embedding-4B/8B set strong upper bounds on public benchmarks, their deployment in high-throughput, latency-sensitive environments remains impractical. In this paper, we present HARNESS-LM (HLM), a three-phase training framework for transferr",
+    "url": "https://arxiv.org/abs/2605.23572",
+    "published": "2026-05-25T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Good Token Hunting: A Hitchhiker's Guide to Token Selection for Visual Geometry Transformers",
+    "summary": "arXiv:2605.23892v1 Announce Type: cross \nAbstract: Visual geometry transformers have become powerful architectures for multi-view 3D reconstruction, enabling joint prediction of multiple 3D attributes in a feed-forward manner. However, their computational cost grows quadratically with the input sequence length due to the global attention layers inside these models. This limits both their scalability and efficiency. In this work, we address this challenge with a simple yet general strategy: restr",
+    "url": "https://arxiv.org/abs/2605.23892",
+    "published": "2026-05-25T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
     "quality_score": 1.0836,
     "weighted_relevance": 1.0836141955583654
   }
