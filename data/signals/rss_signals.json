@@ -3,9 +3,9 @@
     "source": "bloomberg_tech",
     "credibility": 0.88,
     "title": "Huawei Touts Chip Breakthrough to Shorten Gap With TSMC",
-    "summary": "Huawei Technologies Co. said it has come up with a new pathway to shorten its gap with industry leader Taiwan Semiconductor Manufacturing Co., potentially achieving a breakthrough in making advanced semiconductors without cutting-edge equipment.",
-    "url": "https://www.bloomberg.com/news/articles/2026-05-25/huawei-touts-chipmaking-breakthrough-to-shorten-gap-with-tsmc",
-    "published": "2026-05-25T01:30:00",
+    "summary": "Huawei says it's come up with a new pathway to shorten its gap with industry leader TSMC, potentially achieving a breakthrough in making advanced semiconductors without cutting-edge equipment. Bloomberg Intelligence's Robert Lea explains. (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-05-26/huawei-touts-chip-breakthrough-to-shorten-gap-with-tsmc-video",
+    "published": "2026-05-26T03:25:40",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -24,52 +24,10 @@
   {
     "source": "lesswrong",
     "credibility": 0.85,
-    "title": "We Need Unhobbled Donors",
-    "summary": "<p><i><span>Epistemic status: I work on AI safety communications, policy, and field-building. High confidence in the core claim that donors should be front-loading their giving. Lower confidence on magnitudes, recruitment strategies, and the activities of existing funders.</span></i></p><p><b><span>TL;DR: </span></b><span>A large wave of philanthropic capital will enter the field, but it will arrive slowly and unevenly. This means that the neglectedness and tractability of different intervention",
-    "url": "https://www.lesswrong.com/posts/BwydHxPMarK7ukBrN/we-need-unhobbled-donors",
-    "published": "2026-05-25T06:06:28",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": true
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "The Cognitive Kardashev Scale: Quantifying the Material Envelope of Civilisational Computation",
-    "summary": "arXiv:2605.22840v1 Announce Type: cross \nAbstract: How much thinking can a civilisation do? Kardashev's (1964) typology ranks civilisations by total power: planetary (Type I, ~10^16 W), stellar (Type II, ~10^26 W), galactic (Type III). This paper builds an analogous Cognitive Kardashev Scale: how much sustained AI-grade computation each tier could support. Four ingredients enter the calculation: total power P (watts), the share f of it devoted to cognition, the efficiency $\\eta$ at which energy ",
-    "url": "https://arxiv.org/abs/2605.22840",
-    "published": "2026-05-25T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "XWind: A Cross-site Router for Large Language Model Inference Serving at Renewable Energy Farms",
-    "summary": "arXiv:2605.23348v1 Announce Type: cross \nAbstract: AI power demand is growing at an unprecedented rate while power grids are often ailing and struggle to keep up. Grid expansion comes with high capital expenditure and long-distance transmission losses, yet there is abundant renewable energy at the source, just not matched to demand.\n  This paper proposes a complementary AI infrastructure deployment model, AI Greenferencing, that brings modular AI compute to renewable energy sources, focusing on ",
-    "url": "https://arxiv.org/abs/2605.23348",
-    "published": "2026-05-25T04:00:00",
+    "title": "Brackets Are a Bad Way to Regulate",
+    "summary": "<p><span>Continuous distributions are everywhere - for virtually everything we care about, a little more is a little better (or worse), and a lot more is a lot better (or worse). This presents a problem - we need to create rules that reasonably and fairly apply across these continuums, where the degree to which a thing possesses a trait makes a difference to the reasonable treatment of it.\u00a0</span></p><p><span>Going 1m/h over the limit, and going 150 in a 40 zone are both \u201cspeeding\u201d, yet we must ",
+    "url": "https://www.lesswrong.com/posts/FDxvpznjMzGNHjDRS/brackets-are-a-bad-way-to-regulate",
+    "published": "2026-05-26T03:01:30",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -80,16 +38,58 @@
     },
     "signal_count": 1,
     "tickers": [],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  },
+  {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "Cognitive Security as an AI Safety Cause Area",
+    "summary": "<p><span>As AI systems become more capable, the cognitive security of humans will be increasingly at risk. By cognitive security, I mean </span><i><span>the ability of humans to maintain control over their beliefs and actions.</span></i></p><p><span>Cognitive security could be compromised in several ways: AI could become very good at persuading people of arbitrary positions; interacting with AI could lead humans to lose touch with reality; and AIs could become very effective at blackmail or at p",
+    "url": "https://www.lesswrong.com/posts/KGcE7eAdfxHchk25X/cognitive-security-as-an-ai-safety-cause-area",
+    "published": "2026-05-25T18:30:15",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": true,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "GOOGL"
+    ],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  },
+  {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "Sentient Welfare Across Three Futures",
+    "summary": "<p><em>Cross-posted from <a href=\"https://mdickens.me/05/25/three_futures_sentient_welfare/\">my website</a>.</em></p>\n<p>Three categories of futures, depending on how AI goes:</p>\n<ol>\n<li>ASI timelines are long.</li>\n<li>ASI timelines are short, and we're on track to solving AI alignment.</li>\n<li>ASI timelines are short, and we're <strong>not</strong> on track to solving AI alignment.</li>\n</ol>\n<p>If we want to make a good future for all sentient beings, each of these futures has different im",
+    "url": "https://www.lesswrong.com/posts/N7sCXKfJ7RCJ9toyK/sentient-welfare-across-three-futures",
+    "published": "2026-05-25T16:22:55",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": true,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
   },
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "HARNESS-LM: A Three-Phase Training Recipe for Harnessing SLMs in Sponsored Search Retrieval",
-    "summary": "arXiv:2605.23572v1 Announce Type: cross \nAbstract: In the competitive landscape of sponsored search, balancing retrieval quality with production latency is a critical challenge. While large retrieval models based on Small Language Models (SLMs) such as Qwen3-Embedding-4B/8B set strong upper bounds on public benchmarks, their deployment in high-throughput, latency-sensitive environments remains impractical. In this paper, we present HARNESS-LM (HLM), a three-phase training framework for transferr",
-    "url": "https://arxiv.org/abs/2605.23572",
-    "published": "2026-05-25T04:00:00",
+    "title": "Inference Time Context Sparsity: Illusion or Opportunity?",
+    "summary": "arXiv:2605.24168v1 Announce Type: new \nAbstract: Sparsity has long been a central theme in LLM efficiency, but its role in context processing remains unresolved. As LLM workloads shift toward longer contexts and agentic interactions, the compute and memory bottlenecks of attention become increasingly critical, raising the question of whether these constraints are fundamental. Our position is that these constraints are artificial and unnecessary, and that the future of LLM inference lies in extre",
+    "url": "https://arxiv.org/abs/2605.24168",
+    "published": "2026-05-26T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -108,10 +108,143 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Good Token Hunting: A Hitchhiker's Guide to Token Selection for Visual Geometry Transformers",
-    "summary": "arXiv:2605.23892v1 Announce Type: cross \nAbstract: Visual geometry transformers have become powerful architectures for multi-view 3D reconstruction, enabling joint prediction of multiple 3D attributes in a feed-forward manner. However, their computational cost grows quadratically with the input sequence length due to the global attention layers inside these models. This limits both their scalability and efficiency. In this work, we address this challenge with a simple yet general strategy: restr",
-    "url": "https://arxiv.org/abs/2605.23892",
-    "published": "2026-05-25T04:00:00",
+    "title": "Tokenizer Fertility and Zero-Shot Performance of Foundation Models on Ukrainian Legal Text: A Comparative Study",
+    "summary": "arXiv:2605.14890v2 Announce Type: cross \nAbstract: Tokenizer fertility varies 1.6x across foundation models on Ukrainian legal text, yet this cost-critical dimension is absent from model selection practice. We benchmark seven models from five providers on 273 validated court decisions from Ukraine's state registry (EDRSR), measuring tokenizer fertility and zero-shot performance on three tasks. Four findings emerge. (1) Qwen 3 models consume 60% more tokens than Llama-family models on identical i",
+    "url": "https://arxiv.org/abs/2605.14890",
+    "published": "2026-05-26T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Cross-Domain Generalization Limits of Vision Foundation Models in Facial Deepfake Detection",
+    "summary": "arXiv:2605.24965v1 Announce Type: cross \nAbstract: The rapid evolution of generative models has enabled the creation of hyper-realistic facial deepfakes, exposing a critical vulnerability in modern digital forensics: the inability of detectors to generalize to unseen manipulation techniques. Traditional networks suffer from representation collapse, overfitting to localized artifact fingerprints of specific training generators. This work investigates whether modern Vision Foundation Models can se",
+    "url": "https://arxiv.org/abs/2605.24965",
+    "published": "2026-05-26T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Inference-Time Alignment of Diffusion Models via Trust-Region Iterative Twisted Sequential Monte Carlo",
+    "summary": "arXiv:2605.25123v1 Announce Type: cross \nAbstract: We study inference-time alignment for diffusion-based generative models, aiming to steer a base model toward high-reward outputs without updating its weights. Recent Sequential Monte Carlo (SMC)-based steering methods approximate reward-tilted target distributions in a principled way, but their proposals remain largely tied to the base sampler. Since reward information is mainly used after propagation through particle reweighting and resampling,",
+    "url": "https://arxiv.org/abs/2605.25123",
+    "published": "2026-05-26T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "TSM"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Fine-Tuning and Serving Gemma 4 31B on Google Cloud TPU: A Technical Comparison with GPU Baselines",
+    "summary": "arXiv:2605.25645v1 Announce Type: cross \nAbstract: We present the first end-to-end demonstration of fine-tuning and serving Google's Gemma 4 31B model on TPU hardware, providing an empirical comparison of TPU and GPU platforms for large language model adaptation. Using LoRA on a Google TPU v5p-8 for training and TPU v6e-8 (Trillium) for inference, we document the full set of code-level adaptations required to port a GPU-native training recipe, built on PyTorch, HuggingFace TRL, and FSDP, to the ",
+    "url": "https://arxiv.org/abs/2605.25645",
+    "published": "2026-05-26T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA",
+      "GOOGL"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Profiling-Driven Adaptive Distributed Transformer Inference on Embedded Edge Deployment",
+    "summary": "arXiv:2605.25682v1 Announce Type: cross \nAbstract: Distributing Transformer inference across embedded edge devices can alleviate individual memory and compute constraints, yet practical benefits on real hardware remain unclear: prior work relies largely on simulations that overlook hardware-specific communication overheads. We present a hardware prototype study on NVIDIA Jetson Orin Nano devices connected over WiFi. Our key finding is that the dominant bottleneck is not just network bandwidth bu",
+    "url": "https://arxiv.org/abs/2605.25682",
+    "published": "2026-05-26T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Squeezing Capacity from Multimodal Large Language Models for Subject-driven Generation",
+    "summary": "arXiv:2605.26111v1 Announce Type: cross \nAbstract: Subject-driven image generation aims to synthesize new images that preserve the identity of the given subject while following textual instructions. Existing approaches often encode text and reference images separately. This limits cross-modal reasoning abilities and causes copy-paste artifacts. Recent frameworks that connect multimodal models and diffusion models improve instruction following, but largely overlook identity preservation. To addre",
+    "url": "https://arxiv.org/abs/2605.26111",
+    "published": "2026-05-26T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "JEPA-DNA: Grounding Genomic Foundation Models through Joint-Embedding Predictive Architectures",
+    "summary": "arXiv:2602.17162v2 Announce Type: replace \nAbstract: Genomic Foundation Models (GFMs) typically rely on Masked Language Modeling (MLM) or Next-Token Prediction (NTP) to learn the \"Laws of Nature\". While effective at capturing local syntax, these generative paradigms prioritize token-level reconstruction over high-level functional context. We introduce JEPA-DNA, a model-agnostic continual training framework that integrates a Joint-Embedding Predictive Architecture (JEPA) with traditional generati",
+    "url": "https://arxiv.org/abs/2602.17162",
+    "published": "2026-05-26T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
