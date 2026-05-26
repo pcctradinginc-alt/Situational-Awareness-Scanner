@@ -1,25 +1,25 @@
 [
   {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "Huawei Touts Chip Breakthrough to Shorten Gap With TSMC",
-    "summary": "Huawei says it's come up with a new pathway to shorten its gap with industry leader TSMC, potentially achieving a breakthrough in making advanced semiconductors without cutting-edge equipment. Bloomberg Intelligence's Robert Lea explains. (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-05-26/huawei-touts-chip-breakthrough-to-shorten-gap-with-tsmc-video",
-    "published": "2026-05-26T03:25:40",
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "RTMH: Pope Leo\u2019s Magnifica Humanitas on AI",
+    "summary": "<p>His holiness has spoken, frequently about AI. At eighty two pages of length.</p>\n<p><a href=\"https://www.ewtnnews.com/vatican/full-text-of-magnifica-humanitas-read-pope-leo-xiv-s-first-encyclical\">The full Magnifica Humanitas can be found here.</a></p>\n<p>I am very happy that Pope Leo takes these issues seriously, and is sharing his views, and bringing a form of moral clarity, even with all the flaws and central errors. <a href=\"https://x.com/lisperati/status/2059064648482382308\">More people ",
+    "url": "https://www.lesswrong.com/posts/RZeg98Tdrq47vbjva/rtmh-pope-leo-s-magnifica-humanitas-on-ai",
+    "published": "2026-05-26T13:20:59",
     "signals": {
-      "thiel": false,
+      "thiel": true,
       "shulman": false,
       "contrarian": false,
-      "bottleneck_compute": true,
+      "bottleneck_compute": false,
       "bottleneck_energy": false,
       "salp": false
     },
     "signal_count": 1,
     "tickers": [
-      "TSM"
+      "META"
     ],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
   },
   {
     "source": "lesswrong",
@@ -34,48 +34,6 @@
       "contrarian": false,
       "bottleneck_compute": false,
       "bottleneck_energy": true,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "Cognitive Security as an AI Safety Cause Area",
-    "summary": "<p><span>As AI systems become more capable, the cognitive security of humans will be increasingly at risk. By cognitive security, I mean </span><i><span>the ability of humans to maintain control over their beliefs and actions.</span></i></p><p><span>Cognitive security could be compromised in several ways: AI could become very good at persuading people of arbitrary positions; interacting with AI could lead humans to lose touch with reality; and AIs could become very effective at blackmail or at p",
-    "url": "https://www.lesswrong.com/posts/KGcE7eAdfxHchk25X/cognitive-security-as-an-ai-safety-cause-area",
-    "published": "2026-05-25T18:30:15",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": true,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "GOOGL"
-    ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "Sentient Welfare Across Three Futures",
-    "summary": "<p><em>Cross-posted from <a href=\"https://mdickens.me/05/25/three_futures_sentient_welfare/\">my website</a>.</em></p>\n<p>Three categories of futures, depending on how AI goes:</p>\n<ol>\n<li>ASI timelines are long.</li>\n<li>ASI timelines are short, and we're on track to solving AI alignment.</li>\n<li>ASI timelines are short, and we're <strong>not</strong> on track to solving AI alignment.</li>\n</ol>\n<p>If we want to make a good future for all sentient beings, each of these futures has different im",
-    "url": "https://www.lesswrong.com/posts/N7sCXKfJ7RCJ9toyK/sentient-welfare-across-three-futures",
-    "published": "2026-05-25T16:22:55",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": true,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
       "salp": false
     },
     "signal_count": 1,
