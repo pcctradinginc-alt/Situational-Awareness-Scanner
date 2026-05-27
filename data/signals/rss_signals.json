@@ -1,45 +1,25 @@
 [
   {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "RTMH: Pope Leo\u2019s Magnifica Humanitas on AI",
-    "summary": "<p>His holiness has spoken, frequently about AI. At eighty two pages of length.</p>\n<p><a href=\"https://www.ewtnnews.com/vatican/full-text-of-magnifica-humanitas-read-pope-leo-xiv-s-first-encyclical\">The full Magnifica Humanitas can be found here.</a></p>\n<p>I am very happy that Pope Leo takes these issues seriously, and is sharing his views, and bringing a form of moral clarity, even with all the flaws and central errors. <a href=\"https://x.com/lisperati/status/2059064648482382308\">More people ",
-    "url": "https://www.lesswrong.com/posts/RZeg98Tdrq47vbjva/rtmh-pope-leo-s-magnifica-humanitas-on-ai",
-    "published": "2026-05-26T13:20:59",
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Taiwan Said to Suspect Nvidia Chips Smuggled to China Via Japan",
+    "summary": "Taiwan prosecutors suspect that three individuals successfully smuggled at least one shipment of Nvidia Corp. AI chips to China after first exporting them to Japan, people familiar with the matter said.",
+    "url": "https://www.bloomberg.com/news/articles/2026-05-27/taiwan-said-to-suspect-nvidia-chips-smuggled-to-china-via-japan",
+    "published": "2026-05-27T03:28:14",
     "signals": {
-      "thiel": true,
+      "thiel": false,
       "shulman": false,
       "contrarian": false,
-      "bottleneck_compute": false,
+      "bottleneck_compute": true,
       "bottleneck_energy": false,
       "salp": false
     },
     "signal_count": 1,
     "tickers": [
-      "META"
+      "NVDA"
     ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "Brackets Are a Bad Way to Regulate",
-    "summary": "<p><span>Continuous distributions are everywhere - for virtually everything we care about, a little more is a little better (or worse), and a lot more is a lot better (or worse). This presents a problem - we need to create rules that reasonably and fairly apply across these continuums, where the degree to which a thing possesses a trait makes a difference to the reasonable treatment of it.\u00a0</span></p><p><span>Going 1m/h over the limit, and going 150 in a 40 zone are both \u201cspeeding\u201d, yet we must ",
-    "url": "https://www.lesswrong.com/posts/FDxvpznjMzGNHjDRS/brackets-are-a-bad-way-to-regulate",
-    "published": "2026-05-26T03:01:30",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": true,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
   },
   {
     "source": "arxiv_cs_ai",
@@ -146,8 +126,8 @@
     },
     "signal_count": 1,
     "tickers": [
-      "NVDA",
-      "GOOGL"
+      "GOOGL",
+      "NVDA"
     ],
     "quality_score": 1.0836,
     "weighted_relevance": 1.0836141955583654
