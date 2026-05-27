@@ -2,10 +2,10 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Why Huawei\u2019s New Chipmaking Plan Has Investors Buzzing",
-    "summary": "The artificial intelligence boom has triggered an insatiable demand for computing power, with companies such as Amazon.com Inc., Meta Platforms Inc. and Microsoft Corp. pouring hundreds of billions of dollars into data centers and advanced chips developed by US semiconductor giant Nvidia Corp.",
-    "url": "https://www.bloomberg.com/news/articles/2026-05-27/what-to-know-about-huawei-s-new-ai-chipmaking-plan-logicfolding-tech",
-    "published": "2026-05-27T05:48:24",
+    "title": "TSMC CEO Pledges 30%-Plus Incentive Bump as AI Profits Soar",
+    "summary": "Taiwan Semiconductor Manufacturing Co. chief C.C. Wei told staff they\u2019ll see more than a 30% bump in their profit-sharing payouts this year on average, responding after some voiced concerns over their incentive plans online.",
+    "url": "https://www.bloomberg.com/news/articles/2026-05-27/tsmc-s-ceo-pledges-30-plus-incentive-bump-while-ai-profits-soar",
+    "published": "2026-05-27T10:45:46",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -16,10 +16,7 @@
     },
     "signal_count": 1,
     "tickers": [
-      "META",
-      "AMZN",
-      "MSFT",
-      "NVDA"
+      "TSM"
     ],
     "quality_score": 1.3112,
     "weighted_relevance": 1.3111731766256216
@@ -27,10 +24,10 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Taiwan Said to Suspect Nvidia Chips Smuggled to China Via Japan",
-    "summary": "Taiwan prosecutors suspect that three individuals successfully smuggled at least one shipment of Nvidia Corp. AI chips to China after first exporting them to Japan, people familiar with the matter said.",
-    "url": "https://www.bloomberg.com/news/articles/2026-05-27/taiwan-said-to-suspect-nvidia-chips-smuggled-to-china-via-japan",
-    "published": "2026-05-27T03:28:14",
+    "title": "Taiwan Suspects Nvidia AI Chip Shipment Smuggled to China",
+    "summary": "Taiwan prosecutors suspect three individuals successfully smuggled at least one shipment of Nvidia AI chips to China after first exporting them to Japan, people familiar with the matter said. The trio was detained for allegedly falsifying documents related to exports of Super Micro Computer servers containing advanced Nvidia chips, which the US has barred from sale to China without a license. Bloomberg Intelligence's Matthew Bloxham breaks down the situation. (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-05-27/taiwan-suspects-nvidia-chip-shipment-smuggled-to-china-video",
+    "published": "2026-05-27T10:22:41",
     "signals": {
       "thiel": false,
       "shulman": false,
