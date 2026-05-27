@@ -2,6 +2,31 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
+    "title": "Why Huawei\u2019s New Chipmaking Plan Has Investors Buzzing",
+    "summary": "The artificial intelligence boom has triggered an insatiable demand for computing power, with companies such as Amazon.com Inc., Meta Platforms Inc. and Microsoft Corp. pouring hundreds of billions of dollars into data centers and advanced chips developed by US semiconductor giant Nvidia Corp.",
+    "url": "https://www.bloomberg.com/news/articles/2026-05-27/what-to-know-about-huawei-s-new-ai-chipmaking-plan-logicfolding-tech",
+    "published": "2026-05-27T05:48:24",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "META",
+      "AMZN",
+      "MSFT",
+      "NVDA"
+    ],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
     "title": "Taiwan Said to Suspect Nvidia Chips Smuggled to China Via Japan",
     "summary": "Taiwan prosecutors suspect that three individuals successfully smuggled at least one shipment of Nvidia Corp. AI chips to China after first exporting them to Japan, people familiar with the matter said.",
     "url": "https://www.bloomberg.com/news/articles/2026-05-27/taiwan-said-to-suspect-nvidia-chips-smuggled-to-china-via-japan",
@@ -24,10 +49,10 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Inference Time Context Sparsity: Illusion or Opportunity?",
-    "summary": "arXiv:2605.24168v1 Announce Type: new \nAbstract: Sparsity has long been a central theme in LLM efficiency, but its role in context processing remains unresolved. As LLM workloads shift toward longer contexts and agentic interactions, the compute and memory bottlenecks of attention become increasingly critical, raising the question of whether these constraints are fundamental. Our position is that these constraints are artificial and unnecessary, and that the future of LLM inference lies in extre",
-    "url": "https://arxiv.org/abs/2605.24168",
-    "published": "2026-05-26T04:00:00",
+    "title": "Edge AI Deployment Beyond Models: A BSP-Aware Systems Framework for Industrial Embedded Platforms",
+    "summary": "arXiv:2605.26119v1 Announce Type: cross \nAbstract: Industrial Edge AI programs often begin with the model and only later confront the platform. That sequencing is attractive because it allows early demonstrations, but it breaks down when the deployment target is an embedded system with long product lifecycles, vendor-specific kernels, heterogeneous accelerators, safety constraints, and nontrivial I/O paths. In that environment, a model is only one component of a larger execution chain that begin",
+    "url": "https://arxiv.org/abs/2605.26119",
+    "published": "2026-05-27T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -46,10 +71,33 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Tokenizer Fertility and Zero-Shot Performance of Foundation Models on Ukrainian Legal Text: A Comparative Study",
-    "summary": "arXiv:2605.14890v2 Announce Type: cross \nAbstract: Tokenizer fertility varies 1.6x across foundation models on Ukrainian legal text, yet this cost-critical dimension is absent from model selection practice. We benchmark seven models from five providers on 273 validated court decisions from Ukraine's state registry (EDRSR), measuring tokenizer fertility and zero-shot performance on three tasks. Four findings emerge. (1) Qwen 3 models consume 60% more tokens than Llama-family models on identical i",
-    "url": "https://arxiv.org/abs/2605.14890",
-    "published": "2026-05-26T04:00:00",
+    "title": "Efficient On-policy Visual-RL via Stochastic Decoupled Policy Gradient",
+    "summary": "arXiv:2605.26478v1 Announce Type: cross \nAbstract: We present the stochastic decoupled policy gradient (SDPG), a lightweight visual reinforcement learning (RL) method that trains diverse visuomotor control policies end-to-end within a few hours on a single NVIDIA RTX 4080 GPU. SDPG estimates policy gradients via random perturbations of trajectory rollouts, requiring orders of magnitude fewer batch-rendered environments and substantially reducing compute and memory overhead. On visual MuJoCo benc",
+    "url": "https://arxiv.org/abs/2605.26478",
+    "published": "2026-05-27T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "RTX",
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "JetViT: Efficient High-Resolution Vision Transformer with Post-Training Attention Search",
+    "summary": "arXiv:2605.26636v1 Announce Type: cross \nAbstract: We introduce JetViT, a novel family of hybrid-architecture Vision Transformer (ViT) models that match the accuracy of state-of-the-art full-attention vision foundation models while achieving substantially higher inference efficiency on high-resolution images. At the core of our approach is Post-Training Attention Search, a post-training acceleration framework that converts pre-trained full-attention ViTs into efficient hybrid-attention variants ",
+    "url": "https://arxiv.org/abs/2605.26636",
+    "published": "2026-05-27T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -68,121 +116,10 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Cross-Domain Generalization Limits of Vision Foundation Models in Facial Deepfake Detection",
-    "summary": "arXiv:2605.24965v1 Announce Type: cross \nAbstract: The rapid evolution of generative models has enabled the creation of hyper-realistic facial deepfakes, exposing a critical vulnerability in modern digital forensics: the inability of detectors to generalize to unseen manipulation techniques. Traditional networks suffer from representation collapse, overfitting to localized artifact fingerprints of specific training generators. This work investigates whether modern Vision Foundation Models can se",
-    "url": "https://arxiv.org/abs/2605.24965",
-    "published": "2026-05-26T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Inference-Time Alignment of Diffusion Models via Trust-Region Iterative Twisted Sequential Monte Carlo",
-    "summary": "arXiv:2605.25123v1 Announce Type: cross \nAbstract: We study inference-time alignment for diffusion-based generative models, aiming to steer a base model toward high-reward outputs without updating its weights. Recent Sequential Monte Carlo (SMC)-based steering methods approximate reward-tilted target distributions in a principled way, but their proposals remain largely tied to the base sampler. Since reward information is mainly used after propagation through particle reweighting and resampling,",
-    "url": "https://arxiv.org/abs/2605.25123",
-    "published": "2026-05-26T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "TSM"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Fine-Tuning and Serving Gemma 4 31B on Google Cloud TPU: A Technical Comparison with GPU Baselines",
-    "summary": "arXiv:2605.25645v1 Announce Type: cross \nAbstract: We present the first end-to-end demonstration of fine-tuning and serving Google's Gemma 4 31B model on TPU hardware, providing an empirical comparison of TPU and GPU platforms for large language model adaptation. Using LoRA on a Google TPU v5p-8 for training and TPU v6e-8 (Trillium) for inference, we document the full set of code-level adaptations required to port a GPU-native training recipe, built on PyTorch, HuggingFace TRL, and FSDP, to the ",
-    "url": "https://arxiv.org/abs/2605.25645",
-    "published": "2026-05-26T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "GOOGL",
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Profiling-Driven Adaptive Distributed Transformer Inference on Embedded Edge Deployment",
-    "summary": "arXiv:2605.25682v1 Announce Type: cross \nAbstract: Distributing Transformer inference across embedded edge devices can alleviate individual memory and compute constraints, yet practical benefits on real hardware remain unclear: prior work relies largely on simulations that overlook hardware-specific communication overheads. We present a hardware prototype study on NVIDIA Jetson Orin Nano devices connected over WiFi. Our key finding is that the dominant bottleneck is not just network bandwidth bu",
-    "url": "https://arxiv.org/abs/2605.25682",
-    "published": "2026-05-26T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Squeezing Capacity from Multimodal Large Language Models for Subject-driven Generation",
-    "summary": "arXiv:2605.26111v1 Announce Type: cross \nAbstract: Subject-driven image generation aims to synthesize new images that preserve the identity of the given subject while following textual instructions. Existing approaches often encode text and reference images separately. This limits cross-modal reasoning abilities and causes copy-paste artifacts. Recent frameworks that connect multimodal models and diffusion models improve instruction following, but largely overlook identity preservation. To addre",
-    "url": "https://arxiv.org/abs/2605.26111",
-    "published": "2026-05-26T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "JEPA-DNA: Grounding Genomic Foundation Models through Joint-Embedding Predictive Architectures",
-    "summary": "arXiv:2602.17162v2 Announce Type: replace \nAbstract: Genomic Foundation Models (GFMs) typically rely on Masked Language Modeling (MLM) or Next-Token Prediction (NTP) to learn the \"Laws of Nature\". While effective at capturing local syntax, these generative paradigms prioritize token-level reconstruction over high-level functional context. We introduce JEPA-DNA, a model-agnostic continual training framework that integrates a Joint-Embedding Predictive Architecture (JEPA) with traditional generati",
-    "url": "https://arxiv.org/abs/2602.17162",
-    "published": "2026-05-26T04:00:00",
+    "title": "From Detection to Recovery: Operational Analysis on LLM Pre-training with 504 GPUs",
+    "summary": "arXiv:2605.09370v2 Announce Type: replace-cross \nAbstract: Large-scale AI training is now fundamentally a distributed systems problem, and hardware failures have become routine operating conditions rather than rare exceptions. Public operational evidence from production training clusters, however, remains scarce. This technical report presents an empirical analysis of a 63-node NVIDIA B200 production cluster (504 GPUs), using 55 days of Prometheus time-series data and 73 days of operational logs",
+    "url": "https://arxiv.org/abs/2605.09370",
+    "published": "2026-05-27T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
