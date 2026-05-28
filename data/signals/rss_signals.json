@@ -1,5 +1,30 @@
 [
   {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "AI #170: Lack of Executive Order",
+    "summary": "<p>Last week ended on a cliffhanger of sorts. What\u2019s in the Executive Order coming later today? What will be in the <em>Magnifica Humanitas? </em></p>\n<p>The Executive Order was postponed indefinitely, likely cancelled entirely except for work on securing critical infrastructure. David Sacks and others intervened to kill it, and American AI policy will continue to be maximally ad hoc.</p>\n<p>Instead, we got Illinois SB 315, which is to be signed into law. It is a variation on California\u2019s SB 53 ",
+    "url": "https://www.lesswrong.com/posts/cRapLxTByFqF5xxdN/ai-170-lack-of-executive-order",
+    "published": "2026-05-28T14:20:49",
+    "signals": {
+      "thiel": true,
+      "shulman": false,
+      "contrarian": true,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 3,
+    "tickers": [
+      "GOOGL",
+      "NVDA",
+      "META",
+      "MSFT"
+    ],
+    "quality_score": 1.7241,
+    "weighted_relevance": 1.7240976759091209
+  },
+  {
     "source": "alignment_forum",
     "credibility": 0.9,
     "title": "Full automation of AI R&D probably yields a large speed up even without a software-only singularity",
@@ -22,10 +47,10 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Nvidia Server Maker Wiwynn Sees AI Bottlenecks Beyond Memory",
-    "summary": "Wiwynn Corp., one of the biggest makers of Nvidia Corp. servers, warned of shortages developing in vital data center components beyond just memory chips, potentially slowing or inflating the cost of a global AI infrastructure buildout.",
-    "url": "https://www.bloomberg.com/news/articles/2026-05-28/nvidia-server-maker-wiwynn-expects-ai-bottlenecks-beyond-memory",
-    "published": "2026-05-28T07:43:46",
+    "title": "Nvidia CEO Hosts Dinner for Partners in Taiwan",
+    "summary": "Jensen Huang, chief executive officer of Nvidia Corp., signs autographs as he arrives for a dinner event in Taipei, Taiwan. The event, dubbed \"The Trillion Dollar Banquet,\" is a regular dinner hosted by Huang when he visits his Taiwanese partners. Huang has been in the country this week attending multiple events.  (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-05-28/nvidia-ceo-hosts-dinner-for-partners-in-taiwan-video",
+    "published": "2026-05-28T15:11:06",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -44,7 +69,27 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "French Power Demand Rises as Deadly Heat Wave Intensifies",
+    "title": "Goldman's Wheeler Sees 'Generational Opportunity' in AI",
+    "summary": "Miriam Wheeler, Goldman Sachs global head of leverage finance, says investors are focused on hard assets associated with the infrastructure buildout of artificial intelligence and this is a \"generational opportunity.\" Wheeler says power demand for data centers will double over the next few years. She speaks to Dani Burger on Bloomberg Open Interest. (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-05-28/goldman-s-wheeler-sees-generational-opportunity-in-ai-video",
+    "published": "2026-05-28T13:52:54",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": true,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "France Braces for Peak Heat as Power Demand Rises",
     "summary": "The deadly heat wave gripping northwest Europe is set to intensify in Spain and France, lifting power demand for cooling and threatening fresh temperature records.",
     "url": "https://www.bloomberg.com/news/articles/2026-05-28/french-power-demand-rises-as-deadly-heat-wave-intensifies",
     "published": "2026-05-28T08:23:23",
@@ -64,10 +109,10 @@
   {
     "source": "lesswrong",
     "credibility": 0.85,
-    "title": "Full automation of AI R&D probably yields a large speed up even without a software-only singularity",
-    "summary": "<p><em>This is a somewhat technical note.</em></p>\n<p>By \"software-only singularity\", I mean that, after full automation of AI R&amp;D, progress gets faster and faster due to smarter AIs driving increasingly fast rates of improvement in algorithms (overcoming diminishing returns), and that this lasts long enough to yield a large amount of progress (e.g. at least 4 years of progress in 1 year). The equivalent statement in jargon is: r is significantly greater than 1 (implying progress is getting ",
-    "url": "https://www.lesswrong.com/posts/jfwhvd43sbpkGTLyn/full-automation-of-ai-r-and-d-probably-yields-a-large-speed",
-    "published": "2026-05-27T18:16:34",
+    "title": "How can the middle powers avoid getting trounced during the intelligence explosion? A plan.",
+    "summary": "<p><i><span>This is an edited version of a </span></i><a href=\"https://www.lesswrong.com/posts/gKjTK4SXvKNBa6Kci/tom-davidson-s-shortform?commentId=3n5fo3eEsKrWnqppg\" rel=\"noreferrer\"><i><span>LW shortform</span></i></a><i><span>.</span></i></p><p><span>Superintelligence will likely be developed by US companies; run on US data centres; and be under the jurisdiction of the US government. This will massively boost US military power and make the US economically dominant (e.g. </span><a href=\"https:",
+    "url": "https://www.lesswrong.com/posts/hi5cmPgJqkFxpMgSC/how-can-the-middle-powers-avoid-getting-trounced-during-the",
+    "published": "2026-05-28T13:39:07",
     "signals": {
       "thiel": false,
       "shulman": true,
@@ -75,6 +120,28 @@
       "bottleneck_compute": false,
       "bottleneck_energy": false,
       "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "META"
+    ],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  },
+  {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "Social agency",
+    "summary": "<p><i><span>Crossposted from </span></i><a href=\"https://substack.com/@eliasschmied/p-198952310\" rel=\"noreferrer\"><i><span>Substack</span></i></a><i><span>.</span></i></p><p><i><span>I wrote this three years ago, before becoming extremely depressed and developing a lot of aversiveness around it (even though I had gotten a bunch of positive feedback). As a result, it\u2019s a bit \u201cout of step\u201d with the current state of the conversation, and the writing is not fully up to my current standard. I still b",
+    "url": "https://www.lesswrong.com/posts/xopGsfQxiLcjXEkbE/social-agency",
+    "published": "2026-05-28T13:10:49",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": true
     },
     "signal_count": 1,
     "tickers": [],
