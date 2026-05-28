@@ -1,11 +1,31 @@
 [
   {
+    "source": "alignment_forum",
+    "credibility": 0.9,
+    "title": "Full automation of AI R&D probably yields a large speed up even without a software-only singularity",
+    "summary": "<p><em>This is a somewhat technical note.</em></p>\n<p>By \"software-only singularity\", I mean that, after full automation of AI R&amp;D, progress gets faster and faster due to smarter AIs driving increasingly fast rates of improvement in algorithms (overcoming diminishing returns), and that this lasts long enough to yield a large amount of progress (e.g. at least 4 years of progress in 1 year). The equivalent statement in jargon is: r is significantly greater than 1 (implying progress is getting ",
+    "url": "https://www.alignmentforum.org/posts/jfwhvd43sbpkGTLyn/full-automation-of-ai-r-and-d-probably-yields-a-large-speed",
+    "published": "2026-05-27T18:16:34",
+    "signals": {
+      "thiel": false,
+      "shulman": true,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.3714,
+    "weighted_relevance": 1.3714492162535559
+  },
+  {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "TSMC CEO Pledges 30%-Plus Incentive Bump as AI Profits Soar",
-    "summary": "Taiwan Semiconductor Manufacturing Co. chief C.C. Wei told staff they\u2019ll see more than a 30% bump in their profit-sharing payouts this year on average, responding after some voiced concerns over their incentive plans online.",
-    "url": "https://www.bloomberg.com/news/articles/2026-05-27/tsmc-s-ceo-pledges-30-plus-incentive-bump-while-ai-profits-soar",
-    "published": "2026-05-27T10:45:46",
+    "title": "Nvidia Server Maker Wiwynn Sees AI Bottlenecks Beyond Memory",
+    "summary": "Wiwynn Corp., one of the biggest makers of Nvidia Corp. servers, warned of shortages developing in vital data center components beyond just memory chips, potentially slowing or inflating the cost of a global AI infrastructure buildout.",
+    "url": "https://www.bloomberg.com/news/articles/2026-05-28/nvidia-server-maker-wiwynn-expects-ai-bottlenecks-beyond-memory",
+    "published": "2026-05-28T07:43:46",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -16,7 +36,7 @@
     },
     "signal_count": 1,
     "tickers": [
-      "TSM"
+      "NVDA"
     ],
     "quality_score": 1.3112,
     "weighted_relevance": 1.3111731766256216
@@ -24,32 +44,92 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Taiwan Suspects Nvidia AI Chip Shipment Smuggled to China",
-    "summary": "Taiwan prosecutors suspect three individuals successfully smuggled at least one shipment of Nvidia AI chips to China after first exporting them to Japan, people familiar with the matter said. The trio was detained for allegedly falsifying documents related to exports of Super Micro Computer servers containing advanced Nvidia chips, which the US has barred from sale to China without a license. Bloomberg Intelligence's Matthew Bloxham breaks down the situation. (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-05-27/taiwan-suspects-nvidia-chip-shipment-smuggled-to-china-video",
-    "published": "2026-05-27T10:22:41",
+    "title": "French Power Demand Rises as Deadly Heat Wave Intensifies",
+    "summary": "The deadly heat wave gripping northwest Europe is set to intensify in Spain and France, lifting power demand for cooling and threatening fresh temperature records.",
+    "url": "https://www.bloomberg.com/news/articles/2026-05-28/french-power-demand-rises-as-deadly-heat-wave-intensifies",
+    "published": "2026-05-28T08:23:23",
     "signals": {
       "thiel": false,
       "shulman": false,
       "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": true,
       "salp": false
     },
     "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
+    "tickers": [],
     "quality_score": 1.3112,
     "weighted_relevance": 1.3111731766256216
   },
   {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "Full automation of AI R&D probably yields a large speed up even without a software-only singularity",
+    "summary": "<p><em>This is a somewhat technical note.</em></p>\n<p>By \"software-only singularity\", I mean that, after full automation of AI R&amp;D, progress gets faster and faster due to smarter AIs driving increasingly fast rates of improvement in algorithms (overcoming diminishing returns), and that this lasts long enough to yield a large amount of progress (e.g. at least 4 years of progress in 1 year). The equivalent statement in jargon is: r is significantly greater than 1 (implying progress is getting ",
+    "url": "https://www.lesswrong.com/posts/jfwhvd43sbpkGTLyn/full-automation-of-ai-r-and-d-probably-yields-a-large-speed",
+    "published": "2026-05-27T18:16:34",
+    "signals": {
+      "thiel": false,
+      "shulman": true,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  },
+  {
+    "source": "ft_tech",
+    "credibility": 0.85,
+    "title": "Nvidia chief Jensen Huang to join board at prestigious Beijing university",
+    "summary": "Chipmaker boss\u2019s move to join Tim Cook-chaired board underlines push to maintain ties with China",
+    "url": "https://www.ft.com/content/1c567fe9-6df9-4313-902c-c8c65782c19e",
+    "published": "2026-05-28T00:15:02",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  },
+  {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Edge AI Deployment Beyond Models: A BSP-Aware Systems Framework for Industrial Embedded Platforms",
-    "summary": "arXiv:2605.26119v1 Announce Type: cross \nAbstract: Industrial Edge AI programs often begin with the model and only later confront the platform. That sequencing is attractive because it allows early demonstrations, but it breaks down when the deployment target is an embedded system with long product lifecycles, vendor-specific kernels, heterogeneous accelerators, safety constraints, and nontrivial I/O paths. In that environment, a model is only one component of a larger execution chain that begin",
-    "url": "https://arxiv.org/abs/2605.26119",
-    "published": "2026-05-27T04:00:00",
+    "title": "Look on Demand: A Cognitive Scheduling Framework for Visual Evidence Acquisition in Multimodal Reasoning",
+    "summary": "arXiv:2605.28160v1 Announce Type: new \nAbstract: Existing multimodal reasoning approaches predominantly follow two paradigms: converting visual inputs into text prior to reasoning, or performing end-to-end reasoning within a unified vision-language representation space. Despite their empirical progress, both paradigms suffer from fundamental structural limitations. The former relies on static visual-to-text conversion, which tends to compress and lose fine-grained visual details. The latter is p",
+    "url": "https://arxiv.org/abs/2605.28160",
+    "published": "2026-05-28T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": true,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Learning When to Optimize: Verified Optimization Skills from Expert GPU-Kernel Lineages",
+    "summary": "arXiv:2605.28213v1 Announce Type: new \nAbstract: LLM-based agents are increasingly used to generate GPU kernels, but they often know what optimizations to try without knowing when those optimizations are sound. We introduce KLineage, which learns this missing \"when\" knowledge from expert kernels: instead of relying on forward rollouts, KLineage walks expert implementations backward through validation-gated simplifications and reverses each accepted step into a reusable optimization skill. Each s",
+    "url": "https://arxiv.org/abs/2605.28213",
+    "published": "2026-05-28T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -68,33 +148,10 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Efficient On-policy Visual-RL via Stochastic Decoupled Policy Gradient",
-    "summary": "arXiv:2605.26478v1 Announce Type: cross \nAbstract: We present the stochastic decoupled policy gradient (SDPG), a lightweight visual reinforcement learning (RL) method that trains diverse visuomotor control policies end-to-end within a few hours on a single NVIDIA RTX 4080 GPU. SDPG estimates policy gradients via random perturbations of trajectory rollouts, requiring orders of magnitude fewer batch-rendered environments and substantially reducing compute and memory overhead. On visual MuJoCo benc",
-    "url": "https://arxiv.org/abs/2605.26478",
-    "published": "2026-05-27T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "RTX",
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "JetViT: Efficient High-Resolution Vision Transformer with Post-Training Attention Search",
-    "summary": "arXiv:2605.26636v1 Announce Type: cross \nAbstract: We introduce JetViT, a novel family of hybrid-architecture Vision Transformer (ViT) models that match the accuracy of state-of-the-art full-attention vision foundation models while achieving substantially higher inference efficiency on high-resolution images. At the core of our approach is Post-Training Attention Search, a post-training acceleration framework that converts pre-trained full-attention ViTs into efficient hybrid-attention variants ",
-    "url": "https://arxiv.org/abs/2605.26636",
-    "published": "2026-05-27T04:00:00",
+    "title": "The Energy Blind Spot: NVIDIA's Flagship Edge AI Hardware Cannot Support Process-Level Energy Attribution",
+    "summary": "arXiv:2605.27599v1 Announce Type: cross \nAbstract: Agentic AI workloads - where a single user goal triggers multi-step orchestration, tool calls, retries, and failure recovery - are being targeted for edge deployment, with NVIDIA, Dell, HP, ASUS, MSI, Acer, and Gigabyte all shipping GB10-based desktop AI systems in 2026. We recently demonstrated that orchestration structure dominates agentic energy cost, with workflows consuming 4.33x more energy per successful goal than linear baselines and OOI",
+    "url": "https://arxiv.org/abs/2605.27599",
+    "published": "2026-05-28T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -113,10 +170,10 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "From Detection to Recovery: Operational Analysis on LLM Pre-training with 504 GPUs",
-    "summary": "arXiv:2605.09370v2 Announce Type: replace-cross \nAbstract: Large-scale AI training is now fundamentally a distributed systems problem, and hardware failures have become routine operating conditions rather than rare exceptions. Public operational evidence from production training clusters, however, remains scarce. This technical report presents an empirical analysis of a 63-node NVIDIA B200 production cluster (504 GPUs), using 55 days of Prometheus time-series data and 73 days of operational logs",
-    "url": "https://arxiv.org/abs/2605.09370",
-    "published": "2026-05-27T04:00:00",
+    "title": "GQLA: Group-Query Latent Attention for Hardware-Adaptive Large Language Model Decoding",
+    "summary": "arXiv:2605.15250v2 Announce Type: replace-cross \nAbstract: Multi-head Latent Attention (MLA), the attention used in DeepSeek-V2/V3, jointly compresses keys and values into a low-rank latent and matches the H100 roofline almost perfectly. Its trained weights, however, expose only one decoding path - an absorbed MQA form - which ties efficient inference to H100-class compute-bandwidth ratios, forfeits tensor parallelism along the head axis, and yields no Multi-Token Prediction (MTP) gain on commod",
+    "url": "https://arxiv.org/abs/2605.15250",
+    "published": "2026-05-28T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
