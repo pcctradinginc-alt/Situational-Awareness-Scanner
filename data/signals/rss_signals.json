@@ -1,56 +1,11 @@
 [
   {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "AI #170: Lack of Executive Order",
-    "summary": "<p>Last week ended on a cliffhanger of sorts. What\u2019s in the Executive Order coming later today? What will be in the <em>Magnifica Humanitas? </em></p>\n<p>The Executive Order was postponed indefinitely, likely cancelled entirely except for work on securing critical infrastructure. David Sacks and others intervened to kill it, and American AI policy will continue to be maximally ad hoc.</p>\n<p>Instead, we got Illinois SB 315, which is to be signed into law. It is a variation on California\u2019s SB 53 ",
-    "url": "https://www.lesswrong.com/posts/cRapLxTByFqF5xxdN/ai-170-lack-of-executive-order",
-    "published": "2026-05-28T14:20:49",
-    "signals": {
-      "thiel": true,
-      "shulman": false,
-      "contrarian": true,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 3,
-    "tickers": [
-      "GOOGL",
-      "NVDA",
-      "META",
-      "MSFT"
-    ],
-    "quality_score": 1.7241,
-    "weighted_relevance": 1.7240976759091209
-  },
-  {
-    "source": "alignment_forum",
-    "credibility": 0.9,
-    "title": "Full automation of AI R&D probably yields a large speed up even without a software-only singularity",
-    "summary": "<p><em>This is a somewhat technical note.</em></p>\n<p>By \"software-only singularity\", I mean that, after full automation of AI R&amp;D, progress gets faster and faster due to smarter AIs driving increasingly fast rates of improvement in algorithms (overcoming diminishing returns), and that this lasts long enough to yield a large amount of progress (e.g. at least 4 years of progress in 1 year). The equivalent statement in jargon is: r is significantly greater than 1 (implying progress is getting ",
-    "url": "https://www.alignmentforum.org/posts/jfwhvd43sbpkGTLyn/full-automation-of-ai-r-and-d-probably-yields-a-large-speed",
-    "published": "2026-05-27T18:16:34",
-    "signals": {
-      "thiel": false,
-      "shulman": true,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.3714,
-    "weighted_relevance": 1.3714492162535559
-  },
-  {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Nvidia CEO Hosts Dinner for Partners in Taiwan",
-    "summary": "Jensen Huang, chief executive officer of Nvidia Corp., signs autographs as he arrives for a dinner event in Taipei, Taiwan. The event, dubbed \"The Trillion Dollar Banquet,\" is a regular dinner hosted by Huang when he visits his Taiwanese partners. Huang has been in the country this week attending multiple events.  (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-05-28/nvidia-ceo-hosts-dinner-for-partners-in-taiwan-video",
-    "published": "2026-05-28T15:11:06",
+    "title": "Key Themes to Watch at Asia\u2019s Biggest AI Tech Show",
+    "summary": "Nvidia Corp.\u2019s Jensen Huang leads a parade of AI computing leaders in Taiwan for Asia\u2019s biggest technology showcase, Computex. Over a jam-packed week, the hardware linchpins of the post-ChatGPT era will debate the most pressing issues facing their industry, from growing bottlenecks in the supply of essential components like memory chips to the rise of challengers to Nvidia at the apex of the semiconductor hierarchy.",
+    "url": "https://www.bloomberg.com/news/articles/2026-05-29/computex-2026-what-to-watch-from-nvidia-intel-at-asia-s-top-ai-tech-show",
+    "published": "2026-05-29T02:57:28",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -69,178 +24,32 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Goldman's Wheeler Sees 'Generational Opportunity' in AI",
-    "summary": "Miriam Wheeler, Goldman Sachs global head of leverage finance, says investors are focused on hard assets associated with the infrastructure buildout of artificial intelligence and this is a \"generational opportunity.\" Wheeler says power demand for data centers will double over the next few years. She speaks to Dani Burger on Bloomberg Open Interest. (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-05-28/goldman-s-wheeler-sees-generational-opportunity-in-ai-video",
-    "published": "2026-05-28T13:52:54",
+    "title": "Samsung Takes Lead in Shipping Top-End AI Memory Chip Samples",
+    "summary": "Samsung Electronics Co. has begun shipping samples of the industry\u2019s most advanced memory to customers, taking an early lead in a race to supply the essential components for AI accelerators made by the likes of Nvidia Corp.",
+    "url": "https://www.bloomberg.com/news/articles/2026-05-28/samsung-claims-lead-in-shipping-top-end-ai-memory-chip-samples",
+    "published": "2026-05-28T23:55:08",
     "signals": {
       "thiel": false,
       "shulman": false,
       "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": true,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
       "salp": false
     },
     "signal_count": 1,
-    "tickers": [],
+    "tickers": [
+      "NVDA"
+    ],
     "quality_score": 1.3112,
     "weighted_relevance": 1.3111731766256216
   },
   {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "France Braces for Peak Heat as Power Demand Rises",
-    "summary": "The deadly heat wave gripping northwest Europe is set to intensify in Spain and France, lifting power demand for cooling and threatening fresh temperature records.",
-    "url": "https://www.bloomberg.com/news/articles/2026-05-28/french-power-demand-rises-as-deadly-heat-wave-intensifies",
-    "published": "2026-05-28T08:23:23",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": true,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "How can the middle powers avoid getting trounced during the intelligence explosion? A plan.",
-    "summary": "<p><i><span>This is an edited version of a </span></i><a href=\"https://www.lesswrong.com/posts/gKjTK4SXvKNBa6Kci/tom-davidson-s-shortform?commentId=3n5fo3eEsKrWnqppg\" rel=\"noreferrer\"><i><span>LW shortform</span></i></a><i><span>.</span></i></p><p><span>Superintelligence will likely be developed by US companies; run on US data centres; and be under the jurisdiction of the US government. This will massively boost US military power and make the US economically dominant (e.g. </span><a href=\"https:",
-    "url": "https://www.lesswrong.com/posts/hi5cmPgJqkFxpMgSC/how-can-the-middle-powers-avoid-getting-trounced-during-the",
-    "published": "2026-05-28T13:39:07",
-    "signals": {
-      "thiel": false,
-      "shulman": true,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "META"
-    ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "Social agency",
-    "summary": "<p><i><span>Crossposted from </span></i><a href=\"https://substack.com/@eliasschmied/p-198952310\" rel=\"noreferrer\"><i><span>Substack</span></i></a><i><span>.</span></i></p><p><i><span>I wrote this three years ago, before becoming extremely depressed and developing a lot of aversiveness around it (even though I had gotten a bunch of positive feedback). As a result, it\u2019s a bit \u201cout of step\u201d with the current state of the conversation, and the writing is not fully up to my current standard. I still b",
-    "url": "https://www.lesswrong.com/posts/xopGsfQxiLcjXEkbE/social-agency",
-    "published": "2026-05-28T13:10:49",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": true
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
-    "source": "ft_tech",
-    "credibility": 0.85,
-    "title": "Nvidia chief Jensen Huang to join board at prestigious Beijing university",
-    "summary": "Chipmaker boss\u2019s move to join Tim Cook-chaired board underlines push to maintain ties with China",
-    "url": "https://www.ft.com/content/1c567fe9-6df9-4313-902c-c8c65782c19e",
-    "published": "2026-05-28T00:15:02",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Look on Demand: A Cognitive Scheduling Framework for Visual Evidence Acquisition in Multimodal Reasoning",
-    "summary": "arXiv:2605.28160v1 Announce Type: new \nAbstract: Existing multimodal reasoning approaches predominantly follow two paradigms: converting visual inputs into text prior to reasoning, or performing end-to-end reasoning within a unified vision-language representation space. Despite their empirical progress, both paradigms suffer from fundamental structural limitations. The former relies on static visual-to-text conversion, which tends to compress and lose fine-grained visual details. The latter is p",
-    "url": "https://arxiv.org/abs/2605.28160",
-    "published": "2026-05-28T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": true,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Learning When to Optimize: Verified Optimization Skills from Expert GPU-Kernel Lineages",
-    "summary": "arXiv:2605.28213v1 Announce Type: new \nAbstract: LLM-based agents are increasingly used to generate GPU kernels, but they often know what optimizations to try without knowing when those optimizations are sound. We introduce KLineage, which learns this missing \"when\" knowledge from expert kernels: instead of relying on forward rollouts, KLineage walks expert implementations backward through validation-gated simplifications and reverses each accepted step into a reusable optimization skill. Each s",
-    "url": "https://arxiv.org/abs/2605.28213",
-    "published": "2026-05-28T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "The Energy Blind Spot: NVIDIA's Flagship Edge AI Hardware Cannot Support Process-Level Energy Attribution",
-    "summary": "arXiv:2605.27599v1 Announce Type: cross \nAbstract: Agentic AI workloads - where a single user goal triggers multi-step orchestration, tool calls, retries, and failure recovery - are being targeted for edge deployment, with NVIDIA, Dell, HP, ASUS, MSI, Acer, and Gigabyte all shipping GB10-based desktop AI systems in 2026. We recently demonstrated that orchestration structure dominates agentic energy cost, with workflows consuming 4.33x more energy per successful goal than linear baselines and OOI",
-    "url": "https://arxiv.org/abs/2605.27599",
-    "published": "2026-05-28T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "GQLA: Group-Query Latent Attention for Hardware-Adaptive Large Language Model Decoding",
-    "summary": "arXiv:2605.15250v2 Announce Type: replace-cross \nAbstract: Multi-head Latent Attention (MLA), the attention used in DeepSeek-V2/V3, jointly compresses keys and values into a low-rank latent and matches the H100 roofline almost perfectly. Its trained weights, however, expose only one decoding path - an absorbed MQA form - which ties efficient inference to H100-class compute-bandwidth ratios, forfeits tensor parallelism along the head axis, and yields no Multi-Token Prediction (MTP) gain on commod",
-    "url": "https://arxiv.org/abs/2605.15250",
-    "published": "2026-05-28T04:00:00",
+    "title": "TIMEGATE: Sustainable Time-Boxed Promotion Gates for Continual ML Adaptation Under Resource Constraints",
+    "summary": "arXiv:2605.29183v1 Announce Type: cross \nAbstract: As machine learning(ML) systems evolve to continual adaptation, each re-training cycle uses compute, annotation, and energy. We introduce TIMEGATE, a policy layer managing adaptation by budgeting time, labeling, training, and evaluation. TIMEGATE emits a metric-availability signal M for partial vs. full-evaluation decisions. We validate: (i) labeling outperforms training by 2.3x on Adult tabular; (ii) it transfers to LLaMA-3.1-8B + QLoRA on SST-",
+    "url": "https://arxiv.org/abs/2605.29183",
+    "published": "2026-05-29T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
