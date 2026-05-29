@@ -22,26 +22,27 @@
     "weighted_relevance": 1.3111731766256216
   },
   {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "Samsung Takes Lead in Shipping Top-End AI Memory Chip Samples",
-    "summary": "Samsung Electronics Co. has begun shipping samples of the industry\u2019s most advanced memory to customers, taking an early lead in a race to supply the essential components for AI accelerators made by the likes of Nvidia Corp.",
-    "url": "https://www.bloomberg.com/news/articles/2026-05-28/samsung-claims-lead-in-shipping-top-end-ai-memory-chip-samples",
-    "published": "2026-05-28T23:55:08",
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "AI Researchers, Ask Yourself These 6 Questions to Strengthen Your Moral Muscles",
+    "summary": "<p><i><span>By Max Tegmark &amp; Meia Chita-Tegmark</span></i></p><img alt=\"\" src=\"https://res.cloudinary.com/lesswrong-2-0/image/upload/v1780065776/lexical_client_uploads/cqrpz5d68osyrwi2j3a5.png\" /><p><span>Of course you have moral principles \u2013 but how often do you use them?\u00a0</span></p><p><span>I, Meia, am a professor doing psychology research, and I can tell you that most bad outcomes are caused not by lack of moral principles, but by them not being activated. I, Max, am a professor doing AI ",
+    "url": "https://www.lesswrong.com/posts/w4ynu8L57dJP29p5c/ai-researchers-ask-yourself-these-6-questions-to-strengthen",
+    "published": "2026-05-29T15:07:19",
     "signals": {
       "thiel": false,
       "shulman": false,
       "contrarian": false,
-      "bottleneck_compute": true,
+      "bottleneck_compute": false,
       "bottleneck_energy": false,
-      "salp": false
+      "salp": true
     },
     "signal_count": 1,
     "tickers": [
-      "NVDA"
+      "GOOGL",
+      "META"
     ],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
   },
   {
     "source": "arxiv_cs_ai",
