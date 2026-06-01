@@ -1,30 +1,96 @@
 [
   {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "Barriers to a Prosperous Future",
-    "summary": "<p><span>The current race towards producing general artificial intelligence systems brings with it severe risks, yet no AI company developing frontier models is addressing these risks at a level proportional to the pace of development. The rapid integration of this poorly-understood technology into nearly all aspects of society is precarious at best, and catastrophic at worst. If progress trends continue, we will need a monumental level of investment in enhancing our robustness to these risks in",
-    "url": "https://www.lesswrong.com/posts/nscD2pEZoQ7tqfrQb/barriers-to-a-prosperous-future",
-    "published": "2026-05-31T21:40:01",
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Luma AI Launches Physical AI Lab",
+    "summary": "The next AI race is in the physical world, according to Nvidia's Jensen Huang, and Luma AI listened. The company is announcing the launch of an open research lab that will allow anyone to train robots on its software. Luma AI CEO Amit Jain joins Caroline Hyde and Ed Ludlow on \"Bloomberg Tech.\" (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-01/luma-ai-launches-physical-ai-lab-video",
+    "published": "2026-06-01T17:54:58",
     "signals": {
       "thiel": false,
-      "shulman": true,
+      "shulman": false,
       "contrarian": false,
-      "bottleneck_compute": false,
+      "bottleneck_compute": true,
       "bottleneck_energy": false,
-      "salp": true
+      "salp": false
     },
-    "signal_count": 2,
+    "signal_count": 1,
     "tickers": [
-      "META"
+      "NVDA"
     ],
-    "quality_score": 1.5162,
-    "weighted_relevance": 1.5162473785627093
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
   },
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Nvidia Enters Windows Laptop Market, Taking On Intel and AMD",
+    "title": "Nvidia Gets Into the PC Market With New Chip | Bloomberg Tech 6/1/2026",
+    "summary": "Bloomberg\u2019s Caroline Hyde and Ed Ludlow discuss Nvidia's next target: the PC. A new AI chip sends Nvidia and related stocks soaring while rivals slide after Jensen Huang's Computex keynote. Plus, all eyes on SpaceX as the upcoming mega IPO is already reshaping Wall Street. And, what to expect from New York Tech Week, kicking off today. (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-01/bloomberg-tech-6-1-2026-video",
+    "published": "2026-06-01T17:43:28",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Nvidia Is Taking On Intel and AMD With AI Chip for Computers",
+    "summary": "Nvidia Corp. is entering the PC market with a new chip aimed at loosening the stranglehold of Intel Corp. technology in that arena and modernizing the machines for the AI era.\nMandeep Singh, Global Tech Research Head at Bloomberg Intelligence, discusses the move and what it means for the future of computing. (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-01/nvidia-takes-on-intel-and-amd-with-ai-chip-for-computers-video",
+    "published": "2026-06-01T16:11:50",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Fluence Shares Soar on Design for Nvidia AI Data Center Factory",
+    "summary": "Fluence Energy Inc. shares soared more than 40% after the US energy storage company said it collaborated with Siemens AG and Nvidia Corp. to develop a design for artificial intelligence data centers.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-01/fluence-shares-soar-on-design-for-nvidia-ai-data-center-factory",
+    "published": "2026-06-01T15:50:59",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Nvidia Is Taking On Intel and AMD With AI Chip for Computers",
     "summary": "Nvidia Corp. is entering the PC market with a new chip aimed at loosening the stranglehold of Intel Corp. technology in that arena and modernizing the machines for the AI era.",
     "url": "https://www.bloomberg.com/news/articles/2026-06-01/nvidia-enters-windows-laptop-market-taking-on-intel-and-amd",
     "published": "2026-06-01T04:25:23",
@@ -46,33 +112,10 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Nvidia to Debut New Chip for Laptops, Desktop Computers",
-    "summary": "Nvidia is entering the PC market with a new RTX Spark Superchip which will debut in laptop and desktop computers from leading PC brands including Dell and Lenovo this fall. CEO Jensen Huang made the announcement at the Computex trade show in Taipei. Bloomberg's Peter Elstrom reports. (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-01/nvidia-to-debut-new-chip-for-laptops-desktop-computers-video",
-    "published": "2026-06-01T08:47:20",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA",
-      "RTX"
-    ],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "Nvidia CEO Says Market Got it Wrong On Software Stocks | Insight with Haslinda Amin 6/1/2026",
-    "summary": "Insight with Haslinda Amin, a daily news program featuring in-depth, high-profile interviews and analysis to give viewers the complete picture on the stories that matter. The show features prominent leaders spanning the worlds of business, finance, politics and culture. (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-01/insight-with-haslinda-amin-6-1-2026-video",
-    "published": "2026-06-01T06:38:20",
+    "title": "Nvidia Enters the Laptop Market with Superchip, Taking on Intel and AMD",
+    "summary": "Nvidia is entering the PC market with a new superchip. With Windows running on the chips, the company is going head-to-head with Intel and AMD, Tom Mackenzie explains. (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-01/nvidia-enters-the-laptop-market-with-superchip-video",
+    "published": "2026-06-01T14:31:08",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -87,115 +130,6 @@
     ],
     "quality_score": 1.3112,
     "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "TSMC\u2019s Local Investors Narrow Valuation Gap With Wall Street",
-    "summary": "Local investors are driving the premium on Taiwan Semiconductor Manufacturing Co.\u2019s US-listed shares to a two-year low as they pile into the chipmaker\u2019s stock in Taipei on bets the AI boom has further to run.",
-    "url": "https://www.bloomberg.com/news/articles/2026-05-31/tsmc-s-local-investors-narrow-valuation-gap-with-wall-street",
-    "published": "2026-05-31T23:53:02",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "TSM"
-    ],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "Nvidia Says Anthropic, OpenAI Among Users of New Vera Chip",
-    "summary": "Nvidia Corp. said Anthropic PBC, OpenAI and SpaceX are among the first big users of its upcoming microprocessor, securing key customers for its latest attempt to expand an already extensive footprint in AI data centers.",
-    "url": "https://www.bloomberg.com/news/articles/2026-06-01/nvidia-says-anthropic-openai-among-big-users-of-new-vera-chip",
-    "published": "2026-06-01T04:11:02",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "Nvidia's Huang Calls AI Jobs Concerns 'Nonsense'",
-    "summary": "Nvidia's Jensen Huang calls concerns of AI taking jobs \u201ccomplete nonsense,\" saying instead that companies are hiring more software engineers due to the abilities of new agentic AI features. (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-01/nvidia-s-huang-calls-ai-jobs-concerns-nonsense-video",
-    "published": "2026-06-01T04:50:10",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "Lighthaven East - A Feasibility Study",
-    "summary": "<img alt=\"Gemini_Generated_Image_a2fmkga2fmkga2fm.png\" src=\"https://res.cloudinary.com/lesswrong-2-0/image/upload/v1780265889/lexical_client_uploads/dxk9b07hssi5dg6wsvnh.png\" /><p><span>As a bureaucrat, my role is to annoy my friends. Someone voices an idea, \u201cWouldn\u2019t it be nice if\u2026\u201d or \u201cI wonder if we could\u2026\u201d I make a note. I do some estimates. If it pencils out, I\u2019ll bring it back up, week after week. The discussions are fun, but also practical. We\u2019ll test the waters, what would be a minimum v",
-    "url": "https://www.lesswrong.com/posts/95NgkvZKJx8tJbtn5/lighthaven-east-a-feasibility-study",
-    "published": "2026-05-31T22:53:56",
-    "signals": {
-      "thiel": true,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "GOOGL",
-      "CEG"
-    ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "The main impact from automated AI production: concentration of power?",
-    "summary": "<p><span>There\u2019s a lot of talk about </span><i><span>automated AI R&amp;D</span></i><span>\u00a0and the like. It\u2019s been discussed since </span><a href=\"https://intelligence.org/ie-faq/#elementor-toc__heading-anchor-1\"><span>at least 1965 when statistician I.J. Good coined the term \u2018intelligence explosion\u2019</span></a><span>:</span></p><blockquote><p><span>an ultraintelligent machine could design even better machines; there would then unquestionably be an \u2018intelligence explosion\u2019, and the intelligence o",
-    "url": "https://www.lesswrong.com/posts/ocNf6GumA5jzGXyZP/the-main-impact-from-automated-ai-production-concentration",
-    "published": "2026-05-31T20:42:00",
-    "signals": {
-      "thiel": false,
-      "shulman": true,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
   },
   {
     "source": "ft_tech",
