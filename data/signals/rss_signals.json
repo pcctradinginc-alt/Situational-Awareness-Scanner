@@ -1,11 +1,144 @@
 [
   {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "Barriers to a Prosperous Future",
+    "summary": "<p><span>The current race towards producing general artificial intelligence systems brings with it severe risks, yet no AI company developing frontier models is addressing these risks at a level proportional to the pace of development. The rapid integration of this poorly-understood technology into nearly all aspects of society is precarious at best, and catastrophic at worst. If progress trends continue, we will need a monumental level of investment in enhancing our robustness to these risks in",
+    "url": "https://www.lesswrong.com/posts/nscD2pEZoQ7tqfrQb/barriers-to-a-prosperous-future",
+    "published": "2026-05-31T21:40:01",
+    "signals": {
+      "thiel": false,
+      "shulman": true,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": true
+    },
+    "signal_count": 2,
+    "tickers": [
+      "META"
+    ],
+    "quality_score": 1.5162,
+    "weighted_relevance": 1.5162473785627093
+  },
+  {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Key Themes to Watch at Asia\u2019s Biggest AI Tech Show",
-    "summary": "Nvidia Corp.\u2019s Jensen Huang leads a parade of AI computing leaders in Taiwan for Asia\u2019s biggest technology showcase, Computex. Over a jam-packed week, the hardware linchpins of the post-ChatGPT era will debate the most pressing issues facing their industry, from growing bottlenecks in the supply of essential components like memory chips to the rise of challengers to Nvidia at the apex of the semiconductor hierarchy.",
-    "url": "https://www.bloomberg.com/news/articles/2026-05-29/computex-2026-what-to-watch-from-nvidia-intel-at-asia-s-top-ai-tech-show",
-    "published": "2026-05-29T02:57:28",
+    "title": "Nvidia Enters Windows Laptop Market, Taking On Intel and AMD",
+    "summary": "Nvidia Corp. is entering the PC market with a new chip aimed at loosening the stranglehold of Intel Corp. technology in that arena and modernizing the machines for the AI era.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-01/nvidia-enters-windows-laptop-market-taking-on-intel-and-amd",
+    "published": "2026-06-01T04:25:23",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Nvidia to Debut New Chip for Laptops, Desktop Computers",
+    "summary": "Nvidia is entering the PC market with a new RTX Spark Superchip which will debut in laptop and desktop computers from leading PC brands including Dell and Lenovo this fall. CEO Jensen Huang made the announcement at the Computex trade show in Taipei. Bloomberg's Peter Elstrom reports. (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-01/nvidia-to-debut-new-chip-for-laptops-desktop-computers-video",
+    "published": "2026-06-01T08:47:20",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA",
+      "RTX"
+    ],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Nvidia CEO Says Market Got it Wrong On Software Stocks | Insight with Haslinda Amin 6/1/2026",
+    "summary": "Insight with Haslinda Amin, a daily news program featuring in-depth, high-profile interviews and analysis to give viewers the complete picture on the stories that matter. The show features prominent leaders spanning the worlds of business, finance, politics and culture. (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-01/insight-with-haslinda-amin-6-1-2026-video",
+    "published": "2026-06-01T06:38:20",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "TSMC\u2019s Local Investors Narrow Valuation Gap With Wall Street",
+    "summary": "Local investors are driving the premium on Taiwan Semiconductor Manufacturing Co.\u2019s US-listed shares to a two-year low as they pile into the chipmaker\u2019s stock in Taipei on bets the AI boom has further to run.",
+    "url": "https://www.bloomberg.com/news/articles/2026-05-31/tsmc-s-local-investors-narrow-valuation-gap-with-wall-street",
+    "published": "2026-05-31T23:53:02",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "TSM"
+    ],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Nvidia Says Anthropic, OpenAI Among Users of New Vera Chip",
+    "summary": "Nvidia Corp. said Anthropic PBC, OpenAI and SpaceX are among the first big users of its upcoming microprocessor, securing key customers for its latest attempt to expand an already extensive footprint in AI data centers.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-01/nvidia-says-anthropic-openai-among-big-users-of-new-vera-chip",
+    "published": "2026-06-01T04:11:02",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Nvidia's Huang Calls AI Jobs Concerns 'Nonsense'",
+    "summary": "Nvidia's Jensen Huang calls concerns of AI taking jobs \u201ccomplete nonsense,\" saying instead that companies are hiring more software engineers due to the abilities of new agentic AI features. (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-01/nvidia-s-huang-calls-ai-jobs-concerns-nonsense-video",
+    "published": "2026-06-01T04:50:10",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -24,22 +157,65 @@
   {
     "source": "lesswrong",
     "credibility": 0.85,
-    "title": "AI Researchers, Ask Yourself These 6 Questions to Strengthen Your Moral Muscles",
-    "summary": "<p><i><span>By Max Tegmark &amp; Meia Chita-Tegmark</span></i></p><img alt=\"\" src=\"https://res.cloudinary.com/lesswrong-2-0/image/upload/v1780065776/lexical_client_uploads/cqrpz5d68osyrwi2j3a5.png\" /><p><span>Of course you have moral principles \u2013 but how often do you use them?\u00a0</span></p><p><span>I, Meia, am a professor doing psychology research, and I can tell you that most bad outcomes are caused not by lack of moral principles, but by them not being activated. I, Max, am a professor doing AI ",
-    "url": "https://www.lesswrong.com/posts/w4ynu8L57dJP29p5c/ai-researchers-ask-yourself-these-6-questions-to-strengthen",
-    "published": "2026-05-29T15:07:19",
+    "title": "Lighthaven East - A Feasibility Study",
+    "summary": "<img alt=\"Gemini_Generated_Image_a2fmkga2fmkga2fm.png\" src=\"https://res.cloudinary.com/lesswrong-2-0/image/upload/v1780265889/lexical_client_uploads/dxk9b07hssi5dg6wsvnh.png\" /><p><span>As a bureaucrat, my role is to annoy my friends. Someone voices an idea, \u201cWouldn\u2019t it be nice if\u2026\u201d or \u201cI wonder if we could\u2026\u201d I make a note. I do some estimates. If it pencils out, I\u2019ll bring it back up, week after week. The discussions are fun, but also practical. We\u2019ll test the waters, what would be a minimum v",
+    "url": "https://www.lesswrong.com/posts/95NgkvZKJx8tJbtn5/lighthaven-east-a-feasibility-study",
+    "published": "2026-05-31T22:53:56",
     "signals": {
-      "thiel": false,
+      "thiel": true,
       "shulman": false,
       "contrarian": false,
       "bottleneck_compute": false,
       "bottleneck_energy": false,
-      "salp": true
+      "salp": false
     },
     "signal_count": 1,
     "tickers": [
       "GOOGL",
-      "META"
+      "CEG"
+    ],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  },
+  {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "The main impact from automated AI production: concentration of power?",
+    "summary": "<p><span>There\u2019s a lot of talk about </span><i><span>automated AI R&amp;D</span></i><span>\u00a0and the like. It\u2019s been discussed since </span><a href=\"https://intelligence.org/ie-faq/#elementor-toc__heading-anchor-1\"><span>at least 1965 when statistician I.J. Good coined the term \u2018intelligence explosion\u2019</span></a><span>:</span></p><blockquote><p><span>an ultraintelligent machine could design even better machines; there would then unquestionably be an \u2018intelligence explosion\u2019, and the intelligence o",
+    "url": "https://www.lesswrong.com/posts/ocNf6GumA5jzGXyZP/the-main-impact-from-automated-ai-production-concentration",
+    "published": "2026-05-31T20:42:00",
+    "signals": {
+      "thiel": false,
+      "shulman": true,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  },
+  {
+    "source": "ft_tech",
+    "credibility": 0.85,
+    "title": "Nvidia unveils PC \u2018superchip\u2019 in challenge to Apple and Intel",
+    "summary": "Semiconductor paired with Microsoft Windows will allow computers to run AI apps",
+    "url": "https://www.ft.com/content/58f984fd-d90b-4e8e-95b0-987a97c4a522",
+    "published": "2026-06-01T04:49:04",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA",
+      "MSFT"
     ],
     "quality_score": 1.2233,
     "weighted_relevance": 1.2232988379545604
@@ -47,10 +223,53 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "TIMEGATE: Sustainable Time-Boxed Promotion Gates for Continual ML Adaptation Under Resource Constraints",
-    "summary": "arXiv:2605.29183v1 Announce Type: cross \nAbstract: As machine learning(ML) systems evolve to continual adaptation, each re-training cycle uses compute, annotation, and energy. We introduce TIMEGATE, a policy layer managing adaptation by budgeting time, labeling, training, and evaluation. TIMEGATE emits a metric-availability signal M for partial vs. full-evaluation decisions. We validate: (i) labeling outperforms training by 2.3x on Adult tabular; (ii) it transfers to LLaMA-3.1-8B + QLoRA on SST-",
-    "url": "https://arxiv.org/abs/2605.29183",
-    "published": "2026-05-29T04:00:00",
+    "title": "SANA-Streaming: Real-time Streaming Video Editing with Hybrid Diffusion Transformer",
+    "summary": "arXiv:2605.30409v1 Announce Type: cross \nAbstract: Real-time streaming video-to-video editing (V2V) is critical for interactive applications such as live broadcasting and gaming, yet it remains a formidable challenge due to the stringent requirements for temporal consistency and inference throughput. In this paper, we present SANA-Streaming, a system-algorithm co-designed framework for high-resolution, real-time streaming video editing on consumer GPUs, with the following three core designs: (1)",
+    "url": "https://arxiv.org/abs/2605.30409",
+    "published": "2026-06-01T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA",
+      "RTX"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Scalable Constrained Multi-Agent Reinforcement Learning via State Augmentation and Consensus for Separable Dynamics",
+    "summary": "arXiv:2605.30461v1 Announce Type: cross \nAbstract: We present a distributed approach for constrained Multi-Agent Reinforcement Learning (MARL) that combines state-augmented policy learning with distributed consensus over dual variables. Our method targets systems where agents have separable dynamics but must coordinate to satisfy global resource constraints, a setting in which, as we demonstrate empirically, independent learning fails to produce feasible solutions because agents cannot determine",
+    "url": "https://arxiv.org/abs/2605.30461",
+    "published": "2026-06-01T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": true,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Memory-Bound but Not Bandwidth-Limited: The Physical AI Inference Gap in Batch-1 LLM Decode",
+    "summary": "arXiv:2605.30571v1 Announce Type: cross \nAbstract: Physical AI systems, including robots, autonomous vehicles, embodied agents and edge copilots, often run a different inference workload from cloud LLM serving: single-stream, batch-1 autoregressive decode, where one robot, camera feed or user session waits on the next token. This workload is usually described as memory-bandwidth-bound. Each decode step streams model weights and the active KV cache, so latency should scale with peak HBM bandwidth",
+    "url": "https://arxiv.org/abs/2605.30571",
+    "published": "2026-06-01T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -63,6 +282,48 @@
     "tickers": [
       "NVDA"
     ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Simple Token-Efficient Vision-Language Model for Case-level Pathology Synoptic Report Generation",
+    "summary": "arXiv:2605.30716v1 Announce Type: cross \nAbstract: Generating clinically useful pathology reports for pathology cases from whole-slide images (WSIs) is challenging due to gigapixel resolution, long visual-token sequences, and the complexity of case-level reasoning, where a single case may contain multiple WSIs with heterogeneous tissues and ambiguous findings. We present a simple token-efficient vision--language model for case-level synoptic report generation that remains practical under constra",
+    "url": "https://arxiv.org/abs/2605.30716",
+    "published": "2026-06-01T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "The Global Landscape of Environmental AI Regulation: From the Cost of Reasoning to a Right to Green AI",
+    "summary": "arXiv:2603.00068v2 Announce Type: replace-cross \nAbstract: Artificial intelligence (AI) systems impose substantial and growing environmental costs, yet transparency about these impacts has declined even as their deployment has accelerated. This paper makes three contributions. First, we collate empirical evidence that generative Web search and reasoning models - which have proliferated in 2025 - come with much higher cumulative environmental impacts than previous generations of AI approaches. Se",
+    "url": "https://arxiv.org/abs/2603.00068",
+    "published": "2026-06-01T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": true,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
     "quality_score": 1.0836,
     "weighted_relevance": 1.0836141955583654
   }
