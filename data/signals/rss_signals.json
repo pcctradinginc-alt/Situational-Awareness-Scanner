@@ -24,10 +24,10 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Advantech's Tsai on Nvidia Collaboration, AI Strategy",
-    "summary": "Advantech COO and President of the Intelligent Systems Sector Linda Tsai discusses the company's collaboration with Nvidia to power next-generation AI solutions. She also lays out the company's strategic vision behind integrating AI across products and services. Linda speaks with Stephen Engle from the sidelines of 'Computex 2026' in Taipei. (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-02/advantech-s-tsai-on-nvidia-collaboration-ai-strategy-video",
-    "published": "2026-06-02T07:48:38",
+    "title": "Marvell Soars After Nvidia Chief\u2019s $1 Trillion Stock Call",
+    "summary": "Marvell Technology Inc. shares surged after Nvidia Corp.\u2019s Jensen Huang predicted the semiconductor and networking company will be the next business to hit a $1 trillion valuation, more than five times its current market capitalization.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-02/marvell-surges-after-huang-calls-it-the-next-1-trillion-company",
+    "published": "2026-06-02T10:41:53",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -46,108 +46,20 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Schroders Renewable Unit Targets AI Assets as Power Demand Soars",
-    "summary": "Renewable-energy investor Schroders Greencoat is targeting newer data center-linked assets as AI fuels a surge in electricity demand.",
-    "url": "https://www.bloomberg.com/news/articles/2026-06-02/schroders-renewable-unit-targets-ai-assets-as-power-demand-soars",
-    "published": "2026-06-02T03:54:51",
+    "title": "Startup Impulse Space Raises $500 Million, Valued at $4 Billion",
+    "summary": "Impulse Space, a startup backed by billionaire Peter Thiel\u2019s Founders Fund, raised $500 million in a new funding round, the company announced.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-02/startup-impulse-space-raises-500-million-valued-at-4-billion",
+    "published": "2026-06-02T12:00:00",
     "signals": {
-      "thiel": false,
+      "thiel": true,
       "shulman": false,
       "contrarian": false,
       "bottleneck_compute": false,
-      "bottleneck_energy": true,
+      "bottleneck_energy": false,
       "salp": false
     },
     "signal_count": 1,
     "tickers": [],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "Nvidia Boss Says Workers Should Be Paid \u2018as Much as Possible\u2019",
-    "summary": "Nvidia Corp. Chief Executive Officer Jensen Huang said he pays his workers as much as possible, weighing in on a growing global debate about how profits from the AI infrastructure boom should be shared.",
-    "url": "https://www.bloomberg.com/news/articles/2026-06-02/nvidia-boss-says-workers-should-be-paid-as-much-as-possible",
-    "published": "2026-06-02T03:33:16",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "ABB Robotics on Nvidia Partnership, Physical AI",
-    "summary": "Craig McDonnell, Business Line Managing Director Industries at ABB Robotics, discusses the company's partnership with Nvidia and the outlook for physical AI technologies. He speaks with Stephen Engle from the sidelines of Computex in Taipei. (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-02/abb-robotics-on-nvidia-partnership-physical-ai-video",
-    "published": "2026-06-02T03:26:37",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "Nvidia Chips Sought by Chinese Labs With Military Ties",
-    "summary": "At least seven Chinese universities that support the country's armed forces and defense industry are seeking access to Nvidia Corp's H200 chips, the most powerful artificial intelligence processors ever allowed by the US to be sold in China. (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-02/nvidia-chips-sought-by-chinese-labs-with-military-ties-video",
-    "published": "2026-06-02T02:19:04",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "Nvidia's Huang on South Korean Partnerships",
-    "summary": "Jensen Huang speaks to reporters in Taipei about the high potential of South Korean tech companies. He speaks as Nvidia enters the PC market with a new chip aimed at loosening the stranglehold of Intel technology in that arena. (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-01/nvidia-s-huang-on-south-korean-partnerships-video",
-    "published": "2026-06-01T23:48:45",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
     "quality_score": 1.3112,
     "weighted_relevance": 1.3111731766256216
   },
@@ -190,29 +102,6 @@
     "tickers": [
       "TSM",
       "NVDA"
-    ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "Tech I'm skeptical of and why",
-    "summary": "<p><span>I\u2019m a fan of people trying things, even if they seem silly. Dismissing risky ideas misses the point of research.</span></p><p><span>But thoughtful criticism can direct effort to more promising fields. To that end, I\u2019m going to try to make my criticism as constructive as possible, with concrete reasons for my pessimism and closely related research areas which are promising (and stand to benefit even from failures in the field I\u2019m criticizing).</span></p><p><span>Not every section will li",
-    "url": "https://www.lesswrong.com/posts/Y5cQYKYwAb2WwXXQQ/tech-i-m-skeptical-of-and-why",
-    "published": "2026-06-01T22:54:03",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "GOOGL",
-      "META"
     ],
     "quality_score": 1.2233,
     "weighted_relevance": 1.2232988379545604
