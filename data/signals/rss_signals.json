@@ -1,11 +1,33 @@
 [
   {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "How Much Progress Has There Been in NVIDIA Datacenter GPUs?",
+    "summary": "arXiv:2601.20115v3 Announce Type: replace-cross \nAbstract: As the role of modern Graphics Processing Units (GPUs) becomes increasingly essential for several computing tasks, analyzing their past and current progress is paramount for determining future constraints on scientific research. This is particularly compelling in the Artificial Intelligence (AI) domain, where rapid technological advancements and fierce global competition have led the United States to recently implement export control reg",
+    "url": "https://arxiv.org/abs/2601.20115",
+    "published": "2026-06-02T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": true,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 2,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.3431,
+    "weighted_relevance": 1.3431118647475906
+  },
+  {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Luma AI Launches Physical AI Lab",
-    "summary": "The next AI race is in the physical world, according to Nvidia's Jensen Huang, and Luma AI listened. The company is announcing the launch of an open research lab that will allow anyone to train robots on its software. Luma AI CEO Amit Jain joins Caroline Hyde and Ed Ludlow on \"Bloomberg Tech.\" (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-01/luma-ai-launches-physical-ai-lab-video",
-    "published": "2026-06-01T17:54:58",
+    "title": "Advantech's Tsai on Nvidia Collaboration, AI Strategy",
+    "summary": "Advantech COO and President of the Intelligent Systems Sector Linda Tsai discusses the company's collaboration with Nvidia to power next-generation AI solutions. She also lays out the company's strategic vision behind integrating AI across products and services. Linda speaks with Stephen Engle from the sidelines of 'Computex 2026' in Taipei. (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-02/advantech-s-tsai-on-nvidia-collaboration-ai-strategy-video",
+    "published": "2026-06-02T07:48:38",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -24,10 +46,30 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Nvidia Gets Into the PC Market With New Chip | Bloomberg Tech 6/1/2026",
-    "summary": "Bloomberg\u2019s Caroline Hyde and Ed Ludlow discuss Nvidia's next target: the PC. A new AI chip sends Nvidia and related stocks soaring while rivals slide after Jensen Huang's Computex keynote. Plus, all eyes on SpaceX as the upcoming mega IPO is already reshaping Wall Street. And, what to expect from New York Tech Week, kicking off today. (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-01/bloomberg-tech-6-1-2026-video",
-    "published": "2026-06-01T17:43:28",
+    "title": "Schroders Renewable Unit Targets AI Assets as Power Demand Soars",
+    "summary": "Renewable-energy investor Schroders Greencoat is targeting newer data center-linked assets as AI fuels a surge in electricity demand.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-02/schroders-renewable-unit-targets-ai-assets-as-power-demand-soars",
+    "published": "2026-06-02T03:54:51",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": true,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Nvidia Boss Says Workers Should Be Paid \u2018as Much as Possible\u2019",
+    "summary": "Nvidia Corp. Chief Executive Officer Jensen Huang said he pays his workers as much as possible, weighing in on a growing global debate about how profits from the AI infrastructure boom should be shared.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-02/nvidia-boss-says-workers-should-be-paid-as-much-as-possible",
+    "published": "2026-06-02T03:33:16",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -46,10 +88,10 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Nvidia Is Taking On Intel and AMD With AI Chip for Computers",
-    "summary": "Nvidia Corp. is entering the PC market with a new chip aimed at loosening the stranglehold of Intel Corp. technology in that arena and modernizing the machines for the AI era.\nMandeep Singh, Global Tech Research Head at Bloomberg Intelligence, discusses the move and what it means for the future of computing. (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-01/nvidia-takes-on-intel-and-amd-with-ai-chip-for-computers-video",
-    "published": "2026-06-01T16:11:50",
+    "title": "ABB Robotics on Nvidia Partnership, Physical AI",
+    "summary": "Craig McDonnell, Business Line Managing Director Industries at ABB Robotics, discusses the company's partnership with Nvidia and the outlook for physical AI technologies. He speaks with Stephen Engle from the sidelines of Computex in Taipei. (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-02/abb-robotics-on-nvidia-partnership-physical-ai-video",
+    "published": "2026-06-02T03:26:37",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -68,10 +110,10 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Fluence Shares Soar on Design for Nvidia AI Data Center Factory",
-    "summary": "Fluence Energy Inc. shares soared more than 40% after the US energy storage company said it collaborated with Siemens AG and Nvidia Corp. to develop a design for artificial intelligence data centers.",
-    "url": "https://www.bloomberg.com/news/articles/2026-06-01/fluence-shares-soar-on-design-for-nvidia-ai-data-center-factory",
-    "published": "2026-06-01T15:50:59",
+    "title": "Nvidia Chips Sought by Chinese Labs With Military Ties",
+    "summary": "At least seven Chinese universities that support the country's armed forces and defense industry are seeking access to Nvidia Corp's H200 chips, the most powerful artificial intelligence processors ever allowed by the US to be sold in China. (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-02/nvidia-chips-sought-by-chinese-labs-with-military-ties-video",
+    "published": "2026-06-02T02:19:04",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -90,10 +132,10 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Nvidia Is Taking On Intel and AMD With AI Chip for Computers",
-    "summary": "Nvidia Corp. is entering the PC market with a new chip aimed at loosening the stranglehold of Intel Corp. technology in that arena and modernizing the machines for the AI era.",
-    "url": "https://www.bloomberg.com/news/articles/2026-06-01/nvidia-enters-windows-laptop-market-taking-on-intel-and-amd",
-    "published": "2026-06-01T04:25:23",
+    "title": "Nvidia's Huang on South Korean Partnerships",
+    "summary": "Jensen Huang speaks to reporters in Taipei about the high potential of South Korean tech companies. He speaks as Nvidia enters the PC market with a new chip aimed at loosening the stranglehold of Intel technology in that arena. (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-01/nvidia-s-huang-on-south-korean-partnerships-video",
+    "published": "2026-06-01T23:48:45",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -110,34 +152,32 @@
     "weighted_relevance": 1.3111731766256216
   },
   {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "Nvidia Enters the Laptop Market with Superchip, Taking on Intel and AMD",
-    "summary": "Nvidia is entering the PC market with a new superchip. With Windows running on the chips, the company is going head-to-head with Intel and AMD, Tom Mackenzie explains. (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-01/nvidia-enters-the-laptop-market-with-superchip-video",
-    "published": "2026-06-01T14:31:08",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "ft_tech",
+    "source": "lesswrong",
     "credibility": 0.85,
-    "title": "Nvidia unveils PC \u2018superchip\u2019 in challenge to Apple and Intel",
-    "summary": "Semiconductor paired with Microsoft Windows will allow computers to run AI apps",
-    "url": "https://www.ft.com/content/58f984fd-d90b-4e8e-95b0-987a97c4a522",
-    "published": "2026-06-01T04:49:04",
+    "title": "Why we're launching the Frontier Biodefense Fellowship",
+    "summary": "<p><i>[LLM use: Workshopped over weeks by multiple team members with LLM use across research, drafting, and editing. Unclear whether the final text exceeds the Forum's 10% threshold.]</i></p><p>This is the companion post to <a href=\"https://forum.effectivealtruism.org/posts/NzZR6gb4yXJEQYGo7/announcing-the-frontier-biodefense-fellowship-deadline-7\">our Frontier Biodefense Fellowship announcement</a>. The short post covers the practical details. This one explains why we think a biodefense fellows",
+    "url": "https://www.lesswrong.com/posts/RgtJPqB6sEoLBe2b7/why-we-re-launching-the-frontier-biodefense-fellowship",
+    "published": "2026-06-02T09:06:13",
+    "signals": {
+      "thiel": false,
+      "shulman": true,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  },
+  {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "Compute Verification on Short Timelines",
+    "summary": "<p>Compute verification might be a very significant part of coordination with respect\nto intelligent AI systems. In short timelines (&lt;2030), the kind espoused by a frontier lab\nleader, I'm suspicious of die-level verification hardware being tractable. If this\nis the case, we should then focus on auxilary verification methods, such as post-hoc\nmodifications to chips or robust software verification methods. In any case, we\nshould act now if we want this to happen.</p>\n<p>I'm going to be treatin",
+    "url": "https://www.lesswrong.com/posts/cXTHqmgwrRT2Z5b9W/compute-verification-on-short-timelines",
+    "published": "2026-06-02T03:31:08",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -148,8 +188,31 @@
     },
     "signal_count": 1,
     "tickers": [
-      "NVDA",
-      "MSFT"
+      "TSM",
+      "NVDA"
+    ],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  },
+  {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "Tech I'm skeptical of and why",
+    "summary": "<p><span>I\u2019m a fan of people trying things, even if they seem silly. Dismissing risky ideas misses the point of research.</span></p><p><span>But thoughtful criticism can direct effort to more promising fields. To that end, I\u2019m going to try to make my criticism as constructive as possible, with concrete reasons for my pessimism and closely related research areas which are promising (and stand to benefit even from failures in the field I\u2019m criticizing).</span></p><p><span>Not every section will li",
+    "url": "https://www.lesswrong.com/posts/Y5cQYKYwAb2WwXXQQ/tech-i-m-skeptical-of-and-why",
+    "published": "2026-06-01T22:54:03",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "GOOGL",
+      "META"
     ],
     "quality_score": 1.2233,
     "weighted_relevance": 1.2232988379545604
@@ -157,10 +220,10 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "SANA-Streaming: Real-time Streaming Video Editing with Hybrid Diffusion Transformer",
-    "summary": "arXiv:2605.30409v1 Announce Type: cross \nAbstract: Real-time streaming video-to-video editing (V2V) is critical for interactive applications such as live broadcasting and gaming, yet it remains a formidable challenge due to the stringent requirements for temporal consistency and inference throughput. In this paper, we present SANA-Streaming, a system-algorithm co-designed framework for high-resolution, real-time streaming video editing on consumer GPUs, with the following three core designs: (1)",
-    "url": "https://arxiv.org/abs/2605.30409",
-    "published": "2026-06-01T04:00:00",
+    "title": "Threshold-Based Exclusive Batching for LLM Inference",
+    "summary": "arXiv:2606.00516v1 Announce Type: new \nAbstract: Mixed batching (MB)--interleaving prefill and decode in a single batch--has become the standard scheduling strategy for large language model (LLM) inference due to its efficiency in maximizing compute and memory utilization. However, through controlled experiments, we find that prefill-decode interference inflates MB's per-step marginal cost above that of pure decode. On the high-bandwidth H200 (4.8 TB/s), this occurs only when decode tokens excee",
+    "url": "https://arxiv.org/abs/2606.00516",
+    "published": "2026-06-02T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -171,8 +234,8 @@
     },
     "signal_count": 1,
     "tickers": [
-      "NVDA",
-      "RTX"
+      "RTX",
+      "NVDA"
     ],
     "quality_score": 1.0836,
     "weighted_relevance": 1.0836141955583654
@@ -180,10 +243,50 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Scalable Constrained Multi-Agent Reinforcement Learning via State Augmentation and Consensus for Separable Dynamics",
-    "summary": "arXiv:2605.30461v1 Announce Type: cross \nAbstract: We present a distributed approach for constrained Multi-Agent Reinforcement Learning (MARL) that combines state-augmented policy learning with distributed consensus over dual variables. Our method targets systems where agents have separable dynamics but must coordinate to satisfy global resource constraints, a setting in which, as we demonstrate empirically, independent learning fails to produce feasible solutions because agents cannot determine",
-    "url": "https://arxiv.org/abs/2605.30461",
-    "published": "2026-06-01T04:00:00",
+    "title": "AI Sovereignty as National Learning Capacity: A Human-Centered Learning Mechanics Viewpoint on France, the United States, and China",
+    "summary": "arXiv:2606.00729v1 Announce Type: new \nAbstract: Artificial Intelligence is often discussed in France in terms of investment, compute capacity, regulation, employment, sovereignty, and education. These dimensions are usually treated separately. This viewpoint paper proposes a unified interpretation: France should be understood as a \\emph{national AI learning system}. Building on Human-Centered Learning Mechanics (HCLM), recently formulated as a dynamical framework for entropy-regulated represent",
+    "url": "https://arxiv.org/abs/2606.00729",
+    "published": "2026-06-02T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "POIROT: Interrogating Agents for Failure Detection in Multi-Agent Systems",
+    "summary": "arXiv:2606.02282v1 Announce Type: new \nAbstract: Orchestrating Large Language Models into Multi-Agent Systems (LLM-MAS) has unlocked remarkable reasoning capabilities, yet emergent failures and hallucinations that resist characterisation block their deployment in safety-critical domains -- a gap made legally untenable by emerging AI regulation. Existing evaluation paradigms share a common flaw: centralised judgment creates single points of failure and demands domain-specific expertise. Here we p",
+    "url": "https://arxiv.org/abs/2606.02282",
+    "published": "2026-06-02T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": true,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Certificates without Electrons? Theory and Evidence on Impacts from AI-Driven Power Demand",
+    "summary": "arXiv:2606.00811v1 Announce Type: cross \nAbstract: Data centers now account for 4.4% of United States electricity demand, yet the grid-level effectiveness of the renewable energy certificates (RECs) and power purchase agreements (PPAs) hyperscalers use to claim carbon neutrality remains unclear. We develop a game-theoretic model in which a data center operator chooses among RECs, PPAs, and behind-the-meter colocation while generators make entry decisions under endogenous financing costs. The mod",
+    "url": "https://arxiv.org/abs/2606.00811",
+    "published": "2026-06-02T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -200,10 +303,10 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Memory-Bound but Not Bandwidth-Limited: The Physical AI Inference Gap in Batch-1 LLM Decode",
-    "summary": "arXiv:2605.30571v1 Announce Type: cross \nAbstract: Physical AI systems, including robots, autonomous vehicles, embodied agents and edge copilots, often run a different inference workload from cloud LLM serving: single-stream, batch-1 autoregressive decode, where one robot, camera feed or user session waits on the next token. This workload is usually described as memory-bandwidth-bound. Each decode step streams model weights and the active KV cache, so latency should scale with peak HBM bandwidth",
-    "url": "https://arxiv.org/abs/2605.30571",
-    "published": "2026-06-01T04:00:00",
+    "title": "ClawHub Security Signals: When VirusTotal, Static Analysis, and SkillSpector Disagree",
+    "summary": "arXiv:2606.01494v1 Announce Type: cross \nAbstract: Agent skills extend AI agents with reusable instructions, tools, scripts, references, and workflows, establishing a security boundary distinct from both model safety and traditional package-malware detection. ClawHub Security Signals is a sanitized dataset of 67,453 latest public OpenClaw skill versions. Each row pairs redacted SKILL.md content and sanitized bundled files where present with a final ClawScan registry verdict and evidence from thr",
+    "url": "https://arxiv.org/abs/2606.01494",
+    "published": "2026-06-02T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -222,10 +325,10 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Simple Token-Efficient Vision-Language Model for Case-level Pathology Synoptic Report Generation",
-    "summary": "arXiv:2605.30716v1 Announce Type: cross \nAbstract: Generating clinically useful pathology reports for pathology cases from whole-slide images (WSIs) is challenging due to gigapixel resolution, long visual-token sequences, and the complexity of case-level reasoning, where a single case may contain multiple WSIs with heterogeneous tissues and ambiguous findings. We present a simple token-efficient vision--language model for case-level synoptic report generation that remains practical under constra",
-    "url": "https://arxiv.org/abs/2605.30716",
-    "published": "2026-06-01T04:00:00",
+    "title": "Move the Query, Not the Cache: Characterizing Cross-Instance Latent Attention Redistribution Across GPU Fabrics",
+    "summary": "arXiv:2606.01502v1 Announce Type: cross \nAbstract: Frontier LLMs increasingly decide what a query attends to with a sparse-attention indexer that picks a few KV-cache blocks per query: attention's unit is now a small, reusable chunk. Agentic workloads hammer it: many sub-agents query one large codebase, reusing the same blocks. When that corpus outgrows one GPU it is partitioned across instances, so a query and the blocks it selects often sit on different GPUs: answering it means attention acros",
+    "url": "https://arxiv.org/abs/2606.01502",
+    "published": "2026-06-02T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -244,10 +347,76 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "The Global Landscape of Environmental AI Regulation: From the Cost of Reasoning to a Right to Green AI",
-    "summary": "arXiv:2603.00068v2 Announce Type: replace-cross \nAbstract: Artificial intelligence (AI) systems impose substantial and growing environmental costs, yet transparency about these impacts has declined even as their deployment has accelerated. This paper makes three contributions. First, we collate empirical evidence that generative Web search and reasoning models - which have proliferated in 2025 - come with much higher cumulative environmental impacts than previous generations of AI approaches. Se",
-    "url": "https://arxiv.org/abs/2603.00068",
-    "published": "2026-06-01T04:00:00",
+    "title": "Collaborative Space Object Detection with Multi-Satellite Viewpoints in LEO Constellations",
+    "summary": "arXiv:2606.01895v1 Announce Type: cross \nAbstract: With the growing number of satellites in low Earth orbit (LEO) constellations, the near-Earth space environment has become increasingly congested, making space object detection (SOD) a pressing challenge for space safety and sustainability. To mitigate collision risks and ensure the continuity of space operations, SOD systems must deliver fast and accurate detection under stringent onboard constraints. In this paper, we investigate the potential",
+    "url": "https://arxiv.org/abs/2606.01895",
+    "published": "2026-06-02T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": true
+    },
+    "signal_count": 1,
+    "tickers": [
+      "CEG"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "MAVEN-T: Reinforced Heterogeneous Distillation for Real-Time Multi-Agent Trajectory Prediction",
+    "summary": "arXiv:2604.10169v2 Announce Type: replace \nAbstract: Trajectory prediction is a key component of autonomous driving systems because future motions directly affect collision checking, behavior planning, and control. The task remains challenging under dense interactions, heterogeneous behaviors, multimodal futures, and limited on-board computation. Existing graph, attention, and generative predictors improve interaction reasoning or uncertainty modeling, but their high-capacity designs are often c",
+    "url": "https://arxiv.org/abs/2604.10169",
+    "published": "2026-06-02T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "StreamingVLM: Real-Time Understanding for Infinite Video Streams",
+    "summary": "arXiv:2510.09608v2 Announce Type: replace-cross \nAbstract: Vision-language models (VLMs) could power real-time assistants and autonomous agents, but they face a critical challenge: understanding near-infinite video streams without escalating latency and memory usage. Processing entire videos with full attention leads to quadratic computational costs and poor performance on long videos. Meanwhile, simple sliding window methods are also flawed, as they either break coherence or suffer from high la",
+    "url": "https://arxiv.org/abs/2510.09608",
+    "published": "2026-06-02T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Catch-Only-One: Non-Transferable Examples for Model-Specific Authorization",
+    "summary": "arXiv:2510.10982v2 Announce Type: replace-cross \nAbstract: Recent AI regulations increasingly emphasize the need for mechanisms that preserve the utility of data for AI innovation while preventing misuse, particularly by enforcing purpose limitation in downstream AI applications. In practice, enforcing this principle remains challenging, as released data can be trivially fed into arbitrary models beyond its declared intent. Existing approaches attempt to mitigate this risk by either perturbing d",
+    "url": "https://arxiv.org/abs/2510.10982",
+    "published": "2026-06-02T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -258,6 +427,92 @@
     },
     "signal_count": 1,
     "tickers": [],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Interpretable Multimodal Gesture Recognition for Drone and Mobile Robot Teleoperation via Log-Likelihood Ratio Fusion",
+    "summary": "arXiv:2602.23694v3 Announce Type: replace-cross \nAbstract: Human operators are still frequently exposed to hazardous environments such as disaster zones and industrial facilities, where intuitive and reliable teleoperation of mobile robots and Unmanned Aerial Vehicles (UAVs) is essential. In this context, hands-free teleoperation enhances operator mobility and situational awareness, thereby improving safety in hazardous environments. While vision-based gesture recognition has been explored as on",
+    "url": "https://arxiv.org/abs/2602.23694",
+    "published": "2026-06-02T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": true
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Understand and Accelerate Memory Processing Pipeline for Large Language Model Inference",
+    "summary": "arXiv:2603.29002v3 Announce Type: replace-cross \nAbstract: Modern large language models (LLMs) increasingly depends on efficient long-context processing and generation mechanisms, including sparse attention, retrieval-augmented generation (RAG), and compressed contextual memory, to support complex reasoning. We show that these optimizations can be unified into a four-step memory processing pipeline: Prepare Memory, Compute Relevancy, Retrieval, and Apply to Inference. Through systematic profilin",
+    "url": "https://arxiv.org/abs/2603.29002",
+    "published": "2026-06-02T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "U-Cast: A Surprisingly Simple and Efficient Frontier Probabilistic AI Weather Forecaster",
+    "summary": "arXiv:2604.09041v2 Announce Type: replace-cross \nAbstract: AI-based weather forecasting now rivals traditional physics-based ensembles, but state-of-the-art (SOTA) models rely on specialized architectures and massive computational budgets, creating a high barrier to entry. We demonstrate that such complexity is unnecessary for frontier performance. We introduce \\ours, a probabilistic forecaster built on a standard U-Net backbone trained with a simple recipe: deterministic pre-training on Mean Ab",
+    "url": "https://arxiv.org/abs/2604.09041",
+    "published": "2026-06-02T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "TIMEGATE: Sustainable Time-Boxed Promotion Gates for Continual ML Adaptation Under Resource Constraints",
+    "summary": "arXiv:2605.29183v2 Announce Type: replace-cross \nAbstract: As machine learning(ML) systems evolve to continual adaptation, each re-training cycle uses compute, annotation, and energy. We introduce TIMEGATE, a policy layer managing adaptation by budgeting time, labeling, training, and evaluation. TIMEGATE emits a metric-availability signal M for partial vs. full-evaluation decisions. We validate: (i) labeling outperforms training by 2.3x on Adult tabular; (ii) it transfers to LLaMA-3.1-8B + QLoRA",
+    "url": "https://arxiv.org/abs/2605.29183",
+    "published": "2026-06-02T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
     "quality_score": 1.0836,
     "weighted_relevance": 1.0836141955583654
   }

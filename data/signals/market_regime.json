@@ -5,65 +5,62 @@
     "total_checked": 10,
     "details": {
       "VST": {
-        "current": 155.46,
+        "current": 154.76,
         "ma200": 172.66,
         "above": false
       },
       "CEG": {
-        "current": 266.39,
+        "current": 265.7,
         "ma200": 321.99,
         "above": false
       },
       "NRG": {
-        "current": 130.65,
-        "ma200": 156.91,
+        "current": 129.47,
+        "ma200": 156.9,
         "above": false
       },
       "NEE": {
-        "current": 84.24,
+        "current": 83.66,
         "ma200": 84.51,
         "above": false
       },
       "SO": {
-        "current": 89.63,
+        "current": 89.03,
         "ma200": 91.14,
         "above": false
       },
       "D": {
-        "current": 65.13,
+        "current": 64.61,
         "ma200": 60.08,
         "above": true
       },
       "XEL": {
-        "current": 76.87,
+        "current": 76.41,
         "ma200": 77.38,
         "above": false
       },
       "AEE": {
-        "current": 105.39,
+        "current": 105.09,
         "ma200": 104.41,
         "above": true
       },
       "ETR": {
-        "current": 105.61,
+        "current": 104.97,
         "ma200": 98.5,
         "above": true
       },
       "EXC": {
-        "current": 44.76,
+        "current": 44.71,
         "ma200": 45.4,
         "above": false
       }
     },
-    "fetched_at": "2026-06-01T18:39:00.423426"
+    "fetched_at": "2026-06-02T10:45:35.404432"
   },
   "hyperscaler_capex": {
     "fred_capex": {
-      "growth_yoy": 0.0839,
-      "capex_trend": "rising",
-      "period": "2026-01-01",
-      "series": "PNFI",
-      "data_gap": false
+      "data_gap": true,
+      "error": "429 Client Error: Too Many Requests for url: https://api.stlouisfed.org/fred/series/observations?series_id=PNFI&api_key=35eef949b71aa59c6b22e9e515090d0c&file_type=json&observation_start=2024-10-10&sort_order=desc&limit=25"
     },
     "finnhub_capex": {
       "by_ticker": {
@@ -87,12 +84,12 @@
       "avg_growth": null,
       "data_gap": true
     },
-    "capex_trend": "rising",
-    "avg_growth_yoy": 0.0839,
+    "capex_trend": "unknown",
+    "avg_growth_yoy": null,
     "empirical_point": 0,
-    "data_gap": false,
+    "data_gap": true,
     "primary_source": "fred",
-    "fetched_at": "2026-06-01T18:38:47.934105"
+    "fetched_at": "2026-06-02T10:45:22.502387"
   },
   "fred": {
     "electric_power_production": {
@@ -117,8 +114,8 @@
       "data_gap": false
     },
     "yield_curve_spread": {
-      "latest": 0.47,
-      "period": "2026-05-29",
+      "latest": 0.42,
+      "period": "2026-06-01",
       "data_gap": false
     },
     "hy_credit_spread": {
@@ -126,7 +123,7 @@
       "period": "2026-05-31",
       "data_gap": false
     },
-    "fetched_at": "2026-06-01T18:38:49.358016"
+    "fetched_at": "2026-06-02T10:45:22.429589"
   },
   "eia": {
     "growth_yoy": 0.0279,
@@ -135,6 +132,6 @@
     "shulman_signal": false,
     "empirical_point": 0,
     "data_gap": false,
-    "fetched_at": "2026-06-01T18:38:44.727325"
+    "fetched_at": "2026-06-02T10:45:20.740137"
   }
 }

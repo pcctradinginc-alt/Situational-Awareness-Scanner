@@ -1,11 +1,8 @@
 {
   "hyperscaler_capex": {
     "fred_capex": {
-      "growth_yoy": 0.0839,
-      "capex_trend": "rising",
-      "period": "2026-01-01",
-      "series": "PNFI",
-      "data_gap": false
+      "data_gap": true,
+      "error": "429 Client Error: Too Many Requests for url: https://api.stlouisfed.org/fred/series/observations?series_id=PNFI&api_key=35eef949b71aa59c6b22e9e515090d0c&file_type=json&observation_start=2024-10-10&sort_order=desc&limit=25"
     },
     "finnhub_capex": {
       "by_ticker": {
@@ -29,12 +26,12 @@
       "avg_growth": null,
       "data_gap": true
     },
-    "capex_trend": "rising",
-    "avg_growth_yoy": 0.0839,
+    "capex_trend": "unknown",
+    "avg_growth_yoy": null,
     "empirical_point": 0,
-    "data_gap": false,
+    "data_gap": true,
     "primary_source": "fred",
-    "fetched_at": "2026-06-01T18:38:47.934105"
+    "fetched_at": "2026-06-02T10:45:22.502387"
   },
   "nvda_revenue": {
     "growth_yoy": null,
