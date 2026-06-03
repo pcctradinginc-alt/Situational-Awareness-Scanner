@@ -561,7 +561,7 @@
     "oi_delta_pct": 1.639,
     "oi_unusual": true,
     "laufzeit_months": 6,
-    "fetched_at": "2026-06-03T10:59:08.168287",
+    "fetched_at": "2026-06-03T11:04:11.127798",
     "rsi": 60.0
   },
   "CEG": {
@@ -1330,7 +1330,7 @@
     "oi_delta_pct": 1.219,
     "oi_unusual": true,
     "laufzeit_months": 6,
-    "fetched_at": "2026-06-03T10:59:22.138865",
+    "fetched_at": "2026-06-03T11:04:25.114559",
     "rsi": 41.4
   },
   "NRG": {
@@ -2065,7 +2065,7 @@
     "oi_delta_pct": 1.35,
     "oi_unusual": true,
     "laufzeit_months": 6,
-    "fetched_at": "2026-06-03T10:59:36.166074",
+    "fetched_at": "2026-06-03T11:04:39.095357",
     "rsi": 46.4
   },
   "PLTR": {
@@ -3072,7 +3072,7 @@
     "oi_delta_pct": 1.057,
     "oi_unusual": true,
     "laufzeit_months": 6,
-    "fetched_at": "2026-06-03T10:59:50.138713",
+    "fetched_at": "2026-06-03T11:04:53.101708",
     "rsi": 64.7
   },
   "NVDA": {
@@ -4266,7 +4266,7 @@
     "oi_delta_pct": 0.083,
     "oi_unusual": false,
     "laufzeit_months": 6,
-    "fetched_at": "2026-06-03T11:00:04.152146",
+    "fetched_at": "2026-06-03T11:05:07.089118",
     "rsi": 51.6
   },
   "TSM": {
@@ -5239,7 +5239,7 @@
     "oi_delta_pct": 1.086,
     "oi_unusual": true,
     "laufzeit_months": 6,
-    "fetched_at": "2026-06-03T11:00:18.187598",
+    "fetched_at": "2026-06-03T11:05:21.128617",
     "rsi": 71.0
   },
   "AVGO": {
@@ -6246,7 +6246,7 @@
     "oi_delta_pct": 0.324,
     "oi_unusual": false,
     "laufzeit_months": 6,
-    "fetched_at": "2026-06-03T11:00:32.163773",
+    "fetched_at": "2026-06-03T11:05:35.086755",
     "rsi": 73.5
   },
   "LMT": {
@@ -8103,7 +8103,7 @@
     "oi_delta_pct": 1.841,
     "oi_unusual": true,
     "laufzeit_months": 6,
-    "fetched_at": "2026-06-03T11:00:46.194444",
+    "fetched_at": "2026-06-03T11:05:49.106244",
     "rsi": 46.7
   },
   "RTX": {
@@ -8685,7 +8685,7 @@
     "oi_delta_pct": 1.884,
     "oi_unusual": true,
     "laufzeit_months": 6,
-    "fetched_at": "2026-06-03T11:01:00.245654",
+    "fetched_at": "2026-06-03T11:06:03.106887",
     "rsi": 43.5
   }
 }

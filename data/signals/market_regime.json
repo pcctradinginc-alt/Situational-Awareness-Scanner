@@ -55,7 +55,7 @@
         "above": false
       }
     },
-    "fetched_at": "2026-06-03T10:58:54.919998"
+    "fetched_at": "2026-06-03T11:03:57.862255"
   },
   "hyperscaler_capex": {
     "fred_capex": {
@@ -92,7 +92,7 @@
     "empirical_point": 0,
     "data_gap": false,
     "primary_source": "fred",
-    "fetched_at": "2026-06-03T10:58:42.449882"
+    "fetched_at": "2026-06-03T11:03:45.351573"
   },
   "fred": {
     "electric_power_production": {
@@ -126,7 +126,7 @@
       "period": "2026-06-01",
       "data_gap": false
     },
-    "fetched_at": "2026-06-03T10:58:41.483392"
+    "fetched_at": "2026-06-03T11:03:42.675517"
   },
   "eia": {
     "growth_yoy": 0.0279,
@@ -135,6 +135,6 @@
     "shulman_signal": false,
     "empirical_point": 0,
     "data_gap": false,
-    "fetched_at": "2026-06-03T10:58:39.303866"
+    "fetched_at": "2026-06-03T11:03:43.175450"
   }
 }
