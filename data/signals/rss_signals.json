@@ -1,53 +1,11 @@
 [
   {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "How Much Progress Has There Been in NVIDIA Datacenter GPUs?",
-    "summary": "arXiv:2601.20115v3 Announce Type: replace-cross \nAbstract: As the role of modern Graphics Processing Units (GPUs) becomes increasingly essential for several computing tasks, analyzing their past and current progress is paramount for determining future constraints on scientific research. This is particularly compelling in the Artificial Intelligence (AI) domain, where rapid technological advancements and fierce global competition have led the United States to recently implement export control reg",
-    "url": "https://arxiv.org/abs/2601.20115",
-    "published": "2026-06-02T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": true,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 2,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.3431,
-    "weighted_relevance": 1.3431118647475906
-  },
-  {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "NYU\u2019s Gary Marcus: Today Marks a US AI Policy Milestone",
-    "summary": "Gary Marcus, NYU Emeritus Professor of Psychology and Neural Science and founder of Robust.AI and Geometric.AI, joined the program to discuss the recent executive order on AI regulation. He described the order as a significant reversal from the previous administration's hands-off approach, which he viewed as untenable. He speaks with Romaine Bostick & Katie Greifeld on \"The Close.\" (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-02/nyu-s-gary-marcus-today-marks-a-us-ai-policy-milestone-video",
-    "published": "2026-06-02T21:14:23",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": true,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "Marvell Soars the Most Since 2000 After $1 Trillion Stock Call",
-    "summary": "Marvell Technology Inc. shares surged the most in 26 years after Nvidia Corp.\u2019s Jensen Huang predicted that the semiconductor and networking company would be the next business to hit a $1 trillion valuation.",
-    "url": "https://www.bloomberg.com/news/articles/2026-06-02/marvell-surges-after-huang-calls-it-the-next-1-trillion-company",
-    "published": "2026-06-02T10:41:53",
+    "title": "Nvidia CEO Pitches \u2018Insane\u2019 AI Returns to Billionaire Families",
+    "summary": "Nvidia Corp. Chief Executive Officer Jensen Huang touted \u201cinsane\u201d returns for investors willing to bet on the AI boom, seeking to dispel lingering concerns around the big sums spent on artificial intelligence and its long-term profitability.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-03/nvidia-ceo-pitches-insane-ai-returns-to-billionaire-families",
+    "published": "2026-06-03T09:05:23",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -64,12 +22,12 @@
     "weighted_relevance": 1.3111731766256216
   },
   {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Threshold-Based Exclusive Batching for LLM Inference",
-    "summary": "arXiv:2606.00516v1 Announce Type: new \nAbstract: Mixed batching (MB)--interleaving prefill and decode in a single batch--has become the standard scheduling strategy for large language model (LLM) inference due to its efficiency in maximizing compute and memory utilization. However, through controlled experiments, we find that prefill-decode interference inflates MB's per-step marginal cost above that of pure decode. On the high-bandwidth H200 (4.8 TB/s), this occurs only when decode tokens excee",
-    "url": "https://arxiv.org/abs/2606.00516",
-    "published": "2026-06-02T04:00:00",
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "China won\u2019t win the AI race but would it be much worse if it did?",
+    "summary": "<p><span>It seems to me accepted wisdom in the West that the US owned labs must \u201cbeat\u201d the Chinese labs in the race for AGI/ASI.\u00a0</span></p><p><span>Even those who don\u2019t think there will be a winner, that essentially the race is to see which country\u2019s AI will kill/disempower us first, seem to believe that </span><i><span>if there has to be a winner</span></i><span> then better it be the US labs. (I haven't seen a survey, so I could be way off here.)</span></p><p><span>For those in power and thos",
+    "url": "https://www.lesswrong.com/posts/nmpzH6sLLtKsQhSPM/china-won-t-win-the-ai-race-but-would-it-be-much-worse-if-it",
+    "published": "2026-06-03T05:46:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -81,18 +39,18 @@
     "signal_count": 1,
     "tickers": [
       "NVDA",
-      "RTX"
+      "GOOGL"
     ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
   },
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "AI Sovereignty as National Learning Capacity: A Human-Centered Learning Mechanics Viewpoint on France, the United States, and China",
-    "summary": "arXiv:2606.00729v1 Announce Type: new \nAbstract: Artificial Intelligence is often discussed in France in terms of investment, compute capacity, regulation, employment, sovereignty, and education. These dimensions are usually treated separately. This viewpoint paper proposes a unified interpretation: France should be understood as a \\emph{national AI learning system}. Building on Human-Centered Learning Mechanics (HCLM), recently formulated as a dynamical framework for entropy-regulated represent",
-    "url": "https://arxiv.org/abs/2606.00729",
-    "published": "2026-06-02T04:00:00",
+    "title": "Cosmos 3: Omnimodal World Models for Physical AI",
+    "summary": "arXiv:2606.02800v1 Announce Type: cross \nAbstract: We introduce Cosmos 3, a family of omnimodal world models designed to jointly process and generate language, image, video, audio, and action sequences within a unified mixture-of-transformers architecture. By supporting highly flexible input-output configurations, Cosmos 3 seamlessly unifies critical modalities for Physical AI -- effectively subsuming vision-language models, video generators, world simulators, and world-action models into a sing",
+    "url": "https://arxiv.org/abs/2606.02800",
+    "published": "2026-06-03T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -102,17 +60,41 @@
       "salp": false
     },
     "signal_count": 1,
-    "tickers": [],
+    "tickers": [
+      "NVDA"
+    ],
     "quality_score": 1.0836,
     "weighted_relevance": 1.0836141955583654
   },
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "POIROT: Interrogating Agents for Failure Detection in Multi-Agent Systems",
-    "summary": "arXiv:2606.02282v1 Announce Type: new \nAbstract: Orchestrating Large Language Models into Multi-Agent Systems (LLM-MAS) has unlocked remarkable reasoning capabilities, yet emergent failures and hallucinations that resist characterisation block their deployment in safety-critical domains -- a gap made legally untenable by emerging AI regulation. Existing evaluation paradigms share a common flaw: centralised judgment creates single points of failure and demands domain-specific expertise. Here we p",
-    "url": "https://arxiv.org/abs/2606.02282",
-    "published": "2026-06-02T04:00:00",
+    "title": "NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation",
+    "summary": "arXiv:2606.03159v1 Announce Type: cross \nAbstract: As autonomous vehicle capabilities advance, the safe evaluation of driving policies in long-tail scenarios remains a critical bottleneck. In closed-loop simulation, the driving policy model actively interacts with the environment, where its actions dynamically update the simulator state and directly influence the next set of generated sensor observations. While recent reconstruction-based neural simulators offer photorealism, they are fundamenta",
+    "url": "https://arxiv.org/abs/2606.03159",
+    "published": "2026-06-03T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "FLIPS: Instance-Fingerprinting for LLMs via Pseudo-random Sequences",
+    "summary": "arXiv:2606.03330v1 Announce Type: cross \nAbstract: Literature reveals that a Large Language Model's (LLM) behavior is not only conditioned by its original weights but also its instance-level parameters, such as instructional prompt, sampling configuration or quantization. A model that generates safe outputs under one configuration may produce toxic content under another. However, current LLM identification techniques (such as fingerprinting) focus on intellectual property protection, and their d",
+    "url": "https://arxiv.org/abs/2606.03330",
+    "published": "2026-06-03T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -129,10 +111,10 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Certificates without Electrons? Theory and Evidence on Impacts from AI-Driven Power Demand",
-    "summary": "arXiv:2606.00811v1 Announce Type: cross \nAbstract: Data centers now account for 4.4% of United States electricity demand, yet the grid-level effectiveness of the renewable energy certificates (RECs) and power purchase agreements (PPAs) hyperscalers use to claim carbon neutrality remains unclear. We develop a game-theoretic model in which a data center operator chooses among RECs, PPAs, and behind-the-meter colocation while generators make entry decisions under endogenous financing costs. The mod",
-    "url": "https://arxiv.org/abs/2606.00811",
-    "published": "2026-06-02T04:00:00",
+    "title": "FlowGuard: Flow Matching for Identity-Independent Detection of Data-Free Model Stealing Attacks on Energy System Intrusion Detection Systems",
+    "summary": "arXiv:2606.03430v1 Announce Type: cross \nAbstract: Artificial Intelligence (AI)-based Intrusion Detection Systems (IDS) deployed in energy infrastructure are vulnerable to model theft attacks, which allow adversaries to create evasive traffic offline. Current defences against model extraction rely either on identity-bound query monitoring, which is ineffective against distributed attackers (Sybil), or on prediction poisoning through soft-label perturbation, which is inapplicable to hard-label ID",
+    "url": "https://arxiv.org/abs/2606.03430",
+    "published": "2026-06-03T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -149,76 +131,10 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "ClawHub Security Signals: When VirusTotal, Static Analysis, and SkillSpector Disagree",
-    "summary": "arXiv:2606.01494v1 Announce Type: cross \nAbstract: Agent skills extend AI agents with reusable instructions, tools, scripts, references, and workflows, establishing a security boundary distinct from both model safety and traditional package-malware detection. ClawHub Security Signals is a sanitized dataset of 67,453 latest public OpenClaw skill versions. Each row pairs redacted SKILL.md content and sanitized bundled files where present with a final ClawScan registry verdict and evidence from thr",
-    "url": "https://arxiv.org/abs/2606.01494",
-    "published": "2026-06-02T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Move the Query, Not the Cache: Characterizing Cross-Instance Latent Attention Redistribution Across GPU Fabrics",
-    "summary": "arXiv:2606.01502v1 Announce Type: cross \nAbstract: Frontier LLMs increasingly decide what a query attends to with a sparse-attention indexer that picks a few KV-cache blocks per query: attention's unit is now a small, reusable chunk. Agentic workloads hammer it: many sub-agents query one large codebase, reusing the same blocks. When that corpus outgrows one GPU it is partitioned across instances, so a query and the blocks it selects often sit on different GPUs: answering it means attention acros",
-    "url": "https://arxiv.org/abs/2606.01502",
-    "published": "2026-06-02T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Collaborative Space Object Detection with Multi-Satellite Viewpoints in LEO Constellations",
-    "summary": "arXiv:2606.01895v1 Announce Type: cross \nAbstract: With the growing number of satellites in low Earth orbit (LEO) constellations, the near-Earth space environment has become increasingly congested, making space object detection (SOD) a pressing challenge for space safety and sustainability. To mitigate collision risks and ensure the continuity of space operations, SOD systems must deliver fast and accurate detection under stringent onboard constraints. In this paper, we investigate the potential",
-    "url": "https://arxiv.org/abs/2606.01895",
-    "published": "2026-06-02T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": true
-    },
-    "signal_count": 1,
-    "tickers": [
-      "CEG"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
     "title": "MAVEN-T: Reinforced Heterogeneous Distillation for Real-Time Multi-Agent Trajectory Prediction",
     "summary": "arXiv:2604.10169v3 Announce Type: replace \nAbstract: Trajectory prediction is a key component of autonomous driving systems because future motions directly affect collision checking, behavior planning, and control. The task remains challenging under dense interactions, heterogeneous behaviors, multimodal futures, and limited on-board computation. Existing graph, attention, and generative predictors improve interaction reasoning or uncertainty modeling, but their high-capacity designs are often c",
     "url": "https://arxiv.org/abs/2604.10169",
-    "published": "2026-06-02T04:00:00",
+    "published": "2026-06-03T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -237,10 +153,10 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "StreamingVLM: Real-Time Understanding for Infinite Video Streams",
-    "summary": "arXiv:2510.09608v2 Announce Type: replace-cross \nAbstract: Vision-language models (VLMs) could power real-time assistants and autonomous agents, but they face a critical challenge: understanding near-infinite video streams without escalating latency and memory usage. Processing entire videos with full attention leads to quadratic computational costs and poor performance on long videos. Meanwhile, simple sliding window methods are also flawed, as they either break coherence or suffer from high la",
-    "url": "https://arxiv.org/abs/2510.09608",
-    "published": "2026-06-02T04:00:00",
+    "title": "FlashMLA-ETAP: Efficient Transpose Attention Pipeline for Accelerating MLA Inference on NVIDIA H20 GPUs",
+    "summary": "arXiv:2506.01969v3 Announce Type: replace-cross \nAbstract: Efficient inference of Multi-Head Latent Attention (MLA) is challenged by deploying the DeepSeek-R1 671B model on a single Multi-GPU server. This paper introduces FlashMLA-ETAP, a novel framework that enhances MLA inference for the single-instance deployment scenario on NVIDIA H20 GPUs. We propose the Efficient Transpose Attention Pipeline (ETAP), which reconfigures attention computation through transposition to align the KV context leng",
+    "url": "https://arxiv.org/abs/2506.01969",
+    "published": "2026-06-03T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -259,50 +175,10 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Catch-Only-One: Non-Transferable Examples for Model-Specific Authorization",
-    "summary": "arXiv:2510.10982v2 Announce Type: replace-cross \nAbstract: Recent AI regulations increasingly emphasize the need for mechanisms that preserve the utility of data for AI innovation while preventing misuse, particularly by enforcing purpose limitation in downstream AI applications. In practice, enforcing this principle remains challenging, as released data can be trivially fed into arbitrary models beyond its declared intent. Existing approaches attempt to mitigate this risk by either perturbing d",
-    "url": "https://arxiv.org/abs/2510.10982",
-    "published": "2026-06-02T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": true,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Interpretable Multimodal Gesture Recognition for Drone and Mobile Robot Teleoperation via Log-Likelihood Ratio Fusion",
-    "summary": "arXiv:2602.23694v3 Announce Type: replace-cross \nAbstract: Human operators are still frequently exposed to hazardous environments such as disaster zones and industrial facilities, where intuitive and reliable teleoperation of mobile robots and Unmanned Aerial Vehicles (UAVs) is essential. In this context, hands-free teleoperation enhances operator mobility and situational awareness, thereby improving safety in hazardous environments. While vision-based gesture recognition has been explored as on",
-    "url": "https://arxiv.org/abs/2602.23694",
-    "published": "2026-06-02T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": true
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Understand and Accelerate Memory Processing Pipeline for Large Language Model Inference",
-    "summary": "arXiv:2603.29002v3 Announce Type: replace-cross \nAbstract: Modern large language models (LLMs) increasingly depends on efficient long-context processing and generation mechanisms, including sparse attention, retrieval-augmented generation (RAG), and compressed contextual memory, to support complex reasoning. We show that these optimizations can be unified into a four-step memory processing pipeline: Prepare Memory, Compute Relevancy, Retrieval, and Apply to Inference. Through systematic profilin",
-    "url": "https://arxiv.org/abs/2603.29002",
-    "published": "2026-06-02T04:00:00",
+    "title": "Fine-Tuning and Serving Gemma 4 31B on Google Cloud TPU: A Technical Comparison with GPU Baselines",
+    "summary": "arXiv:2605.25645v2 Announce Type: replace-cross \nAbstract: We present the first end-to-end demonstration of fine-tuning and serving Google's Gemma 4 31B model on TPU hardware, providing an empirical comparison of TPU and GPU platforms for large language model adaptation. Using LoRA on a Google TPU v5p-8 for training and TPU v6e-8 (Trillium) for inference, we document the full set of code-level adaptations required to port a GPU-native training recipe, built on PyTorch, HuggingFace TRL, and FSDP,",
+    "url": "https://arxiv.org/abs/2605.25645",
+    "published": "2026-06-03T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -313,51 +189,8 @@
     },
     "signal_count": 1,
     "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "U-Cast: A Surprisingly Simple and Efficient Frontier Probabilistic AI Weather Forecaster",
-    "summary": "arXiv:2604.09041v2 Announce Type: replace-cross \nAbstract: AI-based weather forecasting now rivals traditional physics-based ensembles, but state-of-the-art (SOTA) models rely on specialized architectures and massive computational budgets, creating a high barrier to entry. We demonstrate that such complexity is unnecessary for frontier performance. We introduce \\ours, a probabilistic forecaster built on a standard U-Net backbone trained with a simple recipe: deterministic pre-training on Mean Ab",
-    "url": "https://arxiv.org/abs/2604.09041",
-    "published": "2026-06-02T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "TIMEGATE: Sustainable Time-Boxed Promotion Gates for Continual ML Adaptation Under Resource Constraints",
-    "summary": "arXiv:2605.29183v2 Announce Type: replace-cross \nAbstract: As machine learning(ML) systems evolve to continual adaptation, each re-training cycle uses compute, annotation, and energy. We introduce TIMEGATE, a policy layer managing adaptation by budgeting time, labeling, training, and evaluation. TIMEGATE emits a metric-availability signal M for partial vs. full-evaluation decisions. We validate: (i) labeling outperforms training by 2.3x on Adult tabular; (ii) it transfers to LLaMA-3.1-8B + QLoRA",
-    "url": "https://arxiv.org/abs/2605.29183",
-    "published": "2026-06-02T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
+      "NVDA",
+      "GOOGL"
     ],
     "quality_score": 1.0836,
     "weighted_relevance": 1.0836141955583654

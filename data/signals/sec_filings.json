@@ -1,5 +1,5 @@
 {
-  "new_filings_found": 5,
+  "new_filings_found": 3,
   "new_filings": [
     {
       "entity": "thiel_capital",
@@ -39,32 +39,6 @@
       "signal_strength": "MODERATE",
       "positions": [],
       "classifications": []
-    },
-    {
-      "entity": "thiel_capital",
-      "cik": "0001418819",
-      "filing_type": "4",
-      "filing_date": "2026-06-02T19:55:17-04:00",
-      "filing_url": "https://www.sec.gov/Archives/edgar/data/1418819/000112329226000788/0001123292-26-000788-index.htm",
-      "title": "4  - Statement of changes in beneficial ownership of securities",
-      "weight": 1.6,
-      "description": "Insider Transaction (REAL-TIME, 2-day filing)",
-      "signal_strength": "MODERATE",
-      "positions": [],
-      "classifications": []
-    },
-    {
-      "entity": "thiel_capital",
-      "cik": "0001418819",
-      "filing_type": "4",
-      "filing_date": "2026-06-02T19:55:03-04:00",
-      "filing_url": "https://www.sec.gov/Archives/edgar/data/1418819/000112329226000787/0001123292-26-000787-index.htm",
-      "title": "4  - Statement of changes in beneficial ownership of securities",
-      "weight": 1.6,
-      "description": "Insider Transaction (REAL-TIME, 2-day filing)",
-      "signal_strength": "MODERATE",
-      "positions": [],
-      "classifications": []
     }
   ],
   "classifications": [],
@@ -90,5 +64,5 @@
   "salp_score_override": 3.0,
   "trigger_pipeline": true,
   "date_filter_cutoff": "2026-03-05",
-  "checked_at": "2026-06-03T03:57:51.046493"
+  "checked_at": "2026-06-03T10:58:36.519322"
 }
