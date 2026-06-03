@@ -1,12 +1,12 @@
 {
   "mode": "STRESS",
-  "iv_rank_avg": 48.7,
+  "iv_rank_avg": 56.4,
   "iv_confidence": "HIGH",
-  "energy_breadth": 0.5,
+  "energy_breadth": 0.6,
   "capex_trend": "rising",
-  "regime_stability": 0.264,
+  "regime_stability": 0.314,
   "yield_curve": 0.41,
-  "hy_credit_spread": 2.72,
+  "hy_credit_spread": 2.71,
   "conviction_threshold": 8.0,
   "weights": {
     "salp": 0.5,
@@ -17,8 +17,8 @@
     "contrarian": 0.12
   },
   "stress_reasons": [
-    "Regime stability 0.26 < 0.4"
+    "Regime stability 0.31 < 0.4"
   ],
-  "regime_score": 6.5,
-  "determined_at": "2026-06-03T11:11:42.416078"
+  "regime_score": 7.0,
+  "determined_at": "2026-06-03T18:03:52.279567"
 }

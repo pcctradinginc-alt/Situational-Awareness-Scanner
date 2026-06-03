@@ -1,11 +1,34 @@
 [
   {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "Trump Signs Executive Order For AI Testing Prior To Frontier Model Releases",
+    "summary": "<p>Last week we were expecting an Executive Order on Thursday.</p>\n<p>Then Trump cancelled it, and said he wouldn\u2019t sign it because he was worried it would be too burdensome.</p>\n<p>Then, with one change, he went ahead and signed it on Tuesday anyway.</p>\n<p><a href=\"https://www.politico.com/news/2026/06/02/trump-ai-order-tech-winners-losers-00947285\">The Overton Window has shifted</a>. Nothing was not really a viable option anymore.</p>\n<div>\n<figure>\n<div>\n\n\n<figure class=\"wp-block-image\"><img",
+    "url": "https://www.lesswrong.com/posts/yDnfHrBzKc2pNQNdw/trump-signs-executive-order-for-ai-testing-prior-to-frontier",
+    "published": "2026-06-03T16:30:37",
+    "signals": {
+      "thiel": true,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": true
+    },
+    "signal_count": 2,
+    "tickers": [
+      "GOOGL",
+      "MSFT"
+    ],
+    "quality_score": 1.5162,
+    "weighted_relevance": 1.5162473785627093
+  },
+  {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Nvidia CEO Pitches \u2018Insane\u2019 AI Returns to Billionaire Families",
-    "summary": "Nvidia Corp. Chief Executive Officer Jensen Huang touted \u201cinsane\u201d returns for investors willing to bet on the AI boom, seeking to dispel lingering concerns around the big sums spent on artificial intelligence and its long-term profitability.",
-    "url": "https://www.bloomberg.com/news/articles/2026-06-03/nvidia-ceo-pitches-insane-ai-returns-to-billionaire-families",
-    "published": "2026-06-03T09:05:23",
+    "title": "What Can Nvidia Do to Get Investors Excited Again?",
+    "summary": "The only thing harder than creating the world\u2019s most valuable company? Staying on top.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-03/nvidia-share-price-what-can-chipmaker-do-to-get-investors-excited-again",
+    "published": "2026-06-03T15:58:47",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -189,8 +212,8 @@
     },
     "signal_count": 1,
     "tickers": [
-      "NVDA",
-      "GOOGL"
+      "GOOGL",
+      "NVDA"
     ],
     "quality_score": 1.0836,
     "weighted_relevance": 1.0836141955583654
