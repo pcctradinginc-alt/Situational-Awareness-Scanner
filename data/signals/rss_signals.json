@@ -24,8 +24,28 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Marvell Soars After Nvidia Chief\u2019s $1 Trillion Stock Call",
-    "summary": "Marvell Technology Inc. shares surged after Nvidia Corp.\u2019s Jensen Huang predicted the semiconductor and networking company will be the next business to hit a $1 trillion valuation, more than five times its current market capitalization.",
+    "title": "NYU\u2019s Gary Marcus: Today Marks a US AI Policy Milestone",
+    "summary": "Gary Marcus, NYU Emeritus Professor of Psychology and Neural Science and founder of Robust.AI and Geometric.AI, joined the program to discuss the recent executive order on AI regulation. He described the order as a significant reversal from the previous administration's hands-off approach, which he viewed as untenable. He speaks with Romaine Bostick & Katie Greifeld on \"The Close.\" (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-02/nyu-s-gary-marcus-today-marks-a-us-ai-policy-milestone-video",
+    "published": "2026-06-02T21:14:23",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": true,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Marvell Soars the Most Since 2000 After $1 Trillion Stock Call",
+    "summary": "Marvell Technology Inc. shares surged the most in 26 years after Nvidia Corp.\u2019s Jensen Huang predicted that the semiconductor and networking company would be the next business to hit a $1 trillion valuation.",
     "url": "https://www.bloomberg.com/news/articles/2026-06-02/marvell-surges-after-huang-calls-it-the-next-1-trillion-company",
     "published": "2026-06-02T10:41:53",
     "signals": {
@@ -44,69 +64,6 @@
     "weighted_relevance": 1.3111731766256216
   },
   {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "Startup Impulse Space Raises $500 Million, Valued at $4 Billion",
-    "summary": "Impulse Space, a startup backed by billionaire Peter Thiel\u2019s Founders Fund, raised $500 million in a new funding round, the company announced.",
-    "url": "https://www.bloomberg.com/news/articles/2026-06-02/startup-impulse-space-raises-500-million-valued-at-4-billion",
-    "published": "2026-06-02T12:00:00",
-    "signals": {
-      "thiel": true,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "Why we're launching the Frontier Biodefense Fellowship",
-    "summary": "<p><i>[LLM use: Workshopped over weeks by multiple team members with LLM use across research, drafting, and editing. Unclear whether the final text exceeds the Forum's 10% threshold.]</i></p><p>This is the companion post to <a href=\"https://forum.effectivealtruism.org/posts/NzZR6gb4yXJEQYGo7/announcing-the-frontier-biodefense-fellowship-deadline-7\">our Frontier Biodefense Fellowship announcement</a>. The short post covers the practical details. This one explains why we think a biodefense fellows",
-    "url": "https://www.lesswrong.com/posts/RgtJPqB6sEoLBe2b7/why-we-re-launching-the-frontier-biodefense-fellowship",
-    "published": "2026-06-02T09:06:13",
-    "signals": {
-      "thiel": false,
-      "shulman": true,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "Compute Verification on Short Timelines",
-    "summary": "<p>Compute verification might be a very significant part of coordination with respect\nto intelligent AI systems. In short timelines (&lt;2030), the kind espoused by a frontier lab\nleader, I'm suspicious of die-level verification hardware being tractable. If this\nis the case, we should then focus on auxilary verification methods, such as post-hoc\nmodifications to chips or robust software verification methods. In any case, we\nshould act now if we want this to happen.</p>\n<p>I'm going to be treatin",
-    "url": "https://www.lesswrong.com/posts/cXTHqmgwrRT2Z5b9W/compute-verification-on-short-timelines",
-    "published": "2026-06-02T03:31:08",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "TSM",
-      "NVDA"
-    ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
     "title": "Threshold-Based Exclusive Batching for LLM Inference",
@@ -123,8 +80,8 @@
     },
     "signal_count": 1,
     "tickers": [
-      "RTX",
-      "NVDA"
+      "NVDA",
+      "RTX"
     ],
     "quality_score": 1.0836,
     "weighted_relevance": 1.0836141955583654
@@ -259,7 +216,7 @@
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
     "title": "MAVEN-T: Reinforced Heterogeneous Distillation for Real-Time Multi-Agent Trajectory Prediction",
-    "summary": "arXiv:2604.10169v2 Announce Type: replace \nAbstract: Trajectory prediction is a key component of autonomous driving systems because future motions directly affect collision checking, behavior planning, and control. The task remains challenging under dense interactions, heterogeneous behaviors, multimodal futures, and limited on-board computation. Existing graph, attention, and generative predictors improve interaction reasoning or uncertainty modeling, but their high-capacity designs are often c",
+    "summary": "arXiv:2604.10169v3 Announce Type: replace \nAbstract: Trajectory prediction is a key component of autonomous driving systems because future motions directly affect collision checking, behavior planning, and control. The task remains challenging under dense interactions, heterogeneous behaviors, multimodal futures, and limited on-board computation. Existing graph, attention, and generative predictors improve interaction reasoning or uncertainty modeling, but their high-capacity designs are often c",
     "url": "https://arxiv.org/abs/2604.10169",
     "published": "2026-06-02T04:00:00",
     "signals": {
