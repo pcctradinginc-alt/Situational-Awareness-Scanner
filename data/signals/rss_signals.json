@@ -16,8 +16,8 @@
     },
     "signal_count": 2,
     "tickers": [
-      "GOOGL",
-      "MSFT"
+      "MSFT",
+      "GOOGL"
     ],
     "quality_score": 1.5162,
     "weighted_relevance": 1.5162473785627093
@@ -25,10 +25,10 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "What Can Nvidia Do to Get Investors Excited Again?",
-    "summary": "The only thing harder than creating the world\u2019s most valuable company? Staying on top.",
-    "url": "https://www.bloomberg.com/news/articles/2026-06-03/nvidia-share-price-what-can-chipmaker-do-to-get-investors-excited-again",
-    "published": "2026-06-03T15:58:47",
+    "title": "TSMC Warns Chip Supply Won\u2019t Meet AI-Fueled Demand for Years",
+    "summary": "Taiwan Semiconductor Manufacturing Co.\u2019s global chip supply will fall short of AI-fueled demand for years to come, chief executive officer C.C. Wei said, suggesting production capacity remains a key bottleneck in the buildout of global computing infrastructure.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-04/tsmc-ceo-warns-chip-supply-won-t-meet-ai-fueled-demand-for-years",
+    "published": "2026-06-04T02:47:46",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -39,6 +39,29 @@
     },
     "signal_count": 1,
     "tickers": [
+      "TSM"
+    ],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Cerebras Says It\u2019s Working With All AI Gear Makers Except Nvidia",
+    "summary": "Cerebras Systems Inc. plans to cooperate with a wide variety of suppliers of AI data center components, opening the way for further partnerships that mirror its agreement with Amazon.com Inc.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-04/cerebras-says-it-s-working-with-all-ai-gear-makers-except-nvidia",
+    "published": "2026-06-04T04:37:56",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "AMZN",
       "NVDA"
     ],
     "quality_score": 1.3112,
@@ -47,10 +70,56 @@
   {
     "source": "lesswrong",
     "credibility": 0.85,
-    "title": "China won\u2019t win the AI race but would it be much worse if it did?",
-    "summary": "<p><span>It seems to me accepted wisdom in the West that the US owned labs must \u201cbeat\u201d the Chinese labs in the race for AGI/ASI.\u00a0</span></p><p><span>Even those who don\u2019t think there will be a winner, that essentially the race is to see which country\u2019s AI will kill/disempower us first, seem to believe that </span><i><span>if there has to be a winner</span></i><span> then better it be the US labs. (I haven't seen a survey, so I could be way off here.)</span></p><p><span>For those in power and thos",
-    "url": "https://www.lesswrong.com/posts/nmpzH6sLLtKsQhSPM/china-won-t-win-the-ai-race-but-would-it-be-much-worse-if-it",
-    "published": "2026-06-03T05:46:00",
+    "title": "Running An Air Purifier on Batteries",
+    "summary": "<p><span>\n\nRunning an air purifier on a battery could be really useful in an\nemergency that combined a biological or nuclear threat with a power\noutage.  Getting one that can run on 12V DC and attaching it to a\nLiFePO4 battery is about $188 (plus $164 for the purifier) for\nsomething that will give you 141 CFM for over a week.\n\n</span>\n\n</p><p>\n\n</p>\n\n<hr />\n\n\n\n<p>\n\nI've been thinking about DIY biohardening, primarily to reduce risks\nfrom <a href=\"https://defensesindepth.bio/prioritizing-environm",
+    "url": "https://www.lesswrong.com/posts/ftexKEAtz5w9Ys9Pu/running-an-air-purifier-on-batteries",
+    "published": "2026-06-04T02:40:49",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": true
+    },
+    "signal_count": 1,
+    "tickers": [
+      "AMZN"
+    ],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  },
+  {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "Sixteen schemes for AI safety",
+    "summary": "<p><span>These days, I often run across\u00a0</span><a href=\"https://generatorresidency.org/\"><span>whippersnappers</span></a><span>\u00a0excited to do\u00a0</span><i><span>something</span></i><span>\u00a0for AI safety \u2014 but aren\u2019t quite sure what. One of the fun things about the Future Fund era were the\u00a0</span><a href=\"https://ftxfuturefund.org.cach3.com/index.html%3Fp=30.html\"><span>big lists of project ideas</span></a><span>; as we enter a\u00a0</span><a href=\"https://nanransohoff.substack.com/p/the-third-wave-of-ame",
+    "url": "https://www.lesswrong.com/posts/jTyfbs7GW5rf78adK/sixteen-schemes-for-ai-safety",
+    "published": "2026-06-03T21:50:39",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": true
+    },
+    "signal_count": 1,
+    "tickers": [
+      "MSFT",
+      "CEG",
+      "GOOGL"
+    ],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  },
+  {
+    "source": "ft_tech",
+    "credibility": 0.85,
+    "title": "Nvidia\u2019s CPU move and China\u2019s EV makers go solid",
+    "summary": "The inside story on the Asia tech trends that matter, from Nikkei Asia and the Financial Times",
+    "url": "https://www.ft.com/content/f357cb1e-f387-4087-80ec-51f37afb1bfb",
+    "published": "2026-06-04T06:13:19",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -61,8 +130,29 @@
     },
     "signal_count": 1,
     "tickers": [
-      "NVDA",
-      "GOOGL"
+      "NVDA"
+    ],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  },
+  {
+    "source": "ft_tech",
+    "credibility": 0.85,
+    "title": "Nvidia takes AI battle from the data centre to the laptop",
+    "summary": "Chipmaker opens new front in rivalry with Apple, Intel, AMD and Qualcomm",
+    "url": "https://www.ft.com/content/4db277bf-e67b-473d-a75e-e358fb31f69b",
+    "published": "2026-06-04T04:00:23",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
     ],
     "quality_score": 1.2233,
     "weighted_relevance": 1.2232988379545604
@@ -70,10 +160,10 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Cosmos 3: Omnimodal World Models for Physical AI",
-    "summary": "arXiv:2606.02800v1 Announce Type: cross \nAbstract: We introduce Cosmos 3, a family of omnimodal world models designed to jointly process and generate language, image, video, audio, and action sequences within a unified mixture-of-transformers architecture. By supporting highly flexible input-output configurations, Cosmos 3 seamlessly unifies critical modalities for Physical AI -- effectively subsuming vision-language models, video generators, world simulators, and world-action models into a sing",
-    "url": "https://arxiv.org/abs/2606.02800",
-    "published": "2026-06-03T04:00:00",
+    "title": "Stochastic Sparse Attention for Memory-Bound Inference",
+    "summary": "arXiv:2605.01910v2 Announce Type: replace-cross \nAbstract: Autoregressive decoding becomes bandwidth-limited at long contexts, as generating each token requires reading all $n_k$ key and value vectors from KV cache. We present Stochastic Additive No-mulT Attention (SANTA), a method that sparsifies value-cache access by sampling $S \\ll n_k$ indices from the post-softmax distribution and aggregates only those value rows. This yields an unbiased estimator of the post-softmax value aggregation while",
+    "url": "https://arxiv.org/abs/2605.01910",
+    "published": "2026-06-04T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -84,135 +174,8 @@
     },
     "signal_count": 1,
     "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation",
-    "summary": "arXiv:2606.03159v1 Announce Type: cross \nAbstract: As autonomous vehicle capabilities advance, the safe evaluation of driving policies in long-tail scenarios remains a critical bottleneck. In closed-loop simulation, the driving policy model actively interacts with the environment, where its actions dynamically update the simulator state and directly influence the next set of generated sensor observations. While recent reconstruction-based neural simulators offer photorealism, they are fundamenta",
-    "url": "https://arxiv.org/abs/2606.03159",
-    "published": "2026-06-03T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "FLIPS: Instance-Fingerprinting for LLMs via Pseudo-random Sequences",
-    "summary": "arXiv:2606.03330v1 Announce Type: cross \nAbstract: Literature reveals that a Large Language Model's (LLM) behavior is not only conditioned by its original weights but also its instance-level parameters, such as instructional prompt, sampling configuration or quantization. A model that generates safe outputs under one configuration may produce toxic content under another. However, current LLM identification techniques (such as fingerprinting) focus on intellectual property protection, and their d",
-    "url": "https://arxiv.org/abs/2606.03330",
-    "published": "2026-06-03T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": true,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "FlowGuard: Flow Matching for Identity-Independent Detection of Data-Free Model Stealing Attacks on Energy System Intrusion Detection Systems",
-    "summary": "arXiv:2606.03430v1 Announce Type: cross \nAbstract: Artificial Intelligence (AI)-based Intrusion Detection Systems (IDS) deployed in energy infrastructure are vulnerable to model theft attacks, which allow adversaries to create evasive traffic offline. Current defences against model extraction rely either on identity-bound query monitoring, which is ineffective against distributed attackers (Sybil), or on prediction poisoning through soft-label perturbation, which is inapplicable to hard-label ID",
-    "url": "https://arxiv.org/abs/2606.03430",
-    "published": "2026-06-03T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": true,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "MAVEN-T: Reinforced Heterogeneous Distillation for Real-Time Multi-Agent Trajectory Prediction",
-    "summary": "arXiv:2604.10169v3 Announce Type: replace \nAbstract: Trajectory prediction is a key component of autonomous driving systems because future motions directly affect collision checking, behavior planning, and control. The task remains challenging under dense interactions, heterogeneous behaviors, multimodal futures, and limited on-board computation. Existing graph, attention, and generative predictors improve interaction reasoning or uncertainty modeling, but their high-capacity designs are often c",
-    "url": "https://arxiv.org/abs/2604.10169",
-    "published": "2026-06-03T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "FlashMLA-ETAP: Efficient Transpose Attention Pipeline for Accelerating MLA Inference on NVIDIA H20 GPUs",
-    "summary": "arXiv:2506.01969v3 Announce Type: replace-cross \nAbstract: Efficient inference of Multi-Head Latent Attention (MLA) is challenged by deploying the DeepSeek-R1 671B model on a single Multi-GPU server. This paper introduces FlashMLA-ETAP, a novel framework that enhances MLA inference for the single-instance deployment scenario on NVIDIA H20 GPUs. We propose the Efficient Transpose Attention Pipeline (ETAP), which reconfigures attention computation through transposition to align the KV context leng",
-    "url": "https://arxiv.org/abs/2506.01969",
-    "published": "2026-06-03T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Fine-Tuning and Serving Gemma 4 31B on Google Cloud TPU: A Technical Comparison with GPU Baselines",
-    "summary": "arXiv:2605.25645v2 Announce Type: replace-cross \nAbstract: We present the first end-to-end demonstration of fine-tuning and serving Google's Gemma 4 31B model on TPU hardware, providing an empirical comparison of TPU and GPU platforms for large language model adaptation. Using LoRA on a Google TPU v5p-8 for training and TPU v6e-8 (Trillium) for inference, we document the full set of code-level adaptations required to port a GPU-native training recipe, built on PyTorch, HuggingFace TRL, and FSDP,",
-    "url": "https://arxiv.org/abs/2605.25645",
-    "published": "2026-06-03T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "GOOGL",
+      "RTX",
+      "ANTA",
       "NVDA"
     ],
     "quality_score": 1.0836,
