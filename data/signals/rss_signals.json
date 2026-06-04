@@ -2,6 +2,34 @@
   {
     "source": "lesswrong",
     "credibility": 0.85,
+    "title": "AI #171: False Flag",
+    "summary": "<p>This was the week of Claude Opus 4.8. <a href=\"https://thezvi.substack.com/p/claude-opus-48-is-honestly-better?r=67wny\"><strong>I covered the model card</strong></a>, then <a href=\"https://thezvi.substack.com/p/opus-48-part-2-model-welfare?r=67wny\"><strong>model welfare</strong></a> concerns, and finally <a href=\"https://thezvi.substack.com/p/claude-opus-48-capabilities-and-reactions?r=67wny\"><strong>capabilities and reactions</strong></a>. It\u2019s a good model, sir, an incremental but real impr",
+    "url": "https://www.lesswrong.com/posts/LzxoR5GakceQFtbta/ai-171-false-flag",
+    "published": "2026-06-04T15:50:59",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": true,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": true
+    },
+    "signal_count": 3,
+    "tickers": [
+      "META",
+      "AMZN",
+      "GOOGL",
+      "NVDA",
+      "MSFT",
+      "PLTR",
+      "TSM"
+    ],
+    "quality_score": 1.7241,
+    "weighted_relevance": 1.7240976759091209
+  },
+  {
+    "source": "lesswrong",
+    "credibility": 0.85,
     "title": "Trump Signs Executive Order For AI Testing Prior To Frontier Model Releases",
     "summary": "<p>Last week we were expecting an Executive Order on Thursday.</p>\n<p>Then Trump cancelled it, and said he wouldn\u2019t sign it because he was worried it would be too burdensome.</p>\n<p>Then, with one change, he went ahead and signed it on Tuesday anyway.</p>\n<p><a href=\"https://www.politico.com/news/2026/06/02/trump-ai-order-tech-winners-losers-00947285\">The Overton Window has shifted</a>. Nothing was not really a viable option anymore.</p>\n<div>\n<figure>\n<div>\n\n\n<figure class=\"wp-block-image\"><img",
     "url": "https://www.lesswrong.com/posts/yDnfHrBzKc2pNQNdw/trump-signs-executive-order-for-ai-testing-prior-to-frontier",
@@ -25,32 +53,30 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "TSMC Warns Chip Supply Won\u2019t Meet AI-Fueled Demand for Years",
-    "summary": "Taiwan Semiconductor Manufacturing Co.\u2019s global chip supply will fall short of AI-fueled demand for years to come, chief executive officer C.C. Wei said, suggesting production capacity remains a key bottleneck in the buildout of global computing infrastructure.",
-    "url": "https://www.bloomberg.com/news/articles/2026-06-04/tsmc-ceo-warns-chip-supply-won-t-meet-ai-fueled-demand-for-years",
-    "published": "2026-06-04T02:47:46",
+    "title": "Peter Thiel\u2019s Family Office Pays Record Rent for Top Miami Tower",
+    "summary": "Peter Thiel, who has been expanding his business interests in South Florida, leased office space at Miami\u2019s 830 Brickell skyscraper for his family office, joining a group of finance and tech heavyweights in the heart of the city\u2019s finance district.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-04/peter-thiel-s-family-office-pays-record-rent-for-top-miami-tower",
+    "published": "2026-06-04T14:55:37",
     "signals": {
-      "thiel": false,
+      "thiel": true,
       "shulman": false,
       "contrarian": false,
-      "bottleneck_compute": true,
+      "bottleneck_compute": false,
       "bottleneck_energy": false,
       "salp": false
     },
     "signal_count": 1,
-    "tickers": [
-      "TSM"
-    ],
+    "tickers": [],
     "quality_score": 1.3112,
     "weighted_relevance": 1.3111731766256216
   },
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Cerebras Says It\u2019s Working With All AI Gear Makers Except Nvidia",
-    "summary": "Cerebras Systems Inc. plans to cooperate with a wide variety of suppliers of AI data center components, opening the way for further partnerships that mirror its agreement with Amazon.com Inc.",
-    "url": "https://www.bloomberg.com/news/articles/2026-06-04/cerebras-says-it-s-working-with-all-ai-gear-makers-except-nvidia",
-    "published": "2026-06-04T04:37:56",
+    "title": "Nvidia-Backed Robotics Startup Generalist AI Valued at $2 Billion",
+    "summary": "<p>The company raised $400 million in a funding round led by Radical Ventures</p>",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-04/nvidia-backed-robotics-startup-generalist-ai-valued-at-2-billion",
+    "published": "2026-06-04T12:30:05",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -61,7 +87,6 @@
     },
     "signal_count": 1,
     "tickers": [
-      "AMZN",
       "NVDA"
     ],
     "quality_score": 1.3112,
