@@ -1,11 +1,35 @@
 [
   {
+    "source": "alignment_forum",
+    "credibility": 0.9,
+    "title": "My research agenda and work",
+    "summary": "<p><span>This is a summary of the work I've done and work I plan to do, and the theories of change and AI progress that motivate my work. I've been working full-time on alignment for three years and change, and thinking about brainlike AGI and its alignment increasingly often since 2004. </span></p><p><span>Here's the research agenda in one breath: I'm trying to predict what the first transformative AI will be, in enough mechanistic detail that we can predict likely failure modes of its alignmen",
+    "url": "https://www.alignmentforum.org/posts/MuLvZxMcy5WaKJu3H/my-research-agenda-and-work",
+    "published": "2026-06-05T14:19:53",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": true
+    },
+    "signal_count": 1,
+    "tickers": [
+      "META",
+      "GOOGL",
+      "CEG"
+    ],
+    "quality_score": 1.3714,
+    "weighted_relevance": 1.3714492162535559
+  },
+  {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Nvidia Clears \u2018Big Three\u2019 for Vera Rubin HBM4 Supply",
-    "summary": "Nvidia Chief Executive Officer Jensen Huang confirmed that the company has certified the three biggest memory chipmakers to supply their most advanced high-bandwidth products for the US company\u2019s AI accelerators. Matthew Bloxham of Bloomberg Intelligence has more. (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-05/nvidia-clears-big-three-for-vera-rubin-hbm4-supply-video",
-    "published": "2026-06-05T09:51:31",
+    "title": "Nvidia's Profit Margins Are Safe for Now, Luria Says",
+    "summary": "Gil Luria, DA Davidson\u2019s head of technology research, says Nvidia's profit margins are relatively safe through the year 2030 because hyperscalers have few alternatives for the chips they use to power data centers. He speaks on \"Bloomberg Surveillance.\" (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-05/nvidia-s-profit-margins-are-safe-for-now-luria-says-video",
+    "published": "2026-06-05T14:57:06",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -24,10 +48,10 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Hon Hai Sales Growth Accelerates Beyond Estimates in May",
-    "summary": "Hon Hai Precision Industry Co.\u2019s revenue rose 34% in the April to May period, underscoring demand for the Nvidia Corp. servers essential to AI infrastructure.",
-    "url": "https://www.bloomberg.com/news/articles/2026-06-05/hon-hai-sales-growth-accelerates-beyond-estimates-in-may",
-    "published": "2026-06-05T07:41:22",
+    "title": "Nvidia 70%+ Margins Safe Through 2030, DA Davidson\u2019s Luria Says",
+    "summary": "Nvidia Corp.\u2019s profit margins are relatively safe through 2030 because hyperscalers have few alternatives for the chips powering data centers for artificial intelligence, DA Davidson\u2019s head of technology research said.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-05/nvidia-70-margins-safe-through-2030-da-davidson-s-luria-says",
+    "published": "2026-06-05T14:25:37",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -44,48 +68,28 @@
     "weighted_relevance": 1.3111731766256216
   },
   {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "Nvidia Clears Memory\u2019s Big Three for Vera Rubin HBM4 Supply",
-    "summary": "Nvidia Corp. has certified the three biggest memory chipmakers to supply their most advanced high-bandwidth products for the US company\u2019s AI accelerators, Chief Executive Officer Jensen Huang confirmed for the first time.",
-    "url": "https://www.bloomberg.com/news/articles/2026-06-05/nvidia-green-lit-big-three-memory-firms-to-supply-hbm4-ceo-says",
-    "published": "2026-06-05T05:06:42",
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "My research agenda and work",
+    "summary": "<p><span>This is a summary of the work I've done and work I plan to do, and the theories of change and AI progress that motivate my work. I've been working full-time on alignment for three years and change, and thinking about brainlike AGI and its alignment increasingly often since 2004. </span></p><p><span>Here's the research agenda in one breath: I'm trying to predict what the first transformative AI will be, in enough mechanistic detail that we can predict likely failure modes of its alignmen",
+    "url": "https://www.lesswrong.com/posts/MuLvZxMcy5WaKJu3H/my-research-agenda-and-work",
+    "published": "2026-06-05T14:19:53",
     "signals": {
       "thiel": false,
       "shulman": false,
       "contrarian": false,
-      "bottleneck_compute": true,
+      "bottleneck_compute": false,
       "bottleneck_energy": false,
-      "salp": false
+      "salp": true
     },
     "signal_count": 1,
     "tickers": [
-      "NVDA"
+      "META",
+      "GOOGL",
+      "CEG"
     ],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "Trump Officials Worry US Loophole Let Chinese Firms Buy Nvidia Blackwell Chips",
-    "summary": "Trump officials have spent the past week embroiled in a remarkable argument &mdash; over what, exactly, their China tech policy has been for the past year.",
-    "url": "https://www.bloomberg.com/news/articles/2026-06-05/trump-officials-worry-us-loophole-let-chinese-firms-buy-nvidia-blackwells",
-    "published": "2026-06-05T03:54:53",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
   },
   {
     "source": "arxiv_cs_ai",
@@ -232,9 +236,9 @@
     },
     "signal_count": 1,
     "tickers": [
-      "META",
+      "NVDA",
       "RTX",
-      "NVDA"
+      "META"
     ],
     "quality_score": 1.0836,
     "weighted_relevance": 1.0836141955583654
@@ -256,8 +260,8 @@
     },
     "signal_count": 1,
     "tickers": [
-      "RTX",
-      "NVDA"
+      "NVDA",
+      "RTX"
     ],
     "quality_score": 1.0836,
     "weighted_relevance": 1.0836141955583654
