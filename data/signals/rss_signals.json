@@ -1,82 +1,11 @@
 [
   {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "AI #171: False Flag",
-    "summary": "<p>This was the week of Claude Opus 4.8. <a href=\"https://thezvi.substack.com/p/claude-opus-48-is-honestly-better?r=67wny\"><strong>I covered the model card</strong></a>, then <a href=\"https://thezvi.substack.com/p/opus-48-part-2-model-welfare?r=67wny\"><strong>model welfare</strong></a> concerns, and finally <a href=\"https://thezvi.substack.com/p/claude-opus-48-capabilities-and-reactions?r=67wny\"><strong>capabilities and reactions</strong></a>. It\u2019s a good model, sir, an incremental but real impr",
-    "url": "https://www.lesswrong.com/posts/LzxoR5GakceQFtbta/ai-171-false-flag",
-    "published": "2026-06-04T15:50:59",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": true,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": true
-    },
-    "signal_count": 3,
-    "tickers": [
-      "META",
-      "AMZN",
-      "GOOGL",
-      "NVDA",
-      "MSFT",
-      "PLTR",
-      "TSM"
-    ],
-    "quality_score": 1.7241,
-    "weighted_relevance": 1.7240976759091209
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "Trump Signs Executive Order For AI Testing Prior To Frontier Model Releases",
-    "summary": "<p>Last week we were expecting an Executive Order on Thursday.</p>\n<p>Then Trump cancelled it, and said he wouldn\u2019t sign it because he was worried it would be too burdensome.</p>\n<p>Then, with one change, he went ahead and signed it on Tuesday anyway.</p>\n<p><a href=\"https://www.politico.com/news/2026/06/02/trump-ai-order-tech-winners-losers-00947285\">The Overton Window has shifted</a>. Nothing was not really a viable option anymore.</p>\n<div>\n<figure>\n<div>\n\n\n<figure class=\"wp-block-image\"><img",
-    "url": "https://www.lesswrong.com/posts/yDnfHrBzKc2pNQNdw/trump-signs-executive-order-for-ai-testing-prior-to-frontier",
-    "published": "2026-06-03T16:30:37",
-    "signals": {
-      "thiel": true,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": true
-    },
-    "signal_count": 2,
-    "tickers": [
-      "MSFT",
-      "GOOGL"
-    ],
-    "quality_score": 1.5162,
-    "weighted_relevance": 1.5162473785627093
-  },
-  {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Peter Thiel\u2019s Family Office Pays Record Rent for Top Miami Tower",
-    "summary": "Peter Thiel, who has been expanding his business interests in South Florida, leased office space at Miami\u2019s 830 Brickell skyscraper for his family office, joining a group of finance and tech heavyweights in the heart of the city\u2019s finance district.",
-    "url": "https://www.bloomberg.com/news/articles/2026-06-04/peter-thiel-s-family-office-pays-record-rent-for-top-miami-tower",
-    "published": "2026-06-04T14:55:37",
-    "signals": {
-      "thiel": true,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "Nvidia-Backed Robotics Startup Generalist AI Valued at $2 Billion",
-    "summary": "<p>The company raised $400 million in a funding round led by Radical Ventures</p>",
-    "url": "https://www.bloomberg.com/news/articles/2026-06-04/nvidia-backed-robotics-startup-generalist-ai-valued-at-2-billion",
-    "published": "2026-06-04T12:30:05",
+    "title": "Nvidia Clears \u2018Big Three\u2019 for Vera Rubin HBM4 Supply",
+    "summary": "Nvidia Chief Executive Officer Jensen Huang confirmed that the company has certified the three biggest memory chipmakers to supply their most advanced high-bandwidth products for the US company\u2019s AI accelerators. Matthew Bloxham of Bloomberg Intelligence has more. (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-05/nvidia-clears-big-three-for-vera-rubin-hbm4-supply-video",
+    "published": "2026-06-05T09:51:31",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -93,58 +22,12 @@
     "weighted_relevance": 1.3111731766256216
   },
   {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "Running An Air Purifier on Batteries",
-    "summary": "<p><span>\n\nRunning an air purifier on a battery could be really useful in an\nemergency that combined a biological or nuclear threat with a power\noutage.  Getting one that can run on 12V DC and attaching it to a\nLiFePO4 battery is about $188 (plus $164 for the purifier) for\nsomething that will give you 141 CFM for over a week.\n\n</span>\n\n</p><p>\n\n</p>\n\n<hr />\n\n\n\n<p>\n\nI've been thinking about DIY biohardening, primarily to reduce risks\nfrom <a href=\"https://defensesindepth.bio/prioritizing-environm",
-    "url": "https://www.lesswrong.com/posts/ftexKEAtz5w9Ys9Pu/running-an-air-purifier-on-batteries",
-    "published": "2026-06-04T02:40:49",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": true
-    },
-    "signal_count": 1,
-    "tickers": [
-      "AMZN"
-    ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "Sixteen schemes for AI safety",
-    "summary": "<p><span>These days, I often run across\u00a0</span><a href=\"https://generatorresidency.org/\"><span>whippersnappers</span></a><span>\u00a0excited to do\u00a0</span><i><span>something</span></i><span>\u00a0for AI safety \u2014 but aren\u2019t quite sure what. One of the fun things about the Future Fund era were the\u00a0</span><a href=\"https://ftxfuturefund.org.cach3.com/index.html%3Fp=30.html\"><span>big lists of project ideas</span></a><span>; as we enter a\u00a0</span><a href=\"https://nanransohoff.substack.com/p/the-third-wave-of-ame",
-    "url": "https://www.lesswrong.com/posts/jTyfbs7GW5rf78adK/sixteen-schemes-for-ai-safety",
-    "published": "2026-06-03T21:50:39",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": true
-    },
-    "signal_count": 1,
-    "tickers": [
-      "MSFT",
-      "CEG",
-      "GOOGL"
-    ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
-    "source": "ft_tech",
-    "credibility": 0.85,
-    "title": "Nvidia\u2019s CPU move and China\u2019s EV makers go solid",
-    "summary": "The inside story on the Asia tech trends that matter, from Nikkei Asia and the Financial Times",
-    "url": "https://www.ft.com/content/f357cb1e-f387-4087-80ec-51f37afb1bfb",
-    "published": "2026-06-04T06:13:19",
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Hon Hai Sales Growth Accelerates Beyond Estimates in May",
+    "summary": "Hon Hai Precision Industry Co.\u2019s revenue rose 34% in the April to May period, underscoring demand for the Nvidia Corp. servers essential to AI infrastructure.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-05/hon-hai-sales-growth-accelerates-beyond-estimates-in-may",
+    "published": "2026-06-05T07:41:22",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -157,16 +40,16 @@
     "tickers": [
       "NVDA"
     ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
   },
   {
-    "source": "ft_tech",
-    "credibility": 0.85,
-    "title": "Nvidia takes AI battle from the data centre to the laptop",
-    "summary": "Chipmaker opens new front in rivalry with Apple, Intel, AMD and Qualcomm",
-    "url": "https://www.ft.com/content/4db277bf-e67b-473d-a75e-e358fb31f69b",
-    "published": "2026-06-04T04:00:23",
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Nvidia Clears Memory\u2019s Big Three for Vera Rubin HBM4 Supply",
+    "summary": "Nvidia Corp. has certified the three biggest memory chipmakers to supply their most advanced high-bandwidth products for the US company\u2019s AI accelerators, Chief Executive Officer Jensen Huang confirmed for the first time.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-05/nvidia-green-lit-big-three-memory-firms-to-supply-hbm4-ceo-says",
+    "published": "2026-06-05T05:06:42",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -179,16 +62,190 @@
     "tickers": [
       "NVDA"
     ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Trump Officials Worry US Loophole Let Chinese Firms Buy Nvidia Blackwell Chips",
+    "summary": "Trump officials have spent the past week embroiled in a remarkable argument &mdash; over what, exactly, their China tech policy has been for the past year.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-05/trump-officials-worry-us-loophole-let-chinese-firms-buy-nvidia-blackwells",
+    "published": "2026-06-05T03:54:53",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
   },
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Stochastic Sparse Attention for Memory-Bound Inference",
-    "summary": "arXiv:2605.01910v2 Announce Type: replace-cross \nAbstract: Autoregressive decoding becomes bandwidth-limited at long contexts, as generating each token requires reading all $n_k$ key and value vectors from KV cache. We present Stochastic Additive No-mulT Attention (SANTA), a method that sparsifies value-cache access by sampling $S \\ll n_k$ indices from the post-softmax distribution and aggregates only those value rows. This yields an unbiased estimator of the post-softmax value aggregation while",
-    "url": "https://arxiv.org/abs/2605.01910",
-    "published": "2026-06-04T04:00:00",
+    "title": "Minimizing the Hidden Cost of Scales: Graph-Guided Ultra-Low-Bit Quantization for Large Language Models",
+    "summary": "arXiv:2606.05429v1 Announce Type: new \nAbstract: Post-training quantization (PTQ) is critical for the efficient deployment of large language models (LLMs). Recent ultra-low-bit PTQ methods rely on rigid weight-saliency assumptions or position heuristics, introducing substantial hidden scaling overhead. We propose SAGE-PTQ (Saliency-Aware Graph-guided Efficient PTQ), a novel ultra-low-bit quantization framework for LLMs that minimizes hidden scaling cost. SAGE-PTQ separates salient and unsalient ",
+    "url": "https://arxiv.org/abs/2606.05429",
+    "published": "2026-06-05T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Evaluation of LLMs for Mathematical Formalization in Lean",
+    "summary": "arXiv:2606.05632v1 Announce Type: new \nAbstract: Within the past few years, the ability of Large Language Models (LLMs) to generate formal mathematical proofs has improved drastically. We provide a comparison of various LLMs' effectiveness in producing formal proofs in Lean 4 with the goal of assisting those seeking to use LLMs to support their own projects. We utilize both pass@$k$ and refine@$k$ metrics as the benchmark for our comparison and evaluate on subsets of both miniF2F and miniCTX dat",
+    "url": "https://arxiv.org/abs/2606.05632",
+    "published": "2026-06-05T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Vortex: Efficient and Programmable Sparse Attention Serving for AI Agents",
+    "summary": "arXiv:2606.06453v1 Announce Type: new \nAbstract: Sparse attention is becoming increasingly important for serving large language models (LLMs) as generation lengths continue to grow. However, deploying and evaluating new sparse attention algorithms at scale remains highly engineering-intensive, slowing both human researchers and AI agents in exploring the sparse attention design. To address this challenge, we present Vortex, a system that combines a Python-embedded frontend language atop a page-c",
+    "url": "https://arxiv.org/abs/2606.06453",
+    "published": "2026-06-05T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Predict and Reconstruct: Joint Objectives for Self-Supervised Language Representation Learning",
+    "summary": "arXiv:2606.05173v1 Announce Type: cross \nAbstract: Masked language modelling (MLM) has been the dominant pre-training objective for text encoders since BERT, yet it encourages representations that are strongly anchored to surface-form token identity rather than deeper semantic structure. Inspired by the success of Joint Embedding Predictive Architectures (JEPA) (LeCun, 2022) in vision and audio, we propose a hybrid pre-training objective that combines a JEPA-style latent-space prediction loss wi",
+    "url": "https://arxiv.org/abs/2606.05173",
+    "published": "2026-06-05T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "CausalPOI: Spatio-Temporal Graph-Based Causal Modeling for Cold-Start POI Check-in Forecasting",
+    "summary": "arXiv:2606.05413v1 Announce Type: cross \nAbstract: As urban environments continue to evolve rapidly, accurately modeling the dynamic behaviour of Points of Interest is essential for supporting data-driven urban planning and commercial decision-making. While recent advancements in spatio-temporal graph learning have improved POI forecasting, most methods rely on proximity-based graphs and correlation-driven modeling, which overlook the functional dependencies between POIs and fail to capture the ",
+    "url": "https://arxiv.org/abs/2606.05413",
+    "published": "2026-06-05T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": true
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Causal Scaffolding for Physical Reasoning: A Benchmark for Causally-Informed Physical World Understanding in VLMs",
+    "summary": "arXiv:2606.05966v1 Announce Type: cross \nAbstract: Understanding and reasoning about the physical world is the foundation of intelligent behavior, yet state-of-the-art vision-language models (VLMs) still fail at causal physical reasoning, often producing plausible but incorrect answers. To address this gap, we introduce CausalPhys, a benchmark of over 3,000 carefully curated video- and image-based questions spanning four domains: Perception, Anticipation, Intervention, and Goal Orientation. Each",
+    "url": "https://arxiv.org/abs/2606.05966",
+    "published": "2026-06-05T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": true
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "World-Language-Action Model for Unified World Modeling, Language Reasoning, and Action Synthesis",
+    "summary": "arXiv:2606.05979v1 Announce Type: cross \nAbstract: We propose world-language-action (WLA) models as a new class of embodied foundation models. WLA takes textual instructions, images, and robot states as inputs to jointly predict textual subtasks, subgoal images, and robot actions, conjoining the \\emph{world modeling interface} to learn from extensive egocentric videos as in the world-action model (WAM) and the \\emph{language reasoning} capacities to solve complex long-horizon tasks as in vision-",
+    "url": "https://arxiv.org/abs/2606.05979",
+    "published": "2026-06-05T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "META",
+      "RTX",
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Evaluating CUDA Tile for AI Workloads on Hopper and Blackwell GPUs",
+    "summary": "arXiv:2604.23466v2 Announce Type: replace-cross \nAbstract: NVIDIA's CUDA Tile (CuTile) introduces a Python-based, tile-centric abstraction for GPU kernel development that aims to simplify programming while retaining Tensor Core and Tensor Memory Accelerator (TMA) efficiency on modern GPUs. We present the first independent, cross-architecture evaluation of CuTile against established approaches such as cuBLAS, Triton, WMMA, and raw SIMT on three NVIDIA GPUs spanning Hopper and Blackwell: H100 NVL,",
+    "url": "https://arxiv.org/abs/2604.23466",
+    "published": "2026-06-05T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -200,7 +257,6 @@
     "signal_count": 1,
     "tickers": [
       "RTX",
-      "ANTA",
       "NVDA"
     ],
     "quality_score": 1.0836,

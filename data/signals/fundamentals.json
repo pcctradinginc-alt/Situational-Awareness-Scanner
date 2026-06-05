@@ -34,11 +34,12 @@
     "empirical_point": 0,
     "data_gap": false,
     "primary_source": "fred",
-    "fetched_at": "2026-06-04T16:22:43.440245"
+    "fetched_at": "2026-06-05T10:00:59.825505"
   },
   "nvda_revenue": {
     "growth_yoy": null,
     "empirical_point": 0,
-    "data_gap": true
+    "data_gap": true,
+    "error": "HTTPSConnectionPool(host='api.finnhub.io', port=443): Read timed out. (read timeout=10)"
   }
 }
