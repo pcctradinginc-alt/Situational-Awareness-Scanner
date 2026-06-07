@@ -482,3 +482,25 @@ class StateManager:
 
     def __exit__(self, *args):
         self.close()
+
+    def get_regime_trend(self, days: int = 30) -> dict:
+        from datetime import timedelta
+        cutoff = (datetime.utcnow() - timedelta(days=days)).date().isoformat()
+        rows = self.conn.execute(
+            """SELECT mode, COUNT(*) as count
+               FROM regime_history
+               WHERE date >= ?
+               GROUP BY mode""",
+            (cutoff,)
+        ).fetchall()
+        total = sum(r["count"] for r in rows)
+        if total == 0:
+            return {"trend": "UNKNOWN", "stress_pct": 0, "normal_pct": 100}
+        stress_count = next((r["count"] for r in rows if r["mode"] == "STRESS"), 0)
+        stress_pct = stress_count / total * 100
+        return {
+            "trend":       "DETERIORATING" if stress_pct > 30 else "STABLE",
+            "stress_pct":  round(stress_pct, 1),
+            "normal_pct":  round(100 - stress_pct, 1),
+            "days_analyzed": days,
+        }
