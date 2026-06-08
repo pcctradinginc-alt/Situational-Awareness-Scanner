@@ -1,35 +1,11 @@
 [
   {
-    "source": "alignment_forum",
-    "credibility": 0.9,
-    "title": "My research agenda and work",
-    "summary": "<p><span>This is a summary of the work I've done and work I plan to do, and the theories of change and AI progress that motivate my work. I've been working full-time on alignment for three years and change, and thinking about brainlike AGI and its alignment increasingly often since 2004. </span></p><p><span>Here's the research agenda in one breath: I'm trying to predict what the first transformative AI will be, in enough mechanistic detail that we can predict likely failure modes of its alignmen",
-    "url": "https://www.alignmentforum.org/posts/MuLvZxMcy5WaKJu3H/my-research-agenda-and-work",
-    "published": "2026-06-05T14:19:53",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": true
-    },
-    "signal_count": 1,
-    "tickers": [
-      "META",
-      "GOOGL",
-      "CEG"
-    ],
-    "quality_score": 1.3714,
-    "weighted_relevance": 1.3714492162535559
-  },
-  {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Nvidia's Profit Margins Are Safe for Now, Luria Says",
-    "summary": "Gil Luria, DA Davidson\u2019s head of technology research, says Nvidia's profit margins are relatively safe through the year 2030 because hyperscalers have few alternatives for the chips they use to power data centers. He speaks on \"Bloomberg Surveillance.\" (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-05/nvidia-s-profit-margins-are-safe-for-now-luria-says-video",
-    "published": "2026-06-05T14:57:06",
+    "title": "Jensen Huang Mania Sweeps Through Seoul",
+    "summary": "Jensen Huang's South Korea visit wasn't all business. The Nvidia CEO met esports legend Faker, dined with tech titans, drew crowds like a rockstar, and even threw out the ceremonial first pitch at a baseball game. (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-08/jensen-huang-mania-sweeps-through-seoul-video",
+    "published": "2026-06-08T10:55:16",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -48,10 +24,98 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Nvidia 70%+ Margins Safe Through 2030, DA Davidson\u2019s Luria Says",
-    "summary": "Nvidia Corp.\u2019s profit margins are relatively safe through 2030 because hyperscalers have few alternatives for the chips powering data centers for artificial intelligence, DA Davidson\u2019s head of technology research said.",
-    "url": "https://www.bloomberg.com/news/articles/2026-06-05/nvidia-70-margins-safe-through-2030-da-davidson-s-luria-says",
-    "published": "2026-06-05T14:25:37",
+    "title": "Nvidia, Hyundai Deepen Joint Push Into AI-Powered Robotics",
+    "summary": "Nvidia Corp. and Hyundai Motor Group agreed to deepen their alliance to turn so-called physical AI and robotics into real industrial products.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-08/nvidia-hyundai-deepen-joint-push-into-ai-powered-robotics",
+    "published": "2026-06-08T10:14:24",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Korean Stocks Under Pressure, Jensen Huang in Seoul",
+    "summary": "South Korean stocks plunged as investors pulled back from artificial intelligence bets. Meanwhile, a tech-centered camaraderie was on display last week with Nvidia CEO Jensen Huang's night out in Seoul with South Korea's tech corporate royalty, including leaders from SK Group, LG Group and Naver Corp. (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-08/korean-stocks-under-pressure-jensen-huang-in-seoul-video",
+    "published": "2026-06-08T03:16:32",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Nvidia CEO Says Selloff in Tech Stocks Is a Buying Opportunity",
+    "summary": "Nvidia Corp. Chief Executive Officer Jensen Huang called a global tech stocks selloff that began last week a buying opportunity, saying the buildout of artificial intelligence has just begun.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-08/nvidia-ceo-shrugs-off-tech-stock-rout-with-ai-just-beginning",
+    "published": "2026-06-08T03:03:16",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Nvidia, SK Hynix Seal Multi-Year Pact to Develop AI Chips",
+    "summary": "Nvidia Corp. and SK Hynix Inc. have agreed to partner on designing future generations of memory chips for AI, a win for a South Korean leader vying with Samsung Electronics Co. in a red-hot arena.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-07/nvidia-sk-hynix-sign-multi-year-pact-to-develop-next-gen-chips",
+    "published": "2026-06-07T23:26:02",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Naver to Use Nvidia\u2019s AI Models in Bid to Cement Lead in Korea",
+    "summary": "South Korea\u2019s Naver Corp. agreed to build data centers based on Nvidia Corp.\u2019s models in a move to clinch its dominance in the country\u2019s artificial intelligence landscape.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-07/naver-to-use-nvidia-s-ai-models-in-bid-to-cement-lead-in-korea",
+    "published": "2026-06-07T23:09:34",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -70,10 +134,32 @@
   {
     "source": "lesswrong",
     "credibility": 0.85,
-    "title": "My research agenda and work",
-    "summary": "<p><span>This is a summary of the work I've done and work I plan to do, and the theories of change and AI progress that motivate my work. I've been working full-time on alignment for three years and change, and thinking about brainlike AGI and its alignment increasingly often since 2004. </span></p><p><span>Here's the research agenda in one breath: I'm trying to predict what the first transformative AI will be, in enough mechanistic detail that we can predict likely failure modes of its alignmen",
-    "url": "https://www.lesswrong.com/posts/MuLvZxMcy5WaKJu3H/my-research-agenda-and-work",
-    "published": "2026-06-05T14:19:53",
+    "title": "Contextual Identity Laundering: How Claude\u2019s Image Refusal Can Be Routed Through Web Search",
+    "summary": "<p><b><span>Summary</span></b></p><p><span>This report documents two distinct findings regarding Claude\u2019s photo identification safety controls. First, Claude\u2019s Chain of Thought (COT) reliably identifies public figures from photos while the output layer simultaneously refuses to disclose that identification \u2013 a gap between internal processing and user-facing behavior. Second, the model\u2019s web_search tool routinely bypasses the facial recognition restriction entirely by using contextual clues from ",
+    "url": "https://www.lesswrong.com/posts/6Y8bB6TbMaE6ZSwfA/contextual-identity-laundering-how-claude-s-image-refusal",
+    "published": "2026-06-08T00:44:45",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  },
+  {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "Secret Loyalties Likely Raise Remote-Influenceability",
+    "summary": "<p><b><span>TL;DR:</span></b></p><ul><li value=\"1\"><span>Among </span><i><span>capable</span></i><span> reward-seekers, a secret loyalty likely </span><b><span>raises</span></b><span> the model's propensity for remote-influenceability.</span></li><li value=\"2\"><span>Attempting to remove an installed broad secret loyalty post-hoc may not remove the remote-influenceability it raised.</span></li><li value=\"3\"><span>Frontier developers should be doubly cautious of secret loyalties, and should adopt ",
+    "url": "https://www.lesswrong.com/posts/YpAxXAcAFp4aFJRwf/secret-loyalties-likely-raise-remote-influenceability",
+    "published": "2026-06-07T17:51:50",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -83,21 +169,17 @@
       "salp": true
     },
     "signal_count": 1,
-    "tickers": [
-      "META",
-      "GOOGL",
-      "CEG"
-    ],
+    "tickers": [],
     "quality_score": 1.2233,
     "weighted_relevance": 1.2232988379545604
   },
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Minimizing the Hidden Cost of Scales: Graph-Guided Ultra-Low-Bit Quantization for Large Language Models",
-    "summary": "arXiv:2606.05429v1 Announce Type: new \nAbstract: Post-training quantization (PTQ) is critical for the efficient deployment of large language models (LLMs). Recent ultra-low-bit PTQ methods rely on rigid weight-saliency assumptions or position heuristics, introducing substantial hidden scaling overhead. We propose SAGE-PTQ (Saliency-Aware Graph-guided Efficient PTQ), a novel ultra-low-bit quantization framework for LLMs that minimizes hidden scaling cost. SAGE-PTQ separates salient and unsalient ",
-    "url": "https://arxiv.org/abs/2606.05429",
-    "published": "2026-06-05T04:00:00",
+    "title": "FP8 is All You Need (Part 1): Debunking Hardware FP64 as the HPC Holy Grail",
+    "summary": "arXiv:2606.06510v1 Announce Type: cross \nAbstract: Conventional HPC dogma holds that native hardware FP64 silicon is the irreducible foundation of scientific computing -- the \"holy grail\" of double-precision simulation. This paper argues the dogma is wrong: on AI-optimised GPUs of the B300 generation and beyond, abundant FP8 tensor throughput combined with the Chinese Remainder Theorem-based Ozaki Scheme II recovers memory-roof execution at full FP64 accuracy across the canonical HPC kernel spec",
+    "url": "https://arxiv.org/abs/2606.06510",
+    "published": "2026-06-08T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -116,10 +198,10 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Evaluation of LLMs for Mathematical Formalization in Lean",
-    "summary": "arXiv:2606.05632v1 Announce Type: new \nAbstract: Within the past few years, the ability of Large Language Models (LLMs) to generate formal mathematical proofs has improved drastically. We provide a comparison of various LLMs' effectiveness in producing formal proofs in Lean 4 with the goal of assisting those seeking to use LLMs to support their own projects. We utilize both pass@$k$ and refine@$k$ metrics as the benchmark for our comparison and evaluate on subsets of both miniF2F and miniCTX dat",
-    "url": "https://arxiv.org/abs/2606.05632",
-    "published": "2026-06-05T04:00:00",
+    "title": "Beyond the Black Box: Interpretability of Agentic AI Tool Use",
+    "summary": "arXiv:2605.06890v3 Announce Type: replace \nAbstract: AI agents are promising for high-stakes enterprise workflows, but dependable deployment remains limited because tool-use failures are difficult to diagnose and control. Agents may skip required tool calls, invoke tools unnecessarily, or take actions whose consequence becomes visible only after execution. Existing observability methods are external: prompts reveal correlations, evaluations score outputs, and logs arrive only after the model has",
+    "url": "https://arxiv.org/abs/2605.06890",
+    "published": "2026-06-08T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -138,94 +220,10 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Vortex: Efficient and Programmable Sparse Attention Serving for AI Agents",
-    "summary": "arXiv:2606.06453v1 Announce Type: new \nAbstract: Sparse attention is becoming increasingly important for serving large language models (LLMs) as generation lengths continue to grow. However, deploying and evaluating new sparse attention algorithms at scale remains highly engineering-intensive, slowing both human researchers and AI agents in exploring the sparse attention design. To address this challenge, we present Vortex, a system that combines a Python-embedded frontend language atop a page-c",
-    "url": "https://arxiv.org/abs/2606.06453",
-    "published": "2026-06-05T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Predict and Reconstruct: Joint Objectives for Self-Supervised Language Representation Learning",
-    "summary": "arXiv:2606.05173v1 Announce Type: cross \nAbstract: Masked language modelling (MLM) has been the dominant pre-training objective for text encoders since BERT, yet it encourages representations that are strongly anchored to surface-form token identity rather than deeper semantic structure. Inspired by the success of Joint Embedding Predictive Architectures (JEPA) (LeCun, 2022) in vision and audio, we propose a hybrid pre-training objective that combines a JEPA-style latent-space prediction loss wi",
-    "url": "https://arxiv.org/abs/2606.05173",
-    "published": "2026-06-05T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "CausalPOI: Spatio-Temporal Graph-Based Causal Modeling for Cold-Start POI Check-in Forecasting",
-    "summary": "arXiv:2606.05413v1 Announce Type: cross \nAbstract: As urban environments continue to evolve rapidly, accurately modeling the dynamic behaviour of Points of Interest is essential for supporting data-driven urban planning and commercial decision-making. While recent advancements in spatio-temporal graph learning have improved POI forecasting, most methods rely on proximity-based graphs and correlation-driven modeling, which overlook the functional dependencies between POIs and fail to capture the ",
-    "url": "https://arxiv.org/abs/2606.05413",
-    "published": "2026-06-05T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": true
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Causal Scaffolding for Physical Reasoning: A Benchmark for Causally-Informed Physical World Understanding in VLMs",
-    "summary": "arXiv:2606.05966v1 Announce Type: cross \nAbstract: Understanding and reasoning about the physical world is the foundation of intelligent behavior, yet state-of-the-art vision-language models (VLMs) still fail at causal physical reasoning, often producing plausible but incorrect answers. To address this gap, we introduce CausalPhys, a benchmark of over 3,000 carefully curated video- and image-based questions spanning four domains: Perception, Anticipation, Intervention, and Goal Orientation. Each",
-    "url": "https://arxiv.org/abs/2606.05966",
-    "published": "2026-06-05T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": true
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "World-Language-Action Model for Unified World Modeling, Language Reasoning, and Action Synthesis",
-    "summary": "arXiv:2606.05979v1 Announce Type: cross \nAbstract: We propose world-language-action (WLA) models as a new class of embodied foundation models. WLA takes textual instructions, images, and robot states as inputs to jointly predict textual subtasks, subgoal images, and robot actions, conjoining the \\emph{world modeling interface} to learn from extensive egocentric videos as in the world-action model (WAM) and the \\emph{language reasoning} capacities to solve complex long-horizon tasks as in vision-",
-    "url": "https://arxiv.org/abs/2606.05979",
-    "published": "2026-06-05T04:00:00",
+    "title": "Fine-Tuning and Serving Gemma 4 31B on Google Cloud TPU: A Technical Comparison with GPU Baselines",
+    "summary": "arXiv:2605.25645v3 Announce Type: replace-cross \nAbstract: We present the first end-to-end demonstration of fine-tuning and serving Google's Gemma 4 31B model on TPU hardware, providing an empirical comparison of TPU and GPU platforms for large language model adaptation. Using LoRA on a Google TPU v5p-8 for training and TPU v6e-8 (Trillium) for inference, we document the full set of code-level adaptations required to port a GPU-native training recipe - built on PyTorch, HuggingFace TRL, and FSDP",
+    "url": "https://arxiv.org/abs/2605.25645",
+    "published": "2026-06-08T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -237,31 +235,7 @@
     "signal_count": 1,
     "tickers": [
       "NVDA",
-      "RTX",
-      "META"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Evaluating CUDA Tile for AI Workloads on Hopper and Blackwell GPUs",
-    "summary": "arXiv:2604.23466v2 Announce Type: replace-cross \nAbstract: NVIDIA's CUDA Tile (CuTile) introduces a Python-based, tile-centric abstraction for GPU kernel development that aims to simplify programming while retaining Tensor Core and Tensor Memory Accelerator (TMA) efficiency on modern GPUs. We present the first independent, cross-architecture evaluation of CuTile against established approaches such as cuBLAS, Triton, WMMA, and raw SIMT on three NVIDIA GPUs spanning Hopper and Blackwell: H100 NVL,",
-    "url": "https://arxiv.org/abs/2604.23466",
-    "published": "2026-06-05T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA",
-      "RTX"
+      "GOOGL"
     ],
     "quality_score": 1.0836,
     "weighted_relevance": 1.0836141955583654
