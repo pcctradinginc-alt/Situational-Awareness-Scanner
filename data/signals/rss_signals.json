@@ -2,10 +2,10 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Jensen Huang Mania Sweeps Through Seoul",
-    "summary": "Jensen Huang's South Korea visit wasn't all business. The Nvidia CEO met esports legend Faker, dined with tech titans, drew crowds like a rockstar, and even threw out the ceremonial first pitch at a baseball game. (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-08/jensen-huang-mania-sweeps-through-seoul-video",
-    "published": "2026-06-08T10:55:16",
+    "title": "Why Jensen Huang Talking up Suppliers Is Worrying",
+    "summary": "Nvidia CEO Jensen Huang's investment advice involving the company's suppliers is dangerously rosy, Bloomberg Opinion columnist Shuli Ren says. Ren argues that concrete guidance, not outsized optimism, is what's needed from Huang and other tech titans. (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-09/why-jensen-huang-talking-up-suppliers-is-worrying-video",
+    "published": "2026-06-09T06:18:45",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -22,26 +22,66 @@
     "weighted_relevance": 1.3111731766256216
   },
   {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "Nvidia CEO Says Tech Stock Selloff Is a Buying Opportunity | The Pulse 6/8/2026",
-    "summary": "\"The Pulse With Francine Lacqua\" is all about conversations with high profile guests in the beating heart of global business, economics, finance and politics. Based in London, we go wherever the story is, bringing you exclusive interviews and market-moving scoops.\n\nToday's guests: Lindsay Rosner, Goldman Sachs Asset Management Head of Multi-Sector Investing; Euan Blair, Multiverse CEO & Founder; Kanishka Narayan, UK AI & Online Safety Minister (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-08/the-pulse-6-8-2026-video",
-    "published": "2026-06-08T11:29:11",
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "LLMs and almost good code",
+    "summary": "<p><span>TL;DR: My new prior is that top-of-the-line LLMs working on </span><i><span>easy</span></i><span> tasks generate code that is maybe 10\u00a0% more complicated than necessary. I also think we accept this complexity too easily, because it comes from code that is </span><i><span>right here</span></i><span>, </span><i><span>right now</span></i><span>, solving an immediate problem. This may have consequences for maintenance in the long term.</span></p><p><span>(The text of the LessWrong version o",
+    "url": "https://www.lesswrong.com/posts/CMHRjrue4mnGnssc6/llms-and-almost-good-code",
+    "published": "2026-06-09T07:21:29",
     "signals": {
       "thiel": false,
       "shulman": false,
       "contrarian": false,
-      "bottleneck_compute": true,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": true
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  },
+  {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "On Slop",
+    "summary": "<h3><i><span>TL;DR: What is slop, and why? Is it fundamental? Is it in the room with us right now? And, most importantly, how do we exorcise it?</span></i></h3><p><i><span>Previously in this series:&nbsp;</span></i><a href=\"https://universalprior.substack.com/p/this-week-in-fashion\"><i><span>This Week In Fashion</span></i></a><i><span>&nbsp;and&nbsp;</span></i><a href=\"https://universalprior.substack.com/p/on-automatic-ideas\"><i><span>On Automatic Ideas</span></i></a></p><p><span>A potential pos",
+    "url": "https://www.lesswrong.com/posts/x3rMzXcRkJwaMdBCa/on-slop-1",
+    "published": "2026-06-09T01:08:22",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": true
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  },
+  {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "How valuable are weak AI safety regulations?",
+    "summary": "<p>To prevent superintelligent AI from killing everyone, I would like there to be <a href=\"https://nowinners.ai/\">a strong international agreement</a> banning the development of ASI until it can be proven safe. But that sort of agreement requires a lot of political buy-in and coordination. In the meantime, it may be easier to get light-touch AI safety regulations passed. To what extent do weak regulations decrease extinction risk?</p>\n<p>In this post:</p>\n<ul>\n<li>Part I discusses routes by whic",
+    "url": "https://www.lesswrong.com/posts/peHyxRozoQbcMSzxm/how-valuable-are-weak-ai-safety-regulations",
+    "published": "2026-06-08T18:24:57",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": true,
+      "bottleneck_compute": false,
       "bottleneck_energy": false,
       "salp": false
     },
     "signal_count": 1,
     "tickers": [
-      "NVDA"
+      "META"
     ],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
   },
   {
     "source": "lesswrong",
@@ -66,34 +106,12 @@
     "weighted_relevance": 1.2232988379545604
   },
   {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "Contextual Identity Laundering: How Claude\u2019s Image Refusal Can Be Routed Through Web Search",
-    "summary": "<p><b><span>Summary</span></b></p><p><span>This report documents two distinct findings regarding Claude\u2019s photo identification safety controls. First, Claude\u2019s Chain of Thought (COT) reliably identifies public figures from photos while the output layer simultaneously refuses to disclose that identification \u2013 a gap between internal processing and user-facing behavior. Second, the model\u2019s web_search tool routinely bypasses the facial recognition restriction entirely by using contextual clues from ",
-    "url": "https://www.lesswrong.com/posts/6Y8bB6TbMaE6ZSwfA/contextual-identity-laundering-how-claude-s-image-refusal",
-    "published": "2026-06-08T00:44:45",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "FP8 is All You Need (Part 1): Debunking Hardware FP64 as the HPC Holy Grail",
-    "summary": "arXiv:2606.06510v1 Announce Type: cross \nAbstract: Conventional HPC dogma holds that native hardware FP64 silicon is the irreducible foundation of scientific computing -- the \"holy grail\" of double-precision simulation. This paper argues the dogma is wrong: on AI-optimised GPUs of the B300 generation and beyond, abundant FP8 tensor throughput combined with the Chinese Remainder Theorem-based Ozaki Scheme II recovers memory-roof execution at full FP64 accuracy across the canonical HPC kernel spec",
-    "url": "https://arxiv.org/abs/2606.06510",
-    "published": "2026-06-08T04:00:00",
+    "title": "Subtitle-Aligned Fine-Tuning of Whisper for Swiss German ASR: Benchmark Contamination, Convention Mismatch, and an Honest Baseline at 25.6% WER (13.8% cWER)",
+    "summary": "arXiv:2606.07608v1 Announce Type: cross \nAbstract: We present a systematic study of fine-tuning OpenAI's Whisper large-v3 for Swiss German ASR, using 1,367 hours of broadcast speech paired with Standard German subtitles as weak supervision. Through 16 iterative training runs on an NVIDIA DGX Spark (Grace Blackwell, 128 GB unified memory, up to 1 PFLOP FP4), we compare LoRA and full fine-tuning of the 1.55B-parameter model, investigate hallucination root causes, and quantify the effect of data qu",
+    "url": "https://arxiv.org/abs/2606.07608",
+    "published": "2026-06-09T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -112,10 +130,10 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Beyond the Black Box: Interpretability of Agentic AI Tool Use",
-    "summary": "arXiv:2605.06890v3 Announce Type: replace \nAbstract: AI agents are promising for high-stakes enterprise workflows, but dependable deployment remains limited because tool-use failures are difficult to diagnose and control. Agents may skip required tool calls, invoke tools unnecessarily, or take actions whose consequence becomes visible only after execution. Existing observability methods are external: prompts reveal correlations, evaluations score outputs, and logs arrive only after the model has",
-    "url": "https://arxiv.org/abs/2605.06890",
-    "published": "2026-06-08T04:00:00",
+    "title": "MOSS-Video-Preview: Toward Real-Time Video Understanding via Cross-Attention",
+    "summary": "arXiv:2606.07639v1 Announce Type: cross \nAbstract: Video understanding is shifting from the offline paradigm -- taking a fully recorded video as input and producing a single answer after it ends -- toward real-time interaction, in which the model perceives new frames while still replying, revises its answer as new evidence appears, and remains silent when there is nothing to say. We present MOSS-Video-Preview to validate this paradigm. Our central claim is that perception must not be blocked by ",
+    "url": "https://arxiv.org/abs/2606.07639",
+    "published": "2026-06-09T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -134,10 +152,30 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Fine-Tuning and Serving Gemma 4 31B on Google Cloud TPU: A Technical Comparison with GPU Baselines",
-    "summary": "arXiv:2605.25645v3 Announce Type: replace-cross \nAbstract: We present the first end-to-end demonstration of fine-tuning and serving Google's Gemma 4 31B model on TPU hardware, providing an empirical comparison of TPU and GPU platforms for large language model adaptation. Using LoRA on a Google TPU v5p-8 for training and TPU v6e-8 (Trillium) for inference, we document the full set of code-level adaptations required to port a GPU-native training recipe - built on PyTorch, HuggingFace TRL, and FSDP",
-    "url": "https://arxiv.org/abs/2605.25645",
-    "published": "2026-06-08T04:00:00",
+    "title": "Agentic multi-fidelity learning of quasiparticle and excitonic properties",
+    "summary": "arXiv:2606.07836v1 Announce Type: cross \nAbstract: Many-body GW-Bethe-Salpeter equation calculations are essential for accurate simulations of electronic structure and optical properties in modern low-dimensional nanomaterials. However, these methods are computationally demanding and can exhibit localized numerical instabilities or convergence failures that are difficult to detect within high-throughput workflows. We introduce an agent-guided multi-fidelity framework for correcting GW-Bethe-Salp",
+    "url": "https://arxiv.org/abs/2606.07836",
+    "published": "2026-06-09T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": true
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Resource-aware Computation-Communication Overlap for multi-GPU ML Workloads",
+    "summary": "arXiv:2606.09200v1 Announce Type: cross \nAbstract: The rapid growth of large-scale machine learning (ML) has made distributed training across multiple GPUs a fundamental component of modern ML systems. As model sizes and computational throughput continue to increase, communication overhead has become a dominant bottleneck in multi-GPU training, particularly when computation and communication are executed sequentially. This work explores concurrent execution of computation and collective communic",
+    "url": "https://arxiv.org/abs/2606.09200",
+    "published": "2026-06-09T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -148,7 +186,140 @@
     },
     "signal_count": 1,
     "tickers": [
-      "GOOGL",
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Real-time body pose non-verbal communication with a consistency-based reliability measure",
+    "summary": "arXiv:2606.09390v1 Announce Type: cross \nAbstract: Body movement communicates intent at distances and in conditions where neither the face, nor speech can be captured. We study the recognition of communicative intent from 2D body pose alone. We argue that body motion is a reliable signal especially in scenarios that require real time low-cost on-device person-to-robot communication in long distance environments, such as rescue missions. However, existing resources do not isolate this signal. Aff",
+    "url": "https://arxiv.org/abs/2606.09390",
+    "published": "2026-06-09T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "TAO: Tolerance-Aware Optimistic Verification for Floating-Point Neural Networks",
+    "summary": "arXiv:2510.16028v4 Announce Type: replace-cross \nAbstract: Neural networks increasingly run on hardware outside the user's control (cloud GPUs, inference marketplaces). Yet ML-as-a-Service reveals little about what actually ran or whether returned outputs faithfully reflect the intended inputs. Users lack recourse against service downgrades (model swaps, quantization, graph rewrites, or discrepancies like altered ad embeddings). Verifying outputs is hard because floating-point(FP) execution on h",
+    "url": "https://arxiv.org/abs/2510.16028",
+    "published": "2026-06-09T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA",
+      "RTX"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Kunlun: Establishing Scaling Laws for Massive-Scale Recommendation Systems through Unified Architecture Design",
+    "summary": "arXiv:2602.10016v3 Announce Type: replace-cross \nAbstract: Deriving predictable scaling laws that govern the relationship between model performance and computational investment is crucial for designing and allocating resources in massive-scale recommendation systems. While such laws are established for large language models, they remain challenging for recommendation systems, especially those processing both user history and context features. We identify poor scaling efficiency as the main barri",
+    "url": "https://arxiv.org/abs/2602.10016",
+    "published": "2026-06-09T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA",
+      "META"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "POET-X: Memory-efficient LLM Training by Scaling Orthogonal Transformation",
+    "summary": "arXiv:2603.05500v2 Announce Type: replace-cross \nAbstract: Efficient and stable training of large language models (LLMs) remains a core challenge in modern machine learning systems. To address this challenge, Reparameterized Orthogonal Equivalence Training (POET), a spectrum-preserving framework that optimizes each weight matrix through orthogonal equivalence transformation, has been proposed. Although POET provides strong training stability, its original implementation incurs high memory consum",
+    "url": "https://arxiv.org/abs/2603.05500",
+    "published": "2026-06-09T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "From Detection to Recovery: Operational Analysis on LLM Pre-training with 504 GPUs",
+    "summary": "arXiv:2605.09370v3 Announce Type: replace-cross \nAbstract: Large-scale AI training is now fundamentally a distributed systems problem, and hardware failures have become routine operating conditions rather than rare exceptions. Public operational evidence from production training clusters, however, remains scarce. This technical report presents an empirical analysis of a 63-node NVIDIA B200 production cluster (504 GPUs), using 55 days of Prometheus time-series data and 73 days of operational logs",
+    "url": "https://arxiv.org/abs/2605.09370",
+    "published": "2026-06-09T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Cosmos 3: Omnimodal World Models for Physical AI",
+    "summary": "arXiv:2606.02800v2 Announce Type: replace-cross \nAbstract: We introduce Cosmos 3, a family of omnimodal world models designed to jointly process and generate language, image, video, audio, and action sequences within a unified mixture-of-transformers architecture. By supporting highly flexible input-output configurations, Cosmos 3 seamlessly unifies critical modalities for Physical AI -- effectively subsuming vision-language models, video generators, world simulators, and world-action models int",
+    "url": "https://arxiv.org/abs/2606.02800",
+    "published": "2026-06-09T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
       "NVDA"
     ],
     "quality_score": 1.0836,
