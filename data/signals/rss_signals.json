@@ -1,27 +1,5 @@
 [
   {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "Why Jensen Huang Talking up Suppliers Is Worrying",
-    "summary": "Nvidia CEO Jensen Huang's investment advice involving the company's suppliers is dangerously rosy, Bloomberg Opinion columnist Shuli Ren says. Ren argues that concrete guidance, not outsized optimism, is what's needed from Huang and other tech titans. (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-09/why-jensen-huang-talking-up-suppliers-is-worrying-video",
-    "published": "2026-06-09T06:18:45",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
     "source": "lesswrong",
     "credibility": 0.85,
     "title": "LLMs and almost good code",
@@ -58,50 +36,6 @@
     },
     "signal_count": 1,
     "tickers": [],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "How valuable are weak AI safety regulations?",
-    "summary": "<p>To prevent superintelligent AI from killing everyone, I would like there to be <a href=\"https://nowinners.ai/\">a strong international agreement</a> banning the development of ASI until it can be proven safe. But that sort of agreement requires a lot of political buy-in and coordination. In the meantime, it may be easier to get light-touch AI safety regulations passed. To what extent do weak regulations decrease extinction risk?</p>\n<p>In this post:</p>\n<ul>\n<li>Part I discusses routes by whic",
-    "url": "https://www.lesswrong.com/posts/peHyxRozoQbcMSzxm/how-valuable-are-weak-ai-safety-regulations",
-    "published": "2026-06-08T18:24:57",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": true,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "META"
-    ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "Coverage-driven alignment - What \u2018Teaching Claude Why\u2019 can borrow from AV verification",
-    "summary": "<p><i><span>Cross-posted from </span></i><a href=\"https://blog.foretellix.com/\" rel=\"noreferrer\"><i><span>The Foretellix CTO Blog</span></i></a><i><span>. This is a full-text linkpost, following feedback that my previous piece was too brief as a stub.</span></i></p><p><b><span>Summary:</span></b><span> This post suggests that alignment training could benefit from coverage-driven verification. Anthropic recently reported that teaching Claude alignment </span><i><span>rules</span></i><span> (via p",
-    "url": "https://www.lesswrong.com/posts/hsrjuzqokvAErvZ2q/coverage-driven-alignment-what-teaching-claude-why-can",
-    "published": "2026-06-08T11:42:36",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
     "quality_score": 1.2233,
     "weighted_relevance": 1.2232988379545604
   },
@@ -230,8 +164,8 @@
     },
     "signal_count": 1,
     "tickers": [
-      "NVDA",
-      "RTX"
+      "RTX",
+      "NVDA"
     ],
     "quality_score": 1.0836,
     "weighted_relevance": 1.0836141955583654
@@ -253,8 +187,8 @@
     },
     "signal_count": 1,
     "tickers": [
-      "NVDA",
-      "META"
+      "META",
+      "NVDA"
     ],
     "quality_score": 1.0836,
     "weighted_relevance": 1.0836141955583654
