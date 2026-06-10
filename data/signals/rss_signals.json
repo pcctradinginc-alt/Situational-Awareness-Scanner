@@ -1,11 +1,55 @@
 [
   {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "TSMC\u2019s Monthly Sales Rise 30% Thanks to Sustained AI Chip Demand",
+    "summary": "Taiwan Semiconductor Manufacturing Co. reported a 30% rise in its monthly sales, reflecting continued strength in demand spurred by a global rush to build AI infrastructure.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-10/tsmc-s-monthly-sales-rise-30-thanks-to-sustained-ai-chip-demand",
+    "published": "2026-06-10T05:35:30",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "TSM"
+    ],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
     "source": "lesswrong",
     "credibility": 0.85,
-    "title": "LLMs and almost good code",
-    "summary": "<p><span>TL;DR: My new prior is that top-of-the-line LLMs working on </span><i><span>easy</span></i><span> tasks generate code that is maybe 10\u00a0% more complicated than necessary. I also think we accept this complexity too easily, because it comes from code that is </span><i><span>right here</span></i><span>, </span><i><span>right now</span></i><span>, solving an immediate problem. This may have consequences for maintenance in the long term.</span></p><p><span>(The text of the LessWrong version o",
-    "url": "https://www.lesswrong.com/posts/CMHRjrue4mnGnssc6/llms-and-almost-good-code",
-    "published": "2026-06-09T07:21:29",
+    "title": "The Three Filters: Why Almost Every Plan to Survive ASI Fails Miserably",
+    "summary": "<p><i><span>This post is based on my personal views, which mostly overlap with the views of my employer </span></i><a href=\"https://controlai.com/\"><i><span>ControlAI</span></i></a><i><span> but does not necessarily fully reflect them. This applies in particular, but not exclusively, to technical opinions about AI development and geopolitical predictions.</span></i></p><p><span>You might\u2019ve heard that superintelligent AI (ASI) poses extreme risks like human extinction and other </span><a href=\"h",
+    "url": "https://www.lesswrong.com/posts/BWNqdt5edJdax4jn8/the-three-filters-why-almost-every-plan-to-survive-asi-fails",
+    "published": "2026-06-10T09:44:07",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": true
+    },
+    "signal_count": 1,
+    "tickers": [
+      "META"
+    ],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  },
+  {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "Towards a Formal Scientific Epistemology",
+    "summary": "<p><span>In my post \u201c</span><a href=\"https://www.mindthefuture.info/p/why-im-not-a-bayesian\"><span>Why I\u2019m not a Bayesian</span></a><span>\u201d, I argued that the Bayesian approach of assigning credences to propositions with binary truth values only works in simple and restricted domains. Instead, I claimed, a better approach to epistemology is to assign\u00a0</span><i><span>degrees of truth</span></i><span>\u00a0to\u00a0</span><i><span>models of the world</span></i><span>.</span></p><p><span>This approach is broa",
+    "url": "https://www.lesswrong.com/posts/NKFtDgSH7iZo8skTK/towards-a-formal-scientific-epistemology",
+    "published": "2026-06-09T20:31:43",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -20,32 +64,12 @@
     "weighted_relevance": 1.2232988379545604
   },
   {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "On Slop",
-    "summary": "<h3><i><span>TL;DR: What is slop, and why? Is it fundamental? Is it in the room with us right now? And, most importantly, how do we exorcise it?</span></i></h3><p><i><span>Previously in this series:&nbsp;</span></i><a href=\"https://universalprior.substack.com/p/this-week-in-fashion\"><i><span>This Week In Fashion</span></i></a><i><span>&nbsp;and&nbsp;</span></i><a href=\"https://universalprior.substack.com/p/on-automatic-ideas\"><i><span>On Automatic Ideas</span></i></a></p><p><span>A potential pos",
-    "url": "https://www.lesswrong.com/posts/x3rMzXcRkJwaMdBCa/on-slop-1",
-    "published": "2026-06-09T01:08:22",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": true
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Subtitle-Aligned Fine-Tuning of Whisper for Swiss German ASR: Benchmark Contamination, Convention Mismatch, and an Honest Baseline at 25.6% WER (13.8% cWER)",
-    "summary": "arXiv:2606.07608v1 Announce Type: cross \nAbstract: We present a systematic study of fine-tuning OpenAI's Whisper large-v3 for Swiss German ASR, using 1,367 hours of broadcast speech paired with Standard German subtitles as weak supervision. Through 16 iterative training runs on an NVIDIA DGX Spark (Grace Blackwell, 128 GB unified memory, up to 1 PFLOP FP4), we compare LoRA and full fine-tuning of the 1.55B-parameter model, investigate hallucination root causes, and quantify the effect of data qu",
-    "url": "https://arxiv.org/abs/2606.07608",
-    "published": "2026-06-09T04:00:00",
+    "title": "Alignment Collapse Under KV Cache Quantization: Diagnosis and Mitigation",
+    "summary": "arXiv:2606.09864v1 Announce Type: cross \nAbstract: Key-value (KV) cache quantization is widely used to reduce Large Language Model (LLM) inference memory, yet existing evaluations solely focus on measuring perplexity and accuracy without assessing the safety impact. In this study, we explore alignment preservation under KV cache quantization. Across eleven instruction-tuned models (3.8B-72B) and five benchmarks (1,894 prompts), we find that low-bit quantization can silently destroy safety alignm",
+    "url": "https://arxiv.org/abs/2606.09864",
+    "published": "2026-06-10T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -64,10 +88,10 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "MOSS-Video-Preview: Toward Real-Time Video Understanding via Cross-Attention",
-    "summary": "arXiv:2606.07639v1 Announce Type: cross \nAbstract: Video understanding is shifting from the offline paradigm -- taking a fully recorded video as input and producing a single answer after it ends -- toward real-time interaction, in which the model perceives new frames while still replying, revises its answer as new evidence appears, and remains silent when there is nothing to say. We present MOSS-Video-Preview to validate this paradigm. Our central claim is that perception must not be blocked by ",
-    "url": "https://arxiv.org/abs/2606.07639",
-    "published": "2026-06-09T04:00:00",
+    "title": "Conformal Prediction for Neural Operators: Distribution-Free Uncertainty Quantification in Physics Simulation",
+    "summary": "arXiv:2606.09923v1 Announce Type: cross \nAbstract: Neural operators such as the Fourier Neural Operator (FNO) have emerged as powerful surrogates for solving partial differential equations (PDEs), achieving speedups of several orders of magnitude over traditional numerical solvers. However, deploying these models in safety-critical engineering applications -- such as thermal management of electronic components and battery systems -- requires not only accurate point predictions but also rigorous ",
+    "url": "https://arxiv.org/abs/2606.09923",
+    "published": "2026-06-10T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -86,120 +110,10 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Agentic multi-fidelity learning of quasiparticle and excitonic properties",
-    "summary": "arXiv:2606.07836v1 Announce Type: cross \nAbstract: Many-body GW-Bethe-Salpeter equation calculations are essential for accurate simulations of electronic structure and optical properties in modern low-dimensional nanomaterials. However, these methods are computationally demanding and can exhibit localized numerical instabilities or convergence failures that are difficult to detect within high-throughput workflows. We introduce an agent-guided multi-fidelity framework for correcting GW-Bethe-Salp",
-    "url": "https://arxiv.org/abs/2606.07836",
-    "published": "2026-06-09T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": true
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Resource-aware Computation-Communication Overlap for multi-GPU ML Workloads",
-    "summary": "arXiv:2606.09200v1 Announce Type: cross \nAbstract: The rapid growth of large-scale machine learning (ML) has made distributed training across multiple GPUs a fundamental component of modern ML systems. As model sizes and computational throughput continue to increase, communication overhead has become a dominant bottleneck in multi-GPU training, particularly when computation and communication are executed sequentially. This work explores concurrent execution of computation and collective communic",
-    "url": "https://arxiv.org/abs/2606.09200",
-    "published": "2026-06-09T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Real-time body pose non-verbal communication with a consistency-based reliability measure",
-    "summary": "arXiv:2606.09390v1 Announce Type: cross \nAbstract: Body movement communicates intent at distances and in conditions where neither the face, nor speech can be captured. We study the recognition of communicative intent from 2D body pose alone. We argue that body motion is a reliable signal especially in scenarios that require real time low-cost on-device person-to-robot communication in long distance environments, such as rescue missions. However, existing resources do not isolate this signal. Aff",
-    "url": "https://arxiv.org/abs/2606.09390",
-    "published": "2026-06-09T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "TAO: Tolerance-Aware Optimistic Verification for Floating-Point Neural Networks",
-    "summary": "arXiv:2510.16028v4 Announce Type: replace-cross \nAbstract: Neural networks increasingly run on hardware outside the user's control (cloud GPUs, inference marketplaces). Yet ML-as-a-Service reveals little about what actually ran or whether returned outputs faithfully reflect the intended inputs. Users lack recourse against service downgrades (model swaps, quantization, graph rewrites, or discrepancies like altered ad embeddings). Verifying outputs is hard because floating-point(FP) execution on h",
-    "url": "https://arxiv.org/abs/2510.16028",
-    "published": "2026-06-09T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "RTX",
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Kunlun: Establishing Scaling Laws for Massive-Scale Recommendation Systems through Unified Architecture Design",
-    "summary": "arXiv:2602.10016v3 Announce Type: replace-cross \nAbstract: Deriving predictable scaling laws that govern the relationship between model performance and computational investment is crucial for designing and allocating resources in massive-scale recommendation systems. While such laws are established for large language models, they remain challenging for recommendation systems, especially those processing both user history and context features. We identify poor scaling efficiency as the main barri",
-    "url": "https://arxiv.org/abs/2602.10016",
-    "published": "2026-06-09T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "META",
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "POET-X: Memory-efficient LLM Training by Scaling Orthogonal Transformation",
-    "summary": "arXiv:2603.05500v2 Announce Type: replace-cross \nAbstract: Efficient and stable training of large language models (LLMs) remains a core challenge in modern machine learning systems. To address this challenge, Reparameterized Orthogonal Equivalence Training (POET), a spectrum-preserving framework that optimizes each weight matrix through orthogonal equivalence transformation, has been proposed. Although POET provides strong training stability, its original implementation incurs high memory consum",
-    "url": "https://arxiv.org/abs/2603.05500",
-    "published": "2026-06-09T04:00:00",
+    "title": "BiWM: Advancing Open-Source Interactive Video World Models with Bidirectional Autoregression",
+    "summary": "arXiv:2606.10135v1 Announce Type: cross \nAbstract: Transitioning bidirectional video diffusion models into an autoregressive paradigm improves the interactivity of video world models, but existing causal pipelines need many stages (control fine-tuning, autoregressive training, causal initialization, few-step distillation) and still trail bidirectional models in quality due to error accumulation. Recent world models such as Yume-1.5 and Matrix-Game-3.0 instead adopt a bidirectional autoregressive",
+    "url": "https://arxiv.org/abs/2606.10135",
+    "published": "2026-06-10T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -219,31 +133,9 @@
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
     "title": "From Detection to Recovery: Operational Analysis on LLM Pre-training with 504 GPUs",
-    "summary": "arXiv:2605.09370v3 Announce Type: replace-cross \nAbstract: Large-scale AI training is now fundamentally a distributed systems problem, and hardware failures have become routine operating conditions rather than rare exceptions. Public operational evidence from production training clusters, however, remains scarce. This technical report presents an empirical analysis of a 63-node NVIDIA B200 production cluster (504 GPUs), using 55 days of Prometheus time-series data and 73 days of operational logs",
+    "summary": "arXiv:2605.09370v4 Announce Type: replace-cross \nAbstract: Large-scale AI training is fundamentally a distributed systems problem, where hardware failures are routine operating conditions rather than rare exceptions, yet public operational evidence from production training clusters remains limited. This report presents an empirical analysis of a 63-node NVIDIA B200 production cluster (504 GPUs), using 55 days of Prometheus time-series data and 73 days of operational logs covering 224 multi-node ",
     "url": "https://arxiv.org/abs/2605.09370",
-    "published": "2026-06-09T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Cosmos 3: Omnimodal World Models for Physical AI",
-    "summary": "arXiv:2606.02800v2 Announce Type: replace-cross \nAbstract: We introduce Cosmos 3, a family of omnimodal world models designed to jointly process and generate language, image, video, audio, and action sequences within a unified mixture-of-transformers architecture. By supporting highly flexible input-output configurations, Cosmos 3 seamlessly unifies critical modalities for Physical AI -- effectively subsuming vision-language models, video generators, world simulators, and world-action models int",
-    "url": "https://arxiv.org/abs/2606.02800",
-    "published": "2026-06-09T04:00:00",
+    "published": "2026-06-10T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
