@@ -2,10 +2,30 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "TSMC\u2019s Monthly Sales Rise 30% Thanks to Sustained AI Chip Demand",
-    "summary": "Taiwan Semiconductor Manufacturing Co. reported a 30% rise in its monthly sales, reflecting continued strength in demand spurred by a global rush to build AI infrastructure.",
-    "url": "https://www.bloomberg.com/news/articles/2026-06-10/tsmc-s-monthly-sales-rise-30-thanks-to-sustained-ai-chip-demand",
-    "published": "2026-06-10T05:35:30",
+    "title": "KKR\u2019s Agrawal Says Market May Be Underestimating AI Power Needs",
+    "summary": "AI\u2019s furious pace of growth means power demands could be much higher than people realize, according to KKR &amp; Co.\u2019s Raj Agrawal.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-10/kkr-s-agrawal-says-market-may-be-underestimating-ai-power-needs",
+    "published": "2026-06-10T13:21:01",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": true,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "TSMC\u2019s Monthly Sales Climb 30% on Sustained AI Chip Demand",
+    "summary": "Taiwan Semiconductor Manufacturing Co. reported monthly sales rose 30%, reflecting continued strength in global demand spurred by a rush to build AI infrastructure. Neil Campling reports on Bloomberg Television. (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-10/tsmc-s-monthly-sales-climb-30-on-ai-chip-demand-video",
+    "published": "2026-06-10T11:55:45",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -20,6 +40,28 @@
     ],
     "quality_score": 1.3112,
     "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "I Started an AI Safety Research Org and Think These 7 Things Matter",
+    "summary": "<p><i><span>Thanks to Adam Jones and Ben R Smith for suggesting I make this.</span></i></p><h1><span>How and Why it Started</span></h1><p><span>When I finished the 2024 AI safety fundamentals course by BlueDot Impact, there was a small tick box saying something like 'I want to start an org in this space'.\u00a0</span></p><p><span>I was just coming to the end of my artificial intelligence MSc, and wanted to start an AI safety research organisation. I had tried once and done various other entrepreneuri",
+    "url": "https://www.lesswrong.com/posts/oksbYNBr8Pch8Srg3/i-started-an-ai-safety-research-org-and-think-these-7-things",
+    "published": "2026-06-10T14:54:55",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": true
+    },
+    "signal_count": 1,
+    "tickers": [
+      "AMZN"
+    ],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
   },
   {
     "source": "lesswrong",
@@ -44,22 +86,25 @@
     "weighted_relevance": 1.2232988379545604
   },
   {
-    "source": "lesswrong",
+    "source": "ft_tech",
     "credibility": 0.85,
-    "title": "Towards a Formal Scientific Epistemology",
-    "summary": "<p><span>In my post \u201c</span><a href=\"https://www.mindthefuture.info/p/why-im-not-a-bayesian\"><span>Why I\u2019m not a Bayesian</span></a><span>\u201d, I argued that the Bayesian approach of assigning credences to propositions with binary truth values only works in simple and restricted domains. Instead, I claimed, a better approach to epistemology is to assign\u00a0</span><i><span>degrees of truth</span></i><span>\u00a0to\u00a0</span><i><span>models of the world</span></i><span>.</span></p><p><span>This approach is broa",
-    "url": "https://www.lesswrong.com/posts/NKFtDgSH7iZo8skTK/towards-a-formal-scientific-epistemology",
-    "published": "2026-06-09T20:31:43",
+    "title": "German start-up Neura raises $1.4bn in humanoid robot push",
+    "summary": "Crypto group Tether, Amazon and Nvidia invest in fundraising deal that values company at about $7bn",
+    "url": "https://www.ft.com/content/237f10c2-b2b2-490b-bec1-8864e0a22772",
+    "published": "2026-06-10T14:31:21",
     "signals": {
       "thiel": false,
       "shulman": false,
       "contrarian": false,
-      "bottleneck_compute": false,
+      "bottleneck_compute": true,
       "bottleneck_energy": false,
-      "salp": true
+      "salp": false
     },
     "signal_count": 1,
-    "tickers": [],
+    "tickers": [
+      "AMZN",
+      "NVDA"
+    ],
     "quality_score": 1.2233,
     "weighted_relevance": 1.2232988379545604
   },
