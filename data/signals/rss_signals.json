@@ -16,11 +16,71 @@
     },
     "signal_count": 1,
     "tickers": [
-      "META",
-      "GOOGL"
+      "GOOGL",
+      "META"
     ],
     "quality_score": 1.3714,
     "weighted_relevance": 1.3714492162535559
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "UK Energy Regulator Warns Data Centers Are Hoarding Grid Capacity",
+    "summary": "The UK\u2019s energy regulator is concerned that data centers are reserving large amounts of grid capacity years before fully needed, further threatening the efficiency of networks facing long queues for new supply.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-11/uk-energy-regulator-warns-data-centers-are-hoarding-grid-capacity",
+    "published": "2026-06-11T12:39:04",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": true,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Anduril Open to Building Weapons Hub Outside US, CEO Says",
+    "summary": "Anduril Industries Inc. Chief Executive Officer Brian Schimpf says the company would \"absolutely\" consider building its next weapons manufacturing hub outside the US. Speaking to Bloomberg News Editor-in-Chief John Micklethwait at Founders Forum in the UK, Schimpf adds \"there's a lot of manufacturing talent that exists\" across Europe.  (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-11/anduril-open-to-building-weapons-hub-outside-us-ceo-video",
+    "published": "2026-06-11T12:02:37",
+    "signals": {
+      "thiel": true,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Anduril CEO Says He\u2019s Open to Building Weapons Hub Outside of US",
+    "summary": "Anduril Industries Inc., one of the world\u2019s most valuable defense-tech startups, would \u201cabsolutely\u201d consider building its next weapons manufacturing hub outside the US, said Chief Executive Officer Brian Schimpf.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-11/anduril-ceo-says-he-s-open-to-building-weapons-hub-outside-of-us",
+    "published": "2026-06-11T11:34:09",
+    "signals": {
+      "thiel": true,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
   },
   {
     "source": "lesswrong",
@@ -39,31 +99,8 @@
     },
     "signal_count": 1,
     "tickers": [
-      "META",
-      "GOOGL"
-    ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
-    "source": "ft_tech",
-    "credibility": 0.85,
-    "title": "German start-up Neura raises $1.4bn in humanoid robot push",
-    "summary": "Crypto group Tether, Amazon and Nvidia invest in fundraising deal that values company at about $7bn",
-    "url": "https://www.ft.com/content/237f10c2-b2b2-490b-bec1-8864e0a22772",
-    "published": "2026-06-10T14:31:21",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "AMZN",
-      "NVDA"
+      "GOOGL",
+      "META"
     ],
     "quality_score": 1.2233,
     "weighted_relevance": 1.2232988379545604
