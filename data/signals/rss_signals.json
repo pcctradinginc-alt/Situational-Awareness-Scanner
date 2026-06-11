@@ -1,53 +1,11 @@
 [
   {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "KKR\u2019s Agrawal Says Market May Be Underestimating AI Power Needs",
-    "summary": "AI\u2019s furious pace of growth means power demands could be much higher than people realize, according to KKR &amp; Co.\u2019s Raj Agrawal.",
-    "url": "https://www.bloomberg.com/news/articles/2026-06-10/kkr-s-agrawal-says-market-may-be-underestimating-ai-power-needs",
-    "published": "2026-06-10T13:21:01",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": true,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "TSMC\u2019s Monthly Sales Climb 30% on Sustained AI Chip Demand",
-    "summary": "Taiwan Semiconductor Manufacturing Co. reported monthly sales rose 30%, reflecting continued strength in global demand spurred by a rush to build AI infrastructure. Neil Campling reports on Bloomberg Television. (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-10/tsmc-s-monthly-sales-climb-30-on-ai-chip-demand-video",
-    "published": "2026-06-10T11:55:45",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "TSM"
-    ],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "I Started an AI Safety Research Org and Think These 7 Things Matter",
-    "summary": "<p><i><span>Thanks to Adam Jones and Ben R Smith for suggesting I make this.</span></i></p><h1><span>How and Why it Started</span></h1><p><span>When I finished the 2024 AI safety fundamentals course by BlueDot Impact, there was a small tick box saying something like 'I want to start an org in this space'.\u00a0</span></p><p><span>I was just coming to the end of my artificial intelligence MSc, and wanted to start an AI safety research organisation. I had tried once and done various other entrepreneuri",
-    "url": "https://www.lesswrong.com/posts/oksbYNBr8Pch8Srg3/i-started-an-ai-safety-research-org-and-think-these-7-things",
-    "published": "2026-06-10T14:54:55",
+    "source": "alignment_forum",
+    "credibility": 0.9,
+    "title": "Models May Behave Worse When Eval Aware",
+    "summary": "<p><i><span>This is the first in a series of research updates from the Google DeepMind Language Model Interpretability team, in interpretability and adjacent areas.</span></i></p><h1><span>TL;DR</span></h1><p><span>It's often assumed that models will act more aligned when they can tell they're being evaluated. But we find that Gemini can take \u201cundesired\u201d actions in behavioural evals even when it explicitly reasons that the environments are contrived, and sometimes this reasoning will increase th",
+    "url": "https://www.alignmentforum.org/posts/aTcsN5ZZDnMFJvRiG/models-may-behave-worse-when-eval-aware",
+    "published": "2026-06-11T09:28:19",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -58,18 +16,19 @@
     },
     "signal_count": 1,
     "tickers": [
-      "AMZN"
+      "META",
+      "GOOGL"
     ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
+    "quality_score": 1.3714,
+    "weighted_relevance": 1.3714492162535559
   },
   {
     "source": "lesswrong",
     "credibility": 0.85,
-    "title": "The Three Filters: Why Almost Every Plan to Survive ASI Fails Miserably",
-    "summary": "<p><i><span>This post is based on my personal views, which mostly overlap with the views of my employer </span></i><a href=\"https://controlai.com/\"><i><span>ControlAI</span></i></a><i><span> but does not necessarily fully reflect them. This applies in particular, but not exclusively, to technical opinions about AI development and geopolitical predictions.</span></i></p><p><span>You might\u2019ve heard that superintelligent AI (ASI) poses extreme risks like human extinction and other </span><a href=\"h",
-    "url": "https://www.lesswrong.com/posts/BWNqdt5edJdax4jn8/the-three-filters-why-almost-every-plan-to-survive-asi-fails",
-    "published": "2026-06-10T09:44:07",
+    "title": "Models May Behave Worse When Eval Aware",
+    "summary": "<p><i><span>This is the first in a series of research updates from the Google DeepMind Language Model Interpretability team, in interpretability and adjacent areas.</span></i></p><h1><span>TL;DR</span></h1><p><span>It's often assumed that models will act more aligned when they can tell they're being evaluated. But we find that Gemini can take \u201cundesired\u201d actions in behavioural evals even when it explicitly reasons that the environments are contrived, and sometimes this reasoning will increase th",
+    "url": "https://www.lesswrong.com/posts/aTcsN5ZZDnMFJvRiG/models-may-behave-worse-when-eval-aware",
+    "published": "2026-06-11T09:28:19",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -80,7 +39,8 @@
     },
     "signal_count": 1,
     "tickers": [
-      "META"
+      "META",
+      "GOOGL"
     ],
     "quality_score": 1.2233,
     "weighted_relevance": 1.2232988379545604
@@ -111,10 +71,10 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Alignment Collapse Under KV Cache Quantization: Diagnosis and Mitigation",
-    "summary": "arXiv:2606.09864v1 Announce Type: cross \nAbstract: Key-value (KV) cache quantization is widely used to reduce Large Language Model (LLM) inference memory, yet existing evaluations solely focus on measuring perplexity and accuracy without assessing the safety impact. In this study, we explore alignment preservation under KV cache quantization. Across eleven instruction-tuned models (3.8B-72B) and five benchmarks (1,894 prompts), we find that low-bit quantization can silently destroy safety alignm",
-    "url": "https://arxiv.org/abs/2606.09864",
-    "published": "2026-06-10T04:00:00",
+    "title": "Compiler-First State Space Duality and Portable $O(1)$ Autoregressive Caching for Inference",
+    "summary": "arXiv:2603.09555v2 Announce Type: replace-cross \nAbstract: High-throughput Mamba-2 inference is usually tied to fused CUDA and Triton kernels, limiting portability across accelerator backends. We show that the state space duality (SSD) recurrence has a compiler-friendly structure: diagonal per-head dynamics, fixed-size chunking, einsum-dominated compute, and static control flow. Expressing this structure in standard JAX primitives gives a single-source inference path with no custom kernels, a re",
+    "url": "https://arxiv.org/abs/2603.09555",
+    "published": "2026-06-11T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -125,28 +85,7 @@
     },
     "signal_count": 1,
     "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Conformal Prediction for Neural Operators: Distribution-Free Uncertainty Quantification in Physics Simulation",
-    "summary": "arXiv:2606.09923v1 Announce Type: cross \nAbstract: Neural operators such as the Fourier Neural Operator (FNO) have emerged as powerful surrogates for solving partial differential equations (PDEs), achieving speedups of several orders of magnitude over traditional numerical solvers. However, deploying these models in safety-critical engineering applications -- such as thermal management of electronic components and battery systems -- requires not only accurate point predictions but also rigorous ",
-    "url": "https://arxiv.org/abs/2606.09923",
-    "published": "2026-06-10T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
+      "GOOGL",
       "NVDA"
     ],
     "quality_score": 1.0836,
@@ -156,31 +95,9 @@
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
     "title": "BiWM: Advancing Open-Source Interactive Video World Models with Bidirectional Autoregression",
-    "summary": "arXiv:2606.10135v1 Announce Type: cross \nAbstract: Transitioning bidirectional video diffusion models into an autoregressive paradigm improves the interactivity of video world models, but existing causal pipelines need many stages (control fine-tuning, autoregressive training, causal initialization, few-step distillation) and still trail bidirectional models in quality due to error accumulation. Recent world models such as Yume-1.5 and Matrix-Game-3.0 instead adopt a bidirectional autoregressive",
+    "summary": "arXiv:2606.10135v2 Announce Type: replace-cross \nAbstract: Transitioning bidirectional video diffusion models into an autoregressive paradigm improves the interactivity of video world models, but existing causal pipelines need many stages (control fine-tuning, autoregressive training, causal initialization, few-step distillation) and still trail bidirectional models in quality due to error accumulation. Recent world models such as Yume-1.5 and Matrix-Game-3.0 instead adopt a bidirectional autore",
     "url": "https://arxiv.org/abs/2606.10135",
-    "published": "2026-06-10T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "From Detection to Recovery: Operational Analysis on LLM Pre-training with 504 GPUs",
-    "summary": "arXiv:2605.09370v4 Announce Type: replace-cross \nAbstract: Large-scale AI training is fundamentally a distributed systems problem, where hardware failures are routine operating conditions rather than rare exceptions, yet public operational evidence from production training clusters remains limited. This report presents an empirical analysis of a 63-node NVIDIA B200 production cluster (504 GPUs), using 55 days of Prometheus time-series data and 73 days of operational logs covering 224 multi-node ",
-    "url": "https://arxiv.org/abs/2605.09370",
-    "published": "2026-06-10T04:00:00",
+    "published": "2026-06-11T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
