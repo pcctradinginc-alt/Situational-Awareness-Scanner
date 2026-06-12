@@ -16,8 +16,8 @@
     },
     "signal_count": 1,
     "tickers": [
-      "GOOGL",
-      "META"
+      "META",
+      "GOOGL"
     ],
     "quality_score": 1.3714,
     "weighted_relevance": 1.3714492162535559
@@ -25,93 +25,10 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "UK Energy Regulator Warns Data Centers Are Hoarding Grid Capacity",
-    "summary": "The UK\u2019s energy regulator is concerned that data centers are reserving large amounts of grid capacity years before fully needed, further threatening the efficiency of networks facing long queues for new supply.",
-    "url": "https://www.bloomberg.com/news/articles/2026-06-11/uk-energy-regulator-warns-data-centers-are-hoarding-grid-capacity",
-    "published": "2026-06-11T12:39:04",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": true,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "Anduril Open to Building Weapons Hub Outside US, CEO Says",
-    "summary": "Anduril Industries Inc. Chief Executive Officer Brian Schimpf says the company would \"absolutely\" consider building its next weapons manufacturing hub outside the US. Speaking to Bloomberg News Editor-in-Chief John Micklethwait at Founders Forum in the UK, Schimpf adds \"there's a lot of manufacturing talent that exists\" across Europe.  (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-11/anduril-open-to-building-weapons-hub-outside-us-ceo-video",
-    "published": "2026-06-11T12:02:37",
-    "signals": {
-      "thiel": true,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "Anduril CEO Says He\u2019s Open to Building Weapons Hub Outside of US",
-    "summary": "Anduril Industries Inc., one of the world\u2019s most valuable defense-tech startups, would \u201cabsolutely\u201d consider building its next weapons manufacturing hub outside the US, said Chief Executive Officer Brian Schimpf.",
-    "url": "https://www.bloomberg.com/news/articles/2026-06-11/anduril-ceo-says-he-s-open-to-building-weapons-hub-outside-of-us",
-    "published": "2026-06-11T11:34:09",
-    "signals": {
-      "thiel": true,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "Models May Behave Worse When Eval Aware",
-    "summary": "<p><i><span>This is the first in a series of research updates from the Google DeepMind Language Model Interpretability team, in interpretability and adjacent areas.</span></i></p><h1><span>TL;DR</span></h1><p><span>It's often assumed that models will act more aligned when they can tell they're being evaluated. But we find that Gemini can take \u201cundesired\u201d actions in behavioural evals even when it explicitly reasons that the environments are contrived, and sometimes this reasoning will increase th",
-    "url": "https://www.lesswrong.com/posts/aTcsN5ZZDnMFJvRiG/models-may-behave-worse-when-eval-aware",
-    "published": "2026-06-11T09:28:19",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": true
-    },
-    "signal_count": 1,
-    "tickers": [
-      "GOOGL",
-      "META"
-    ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Compiler-First State Space Duality and Portable $O(1)$ Autoregressive Caching for Inference",
-    "summary": "arXiv:2603.09555v2 Announce Type: replace-cross \nAbstract: High-throughput Mamba-2 inference is usually tied to fused CUDA and Triton kernels, limiting portability across accelerator backends. We show that the state space duality (SSD) recurrence has a compiler-friendly structure: diagonal per-head dynamics, fixed-size chunking, einsum-dominated compute, and static control flow. Expressing this structure in standard JAX primitives gives a single-source inference path with no custom kernels, a re",
-    "url": "https://arxiv.org/abs/2603.09555",
-    "published": "2026-06-11T04:00:00",
+    "title": "RLRWLD CEO on Nvidia Partnership, DexBench",
+    "summary": "Junghee Ryu, Founder and CEO of South Korean robotics startup, RLWRLD, discusses the company's partnership with Nvidia to build a universal benchmark for evaluating how well robots use their hands to manipulate objects and complete tasks. The company is aiming to develop next-generation industry standards for humanoid robotics.\nHe speaks with Shery Ahn on \"Bloomberg: The Asia Trade\". (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-12/rlrwld-ceo-on-nvidia-partnership-dexbench-video",
+    "published": "2026-06-12T05:49:42",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -122,19 +39,58 @@
     },
     "signal_count": 1,
     "tickers": [
-      "GOOGL",
       "NVDA"
     ],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "From AGI to ASI",
+    "summary": "arXiv:2606.12683v1 Announce Type: new \nAbstract: Over the last decade, building human-level artificial general intelligence has moved from far-fetched speculation to being a concrete next-decade target for many of the largest AI organisations. Achieving this goal would have profound and far-reaching impacts on human society, which raises many complex questions for the decade ahead. This report investigates how AI itself might continue to develop in a post-AGI world along the continuum of machine",
+    "url": "https://arxiv.org/abs/2606.12683",
+    "published": "2026-06-12T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": true
+    },
+    "signal_count": 1,
+    "tickers": [],
     "quality_score": 1.0836,
     "weighted_relevance": 1.0836141955583654
   },
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "BiWM: Advancing Open-Source Interactive Video World Models with Bidirectional Autoregression",
-    "summary": "arXiv:2606.10135v2 Announce Type: replace-cross \nAbstract: Transitioning bidirectional video diffusion models into an autoregressive paradigm improves the interactivity of video world models, but existing causal pipelines need many stages (control fine-tuning, autoregressive training, causal initialization, few-step distillation) and still trail bidirectional models in quality due to error accumulation. Recent world models such as Yume-1.5 and Matrix-Game-3.0 instead adopt a bidirectional autore",
-    "url": "https://arxiv.org/abs/2606.10135",
-    "published": "2026-06-11T04:00:00",
+    "title": "PRISMR: Overcoming Parse Collapse in Multimodal Listwise Ranking via Parameterized Representation Internalization",
+    "summary": "arXiv:2606.12942v1 Announce Type: new \nAbstract: Generative listwise ranking with Large Multimodal Models (LMMs) aims to capture global list context in a single forward pass, but\n  its effectiveness degrades in long-context multimodal scenarios. We identify a recurring failure mode, parse collapse, where the\n  autoregressive decoder produces fluent yet incomplete rankings by silently omitting candidates and terminating early. This\n  failure stems from limited context utilization rather than simp",
+    "url": "https://arxiv.org/abs/2606.12942",
+    "published": "2026-06-12T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": true,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Standardized Methods and Recommendations for Green Federated Learning",
+    "summary": "arXiv:2602.00343v2 Announce Type: replace-cross \nAbstract: Federated learning (FL) enables collaborative model training over privacy-sensitive, distributed data, but its environmental impact is difficult to compare across studies due to inconsistent measurement boundaries and heterogeneous reporting. We present a practical carbon-accounting methodology for FL CO2e tracking using NVIDIA NVFlare and CodeCarbon for explicit, phase-aware tasks (initialization, per-round training, evaluation, and idl",
+    "url": "https://arxiv.org/abs/2602.00343",
+    "published": "2026-06-12T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
