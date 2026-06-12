@@ -5,57 +5,57 @@
     "total_checked": 10,
     "details": {
       "VST": {
-        "current": 146.38,
-        "ma200": 170.87,
+        "current": 147.84,
+        "ma200": 170.64,
         "above": false
       },
       "CEG": {
-        "current": 246.71,
-        "ma200": 319.62,
+        "current": 250.72,
+        "ma200": 319.29,
         "above": false
       },
       "NRG": {
-        "current": 123.7,
-        "ma200": 156.19,
+        "current": 124.74,
+        "ma200": 156.08,
         "above": false
       },
       "NEE": {
-        "current": 84.84,
-        "ma200": 84.35,
+        "current": 85.75,
+        "ma200": 84.42,
         "above": true
       },
       "SO": {
-        "current": 93.27,
-        "ma200": 91.16,
+        "current": 93.89,
+        "ma200": 91.18,
         "above": true
       },
       "D": {
-        "current": 66.69,
-        "ma200": 60.39,
+        "current": 67.75,
+        "ma200": 60.45,
         "above": true
       },
       "XEL": {
-        "current": 78.27,
-        "ma200": 77.65,
+        "current": 78.81,
+        "ma200": 77.69,
         "above": true
       },
       "AEE": {
-        "current": 108.25,
-        "ma200": 104.03,
+        "current": 108.82,
+        "ma200": 104.08,
         "above": true
       },
       "ETR": {
-        "current": 109.89,
-        "ma200": 99.37,
+        "current": 110.53,
+        "ma200": 99.48,
         "above": true
       },
       "EXC": {
-        "current": 45.51,
-        "ma200": 45.04,
+        "current": 46.08,
+        "ma200": 45.05,
         "above": true
       }
     },
-    "fetched_at": "2026-06-12T10:22:26.184766"
+    "fetched_at": "2026-06-12T16:18:58.094767"
   },
   "hyperscaler_capex": {
     "fred_capex": {
@@ -92,7 +92,7 @@
     "empirical_point": 0,
     "data_gap": false,
     "primary_source": "fred",
-    "fetched_at": "2026-06-12T10:22:13.706290"
+    "fetched_at": "2026-06-12T16:18:45.686304"
   },
   "fred": {
     "electric_power_production": {
@@ -126,7 +126,7 @@
       "period": "2026-06-10",
       "data_gap": false
     },
-    "fetched_at": "2026-06-12T10:22:11.657694"
+    "fetched_at": "2026-06-12T16:18:42.972800"
   },
   "eia": {
     "growth_yoy": 0.0279,
@@ -135,6 +135,6 @@
     "shulman_signal": false,
     "empirical_point": 0,
     "data_gap": false,
-    "fetched_at": "2026-06-12T10:22:10.465967"
+    "fetched_at": "2026-06-12T16:18:43.929010"
   }
 }

@@ -1,11 +1,51 @@
 [
   {
-    "source": "alignment_forum",
-    "credibility": 0.9,
-    "title": "Models May Behave Worse When Eval Aware",
-    "summary": "<p><i><span>This is the first in a series of research updates from the Google DeepMind Language Model Interpretability team, in interpretability and adjacent areas.</span></i></p><h1><span>TL;DR</span></h1><p><span>It's often assumed that models will act more aligned when they can tell they're being evaluated. But we find that Gemini can take \u201cundesired\u201d actions in behavioural evals even when it explicitly reasons that the environments are contrived, and sometimes this reasoning will increase th",
-    "url": "https://www.alignmentforum.org/posts/aTcsN5ZZDnMFJvRiG/models-may-behave-worse-when-eval-aware",
-    "published": "2026-06-11T09:28:19",
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Founders Fund, Andreessen Poised for Record\u00a0Returns From SpaceX IPO",
+    "summary": "A small number of firms are set to net tens of billions of dollars in returns from SpaceX\u2019s initial public offering at a nearly $1.8 trillion valuation, marking one of the most significant windfalls in venture capital history.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-11/founders-fund-andreessen-set-for-record-returns-from-spacex-ipo",
+    "published": "2026-06-11T20:27:48",
+    "signals": {
+      "thiel": true,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "When Will the UK Have Its First \u00a3100 Billion Tech Firm?",
+    "summary": "James Wise, general partner at Balderton Capital, says the UK could soon have its first \u00a3100 billion tech company. Wise, who also serves as chair of the UK Government's Sovereign AI fund, says policymakers must work with investors to help British firms scale globally. He speaks to Bloomberg's Tom Mackenzie at London Tech Week. (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-12/when-will-the-uk-have-its-first-100-billion-tech-firm-video",
+    "published": "2026-06-12T10:43:33",
+    "signals": {
+      "thiel": true,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "Citations Needed: Magic Encyclopedias to Save the World",
+    "summary": "<p><span>Last week </span><a href=\"http://flf.org\"><span>FLF</span></a><span>\u00a0launched </span><a href=\"https://www.lesswrong.com/posts/frizRHnA6AZpJSDqw/lab-leaks-black-holes-and-eggs-epistemic-case-study\"><span>a competition</span></a><span>\u00a0\u201c</span><b><span>to find the best workflows and methodologies for using AI to produce reliable, trustworthy knowledge bases</span></b><span>\u201d. I had (and have ongoing) a substantial role in that effort. Why do I think it\u2019s so important? It\u2019s a lot of reason",
+    "url": "https://www.lesswrong.com/posts/RyeRYm4FrpqP32a2v/citations-needed-magic-encyclopedias-to-save-the-world",
+    "published": "2026-06-12T15:35:15",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -16,33 +56,10 @@
     },
     "signal_count": 1,
     "tickers": [
-      "META",
       "GOOGL"
     ],
-    "quality_score": 1.3714,
-    "weighted_relevance": 1.3714492162535559
-  },
-  {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "RLRWLD CEO on Nvidia Partnership, DexBench",
-    "summary": "Junghee Ryu, Founder and CEO of South Korean robotics startup, RLWRLD, discusses the company's partnership with Nvidia to build a universal benchmark for evaluating how well robots use their hands to manipulate objects and complete tasks. The company is aiming to develop next-generation industry standards for humanoid robotics.\nHe speaks with Shery Ahn on \"Bloomberg: The Asia Trade\". (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-12/rlrwld-ceo-on-nvidia-partnership-dexbench-video",
-    "published": "2026-06-12T05:49:42",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
   },
   {
     "source": "arxiv_cs_ai",
