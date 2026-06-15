@@ -2,61 +2,89 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Founders Fund, Andreessen Poised for Record\u00a0Returns From SpaceX IPO",
-    "summary": "A small number of firms are set to net tens of billions of dollars in returns from SpaceX\u2019s initial public offering at a nearly $1.8 trillion valuation, marking one of the most significant windfalls in venture capital history.",
-    "url": "https://www.bloomberg.com/news/articles/2026-06-11/founders-fund-andreessen-set-for-record-returns-from-spacex-ipo",
-    "published": "2026-06-11T20:27:48",
+    "title": "Nvidia Kicks Off Its First Corporate Bond Offering in Five Years",
+    "summary": "Nvidia Corp. is seeking to sell high-grade debt for the first time in about five years, extending a relentless wave of borrowing for companies spearheading the artificial intelligence boom.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-15/nvidia-kicks-off-first-high-grade-bond-offering-since-2021",
+    "published": "2026-06-15T12:10:41",
     "signals": {
-      "thiel": true,
+      "thiel": false,
       "shulman": false,
       "contrarian": false,
-      "bottleneck_compute": false,
+      "bottleneck_compute": true,
       "bottleneck_energy": false,
       "salp": false
     },
     "signal_count": 1,
-    "tickers": [],
+    "tickers": [
+      "NVDA"
+    ],
     "quality_score": 1.3112,
     "weighted_relevance": 1.3111731766256216
   },
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "When Will the UK Have Its First \u00a3100 Billion Tech Firm?",
-    "summary": "James Wise, general partner at Balderton Capital, says the UK could soon have its first \u00a3100 billion tech company. Wise, who also serves as chair of the UK Government's Sovereign AI fund, says policymakers must work with investors to help British firms scale globally. He speaks to Bloomberg's Tom Mackenzie at London Tech Week. (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-12/when-will-the-uk-have-its-first-100-billion-tech-firm-video",
-    "published": "2026-06-12T10:43:33",
+    "title": "Anthropic Restricts Mythos After US Order",
+    "summary": "Anthropic has shut off access to its most advanced AI models after a Trump administration order citing national security concerns. The move could set a major precedent for AI regulation, with implications for OpenAI, Google, Meta and beyond.\n\n (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-15/anthropic-restricts-mythos-after-us-order-video",
+    "published": "2026-06-15T07:44:20",
     "signals": {
-      "thiel": true,
+      "thiel": false,
       "shulman": false,
-      "contrarian": false,
+      "contrarian": true,
       "bottleneck_compute": false,
       "bottleneck_energy": false,
       "salp": false
     },
     "signal_count": 1,
-    "tickers": [],
+    "tickers": [
+      "GOOGL",
+      "META"
+    ],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Kazakhstan, Firebird Ink $10 Billion AI Deal With Nvidia Support",
+    "summary": "Kazakhstan signed accords with the startup Firebird Inc. on computing projects involving Nvidia Corp. that could bring as much as $10 billion in investment, as the Central Asian energy producer looks to position itself as an artificial intelligence hub.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-15/kazakhstan-firebird-ink-10-billion-ai-deal-with-nvidia-support",
+    "published": "2026-06-15T07:00:41",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
     "quality_score": 1.3112,
     "weighted_relevance": 1.3111731766256216
   },
   {
     "source": "lesswrong",
     "credibility": 0.85,
-    "title": "Citations Needed: Magic Encyclopedias to Save the World",
-    "summary": "<p><span>Last week </span><a href=\"http://flf.org\"><span>FLF</span></a><span>\u00a0launched </span><a href=\"https://www.lesswrong.com/posts/frizRHnA6AZpJSDqw/lab-leaks-black-holes-and-eggs-epistemic-case-study\"><span>a competition</span></a><span>\u00a0\u201c</span><b><span>to find the best workflows and methodologies for using AI to produce reliable, trustworthy knowledge bases</span></b><span>\u201d. I had (and have ongoing) a substantial role in that effort. Why do I think it\u2019s so important? It\u2019s a lot of reason",
-    "url": "https://www.lesswrong.com/posts/RyeRYm4FrpqP32a2v/citations-needed-magic-encyclopedias-to-save-the-world",
-    "published": "2026-06-12T15:35:15",
+    "title": "Exploring Known Unknowns in the AI Regulatory Landscape",
+    "summary": "<p><span>The AI regulatory space is a rapidly developing and maturing one, and while a lot of work has recently been done to draft new bills and establish new frameworks, there\u2019s still a ton we don\u2019t know about the space. This post aims to quantify and qualify some of the \u201cknown unknowns\u201d about the space, including what I believe to be one of the most consequential unknown variables: The lag time from when new AI capabilities are announced to when regulatory bodies acknowledge or pass legislatio",
+    "url": "https://www.lesswrong.com/posts/5giwhC4FoSTohM4ho/exploring-known-unknowns-in-the-ai-regulatory-landscape",
+    "published": "2026-06-14T22:36:34",
     "signals": {
       "thiel": false,
       "shulman": false,
-      "contrarian": false,
+      "contrarian": true,
       "bottleneck_compute": false,
       "bottleneck_energy": false,
-      "salp": true
+      "salp": false
     },
     "signal_count": 1,
     "tickers": [
-      "GOOGL"
+      "GOOGL",
+      "META"
     ],
     "quality_score": 1.2233,
     "weighted_relevance": 1.2232988379545604
@@ -64,30 +92,32 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "From AGI to ASI",
-    "summary": "arXiv:2606.12683v1 Announce Type: new \nAbstract: Over the last decade, building human-level artificial general intelligence has moved from far-fetched speculation to being a concrete next-decade target for many of the largest AI organisations. Achieving this goal would have profound and far-reaching impacts on human society, which raises many complex questions for the decade ahead. This report investigates how AI itself might continue to develop in a post-AGI world along the continuum of machine",
-    "url": "https://arxiv.org/abs/2606.12683",
-    "published": "2026-06-12T04:00:00",
+    "title": "FactoryLLM: A Safe and Open-Source AI Playground for Evaluating LLMs in Smart Factories",
+    "summary": "arXiv:2606.14119v1 Announce Type: new \nAbstract: Fault diagnostics and recovery in smart factories is challenging because critical information is dispersed across manuals of multiple machines which are interconnected through the manufacturing process. Large Language Models (LLMs) can provide a promising approach. In this paper, we propose FactoryLLM, a safe and open-source AI playground designed for evaluating different LLM-based retrieval-augmented generation (RAG) models by analysing documents",
+    "url": "https://arxiv.org/abs/2606.14119",
+    "published": "2026-06-15T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
       "contrarian": false,
-      "bottleneck_compute": false,
+      "bottleneck_compute": true,
       "bottleneck_energy": false,
-      "salp": true
+      "salp": false
     },
     "signal_count": 1,
-    "tickers": [],
+    "tickers": [
+      "NVDA"
+    ],
     "quality_score": 1.0836,
     "weighted_relevance": 1.0836141955583654
   },
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "PRISMR: Overcoming Parse Collapse in Multimodal Listwise Ranking via Parameterized Representation Internalization",
-    "summary": "arXiv:2606.12942v1 Announce Type: new \nAbstract: Generative listwise ranking with Large Multimodal Models (LMMs) aims to capture global list context in a single forward pass, but\n  its effectiveness degrades in long-context multimodal scenarios. We identify a recurring failure mode, parse collapse, where the\n  autoregressive decoder produces fluent yet incomplete rankings by silently omitting candidates and terminating early. This\n  failure stems from limited context utilization rather than simp",
-    "url": "https://arxiv.org/abs/2606.12942",
-    "published": "2026-06-12T04:00:00",
+    "title": "GMN4AD: Graph Matching Network for Alzheimer's Disease Diagnosis with Test-Time Domain Adaptation using Multi-centered Structure Magnetic Resonance Imaging",
+    "summary": "arXiv:2606.13919v1 Announce Type: cross \nAbstract: Alzheimer's Disease (AD) is a progressive neurodegenerative disorder that affects millions of older adults, with prevalence expected to rise significantly in the coming years. Early diagnosis, particularly during the mild cognitive impairment (MCI) stage, is critical for timely intervention. Structural Magnetic Resonance Imaging (sMRI) has emerged as a key modality for detecting AD-related brain changes, but traditional graph-based approaches of",
+    "url": "https://arxiv.org/abs/2606.13919",
+    "published": "2026-06-15T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -104,10 +134,10 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Standardized Methods and Recommendations for Green Federated Learning",
-    "summary": "arXiv:2602.00343v2 Announce Type: replace-cross \nAbstract: Federated learning (FL) enables collaborative model training over privacy-sensitive, distributed data, but its environmental impact is difficult to compare across studies due to inconsistent measurement boundaries and heterogeneous reporting. We present a practical carbon-accounting methodology for FL CO2e tracking using NVIDIA NVFlare and CodeCarbon for explicit, phase-aware tasks (initialization, per-round training, evaluation, and idl",
-    "url": "https://arxiv.org/abs/2602.00343",
-    "published": "2026-06-12T04:00:00",
+    "title": "The Curse and Blessing of Mean Bias in FP4-Quantized LLM Training",
+    "summary": "arXiv:2603.10444v2 Announce Type: replace-cross \nAbstract: FP4 training promises substantial memory and compute savings for large language models, but remains fragile because blockwise quantization is dictated by extreme activation magnitudes, which inflate dynamic range and compress long-tail signals. We identify a counterintuitive source of this failure: dominant activation outliers are not merely arbitrary sparse events, but are largely induced by a coherent rank-one mean bias, whose directio",
+    "url": "https://arxiv.org/abs/2603.10444",
+    "published": "2026-06-15T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
