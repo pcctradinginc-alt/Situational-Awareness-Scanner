@@ -1,7 +1,7 @@
 {
-  "eia": "OK_FRED",
+  "rss": "10 articles",
   "fred": "OK",
-  "rss": "7 articles",
+  "eia": "OK_FRED",
   "energy_breadth": "OK",
   "tradier": "OK",
   "errors": [],
@@ -13,5 +13,5 @@
     "any_gap": true,
     "all_gaps": false
   },
-  "fetched_at": "2026-06-15T12:27:36.207409"
+  "fetched_at": "2026-06-15T18:04:12.346523"
 }

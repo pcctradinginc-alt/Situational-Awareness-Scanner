@@ -1,9 +1,9 @@
 {
-  "growth_yoy": 0.0279,
-  "latest_period": "2026-04-01",
+  "growth_yoy": 0.0299,
+  "latest_period": "2026-05-01",
   "source": "fred_ipg2211a2n",
   "shulman_signal": false,
   "empirical_point": 0,
   "data_gap": false,
-  "fetched_at": "2026-06-15T12:25:15.438096"
+  "fetched_at": "2026-06-15T18:01:58.428673"
 }

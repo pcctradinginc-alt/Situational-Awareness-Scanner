@@ -2,8 +2,8 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Nvidia Kicks Off Its First Corporate Bond Offering in Five Years",
-    "summary": "Nvidia Corp. is seeking to sell high-grade debt for the first time in about five years, extending a relentless wave of borrowing for companies spearheading the artificial intelligence boom.",
+    "title": "Nvidia Set to Sell $25 Billion of Bonds, Joining AI Debt Boom",
+    "summary": "Chipmaking giant Nvidia Corp. is set to raise $25 billion from a high-grade bond sale that received more than three times that amount in demand, underscoring relentless investor appetite for exposure to the artificial intelligence boom.",
     "url": "https://www.bloomberg.com/news/articles/2026-06-15/nvidia-kicks-off-first-high-grade-bond-offering-since-2021",
     "published": "2026-06-15T12:10:41",
     "signals": {
@@ -24,33 +24,10 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Anthropic Restricts Mythos After US Order",
-    "summary": "Anthropic has shut off access to its most advanced AI models after a Trump administration order citing national security concerns. The move could set a major precedent for AI regulation, with implications for OpenAI, Google, Meta and beyond.\n\n (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-15/anthropic-restricts-mythos-after-us-order-video",
-    "published": "2026-06-15T07:44:20",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": true,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "GOOGL",
-      "META"
-    ],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "Kazakhstan, Firebird Ink $10 Billion AI Deal With Nvidia Support",
-    "summary": "Kazakhstan signed accords with the startup Firebird Inc. on computing projects involving Nvidia Corp. that could bring as much as $10 billion in investment, as the Central Asian energy producer looks to position itself as an artificial intelligence hub.",
-    "url": "https://www.bloomberg.com/news/articles/2026-06-15/kazakhstan-firebird-ink-10-billion-ai-deal-with-nvidia-support",
-    "published": "2026-06-15T07:00:41",
+    "title": "Nvidia Looks to Raise $20 Billion in First Bond Sale Since 2021",
+    "summary": "Nvidia is preparing to raise at least $20 billion through its first corporate bond sale since 2021, marketing bonds across seven tranches with maturities ranging from two to thirty years, according to people with direct knowledge of the matter. Ed Ludlow has more on \"Bloomberg Open Interest.\" (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-15/nvidia-looks-to-raise-20b-in-first-bond-sale-since-2021-video",
+    "published": "2026-06-15T13:34:27",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -65,6 +42,75 @@
     ],
     "quality_score": 1.3112,
     "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "A frontier AI company should shut down",
+    "summary": "<p><em>Cross-posted from <a href=\"https://mdickens.me/2026/06/15/a_frontier_AI_company_should_shut_down/\">my website</a>.</em></p>\n<p><em>Prior discussion: <a href=\"https://www.lesswrong.com/posts/QZM6pErzL7JwE3pkv/shortplav?commentId=M5EzPFY7qihXAGgds\">niplav's shortform</a> (2025); <a href=\"https://www.lesswrong.com/posts/8vgi3fBWPFDLBBcAx/planning-for-extreme-ai-risks#2_3__Outcome__3__Self_destruction\">Planning for Extreme AI Risks</a> (2025) by Joshua Clymer</em></p>\n<p>A frontier AI company",
+    "url": "https://www.lesswrong.com/posts/bStYDEy8PQPt2c3Za/a-frontier-ai-company-should-shut-down",
+    "published": "2026-06-15T16:56:54",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": true,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "META"
+    ],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  },
+  {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "The Once And Future Fable #2",
+    "summary": "<p>On Friday evening <a href=\"https://thezvi.substack.com/p/american-government-takes-down-claude?r=67wny\"><strong>the United States Government has forced Anthropic to take down all access to Fable and Mytho</strong></a><strong>s. </strong></p>\n<p>It\u2019s been a rough weekend.</p>\n<blockquote><p><a href=\"https://x.com/deanwball/status/2066280038085865629\">Dean W. Ball</a>: One thing about AI regulation being haphazardly imposed on just-released, highly performant models is that in a very real sense",
+    "url": "https://www.lesswrong.com/posts/3fagcqrauaJs32mZZ/the-once-and-future-fable-2",
+    "published": "2026-06-15T16:00:49",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": true,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "AMZN"
+    ],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  },
+  {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "Links #3: 2026/06 Part 1",
+    "summary": "<h2><span>Preface</span></h2><p></p><p></p><details class=\"detailsBlock\"><p><br /></p><div class=\"detailsBlockContent\"><ul><li value=\"1\"><span>I show my discovery graph in (via \u2026) blocks, those without (via \u2026) usually come from my RSS reader, or the algorithm in the corresponding website</span></li><li value=\"2\"><span>This is approximately a 1 in 20 filter of content</span></li><li value=\"3\"><span>This is very disorganized, but hopefully still useful.</span><ul><li value=\"1\"><span>Sometimes quot",
+    "url": "https://www.lesswrong.com/posts/ztdCgHFF9PTvpgLCu/links-3-2026-06-part-1",
+    "published": "2026-06-15T12:53:02",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA",
+      "GOOGL",
+      "META",
+      "MSFT"
+    ],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
   },
   {
     "source": "lesswrong",
@@ -85,6 +131,28 @@
     "tickers": [
       "GOOGL",
       "META"
+    ],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  },
+  {
+    "source": "ft_tech",
+    "credibility": 0.85,
+    "title": "Chipmaker Nvidia seeks to raise over $20bn in first bond deal since 2021",
+    "summary": "Debt sale set to test investor appetite for further exposure to AI sector amid a deluge of borrowing",
+    "url": "https://www.ft.com/content/c0e7cc58-e309-4f47-b466-d577c06cbeec",
+    "published": "2026-06-15T15:26:34",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
     ],
     "quality_score": 1.2233,
     "weighted_relevance": 1.2232988379545604
