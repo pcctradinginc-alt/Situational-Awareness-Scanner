@@ -2,8 +2,28 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Nvidia Set to Sell $25 Billion of Bonds, Joining AI Debt Boom",
-    "summary": "Chipmaking giant Nvidia Corp. is set to raise $25 billion from a high-grade bond sale that received more than three times that amount in demand, underscoring relentless investor appetite for exposure to the artificial intelligence boom.",
+    "title": "Anthropic Curbs Show Need for Sovereign AI, Upstage CEO Says",
+    "summary": "The US directive to restrict foreign access to Anthropic PBC\u2019s most advanced technologies underscores the importance of South Korea\u2019s sovereign artificial intelligence efforts, according to the head of a leading domestic AI startup.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-16/anthropic-curbs-show-need-for-sovereign-ai-upstage-ceo-says",
+    "published": "2026-06-16T04:58:41",
+    "signals": {
+      "thiel": true,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Nvidia Joins AI Borrowing Frenzy With $25 Billion Bond Sale",
+    "summary": "Chipmaking giant Nvidia Corp. sold $25 billion of high-grade bonds, joining a wave of jumbo debt offerings from tech heavyweights as investors clamor to get exposure to the artificial intelligence boom.",
     "url": "https://www.bloomberg.com/news/articles/2026-06-15/nvidia-kicks-off-first-high-grade-bond-offering-since-2021",
     "published": "2026-06-15T12:10:41",
     "signals": {
@@ -24,10 +44,10 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Nvidia Looks to Raise $20 Billion in First Bond Sale Since 2021",
-    "summary": "Nvidia is preparing to raise at least $20 billion through its first corporate bond sale since 2021, marketing bonds across seven tranches with maturities ranging from two to thirty years, according to people with direct knowledge of the matter. Ed Ludlow has more on \"Bloomberg Open Interest.\" (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-15/nvidia-looks-to-raise-20b-in-first-bond-sale-since-2021-video",
-    "published": "2026-06-15T13:34:27",
+    "title": "Anthropic Disables AI Access for Foreign Nationals | Bloomberg Tech 6/15/2026",
+    "summary": "Bloomberg\u2019s Ed Ludlow breaks down why Anthropic disabled access to its most advanced models for all foreign nationals after a request from the Trump administration. Plus, Nvidia is seeking to raise at least $20 billion from its first corporate bond sale since 2021. And, SpaceX shares throttle up on day 2 of trading, adding to a blockbuster public markets debut on Friday. (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-15/bloomberg-tech-6-15-2026-video",
+    "published": "2026-06-15T19:19:05",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -42,6 +62,28 @@
     ],
     "quality_score": 1.3112,
     "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "How Matryoshka Sparse AutoEncoders Recover Feature Hierarchies That Vanilla SAEs Lose",
+    "summary": "<p><i><span>A walkthrough of the core findings and guided replication of the concepts from the original research on \u201cMulti-level features discovery with Matryoshka Sparse AutoEncoders\u201d.</span></i></p><h1><span>TL;DR</span></h1><p><span>Sparse AutoEncoders (SAEs) are a cornerstone of mechanistic interpretability, but they struggle with scalability. As we increase the dictionary size to capture more features, we often encounter \"feature splitting\" and \"feature absorption,\" where general concepts a",
+    "url": "https://www.lesswrong.com/posts/EpLj8FTBdGvt44TTF/how-matryoshka-sparse-autoencoders-recover-feature",
+    "published": "2026-06-15T19:49:36",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
   },
   {
     "source": "lesswrong",
@@ -66,82 +108,12 @@
     "weighted_relevance": 1.2232988379545604
   },
   {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "The Once And Future Fable #2",
-    "summary": "<p>On Friday evening <a href=\"https://thezvi.substack.com/p/american-government-takes-down-claude?r=67wny\"><strong>the United States Government has forced Anthropic to take down all access to Fable and Mytho</strong></a><strong>s. </strong></p>\n<p>It\u2019s been a rough weekend.</p>\n<blockquote><p><a href=\"https://x.com/deanwball/status/2066280038085865629\">Dean W. Ball</a>: One thing about AI regulation being haphazardly imposed on just-released, highly performant models is that in a very real sense",
-    "url": "https://www.lesswrong.com/posts/3fagcqrauaJs32mZZ/the-once-and-future-fable-2",
-    "published": "2026-06-15T16:00:49",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": true,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "AMZN"
-    ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "Links #3: 2026/06 Part 1",
-    "summary": "<h2><span>Preface</span></h2><p></p><p></p><details class=\"detailsBlock\"><p><br /></p><div class=\"detailsBlockContent\"><ul><li value=\"1\"><span>I show my discovery graph in (via \u2026) blocks, those without (via \u2026) usually come from my RSS reader, or the algorithm in the corresponding website</span></li><li value=\"2\"><span>This is approximately a 1 in 20 filter of content</span></li><li value=\"3\"><span>This is very disorganized, but hopefully still useful.</span><ul><li value=\"1\"><span>Sometimes quot",
-    "url": "https://www.lesswrong.com/posts/ztdCgHFF9PTvpgLCu/links-3-2026-06-part-1",
-    "published": "2026-06-15T12:53:02",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA",
-      "GOOGL",
-      "META",
-      "MSFT"
-    ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "Exploring Known Unknowns in the AI Regulatory Landscape",
-    "summary": "<p><span>The AI regulatory space is a rapidly developing and maturing one, and while a lot of work has recently been done to draft new bills and establish new frameworks, there\u2019s still a ton we don\u2019t know about the space. This post aims to quantify and qualify some of the \u201cknown unknowns\u201d about the space, including what I believe to be one of the most consequential unknown variables: The lag time from when new AI capabilities are announced to when regulatory bodies acknowledge or pass legislatio",
-    "url": "https://www.lesswrong.com/posts/5giwhC4FoSTohM4ho/exploring-known-unknowns-in-the-ai-regulatory-landscape",
-    "published": "2026-06-14T22:36:34",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": true,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "GOOGL",
-      "META"
-    ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
     "source": "ft_tech",
     "credibility": 0.85,
-    "title": "Chipmaker Nvidia seeks to raise over $20bn in first bond deal since 2021",
+    "title": "Chipmaker Nvidia seeks to raise over $25bn in first bond deal since 2021",
     "summary": "Debt sale set to test investor appetite for further exposure to AI sector amid a deluge of borrowing",
     "url": "https://www.ft.com/content/c0e7cc58-e309-4f47-b466-d577c06cbeec",
-    "published": "2026-06-15T15:26:34",
+    "published": "2026-06-15T18:22:24",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -160,10 +132,204 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "FactoryLLM: A Safe and Open-Source AI Playground for Evaluating LLMs in Smart Factories",
-    "summary": "arXiv:2606.14119v1 Announce Type: new \nAbstract: Fault diagnostics and recovery in smart factories is challenging because critical information is dispersed across manuals of multiple machines which are interconnected through the manufacturing process. Large Language Models (LLMs) can provide a promising approach. In this paper, we propose FactoryLLM, a safe and open-source AI playground designed for evaluating different LLM-based retrieval-augmented generation (RAG) models by analysing documents",
-    "url": "https://arxiv.org/abs/2606.14119",
-    "published": "2026-06-15T04:00:00",
+    "title": "APEX: Adaptive Principle EXtraction A Three-Layer Self-Evolution Framework for Production AI Agents",
+    "summary": "arXiv:2606.15363v1 Announce Type: new \nAbstract: Self-improvement in AI agents has emerged as a key research frontier: systems that modify their own prompts, workflows, and decision rules based on accumulated operational experience. The state-of-the-art Self-Harness framework [1] achieves 14--21% improvement on Terminal-Bench-2.0 by mining failure clusters and patching the agent harness. However, Self-Harness optimises only one dimension -- the prompt harness -- leaving behavioural principles an",
+    "url": "https://arxiv.org/abs/2606.15363",
+    "published": "2026-06-16T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Is My Vision-Language Data in Your AI? Membership Inference Test (MINT) Demo 2",
+    "summary": "arXiv:2606.14748v1 Announce Type: cross \nAbstract: We present the Membership Inference Test (MINT) Demo 2, a framework designed to improve transparency in machine learning training processes. MINT is a technique for experimentally determining whether specific data were used during machine learning model training. We establish the theoretical framework and propose multiple architectures for MINT depending on the amount of information known about the models that are being audited. Experimental res",
+    "url": "https://arxiv.org/abs/2606.14748",
+    "published": "2026-06-16T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": true,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Separable Neural Architectures as Physical World Models: from Mathematical Theory to Applications",
+    "summary": "arXiv:2606.14934v1 Announce Type: cross \nAbstract: This work introduces the Separable Neural Architecture (SNA), a function representational class combining neural approximation with tensor decomposition. The SNA decouples localized coordinate functions (atoms) from global interactions governed by a sparse, low-rank interaction object. This architecture possesses a compact and smooth inductive bias well-suited for solving partial differential equations (PDEs). When viewed as a Galerkin trial spa",
+    "url": "https://arxiv.org/abs/2606.14934",
+    "published": "2026-06-16T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Data Augmentations for Data-Constrained Language Model Pretraining",
+    "summary": "arXiv:2606.16246v1 Announce Type: cross \nAbstract: As AI labs approach a data ceiling where compute capacity outpaces the rate of new high-quality text generation, language model pretraining is shifting toward a data-constrained, compute-abundant regime that demands productive multi-epoch training on fixed corpora. Standard autoregressive (AR) pretraining overfits severely in this setting, reaching its optimum early and then continuously deteriorating. We investigate data augmentation as a regul",
+    "url": "https://arxiv.org/abs/2606.16246",
+    "published": "2026-06-16T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Virtual Sensing to Enable Real-Time Monitoring of Inaccessible Locations & Unmeasurable Parameters",
+    "summary": "arXiv:2412.00107v2 Announce Type: replace-cross \nAbstract: Real-time monitoring of safety-critical interior states remains an open problem in energy systems where physical instrumentation is infeasible. Existing approaches rely on explicit governing equations, finite-dimensional state vectors, or per-instance retraining, which prevents mesh-independent, field-level inference at arbitrary interior coordinates under real-time constraints. We introduce operator-based virtual sensing for nuclear-gra",
+    "url": "https://arxiv.org/abs/2412.00107",
+    "published": "2026-06-16T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "AIRMap: AI-Generated Radio Maps for Wireless Digital Twins",
+    "summary": "arXiv:2511.05522v4 Announce Type: replace-cross \nAbstract: Accurate, low-latency channel modeling is essential for real-time wireless network simulation and digital-twin applications. Traditional modeling methods like ray tracing are however computationally demanding and unsuited to model dynamic conditions. In this paper, we propose AIRMap, a deep-learning framework for ultra-fast radio-map estimation, along with an automated pipeline for creating the largest radio-map dataset to date. AIRMap u",
+    "url": "https://arxiv.org/abs/2511.05522",
+    "published": "2026-06-16T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Lightweight Distillation of SAM 3 and DINOv3 for Edge-Deployable Individual-Level Livestock Monitoring and Longitudinal Visual Analytics",
+    "summary": "arXiv:2604.27128v2 Announce Type: replace-cross \nAbstract: Foundation-model pipelines for individual-level livestock monitoring -- combining open-vocabulary detection, promptable video segmentation, and self-supervised visual embeddings -- have raised the accuracy ceiling of precision livestock farming (PLF), but their GPU memory budgets exceed the envelope of commodity edge accelerators. To close this gap, the 446M-parameter Perception Encoder (PE-ViT-L+) backbone of SAM 3 is distilled into a 4",
+    "url": "https://arxiv.org/abs/2604.27128",
+    "published": "2026-06-16T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "From Detection to Recovery: Operational Analysis on LLM Pre-training with 504 GPUs",
+    "summary": "arXiv:2605.09370v5 Announce Type: replace-cross \nAbstract: Large-scale AI training is fundamentally a distributed systems problem, where hardware failures are routine operating conditions rather than rare exceptions, yet public operational evidence from production training clusters remains limited. This report presents an empirical analysis of a 63-node NVIDIA B200 production cluster (504 GPUs), using 55 days of Prometheus time-series data and 73 days of operational logs covering 224 multi-node ",
+    "url": "https://arxiv.org/abs/2605.09370",
+    "published": "2026-06-16T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "The Energy Blind Spot: NVIDIA's Flagship Edge AI Hardware Cannot Support Process-Level Energy Attribution",
+    "summary": "arXiv:2605.27599v2 Announce Type: replace-cross \nAbstract: Agentic AI workloads - where a single user goal triggers multi-step orchestration, tool calls, retries, and failure recovery - are being targeted for edge deployment, with NVIDIA, Dell, HP, ASUS, MSI, Acer, and Gigabyte all shipping GB10-based desktop AI systems in 2026. We recently demonstrated that orchestration structure dominates agentic energy cost, with workflows consuming 4.33x more energy per successful goal than linear baselines",
+    "url": "https://arxiv.org/abs/2605.27599",
+    "published": "2026-06-16T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "FP8 is All You Need (Part 1): Debunking Hardware FP64 as the HPC Holy Grail (June 13th version)",
+    "summary": "arXiv:2606.06510v2 Announce Type: replace-cross \nAbstract: Conventional HPC holds that native hardware FP64 is the irreducible foundation of scientific computing. On AI-optimized GPUs of the NVIDIA B300 generation and beyond, native FP64 throughput has collapsed to ~1.3 TFLOPS even as FP8 tensor throughput has grown to multiple PFLOPS. We argue something stronger than that this is survivable: the FP8 tensor-core matrix-multiply is the sole computational primitive on which double-precision scient",
+    "url": "https://arxiv.org/abs/2606.06510",
+    "published": "2026-06-16T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -183,9 +349,9 @@
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
     "title": "GMN4AD: Graph Matching Network for Alzheimer's Disease Diagnosis with Test-Time Domain Adaptation using Multi-centered Structure Magnetic Resonance Imaging",
-    "summary": "arXiv:2606.13919v1 Announce Type: cross \nAbstract: Alzheimer's Disease (AD) is a progressive neurodegenerative disorder that affects millions of older adults, with prevalence expected to rise significantly in the coming years. Early diagnosis, particularly during the mild cognitive impairment (MCI) stage, is critical for timely intervention. Structural Magnetic Resonance Imaging (sMRI) has emerged as a key modality for detecting AD-related brain changes, but traditional graph-based approaches of",
+    "summary": "arXiv:2606.13919v2 Announce Type: replace-cross \nAbstract: Alzheimer's Disease (AD) is a progressive neurodegenerative disorder that affects millions of older adults, with prevalence expected to rise significantly in the coming years. Early diagnosis, particularly during the mild cognitive impairment (MCI) stage, is critical for timely intervention. Structural Magnetic Resonance Imaging (sMRI) has emerged as a key modality for detecting AD-related brain changes, but traditional graph-based appro",
     "url": "https://arxiv.org/abs/2606.13919",
-    "published": "2026-06-15T04:00:00",
+    "published": "2026-06-16T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -196,28 +362,6 @@
     },
     "signal_count": 1,
     "tickers": [],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "The Curse and Blessing of Mean Bias in FP4-Quantized LLM Training",
-    "summary": "arXiv:2603.10444v2 Announce Type: replace-cross \nAbstract: FP4 training promises substantial memory and compute savings for large language models, but remains fragile because blockwise quantization is dictated by extreme activation magnitudes, which inflate dynamic range and compress long-tail signals. We identify a counterintuitive source of this failure: dominant activation outliers are not merely arbitrary sparse events, but are largely induced by a coherent rank-one mean bias, whose directio",
-    "url": "https://arxiv.org/abs/2603.10444",
-    "published": "2026-06-15T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
     "quality_score": 1.0836,
     "weighted_relevance": 1.0836141955583654
   }
