@@ -1,11 +1,11 @@
 [
   {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "Tactical and Operational Exploratory Modeling for AI Governance",
-    "summary": "<p><i>Using computational methods to improve our preparedness via more robust and adaptive strategies in AI governance. A project proposal for a think tank, consultancy, or software.</i></p><figure class=\"image\"><img alt=\"\" src=\"https://res.cloudinary.com/lesswrong-2-0/image/upload/f_auto,q_auto/v1/mirroredImages/x7CXg4idqdTvgrAYv/m36aor3odawzbzedmxc8\" /></figure><h2><strong>Overview</strong></h2><p>Over the years, I\u2019ve come across or come up with a number of project ideas in AI safety and gover",
-    "url": "https://www.lesswrong.com/posts/x7CXg4idqdTvgrAYv/tactical-and-operational-exploratory-modeling-for-ai",
-    "published": "2026-06-17T01:07:48",
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Snubbing Nvidia for Adobe Costs Florida Stock-Picker $50 Billion",
+    "summary": "It was 180 degrees off the hot trade on Wall Street.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-17/wrong-way-ai-trade-costs-boca-raton-stock-picker-50-billion",
+    "published": "2026-06-17T13:15:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -16,9 +16,49 @@
     },
     "signal_count": 1,
     "tickers": [
-      "META",
-      "TSM",
-      "GOOGL"
+      "NVDA"
+    ],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "Alignement pretraining could backfire",
+    "summary": "<p><i><span>Epistemic status: speculative, but I think the mechanism is plausible.</span></i><br /><br /><span>There has been recent interest in generating synthetic documents to upsample examples of aligned AI during LLM pretraining. See, for instance, Geodesic's </span><a href=\"https://alignmentpretraining.ai/\" rel=\"noreferrer\"><span>Alignment Pretraining</span></a><span> paper or Anthropic's \"</span><a href=\"https://www.anthropic.com/research/teaching-claude-why\" rel=\"noreferrer\"><span>Teachi",
+    "url": "https://www.lesswrong.com/posts/7KN7PCiEQjrPsEFS8/alignement-pretraining-could-backfire",
+    "published": "2026-06-17T13:52:12",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": true
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  },
+  {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "Illusionists should try to build hedonium",
+    "summary": "<p><i><span>Epistemic status: I feel reasonably confident (~75%) that some form of this is a worthwhile project. Looking for feedback to reduce that uncertainty.</span></i></p><p><span>\u201cHedonium\u201d is a theoretical, minimally conscious substance optimized for experiencing happiness. Imagine a mind pared down to the bare essentials required for having happy experiences, instantiated as cheaply as possible.</span></p><p><span>Nobody has built hedonium yet. Nobody has tried to build hedonium yet. Nob",
+    "url": "https://www.lesswrong.com/posts/i9cZggu3SdasYgT5p/illusionists-should-try-to-build-hedonium",
+    "published": "2026-06-17T12:25:13",
+    "signals": {
+      "thiel": false,
+      "shulman": true,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "META"
     ],
     "quality_score": 1.2233,
     "weighted_relevance": 1.2232988379545604
@@ -27,7 +67,7 @@
     "source": "ft_tech",
     "credibility": 0.85,
     "title": "Amazon backs AI start-up developing models to simulate physical world",
-    "summary": "Company joins investment arms of Nvidia and AMD in $310mn funding round for Odyssey ML",
+    "summary": "Company joins investment arms of Nvidia and AMD in $310mn funding round for Odyssey",
     "url": "https://www.ft.com/content/1e0365db-a363-4d73-9960-23d25420e9f5",
     "published": "2026-06-17T04:00:44",
     "signals": {
@@ -40,8 +80,8 @@
     },
     "signal_count": 1,
     "tickers": [
-      "AMZN",
-      "NVDA"
+      "NVDA",
+      "AMZN"
     ],
     "quality_score": 1.2233,
     "weighted_relevance": 1.2232988379545604
