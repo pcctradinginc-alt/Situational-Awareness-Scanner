@@ -1,11 +1,11 @@
 {
   "mode": "STRESS",
-  "iv_rank_avg": 35.0,
+  "iv_rank_avg": 30.6,
   "iv_confidence": "HIGH",
   "energy_breadth": 0.7,
   "capex_trend": "rising",
   "regime_stability": 0.365,
-  "yield_curve": 0.4,
+  "yield_curve": 0.38,
   "hy_credit_spread": 2.66,
   "conviction_threshold": 8.0,
   "weights": {
@@ -20,5 +20,5 @@
     "Regime stability 0.36 < 0.4"
   ],
   "regime_score": 8.0,
-  "determined_at": "2026-06-16T18:08:51.703759"
+  "determined_at": "2026-06-17T11:08:22.226193"
 }

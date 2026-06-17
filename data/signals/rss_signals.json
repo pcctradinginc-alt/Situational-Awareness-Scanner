@@ -1,11 +1,11 @@
 [
   {
-    "source": "ft_tech",
+    "source": "lesswrong",
     "credibility": 0.85,
-    "title": "Chipmaker Nvidia seeks to raise over $25bn in first bond deal since 2021",
-    "summary": "Debt sale set to test investor appetite for further exposure to AI sector amid a deluge of borrowing",
-    "url": "https://www.ft.com/content/c0e7cc58-e309-4f47-b466-d577c06cbeec",
-    "published": "2026-06-15T18:22:24",
+    "title": "Tactical and Operational Exploratory Modeling for AI Governance",
+    "summary": "<p><i>Using computational methods to improve our preparedness via more robust and adaptive strategies in AI governance. A project proposal for a think tank, consultancy, or software.</i></p><figure class=\"image\"><img alt=\"\" src=\"https://res.cloudinary.com/lesswrong-2-0/image/upload/f_auto,q_auto/v1/mirroredImages/x7CXg4idqdTvgrAYv/m36aor3odawzbzedmxc8\" /></figure><h2><strong>Overview</strong></h2><p>Over the years, I\u2019ve come across or come up with a number of project ideas in AI safety and gover",
+    "url": "https://www.lesswrong.com/posts/x7CXg4idqdTvgrAYv/tactical-and-operational-exploratory-modeling-for-ai",
+    "published": "2026-06-17T01:07:48",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -16,6 +16,31 @@
     },
     "signal_count": 1,
     "tickers": [
+      "META",
+      "TSM",
+      "GOOGL"
+    ],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  },
+  {
+    "source": "ft_tech",
+    "credibility": 0.85,
+    "title": "Amazon backs AI start-up developing models to simulate physical world",
+    "summary": "Company joins investment arms of Nvidia and AMD in $310mn funding round for Odyssey ML",
+    "url": "https://www.ft.com/content/1e0365db-a363-4d73-9960-23d25420e9f5",
+    "published": "2026-06-17T04:00:44",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "AMZN",
       "NVDA"
     ],
     "quality_score": 1.2233,
@@ -24,10 +49,10 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "APEX: Adaptive Principle EXtraction A Three-Layer Self-Evolution Framework for Production AI Agents",
-    "summary": "arXiv:2606.15363v1 Announce Type: new \nAbstract: Self-improvement in AI agents has emerged as a key research frontier: systems that modify their own prompts, workflows, and decision rules based on accumulated operational experience. The state-of-the-art Self-Harness framework [1] achieves 14--21% improvement on Terminal-Bench-2.0 by mining failure clusters and patching the agent harness. However, Self-Harness optimises only one dimension -- the prompt harness -- leaving behavioural principles an",
-    "url": "https://arxiv.org/abs/2606.15363",
-    "published": "2026-06-16T04:00:00",
+    "title": "PIVOT: Bridging Black-Scholes Implied-Volatility and Price Objectives via Differentiable J\\\"ackel Operator",
+    "summary": "arXiv:2606.17065v1 Announce Type: cross \nAbstract: Modern option-learning systems operate in two coordinates: price space, where markets quote and no-arbitrage constraints are most naturally enforced, and implied volatility (IV) space, where volatility surfaces are smoothed, regularized, and evaluated. The bottleneck is interface, not approximation: J\\\"ackel's seminal \"Let's Be Rational\" (LBR) solver already inverts the Black-Scholes price to machine precision efficiently. What is missing is a d",
+    "url": "https://arxiv.org/abs/2606.17065",
+    "published": "2026-06-17T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -46,17 +71,39 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Is My Vision-Language Data in Your AI? Membership Inference Test (MINT) Demo 2",
-    "summary": "arXiv:2606.14748v1 Announce Type: cross \nAbstract: We present the Membership Inference Test (MINT) Demo 2, a framework designed to improve transparency in machine learning training processes. MINT is a technique for experimentally determining whether specific data were used during machine learning model training. We establish the theoretical framework and propose multiple architectures for MINT depending on the amount of information known about the models that are being audited. Experimental res",
-    "url": "https://arxiv.org/abs/2606.14748",
-    "published": "2026-06-16T04:00:00",
+    "title": "The Price of Anarchy in Disaggregated Inference",
+    "summary": "arXiv:2606.17081v1 Announce Type: cross \nAbstract: Disaggregated inference architectures physically separate prefill and decode phases onto distinct GPU pools, creating competing \"agents\" that share a fixed hardware budget. We provide, to our knowledge, the first formal game-theoretic analysis of this architecture, using NVIDIA Dynamo as a concrete case study. We model disaggregated serving as three coupled games: a two-player resource game between prefill and decode pools, a selfish caching gam",
+    "url": "https://arxiv.org/abs/2606.17081",
+    "published": "2026-06-17T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
-      "contrarian": true,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Graph neural networks at war: integrating cybersecurity and drone intelligence in the Israeli-Iranian conflict",
+    "summary": "arXiv:2606.17119v1 Announce Type: cross \nAbstract: Physical cyber systems have brought about new threats and challenges in detection and immediate response. This study examines how Graph Neural Networks (GNNs) can be used to aid cybersecurity and drone management in a physical cyber system comprising of cyber intrusions and unmanned aerial vehicles (UAVs). By providing a bridge between structural understanding of graphical neural networks, this work has provided an integrated procedure that allo",
+    "url": "https://arxiv.org/abs/2606.17119",
+    "published": "2026-06-17T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
       "bottleneck_compute": false,
       "bottleneck_energy": false,
-      "salp": false
+      "salp": true
     },
     "signal_count": 1,
     "tickers": [],
@@ -66,10 +113,10 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Separable Neural Architectures as Physical World Models: from Mathematical Theory to Applications",
-    "summary": "arXiv:2606.14934v1 Announce Type: cross \nAbstract: This work introduces the Separable Neural Architecture (SNA), a function representational class combining neural approximation with tensor decomposition. The SNA decouples localized coordinate functions (atoms) from global interactions governed by a sparse, low-rank interaction object. This architecture possesses a compact and smooth inductive bias well-suited for solving partial differential equations (PDEs). When viewed as a Galerkin trial spa",
-    "url": "https://arxiv.org/abs/2606.14934",
-    "published": "2026-06-16T04:00:00",
+    "title": "SegTME-UNI2: A Foundation Model-Based Framework for Generalisable Multiclass Cell Segmentation and LLM-Driven Tumour Microenvironment Characterisation in Histopathology",
+    "summary": "arXiv:2606.17702v1 Announce Type: cross \nAbstract: Characterising the tumour microenvironment (TME) from routine H&amp;E-stained histology images requires simultaneous cell segmentation, feature extraction, and interpretable clinical reporting. We present SEGTME-UNI2, a unified framework addressing these requirements. Its core is UNI2-UPERHOVER, a dual-head segmentation model pairing the UNI2-H pathology foundation model (ViT-Giant, pretrained on >100M tiles from 100K slides) with two parallel U",
+    "url": "https://arxiv.org/abs/2606.17702",
+    "published": "2026-06-17T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -88,140 +135,10 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Data Augmentations for Data-Constrained Language Model Pretraining",
-    "summary": "arXiv:2606.16246v1 Announce Type: cross \nAbstract: As AI labs approach a data ceiling where compute capacity outpaces the rate of new high-quality text generation, language model pretraining is shifting toward a data-constrained, compute-abundant regime that demands productive multi-epoch training on fixed corpora. Standard autoregressive (AR) pretraining overfits severely in this setting, reaching its optimum early and then continuously deteriorating. We investigate data augmentation as a regul",
-    "url": "https://arxiv.org/abs/2606.16246",
-    "published": "2026-06-16T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Virtual Sensing to Enable Real-Time Monitoring of Inaccessible Locations & Unmeasurable Parameters",
-    "summary": "arXiv:2412.00107v2 Announce Type: replace-cross \nAbstract: Real-time monitoring of safety-critical interior states remains an open problem in energy systems where physical instrumentation is infeasible. Existing approaches rely on explicit governing equations, finite-dimensional state vectors, or per-instance retraining, which prevents mesh-independent, field-level inference at arbitrary interior coordinates under real-time constraints. We introduce operator-based virtual sensing for nuclear-gra",
-    "url": "https://arxiv.org/abs/2412.00107",
-    "published": "2026-06-16T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "AIRMap: AI-Generated Radio Maps for Wireless Digital Twins",
-    "summary": "arXiv:2511.05522v4 Announce Type: replace-cross \nAbstract: Accurate, low-latency channel modeling is essential for real-time wireless network simulation and digital-twin applications. Traditional modeling methods like ray tracing are however computationally demanding and unsuited to model dynamic conditions. In this paper, we propose AIRMap, a deep-learning framework for ultra-fast radio-map estimation, along with an automated pipeline for creating the largest radio-map dataset to date. AIRMap u",
-    "url": "https://arxiv.org/abs/2511.05522",
-    "published": "2026-06-16T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Lightweight Distillation of SAM 3 and DINOv3 for Edge-Deployable Individual-Level Livestock Monitoring and Longitudinal Visual Analytics",
-    "summary": "arXiv:2604.27128v2 Announce Type: replace-cross \nAbstract: Foundation-model pipelines for individual-level livestock monitoring -- combining open-vocabulary detection, promptable video segmentation, and self-supervised visual embeddings -- have raised the accuracy ceiling of precision livestock farming (PLF), but their GPU memory budgets exceed the envelope of commodity edge accelerators. To close this gap, the 446M-parameter Perception Encoder (PE-ViT-L+) backbone of SAM 3 is distilled into a 4",
-    "url": "https://arxiv.org/abs/2604.27128",
-    "published": "2026-06-16T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "From Detection to Recovery: Operational Analysis on LLM Pre-training with 504 GPUs",
-    "summary": "arXiv:2605.09370v5 Announce Type: replace-cross \nAbstract: Large-scale AI training is fundamentally a distributed systems problem, where hardware failures are routine operating conditions rather than rare exceptions, yet public operational evidence from production training clusters remains limited. This report presents an empirical analysis of a 63-node NVIDIA B200 production cluster (504 GPUs), using 55 days of Prometheus time-series data and 73 days of operational logs covering 224 multi-node ",
-    "url": "https://arxiv.org/abs/2605.09370",
-    "published": "2026-06-16T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "The Energy Blind Spot: NVIDIA's Flagship Edge AI Hardware Cannot Support Process-Level Energy Attribution",
-    "summary": "arXiv:2605.27599v2 Announce Type: replace-cross \nAbstract: Agentic AI workloads - where a single user goal triggers multi-step orchestration, tool calls, retries, and failure recovery - are being targeted for edge deployment, with NVIDIA, Dell, HP, ASUS, MSI, Acer, and Gigabyte all shipping GB10-based desktop AI systems in 2026. We recently demonstrated that orchestration structure dominates agentic energy cost, with workflows consuming 4.33x more energy per successful goal than linear baselines",
-    "url": "https://arxiv.org/abs/2605.27599",
-    "published": "2026-06-16T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "FP8 is All You Need (Part 1): Debunking Hardware FP64 as the HPC Holy Grail (June 13th version)",
-    "summary": "arXiv:2606.06510v2 Announce Type: replace-cross \nAbstract: Conventional HPC holds that native hardware FP64 is the irreducible foundation of scientific computing. On AI-optimized GPUs of the NVIDIA B300 generation and beyond, native FP64 throughput has collapsed to ~1.3 TFLOPS even as FP8 tensor throughput has grown to multiple PFLOPS. We argue something stronger than that this is survivable: the FP8 tensor-core matrix-multiply is the sole computational primitive on which double-precision scient",
-    "url": "https://arxiv.org/abs/2606.06510",
-    "published": "2026-06-16T04:00:00",
+    "title": "Ternary Mamba: Grouped Quantization-Aware Training of W1.58A16 State Space Models",
+    "summary": "arXiv:2606.18114v1 Announce Type: cross \nAbstract: State Space Models (SSMs) such as Mamba-2 offer linear-time inference but their memory footprint limits edge deployment. Prior ternary SSM work (Slender-Mamba) trains from scratch on 150B tokens; we show a pretrained checkpoint suffices, reducing the marginal token budget by 1,000x. Using grouped quantization-aware training (QAT) with knowledge distillation from a frozen FP16 teacher, we compress Mamba-2 1.3B to 3.61x (2,687 to 744 MB) and achie",
+    "url": "https://arxiv.org/abs/2606.18114",
+    "published": "2026-06-17T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -241,9 +158,9 @@
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
     "title": "GMN4AD: Graph Matching Network for Alzheimer's Disease Diagnosis with Test-Time Domain Adaptation using Multi-centered Structure Magnetic Resonance Imaging",
-    "summary": "arXiv:2606.13919v2 Announce Type: replace-cross \nAbstract: Alzheimer's Disease (AD) is a progressive neurodegenerative disorder that affects millions of older adults, with prevalence expected to rise significantly in the coming years. Early diagnosis, particularly during the mild cognitive impairment (MCI) stage, is critical for timely intervention. Structural Magnetic Resonance Imaging (sMRI) has emerged as a key modality for detecting AD-related brain changes, but traditional graph-based appro",
+    "summary": "arXiv:2606.13919v3 Announce Type: replace-cross \nAbstract: Alzheimer's Disease (AD) is a progressive neurodegenerative disorder that affects millions of older adults, with prevalence expected to rise significantly in the coming years. Early diagnosis, particularly during the mild cognitive impairment (MCI) stage, is critical for timely intervention. Structural Magnetic Resonance Imaging (sMRI) has emerged as a key modality for detecting AD-related brain changes, but traditional graph-based appro",
     "url": "https://arxiv.org/abs/2606.13919",
-    "published": "2026-06-16T04:00:00",
+    "published": "2026-06-17T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
