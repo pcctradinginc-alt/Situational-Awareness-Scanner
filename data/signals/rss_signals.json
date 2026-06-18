@@ -2,10 +2,10 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Snubbing Nvidia for Adobe Costs Florida Stock-Picker $50 Billion",
-    "summary": "It was 180 degrees off the hot trade on Wall Street.",
-    "url": "https://www.bloomberg.com/news/articles/2026-06-17/wrong-way-ai-trade-costs-boca-raton-stock-picker-50-billion",
-    "published": "2026-06-17T13:15:00",
+    "title": "Plurimi CIO Sees Value in AI Supply Chain",
+    "summary": "Plurimi Wealth Chief Investment Officer Patrick Armstrong says he sees value in the artificial intelligence supply chain, stocks such as Micron, Samsung and Nvidia. \"We're underweight the Magnificent Seven &mdash; the hyperscalers &mdash; those are the companies that are spending a trillion dollars over the next 12 months on AI datacenters,\" Armstrong tells Bloomberg Television. \"And we own the companies they're giving the money to.\" (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-18/plurimi-cio-sees-value-in-ai-supply-chain-video",
+    "published": "2026-06-18T08:00:16",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -24,10 +24,10 @@
   {
     "source": "lesswrong",
     "credibility": 0.85,
-    "title": "Alignement pretraining could backfire",
-    "summary": "<p><i><span>Epistemic status: speculative, but I think the mechanism is plausible.</span></i><br /><br /><span>There has been recent interest in generating synthetic documents to upsample examples of aligned AI during LLM pretraining. See, for instance, Geodesic's </span><a href=\"https://alignmentpretraining.ai/\" rel=\"noreferrer\"><span>Alignment Pretraining</span></a><span> paper or Anthropic's \"</span><a href=\"https://www.anthropic.com/research/teaching-claude-why\" rel=\"noreferrer\"><span>Teachi",
-    "url": "https://www.lesswrong.com/posts/7KN7PCiEQjrPsEFS8/alignement-pretraining-could-backfire",
-    "published": "2026-06-17T13:52:12",
+    "title": "Several frontier models are substantially prefill aware",
+    "summary": "<p><i><span>This blog post discusses work in a recently-published paper. However, this blogpost was primarily written by Parv Mahajan and Andy Wang, and several of the more speculative takes may not represent the all-things-considered view of the entire team.</span></i></p><p><span>Link to paper: </span><a href=\"https://arxiv.org/abs/2606.12747\" rel=\"noreferrer\"><span>https://arxiv.org/abs/2606.12747</span></a></p><p><i><b><span>TL;DR:</span></b></i></p><ul><li value=\"1\"><i><span>We provide more",
+    "url": "https://www.lesswrong.com/posts/iMds4tTpMH4pSHEej/several-frontier-models-are-substantially-prefill-aware",
+    "published": "2026-06-17T17:41:17",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -44,44 +44,22 @@
   {
     "source": "lesswrong",
     "credibility": 0.85,
-    "title": "Illusionists should try to build hedonium",
-    "summary": "<p><i><span>Epistemic status: I feel reasonably confident (~75%) that some form of this is a worthwhile project. Looking for feedback to reduce that uncertainty.</span></i></p><p><span>\u201cHedonium\u201d is a theoretical, minimally conscious substance optimized for experiencing happiness. Imagine a mind pared down to the bare essentials required for having happy experiences, instantiated as cheaply as possible.</span></p><p><span>Nobody has built hedonium yet. Nobody has tried to build hedonium yet. Nob",
-    "url": "https://www.lesswrong.com/posts/i9cZggu3SdasYgT5p/illusionists-should-try-to-build-hedonium",
-    "published": "2026-06-17T12:25:13",
+    "title": "Lock-In Risk Needs More Researchers. Here's Where to Start",
+    "summary": "<p><a href=\"https://forum.effectivealtruism.org/posts/bbtvDJtb6YwwWtJm7/epistemic-status-an-explainer-and-some-thoughts\" rel=\"noreferrer\"><i><span>Epistemic status</span></i></a><i><span>: slightly outdated ideas, only a shallow interpretation of many areas,  a somewhat arbitrary taxonomy, and posted because I can't prioritise spending more time on this but think it should be public.</span></i></p><p><span>Lock-in risk research is neglected and potentially very high impact. I\u2019ve done some thinki",
+    "url": "https://www.lesswrong.com/posts/ZsrTrxxwgj9spwzaE/lock-in-risk-needs-more-researchers-here-s-where-to-start",
+    "published": "2026-06-17T17:33:33",
     "signals": {
       "thiel": false,
-      "shulman": true,
-      "contrarian": false,
+      "shulman": false,
+      "contrarian": true,
       "bottleneck_compute": false,
       "bottleneck_energy": false,
       "salp": false
     },
     "signal_count": 1,
     "tickers": [
+      "GOOGL",
       "META"
-    ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
-    "source": "ft_tech",
-    "credibility": 0.85,
-    "title": "Amazon backs AI start-up developing models to simulate physical world",
-    "summary": "Company joins investment arms of Nvidia and AMD in $310mn funding round for Odyssey",
-    "url": "https://www.ft.com/content/1e0365db-a363-4d73-9960-23d25420e9f5",
-    "published": "2026-06-17T04:00:44",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA",
-      "AMZN"
     ],
     "quality_score": 1.2233,
     "weighted_relevance": 1.2232988379545604
@@ -92,7 +70,7 @@
     "title": "PIVOT: Bridging Black-Scholes Implied-Volatility and Price Objectives via Differentiable J\\\"ackel Operator",
     "summary": "arXiv:2606.17065v1 Announce Type: cross \nAbstract: Modern option-learning systems operate in two coordinates: price space, where markets quote and no-arbitrage constraints are most naturally enforced, and implied volatility (IV) space, where volatility surfaces are smoothed, regularized, and evaluated. The bottleneck is interface, not approximation: J\\\"ackel's seminal \"Let's Be Rational\" (LBR) solver already inverts the Black-Scholes price to machine precision efficiently. What is missing is a d",
     "url": "https://arxiv.org/abs/2606.17065",
-    "published": "2026-06-17T04:00:00",
+    "published": "2026-06-18T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -114,7 +92,7 @@
     "title": "The Price of Anarchy in Disaggregated Inference",
     "summary": "arXiv:2606.17081v1 Announce Type: cross \nAbstract: Disaggregated inference architectures physically separate prefill and decode phases onto distinct GPU pools, creating competing \"agents\" that share a fixed hardware budget. We provide, to our knowledge, the first formal game-theoretic analysis of this architecture, using NVIDIA Dynamo as a concrete case study. We model disaggregated serving as three coupled games: a two-player resource game between prefill and decode pools, a selfish caching gam",
     "url": "https://arxiv.org/abs/2606.17081",
-    "published": "2026-06-17T04:00:00",
+    "published": "2026-06-18T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -136,7 +114,7 @@
     "title": "Graph neural networks at war: integrating cybersecurity and drone intelligence in the Israeli-Iranian conflict",
     "summary": "arXiv:2606.17119v1 Announce Type: cross \nAbstract: Physical cyber systems have brought about new threats and challenges in detection and immediate response. This study examines how Graph Neural Networks (GNNs) can be used to aid cybersecurity and drone management in a physical cyber system comprising of cyber intrusions and unmanned aerial vehicles (UAVs). By providing a bridge between structural understanding of graphical neural networks, this work has provided an integrated procedure that allo",
     "url": "https://arxiv.org/abs/2606.17119",
-    "published": "2026-06-17T04:00:00",
+    "published": "2026-06-18T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -156,7 +134,7 @@
     "title": "SegTME-UNI2: A Foundation Model-Based Framework for Generalisable Multiclass Cell Segmentation and LLM-Driven Tumour Microenvironment Characterisation in Histopathology",
     "summary": "arXiv:2606.17702v1 Announce Type: cross \nAbstract: Characterising the tumour microenvironment (TME) from routine H&amp;E-stained histology images requires simultaneous cell segmentation, feature extraction, and interpretable clinical reporting. We present SEGTME-UNI2, a unified framework addressing these requirements. Its core is UNI2-UPERHOVER, a dual-head segmentation model pairing the UNI2-H pathology foundation model (ViT-Giant, pretrained on >100M tiles from 100K slides) with two parallel U",
     "url": "https://arxiv.org/abs/2606.17702",
-    "published": "2026-06-17T04:00:00",
+    "published": "2026-06-18T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -178,7 +156,7 @@
     "title": "Ternary Mamba: Grouped Quantization-Aware Training of W1.58A16 State Space Models",
     "summary": "arXiv:2606.18114v1 Announce Type: cross \nAbstract: State Space Models (SSMs) such as Mamba-2 offer linear-time inference but their memory footprint limits edge deployment. Prior ternary SSM work (Slender-Mamba) trains from scratch on 150B tokens; we show a pretrained checkpoint suffices, reducing the marginal token budget by 1,000x. Using grouped quantization-aware training (QAT) with knowledge distillation from a frozen FP16 teacher, we compress Mamba-2 1.3B to 3.61x (2,687 to 744 MB) and achie",
     "url": "https://arxiv.org/abs/2606.18114",
-    "published": "2026-06-17T04:00:00",
+    "published": "2026-06-18T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -200,13 +178,33 @@
     "title": "GMN4AD: Graph Matching Network for Alzheimer's Disease Diagnosis with Test-Time Domain Adaptation using Multi-centered Structure Magnetic Resonance Imaging",
     "summary": "arXiv:2606.13919v3 Announce Type: replace-cross \nAbstract: Alzheimer's Disease (AD) is a progressive neurodegenerative disorder that affects millions of older adults, with prevalence expected to rise significantly in the coming years. Early diagnosis, particularly during the mild cognitive impairment (MCI) stage, is critical for timely intervention. Structural Magnetic Resonance Imaging (sMRI) has emerged as a key modality for detecting AD-related brain changes, but traditional graph-based appro",
     "url": "https://arxiv.org/abs/2606.13919",
-    "published": "2026-06-17T04:00:00",
+    "published": "2026-06-18T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
       "contrarian": false,
       "bottleneck_compute": false,
       "bottleneck_energy": true,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "defenseone",
+    "credibility": 0.8,
+    "title": "Anduril, General Atomics get Air Force contracts to build first drone wingmen",
+    "summary": "Six other companies will compete to develop its autonomy software.",
+    "url": "https://www.defenseone.com/defense-systems/2026/06/anduril-general-atomics-get-air-force-contracts-build-first-drone-wingmen/414266/",
+    "published": "2026-06-18T02:36:27",
+    "signals": {
+      "thiel": true,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
       "salp": false
     },
     "signal_count": 1,
