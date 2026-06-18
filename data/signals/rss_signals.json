@@ -1,11 +1,37 @@
 [
   {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "AI #173: AI Pauses",
+    "summary": "<p>A lot of things are always happening. Only one story matters.</p>\n<p><a href=\"https://thezvi.substack.com/p/american-government-takes-down-claude?r=67wny\"><strong>Claude Fable 5 and Claude Mythos 5 were shut down, by the White House</strong></a>, via an imposition of export controls at 5:23pm on Friday, wreaking all sorts of havoc.</p>\n<p>There was then a scramble. <a href=\"https://thezvi.substack.com/p/the-once-and-future-fable-2?r=67wny\"><strong>Anthropic flew its people out to Washington</",
+    "url": "https://www.lesswrong.com/posts/P7jBmCeBDq2ebojWY/ai-173-ai-pauses",
+    "published": "2026-06-18T13:40:07",
+    "signals": {
+      "thiel": true,
+      "shulman": false,
+      "contrarian": true,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 3,
+    "tickers": [
+      "MSFT",
+      "NVDA",
+      "AMZN",
+      "GOOGL",
+      "META"
+    ],
+    "quality_score": 1.7241,
+    "weighted_relevance": 1.7240976759091209
+  },
+  {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Plurimi CIO Sees Value in AI Supply Chain",
-    "summary": "Plurimi Wealth Chief Investment Officer Patrick Armstrong says he sees value in the artificial intelligence supply chain, stocks such as Micron, Samsung and Nvidia. \"We're underweight the Magnificent Seven &mdash; the hyperscalers &mdash; those are the companies that are spending a trillion dollars over the next 12 months on AI datacenters,\" Armstrong tells Bloomberg Television. \"And we own the companies they're giving the money to.\" (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-18/plurimi-cio-sees-value-in-ai-supply-chain-video",
-    "published": "2026-06-18T08:00:16",
+    "title": "Stocks Rise With Nvidia Leading as Semiconductor Companies Surge",
+    "summary": "US stocks rose on Thursday as chips shares extended Wednesday\u2019s rally. Nvidia Corp. topped S&amp;P 500 Index gainers on a points basis, while the Philadelphia Semiconductor Index, known as the SOX, advanced more than 6% to a record high.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-18/us-stock-futures-rise-with-intel-leading-semiconductor-rally",
+    "published": "2026-06-18T11:43:07",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -22,32 +48,35 @@
     "weighted_relevance": 1.3111731766256216
   },
   {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "Several frontier models are substantially prefill aware",
-    "summary": "<p><i><span>This blog post discusses work in a recently-published paper. However, this blogpost was primarily written by Parv Mahajan and Andy Wang, and several of the more speculative takes may not represent the all-things-considered view of the entire team.</span></i></p><p><span>Link to paper: </span><a href=\"https://arxiv.org/abs/2606.12747\" rel=\"noreferrer\"><span>https://arxiv.org/abs/2606.12747</span></a></p><p><i><b><span>TL;DR:</span></b></i></p><ul><li value=\"1\"><i><span>We provide more",
-    "url": "https://www.lesswrong.com/posts/iMds4tTpMH4pSHEej/several-frontier-models-are-substantially-prefill-aware",
-    "published": "2026-06-17T17:41:17",
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Amazon in Talks to Sell Custom AI Chips in Bid to Cut Nvidia\u2019s\u00a0Dominance",
+    "summary": "Amazon.com Inc. is in talks to sell its custom-made artificial intelligence chips for use in other companies\u2019 data centers, a key expansion of its efforts to cut into Nvidia Corp.\u2019s dominance.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-18/amazon-is-in-talks-to-sell-nvidia-rival-chips-to-other-companies",
+    "published": "2026-06-18T15:00:05",
     "signals": {
       "thiel": false,
       "shulman": false,
       "contrarian": false,
-      "bottleneck_compute": false,
+      "bottleneck_compute": true,
       "bottleneck_energy": false,
-      "salp": true
+      "salp": false
     },
     "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
+    "tickers": [
+      "AMZN",
+      "NVDA"
+    ],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
   },
   {
     "source": "lesswrong",
     "credibility": 0.85,
-    "title": "Lock-In Risk Needs More Researchers. Here's Where to Start",
-    "summary": "<p><a href=\"https://forum.effectivealtruism.org/posts/bbtvDJtb6YwwWtJm7/epistemic-status-an-explainer-and-some-thoughts\" rel=\"noreferrer\"><i><span>Epistemic status</span></i></a><i><span>: slightly outdated ideas, only a shallow interpretation of many areas,  a somewhat arbitrary taxonomy, and posted because I can't prioritise spending more time on this but think it should be public.</span></i></p><p><span>Lock-in risk research is neglected and potentially very high impact. I\u2019ve done some thinki",
-    "url": "https://www.lesswrong.com/posts/ZsrTrxxwgj9spwzaE/lock-in-risk-needs-more-researchers-here-s-where-to-start",
-    "published": "2026-06-17T17:33:33",
+    "title": "Your Model Organisms Might Be Fried",
+    "summary": "<p><i><span>Context: We are the \u2018model motivations\u2019 team at Arcadia Alignment. We aim to build a science of \u2018</span></i><a href=\"https://www.lesswrong.com/posts/DTDoyDTtC8R3bCiTx/from-personas-to-intentions-towards-a-science-of-motivations\"><i><span>model intentions</span></i></a><i><span>\u2019, unifying insights from </span></i><a href=\"https://www.lesswrong.com/posts/dfoty34sT7CSKeJNn/the-persona-selection-model\"><i><span>personas</span></i></a><i><span>\u00a0and other empirical evidence. In this post,",
+    "url": "https://www.lesswrong.com/posts/WmEcgcstzYCcMpc7z/your-model-organisms-might-be-fried",
+    "published": "2026-06-18T16:18:58",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -57,10 +86,27 @@
       "salp": false
     },
     "signal_count": 1,
-    "tickers": [
-      "GOOGL",
-      "META"
-    ],
+    "tickers": [],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  },
+  {
+    "source": "ft_tech",
+    "credibility": 0.85,
+    "title": "Trump is taking a page out of China\u2019s sovereign AI playbook",
+    "summary": "Governments have long protected strategic industries \u2014 what is new is their willingness to become shareholders",
+    "url": "https://www.ft.com/content/fd95e4c7-40d4-4074-a074-144809b97b45",
+    "published": "2026-06-18T14:57:29",
+    "signals": {
+      "thiel": true,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
     "quality_score": 1.2233,
     "weighted_relevance": 1.2232988379545604
   },
