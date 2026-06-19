@@ -2,14 +2,14 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "President Trump Announces Apple and Intel Chip Collaboration | Bloomberg Tech 6/18/2026",
-    "summary": "Bloomberg's Ed Ludlow discusses the latest announcement made by President Donald Trump, which will see Apple and Intel joining forces to produce chips domestically, sending shares of the chipmaker higher. Plus, Anduril's CEO discusses how the company won a contract with the US Air Force to produce autonomous fighters. And, SpaceX wraps up its first full week of trading, with shares falling for a second day straight. (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-18/bloomberg-tech-6-18-2026-video",
-    "published": "2026-06-18T20:44:41",
+    "title": "EU Tech Chief Virkkunen on AI, Sovereignty, US",
+    "summary": "Henna Virkkunen, EU's top technology official, & Executive Vice President sat down with Bloomberg's Tom Mackenzie on the sidelines of VivaTech in Paris to discuss EU AI regulation, cybersecurity risks, Europe's technological sovereignty, and reducing reliance on non-European technology providers in critical sectors. This interview occurred on Wednesday, June 17. (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-19/eu-tech-chief-virkkunen-on-ai-sovereignty-us-video",
+    "published": "2026-06-19T11:53:04",
     "signals": {
-      "thiel": true,
+      "thiel": false,
       "shulman": false,
-      "contrarian": false,
+      "contrarian": true,
       "bottleneck_compute": false,
       "bottleneck_energy": false,
       "salp": false
@@ -22,10 +22,10 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "Stocks Rise With Nvidia Leading as Semiconductor Companies Surge",
-    "summary": "US stocks rose on Thursday as chips shares extended Wednesday\u2019s rally. Nvidia Corp. topped S&amp;P 500 Index gainers on a points basis, while the Philadelphia Semiconductor Index, known as the SOX, advanced 6.4% to a record high.",
-    "url": "https://www.bloomberg.com/news/articles/2026-06-18/us-stock-futures-rise-with-intel-leading-semiconductor-rally",
-    "published": "2026-06-18T11:43:07",
+    "title": "Chipmakers Renew Nerdy Performance Tussle That Nvidia\u2019s Dominance Had Quashed",
+    "summary": "With CPUs back in the spotlight, so too is the PR fight over benchmarks",
+    "url": "https://www.bloomberg.com/news/newsletters/2026-06-19/nvidia-s-ai-wins-had-quashed-the-benchmark-fight-cpu-race-is-bringing-it-back",
+    "published": "2026-06-19T11:02:01",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -40,66 +40,6 @@
     ],
     "quality_score": 1.3112,
     "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "Rumble Bets on AI Compute Demand With New AI Platform",
-    "summary": "Video platform Rumble is jumping on the AI bandwagon with its newest AI platform. Launching as Quake AI, the new sector combines cloud, compute, and AI infrastructure, and is slated to dominate the company's business segment. Rumble CEO Chris Pavlovski joins Ed Ludlow on \"Bloomberg Tech\" with more on the pivot. (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-18/rumble-bets-on-ai-compute-demand-with-new-ai-platform-video",
-    "published": "2026-06-18T19:10:23",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": true,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "Your Model Organisms Might Be Fried",
-    "summary": "<p><i><span>Context: We are the \u2018model motivations\u2019 team at Arcadia Alignment. We aim to build a science of \u2018</span></i><a href=\"https://www.lesswrong.com/posts/DTDoyDTtC8R3bCiTx/from-personas-to-intentions-towards-a-science-of-motivations\"><i><span>model intentions</span></i></a><i><span>\u2019, unifying insights from </span></i><a href=\"https://www.lesswrong.com/posts/dfoty34sT7CSKeJNn/the-persona-selection-model\"><i><span>personas</span></i></a><i><span>\u00a0and other empirical evidence.</span></i></p",
-    "url": "https://www.lesswrong.com/posts/WmEcgcstzYCcMpc7z/your-model-organisms-might-be-fried",
-    "published": "2026-06-18T16:18:58",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": true,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
-    "source": "ft_tech",
-    "credibility": 0.85,
-    "title": "Trump is taking a page out of China\u2019s sovereign AI playbook",
-    "summary": "Governments have long protected strategic industries \u2014 what is new is their willingness to become shareholders",
-    "url": "https://www.ft.com/content/fd95e4c7-40d4-4074-a074-144809b97b45",
-    "published": "2026-06-18T14:57:29",
-    "signals": {
-      "thiel": true,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
   },
   {
     "source": "arxiv_cs_ai",
