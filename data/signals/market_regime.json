@@ -5,57 +5,57 @@
     "total_checked": 10,
     "details": {
       "VST": {
-        "current": 163.75,
-        "ma200": 170.0,
+        "current": 168.37,
+        "ma200": 169.9,
         "above": false
       },
       "CEG": {
-        "current": 274.06,
-        "ma200": 318.44,
+        "current": 276.25,
+        "ma200": 318.28,
         "above": false
       },
       "NRG": {
-        "current": 135.06,
-        "ma200": 155.82,
+        "current": 137.55,
+        "ma200": 155.78,
         "above": false
       },
       "NEE": {
         "current": 86.75,
-        "ma200": 84.72,
+        "ma200": 84.81,
         "above": true
       },
       "SO": {
-        "current": 93.09,
-        "ma200": 91.24,
+        "current": 93.91,
+        "ma200": 91.26,
         "above": true
       },
       "D": {
-        "current": 68.41,
-        "ma200": 60.67,
+        "current": 68.68,
+        "ma200": 60.73,
         "above": true
       },
       "XEL": {
-        "current": 77.41,
-        "ma200": 77.27,
+        "current": 78.55,
+        "ma200": 77.31,
         "above": true
       },
       "AEE": {
-        "current": 108.67,
-        "ma200": 104.33,
+        "current": 109.9,
+        "ma200": 104.39,
         "above": true
       },
       "ETR": {
-        "current": 111.11,
-        "ma200": 99.98,
+        "current": 112.63,
+        "ma200": 100.12,
         "above": true
       },
       "EXC": {
-        "current": 45.81,
-        "ma200": 45.12,
+        "current": 46.11,
+        "ma200": 45.14,
         "above": true
       }
     },
-    "fetched_at": "2026-06-22T12:13:35.189192"
+    "fetched_at": "2026-06-22T17:32:13.261148"
   },
   "hyperscaler_capex": {
     "fred_capex": {
@@ -92,7 +92,7 @@
     "empirical_point": 0,
     "data_gap": false,
     "primary_source": "fred",
-    "fetched_at": "2026-06-22T12:13:22.805629"
+    "fetched_at": "2026-06-22T17:32:00.730886"
   },
   "fred": {
     "electric_power_production": {
@@ -122,11 +122,11 @@
       "data_gap": false
     },
     "hy_credit_spread": {
-      "latest": 2.63,
-      "period": "2026-06-17",
+      "latest": 2.66,
+      "period": "2026-06-19",
       "data_gap": false
     },
-    "fetched_at": "2026-06-22T12:13:20.301104"
+    "fetched_at": "2026-06-22T17:31:58.139258"
   },
   "eia": {
     "growth_yoy": 0.0299,
@@ -135,6 +135,6 @@
     "shulman_signal": false,
     "empirical_point": 0,
     "data_gap": false,
-    "fetched_at": "2026-06-22T12:13:30.097202"
+    "fetched_at": "2026-06-22T17:32:01.015730"
   }
 }

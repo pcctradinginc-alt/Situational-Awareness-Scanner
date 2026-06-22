@@ -1,1 +1,92 @@
-[]
+[
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Groq Raises $650 Million to Aid in Pivot After Nvidia Deal",
+    "summary": "Groq Inc. raised $650 million in a new funding round aimed at expanding its data center capacity and helping the one-time chip startup become a provider of artificial intelligence computing.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-22/groq-raises-650-million-to-help-startup-pivot-after-nvidia-deal",
+    "published": "2026-06-22T13:00:37",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "Nvidia Seeks to Make Humanoid AI Robots Safer Around Humans",
+    "summary": "Nvidia Corp. is working to make humanoid robots safer around people, arguing that they\u2019ll need to handle split-second decisions before they can be trusted to work closely with humans.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-22/nvidia-seeks-to-make-humanoid-ai-robots-safer-around-humans",
+    "published": "2026-06-22T13:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "The AI Industrial Explosion \u2014 Part 4: Cheap power",
+    "summary": "<p>In Parts <a href=\"https://www.lesswrong.com/posts/rpqGWRoRWvqJ4Hqgn/the-ai-industrial-explosion-part-1-maximum-growth-rates-with\">1</a>, <a href=\"https://www.lesswrong.com/posts/HHrwDFhwZFmACeBRS/the-ai-industrial-explosion-part-2-transition-dynamics\">2</a>, and <a href=\"https://www.lesswrong.com/posts/drvdPzHysdiDEpoQE/the-ai-industrial-explosion-part-3-going-faster\">3</a> we estimated how fast a post-AGI economy could grow using existing or historically observed production techniques, groun",
+    "url": "https://www.lesswrong.com/posts/6fgfn72zoRDomgvrT/the-ai-industrial-explosion-part-4-cheap-power",
+    "published": "2026-06-22T13:30:03",
+    "signals": {
+      "thiel": false,
+      "shulman": true,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "META"
+    ],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  },
+  {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "GLM-5.2 Is The New Best Open Model",
+    "summary": "<p>GLM-5.2 arrived last week. It boasts excellent benchmarks and looks strong.</p>\n<p>Benchmarks here are a de facto ceiling of how good it is, not a point estimate. Essentially all other aspects of an open model like this, beyond speed and price, will almost always be worse than the numbers suggest. Still, impressive.</p>\n<p>It is definitely a large step up from GLM-5.1, and likely the strongest open model.</p>\n<p>GLM-5.2 is still substantially behind the absolute frontier, although plausibly o",
+    "url": "https://www.lesswrong.com/posts/reXkwJbB8GYdeuvDt/glm-5-2-is-the-new-best-open-model",
+    "published": "2026-06-22T12:50:54",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": true,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "GOOGL",
+      "RTX",
+      "META"
+    ],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  }
+]
