@@ -2,6 +2,52 @@
   {
     "source": "lesswrong",
     "credibility": 0.85,
+    "title": "Monthly Roundup #43: June 2026",
+    "summary": "<p>Your monthly hit of all the things that are fit to print without a better place to live.</p>\n<p>Today is election day here in New York City, so again a reminder that if you are a registered Democrat and live in NY-12 today is the final day to vote for Alex Bores for Congress, <a href=\"https://thezvi.substack.com/i/203074567/alex-bores-for-congress-in-ny-12\">and as per my argument yesterday</a> that this matters a lot for ensuring we have a sensible Congressional response to AI.</p>\n\n\n<h4>RIP ",
+    "url": "https://www.lesswrong.com/posts/Taa4zmSNtD5S99tJT/monthly-roundup-43-june-2026",
+    "published": "2026-06-23T12:30:56",
+    "signals": {
+      "thiel": true,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "META"
+    ],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  },
+  {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "A system overview for near-term, low-trust AI compute verification",
+    "summary": "<p><b><span>Version 0.2, working draft</span></b></p><p><i><span>This is a working draft of my current best idea for a privacy-preserving, retrofittable AI compute verification system, for confidence-building in an arms-control-like AI agreement between rival nation states. The purpose of this draft is to elicit community engagement by making use of </span></i><a href=\"https://meta.wikimedia.org/wiki/Cunningham%27s_Law/en\"><i><span>Cunningham\u2019s law</span></i></a><i><span>: I make assertions abou",
+    "url": "https://www.lesswrong.com/posts/fgvmKqRGvBteKeDoc/a-system-overview-for-near-term-low-trust-ai-compute",
+    "published": "2026-06-23T10:59:58",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA",
+      "META",
+      "GOOGL"
+    ],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  },
+  {
+    "source": "lesswrong",
+    "credibility": 0.85,
     "title": "On TEEs for Privacy-Preserving Monitoring in AI Governance",
     "summary": "<p><i><span>This project was conducted as part of MIRI Technical Governance Fellowship. Thank you to Aaron Scher for guidance. It does not necessarily reflect the views of the organization.\u00a0</span></i></p><h2><b><span>Overview</span></b></h2><p><span>Trusted Execution Environments (TEEs) spark excitement and skepticism in the realm of AI governance verification. TEEs could be a robust way to restrict and monitor AI deployments, replacing human trust with verifiable constraints and preserving use",
     "url": "https://www.lesswrong.com/posts/kauQxzfS7fT5yHN8C/on-tees-for-privacy-preserving-monitoring-in-ai-governance",
@@ -16,9 +62,9 @@
     },
     "signal_count": 1,
     "tickers": [
-      "MSFT",
       "NVDA",
       "META",
+      "MSFT",
       "GOOGL"
     ],
     "quality_score": 1.2233,
@@ -41,56 +87,10 @@
     },
     "signal_count": 1,
     "tickers": [
-      "MSFT",
       "NVDA",
+      "MSFT",
       "TSM"
     ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "Functional Emotions and The Pope\u2019s Encyclical on AI \u2014 Digital Minds Newsletter #3",
-    "summary": "<p><span>Welcome back to the Digital Minds Newsletter, your curated guide to the latest developments in AI consciousness, digital minds, and AI moral status.</span></p><p><span>If you enjoy this newsletter, please consider sharing it with others who might find it valuable, and send any suggestions or corrections to&nbsp;</span><a href=\"mailto:digitalminds@substack.com\"><span>digitalminds@substack.com</span></a><span>.</span></p><p><a href=\"https://www.linkedin.com/in/will-millership-98393b58/\"><",
-    "url": "https://www.lesswrong.com/posts/xDDhrq2eJs5onARBW/functional-emotions-and-the-pope-s-encyclical-on-ai-digital",
-    "published": "2026-06-22T19:44:40",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA",
-      "MSFT",
-      "RTX",
-      "META",
-      "GOOGL"
-    ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "Planning for Preservation in the Age of AI",
-    "summary": "<p><i><span>Nectome liked </span></i><a href=\"https://www.lesswrong.com/posts/3i5GMhpGbDwef9Rns/nectome-all-that-i-know\" rel=\"noreferrer\"><i><span>my earlier essay</span></i></a><i><span>, and reached out to hire me to write more about their project, and about cryonics more broadly. This is the first such piece.</span></i></p><hr /><p><span>A friend of mine, just a few years older than me, was diagnosed with cancer a few weeks ago. It\u2019s only Stage 1 and in an area where it can probably be treate",
-    "url": "https://www.lesswrong.com/posts/arAgLxohnPWRc2qHd/planning-for-preservation-in-the-age-of-ai",
-    "published": "2026-06-22T17:51:40",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": true,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [],
     "quality_score": 1.2233,
     "weighted_relevance": 1.2232988379545604
   },
