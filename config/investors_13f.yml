@@ -1,0 +1,46 @@
+# 13F investor / fund watchlist.
+# ------------------------------
+# Configurable list of institutional managers whose SEC 13F filings are tracked
+# for AI-infrastructure accumulation. CIK numbers are SEC Central Index Keys.
+# Verify CIKs via https://www.sec.gov/cgi-bin/browse-edgar (they can change /
+# the placeholder ones below MUST be confirmed before live use).
+#
+# `weight` scales how much a given manager's accumulation contributes to the
+# 13F conviction score (e.g. a concentrated thesis-aligned fund > a broad index).
+
+meta:
+  note: >
+    CIKs marked verify=true are placeholders and must be confirmed on EDGAR
+    before relying on live data. The offline fixtures do not depend on CIKs.
+
+managers:
+  - name: "Situational Awareness LP"
+    cik: "0002014020"
+    weight: 1.5
+    verify: true
+    rationale: "Thesis-native fund (Aschenbrenner)."
+  - name: "Founders Fund"
+    cik: "0001615175"
+    weight: 1.2
+    verify: true
+    rationale: "Thiel-aligned; deep-tech / national-security AI."
+  - name: "Thiel Capital"
+    cik: "0001418819"
+    weight: 1.1
+    verify: true
+    rationale: "Strategic / contrarian AI-infrastructure exposure."
+
+# Conviction scoring parameters for 13F holdings.
+scoring:
+  # A brand-new position is a stronger signal than a small trim.
+  new_position_bonus: 2.0
+  add_bonus_per_pct_change: 0.04   # per +1% increase in shares q/q (capped)
+  add_bonus_cap: 3.0
+  reduce_penalty_per_pct_change: 0.03
+  exit_penalty: 2.5
+  # Portfolio concentration: a holding that is a large % of the manager's 13F
+  # AUM signals higher conviction.
+  concentration_weight: 2.0        # multiplies portfolio_pct (0..1)
+  # Persistence across consecutive filings (held N quarters) adds conviction.
+  persistence_bonus_per_quarter: 0.3
+  persistence_cap: 1.5

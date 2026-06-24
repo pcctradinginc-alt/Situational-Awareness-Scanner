@@ -1,0 +1,229 @@
+# AI Infrastructure Equity Universe
+# ----------------------------------
+# Configurable universe of equities mapped to the AI-infrastructure thesis
+# (Aschenbrenner "The Decade Ahead" + adjacent compute/power/supply-chain ideas).
+#
+# This file is DATA, not code. Edit tickers/relevance/tags here without touching
+# Python. `relevance` is a 0..1 prior for how directly the company benefits from
+# accelerating AI-infrastructure demand. It is a PRIOR, not a price target.
+#
+# data_availability is an optional hint ("ok" | "limited" | "unknown") used only
+# for reporting/transparency. The live pipeline re-checks data availability at run
+# time and degrades gracefully when sources are missing.
+
+meta:
+  name: "AI Infrastructure Universe v1"
+  thesis_basis: "Aschenbrenner Situational Awareness / The Decade Ahead"
+  disclaimer: >
+    Research universe only. Relevance scores are subjective priors derived from
+    public thesis material and are NOT investment advice or price targets.
+
+categories:
+  - semiconductors
+  - semiconductor_equipment
+  - memory
+  - networking
+  - data_centers
+  - cloud_hyperscalers
+  - power_grid_electrification
+  - cooling
+  - cybersecurity
+  - ai_infrastructure_software
+  - robotics_automation
+
+tickers:
+  # ── Semiconductors ───────────────────────────────────────────────
+  - ticker: NVDA
+    name: "NVIDIA Corp"
+    category: semiconductors
+    relevance: 0.98
+    thesis_tags: [compute_scarcity, frontier_model_race, ai_infrastructure_suppliers, networking]
+    data_availability: ok
+  - ticker: AMD
+    name: "Advanced Micro Devices"
+    category: semiconductors
+    relevance: 0.82
+    thesis_tags: [compute_scarcity, frontier_model_race, ai_infrastructure_suppliers]
+    data_availability: ok
+  - ticker: TSM
+    name: "Taiwan Semiconductor Mfg"
+    category: semiconductors
+    relevance: 0.95
+    thesis_tags: [semiconductor_bottlenecks, geopolitical_chokepoints, ai_infrastructure_suppliers]
+    data_availability: ok
+  - ticker: AVGO
+    name: "Broadcom Inc"
+    category: semiconductors
+    relevance: 0.85
+    thesis_tags: [networking, ai_infrastructure_suppliers, frontier_model_race]
+    data_availability: ok
+  - ticker: MRVL
+    name: "Marvell Technology"
+    category: semiconductors
+    relevance: 0.72
+    thesis_tags: [networking, ai_infrastructure_suppliers]
+    data_availability: ok
+
+  # ── Semiconductor equipment ──────────────────────────────────────
+  - ticker: ASML
+    name: "ASML Holding"
+    category: semiconductor_equipment
+    relevance: 0.88
+    thesis_tags: [semiconductor_bottlenecks, geopolitical_chokepoints, ai_infrastructure_suppliers]
+    data_availability: ok
+  - ticker: AMAT
+    name: "Applied Materials"
+    category: semiconductor_equipment
+    relevance: 0.70
+    thesis_tags: [semiconductor_bottlenecks, ai_infrastructure_suppliers]
+    data_availability: ok
+  - ticker: LRCX
+    name: "Lam Research"
+    category: semiconductor_equipment
+    relevance: 0.66
+    thesis_tags: [semiconductor_bottlenecks, memory_bandwidth]
+    data_availability: ok
+
+  # ── Memory ───────────────────────────────────────────────────────
+  - ticker: MU
+    name: "Micron Technology"
+    category: memory
+    relevance: 0.80
+    thesis_tags: [memory_bandwidth, compute_scarcity, ai_infrastructure_suppliers]
+    data_availability: ok
+
+  # ── Networking ───────────────────────────────────────────────────
+  - ticker: ANET
+    name: "Arista Networks"
+    category: networking
+    relevance: 0.78
+    thesis_tags: [networking, ai_data_centers, ai_infrastructure_suppliers]
+    data_availability: ok
+  - ticker: CSCO
+    name: "Cisco Systems"
+    category: networking
+    relevance: 0.50
+    thesis_tags: [networking, ai_data_centers]
+    data_availability: ok
+
+  # ── Data centers ─────────────────────────────────────────────────
+  - ticker: VRT
+    name: "Vertiv Holdings"
+    category: data_centers
+    relevance: 0.83
+    thesis_tags: [ai_data_centers, cooling, power_grid_constraints]
+    data_availability: ok
+  - ticker: DLR
+    name: "Digital Realty Trust"
+    category: data_centers
+    relevance: 0.62
+    thesis_tags: [ai_data_centers, cloud_capex]
+    data_availability: ok
+  - ticker: EQIX
+    name: "Equinix Inc"
+    category: data_centers
+    relevance: 0.60
+    thesis_tags: [ai_data_centers, cloud_capex]
+    data_availability: ok
+
+  # ── Cloud hyperscalers ───────────────────────────────────────────
+  - ticker: MSFT
+    name: "Microsoft Corp"
+    category: cloud_hyperscalers
+    relevance: 0.80
+    thesis_tags: [cloud_capex, frontier_model_race, monetization_lag]
+    data_availability: ok
+  - ticker: GOOGL
+    name: "Alphabet Inc"
+    category: cloud_hyperscalers
+    relevance: 0.76
+    thesis_tags: [cloud_capex, frontier_model_race, monetization_lag]
+    data_availability: ok
+  - ticker: AMZN
+    name: "Amazon.com Inc"
+    category: cloud_hyperscalers
+    relevance: 0.74
+    thesis_tags: [cloud_capex, ai_data_centers, monetization_lag]
+    data_availability: ok
+  - ticker: META
+    name: "Meta Platforms"
+    category: cloud_hyperscalers
+    relevance: 0.70
+    thesis_tags: [cloud_capex, frontier_model_race]
+    data_availability: ok
+
+  # ── Power / grid / electrification ───────────────────────────────
+  - ticker: VST
+    name: "Vistra Corp"
+    category: power_grid_electrification
+    relevance: 0.86
+    thesis_tags: [power_grid_constraints, ai_data_centers, national_security_ai_race]
+    data_availability: ok
+  - ticker: CEG
+    name: "Constellation Energy"
+    category: power_grid_electrification
+    relevance: 0.85
+    thesis_tags: [power_grid_constraints, ai_data_centers]
+    data_availability: ok
+  - ticker: NRG
+    name: "NRG Energy"
+    category: power_grid_electrification
+    relevance: 0.72
+    thesis_tags: [power_grid_constraints, ai_data_centers]
+    data_availability: ok
+  - ticker: GEV
+    name: "GE Vernova"
+    category: power_grid_electrification
+    relevance: 0.74
+    thesis_tags: [power_grid_constraints, ai_data_centers]
+    data_availability: ok
+  - ticker: ETN
+    name: "Eaton Corp"
+    category: power_grid_electrification
+    relevance: 0.68
+    thesis_tags: [power_grid_constraints, ai_data_centers, cooling]
+    data_availability: ok
+
+  # ── Cooling ──────────────────────────────────────────────────────
+  - ticker: SMCI
+    name: "Super Micro Computer"
+    category: cooling
+    relevance: 0.64
+    thesis_tags: [cooling, ai_data_centers, ai_infrastructure_suppliers]
+    data_availability: limited
+
+  # ── Cybersecurity ────────────────────────────────────────────────
+  - ticker: PANW
+    name: "Palo Alto Networks"
+    category: cybersecurity
+    relevance: 0.45
+    thesis_tags: [national_security_ai_race, ai_infrastructure_software]
+    data_availability: ok
+  - ticker: CRWD
+    name: "CrowdStrike Holdings"
+    category: cybersecurity
+    relevance: 0.42
+    thesis_tags: [national_security_ai_race, ai_infrastructure_software]
+    data_availability: ok
+
+  # ── AI infrastructure software ───────────────────────────────────
+  - ticker: PLTR
+    name: "Palantir Technologies"
+    category: ai_infrastructure_software
+    relevance: 0.66
+    thesis_tags: [national_security_ai_race, ai_infrastructure_software, automation_robotics]
+    data_availability: ok
+  - ticker: SNOW
+    name: "Snowflake Inc"
+    category: ai_infrastructure_software
+    relevance: 0.40
+    thesis_tags: [ai_infrastructure_software, monetization_lag]
+    data_availability: ok
+
+  # ── Robotics / automation (infrastructure-relevant) ──────────────
+  - ticker: TER
+    name: "Teradyne Inc"
+    category: robotics_automation
+    relevance: 0.52
+    thesis_tags: [automation_robotics, semiconductor_bottlenecks]
+    data_availability: ok

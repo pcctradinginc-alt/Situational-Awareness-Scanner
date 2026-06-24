@@ -1,0 +1,21 @@
+# Report generator settings.
+# --------------------------
+report:
+  title: "AI Infrastructure CALL-Options Intelligence"
+  default_formats: [markdown, csv, json]   # html is also supported
+  output_dir: "reports"
+  top_candidates: 10
+  watchlist_size: 15
+  rejected_sample: 20
+
+  # Disclaimers are ALWAYS rendered. Research/paper only.
+  disclaimers:
+    - "RESEARCH / PAPER MODE ONLY. This system never executes trades."
+    - "Not investment advice. Options can expire worthless; you can lose 100%."
+    - "Scores are explainable heuristics, not probabilities of profit."
+    - "Free data sources are delayed/incomplete; treat low-confidence rows with care."
+
+  # Always show, for every candidate, the reasons-against and data-quality flag.
+  always_show_risk: true
+  always_show_data_quality: true
+  paper_trading_recommendation: true
