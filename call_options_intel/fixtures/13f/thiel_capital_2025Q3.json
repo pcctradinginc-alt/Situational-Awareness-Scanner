@@ -1,0 +1,8 @@
+{
+  "manager": "Thiel Capital",
+  "period": "2025Q3",
+  "holdings": [
+    {"ticker": "NVDA", "shares": 40000, "value_usd": 4400000},
+    {"ticker": "MU",   "shares": 25000, "value_usd": 2500000}
+  ]
+}
