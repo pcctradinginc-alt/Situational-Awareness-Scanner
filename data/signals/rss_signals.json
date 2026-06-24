@@ -1,11 +1,53 @@
 [
   {
-    "source": "lesswrong",
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "SK Hynix Seeks $29 Billion With US Listing to Fund AI Boom",
+    "summary": "SK Hynix Inc. is planning to raise 45.45 trillion won ($29.4 billion) in a landmark US listing, as companies along the artificial intelligence supply chain rush to increase capacity to meet memory chip demand.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-24/sk-hynix-looks-to-raise-29-4-billion-with-new-us-lising",
+    "published": "2026-06-24T08:15:47",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "ft_tech",
     "credibility": 0.85,
-    "title": "Monthly Roundup #43: June 2026",
-    "summary": "<p>Your monthly hit of all the things that are fit to print without a better place to live.</p>\n<p>Today is election day here in New York City, so again a reminder that if you are a registered Democrat and live in NY-12 today is the final day to vote for Alex Bores for Congress, <a href=\"https://thezvi.substack.com/i/203074567/alex-bores-for-congress-in-ny-12\">and as per my argument yesterday</a> that this matters a lot for ensuring we have a sensible Congressional response to AI.</p>\n\n\n<h4>RIP ",
-    "url": "https://www.lesswrong.com/posts/Taa4zmSNtD5S99tJT/monthly-roundup-43-june-2026",
-    "published": "2026-06-23T12:30:56",
+    "title": "Nvidia\u2019s banned AI chips double in price on China\u2019s black market",
+    "summary": "US crackdown on illicit exports has made it riskier, harder and more expensive to buy tech giant\u2019s processors",
+    "url": "https://www.ft.com/content/57fcd3ce-464f-4dc2-8ea2-5712d4972c69",
+    "published": "2026-06-24T00:15:04",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
+  },
+  {
+    "source": "ft_tech",
+    "credibility": 0.85,
+    "title": "Drone start-up Stark wins more funding from Peter Thiel-backed firm",
+    "summary": "US billionaire\u2019s fund participated in \u20ac500mn funding round despite previous criticism of company\u2019s links with financier",
+    "url": "https://www.ft.com/content/b4ad236f-de4b-4ca3-a028-9575d0e61895",
+    "published": "2026-06-23T20:24:10",
     "signals": {
       "thiel": true,
       "shulman": false,
@@ -15,92 +57,17 @@
       "salp": false
     },
     "signal_count": 1,
-    "tickers": [
-      "META"
-    ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "A system overview for near-term, low-trust AI compute verification",
-    "summary": "<p><b><span>Version 0.2, working draft</span></b></p><p><i><span>This is a working draft of my current best idea for a privacy-preserving, retrofittable AI compute verification system, for confidence-building in an arms-control-like AI agreement between rival nation states. The purpose of this draft is to elicit community engagement by making use of </span></i><a href=\"https://meta.wikimedia.org/wiki/Cunningham%27s_Law/en\"><i><span>Cunningham\u2019s law</span></i></a><i><span>: I make assertions abou",
-    "url": "https://www.lesswrong.com/posts/fgvmKqRGvBteKeDoc/a-system-overview-for-near-term-low-trust-ai-compute",
-    "published": "2026-06-23T10:59:58",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA",
-      "META",
-      "GOOGL"
-    ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "On TEEs for Privacy-Preserving Monitoring in AI Governance",
-    "summary": "<p><i><span>This project was conducted as part of MIRI Technical Governance Fellowship. Thank you to Aaron Scher for guidance. It does not necessarily reflect the views of the organization.\u00a0</span></i></p><h2><b><span>Overview</span></b></h2><p><span>Trusted Execution Environments (TEEs) spark excitement and skepticism in the realm of AI governance verification. TEEs could be a robust way to restrict and monitor AI deployments, replacing human trust with verifiable constraints and preserving use",
-    "url": "https://www.lesswrong.com/posts/kauQxzfS7fT5yHN8C/on-tees-for-privacy-preserving-monitoring-in-ai-governance",
-    "published": "2026-06-23T03:54:08",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA",
-      "META",
-      "MSFT",
-      "GOOGL"
-    ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "Model Size Scaling in 2023-2031",
-    "summary": "<p>Token generation speed is constrained by the speed at which the relevant HBM can be read, which is mostly the weights and KV-cache. Suppose a model is large, so that more than half of HBM is read when making a single pass over the weights, it's being read in parallel within a scale-up system, and N such systems are used in a pipeline. Then the time it takes to generate a token (without speculative decoding) is at least the time of reading more than half of an HBM stack times N. If we target a",
-    "url": "https://www.lesswrong.com/posts/yLHiQGCPdvzL9fBn3/model-size-scaling-in-2023-2031",
-    "published": "2026-06-22T23:07:11",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA",
-      "MSFT",
-      "TSM"
-    ],
+    "tickers": [],
     "quality_score": 1.2233,
     "weighted_relevance": 1.2232988379545604
   },
   {
     "source": "ft_tech",
     "credibility": 0.85,
-    "title": "Nvidia\u2019s Kimberly Powell: We are reinventing the doctor experience",
-    "summary": "The chipmaker\u2019s head of healthcare argues AI can ease many of the sector\u2019s ills, including reducing medics\u2019 workload and tackling the shortage of trained staff",
-    "url": "https://www.ft.com/content/d82f357a-89f6-41e4-930c-00b52a2a5df9",
-    "published": "2026-06-23T04:00:10",
+    "title": "US chipmakers lead Wall Street slide on rate rise worries",
+    "summary": "Nasdaq declines for second day with companies such as Nvidia under pressure",
+    "url": "https://www.ft.com/content/10623865-5ff4-4357-9293-3c4ec841d1c4",
+    "published": "2026-06-23T20:08:16",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -119,10 +86,10 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "A-Evolve-Training: Autonomous Post-Training of a 30B Model",
-    "summary": "arXiv:2606.20657v1 Announce Type: new \nAbstract: Post-training a frontier model is normally weeks of human work: proposing data and recipe changes, launching runs, reading evals, deciding what to keep. We report an autonomous system that runs this loop with no human in the loop, post-training a 30B Nemotron across four rounds over multiple weeks. The autonomously produced model reaches a held-out score of 0.86 against the top human submission's 0.87 on the public NVIDIA Nemotron-Reasoning Challe",
-    "url": "https://arxiv.org/abs/2606.20657",
-    "published": "2026-06-23T04:00:00",
+    "title": "FP8 is All You Need (Part 2): Efficient Ozaki-Bailey Style FFT Through Tensor-core Garner Reformulation and Kulisch Escape Route",
+    "summary": "arXiv:2606.23698v1 Announce Type: cross \nAbstract: NVIDIA's Blackwell Ultra (B300) cuts FP64 vector throughput to ~1.3 TFLOPS per GPU, roughly 30x below B200 and well below the level at which bandwidth-limited FP64 workloads stay memory-bound. The Ozaki Scheme II framework recovers FP64-equivalent throughput by routing dense matrix multiply through FP8 tensor cores with a mantissa-sliced Chinese-remainder reconstruction. A companion Part (1) paper covers dense GEMM, batched GEMV, stencils, and S",
+    "url": "https://arxiv.org/abs/2606.23698",
+    "published": "2026-06-24T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -141,10 +108,10 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Teaching LLMs String Matching, Backtracking, and Error Recovery to Deduce Bases and Truth Tables for the Combinatorially Exploding Bit Manipulation Puzzles",
-    "summary": "arXiv:2606.23672v1 Announce Type: new \nAbstract: This paper presents our algorithmic innovations for the NVIDIA Nemotron Model Reasoning Challenge, focusing on Bit Manipulation Puzzles. In this task, the objective is to discover a hidden logical rule transforming input binary strings to outputs, then apply it to unseen inputs. Large Language Models (LLMs) notoriously struggle here; traditional methods force them to simulate complex boolean logic and arithmetic, leading to hallucinations. Further",
-    "url": "https://arxiv.org/abs/2606.23672",
-    "published": "2026-06-23T04:00:00",
+    "title": "VeriPilot: An LLM-Powered Verilog Debugging Framework",
+    "summary": "arXiv:2606.23759v1 Announce Type: cross \nAbstract: Verilog debugging remains one of the most time-consuming stages in digital circuit design. Recent advances in Large Language Models (LLMs) have enabled automated debugging; however, most existing approaches rely solely on test outputs and compiler feedback in an end-to-end manner, limiting their effectiveness on complex bugs. A key challenge is that the root cause of an error may be far removed from its observable outputs, making it difficult fo",
+    "url": "https://arxiv.org/abs/2606.23759",
+    "published": "2026-06-24T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -163,10 +130,32 @@
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Less is More: Lightweight Prompt Compression for Question Answering Applications on Edge Devices",
-    "summary": "arXiv:2606.20571v1 Announce Type: cross \nAbstract: In agent-driven question answering (QA) applications, retrieval-augmented generation (RAG) is commonly introduced to enhance the response accuracy of large language models (LLMs) by providing additional context. Due to the inherent noise in retrieval results and the coarse granularity of document-level retrieval, the retrieved context often contains substantial redundant information. In this setting, the agent prompt, consisting of the user quer",
-    "url": "https://arxiv.org/abs/2606.20571",
-    "published": "2026-06-23T04:00:00",
+    "title": "2.5-D Decomposition for LLM-Based Spatial Construction",
+    "summary": "arXiv:2605.07066v3 Announce Type: replace \nAbstract: Autonomous systems that build structures from natural-language instructions need reliable spatial reasoning, yet large language models (LLMs) make systematic coordinate errors when generating three-dimensional block placements. We present a neuro-symbolic pipeline based on \\emph{2.5-D decomposition}: the LLM plans in the two-dimensional horizontal plane while a deterministic executor computes all vertical placement from column occupancy, elimi",
+    "url": "https://arxiv.org/abs/2605.07066",
+    "published": "2026-06-24T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Cosmos 3: Omnimodal World Models for Physical AI",
+    "summary": "arXiv:2606.02800v4 Announce Type: replace-cross \nAbstract: We introduce Cosmos 3, a family of omnimodal world models designed to jointly process and generate language, image, video, audio, and action sequences within a unified mixture-of-transformers architecture. By supporting highly flexible input-output configurations, Cosmos 3 seamlessly unifies critical modalities for Physical AI -- effectively subsuming vision-language models, video generators, world simulators, and world-action models int",
+    "url": "https://arxiv.org/abs/2606.02800",
+    "published": "2026-06-24T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -186,9 +175,9 @@
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
     "title": "Does Mixture-of-Experts Actually Help Inference on Consumer and Edge Hardware? An Empirical Study",
-    "summary": "arXiv:2606.21428v1 Announce Type: cross \nAbstract: Mixture-of-Experts (MoE) language models are often described as ideal for resource-constrained inference. Each token activates only a small subset of experts, so the per-token compute cost, in floating-point operations (FLOPs), resembles that of a much smaller dense model. Whether that FLOP advantage survives in practice is far less clear. We ask whether MoE models actually run faster and cheaper than comparable dense models on consumer-grade an",
+    "summary": "arXiv:2606.21428v2 Announce Type: replace-cross \nAbstract: Mixture-of-Experts (MoE) language models are often described as ideal for resource-constrained inference. Each token activates only a small subset of experts, so the per-token compute cost, in floating-point operations (FLOPs), resembles that of a much smaller dense model. Whether that FLOP advantage survives in practice is far less clear. We ask whether MoE models actually run faster and cheaper than comparable dense models on consumer-",
     "url": "https://arxiv.org/abs/2606.21428",
-    "published": "2026-06-23T04:00:00",
+    "published": "2026-06-24T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -205,154 +194,22 @@
     "weighted_relevance": 1.0836141955583654
   },
   {
-    "source": "arxiv_cs_ai",
+    "source": "defenseone",
     "credibility": 0.8,
-    "title": "L20-Edu-135M: An Auditable Single-GPU Study of Data-Efficient Small Language Modeling",
-    "summary": "arXiv:2606.22189v1 Announce Type: cross \nAbstract: Small language models are cheap to serve and feasible on local hardware, but strong public 135M-class systems are commonly trained with hundreds of billions to trillions of tokens on large clusters. We study a sharply resource-constrained regime: a complete 134.5M-parameter language-model pipeline executed on one NVIDIA L20 GPU. The released checkpoint, L20-Edu-135M, receives approximately 13B pretraining tokens: 10B FineWeb-Edu tokens followed ",
-    "url": "https://arxiv.org/abs/2606.22189",
-    "published": "2026-06-23T04:00:00",
+    "title": "Army aims to sync two divisions using next-gen C2 by year\u2019s end",
+    "summary": "The effort will be led by Anduril, which ran NGC2 prototyping at 4th ID.",
+    "url": "https://www.defenseone.com/defense-systems/2026/06/army-aims-sync-two-divisions-using-next-gen-c2-years-end/414367/",
+    "published": "2026-06-24T00:32:59",
     "signals": {
-      "thiel": false,
+      "thiel": true,
       "shulman": false,
       "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "An Analysis of Untrained Deep Reservoir Networks for Audio Surveillance",
-    "summary": "arXiv:2606.22218v1 Announce Type: cross \nAbstract: In this paper, we investigate untrained recurrent models from the Reservoir Computing (RC) paradigm for audio surveillance, focusing on bidirectional Echo State Networks with different depths, from shallow to deep configurations, for emergency sound event detection. We evaluate these models on the MIVIA Audio Events dataset in a multiclass setting across different Signal-to-Noise Ratio (SNR) levels, with the goal of assessing the trade-off betwe",
-    "url": "https://arxiv.org/abs/2606.22218",
-    "published": "2026-06-23T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "SCENIC: Semantic-Conditioned Edge-Aware Neural Framework for Structured IoT Command Generation",
-    "summary": "arXiv:2606.22296v1 Announce Type: cross \nAbstract: Edge Internet of Things (IoT) agents are often constrained by memory capacity, privacy requirements, communication latency, and recurring inference cost. Current smart-home assistants commonly rely on API-level command interfaces or cloud-based language models that remain difficult to deploy on edge devices. This paper addresses edge IoT command generation as a many-to-one structured output task, where multiple natural-language instructions map ",
-    "url": "https://arxiv.org/abs/2606.22296",
-    "published": "2026-06-23T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "The Power of Light: Improving Synthetic-to-Real Domain Adaptation through Physically-Based Indirect Illumination",
-    "summary": "arXiv:2606.22574v1 Announce Type: cross \nAbstract: While synthetic data generation resolves the manual labeling bottleneck in computer vision, minimizing the syn-to-real domain gap requires optimizing rendering variables. This paper presents a systematic study analyzing the impact of lighting configurations and background complexity on object detection performance. We introduce SmartSDG, an automated, reproducible pipeline built on NVIDIA Isaac Sim using Physically-Based Shading (PBS), alongside",
-    "url": "https://arxiv.org/abs/2606.22574",
-    "published": "2026-06-23T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "HyperQuant: A Rate-Distortion-Optimal Quantization Pipeline for Large Language and Diffusion Models",
-    "summary": "arXiv:2606.23406v1 Announce Type: cross \nAbstract: We present HyperQuant (Hadamard, optimallY Packing, Entropy Rice-coding), a unified post-training quantization pipeline for the weights and the KV cache of large language and diffusion transformers. Across a suite of self-contained experiments (Table 1), HyperQuant outperforms the recent HIGGS scheme at every operating point from 3 to 5 bits per scalar (bps) on weights, and beats both TurboQuant and OCTOPUS on KV quantization down to 1.7 bps. Be",
-    "url": "https://arxiv.org/abs/2606.23406",
-    "published": "2026-06-23T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Demystifying Training-Time Augmentation for Data-Constrained Language Model Pretraining",
-    "summary": "arXiv:2606.16246v2 Announce Type: replace-cross \nAbstract: As AI labs approach a data ceiling where compute capacity outpaces the rate of new high-quality text generation, language model pretraining is shifting toward a data-constrained, compute-abundant regime that demands productive multi-epoch training on fixed corpora. Standard autoregressive (AR) pretraining overfits severely in this setting, reaching its optimum early and then continuously deteriorating. We investigate training-time data a",
-    "url": "https://arxiv.org/abs/2606.16246",
-    "published": "2026-06-23T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
+      "bottleneck_compute": false,
       "bottleneck_energy": false,
       "salp": false
     },
     "signal_count": 1,
     "tickers": [],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "SegTME-UNI2: A Foundation Model-Based Framework for Generalisable Multiclass Cell Segmentation and LLM-Driven Tumour Microenvironment Characterisation in Histopathology",
-    "summary": "arXiv:2606.17702v2 Announce Type: replace-cross \nAbstract: Characterising the tumour microenvironment (TME) from routine H&amp;E-stained histology images requires simultaneous cell segmentation, feature extraction, and interpretable clinical reporting. We present SegTME-UNI2, a unified framework addressing these requirements. Its core is UNI2-UperHoVeR, a dual-head segmentation model pairing the UNI2-h pathology foundation model (ViT-Giant, pretrained on >100M tiles from 100K slides) with two pa",
-    "url": "https://arxiv.org/abs/2606.17702",
-    "published": "2026-06-23T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
     "quality_score": 1.0836,
     "weighted_relevance": 1.0836141955583654
   }
