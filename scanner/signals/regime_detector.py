@@ -57,7 +57,11 @@ class RegimeDetector:
         # Grid Queue (vereinfacht: EIA als Proxy)
         eia_data     = all_data.get("eia", {})
         eia_growth   = eia_data.get("growth_yoy") or 0
-        grid_growth  = min(max(eia_growth, 0), 1)  # Normalisiert 0-1
+        # BUGFIX: YoY-Wachstum (z. B. 0.06 = 6 %) auf eine 0–1 Stabilitäts-Skala
+        # normalisieren (10 % YoY ⇒ voller Beitrag). Vorher wurde 6 % als 0.06
+        # behandelt, sodass gesundes Energiewachstum die regime_stability unter
+        # die Stress-Schwelle (0.4) drückte und fälschlich STRESS auslöste.
+        grid_growth  = min(max(eia_growth, 0) / 0.10, 1)
 
         # Regime-Stabilitäts-Faktor
         regime_stability = (energy_breadth + grid_growth) / 2

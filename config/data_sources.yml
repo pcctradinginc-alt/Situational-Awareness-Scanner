@@ -33,7 +33,7 @@ edgar_13f:
   # SEC EDGAR is FREE. A descriptive User-Agent is required by SEC fair-access
   # policy. No key needed. Live fetching is OFF by default (offline mode uses
   # bundled fixtures); enable via CLI --live.
-  user_agent: "SituationalAwarenessScanner research (contact: set-your-email@example.com)"
+  user_agent: "SituationalAwarenessScanner research (contact: info@pcctradinginc.com)"
   base_url: "https://data.sec.gov"
   request_timeout_s: 15
   rate_limit_per_sec: 5

@@ -69,3 +69,14 @@ def test_unknown_format_raises(result_and_gen):
     result, gen = result_and_gen
     with pytest.raises(ValueError):
         gen.render(result, "pdf")
+
+
+def test_offline_reports_flag_synthetic_data(result_and_gen):
+    """Offline output must NOT be mistakable for real market data."""
+    result, gen = result_and_gen
+    assert result.mode == "offline"
+    md = gen.to_markdown(result)
+    assert "OFFLINE / DEMO DATA" in md
+    assert "NOT real market data" in md
+    html = gen.to_html(result)
+    assert "OFFLINE / DEMO DATA" in html

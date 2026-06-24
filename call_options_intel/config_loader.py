@@ -71,7 +71,7 @@ _DEFAULTS: dict[str, dict] = {
         "options_data": {"providers": ["yfinance", "fixture"], "request_timeout_s": 10,
                          "estimate_missing_greeks": True, "risk_free_rate": 0.04},
         "volatility": {"vix_symbol": "^VIX", "fixture_vix": 17.5},
-        "edgar_13f": {"user_agent": "SA-Scanner research (set-your-email@example.com)",
+        "edgar_13f": {"user_agent": "SA-Scanner research (info@pcctradinginc.com)",
                       "base_url": "https://data.sec.gov", "request_timeout_s": 15,
                       "rate_limit_per_sec": 5},
         "news_rss": {"enabled": False, "feeds": []},

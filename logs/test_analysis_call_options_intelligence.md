@@ -121,3 +121,23 @@ pre-existing failures** (unchanged `scanner/` tests). `doctor` PASS. The #1 pick
 now carries IV-richness flags, an earnings IV-crush warning and a real risk
 penalty — the exact overconfidence failure modes the audit targeted are closed.
 Re-review verdict basis: **APPROVE** (B1 + M1 + M2 + M3 addressed with tests).
+
+---
+
+## Loop 4 — green full suite, SEC contact, no false data, merge
+
+Goal: real SEC contact email, a fully green test run (no bugs), and ensure
+offline output cannot be mistaken for real data.
+
+| Item | Change |
+|---|---|
+| SEC contact | Set `edgar_13f.user_agent` contact to **info@pcctradinginc.com** in `config/data_sources.yml` and the `config_loader` default (SEC fair-access requires a real contact for live EDGAR). |
+| `test_iv_rank_warmup` (was failing) | **Stale test**, not a code bug: `get_iv_rank` deliberately returns `INSUFFICIENT_DATA`/`iv_rank=None` (documented "R-03 FIX") instead of the old `WARMUP`/50.0 default. Test updated to assert the intended behaviour. |
+| `test_normal_mode` (was failing) | **Real scanner bug**: `regime_stability = (energy_breadth + grid_growth)/2` averaged a 0–1 breadth ratio with *raw* YoY growth, so a healthy 6% energy growth (0.06) pushed stability to 0.38 < 0.4 and falsely flagged STRESS. Fixed `grid_growth` normalisation (`/0.10`; 10% YoY ⇒ full). `test_stress_mode_iv` still STRESS via the IV>60 trigger. |
+| "False data" guard | Offline reports (Markdown + HTML) now carry a prominent **"OFFLINE / DEMO DATA — synthetic fixtures, NOT real market data"** banner so demo figures cannot be mistaken for real quotes. Locked by `test_offline_reports_flag_synthetic_data`. |
+
+**Status after Loop 4:** ✅ **Full suite 112 passed, 0 failed** (was 109/2). Both
+long-standing `scanner/` failures resolved (one stale test, one genuine regime
+scale bug). `doctor` PASS. Remaining 24 warnings are `datetime.utcnow()`
+deprecations inside the legacy `scanner/` package only (not failures, out of
+scope). Feature branch merged to `main`.

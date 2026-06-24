@@ -66,6 +66,12 @@ class ReportGenerator:
         L.append("")
         L.append("> " + "  \n> ".join(self.disclaimers))
         L.append("")
+        if r.mode != "live":
+            L.append("> ⚠️ **OFFLINE / DEMO DATA** — every price, option quote, IV and "
+                     "13F figure below comes from bundled **synthetic fixtures** for "
+                     "testing. These are **NOT real market data** and must not be "
+                     "traded on. Run with `--live` to pull real free data.")
+            L.append("")
 
         # Executive summary
         L.append("## Executive Summary")
@@ -269,14 +275,19 @@ class ReportGenerator:
                 f"<td>{'; '.join(dedupe(c.reasons_against)[:3])}</td></tr>"
             )
         disc = "<br>".join(self.disclaimers)
+        offline = "" if r.mode == "live" else (
+            '<div class="demo">⚠️ OFFLINE / DEMO DATA — all figures are synthetic '
+            'bundled fixtures, NOT real market data. Run with --live for real free '
+            'data.</div>')
         return f"""<!doctype html><html><head><meta charset="utf-8">
 <title>{self.cfg.get('title', 'CALL-Options Intelligence')}</title>
 <style>body{{font-family:system-ui,Arial;margin:2rem;color:#111}}
 table{{border-collapse:collapse;width:100%}}th,td{{border:1px solid #ccc;padding:6px;font-size:13px}}
-.warn{{background:#fff3cd;padding:1rem;border:1px solid #ffe69c;border-radius:6px}}</style></head>
+.warn{{background:#fff3cd;padding:1rem;border:1px solid #ffe69c;border-radius:6px}}
+.demo{{background:#f8d7da;padding:1rem;border:1px solid #f1aeb5;border-radius:6px;margin-top:8px;font-weight:bold}}</style></head>
 <body><h1>{self.cfg.get('title', 'CALL-Options Intelligence')}</h1>
 <p><em>Generated {r.generated_at} · mode {r.mode} · universe {r.universe_size}</em></p>
-<div class="warn">{disc}</div>
+<div class="warn">{disc}</div>{offline}
 <h2>Ranked CALL candidates</h2>
 <table><tr><th>#</th><th>Ticker</th><th>Strike</th><th>Expiry</th><th>DTE</th>
 <th>Score</th><th>Conf</th><th>Event</th><th>Reasons against</th></tr>

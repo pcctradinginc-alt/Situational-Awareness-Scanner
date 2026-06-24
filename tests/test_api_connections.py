@@ -73,10 +73,12 @@ class TestStateManager:
         from scanner.utils.state_manager import StateManager
         sm = StateManager(db_path=tmp_path / "test.db")
 
-        # Weniger als MIN_DATAPOINTS → Warmup
+        # Weniger als MIN_DATAPOINTS → INSUFFICIENT_DATA (R-03 FIX: kein
+        # verzerrender 50.0-Default mehr; iv_rank ist None und der
+        # RegimeDetector behandelt fehlende Daten explizit als neutral).
         result = sm.get_iv_rank("VST", 0.35)
-        assert result["confidence"] == "WARMUP"
-        assert result["iv_rank"] == 50.0
+        assert result["confidence"] == "INSUFFICIENT_DATA"
+        assert result["iv_rank"] is None
         sm.close()
 
     def test_iv_rank_calculation(self, tmp_path):

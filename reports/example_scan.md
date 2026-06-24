@@ -1,11 +1,13 @@
 # AI Infrastructure CALL-Options Intelligence
 
-_Generated: 2026-06-24T16:41:05+00:00 · mode: **offline** · universe: 12 tickers_
+_Generated: 2026-06-24T17:01:25+00:00 · mode: **offline** · universe: 12 tickers_
 
 > RESEARCH / PAPER MODE ONLY. This system never executes trades.  
 > Not investment advice. Options can expire worthless; you can lose 100%.  
 > Scores are explainable heuristics, not probabilities of profit.  
 > Free data sources are delayed/incomplete; treat low-confidence rows with care.
+
+> ⚠️ **OFFLINE / DEMO DATA** — every price, option quote, IV and 13F figure below comes from bundled **synthetic fixtures** for testing. These are **NOT real market data** and must not be traded on. Run with `--live` to pull real free data.
 
 ## Executive Summary
 
