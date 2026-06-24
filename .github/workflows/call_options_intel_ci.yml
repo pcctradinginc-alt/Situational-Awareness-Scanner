@@ -1,0 +1,39 @@
+name: call-options-intel-ci
+
+# CI for the free-data CALL-options intelligence subsystem.
+# Runs fully offline (fixtures only) — no API keys, no network, no paid sources.
+
+on:
+  push:
+    paths:
+      - "call_options_intel/**"
+      - "config/**"
+      - "tests/test_coi_*.py"
+      - "scripts/generate_fixtures.py"
+      - ".github/workflows/call_options_intel_ci.yml"
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install minimal deps (no paid APIs)
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest PyYAML pandas numpy
+      - name: Health check (no live trading, no secrets)
+        run: python -m call_options_intel doctor
+      - name: Run COI test suite (offline)
+        run: python -m pytest tests/test_coi_*.py -q
+      - name: Smoke scan produces a report
+        run: |
+          python -m call_options_intel scan --tickers NVDA MU --output /tmp/ci --format markdown json
+          test -s /tmp/ci.md && test -s /tmp/ci.json

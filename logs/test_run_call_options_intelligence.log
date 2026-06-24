@@ -1,0 +1,104 @@
+...F...F................................................................ [ 68%]
+.................................                                        [100%]
+=================================== FAILURES ===================================
+_____________________ TestStateManager.test_iv_rank_warmup _____________________
+
+self = <tests.test_api_connections.TestStateManager object at 0x108aa60d0>
+tmp_path = PosixPath('/private/var/folders/38/b2_7ppw93wlf64w57vly93540000gn/T/pytest-of-cc/pytest-30/test_iv_rank_warmup0')
+
+    def test_iv_rank_warmup(self, tmp_path):
+        from scanner.utils.state_manager import StateManager
+        sm = StateManager(db_path=tmp_path / "test.db")
+    
+        # Weniger als MIN_DATAPOINTS → Warmup
+        result = sm.get_iv_rank("VST", 0.35)
+>       assert result["confidence"] == "WARMUP"
+E       AssertionError: assert 'INSUFFICIENT_DATA' == 'WARMUP'
+E         
+E         - WARMUP
+E         + INSUFFICIENT_DATA
+
+tests/test_api_connections.py:78: AssertionError
+_____________________ TestRegimeDetector.test_normal_mode ______________________
+
+self = <tests.test_api_connections.TestRegimeDetector object at 0x108aa6710>
+
+    def test_normal_mode(self):
+        from scanner.signals.regime_detector import RegimeDetector
+    
+        class MockSM:
+            def get_capex_trend(self): return "rising"
+            def store_regime(self, r): pass
+    
+        det = RegimeDetector()
+        all_data = {
+            "energy_breadth": {"energy_breadth": 0.70},
+            "hyperscaler_capex": {"capex_trend": "rising"},
+            "options": {
+                "VST": {"iv_rank": {"iv_rank": 35.0, "confidence": "HIGH"}},
+            },
+            "eia": {"growth_yoy": 0.06},
+            "fred": {},
+        }
+        result = det.detect(all_data, MockSM())
+>       assert result["mode"] == "NORMAL"
+E       AssertionError: assert 'STRESS' == 'NORMAL'
+E         
+E         - NORMAL
+E         + STRESS
+
+tests/test_api_connections.py:162: AssertionError
+=============================== warnings summary ===============================
+tests/test_api_connections.py::TestStateManager::test_iv_rank_warmup
+tests/test_api_connections.py::TestStateManager::test_iv_rank_calculation
+tests/test_api_connections.py::TestStateManager::test_katechon_bonus_quarterly_limit
+tests/test_api_connections.py::TestStateManager::test_portfolio_limits
+  /Users/cc/Desktop/situational-awareness-scanner-call-options/scanner/utils/state_manager.py:28: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    self._run_id = datetime.utcnow().strftime("%Y%m%d-%H%M%S")
+
+tests/test_api_connections.py::TestStateManager::test_iv_rank_warmup
+tests/test_api_connections.py::TestStateManager::test_iv_rank_calculation
+tests/test_api_connections.py::TestStateManager::test_katechon_bonus_quarterly_limit
+tests/test_api_connections.py::TestStateManager::test_portfolio_limits
+  /Users/cc/Desktop/situational-awareness-scanner-call-options/scanner/utils/state_manager.py:129: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    (self._run_id, datetime.utcnow().isoformat())
+
+tests/test_api_connections.py::TestStateManager::test_iv_rank_warmup
+tests/test_api_connections.py::TestStateManager::test_iv_rank_calculation
+tests/test_api_connections.py::TestStateManager::test_iv_rank_calculation
+  /Users/cc/Desktop/situational-awareness-scanner-call-options/scanner/utils/state_manager.py:144: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    cutoff = (datetime.utcnow() - timedelta(days=Config.IV_RANK_LOOKBACK_DAYS)).date().isoformat()
+
+tests/test_api_connections.py::TestStateManager::test_katechon_bonus_quarterly_limit
+tests/test_api_connections.py::TestStateManager::test_katechon_bonus_quarterly_limit
+tests/test_api_connections.py::TestStateManager::test_katechon_bonus_quarterly_limit
+tests/test_api_connections.py::TestStateManager::test_katechon_bonus_quarterly_limit
+  /Users/cc/Desktop/situational-awareness-scanner-call-options/scanner/utils/state_manager.py:281: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    quarter = f"{datetime.utcnow().year}-Q{(datetime.utcnow().month - 1) // 3 + 1}"
+
+tests/test_api_connections.py::TestStateManager::test_katechon_bonus_quarterly_limit
+tests/test_api_connections.py::TestStateManager::test_katechon_bonus_quarterly_limit
+  /Users/cc/Desktop/situational-awareness-scanner-call-options/scanner/utils/state_manager.py:291: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    quarter = f"{datetime.utcnow().year}-Q{(datetime.utcnow().month - 1) // 3 + 1}"
+
+tests/test_api_connections.py::TestStateManager::test_portfolio_limits
+tests/test_api_connections.py::TestStateManager::test_portfolio_limits
+tests/test_api_connections.py::TestStateManager::test_portfolio_limits
+  /Users/cc/Desktop/situational-awareness-scanner-call-options/tests/test_api_connections.py:133: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    datetime.utcnow().date().isoformat(), 8.5, 9)
+
+tests/test_api_connections.py::TestRegimeDetector::test_normal_mode
+tests/test_api_connections.py::TestRegimeDetector::test_stress_mode_iv
+  /Users/cc/Desktop/situational-awareness-scanner-call-options/scanner/signals/regime_detector.py:115: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    "determined_at":      datetime.utcnow().isoformat(),
+
+tests/test_api_connections.py::TestContrarianGate::test_gate_blocked
+tests/test_api_connections.py::TestContrarianGate::test_gate_open_no_gegenthesen
+  /Users/cc/Desktop/situational-awareness-scanner-call-options/scanner/signals/contrarian_gate.py:118: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    "evaluated_at":        datetime.utcnow().isoformat(),
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_api_connections.py::TestStateManager::test_iv_rank_warmup
+FAILED tests/test_api_connections.py::TestRegimeDetector::test_normal_mode - ...
+2 failed, 103 passed, 24 warnings in 2.85s

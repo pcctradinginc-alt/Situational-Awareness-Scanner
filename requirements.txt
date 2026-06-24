@@ -1,4 +1,5 @@
 anthropic>=0.34.0
+PyYAML>=6.0
 yfinance>=0.2.40
 finnhub-python>=2.4.19
 feedparser>=6.0.11

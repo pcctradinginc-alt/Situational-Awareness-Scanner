@@ -11,3 +11,14 @@ data/cache/
 data/scanner.db
 data/historical/raw_*.json
 .DS_Store
+
+.claude/settings.local.json
+
+# Logs are runtime noise EXCEPT the required CALL-options test-run log, which is
+# a committed acceptance artifact.
+logs/*.log
+!logs/test_run_call_options_intelligence.log
+
+# Runtime scan outputs are ignored; the curated example_* artifacts are kept.
+reports/*
+!reports/example_*
