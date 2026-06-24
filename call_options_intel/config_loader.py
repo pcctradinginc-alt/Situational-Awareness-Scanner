@@ -36,6 +36,7 @@ _DEFAULTS: dict[str, dict] = {
             "max_total_penalty": 4.0, "illiquid_options": 1.0, "wide_spread": 1.0,
             "extreme_iv": 0.8, "near_expiry_lottery": 0.8, "weak_data_quality": 1.0,
             "no_catalyst": 0.5, "contradictory_13f": 0.7, "excessive_drawdown": 0.6,
+            "event_iv_risk": 0.7,
         },
         "confidence": {"labels": {"high": 0.80, "medium": 0.55, "low": 0.0}},
         "gates": {
@@ -55,6 +56,7 @@ _DEFAULTS: dict[str, dict] = {
         "iv": {
             "expensive_percentile": 80, "extreme_percentile": 92,
             "warmup_default_percentile": 50,
+            "richness_to_percentile_slope": 100, "fair_richness_max": 1.15,
         },
         "market": {
             "max_drawdown_without_stabilization": 0.35, "min_avg_dollar_volume": 5.0e7,

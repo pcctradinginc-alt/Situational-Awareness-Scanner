@@ -29,6 +29,7 @@ risk_penalty:
   no_catalyst: 0.5               # no identified catalyst
   contradictory_13f: 0.7         # smart money reducing/exiting
   excessive_drawdown: 0.6        # deep drawdown without stabilisation
+  event_iv_risk: 0.7             # holding a call INTO earnings (IV-crush risk)
 
 # Confidence is a SEPARATE axis from the score: it reflects DATA completeness,
 # not conviction. A high score with low confidence must be flagged.

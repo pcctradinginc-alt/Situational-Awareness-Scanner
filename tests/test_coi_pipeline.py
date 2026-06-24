@@ -34,6 +34,15 @@ def test_thesis_separate_from_trade():
         assert tsm.breakdown.risk_penalty > 0    # but penalised
 
 
+def test_every_candidate_has_reasons_against():
+    """Research integrity: no candidate (incl. the #1 top pick) is one-sided."""
+    pipe = Pipeline(config=AppConfig(), mode="offline")
+    result = pipe.scan()
+    assert result.candidates
+    assert all(c.reasons_against for c in result.candidates)
+    assert all(c.reasons_against for c in result.top)
+
+
 def test_scan_restricted_tickers():
     pipe = Pipeline(config=AppConfig(), mode="offline")
     result = pipe.scan(only_tickers=["NVDA"])

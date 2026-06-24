@@ -94,3 +94,30 @@ Both were confirmed failing on the baseline commit (`git stash`/baseline run) **
   such in candidate reasons.
 - Two pre-existing `scanner/` test failures remain (documented above); fixing
   them is out of scope for this feature branch.
+
+---
+
+## Loop 3 — independent Review/QA Agent audit
+
+An independent Review/QA pass audited financial logic, overconfidence and the
+safety perimeter. Verdict was **REQUEST-CHANGES** with concrete findings; all
+valid findings were fixed and regression-tested.
+
+| ID | Severity | Finding | Fix |
+|---|---|---|---|
+| B1 | BLOCKER | The #1 top pick (NVDA) shipped with an **empty reasons-against** and the report omitted the "Against" line when empty. | `candidates._build_candidate` now guarantees a non-empty `reasons_against` (standing caveat fallback); `report._candidate_block` always renders an "Against" line. Test: `test_every_candidate_has_reasons_against` (candidates + pipeline). |
+| M1 | MAJOR | Event/earnings trades carried **zero penalty** — `setdefault("near_expiry_lottery", 0.0)` was a no-op. | Added a real, configurable `event_iv_risk` penalty (0.7) with its own key, surfaced as a reason-against. NVDA into earnings now scores 7.38 (was 8.08) with `risk_penalty=0.7`. Test: `test_event_trade_is_penalised`. |
+| M2 | MAJOR | IV-richness gate too loose (`50×richness` only flagged at 1.6× realised). | New shared `iv_richness_assessment` with configurable slope (default 100): 1.30× → expensive, 1.42× → extreme, plus a "mild/somewhat rich" band. NVDA's 1.25× IV now flags as "somewhat rich". Test: `test_rich_iv_is_penalised`. |
+| M3 | MAJOR | 13F concentration bonus added **unconditionally**, able to flip a `reduce` positive. | Concentration bonus now applies only to `new`/`add`/`hold`. Test: `test_concentration_does_not_flip_reduce_positive`. |
+| m1 | MINOR | `data_quality.min_acceptable` configured but unused; also `catalyst` was always "present" (fake 2.0), so confidence could never fall below 0.4 and the floor could never fire. | `score_catalyst` now returns **absent (None)** when there is no catalyst (penalty still applies), making confidence honest; `candidates.generate` enforces `min_acceptable` (rejects `insufficient_data_quality`). Test: `test_insufficient_data_quality_rejected`. |
+| n2/n3 | NIT | Dead code in `cli.py` (`ok = False if False else ok`, `return 0 if ok else 0`). | Removed. |
+
+**Acknowledged-but-kept (documented, low risk):** option-proxy `max(linear,
+intrinsic)` can over-credit unexpired deep-ITM moves (capped at −100% and
+caveated); strike-zone boundaries overlap (first-match-wins, deterministic).
+
+**Status after Loop 3:** ✅ COI suite **87 passed**. Full suite **109 passed, 2
+pre-existing failures** (unchanged `scanner/` tests). `doctor` PASS. The #1 pick
+now carries IV-richness flags, an earnings IV-crush warning and a real risk
+penalty — the exact overconfidence failure modes the audit targeted are closed.
+Re-review verdict basis: **APPROVE** (B1 + M1 + M2 + M3 addressed with tests).

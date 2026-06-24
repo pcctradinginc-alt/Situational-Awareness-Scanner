@@ -211,8 +211,11 @@ class ReportGenerator:
             L.append(f"- **Catalysts**: {', '.join(c.catalysts)}")
         if c.reasons_for:
             L.append("- **For**: " + "; ".join(dedupe(c.reasons_for)[:6]))
-        if c.reasons_against:
-            L.append("- **Against**: " + "; ".join(dedupe(c.reasons_against)[:6]))
+        # Always render reasons-against (research integrity: never a one-sided pick)
+        against = dedupe(c.reasons_against)[:6] or [
+            "no automatic red flags — long calls can still lose 100%; verify "
+            "live IV/spread/catalyst before sizing"]
+        L.append("- **Against**: " + "; ".join(against))
         if c.risk_notes:
             L.append("- **Risk notes**: " + "; ".join(dedupe(c.risk_notes)))
         L.append(f"- **Paper recommendation**: {c.paper_recommendation}")

@@ -31,6 +31,35 @@ def _clamp(x: float, lo: float = 0.0, hi: float = 10.0) -> float:
     return max(lo, min(hi, x))
 
 
+def iv_richness_assessment(iv, hist_vol, risk_cfg):
+    """Assess how rich a call's IV is vs realised vol.
+
+    Returns (richness, iv_pct, band) where band ∈ {fair, mild, elevated,
+    extreme} or (None, None, None) when inputs are missing. iv_pct maps richness
+    via a configurable slope: iv_pct = 50 + slope*(richness-1). With slope=100 a
+    call priced 30% over realised vol (richness 1.30) reaches the "expensive"
+    band — far tighter than the previous 1.6x trigger.
+    """
+    if not iv or not hist_vol or hist_vol <= 0:
+        return None, None, None
+    richness = iv / hist_vol
+    iv_cfg = (risk_cfg or {}).get("iv", {})
+    slope = iv_cfg.get("richness_to_percentile_slope", 100)
+    iv_pct = max(0.0, min(100.0, 50.0 + slope * (richness - 1.0)))
+    exp_p = iv_cfg.get("expensive_percentile", 80)
+    ext_p = iv_cfg.get("extreme_percentile", 92)
+    fair_max = iv_cfg.get("fair_richness_max", 1.15)
+    if iv_pct >= ext_p:
+        band = "extreme"
+    elif iv_pct >= exp_p:
+        band = "elevated"
+    elif richness <= fair_max:
+        band = "fair"
+    else:
+        band = "mild"
+    return richness, iv_pct, band
+
+
 class SignalEngine:
     def __init__(self, scoring_cfg: dict, risk_cfg: dict):
         self.scoring_cfg = scoring_cfg or {}
@@ -109,11 +138,15 @@ class SignalEngine:
         return round(_clamp(conv), 2), reasons_for, reasons_against, penalties
 
     def score_catalyst(self, catalysts: list[str]):
+        # No catalyst data => the component is ABSENT (None), not a weak positive.
+        # This keeps confidence honest (a name with no catalyst is less complete)
+        # and still applies the no_catalyst penalty. Returning a fake 2.0 would
+        # inflate data completeness and neuter the data-quality floor.
         reasons_for: list[str] = []
         penalties: dict[str, float] = {}
         if not catalysts:
             penalties["no_catalyst"] = self.penalty_cfg.get("no_catalyst", 0.5)
-            return 2.0, reasons_for, penalties
+            return None, reasons_for, penalties
         s = 2.0 + 2.0 * len(catalysts)
         reasons_for.extend(catalysts)
         return round(_clamp(s), 2), reasons_for, penalties
@@ -157,21 +190,18 @@ class SignalEngine:
 
         # IV richness proxy: ATM IV vs realised vol (no IV history needed).
         atm = _atm_iv(contracts)
-        iv_pct = None
-        if atm and hist_vol and hist_vol > 0:
-            richness = atm / hist_vol
-            iv_pct = min(100.0, 50.0 * richness)  # crude monotone proxy
-            exp_p = self.risk_cfg.get("iv", {}).get("expensive_percentile", 80)
-            ext_p = self.risk_cfg.get("iv", {}).get("extreme_percentile", 92)
-            if iv_pct >= ext_p:
-                s -= 2.0
-                penalties["extreme_iv"] = self.penalty_cfg.get("extreme_iv", 0.8)
-                reasons_against.append(f"IV very rich vs realised ({richness:.1f}x)")
-            elif iv_pct >= exp_p:
-                s -= 1.0
-                reasons_against.append(f"IV elevated vs realised ({richness:.1f}x)")
-            else:
-                reasons_for.append(f"IV reasonable vs realised ({richness:.1f}x)")
+        richness, iv_pct, band = iv_richness_assessment(atm, hist_vol, self.risk_cfg)
+        if band == "extreme":
+            s -= 2.0
+            penalties["extreme_iv"] = self.penalty_cfg.get("extreme_iv", 0.8)
+            reasons_against.append(f"IV very rich vs realised ({richness:.2f}x)")
+        elif band == "elevated":
+            s -= 1.0
+            reasons_against.append(f"IV elevated vs realised ({richness:.2f}x)")
+        elif band == "mild":
+            reasons_against.append(f"IV somewhat rich vs realised ({richness:.2f}x)")
+        elif band == "fair":
+            reasons_for.append(f"IV fair vs realised ({richness:.2f}x)")
         return round(_clamp(s), 2), reasons_for, reasons_against, penalties
 
     # ── combine ─────────────────────────────────────────────────────────

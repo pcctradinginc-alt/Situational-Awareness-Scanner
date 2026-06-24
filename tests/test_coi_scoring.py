@@ -57,10 +57,12 @@ def test_score_13f_negative_is_penalised(engine):
 
 
 def test_no_catalyst_penalty(engine):
+    # no catalyst => component ABSENT (None) + penalty (keeps confidence honest)
     score, rfor, pen = engine.score_catalyst([])
+    assert score is None
     assert "no_catalyst" in pen
     score2, _, pen2 = engine.score_catalyst(["earnings in ~5d"])
-    assert score2 > score
+    assert score2 is not None and score2 > 0
     assert "no_catalyst" not in pen2
 
 

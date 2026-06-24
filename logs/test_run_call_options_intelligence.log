@@ -1,10 +1,10 @@
-...F...F................................................................ [ 68%]
-.................................                                        [100%]
+...F...F................................................................ [ 64%]
+.......................................                                  [100%]
 =================================== FAILURES ===================================
 _____________________ TestStateManager.test_iv_rank_warmup _____________________
 
-self = <tests.test_api_connections.TestStateManager object at 0x108aa60d0>
-tmp_path = PosixPath('/private/var/folders/38/b2_7ppw93wlf64w57vly93540000gn/T/pytest-of-cc/pytest-30/test_iv_rank_warmup0')
+self = <tests.test_api_connections.TestStateManager object at 0x10aff60d0>
+tmp_path = PosixPath('/private/var/folders/38/b2_7ppw93wlf64w57vly93540000gn/T/pytest-of-cc/pytest-34/test_iv_rank_warmup0')
 
     def test_iv_rank_warmup(self, tmp_path):
         from scanner.utils.state_manager import StateManager
@@ -21,7 +21,7 @@ E         + INSUFFICIENT_DATA
 tests/test_api_connections.py:78: AssertionError
 _____________________ TestRegimeDetector.test_normal_mode ______________________
 
-self = <tests.test_api_connections.TestRegimeDetector object at 0x108aa6710>
+self = <tests.test_api_connections.TestRegimeDetector object at 0x10aff6710>
 
     def test_normal_mode(self):
         from scanner.signals.regime_detector import RegimeDetector
@@ -101,4 +101,4 @@ tests/test_api_connections.py::TestContrarianGate::test_gate_open_no_gegenthesen
 =========================== short test summary info ============================
 FAILED tests/test_api_connections.py::TestStateManager::test_iv_rank_warmup
 FAILED tests/test_api_connections.py::TestRegimeDetector::test_normal_mode - ...
-2 failed, 103 passed, 24 warnings in 2.85s
+2 failed, 109 passed, 24 warnings in 1.83s

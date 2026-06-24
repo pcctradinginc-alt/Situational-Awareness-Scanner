@@ -19,7 +19,7 @@ from .models import (
     OptionCandidate, OptionContract, RejectedCandidate, TickerEvaluation,
     UniverseEntry,
 )
-from .scoring import SignalEngine, _atm_iv, _clamp
+from .scoring import SignalEngine, _atm_iv, _clamp, iv_richness_assessment
 
 logger = logging.getLogger("coi.candidates")
 
@@ -40,6 +40,15 @@ class CandidateGenerator:
     ) -> tuple[list[OptionCandidate], list[RejectedCandidate]]:
         candidates: list[OptionCandidate] = []
         rejected: list[RejectedCandidate] = []
+
+        # Hard data-quality floor: if we DO have contracts but the underlying's
+        # signal is assembled from too few real components, reject rather than
+        # surface a low-evidence "opportunity".
+        min_dq = self.risk.get("data_quality", {}).get("min_acceptable", 0.30)
+        if contracts and ev.breakdown.confidence < min_dq:
+            return [], [RejectedCandidate(
+                ev.ticker, "insufficient_data_quality",
+                f"data completeness {ev.breakdown.confidence:.2f} < {min_dq}")]
 
         dte_min = self.dte.get("min", 30)
         dte_max = self.dte.get("max", 200)
@@ -131,10 +140,22 @@ class CandidateGenerator:
         penalties = dict(ev.penalties)
         penalties.update(opt_pen)
         if is_event:
-            # event trade is a *flag*, not a hard penalty; small nudge.
-            penalties.setdefault("near_expiry_lottery", 0.0)
+            # Holding a call INTO earnings is a real IV-crush risk, not just a
+            # label — apply a genuine, configurable penalty (its own key).
+            penalties["event_iv_risk"] = self.penalty_cfg.get("event_iv_risk", 0.7)
 
         bd = self.engine.combine(bd_components, penalties)
+
+        # ── reasons against (ALWAYS non-empty, incl. event risk) ──────────
+        reasons_against = list(ev.reasons_against) + list(opt_against)
+        if is_event:
+            reasons_against.append(
+                f"earnings in ~{earnings_in_days}d → IV-crush risk into the event")
+        if not reasons_against:
+            reasons_against.append(
+                "no automatic red flags detected — but a long call still loses "
+                "100% if the move is late or smaller than implied; verify live "
+                "IV/spread/catalyst before sizing")
 
         risk_notes = list(opt_against)
         if c.delta_estimated:
@@ -154,7 +175,7 @@ class CandidateGenerator:
             final_score=bd.final_score, breakdown=bd, strike_zone=zone,
             thesis_explanation=thesis_expl, catalysts=ev.catalysts,
             reasons_for=ev.reasons_for + opt_for,
-            reasons_against=ev.reasons_against + opt_against,
+            reasons_against=reasons_against,
             risk_notes=risk_notes, data_flags=ev.data_flags,
             is_event_trade=is_event,
             suggested_expiry_window=self._expiry_window(),
@@ -203,21 +224,19 @@ class CandidateGenerator:
         elif zone == "longer_dated_otm" and c.dte < self.dte.get("preferred_min", 60):
             reasons_against.append("aggressive OTM strike on short tenor")
 
-        # IV richness (per contract vs realised)
-        if c.iv and hist_vol and hist_vol > 0:
-            richness = c.iv / hist_vol
-            exp_p = self.risk.get("iv", {}).get("expensive_percentile", 80)
-            ext_p = self.risk.get("iv", {}).get("extreme_percentile", 92)
-            iv_pct = min(100.0, 50.0 * richness)
-            if iv_pct >= ext_p:
-                s -= 2.0
-                penalties["extreme_iv"] = self.penalty_cfg.get("extreme_iv", 0.8)
-                reasons_against.append(f"IV {c.iv:.0%} very rich ({richness:.1f}x realised)")
-            elif iv_pct >= exp_p:
-                s -= 1.0
-                reasons_against.append(f"IV {c.iv:.0%} elevated ({richness:.1f}x realised)")
-            else:
-                reasons_for.append(f"IV {c.iv:.0%} fair ({richness:.1f}x realised)")
+        # IV richness (per contract vs realised) — shared, configurable mapping
+        richness, iv_pct, band = iv_richness_assessment(c.iv, hist_vol, self.risk)
+        if band == "extreme":
+            s -= 2.0
+            penalties["extreme_iv"] = self.penalty_cfg.get("extreme_iv", 0.8)
+            reasons_against.append(f"IV {c.iv:.0%} very rich ({richness:.2f}x realised)")
+        elif band == "elevated":
+            s -= 1.0
+            reasons_against.append(f"IV {c.iv:.0%} elevated ({richness:.2f}x realised)")
+        elif band == "mild":
+            reasons_against.append(f"IV {c.iv:.0%} somewhat rich ({richness:.2f}x realised)")
+        elif band == "fair":
+            reasons_for.append(f"IV {c.iv:.0%} fair ({richness:.2f}x realised)")
         return round(_clamp(s), 2), reasons_for, reasons_against, penalties
 
     # ── helpers ─────────────────────────────────────────────────────────

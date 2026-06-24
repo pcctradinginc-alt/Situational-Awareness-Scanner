@@ -55,6 +55,19 @@ def test_score_changes_new_beats_exit():
     assert scored["TSM"].conviction_score < 0
 
 
+def test_concentration_does_not_flip_reduce_positive():
+    # A large reduction in a highly-concentrated holding must stay bearish; the
+    # concentration bonus must not mask a contradictory smart-money signal.
+    p = ThirteenFParser()
+    scoring = AppConfig().investors["scoring"]
+    changes = [{
+        "MU": {"action": "reduce", "pct_change": -0.5, "portfolio_pct": 0.8,
+               "manager": "F"},
+    }]
+    scored = p.score_changes(changes, scoring)
+    assert scored["MU"].conviction_score < 0
+
+
 def test_monitor_from_fixtures():
     from call_options_intel.pipeline import DEFAULT_FIXTURES
     cfg = AppConfig()

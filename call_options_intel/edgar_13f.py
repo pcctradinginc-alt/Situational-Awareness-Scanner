@@ -174,9 +174,12 @@ class ThirteenFParser:
                     raw -= reduce_per * pc
                 elif action == "exit":
                     raw -= exit_pen
-                # concentration
+                # Concentration AMPLIFIES conviction — only for accumulation /
+                # holding. Adding it to a reduce/exit would perversely flip a
+                # bearish smart-money signal positive, so it is gated by action.
                 ppct = info.get("portfolio_pct") or 0.0
-                raw += conc_w * ppct
+                if action in ("new", "add", "hold"):
+                    raw += conc_w * ppct
 
                 entry = agg.get(ticker)
                 if entry is None:

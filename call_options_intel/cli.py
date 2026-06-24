@@ -176,7 +176,7 @@ def cmd_doctor(args) -> int:
     warns = cfg.validate()
     _line("configs load", True, f"mode={cfg.mode}")
     for w in warns:
-        _line("config warning", False, w); ok = False if False else ok
+        _line("config warning", False, w)  # informational; does not fail doctor
     _line("universe tickers", bool(cfg.universe.get("tickers")),
           f"{len(cfg.universe.get('tickers', []))} tickers")
 
@@ -202,7 +202,7 @@ def cmd_doctor(args) -> int:
 
     print(f"\nResult: {'PASS' if ok else 'WARN — see above'}")
     print(DISCLAIMER)
-    return 0 if ok else 0  # doctor never hard-fails CI
+    return 0  # doctor reports but never hard-fails CI
 
 
 # ── helpers ────────────────────────────────────────────────────────────────

@@ -82,3 +82,45 @@ def test_event_trade_flag(setup):
                               earnings_in_days=4)
     assert cands[0].is_event_trade
     assert any("EARNINGS" in n for n in cands[0].risk_notes)
+
+
+def test_event_trade_is_penalised(setup):
+    """Holding a call into earnings must dent the score, not just add a note."""
+    cfg, engine, gen, entry, snap, ev = setup
+    c = _c(200, 90, 12, 12.5, oi=8000)
+    no_evt, _ = gen.generate(ev, entry, [c], 0.45)
+    evt, _ = gen.generate(ev, entry, [c], 0.45, earnings_in_days=4)
+    assert evt[0].breakdown.risk_penalty > no_evt[0].breakdown.risk_penalty
+    assert evt[0].final_score < no_evt[0].final_score
+    assert any("IV-crush" in r or "earnings" in r for r in evt[0].reasons_against)
+
+
+def test_rich_iv_is_penalised(setup):
+    """A call priced well above realised vol must score worse than a fair one."""
+    cfg, engine, gen, entry, snap, ev = setup
+    rich, _ = gen.generate(ev, entry, [_c(200, 90, 12, 12.5, oi=8000, iv=0.70)],
+                           hist_vol=0.30)   # richness ~2.3 -> extreme
+    fair, _ = gen.generate(ev, entry, [_c(200, 90, 12, 12.5, oi=8000, iv=0.32)],
+                           hist_vol=0.30)   # richness ~1.07 -> fair
+    assert rich[0].breakdown.risk_penalty > fair[0].breakdown.risk_penalty
+    assert rich[0].final_score < fair[0].final_score
+    assert any("rich" in r for r in rich[0].reasons_against)
+
+
+def test_every_candidate_has_reasons_against(setup):
+    cfg, engine, gen, entry, snap, ev = setup
+    cands, _ = gen.generate(ev, entry, [_c(200, 90, 12, 12.5, oi=8000)], 0.45)
+    assert cands and all(c.reasons_against for c in cands)
+
+
+def test_insufficient_data_quality_rejected():
+    """A ticker with contracts but near-zero signal evidence is rejected."""
+    cfg = AppConfig()
+    engine = SignalEngine(cfg.scoring, cfg.risk)
+    gen = CandidateGenerator(engine, cfg.risk)
+    entry = UniverseEntry(ticker="X", name="X", category="c", relevance=0.5)
+    # only thesis present -> confidence 0.2 < min_acceptable 0.30
+    ev = engine.evaluate_ticker(entry, ThesisVector(), None, None, [], [])
+    cands, rej = gen.generate(ev, entry, [_c(200, 90, 12, 12.5, oi=8000)], None)
+    assert not cands
+    assert any(r.reason == "insufficient_data_quality" for r in rej)

@@ -29,6 +29,11 @@ iv:
   expensive_percentile: 80
   extreme_percentile: 92           # extreme -> larger penalty
   warmup_default_percentile: 50    # used when history is too short to rank
+  # Maps IV-richness (ATM IV / realised vol) to a pseudo-percentile via
+  # iv_pct = 50 + slope*(richness - 1). slope=100 means a call priced 30% over
+  # realised vol (richness 1.30) hits the "expensive" band and 1.42 hits extreme.
+  richness_to_percentile_slope: 100
+  fair_richness_max: 1.15          # below this -> genuinely "fair vs realised"
 
 # Underlying market-context guardrails.
 market:
