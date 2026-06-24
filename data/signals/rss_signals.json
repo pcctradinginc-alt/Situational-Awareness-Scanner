@@ -2,6 +2,26 @@
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
+    "title": "SK Hynix Seeks to Raise $29 Billion in US Listing to Meet AI Chip Demand",
+    "summary": "SK Hynix Inc. is planning to raise $29.4 billion (45.45 trillion won) in a landmark US listing and expects trading to start on July 10, according to a regulatory filing on Wednesday. The deal, depending on the exchange rate, could be among the top five share sales of all time. Peter Elstrom reports on Bloomberg Television. (Source: Bloomberg)",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-24/sk-hynix-seeks-to-raise-29-billion-in-us-listing-video",
+    "published": "2026-06-24T10:59:01",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
     "title": "SK Hynix Seeks $29 Billion With US Listing to Fund AI Boom",
     "summary": "SK Hynix Inc. is planning to raise 45.45 trillion won ($29.4 billion) in a landmark US listing, as companies along the artificial intelligence supply chain rush to increase capacity to meet memory chip demand.",
     "url": "https://www.bloomberg.com/news/articles/2026-06-24/sk-hynix-looks-to-raise-29-4-billion-with-new-us-lising",
