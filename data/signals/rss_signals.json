@@ -17,9 +17,9 @@
     "signal_count": 3,
     "tickers": [
       "GOOGL",
-      "NVDA",
+      "AMZN",
       "META",
-      "AMZN"
+      "NVDA"
     ],
     "quality_score": 1.7241,
     "weighted_relevance": 1.7240976759091209

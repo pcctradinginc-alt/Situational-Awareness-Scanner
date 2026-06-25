@@ -5,17 +5,17 @@
     "total_checked": 10,
     "details": {
       "VST": {
-        "current": 168.29,
+        "current": 168.0,
         "ma200": 169.31,
         "above": false
       },
       "CEG": {
-        "current": 271.04,
+        "current": 270.65,
         "ma200": 317.8,
         "above": false
       },
       "NRG": {
-        "current": 145.99,
+        "current": 145.66,
         "ma200": 155.72,
         "above": false
       },
@@ -25,37 +25,37 @@
         "above": true
       },
       "SO": {
-        "current": 95.77,
+        "current": 95.93,
         "ma200": 91.35,
         "above": true
       },
       "D": {
-        "current": 69.36,
+        "current": 69.38,
         "ma200": 60.92,
         "above": true
       },
       "XEL": {
-        "current": 81.74,
+        "current": 81.79,
         "ma200": 77.48,
         "above": true
       },
       "AEE": {
-        "current": 113.97,
+        "current": 114.11,
         "ma200": 104.62,
         "above": true
       },
       "ETR": {
-        "current": 115.05,
+        "current": 115.07,
         "ma200": 100.54,
         "above": true
       },
       "EXC": {
-        "current": 46.81,
+        "current": 46.85,
         "ma200": 45.21,
         "above": true
       }
     },
-    "fetched_at": "2026-06-25T18:28:47.078648"
+    "fetched_at": "2026-06-25T18:42:18.786568"
   },
   "hyperscaler_capex": {
     "fred_capex": {
@@ -92,7 +92,7 @@
     "empirical_point": 1,
     "data_gap": false,
     "primary_source": "fred",
-    "fetched_at": "2026-06-25T18:28:33.979269"
+    "fetched_at": "2026-06-25T18:42:05.798824"
   },
   "fred": {
     "electric_power_production": {
@@ -126,7 +126,7 @@
       "period": "2026-06-24",
       "data_gap": false
     },
-    "fetched_at": "2026-06-25T18:28:31.935152"
+    "fetched_at": "2026-06-25T18:42:03.609595"
   },
   "eia": {
     "growth_yoy": 0.0299,
@@ -135,6 +135,6 @@
     "shulman_signal": false,
     "empirical_point": 0,
     "data_gap": false,
-    "fetched_at": "2026-06-25T18:28:30.803633"
+    "fetched_at": "2026-06-25T18:42:02.109656"
   }
 }
