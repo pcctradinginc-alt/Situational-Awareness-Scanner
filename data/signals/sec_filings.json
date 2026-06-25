@@ -1,14 +1,1724 @@
 {
-  "new_filings_found": 0,
-  "new_filings": [],
-  "classifications": [],
+  "new_filings_found": 1,
+  "new_filings": [
+    {
+      "entity": "coatue_management",
+      "cik": "0001135730",
+      "filing_type": "13F-HR",
+      "filing_date": "2026-05-15T16:31:03-04:00",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/1135730/000091957426003501/0000919574-26-003501-index.htm",
+      "title": "13F-HR  - Quarterly report filed by institutional managers, Holdings",
+      "weight": 1.0,
+      "description": "Quarterly Portfolio Holdings",
+      "signal_strength": "QUARTERLY_UPDATE",
+      "positions": [
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K305",
+          "shares": 2040367,
+          "value_usd": 586727935000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K305",
+          "shares": 224812,
+          "value_usd": 64646939000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K305",
+          "shares": 130783,
+          "value_usd": 37607959000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K305",
+          "shares": 1704310,
+          "value_usd": 490091384000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K305",
+          "shares": 24776,
+          "value_usd": 7124587000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K305",
+          "shares": 163867,
+          "value_usd": 47121595000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K305",
+          "shares": 24511,
+          "value_usd": 7048383000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K107",
+          "shares": 659674,
+          "value_usd": 189234084000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K107",
+          "shares": 75813,
+          "value_usd": 21747717000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K107",
+          "shares": 43883,
+          "value_usd": 12588277000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K107",
+          "shares": 266656,
+          "value_usd": 76492940000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K107",
+          "shares": 6953,
+          "value_usd": 1994538000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K107",
+          "shares": 54370,
+          "value_usd": 15596578000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K107",
+          "shares": 8536,
+          "value_usd": 2448637000,
+          "put_call": ""
+        },
+        {
+          "ticker": "AMZN",
+          "name": "AMAZON COM INC",
+          "cusip": "023135106",
+          "shares": 1109,
+          "value_usd": 230971000,
+          "put_call": ""
+        },
+        {
+          "ticker": "AMZN",
+          "name": "AMAZON COM INC",
+          "cusip": "023135106",
+          "shares": 161128,
+          "value_usd": 33558129000,
+          "put_call": ""
+        },
+        {
+          "ticker": "AMZN",
+          "name": "AMAZON COM INC",
+          "cusip": "023135106",
+          "shares": 6602594,
+          "value_usd": 1375122252000,
+          "put_call": ""
+        },
+        {
+          "ticker": "AMZN",
+          "name": "AMAZON COM INC",
+          "cusip": "023135106",
+          "shares": 1165935,
+          "value_usd": 242829282000,
+          "put_call": ""
+        },
+        {
+          "ticker": "ASML",
+          "name": "ASML HLDG NV",
+          "cusip": "N07059210",
+          "shares": 151211,
+          "value_usd": 199724025000,
+          "put_call": ""
+        },
+        {
+          "ticker": "ASML",
+          "name": "ASML HLDG NV",
+          "cusip": "N07059210",
+          "shares": 15028,
+          "value_usd": 19849433000,
+          "put_call": ""
+        },
+        {
+          "ticker": "ASML",
+          "name": "ASML HLDG NV",
+          "cusip": "N07059210",
+          "shares": 34139,
+          "value_usd": 45091815000,
+          "put_call": ""
+        },
+        {
+          "ticker": "ASML",
+          "name": "ASML HLDG NV",
+          "cusip": "N07059210",
+          "shares": 197498,
+          "value_usd": 260861283000,
+          "put_call": ""
+        },
+        {
+          "ticker": "ASML",
+          "name": "ASML HLDG NV",
+          "cusip": "N07059210",
+          "shares": 4893,
+          "value_usd": 6462821000,
+          "put_call": ""
+        },
+        {
+          "ticker": "ASML",
+          "name": "ASML HLDG NV",
+          "cusip": "N07059210",
+          "shares": 87391,
+          "value_usd": 115428655000,
+          "put_call": ""
+        },
+        {
+          "ticker": "ASML",
+          "name": "ASML HLDG NV",
+          "cusip": "N07059210",
+          "shares": 6074,
+          "value_usd": 8022721000,
+          "put_call": ""
+        },
+        {
+          "ticker": "AVGO",
+          "name": "BROADCOM INC",
+          "cusip": "11135F101",
+          "shares": 3080113,
+          "value_usd": 953325775000,
+          "put_call": ""
+        },
+        {
+          "ticker": "AVGO",
+          "name": "BROADCOM INC",
+          "cusip": "11135F101",
+          "shares": 273502,
+          "value_usd": 84651604000,
+          "put_call": ""
+        },
+        {
+          "ticker": "AVGO",
+          "name": "BROADCOM INC",
+          "cusip": "11135F101",
+          "shares": 159191,
+          "value_usd": 49271206000,
+          "put_call": ""
+        },
+        {
+          "ticker": "AVGO",
+          "name": "BROADCOM INC",
+          "cusip": "11135F101",
+          "shares": 976187,
+          "value_usd": 302139638000,
+          "put_call": ""
+        },
+        {
+          "ticker": "AVGO",
+          "name": "BROADCOM INC",
+          "cusip": "11135F101",
+          "shares": 26923,
+          "value_usd": 8332938000,
+          "put_call": ""
+        },
+        {
+          "ticker": "AVGO",
+          "name": "BROADCOM INC",
+          "cusip": "11135F101",
+          "shares": 422553,
+          "value_usd": 130784379000,
+          "put_call": ""
+        },
+        {
+          "ticker": "AVGO",
+          "name": "BROADCOM INC",
+          "cusip": "11135F101",
+          "shares": 151596,
+          "value_usd": 46920478000,
+          "put_call": ""
+        },
+        {
+          "ticker": "AVGO",
+          "name": "BROADCOM INC",
+          "cusip": "11135F101",
+          "shares": 393556,
+          "value_usd": 121809518000,
+          "put_call": ""
+        },
+        {
+          "ticker": "AVGO",
+          "name": "BROADCOM INC",
+          "cusip": "11135F101",
+          "shares": 20231,
+          "value_usd": 6261697000,
+          "put_call": ""
+        },
+        {
+          "ticker": "CEG",
+          "name": "CONSTELLATION ENERGY CORP",
+          "cusip": "21037T109",
+          "shares": 353581,
+          "value_usd": 98737494000,
+          "put_call": ""
+        },
+        {
+          "ticker": "CEG",
+          "name": "CONSTELLATION ENERGY CORP",
+          "cusip": "21037T109",
+          "shares": 135151,
+          "value_usd": 37740917000,
+          "put_call": ""
+        },
+        {
+          "ticker": "CEG",
+          "name": "CONSTELLATION ENERGY CORP",
+          "cusip": "21037T109",
+          "shares": 409300,
+          "value_usd": 114297025000,
+          "put_call": ""
+        },
+        {
+          "ticker": "CEG",
+          "name": "CONSTELLATION ENERGY CORP",
+          "cusip": "21037T109",
+          "shares": 2625723,
+          "value_usd": 733233148000,
+          "put_call": ""
+        },
+        {
+          "ticker": "CEG",
+          "name": "CONSTELLATION ENERGY CORP",
+          "cusip": "21037T109",
+          "shares": 1108720,
+          "value_usd": 309610060000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GEV",
+          "name": "GE VERNOVA INC",
+          "cusip": "36828A101",
+          "shares": 1256825,
+          "value_usd": 1097082543000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GEV",
+          "name": "GE VERNOVA INC",
+          "cusip": "36828A101",
+          "shares": 83902,
+          "value_usd": 73238056000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GEV",
+          "name": "GE VERNOVA INC",
+          "cusip": "36828A101",
+          "shares": 50452,
+          "value_usd": 44039551000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GEV",
+          "name": "GE VERNOVA INC",
+          "cusip": "36828A101",
+          "shares": 548413,
+          "value_usd": 478709708000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GEV",
+          "name": "GE VERNOVA INC",
+          "cusip": "36828A101",
+          "shares": 9881,
+          "value_usd": 8625125000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GEV",
+          "name": "GE VERNOVA INC",
+          "cusip": "36828A101",
+          "shares": 337884,
+          "value_usd": 294938944000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GEV",
+          "name": "GE VERNOVA INC",
+          "cusip": "36828A101",
+          "shares": 77571,
+          "value_usd": 67711726000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GEV",
+          "name": "GE VERNOVA INC",
+          "cusip": "36828A101",
+          "shares": 199235,
+          "value_usd": 173912232000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GEV",
+          "name": "GE VERNOVA INC",
+          "cusip": "36828A101",
+          "shares": 8195,
+          "value_usd": 7153416000,
+          "put_call": ""
+        },
+        {
+          "ticker": "META",
+          "name": "META PLATFORMS INC",
+          "cusip": "30303M102",
+          "shares": 2143061,
+          "value_usd": 1226109490000,
+          "put_call": ""
+        },
+        {
+          "ticker": "META",
+          "name": "META PLATFORMS INC",
+          "cusip": "30303M102",
+          "shares": 62468,
+          "value_usd": 35739817000,
+          "put_call": ""
+        },
+        {
+          "ticker": "META",
+          "name": "META PLATFORMS INC",
+          "cusip": "30303M102",
+          "shares": 34353,
+          "value_usd": 19654382000,
+          "put_call": ""
+        },
+        {
+          "ticker": "META",
+          "name": "META PLATFORMS INC",
+          "cusip": "30303M102",
+          "shares": 560583,
+          "value_usd": 320726352000,
+          "put_call": ""
+        },
+        {
+          "ticker": "META",
+          "name": "META PLATFORMS INC",
+          "cusip": "30303M102",
+          "shares": 5208,
+          "value_usd": 2979653000,
+          "put_call": ""
+        },
+        {
+          "ticker": "META",
+          "name": "META PLATFORMS INC",
+          "cusip": "30303M102",
+          "shares": 6383,
+          "value_usd": 3651906000,
+          "put_call": ""
+        },
+        {
+          "ticker": "MU",
+          "name": "MICRON TECHNOLOGY INC",
+          "cusip": "595112103",
+          "shares": 165931,
+          "value_usd": 56058129000,
+          "put_call": ""
+        },
+        {
+          "ticker": "MSFT",
+          "name": "MICROSOFT CORP",
+          "cusip": "594918104",
+          "shares": 2480017,
+          "value_usd": 918027893000,
+          "put_call": ""
+        },
+        {
+          "ticker": "NVDA",
+          "name": "NVIDIA CORPORATION",
+          "cusip": "67066G104",
+          "shares": 92217,
+          "value_usd": 16082645000,
+          "put_call": ""
+        },
+        {
+          "ticker": "NVDA",
+          "name": "NVIDIA CORPORATION",
+          "cusip": "67066G104",
+          "shares": 4323460,
+          "value_usd": 754011424000,
+          "put_call": ""
+        },
+        {
+          "ticker": "NVDA",
+          "name": "NVIDIA CORPORATION",
+          "cusip": "67066G104",
+          "shares": 1915943,
+          "value_usd": 334140459000,
+          "put_call": ""
+        },
+        {
+          "ticker": "TSM",
+          "name": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "cusip": "874039100",
+          "shares": 3453059,
+          "value_usd": 1166961289000,
+          "put_call": ""
+        },
+        {
+          "ticker": "TSM",
+          "name": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "cusip": "874039100",
+          "shares": 965882,
+          "value_usd": 326419822000,
+          "put_call": ""
+        },
+        {
+          "ticker": "TSM",
+          "name": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "cusip": "874039100",
+          "shares": 422978,
+          "value_usd": 142945415000,
+          "put_call": ""
+        },
+        {
+          "ticker": "TSM",
+          "name": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "cusip": "874039100",
+          "shares": 2570244,
+          "value_usd": 868613960000,
+          "put_call": ""
+        },
+        {
+          "ticker": "TSM",
+          "name": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "cusip": "874039100",
+          "shares": 90170,
+          "value_usd": 30472952000,
+          "put_call": ""
+        },
+        {
+          "ticker": "TSM",
+          "name": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "cusip": "874039100",
+          "shares": 584814,
+          "value_usd": 197637891000,
+          "put_call": ""
+        },
+        {
+          "ticker": "TSM",
+          "name": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "cusip": "874039100",
+          "shares": 168177,
+          "value_usd": 56835417000,
+          "put_call": ""
+        },
+        {
+          "ticker": "TSM",
+          "name": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "cusip": "874039100",
+          "shares": 930207,
+          "value_usd": 314363456000,
+          "put_call": ""
+        },
+        {
+          "ticker": "TSM",
+          "name": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "cusip": "874039100",
+          "shares": 98016,
+          "value_usd": 33124507000,
+          "put_call": ""
+        },
+        {
+          "ticker": "VRT",
+          "name": "VERTIV HOLDINGS CO",
+          "cusip": "92537N108",
+          "shares": 459871,
+          "value_usd": 115234475000,
+          "put_call": ""
+        },
+        {
+          "ticker": "VRT",
+          "name": "VERTIV HOLDINGS CO",
+          "cusip": "92537N108",
+          "shares": 410293,
+          "value_usd": 102811220000,
+          "put_call": ""
+        },
+        {
+          "ticker": "VRT",
+          "name": "VERTIV HOLDINGS CO",
+          "cusip": "92537N108",
+          "shares": 111469,
+          "value_usd": 27931902000,
+          "put_call": ""
+        },
+        {
+          "ticker": "PLTR",
+          "name": "VISA INC",
+          "cusip": "92826C839",
+          "shares": 290986,
+          "value_usd": 87947609000,
+          "put_call": ""
+        },
+        {
+          "ticker": "PLTR",
+          "name": "VISA INC",
+          "cusip": "92826C839",
+          "shares": 81428,
+          "value_usd": 24610799000,
+          "put_call": ""
+        },
+        {
+          "ticker": "PLTR",
+          "name": "VISA INC",
+          "cusip": "92826C839",
+          "shares": 45971,
+          "value_usd": 13894275000,
+          "put_call": ""
+        },
+        {
+          "ticker": "PLTR",
+          "name": "VISA INC",
+          "cusip": "92826C839",
+          "shares": 279345,
+          "value_usd": 84429233000,
+          "put_call": ""
+        },
+        {
+          "ticker": "PLTR",
+          "name": "VISA INC",
+          "cusip": "92826C839",
+          "shares": 9434,
+          "value_usd": 2851332000,
+          "put_call": ""
+        },
+        {
+          "ticker": "PLTR",
+          "name": "VISA INC",
+          "cusip": "92826C839",
+          "shares": 11589,
+          "value_usd": 3502659000,
+          "put_call": ""
+        }
+      ],
+      "classifications": [
+        {
+          "ticker": "ASML",
+          "class": "D",
+          "score": 3.0,
+          "prev_shares": 6074,
+          "curr_shares": 6074,
+          "change_pct": 0.0,
+          "description": "UNCHANGED",
+          "sector": "unknown",
+          "is_new": false
+        },
+        {
+          "ticker": "MSFT",
+          "class": "D",
+          "score": 3.0,
+          "prev_shares": 2480017,
+          "curr_shares": 2480017,
+          "change_pct": 0.0,
+          "description": "UNCHANGED",
+          "sector": "hyperscaler",
+          "is_new": false
+        },
+        {
+          "ticker": "PLTR",
+          "class": "D",
+          "score": 3.0,
+          "prev_shares": 11589,
+          "curr_shares": 11589,
+          "change_pct": 0.0,
+          "description": "UNCHANGED",
+          "sector": "sovereign_ai_defense",
+          "is_new": false
+        },
+        {
+          "ticker": "GEV",
+          "class": "D",
+          "score": 3.0,
+          "prev_shares": 8195,
+          "curr_shares": 8195,
+          "change_pct": 0.0,
+          "description": "UNCHANGED",
+          "sector": "unknown",
+          "is_new": false
+        },
+        {
+          "ticker": "CEG",
+          "class": "D",
+          "score": 3.0,
+          "prev_shares": 1108720,
+          "curr_shares": 1108720,
+          "change_pct": 0.0,
+          "description": "UNCHANGED",
+          "sector": "energy_infrastructure",
+          "is_new": false
+        },
+        {
+          "ticker": "GOOGL",
+          "class": "D",
+          "score": 3.0,
+          "prev_shares": 8536,
+          "curr_shares": 8536,
+          "change_pct": 0.0,
+          "description": "UNCHANGED",
+          "sector": "hyperscaler",
+          "is_new": false
+        },
+        {
+          "ticker": "VRT",
+          "class": "D",
+          "score": 3.0,
+          "prev_shares": 111469,
+          "curr_shares": 111469,
+          "change_pct": 0.0,
+          "description": "UNCHANGED",
+          "sector": "unknown",
+          "is_new": false
+        },
+        {
+          "ticker": "META",
+          "class": "D",
+          "score": 3.0,
+          "prev_shares": 6383,
+          "curr_shares": 6383,
+          "change_pct": 0.0,
+          "description": "UNCHANGED",
+          "sector": "hyperscaler",
+          "is_new": false
+        },
+        {
+          "ticker": "AMZN",
+          "class": "D",
+          "score": 3.0,
+          "prev_shares": 1165935,
+          "curr_shares": 1165935,
+          "change_pct": 0.0,
+          "description": "UNCHANGED",
+          "sector": "hyperscaler",
+          "is_new": false
+        },
+        {
+          "ticker": "MU",
+          "class": "D",
+          "score": 3.0,
+          "prev_shares": 165931,
+          "curr_shares": 165931,
+          "change_pct": 0.0,
+          "description": "UNCHANGED",
+          "sector": "unknown",
+          "is_new": false
+        },
+        {
+          "ticker": "AVGO",
+          "class": "D",
+          "score": 3.0,
+          "prev_shares": 20231,
+          "curr_shares": 20231,
+          "change_pct": 0.0,
+          "description": "UNCHANGED",
+          "sector": "compute_hardware",
+          "is_new": false
+        },
+        {
+          "ticker": "NVDA",
+          "class": "D",
+          "score": 3.0,
+          "prev_shares": 1915943,
+          "curr_shares": 1915943,
+          "change_pct": 0.0,
+          "description": "UNCHANGED",
+          "sector": "compute_hardware",
+          "is_new": false
+        },
+        {
+          "ticker": "TSM",
+          "class": "D",
+          "score": 3.0,
+          "prev_shares": 98016,
+          "curr_shares": 98016,
+          "change_pct": 0.0,
+          "description": "UNCHANGED",
+          "sector": "compute_hardware",
+          "is_new": false
+        }
+      ],
+      "shulman_begleit": {
+        "keywords_found": [],
+        "shulman_bonus": 0.0
+      }
+    }
+  ],
+  "classifications": [
+    {
+      "ticker": "ASML",
+      "class": "D",
+      "score": 3.0,
+      "prev_shares": 6074,
+      "curr_shares": 6074,
+      "change_pct": 0.0,
+      "description": "UNCHANGED",
+      "sector": "unknown",
+      "is_new": false
+    },
+    {
+      "ticker": "MSFT",
+      "class": "D",
+      "score": 3.0,
+      "prev_shares": 2480017,
+      "curr_shares": 2480017,
+      "change_pct": 0.0,
+      "description": "UNCHANGED",
+      "sector": "hyperscaler",
+      "is_new": false
+    },
+    {
+      "ticker": "PLTR",
+      "class": "D",
+      "score": 3.0,
+      "prev_shares": 11589,
+      "curr_shares": 11589,
+      "change_pct": 0.0,
+      "description": "UNCHANGED",
+      "sector": "sovereign_ai_defense",
+      "is_new": false
+    },
+    {
+      "ticker": "GEV",
+      "class": "D",
+      "score": 3.0,
+      "prev_shares": 8195,
+      "curr_shares": 8195,
+      "change_pct": 0.0,
+      "description": "UNCHANGED",
+      "sector": "unknown",
+      "is_new": false
+    },
+    {
+      "ticker": "CEG",
+      "class": "D",
+      "score": 3.0,
+      "prev_shares": 1108720,
+      "curr_shares": 1108720,
+      "change_pct": 0.0,
+      "description": "UNCHANGED",
+      "sector": "energy_infrastructure",
+      "is_new": false
+    },
+    {
+      "ticker": "GOOGL",
+      "class": "D",
+      "score": 3.0,
+      "prev_shares": 8536,
+      "curr_shares": 8536,
+      "change_pct": 0.0,
+      "description": "UNCHANGED",
+      "sector": "hyperscaler",
+      "is_new": false
+    },
+    {
+      "ticker": "VRT",
+      "class": "D",
+      "score": 3.0,
+      "prev_shares": 111469,
+      "curr_shares": 111469,
+      "change_pct": 0.0,
+      "description": "UNCHANGED",
+      "sector": "unknown",
+      "is_new": false
+    },
+    {
+      "ticker": "META",
+      "class": "D",
+      "score": 3.0,
+      "prev_shares": 6383,
+      "curr_shares": 6383,
+      "change_pct": 0.0,
+      "description": "UNCHANGED",
+      "sector": "hyperscaler",
+      "is_new": false
+    },
+    {
+      "ticker": "AMZN",
+      "class": "D",
+      "score": 3.0,
+      "prev_shares": 1165935,
+      "curr_shares": 1165935,
+      "change_pct": 0.0,
+      "description": "UNCHANGED",
+      "sector": "hyperscaler",
+      "is_new": false
+    },
+    {
+      "ticker": "MU",
+      "class": "D",
+      "score": 3.0,
+      "prev_shares": 165931,
+      "curr_shares": 165931,
+      "change_pct": 0.0,
+      "description": "UNCHANGED",
+      "sector": "unknown",
+      "is_new": false
+    },
+    {
+      "ticker": "AVGO",
+      "class": "D",
+      "score": 3.0,
+      "prev_shares": 20231,
+      "curr_shares": 20231,
+      "change_pct": 0.0,
+      "description": "UNCHANGED",
+      "sector": "compute_hardware",
+      "is_new": false
+    },
+    {
+      "ticker": "NVDA",
+      "class": "D",
+      "score": 3.0,
+      "prev_shares": 1915943,
+      "curr_shares": 1915943,
+      "change_pct": 0.0,
+      "description": "UNCHANGED",
+      "sector": "compute_hardware",
+      "is_new": false
+    },
+    {
+      "ticker": "TSM",
+      "class": "D",
+      "score": 3.0,
+      "prev_shares": 98016,
+      "curr_shares": 98016,
+      "change_pct": 0.0,
+      "description": "UNCHANGED",
+      "sector": "compute_hardware",
+      "is_new": false
+    }
+  ],
   "new_tickers": [],
   "very_strong_signals": [],
-  "strong_signals": [],
+  "strong_signals": [
+    {
+      "entity": "coatue_management",
+      "cik": "0001135730",
+      "filing_type": "13F-HR",
+      "filing_date": "2026-05-15T16:31:03-04:00",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/1135730/000091957426003501/0000919574-26-003501-index.htm",
+      "title": "13F-HR  - Quarterly report filed by institutional managers, Holdings",
+      "weight": 1.0,
+      "description": "Quarterly Portfolio Holdings",
+      "signal_strength": "QUARTERLY_UPDATE",
+      "positions": [
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K305",
+          "shares": 2040367,
+          "value_usd": 586727935000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K305",
+          "shares": 224812,
+          "value_usd": 64646939000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K305",
+          "shares": 130783,
+          "value_usd": 37607959000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K305",
+          "shares": 1704310,
+          "value_usd": 490091384000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K305",
+          "shares": 24776,
+          "value_usd": 7124587000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K305",
+          "shares": 163867,
+          "value_usd": 47121595000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K305",
+          "shares": 24511,
+          "value_usd": 7048383000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K107",
+          "shares": 659674,
+          "value_usd": 189234084000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K107",
+          "shares": 75813,
+          "value_usd": 21747717000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K107",
+          "shares": 43883,
+          "value_usd": 12588277000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K107",
+          "shares": 266656,
+          "value_usd": 76492940000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K107",
+          "shares": 6953,
+          "value_usd": 1994538000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K107",
+          "shares": 54370,
+          "value_usd": 15596578000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "ALPHABET INC",
+          "cusip": "02079K107",
+          "shares": 8536,
+          "value_usd": 2448637000,
+          "put_call": ""
+        },
+        {
+          "ticker": "AMZN",
+          "name": "AMAZON COM INC",
+          "cusip": "023135106",
+          "shares": 1109,
+          "value_usd": 230971000,
+          "put_call": ""
+        },
+        {
+          "ticker": "AMZN",
+          "name": "AMAZON COM INC",
+          "cusip": "023135106",
+          "shares": 161128,
+          "value_usd": 33558129000,
+          "put_call": ""
+        },
+        {
+          "ticker": "AMZN",
+          "name": "AMAZON COM INC",
+          "cusip": "023135106",
+          "shares": 6602594,
+          "value_usd": 1375122252000,
+          "put_call": ""
+        },
+        {
+          "ticker": "AMZN",
+          "name": "AMAZON COM INC",
+          "cusip": "023135106",
+          "shares": 1165935,
+          "value_usd": 242829282000,
+          "put_call": ""
+        },
+        {
+          "ticker": "ASML",
+          "name": "ASML HLDG NV",
+          "cusip": "N07059210",
+          "shares": 151211,
+          "value_usd": 199724025000,
+          "put_call": ""
+        },
+        {
+          "ticker": "ASML",
+          "name": "ASML HLDG NV",
+          "cusip": "N07059210",
+          "shares": 15028,
+          "value_usd": 19849433000,
+          "put_call": ""
+        },
+        {
+          "ticker": "ASML",
+          "name": "ASML HLDG NV",
+          "cusip": "N07059210",
+          "shares": 34139,
+          "value_usd": 45091815000,
+          "put_call": ""
+        },
+        {
+          "ticker": "ASML",
+          "name": "ASML HLDG NV",
+          "cusip": "N07059210",
+          "shares": 197498,
+          "value_usd": 260861283000,
+          "put_call": ""
+        },
+        {
+          "ticker": "ASML",
+          "name": "ASML HLDG NV",
+          "cusip": "N07059210",
+          "shares": 4893,
+          "value_usd": 6462821000,
+          "put_call": ""
+        },
+        {
+          "ticker": "ASML",
+          "name": "ASML HLDG NV",
+          "cusip": "N07059210",
+          "shares": 87391,
+          "value_usd": 115428655000,
+          "put_call": ""
+        },
+        {
+          "ticker": "ASML",
+          "name": "ASML HLDG NV",
+          "cusip": "N07059210",
+          "shares": 6074,
+          "value_usd": 8022721000,
+          "put_call": ""
+        },
+        {
+          "ticker": "AVGO",
+          "name": "BROADCOM INC",
+          "cusip": "11135F101",
+          "shares": 3080113,
+          "value_usd": 953325775000,
+          "put_call": ""
+        },
+        {
+          "ticker": "AVGO",
+          "name": "BROADCOM INC",
+          "cusip": "11135F101",
+          "shares": 273502,
+          "value_usd": 84651604000,
+          "put_call": ""
+        },
+        {
+          "ticker": "AVGO",
+          "name": "BROADCOM INC",
+          "cusip": "11135F101",
+          "shares": 159191,
+          "value_usd": 49271206000,
+          "put_call": ""
+        },
+        {
+          "ticker": "AVGO",
+          "name": "BROADCOM INC",
+          "cusip": "11135F101",
+          "shares": 976187,
+          "value_usd": 302139638000,
+          "put_call": ""
+        },
+        {
+          "ticker": "AVGO",
+          "name": "BROADCOM INC",
+          "cusip": "11135F101",
+          "shares": 26923,
+          "value_usd": 8332938000,
+          "put_call": ""
+        },
+        {
+          "ticker": "AVGO",
+          "name": "BROADCOM INC",
+          "cusip": "11135F101",
+          "shares": 422553,
+          "value_usd": 130784379000,
+          "put_call": ""
+        },
+        {
+          "ticker": "AVGO",
+          "name": "BROADCOM INC",
+          "cusip": "11135F101",
+          "shares": 151596,
+          "value_usd": 46920478000,
+          "put_call": ""
+        },
+        {
+          "ticker": "AVGO",
+          "name": "BROADCOM INC",
+          "cusip": "11135F101",
+          "shares": 393556,
+          "value_usd": 121809518000,
+          "put_call": ""
+        },
+        {
+          "ticker": "AVGO",
+          "name": "BROADCOM INC",
+          "cusip": "11135F101",
+          "shares": 20231,
+          "value_usd": 6261697000,
+          "put_call": ""
+        },
+        {
+          "ticker": "CEG",
+          "name": "CONSTELLATION ENERGY CORP",
+          "cusip": "21037T109",
+          "shares": 353581,
+          "value_usd": 98737494000,
+          "put_call": ""
+        },
+        {
+          "ticker": "CEG",
+          "name": "CONSTELLATION ENERGY CORP",
+          "cusip": "21037T109",
+          "shares": 135151,
+          "value_usd": 37740917000,
+          "put_call": ""
+        },
+        {
+          "ticker": "CEG",
+          "name": "CONSTELLATION ENERGY CORP",
+          "cusip": "21037T109",
+          "shares": 409300,
+          "value_usd": 114297025000,
+          "put_call": ""
+        },
+        {
+          "ticker": "CEG",
+          "name": "CONSTELLATION ENERGY CORP",
+          "cusip": "21037T109",
+          "shares": 2625723,
+          "value_usd": 733233148000,
+          "put_call": ""
+        },
+        {
+          "ticker": "CEG",
+          "name": "CONSTELLATION ENERGY CORP",
+          "cusip": "21037T109",
+          "shares": 1108720,
+          "value_usd": 309610060000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GEV",
+          "name": "GE VERNOVA INC",
+          "cusip": "36828A101",
+          "shares": 1256825,
+          "value_usd": 1097082543000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GEV",
+          "name": "GE VERNOVA INC",
+          "cusip": "36828A101",
+          "shares": 83902,
+          "value_usd": 73238056000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GEV",
+          "name": "GE VERNOVA INC",
+          "cusip": "36828A101",
+          "shares": 50452,
+          "value_usd": 44039551000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GEV",
+          "name": "GE VERNOVA INC",
+          "cusip": "36828A101",
+          "shares": 548413,
+          "value_usd": 478709708000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GEV",
+          "name": "GE VERNOVA INC",
+          "cusip": "36828A101",
+          "shares": 9881,
+          "value_usd": 8625125000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GEV",
+          "name": "GE VERNOVA INC",
+          "cusip": "36828A101",
+          "shares": 337884,
+          "value_usd": 294938944000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GEV",
+          "name": "GE VERNOVA INC",
+          "cusip": "36828A101",
+          "shares": 77571,
+          "value_usd": 67711726000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GEV",
+          "name": "GE VERNOVA INC",
+          "cusip": "36828A101",
+          "shares": 199235,
+          "value_usd": 173912232000,
+          "put_call": ""
+        },
+        {
+          "ticker": "GEV",
+          "name": "GE VERNOVA INC",
+          "cusip": "36828A101",
+          "shares": 8195,
+          "value_usd": 7153416000,
+          "put_call": ""
+        },
+        {
+          "ticker": "META",
+          "name": "META PLATFORMS INC",
+          "cusip": "30303M102",
+          "shares": 2143061,
+          "value_usd": 1226109490000,
+          "put_call": ""
+        },
+        {
+          "ticker": "META",
+          "name": "META PLATFORMS INC",
+          "cusip": "30303M102",
+          "shares": 62468,
+          "value_usd": 35739817000,
+          "put_call": ""
+        },
+        {
+          "ticker": "META",
+          "name": "META PLATFORMS INC",
+          "cusip": "30303M102",
+          "shares": 34353,
+          "value_usd": 19654382000,
+          "put_call": ""
+        },
+        {
+          "ticker": "META",
+          "name": "META PLATFORMS INC",
+          "cusip": "30303M102",
+          "shares": 560583,
+          "value_usd": 320726352000,
+          "put_call": ""
+        },
+        {
+          "ticker": "META",
+          "name": "META PLATFORMS INC",
+          "cusip": "30303M102",
+          "shares": 5208,
+          "value_usd": 2979653000,
+          "put_call": ""
+        },
+        {
+          "ticker": "META",
+          "name": "META PLATFORMS INC",
+          "cusip": "30303M102",
+          "shares": 6383,
+          "value_usd": 3651906000,
+          "put_call": ""
+        },
+        {
+          "ticker": "MU",
+          "name": "MICRON TECHNOLOGY INC",
+          "cusip": "595112103",
+          "shares": 165931,
+          "value_usd": 56058129000,
+          "put_call": ""
+        },
+        {
+          "ticker": "MSFT",
+          "name": "MICROSOFT CORP",
+          "cusip": "594918104",
+          "shares": 2480017,
+          "value_usd": 918027893000,
+          "put_call": ""
+        },
+        {
+          "ticker": "NVDA",
+          "name": "NVIDIA CORPORATION",
+          "cusip": "67066G104",
+          "shares": 92217,
+          "value_usd": 16082645000,
+          "put_call": ""
+        },
+        {
+          "ticker": "NVDA",
+          "name": "NVIDIA CORPORATION",
+          "cusip": "67066G104",
+          "shares": 4323460,
+          "value_usd": 754011424000,
+          "put_call": ""
+        },
+        {
+          "ticker": "NVDA",
+          "name": "NVIDIA CORPORATION",
+          "cusip": "67066G104",
+          "shares": 1915943,
+          "value_usd": 334140459000,
+          "put_call": ""
+        },
+        {
+          "ticker": "TSM",
+          "name": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "cusip": "874039100",
+          "shares": 3453059,
+          "value_usd": 1166961289000,
+          "put_call": ""
+        },
+        {
+          "ticker": "TSM",
+          "name": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "cusip": "874039100",
+          "shares": 965882,
+          "value_usd": 326419822000,
+          "put_call": ""
+        },
+        {
+          "ticker": "TSM",
+          "name": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "cusip": "874039100",
+          "shares": 422978,
+          "value_usd": 142945415000,
+          "put_call": ""
+        },
+        {
+          "ticker": "TSM",
+          "name": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "cusip": "874039100",
+          "shares": 2570244,
+          "value_usd": 868613960000,
+          "put_call": ""
+        },
+        {
+          "ticker": "TSM",
+          "name": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "cusip": "874039100",
+          "shares": 90170,
+          "value_usd": 30472952000,
+          "put_call": ""
+        },
+        {
+          "ticker": "TSM",
+          "name": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "cusip": "874039100",
+          "shares": 584814,
+          "value_usd": 197637891000,
+          "put_call": ""
+        },
+        {
+          "ticker": "TSM",
+          "name": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "cusip": "874039100",
+          "shares": 168177,
+          "value_usd": 56835417000,
+          "put_call": ""
+        },
+        {
+          "ticker": "TSM",
+          "name": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "cusip": "874039100",
+          "shares": 930207,
+          "value_usd": 314363456000,
+          "put_call": ""
+        },
+        {
+          "ticker": "TSM",
+          "name": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "cusip": "874039100",
+          "shares": 98016,
+          "value_usd": 33124507000,
+          "put_call": ""
+        },
+        {
+          "ticker": "VRT",
+          "name": "VERTIV HOLDINGS CO",
+          "cusip": "92537N108",
+          "shares": 459871,
+          "value_usd": 115234475000,
+          "put_call": ""
+        },
+        {
+          "ticker": "VRT",
+          "name": "VERTIV HOLDINGS CO",
+          "cusip": "92537N108",
+          "shares": 410293,
+          "value_usd": 102811220000,
+          "put_call": ""
+        },
+        {
+          "ticker": "VRT",
+          "name": "VERTIV HOLDINGS CO",
+          "cusip": "92537N108",
+          "shares": 111469,
+          "value_usd": 27931902000,
+          "put_call": ""
+        },
+        {
+          "ticker": "PLTR",
+          "name": "VISA INC",
+          "cusip": "92826C839",
+          "shares": 290986,
+          "value_usd": 87947609000,
+          "put_call": ""
+        },
+        {
+          "ticker": "PLTR",
+          "name": "VISA INC",
+          "cusip": "92826C839",
+          "shares": 81428,
+          "value_usd": 24610799000,
+          "put_call": ""
+        },
+        {
+          "ticker": "PLTR",
+          "name": "VISA INC",
+          "cusip": "92826C839",
+          "shares": 45971,
+          "value_usd": 13894275000,
+          "put_call": ""
+        },
+        {
+          "ticker": "PLTR",
+          "name": "VISA INC",
+          "cusip": "92826C839",
+          "shares": 279345,
+          "value_usd": 84429233000,
+          "put_call": ""
+        },
+        {
+          "ticker": "PLTR",
+          "name": "VISA INC",
+          "cusip": "92826C839",
+          "shares": 9434,
+          "value_usd": 2851332000,
+          "put_call": ""
+        },
+        {
+          "ticker": "PLTR",
+          "name": "VISA INC",
+          "cusip": "92826C839",
+          "shares": 11589,
+          "value_usd": 3502659000,
+          "put_call": ""
+        }
+      ],
+      "classifications": [
+        {
+          "ticker": "ASML",
+          "class": "D",
+          "score": 3.0,
+          "prev_shares": 6074,
+          "curr_shares": 6074,
+          "change_pct": 0.0,
+          "description": "UNCHANGED",
+          "sector": "unknown",
+          "is_new": false
+        },
+        {
+          "ticker": "MSFT",
+          "class": "D",
+          "score": 3.0,
+          "prev_shares": 2480017,
+          "curr_shares": 2480017,
+          "change_pct": 0.0,
+          "description": "UNCHANGED",
+          "sector": "hyperscaler",
+          "is_new": false
+        },
+        {
+          "ticker": "PLTR",
+          "class": "D",
+          "score": 3.0,
+          "prev_shares": 11589,
+          "curr_shares": 11589,
+          "change_pct": 0.0,
+          "description": "UNCHANGED",
+          "sector": "sovereign_ai_defense",
+          "is_new": false
+        },
+        {
+          "ticker": "GEV",
+          "class": "D",
+          "score": 3.0,
+          "prev_shares": 8195,
+          "curr_shares": 8195,
+          "change_pct": 0.0,
+          "description": "UNCHANGED",
+          "sector": "unknown",
+          "is_new": false
+        },
+        {
+          "ticker": "CEG",
+          "class": "D",
+          "score": 3.0,
+          "prev_shares": 1108720,
+          "curr_shares": 1108720,
+          "change_pct": 0.0,
+          "description": "UNCHANGED",
+          "sector": "energy_infrastructure",
+          "is_new": false
+        },
+        {
+          "ticker": "GOOGL",
+          "class": "D",
+          "score": 3.0,
+          "prev_shares": 8536,
+          "curr_shares": 8536,
+          "change_pct": 0.0,
+          "description": "UNCHANGED",
+          "sector": "hyperscaler",
+          "is_new": false
+        },
+        {
+          "ticker": "VRT",
+          "class": "D",
+          "score": 3.0,
+          "prev_shares": 111469,
+          "curr_shares": 111469,
+          "change_pct": 0.0,
+          "description": "UNCHANGED",
+          "sector": "unknown",
+          "is_new": false
+        },
+        {
+          "ticker": "META",
+          "class": "D",
+          "score": 3.0,
+          "prev_shares": 6383,
+          "curr_shares": 6383,
+          "change_pct": 0.0,
+          "description": "UNCHANGED",
+          "sector": "hyperscaler",
+          "is_new": false
+        },
+        {
+          "ticker": "AMZN",
+          "class": "D",
+          "score": 3.0,
+          "prev_shares": 1165935,
+          "curr_shares": 1165935,
+          "change_pct": 0.0,
+          "description": "UNCHANGED",
+          "sector": "hyperscaler",
+          "is_new": false
+        },
+        {
+          "ticker": "MU",
+          "class": "D",
+          "score": 3.0,
+          "prev_shares": 165931,
+          "curr_shares": 165931,
+          "change_pct": 0.0,
+          "description": "UNCHANGED",
+          "sector": "unknown",
+          "is_new": false
+        },
+        {
+          "ticker": "AVGO",
+          "class": "D",
+          "score": 3.0,
+          "prev_shares": 20231,
+          "curr_shares": 20231,
+          "change_pct": 0.0,
+          "description": "UNCHANGED",
+          "sector": "compute_hardware",
+          "is_new": false
+        },
+        {
+          "ticker": "NVDA",
+          "class": "D",
+          "score": 3.0,
+          "prev_shares": 1915943,
+          "curr_shares": 1915943,
+          "change_pct": 0.0,
+          "description": "UNCHANGED",
+          "sector": "compute_hardware",
+          "is_new": false
+        },
+        {
+          "ticker": "TSM",
+          "class": "D",
+          "score": 3.0,
+          "prev_shares": 98016,
+          "curr_shares": 98016,
+          "change_pct": 0.0,
+          "description": "UNCHANGED",
+          "sector": "compute_hardware",
+          "is_new": false
+        }
+      ],
+      "shulman_begleit": {
+        "keywords_found": [],
+        "shulman_bonus": 0.0
+      }
+    }
+  ],
   "checked_entities": [
     "situational_awareness_lp",
+    "situational_awareness_partners",
     "thiel_macro",
-    "founders_fund_iv"
+    "thiel_peter_individual",
+    "founders_fund_iv",
+    "founders_fund_v",
+    "mithril_lp",
+    "mithril_ii_lp",
+    "duquesne_family_office",
+    "altimeter_capital",
+    "coatue_management"
   ],
   "checked_types": [
     "13F-HR",
@@ -21,8 +1731,8 @@
     "8-K",
     "8-K/A"
   ],
-  "salp_score_override": 3.0,
-  "trigger_pipeline": false,
+  "salp_score_override": 7.0,
+  "trigger_pipeline": true,
   "date_filter_cutoff": "2026-03-27",
-  "checked_at": "2026-06-25T17:09:38.784699"
+  "checked_at": "2026-06-25T18:28:28.788072"
 }

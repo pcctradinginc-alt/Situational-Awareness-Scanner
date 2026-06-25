@@ -17,8 +17,8 @@
     "signal_count": 3,
     "tickers": [
       "GOOGL",
-      "META",
       "NVDA",
+      "META",
       "AMZN"
     ],
     "quality_score": 1.7241,
