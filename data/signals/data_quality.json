@@ -1,11 +1,11 @@
 {
-  "fred": "OK",
   "rss": "5 articles",
+  "fred": "OK",
   "eia": "OK_FRED",
   "energy_breadth": "OK",
   "tradier": "OK",
   "errors": [],
-  "shulman_empirical_score": 0,
+  "shulman_empirical_score": 1,
   "shulman_data_gaps": {
     "eia_gap": false,
     "capex_gap": false,
@@ -13,5 +13,5 @@
     "any_gap": true,
     "all_gaps": false
   },
-  "fetched_at": "2026-06-25T15:52:14.129408"
+  "fetched_at": "2026-06-25T17:12:02.342333"
 }

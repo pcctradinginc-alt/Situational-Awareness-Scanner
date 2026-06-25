@@ -18,8 +18,8 @@
     "tickers": [
       "GOOGL",
       "META",
-      "AMZN",
-      "NVDA"
+      "NVDA",
+      "AMZN"
     ],
     "quality_score": 1.7241,
     "weighted_relevance": 1.7240976759091209

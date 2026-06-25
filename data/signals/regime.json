@@ -1,6 +1,6 @@
 {
   "mode": "STRESS",
-  "iv_rank_avg": 70.1,
+  "iv_rank_avg": 65.9,
   "iv_confidence": "HIGH",
   "energy_breadth": 0.7,
   "capex_trend": "rising",
@@ -17,8 +17,8 @@
     "contrarian": 0.12
   },
   "stress_reasons": [
-    "IV-Rank 70.1 > 60.0"
+    "IV-Rank 65.9 > 60.0"
   ],
   "regime_score": 6.0,
-  "determined_at": "2026-06-25T15:52:14.145857"
+  "determined_at": "2026-06-25T17:12:02.358415"
 }

@@ -1,10 +1,10 @@
 {
   "hyperscaler_capex": {
     "fred_capex": {
-      "growth_yoy": 0.0852,
+      "growth_yoy": 0.1871,
       "capex_trend": "rising",
       "period": "2026-01-01",
-      "series": "PNFI",
+      "series": "A679RC1Q027SBEA",
       "data_gap": false
     },
     "finnhub_capex": {
@@ -30,11 +30,11 @@
       "data_gap": true
     },
     "capex_trend": "rising",
-    "avg_growth_yoy": 0.0852,
-    "empirical_point": 0,
+    "avg_growth_yoy": 0.1871,
+    "empirical_point": 1,
     "data_gap": false,
     "primary_source": "fred",
-    "fetched_at": "2026-06-25T15:49:56.005050"
+    "fetched_at": "2026-06-25T17:09:43.824715"
   },
   "nvda_revenue": {
     "growth_yoy": null,
