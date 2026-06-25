@@ -154,17 +154,27 @@ class Config:
         "defenseone":   ("https://www.defenseone.com/rss/all/",                   0.80),
     }
 
-    # CIKs verified against SEC EDGAR submissions API (2026-06-24). The previous
-    # values pointed at unrelated entities that file NO 13F (Hen Hatch Investors,
-    # Iridium Communications, Epion Health) — which is why the monitor found
-    # "no new filings". These are the real 13F-HR filers:
-    #   Situational Awareness LP  CIK 0002045724  (Aschenbrenner; 13F 2026-05-18)
-    #   Thiel Macro LLC           CIK 0001562087  (13F 2026-05-15)
-    #   Founders Fund IV Mgmt LLC CIK 0001616081  (13F 2026-02-17)
+    # CIKs verified against the SEC EDGAR submissions API (2026-06-25). Original
+    # values pointed at unrelated, non-13F entities. NOTE: signal strength is
+    # weighted per FILING TYPE (FILING_WEIGHT_FORM4/SC13D > 13F), so individuals
+    # / growth funds that only file Form 4 / SC 13D-G (Thiel personally, Mithril)
+    # automatically score high on timeliness — 13F is the weakest, most lagged
+    # signal in this set.
     SEC_CIK_TARGETS = {
-        "situational_awareness_lp": "0002045724",
-        "thiel_macro":              "0001562087",
-        "founders_fund_iv":         "0001616081",
+        # ── Aschenbrenner universe (13F) ──────────────────────────────
+        "situational_awareness_lp":       "0002045724",  # 13F 2026-05-18
+        "situational_awareness_partners": "0002038540",  # 13F 2026-05-18 (sister)
+        # ── Thiel network ─────────────────────────────────────────────
+        "thiel_macro":                    "0001562087",  # 13F 2026-05-15
+        "thiel_peter_individual":         "0001211060",  # Form4 2026-03-04, SC13D/G
+        "founders_fund_iv":               "0001616081",  # 13F 2026-02-17
+        "founders_fund_v":                "0001697733",  # 13F 2026-02-17 (newest vintage)
+        "mithril_lp":                     "0001552273",  # SC13D/G + Form4 (no 13F)
+        "mithril_ii_lp":                  "0001669609",  # SC13D/G + Form4 (no 13F)
+        # ── Adjacent AI-infra smart money (13F) ───────────────────────
+        "duquesne_family_office":         "0001536411",  # Druckenmiller; 13F 2026-05-15
+        "altimeter_capital":              "0001541617",  # Gerstner; 13F 2026-05-15
+        "coatue_management":              "0001135730",  # 13F 2026-05-15
     }
 
     CLAUDE_MODEL      = "claude-sonnet-4-6"

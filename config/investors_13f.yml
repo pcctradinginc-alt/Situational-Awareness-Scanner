@@ -14,24 +14,79 @@ meta:
     before relying on live data. The offline fixtures do not depend on CIKs.
 
 managers:
-  # CIKs verified against SEC EDGAR submissions API on 2026-06-24 (all file
-  # 13F-HR with recent filings). The earlier CIKs were wrong (they resolved to
-  # unrelated, non-13F entities), so the monitor returned no filings.
+  # CIKs verified against SEC EDGAR submissions API on 2026-06-25. `files` notes
+  # which form types each entity actually submits. For the Thiel network, Form 4
+  # / SC 13D-G (2–10 day lag, insider / >5% stakes, e.g. Palantir) are the
+  # higher-conviction, more timely signals — 13F is quarterly and lagged.
+  # ── Aschenbrenner universe ──────────────────────────────────────────
   - name: "Situational Awareness LP"
     cik: "0002045724"
     weight: 1.5
     verify: false
+    files: [13F-HR]
     rationale: "Thesis-native fund (Aschenbrenner). 13F-HR filed 2026-05-18."
-  - name: "Founders Fund IV Management LLC"
-    cik: "0001616081"
-    weight: 1.2
+  - name: "Situational Awareness Partners LP"
+    cik: "0002038540"
+    weight: 1.4
     verify: false
-    rationale: "Thiel-aligned; deep-tech / national-security AI. 13F-HR filer."
+    files: [13F-HR]
+    rationale: "Aschenbrenner sister entity; also files 13F-HR (2026-05-18)."
+  # ── Thiel network ───────────────────────────────────────────────────
   - name: "Thiel Macro LLC"
     cik: "0001562087"
     weight: 1.1
     verify: false
+    files: [13F-HR]
     rationale: "Thiel public-equity vehicle. 13F-HR filed 2026-05-15."
+  - name: "Peter Thiel (individual)"
+    cik: "0001211060"
+    weight: 1.6
+    verify: false
+    files: [Form 4, SC 13D, SC 13G]
+    rationale: "Thiel's PERSONAL insider trades (e.g. Palantir). Most timely signal."
+  - name: "Founders Fund IV Management LLC"
+    cik: "0001616081"
+    weight: 1.2
+    verify: false
+    files: [13F-HR]
+    rationale: "Thiel-aligned deep-tech VC vintage IV. 13F-HR filer."
+  - name: "Founders Fund V Management LLC"
+    cik: "0001697733"
+    weight: 1.25
+    verify: false
+    files: [13F-HR, SC 13G]
+    rationale: "Newest Founders Fund vintage = newest public positions."
+  - name: "Mithril LP"
+    cik: "0001552273"
+    weight: 1.2
+    verify: false
+    files: [SC 13D, SC 13G, Form 4]
+    rationale: "Thiel-cofounded growth fund. No 13F — tracked via 13D/G + Form 4."
+  - name: "Mithril II LP"
+    cik: "0001669609"
+    weight: 1.15
+    verify: false
+    files: [SC 13D, SC 13G, Form 4]
+    rationale: "Mithril vintage II. Stake/insider filings only."
+  # ── Adjacent AI-infra smart money (thesis confirmation, 13F) ─────────
+  - name: "Duquesne Family Office LLC"
+    cik: "0001536411"
+    weight: 1.0
+    verify: false
+    files: [13F-HR]
+    rationale: "Druckenmiller; large AI-infra / NVDA positions. 13F 2026-05-15."
+  - name: "Altimeter Capital Management LP"
+    cik: "0001541617"
+    weight: 1.0
+    verify: false
+    files: [13F-HR]
+    rationale: "Gerstner; vocal AI-infrastructure bull. 13F 2026-05-15."
+  - name: "Coatue Management LLC"
+    cik: "0001135730"
+    weight: 1.0
+    verify: false
+    files: [13F-HR]
+    rationale: "Major AI/tech crossover fund. 13F 2026-05-15."
 
 # Conviction scoring parameters for 13F holdings.
 scoring:
