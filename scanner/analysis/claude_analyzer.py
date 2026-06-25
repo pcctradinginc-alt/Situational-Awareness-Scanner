@@ -448,10 +448,14 @@ class ClaudeAnalyzer:
             try:
                 parsed = json.loads(raw)
 
-                # Pflichtfelder prüfen
+                # Pflichtfelder prüfen.
+                # BUGFIX: "option" gehört NICHT zu Prompt A — es wird erst von
+                # Prompt B (nur bei PASS) erzeugt. Es als Pflichtfeld zu fordern
+                # ließ JEDE gültige Prompt-A-Antwort als "schema violation"
+                # scheitern (0 Cards). Option wird unten als {} vorbelegt.
                 required = [
                     "ticker", "conviction_total", "conviction_gate",
-                    "scores", "rationale", "option"
+                    "scores", "rationale"
                 ]
                 missing = [f for f in required if f not in parsed]
                 if missing:
@@ -465,6 +469,7 @@ class ClaudeAnalyzer:
                     raise ValueError(f"conviction_total out of range: {ct}")
 
                 result = parsed
+                result.setdefault("option", {})   # filled by Prompt B on PASS
                 result["schema_valid"] = True
 
             except (json.JSONDecodeError, ValueError, KeyError) as e:

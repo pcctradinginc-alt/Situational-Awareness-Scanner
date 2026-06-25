@@ -407,19 +407,21 @@ class DataFetcher:
 
     def _get_capex_via_fred(self) -> dict:
         """
-        FIX v4: Verifizierte Series-IDs.
-        Primär: IPB51020S (Information Processing Equipment, monatlich)
-        Fallback: PNFI (Private Nonresidential Fixed Investment, quartalsweise)
+        FIX v5: IPB51020S wurde von FRED zurückgezogen (HTTP 404) und löste bei
+        jedem Run einen 400/404-Fehler aus. Ersetzt durch die gültige BEA-Reihe
+        A679RC1Q027SBEA (Private fixed investment in information processing
+        equipment, quartalsweise). Fallback bleibt PNFI.
         """
         if not Config.FRED_API_KEY:
             return {"data_gap": True, "reason": "no_fred_key"}
 
-        # Primär: Information Processing Equipment
+        # Primär: Information Processing Equipment (verifiziert gültig)
         result = self._fred_series(
-            series_id="IPB51020S",
-            days_back=600,
-            min_obs=13,
-            label="IPB51020S (Info Processing Equipment)"
+            series_id="A679RC1Q027SBEA",
+            days_back=900,
+            min_obs=5,
+            quarters=True,
+            label="A679RC1Q027SBEA (Info Processing Equipment investment)"
         )
         if not result.get("data_gap"):
             return result
