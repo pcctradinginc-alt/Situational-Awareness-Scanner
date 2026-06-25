@@ -1,8 +1,8 @@
 {
-  "rss": "11 articles",
+  "rss": "2 articles",
   "fred": "OK",
-  "energy_breadth": "OK",
   "eia": "OK_FRED",
+  "energy_breadth": "OK",
   "tradier": "OK",
   "errors": [],
   "shulman_empirical_score": 0,
@@ -13,5 +13,5 @@
     "any_gap": true,
     "all_gaps": false
   },
-  "fetched_at": "2026-06-24T15:37:41.751915"
+  "fetched_at": "2026-06-25T09:33:16.328694"
 }
