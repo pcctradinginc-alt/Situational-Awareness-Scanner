@@ -5,61 +5,61 @@
     "total_checked": 10,
     "details": {
       "VST": {
-        "current": 162.87,
-        "ma200": 169.41,
+        "current": 166.61,
+        "ma200": 169.3,
         "above": false
       },
       "CEG": {
-        "current": 267.97,
-        "ma200": 317.93,
+        "current": 270.18,
+        "ma200": 317.79,
         "above": false
       },
       "NRG": {
-        "current": 142.21,
-        "ma200": 155.73,
+        "current": 144.93,
+        "ma200": 155.72,
         "above": false
       },
       "NEE": {
-        "current": 87.62,
-        "ma200": 84.98,
+        "current": 87.11,
+        "ma200": 85.07,
         "above": true
       },
       "SO": {
-        "current": 95.78,
-        "ma200": 91.32,
+        "current": 95.72,
+        "ma200": 91.35,
         "above": true
       },
       "D": {
-        "current": 69.26,
-        "ma200": 60.85,
+        "current": 69.06,
+        "ma200": 60.91,
         "above": true
       },
       "XEL": {
-        "current": 81.47,
-        "ma200": 77.42,
+        "current": 81.53,
+        "ma200": 77.48,
         "above": true
       },
       "AEE": {
-        "current": 113.32,
-        "ma200": 104.54,
+        "current": 113.41,
+        "ma200": 104.62,
         "above": true
       },
       "ETR": {
-        "current": 114.69,
-        "ma200": 100.39,
+        "current": 114.36,
+        "ma200": 100.54,
         "above": true
       },
       "EXC": {
-        "current": 46.9,
-        "ma200": 45.18,
+        "current": 46.86,
+        "ma200": 45.21,
         "above": true
       }
     },
-    "fetched_at": "2026-06-25T09:31:10.710223"
+    "fetched_at": "2026-06-25T15:43:48.147302"
   },
   "hyperscaler_capex": {
     "fred_capex": {
-      "growth_yoy": 0.0839,
+      "growth_yoy": 0.0852,
       "capex_trend": "rising",
       "period": "2026-01-01",
       "series": "PNFI",
@@ -88,11 +88,11 @@
       "data_gap": true
     },
     "capex_trend": "rising",
-    "avg_growth_yoy": 0.0839,
+    "avg_growth_yoy": 0.0852,
     "empirical_point": 0,
     "data_gap": false,
     "primary_source": "fred",
-    "fetched_at": "2026-06-25T09:30:58.343457"
+    "fetched_at": "2026-06-25T15:43:35.289430"
   },
   "fred": {
     "electric_power_production": {
@@ -126,7 +126,7 @@
       "period": "2026-06-23",
       "data_gap": false
     },
-    "fetched_at": "2026-06-25T09:30:55.563667"
+    "fetched_at": "2026-06-25T15:43:33.015717"
   },
   "eia": {
     "growth_yoy": 0.0299,
@@ -135,6 +135,6 @@
     "shulman_signal": false,
     "empirical_point": 0,
     "data_gap": false,
-    "fetched_at": "2026-06-25T09:30:56.005211"
+    "fetched_at": "2026-06-25T15:43:33.287104"
   }
 }

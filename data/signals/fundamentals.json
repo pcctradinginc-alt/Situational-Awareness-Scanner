@@ -1,7 +1,7 @@
 {
   "hyperscaler_capex": {
     "fred_capex": {
-      "growth_yoy": 0.0839,
+      "growth_yoy": 0.0852,
       "capex_trend": "rising",
       "period": "2026-01-01",
       "series": "PNFI",
@@ -30,11 +30,11 @@
       "data_gap": true
     },
     "capex_trend": "rising",
-    "avg_growth_yoy": 0.0839,
+    "avg_growth_yoy": 0.0852,
     "empirical_point": 0,
     "data_gap": false,
     "primary_source": "fred",
-    "fetched_at": "2026-06-25T09:30:58.343457"
+    "fetched_at": "2026-06-25T15:43:35.289430"
   },
   "nvda_revenue": {
     "growth_yoy": null,
