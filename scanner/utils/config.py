@@ -154,10 +154,17 @@ class Config:
         "defenseone":   ("https://www.defenseone.com/rss/all/",                   0.80),
     }
 
+    # CIKs verified against SEC EDGAR submissions API (2026-06-24). The previous
+    # values pointed at unrelated entities that file NO 13F (Hen Hatch Investors,
+    # Iridium Communications, Epion Health) — which is why the monitor found
+    # "no new filings". These are the real 13F-HR filers:
+    #   Situational Awareness LP  CIK 0002045724  (Aschenbrenner; 13F 2026-05-18)
+    #   Thiel Macro LLC           CIK 0001562087  (13F 2026-05-15)
+    #   Founders Fund IV Mgmt LLC CIK 0001616081  (13F 2026-02-17)
     SEC_CIK_TARGETS = {
-        "situational_awareness_lp": "0002014020",
-        "thiel_capital":            "0001418819",
-        "founders_fund":            "0001615175",
+        "situational_awareness_lp": "0002045724",
+        "thiel_macro":              "0001562087",
+        "founders_fund_iv":         "0001616081",
     }
 
     CLAUDE_MODEL      = "claude-sonnet-4-6"

@@ -35,7 +35,8 @@ logger = logging.getLogger(__name__)
 mapper = TickerMapper()
 
 HEADERS = {
-    "User-Agent": "SA-Scanner research@example.com",
+    # SEC fair-access requires a descriptive User-Agent with a real contact.
+    "User-Agent": "SituationalAwarenessScanner research info@pcctradinginc.com",
     "Accept-Encoding": "gzip, deflate",
 }
 
@@ -102,6 +103,32 @@ KNOWN_NAMES = {
     "BROADCOM":      "AVGO",
     "LOCKHEED":      "LMT",
     "RAYTHEON":      "RTX",
+    # Expanded AI-infra issuers (observed in real Situational Awareness LP /
+    # Thiel Macro 13F holdings that were previously dropped as "CUSIP not
+    # mapped"). Substring-matched against nameOfIssuer.
+    "ADVANCED MICRO":  "AMD",
+    "MICRON":          "MU",
+    "ORACLE":          "ORCL",
+    "INTEL CORP":      "INTC",
+    "CORNING":         "GLW",
+    "ASML":            "ASML",
+    "ARISTA":          "ANET",
+    "MARVELL":         "MRVL",
+    "SUPER MICRO":     "SMCI",
+    "VERTIV":          "VRT",
+    "GE VERNOVA":      "GEV",
+    "APPLIED DIGITAL": "APLD",
+    "COREWEAVE":       "CRWV",
+    "BLOOM ENERGY":    "BE",
+    "CLEANSPARK":      "CLSK",
+    "CORE SCIENTIFIC": "CORZ",
+    "IREN":            "IREN",
+    "RIOT PLATFORMS":  "RIOT",
+    "BITDEER":         "BTDR",
+    "BITFARMS":        "BITF",
+    "HIVE DIGITAL":    "HIVE",
+    "SANDISK":         "SNDK",
+    "INFOSYS":         "INFY",
     "ANDURIL":       None,
     "OPENAI":        None,
 }
@@ -147,19 +174,27 @@ def get_xml_url_from_filing(filing_url: str) -> Optional[str]:
         r.raise_for_status()
         content = r.text
 
-        patterns = [
-            r'href="(/Archives/[^"]+information[Tt]able[^"]*\.xml)"',
-            r'href="(/Archives/[^"]+13[fF][^"]*\.xml)"',
-            r'href="(/Archives/[^"]+form13f[^"]*\.xml)"',
-            r'href="(/Archives/[^"]+\.xml)"',
+        # All .xml documents linked on the filing index.
+        all_xml = re.findall(r'href="(/Archives/[^"]+\.xml)"', content,
+                             re.IGNORECASE)
+        # BUGFIX: a 13F filing lists BOTH the raw information-table XML and an
+        # XSLT-rendered HTML copy under .../xslForm13F_X02/...xml. The old picker
+        # often returned the rendered HTML, which ET.fromstring() rejects with
+        # "mismatched tag". Drop the xsl renderings and the cover primary_doc.xml,
+        # then prefer an information-table-looking file.
+        candidates = [
+            u for u in all_xml
+            if "xsl" not in u.lower() and not u.lower().endswith("primary_doc.xml")
         ]
-
-        for pattern in patterns:
-            matches = re.findall(pattern, content, re.IGNORECASE)
-            if matches:
-                return f"https://www.sec.gov{matches[0]}"
-
-        return None
+        if not candidates:
+            return None
+        preferred = [
+            u for u in candidates
+            if re.search(r"(information[_]?table|infotable|13f|form13f)",
+                         u, re.IGNORECASE)
+        ]
+        chosen = preferred[0] if preferred else candidates[0]
+        return f"https://www.sec.gov{chosen}"
 
     except Exception as e:
         logger.warning(f"get_xml_url error: {e}")
@@ -444,7 +479,13 @@ def check_new_filings(state_manager) -> list:
                     cik=cik,
                     filing_type=filing_type.replace(" ", "+")
                 )
-                feed = feedparser.parse(url, request_headers=HEADERS)
+                # BUGFIX: feedparser.parse(url, ...) silently fails to fetch from
+                # SEC (returns 0 entries) — its internal fetch does not apply our
+                # User-Agent the way SEC requires. Fetch with requests (which
+                # honours HEADERS) and parse the bytes instead. Without this the
+                # monitor never sees any filing, regardless of CIK.
+                resp = requests.get(url, headers=HEADERS, timeout=15)
+                feed = feedparser.parse(resp.content)
 
                 key       = f"{entity}_{filing_type.replace(' ', '_')}"
                 last_date = state_manager.get_last_filing_date(key) or cutoff

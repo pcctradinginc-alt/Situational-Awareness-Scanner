@@ -14,21 +14,24 @@ meta:
     before relying on live data. The offline fixtures do not depend on CIKs.
 
 managers:
+  # CIKs verified against SEC EDGAR submissions API on 2026-06-24 (all file
+  # 13F-HR with recent filings). The earlier CIKs were wrong (they resolved to
+  # unrelated, non-13F entities), so the monitor returned no filings.
   - name: "Situational Awareness LP"
-    cik: "0002014020"
+    cik: "0002045724"
     weight: 1.5
-    verify: true
-    rationale: "Thesis-native fund (Aschenbrenner)."
-  - name: "Founders Fund"
-    cik: "0001615175"
+    verify: false
+    rationale: "Thesis-native fund (Aschenbrenner). 13F-HR filed 2026-05-18."
+  - name: "Founders Fund IV Management LLC"
+    cik: "0001616081"
     weight: 1.2
-    verify: true
-    rationale: "Thiel-aligned; deep-tech / national-security AI."
-  - name: "Thiel Capital"
-    cik: "0001418819"
+    verify: false
+    rationale: "Thiel-aligned; deep-tech / national-security AI. 13F-HR filer."
+  - name: "Thiel Macro LLC"
+    cik: "0001562087"
     weight: 1.1
-    verify: true
-    rationale: "Strategic / contrarian AI-infrastructure exposure."
+    verify: false
+    rationale: "Thiel public-equity vehicle. 13F-HR filed 2026-05-15."
 
 # Conviction scoring parameters for 13F holdings.
 scoring:
