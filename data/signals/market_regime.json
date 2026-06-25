@@ -5,57 +5,57 @@
     "total_checked": 10,
     "details": {
       "VST": {
-        "current": 166.61,
+        "current": 166.66,
         "ma200": 169.3,
         "above": false
       },
       "CEG": {
-        "current": 270.18,
+        "current": 269.99,
         "ma200": 317.79,
         "above": false
       },
       "NRG": {
-        "current": 144.93,
+        "current": 144.95,
         "ma200": 155.72,
         "above": false
       },
       "NEE": {
-        "current": 87.11,
+        "current": 87.17,
         "ma200": 85.07,
         "above": true
       },
       "SO": {
-        "current": 95.72,
+        "current": 95.68,
         "ma200": 91.35,
         "above": true
       },
       "D": {
-        "current": 69.06,
+        "current": 69.02,
         "ma200": 60.91,
         "above": true
       },
       "XEL": {
-        "current": 81.53,
+        "current": 81.47,
         "ma200": 77.48,
         "above": true
       },
       "AEE": {
-        "current": 113.41,
+        "current": 113.38,
         "ma200": 104.62,
         "above": true
       },
       "ETR": {
-        "current": 114.36,
+        "current": 114.44,
         "ma200": 100.54,
         "above": true
       },
       "EXC": {
-        "current": 46.86,
+        "current": 46.85,
         "ma200": 45.21,
         "above": true
       }
     },
-    "fetched_at": "2026-06-25T15:43:48.147302"
+    "fetched_at": "2026-06-25T15:50:08.498881"
   },
   "hyperscaler_capex": {
     "fred_capex": {
@@ -92,7 +92,7 @@
     "empirical_point": 0,
     "data_gap": false,
     "primary_source": "fred",
-    "fetched_at": "2026-06-25T15:43:35.289430"
+    "fetched_at": "2026-06-25T15:49:56.005050"
   },
   "fred": {
     "electric_power_production": {
@@ -126,7 +126,7 @@
       "period": "2026-06-23",
       "data_gap": false
     },
-    "fetched_at": "2026-06-25T15:43:33.015717"
+    "fetched_at": "2026-06-25T15:49:53.335985"
   },
   "eia": {
     "growth_yoy": 0.0299,
@@ -135,6 +135,6 @@
     "shulman_signal": false,
     "empirical_point": 0,
     "data_gap": false,
-    "fetched_at": "2026-06-25T15:43:33.287104"
+    "fetched_at": "2026-06-25T15:49:54.521609"
   }
 }
