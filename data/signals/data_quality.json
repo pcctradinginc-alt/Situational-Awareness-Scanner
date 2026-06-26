@@ -1,5 +1,5 @@
 {
-  "rss": "5 articles",
+  "rss": "8 articles",
   "fred": "OK",
   "eia": "OK_FRED",
   "energy_breadth": "OK",
@@ -13,5 +13,5 @@
     "any_gap": true,
     "all_gaps": false
   },
-  "fetched_at": "2026-06-26T09:45:29.194202"
+  "fetched_at": "2026-06-26T15:34:36.308245"
 }

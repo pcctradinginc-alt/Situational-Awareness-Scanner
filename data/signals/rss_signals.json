@@ -2,26 +2,90 @@
   {
     "source": "lesswrong",
     "credibility": 0.85,
-    "title": "Intelligence (Artificial)\nin a Fallen World",
-    "summary": "<p><i><span>Cross-posted from </span></i><a href=\"https://babbo.dev/articles/ai-risk/\"><i><span>babbo.dev/articles/ai-risk</span></i></a><i><span>. To experience the piece in its intended form, please visit there.</span></i></p><h1><b><span>A </span></b><a href=\"https://en.wikipedia.org/w/index.php?title=Kish%C5%8Dtenketsu&amp;oldid=1358738099\" rel=\"noreferrer\"><b><span>Kish\u014dtenketsu </span></b></a><b><span>on AI Risk</span></b></h1><figure class=\"image image_resized\" style=\"width: 64.6525679758",
-    "url": "https://www.lesswrong.com/posts/2sGmy2pJakSbo9vih/intelligence-artificial-in-a-fallen-world",
-    "published": "2026-06-26T00:46:16",
+    "title": "White House Will Ad Hoc Decide Who Can Individually Access GPT-5.6",
+    "summary": "<p><a href=\"https://www.axios.com/2026/06/25/trump-administration-openai-gpt-model-release\">We have a new standard policy for releasing frontier AI models.</a> It is not good.</p>\n<p>We are now, it seems, going to have the White House individually, in an opaque ad hoc manner, deciding who can access which frontier AI models when.</p>\n<p>One hopes we will at least transition this into a predictable and formal set of procedures for determining what to do. But we spent years not laying the groundwo",
+    "url": "https://www.lesswrong.com/posts/MkwL4AcbE44yePEQx/white-house-will-ad-hoc-decide-who-can-individually-access",
+    "published": "2026-06-26T14:53:09",
+    "signals": {
+      "thiel": true,
+      "shulman": false,
+      "contrarian": true,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 3,
+    "tickers": [
+      "META",
+      "NVDA",
+      "GOOGL"
+    ],
+    "quality_score": 1.7241,
+    "weighted_relevance": 1.7240976759091209
+  },
+  {
+    "source": "alignment_forum",
+    "credibility": 0.9,
+    "title": "The Case for Model Forensics",
+    "summary": "<p><i><span>If we had a misalignment warning shot, would we be able to tell?</span></i></p><p><span>Suppose an AI company catches their model taking an egregious action, like deleting oversight code that monitors its actions. Should they sound the alarm? A key piece of evidence to determine what to do next \u2013 such as what mitigations to take \u2013 is to understand </span><i><span>why </span></i><span>the model took the action. If the model was just confused (e.g. it may have been trying to reduce lat",
+    "url": "https://www.alignmentforum.org/posts/LCGcD28rSMkMTMvBK/the-case-for-model-forensics",
+    "published": "2026-06-26T15:09:10",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
+      "bottleneck_energy": true,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "GOOGL"
+    ],
+    "quality_score": 1.3714,
+    "weighted_relevance": 1.3714492162535559
+  },
+  {
+    "source": "bloomberg_tech",
+    "credibility": 0.88,
+    "title": "AI Trade\u2019s Bruising Week Forces Investors to Be More Selective",
+    "summary": "This roller-coaster week for tech stocks from Seoul to New York fueled by extreme investor positioning and worries over chip demand is sending a strong signal: the case for the artificial-intelligence trade is still strong, but the days of everything going up in a straight line appear to be over.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-26/the-ai-trade-still-works-but-it-s-getting-harder-taking-stock",
+    "published": "2026-06-26T06:13:10",
     "signals": {
       "thiel": false,
       "shulman": false,
       "contrarian": false,
       "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [],
+    "quality_score": 1.3112,
+    "weighted_relevance": 1.3111731766256216
+  },
+  {
+    "source": "lesswrong",
+    "credibility": 0.85,
+    "title": "The Case for Model Forensics",
+    "summary": "<p><i><span>If we had a misalignment warning shot, would we be able to tell?</span></i></p><p><span>Suppose an AI company catches their model taking an egregious action, like deleting oversight code that monitors its actions. Should they sound the alarm? A key piece of evidence to determine what to do next \u2013 such as what mitigations to take \u2013 is to understand </span><i><span>why </span></i><span>the model took the action. If the model was just confused (e.g. it may have been trying to reduce lat",
+    "url": "https://www.lesswrong.com/posts/LCGcD28rSMkMTMvBK/the-case-for-model-forensics",
+    "published": "2026-06-26T15:09:10",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": false,
       "bottleneck_energy": true,
       "salp": false
     },
-    "signal_count": 2,
+    "signal_count": 1,
     "tickers": [
-      "MSFT",
-      "NVDA",
-      "META"
+      "GOOGL"
     ],
-    "quality_score": 1.5162,
-    "weighted_relevance": 1.5162473785627093
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
   },
   {
     "source": "arxiv_cs_ai",
