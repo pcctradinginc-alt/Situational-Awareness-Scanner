@@ -168,6 +168,33 @@ def cmd_explain(args) -> int:
     return 0
 
 
+def cmd_person_intel(args) -> int:
+    """Run the offline person-intelligence layer (entity→evidence→proxy→score)."""
+    from .person_intel.runner import run_person_intel
+    cfg = AppConfig(config_dir=Path(args.config_dir) if args.config_dir else CONFIG_DIR)
+    fixtures = getattr(args, "fixtures_dir", None) or DEFAULT_FIXTURES
+    rows = run_person_intel(config=cfg, fixtures_dir=fixtures,
+                            only_tickers=_split(args.tickers))
+    if not rows:
+        print("No person-linked candidates (no tracked holdings / proxies match).")
+        return 0
+    print(f"\n{DISCLAIMER}\n")
+    print("PERSON-INTELLIGENCE — research signal vs trade candidate (thesis ≠ trade)\n")
+    print(f"{'TICKER':7s} {'RESEARCH':>8s} {'label':<8s} {'TRADE':>6s} {'label':<10s} "
+          f"{'CLUSTER':<14s} HELD-BY / FALSIFICATION")
+    for r in rows[: args.limit]:
+        s = r.score
+        held = ", ".join(r.held_by) or "—"
+        print(f"{s.ticker:7s} {s.final_research_score:8.2f} {s.research_label:<8s} "
+              f"{s.final_trade_candidate_score:6.2f} {s.trade_label:<10s} "
+              f"{r.dominant_cluster:<14s} {held}")
+        print(f"        ↳ falsify: {s.falsification}")
+    print("\nResearch = people did/said X (verified) mapping to a public proxy.")
+    print("Trade    = research GATED by market timing + options quality, CAPPED by "
+          "verification. A strong thesis is not a trade.")
+    return 0
+
+
 def cmd_doctor(args) -> int:
     ok = True
     print("CALL-Options Intelligence — health check\n")
@@ -179,6 +206,28 @@ def cmd_doctor(args) -> int:
         _line("config warning", False, w)  # informational; does not fail doctor
     _line("universe tickers", bool(cfg.universe.get("tickers")),
           f"{len(cfg.universe.get('tickers', []))} tickers")
+
+    # person-intelligence configs (Goals A/D/F)
+    try:
+        from .person_intel.entities import load_graph
+        from .person_intel.cusip_map import load_mapper
+        from .person_intel.proxy_map import load_proxy_map, THESIS_CLUSTERS
+        g = load_graph(cfg.config_dir)
+        _line("entity graph", bool(g.entities),
+              f"{len(g.entities)} entities, {len(g.facts())} facts, "
+              f"{len(g.hypotheses())} hypotheses")
+        m = load_mapper(cfg.config_dir)
+        _line("cusip map", bool(m.explicit), f"{len(m.explicit)} curated CUSIPs")
+        pm = load_proxy_map(cfg.config_dir)
+        cover = all(c in pm.clusters for c in THESIS_CLUSTERS)
+        _line("proxy map clusters", cover,
+              f"{len(pm.clusters)} clusters")
+        _line("proxy falsification complete", not pm.warnings,
+              "; ".join(pm.warnings) if pm.warnings else "every cluster has one")
+        ok = ok and cover and not pm.warnings
+    except Exception as exc:  # pragma: no cover - defensive
+        _line("person-intel configs", False, str(exc))
+        ok = False
 
     fx = DEFAULT_FIXTURES
     for sub in ("market/market_fixture.json", "options/options_fixture.json"):
@@ -231,8 +280,9 @@ def _grep_dangerous(root: Path) -> list[str]:
                "place_stock_order", "broker.execute", "live_trade(")
     self_name = Path(__file__).name
     hits = []
-    for f in root.glob("*.py"):
-        if f.name == self_name:
+    # rglob so the whole package (incl. person_intel/) is scanned, not just the top
+    for f in root.rglob("*.py"):
+        if f.name == self_name or "__pycache__" in f.parts:
             continue
         text = f.read_text(encoding="utf-8", errors="ignore").lower()
         for n in needles:
@@ -315,6 +365,14 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("ticker")
     sp.add_argument("--thesis-dir")
     sp.set_defaults(func=cmd_explain)
+
+    sp = sub.add_parser("person-intel",
+                        help="person-intelligence: research vs trade (thesis≠trade)")
+    sp.add_argument("--config-dir")
+    sp.add_argument("--fixtures-dir")
+    sp.add_argument("--tickers", nargs="*", help="restrict to these tickers")
+    sp.add_argument("--limit", type=int, default=15)
+    sp.set_defaults(func=cmd_person_intel)
 
     sp = sub.add_parser("doctor", help="health-check the install")
     sp.add_argument("--config-dir")
