@@ -1,0 +1,40 @@
+# CUSIP → ticker map (Goal D).
+# ----------------------------
+# Curated, check-digit-verified CUSIPs for the AI-infra universe. Every entry is
+# resolved WITH a confidence + source; anything not here falls back to a fuzzy
+# name heuristic (always needs_human_review) or returns no match. There is no
+# "match without confidence".
+#
+# All 9-digit CUSIPs below pass the modulus-10 check-digit test (verified
+# 2026-06-26). Re-verify before relying on live data; CUSIPs can be reissued.
+
+mapping_floor: 0.6      # below this confidence -> needs_human_review
+
+cusips:
+  "67066G104": {ticker: NVDA, source: curated_verified, confidence: 0.97}
+  "594918104": {ticker: MSFT, source: curated_verified, confidence: 0.97}
+  "037833100": {ticker: AAPL, source: curated_verified, confidence: 0.97}
+  "11135F101": {ticker: AVGO, source: curated_verified, confidence: 0.97}
+  "595112103": {ticker: MU,   source: curated_verified, confidence: 0.97}
+  "874039100": {ticker: TSM,  source: curated_verified, confidence: 0.95}  # ADR
+  "69608A108": {ticker: PLTR, source: curated_verified, confidence: 0.97}
+  "007903107": {ticker: AMD,  source: curated_verified, confidence: 0.97}
+  "92840M102": {ticker: VST,  source: curated_verified, confidence: 0.97}
+  "21037T109": {ticker: CEG,  source: curated_verified, confidence: 0.97}
+  "040413106": {ticker: ANET, source: curated_verified, confidence: 0.97}
+  "92537N108": {ticker: VRT,  source: curated_verified, confidence: 0.97}
+
+# Fuzzy fallbacks (issuer-name substring -> ticker). Medium confidence only and
+# ALWAYS flagged for human review — names collide and change.
+name_hints:
+  "nvidia": NVDA
+  "advanced micro": AMD
+  "taiwan semiconductor": TSM
+  "broadcom": AVGO
+  "micron": MU
+  "vistra": VST
+  "constellation energy": CEG
+  "palantir": PLTR
+  "microsoft": MSFT
+  "arista": ANET
+  "vertiv": VRT
