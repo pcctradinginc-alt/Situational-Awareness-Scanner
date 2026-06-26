@@ -195,6 +195,32 @@ def cmd_person_intel(args) -> int:
     return 0
 
 
+def cmd_early_filings(args) -> int:
+    """Recent FAST EDGAR filings (Form 4 / 13D-G / Form D) — leading person-signals."""
+    from .person_intel.edgar_fast import FastFilingMonitor, load_fast_client
+    cfg = AppConfig(config_dir=Path(args.config_dir) if args.config_dir else CONFIG_DIR)
+    mode = "live" if getattr(args, "live", False) else cfg.mode
+    fixtures = getattr(args, "fixtures_dir", None) or DEFAULT_FIXTURES
+    client = load_fast_client(cfg.data_sources, mode, fixtures)
+    managers = cfg.investors.get("managers", []) or []
+    feed = FastFilingMonitor(client).feed(managers, since_days=args.since)
+    print(f"\n{DISCLAIMER}\n")
+    if not feed:
+        where = "live SEC EDGAR" if mode == "live" else "offline submissions fixtures"
+        print(f"No fast filings in the last {args.since}d ({where}).")
+        if mode != "live":
+            print("(offline; pass --live to query SEC EDGAR — free, descriptive "
+                  "User-Agent from config/data_sources.yml, no key)")
+        return 0
+    print(f"FAST filings (last {args.since}d) — leading person-signals vs 13F:\n")
+    print(f"{'DATE':12s} {'FORM':10s} {'ROLE':<12s} {'AGE':>4s}  ENTITY")
+    for r in feed[: args.limit]:
+        age = r.age_days()
+        print(f"{r.filing_date:12s} {r.form:10s} {r.role.value:<12s} "
+              f"{(age if age is not None else '?'):>4}  {r.entity}")
+    return 0
+
+
 def cmd_doctor(args) -> int:
     ok = True
     print("CALL-Options Intelligence — health check\n")
@@ -373,6 +399,16 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--tickers", nargs="*", help="restrict to these tickers")
     sp.add_argument("--limit", type=int, default=15)
     sp.set_defaults(func=cmd_person_intel)
+
+    sp = sub.add_parser("early-filings",
+                        help="recent FAST EDGAR filings (Form 4 / 13D-G / Form D)")
+    sp.add_argument("--config-dir")
+    sp.add_argument("--fixtures-dir")
+    sp.add_argument("--live", action="store_true",
+                    help="query SEC EDGAR (free) instead of offline fixtures")
+    sp.add_argument("--since", type=int, default=30, help="lookback days")
+    sp.add_argument("--limit", type=int, default=25)
+    sp.set_defaults(func=cmd_early_filings)
 
     sp = sub.add_parser("doctor", help="health-check the install")
     sp.add_argument("--config-dir")
