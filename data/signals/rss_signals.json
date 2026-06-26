@@ -2,101 +2,54 @@
   {
     "source": "lesswrong",
     "credibility": 0.85,
-    "title": "AI #174: You\u2019re It",
-    "summary": "<p><a href=\"https://thezvi.substack.com/p/the-once-and-future-fable-4?r=67wny\"><strong>Fable remains in limbo</strong></a>, with renewed hope that we will get it back soon (<a href=\"https://polymarket.com/event/claude-fable-5-restored-for-us-customers-by-20260613193753196\">45% by tomorrow, 69% by July 1</a>, nice.) <a href=\"https://thezvi.substack.com/p/claude-fable-5-and-mythos-5-capabilities?r=67wny\"><strong>The full capabilities post is now available</strong></a>.</p>\n<p>Alex Bores unfortunat",
-    "url": "https://www.lesswrong.com/posts/MfdaizeH8z8civPHe/ai-174-you-re-it",
-    "published": "2026-06-25T11:50:59",
+    "title": "Intelligence (Artificial)\nin a Fallen World",
+    "summary": "<p><i><span>Cross-posted from </span></i><a href=\"https://babbo.dev/articles/ai-risk/\"><i><span>babbo.dev/articles/ai-risk</span></i></a><i><span>. To experience the piece in its intended form, please visit there.</span></i></p><h1><b><span>A </span></b><a href=\"https://en.wikipedia.org/w/index.php?title=Kish%C5%8Dtenketsu&amp;oldid=1358738099\" rel=\"noreferrer\"><b><span>Kish\u014dtenketsu </span></b></a><b><span>on AI Risk</span></b></h1><figure class=\"image image_resized\" style=\"width: 64.6525679758",
+    "url": "https://www.lesswrong.com/posts/2sGmy2pJakSbo9vih/intelligence-artificial-in-a-fallen-world",
+    "published": "2026-06-26T00:46:16",
     "signals": {
-      "thiel": true,
-      "shulman": false,
-      "contrarian": true,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 3,
-    "tickers": [
-      "GOOGL",
-      "AMZN",
-      "META",
-      "NVDA"
-    ],
-    "quality_score": 1.7241,
-    "weighted_relevance": 1.7240976759091209
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "Alignment & Succession: The Ideology of Successionism",
-    "summary": "<p><span>(Originally published on </span><a href=\"https://www.nosetgauge.com/p/alignment-and-succession-the-ideology\" rel=\"noreferrer\"><span>No Set Gauge</span></a><span>.)</span></p><p><br /></p><img alt=\"\" src=\"https://res.cloudinary.com/lesswrong-2-0/image/upload/f_auto,q_auto/v1/mirroredImages/TgxkX5uwpqpQDDmMz/ibzxmwubjqqw0vmt7k6y\" /><p><span>Gustave Moreau,&nbsp;</span><i><span>The Frogs Asking For A King</span></i></p><p><span>In the course of building a better world, people ask each othe",
-    "url": "https://www.lesswrong.com/posts/TgxkX5uwpqpQDDmMz/alignment-and-succession-the-ideology-of-successionism",
-    "published": "2026-06-25T06:51:48",
-    "signals": {
-      "thiel": true,
+      "thiel": false,
       "shulman": false,
       "contrarian": false,
-      "bottleneck_compute": false,
-      "bottleneck_energy": false,
-      "salp": true
+      "bottleneck_compute": true,
+      "bottleneck_energy": true,
+      "salp": false
     },
     "signal_count": 2,
     "tickers": [
+      "MSFT",
+      "NVDA",
       "META"
     ],
     "quality_score": 1.5162,
     "weighted_relevance": 1.5162473785627093
   },
   {
-    "source": "bloomberg_tech",
-    "credibility": 0.88,
-    "title": "Nvidia Wants to Make Humanoid AI Robots Safer Around Humans",
-    "summary": "Humanoid robots are getting smarter and moving closer to the real world. But before they can work alongside humans, Nvidia says they need something even more important: the ability to recognize danger and react in an instant. Bloomberg's Ed Ludlow speaks with Deepu Talla, Vice President of Robotics and Edge AI at Nvidia, about the technology designed to make that possible. (Source: Bloomberg)",
-    "url": "https://www.bloomberg.com/news/videos/2026-06-25/nvidia-wants-to-make-humanoid-ai-robots-safer-for-humans-video",
-    "published": "2026-06-25T15:06:06",
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "The Governance Inversion Hypothesis: Why More AI Regulation May Produce Less Organisational Control",
+    "summary": "arXiv:2606.26117v1 Announce Type: cross \nAbstract: This paper introduces the Governance Inversion Hypothesis (GIH) to explain a growing paradox in artificial intelligence (AI) governance: under conditions of increasing regulatory expansion and technological complexity, organisations may become more formally governed while simultaneously experiencing a decline in operational control over AI systems. Existing AI governance frameworks generally assume that stronger regulation improves accountabilit",
+    "url": "https://arxiv.org/abs/2606.26117",
+    "published": "2026-06-26T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.3112,
-    "weighted_relevance": 1.3111731766256216
-  },
-  {
-    "source": "lesswrong",
-    "credibility": 0.85,
-    "title": "Interstellar conquests: hard race, hide-and-seek and robust protection",
-    "summary": "<p><span>Gwern's </span><a href=\"https://gwern.net/blog/2024/winning-arms-races\" rel=\"noreferrer\"><span>case against the AI race</span></a><span> relied on the lack of a pivotal act which the side which is to reach the ASI first can use to prevent the other sides of the race from developing </span><i><span>their</span></i><span> ASIs and achieving an important place in the New World Order. The main problems with this framing are the ASI being usable to </span><a href=\"https://www.lesswrong.com/p",
-    "url": "https://www.lesswrong.com/posts/gehrXCs2cauqKZaqs/interstellar-conquests-hard-race-hide-and-seek-and-robust",
-    "published": "2026-06-25T09:44:33",
-    "signals": {
-      "thiel": false,
-      "shulman": true,
-      "contrarian": false,
+      "contrarian": true,
       "bottleneck_compute": false,
       "bottleneck_energy": false,
       "salp": false
     },
     "signal_count": 1,
-    "tickers": [
-      "META"
-    ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
+    "tickers": [],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
   },
   {
-    "source": "ft_tech",
-    "credibility": 0.85,
-    "title": "Qualcomm vs Nvidia and drones vs dogs",
-    "summary": "The inside story on the Asia tech trends that matter, from Nikkei Asia and the Financial Times",
-    "url": "https://www.ft.com/content/88607186-a7d8-4888-9e8b-00e8f8059e1e",
-    "published": "2026-06-25T07:10:07",
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Adaptive Evaluation of Out-of-Band Defenses Against Prompt Injection in LLM Agents",
+    "summary": "arXiv:2606.26479v1 Announce Type: cross \nAbstract: Recent work (2024 to 2026) has converged on a strategy for defending tool-using LLM agents against indirect prompt injection: rather than training the model to refuse malicious instructions, enforce security outside the model with a deterministic policy that mediates the agent's actions. Systems such as CaMeL, FIDES, Progent, RTBAS, and FORGE realize this with capabilities, information-flow labels, and reference monitors, and several report near",
+    "url": "https://arxiv.org/abs/2606.26479",
+    "published": "2026-06-26T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -109,7 +62,52 @@
     "tickers": [
       "NVDA"
     ],
-    "quality_score": 1.2233,
-    "weighted_relevance": 1.2232988379545604
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "A-Evolve-Training: Autonomous Post-Training of a 30B Model",
+    "summary": "arXiv:2606.20657v2 Announce Type: replace \nAbstract: Post-training a frontier model is normally weeks of human work: proposing data and recipe changes, launching runs, reading evals, deciding what to keep. We report an autonomous system that runs this loop with no human in the loop, post-training a 30B Nemotron across four rounds over multiple weeks. The autonomously produced model reaches a held-out score of 0.86 against the top human submission's 0.87 on the public NVIDIA Nemotron-Reasoning Ch",
+    "url": "https://arxiv.org/abs/2606.20657",
+    "published": "2026-06-26T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
+  },
+  {
+    "source": "arxiv_cs_ai",
+    "credibility": 0.8,
+    "title": "Statistical Properties of the King Wen Sequence: An Anti-Habituation Structure That Does Not Improve Neural Network Training",
+    "summary": "arXiv:2604.09234v2 Announce Type: replace-cross \nAbstract: The King Wen sequence of the I-Ching (c. 1000 BC) orders 64 hexagrams -- states of a six-dimensional binary space -- in a pattern that has puzzled scholars for three millennia. We present a rigorous statistical characterization of this ordering using Monte Carlo permutation analysis against 100,000 random baselines. We find that the sequence has four statistically significant properties: higher-than-random transition distance (98.2nd per",
+    "url": "https://arxiv.org/abs/2604.09234",
+    "published": "2026-06-26T04:00:00",
+    "signals": {
+      "thiel": false,
+      "shulman": false,
+      "contrarian": false,
+      "bottleneck_compute": true,
+      "bottleneck_energy": false,
+      "salp": false
+    },
+    "signal_count": 1,
+    "tickers": [
+      "NVDA",
+      "RTX"
+    ],
+    "quality_score": 1.0836,
+    "weighted_relevance": 1.0836141955583654
   }
 ]
