@@ -220,10 +220,12 @@ def test_widened_tier_a_confident():
         assert r.needs_human_review is False        # >= mapping_floor
 
 
-def test_widened_tier_b_flagged_for_review():
-    # check-digit-valid but not authoritatively confirmed -> mapped yet flagged
+def test_unconfirmed_names_resolve_via_heuristic_only():
+    # GEV/EQIX/SMCI have no explicit CUSIP (unconfirmed) -> name heuristic maps
+    # them but ALWAYS flags for review; an unknown CUSIP alone yields no ticker.
     m = load_mapper()
-    r = m.map_cusip("86800U104")                     # SMCI, confidence 0.55
+    r = m.map_cusip("000000000", "Super Micro Computer Inc")
     assert r.mapped_ticker == "SMCI"
+    assert r.mapping_source == "name_heuristic"
     assert r.needs_human_review is True
-    assert r.confidence < 0.6
+    assert m.map_cusip("000000000", "no such issuer").mapped_ticker is None

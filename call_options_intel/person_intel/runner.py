@@ -50,9 +50,11 @@ def _network_weight(graph: EntityGraph, manager_name: str) -> float:
     A holding by a confirmed Thiel/Aschenbrenner vehicle carries more person-
     signal than one by merely adjacent smart money (which still counts, weakly).
     """
+    mn = (manager_name or "").lower()
     ent = None
     for e in graph.entities.values():
-        if e.name.lower() == (manager_name or "").lower():
+        names = [e.name.lower()] + [a.lower() for a in e.aliases]
+        if mn in names:
             ent = e
             break
     if ent is None:

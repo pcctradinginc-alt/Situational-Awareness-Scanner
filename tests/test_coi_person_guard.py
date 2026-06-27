@@ -29,6 +29,19 @@ def test_cli_doctor_runs():
     assert main(["doctor"]) == 0
 
 
+def test_network_weight_resolves_aliases():
+    # the 13F fixtures label managers with short names ("Thiel Capital",
+    # "Founders Fund"); these must resolve to the tracked network via aliases,
+    # not silently fall back to the adjacent-smart-money weight.
+    from call_options_intel.person_intel.entities import load_graph
+    from call_options_intel.person_intel.runner import _network_weight
+    g = load_graph()
+    assert _network_weight(g, "Thiel Capital") == 1.0
+    assert _network_weight(g, "Founders Fund") == 1.0
+    assert _network_weight(g, "Situational Awareness LP") == 1.0
+    assert _network_weight(g, "Coatue Management LLC") == 0.3   # adjacent, not network
+
+
 def test_integration_thesis_not_equal_trade():
     rows = run_person_intel(only_tickers=["NVDA", "CEG", "TSM"])
     by = {r.score.ticker: r for r in rows}

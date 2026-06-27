@@ -26,6 +26,7 @@ entities:
     name: "Situational Awareness LP"
     type: fund
     cik: "0002045724"
+    aliases: ["Situational Awareness", "SA LP"]
     files: [13F-HR]
     tags: [compute_scarcity, frontier_model_race, ai_data_centers]
   - id: sa_partners_lp
@@ -47,6 +48,7 @@ entities:
     name: "Thiel Macro LLC"
     type: fund
     cik: "0001562087"
+    aliases: ["Thiel Capital", "Thiel Capital LLC", "Thiel Macro"]
     files: [13F-HR]
     tags: [national_security_ai_race]
   - id: founders_fund_iv
@@ -59,6 +61,7 @@ entities:
     name: "Founders Fund V Management LLC"
     type: management_company
     cik: "0001697733"
+    aliases: ["Founders Fund", "Founders Fund V"]
     files: [13F-HR, SC 13G]
     tags: [automation_robotics, frontier_model_race]
   - id: mithril

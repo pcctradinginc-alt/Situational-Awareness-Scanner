@@ -150,9 +150,10 @@ the new sub-package. Branch/PR only — no `main` push, no secrets in the diff.
     `outcomes-report --historical/--live`): date-aware close lookup (offline CSV
     fixtures / Stooq) prices each signal at recorded_date+horizon and computes real
     QQQ/SOXX benchmark returns; never fabricates a price beyond the series. ✅
-  - **Widened CUSIP map** (32 curated): well-documented large caps at high
-    confidence; a Tier-B set is check-digit-valid but kept below `mapping_floor` so
-    it is mapped yet always `needs_human_review` (honest about unconfirmed CUSIPs). ✅
+  - **Widened CUSIP map** (29 curated): well-documented large caps, each
+    check-digit-validated. Tickers whose CUSIP could not be authoritatively
+    confirmed (GEV/EQIX/SMCI) are deliberately left to the name heuristic
+    (`needs_human_review`) rather than risk a wrong CUSIP key. ✅
   - Remaining: live ADV/IAPD fetch; accumulate real paper outcomes to a genuine
     out-of-sample edge report; broaden Tier-A CUSIP coverage from an authoritative
     source; richer 13D/Form-D HTML parsing.

@@ -41,11 +41,10 @@ cusips:
   "G29183103": {ticker: ETN,  source: curated_verified, confidence: 0.93}  # CINS
   "46090E103": {ticker: QQQ,  source: curated_verified, confidence: 0.95}  # ETF
   "92189F676": {ticker: SMH,  source: curated_verified, confidence: 0.93}  # ETF
-  # ── Tier B: check-digit-valid but NOT authoritatively confirmed in-session.
-  #    Confidence below mapping_floor -> always returned with needs_human_review.
-  "36828A101": {ticker: GEV,  source: curated_checkdigit, confidence: 0.55}
-  "29444U700": {ticker: EQIX, source: curated_checkdigit, confidence: 0.55}
-  "86800U104": {ticker: SMCI, source: curated_checkdigit, confidence: 0.55}
+  # NOTE: GEV / EQIX / SMCI are intentionally NOT given explicit CUSIPs here —
+  # their numbers could not be authoritatively confirmed in-session, and a wrong
+  # CUSIP key could mis-map another security. They resolve via the name heuristic
+  # below instead (always needs_human_review). Add them once verified.
 
 # Fuzzy fallbacks (issuer-name substring -> ticker). Medium confidence only and
 # ALWAYS flagged for human review — names collide and change.

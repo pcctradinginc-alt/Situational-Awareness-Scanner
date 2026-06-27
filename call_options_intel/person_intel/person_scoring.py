@@ -27,7 +27,6 @@ import logging
 from dataclasses import dataclass, field
 from typing import Optional
 
-from .entities import Confidence
 from .filings import FilingType, SignalRole, VerificationStatus, filing_meta
 from .statements import StatementRef, SourceTier
 
