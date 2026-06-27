@@ -1,0 +1,62 @@
+{
+  "count": 8,
+  "seen": {
+    "stmt:0ee9f386480d6269": {
+      "date": "2026-05-31",
+      "first_seen": "2026-06-27",
+      "kind": "statement",
+      "source": "Google News \u2014 Leopold Aschenbrenner",
+      "speaker": "Leopold Aschenbrenner"
+    },
+    "stmt:0f31bb1fd79732df": {
+      "date": "2026-05-31",
+      "first_seen": "2026-06-27",
+      "kind": "statement",
+      "source": "Google News \u2014 Leopold Aschenbrenner",
+      "speaker": "Leopold Aschenbrenner"
+    },
+    "stmt:3e3c517d7c90448e": {
+      "date": "2026-06-24",
+      "first_seen": "2026-06-27",
+      "kind": "statement",
+      "source": "Google News \u2014 Leopold Aschenbrenner",
+      "speaker": "Leopold Aschenbrenner"
+    },
+    "stmt:582e8a04090b408b": {
+      "date": "2026-06-24",
+      "first_seen": "2026-06-27",
+      "kind": "statement",
+      "source": "Google News \u2014 Leopold Aschenbrenner",
+      "speaker": "Leopold Aschenbrenner"
+    },
+    "stmt:7ec1af05af30df31": {
+      "date": "2026-05-30",
+      "first_seen": "2026-06-27",
+      "kind": "statement",
+      "source": "Google News \u2014 Leopold Aschenbrenner",
+      "speaker": "Leopold Aschenbrenner"
+    },
+    "stmt:a072f4eee06a37b4": {
+      "date": "2026-06-24",
+      "first_seen": "2026-06-27",
+      "kind": "statement",
+      "source": "Google News \u2014 Peter Thiel investment",
+      "speaker": "Peter Thiel"
+    },
+    "stmt:c1e82237b50e36fa": {
+      "date": "2026-05-31",
+      "first_seen": "2026-06-27",
+      "kind": "statement",
+      "source": "Google News \u2014 Leopold Aschenbrenner",
+      "speaker": "Leopold Aschenbrenner"
+    },
+    "stmt:ce5de8e74634c7cd": {
+      "date": "2026-05-31",
+      "first_seen": "2026-06-27",
+      "kind": "statement",
+      "source": "Google News \u2014 Leopold Aschenbrenner",
+      "speaker": "Leopold Aschenbrenner"
+    }
+  },
+  "updated_at": "2026-06-27T14:30:16.794102+00:00"
+}
