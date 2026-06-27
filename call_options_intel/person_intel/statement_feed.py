@@ -108,6 +108,63 @@ class StatementSignal:
         return asdict(self)
 
 
+@dataclass
+class _Entry:
+    """Minimal feed-entry shim so the rest of the module is parser-agnostic."""
+    title: str = ""
+    summary: str = ""
+    link: str = ""
+    published: str = ""
+
+
+def _parse_feed_stdlib(raw: str) -> list[_Entry]:
+    """Dependency-free RSS/Atom parser (stdlib only).
+
+    Handles the common RSS ``<item>`` and Atom ``<entry>`` shapes — enough for
+    the configured essay/news feeds — so the subsystem needs no extra dependency
+    (feedparser stays an optional upgrade for messier real-world feeds).
+    """
+    import xml.etree.ElementTree as ET
+
+    def _ln(tag: str) -> str:
+        return tag.split("}")[-1] if "}" in tag else tag
+
+    try:
+        root = ET.fromstring(raw)
+    except ET.ParseError:
+        return []
+    out: list[_Entry] = []
+    for el in root.iter():
+        if _ln(el.tag) not in ("item", "entry"):
+            continue
+        e = _Entry()
+        for child in el:
+            name = _ln(child.tag)
+            text = (child.text or "").strip()
+            if name == "title":
+                e.title = text
+            elif name in ("description", "summary", "content"):
+                if not e.summary:
+                    e.summary = text
+            elif name == "link":
+                # Atom uses href attr; RSS uses element text
+                e.link = (child.get("href") or text or e.link)
+            elif name in ("pubDate", "published", "updated"):
+                if not e.published:
+                    e.published = text
+        out.append(e)
+    return out
+
+
+def _parse_feed(raw: str):
+    """Parse a raw feed, preferring feedparser, falling back to stdlib."""
+    try:
+        import feedparser
+    except ImportError:
+        return _parse_feed_stdlib(raw)
+    return feedparser.parse(raw).entries
+
+
 def _parse_date(entry) -> Optional[str]:
     pp = getattr(entry, "published_parsed", None) or getattr(
         entry, "updated_parsed", None)
@@ -216,7 +273,6 @@ class StatementFeedMonitor:
 
     def collect(self, feeds: list[dict], *, since_days: int = 30,
                 as_of: Optional[date] = None) -> list[StatementSignal]:
-        import feedparser
         as_of = as_of or date.today()
         out: list[StatementSignal] = []
         seen_hashes: set[str] = set()
@@ -224,8 +280,7 @@ class StatementFeedMonitor:
             raw = self._raw_for(feed)
             if not raw:
                 continue
-            parsed = feedparser.parse(raw)
-            for entry in parsed.entries:
+            for entry in _parse_feed(raw):
                 sig = self._build_signal(feed, entry, as_of)
                 if sig is None:
                     continue
