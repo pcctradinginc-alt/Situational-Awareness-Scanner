@@ -209,3 +209,21 @@ def test_bundled_cusip_config_loads():
     r = m.map_cusip("67066G104", "NVIDIA CORP")
     assert r.mapped_ticker == "NVDA"
     assert r.needs_human_review is False
+
+
+def test_widened_tier_a_confident():
+    m = load_mapper()
+    for cusip, ticker in [("573874104", "MRVL"), ("697435105", "PANW"),
+                          ("46090E103", "QQQ")]:
+        r = m.map_cusip(cusip)
+        assert r.mapped_ticker == ticker
+        assert r.needs_human_review is False        # >= mapping_floor
+
+
+def test_widened_tier_b_flagged_for_review():
+    # check-digit-valid but not authoritatively confirmed -> mapped yet flagged
+    m = load_mapper()
+    r = m.map_cusip("86800U104")                     # SMCI, confidence 0.55
+    assert r.mapped_ticker == "SMCI"
+    assert r.needs_human_review is True
+    assert r.confidence < 0.6

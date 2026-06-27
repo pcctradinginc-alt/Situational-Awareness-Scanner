@@ -145,9 +145,17 @@ the new sub-package. Branch/PR only — no `main` push, no secrets in the diff.
     threaded additively (default None = unchanged behaviour).
   - **Outcomes walk-forward report** (`outcomes-report`): multi-horizon summary +
     a guard that refuses an edge claim without a sufficient out-of-sample fold.
-- **Phase 4 (next):** real per-horizon historical pricing for `outcomes-report`
-  (free source); live ADV/IAPD fetch; accumulate real paper outcomes to a true
-  out-of-sample edge report; widen the curated CUSIP map.
+- **Phase 4 (in progress):**
+  - **Real per-horizon historical pricing** (`historical.py`,
+    `outcomes-report --historical/--live`): date-aware close lookup (offline CSV
+    fixtures / Stooq) prices each signal at recorded_date+horizon and computes real
+    QQQ/SOXX benchmark returns; never fabricates a price beyond the series. ✅
+  - **Widened CUSIP map** (32 curated): well-documented large caps at high
+    confidence; a Tier-B set is check-digit-valid but kept below `mapping_floor` so
+    it is mapped yet always `needs_human_review` (honest about unconfirmed CUSIPs). ✅
+  - Remaining: live ADV/IAPD fetch; accumulate real paper outcomes to a genuine
+    out-of-sample edge report; broaden Tier-A CUSIP coverage from an authoritative
+    source; richer 13D/Form-D HTML parsing.
 
 ## Acceptance
 

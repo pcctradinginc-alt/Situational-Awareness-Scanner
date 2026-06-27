@@ -23,6 +23,29 @@ cusips:
   "21037T109": {ticker: CEG,  source: curated_verified, confidence: 0.97}
   "040413106": {ticker: ANET, source: curated_verified, confidence: 0.97}
   "92537N108": {ticker: VRT,  source: curated_verified, confidence: 0.97}
+  # ── widened set (check-digit-validated 2026-06-27; well-documented large caps)
+  "573874104": {ticker: MRVL, source: curated_verified, confidence: 0.95}
+  "038222105": {ticker: AMAT, source: curated_verified, confidence: 0.95}
+  "512807108": {ticker: LRCX, source: curated_verified, confidence: 0.95}
+  "17275R102": {ticker: CSCO, source: curated_verified, confidence: 0.95}
+  "253868103": {ticker: DLR,  source: curated_verified, confidence: 0.95}
+  "02079K305": {ticker: GOOGL, source: curated_verified, confidence: 0.95}
+  "023135106": {ticker: AMZN, source: curated_verified, confidence: 0.95}
+  "30303M102": {ticker: META, source: curated_verified, confidence: 0.95}
+  "629377508": {ticker: NRG,  source: curated_verified, confidence: 0.95}
+  "697435105": {ticker: PANW, source: curated_verified, confidence: 0.95}
+  "22788C105": {ticker: CRWD, source: curated_verified, confidence: 0.95}
+  "833445109": {ticker: SNOW, source: curated_verified, confidence: 0.95}
+  "880770102": {ticker: TER,  source: curated_verified, confidence: 0.95}
+  "N07059210": {ticker: ASML, source: curated_verified, confidence: 0.93}  # CINS
+  "G29183103": {ticker: ETN,  source: curated_verified, confidence: 0.93}  # CINS
+  "46090E103": {ticker: QQQ,  source: curated_verified, confidence: 0.95}  # ETF
+  "92189F676": {ticker: SMH,  source: curated_verified, confidence: 0.93}  # ETF
+  # ── Tier B: check-digit-valid but NOT authoritatively confirmed in-session.
+  #    Confidence below mapping_floor -> always returned with needs_human_review.
+  "36828A101": {ticker: GEV,  source: curated_checkdigit, confidence: 0.55}
+  "29444U700": {ticker: EQIX, source: curated_checkdigit, confidence: 0.55}
+  "86800U104": {ticker: SMCI, source: curated_checkdigit, confidence: 0.55}
 
 # Fuzzy fallbacks (issuer-name substring -> ticker). Medium confidence only and
 # ALWAYS flagged for human review — names collide and change.
@@ -38,3 +61,21 @@ name_hints:
   "microsoft": MSFT
   "arista": ANET
   "vertiv": VRT
+  "marvell": MRVL
+  "applied materials": AMAT
+  "lam research": LRCX
+  "cisco": CSCO
+  "digital realty": DLR
+  "alphabet": GOOGL
+  "amazon": AMZN
+  "meta platforms": META
+  "nrg energy": NRG
+  "palo alto": PANW
+  "crowdstrike": CRWD
+  "snowflake": SNOW
+  "teradyne": TER
+  "asml": ASML
+  "eaton": ETN
+  "ge vernova": GEV
+  "equinix": EQIX
+  "super micro": SMCI
