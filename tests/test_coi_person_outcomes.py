@@ -1,6 +1,8 @@
 """Tests for multi-horizon outcome learning + walk-forward guard (Goal I)."""
+import json
 from datetime import date, datetime, timedelta, timezone
 
+from call_options_intel.cli import main
 from call_options_intel.person_intel.outcomes import (
     HORIZONS, OutcomeStore, summarize, walk_forward_guard,
 )
@@ -105,3 +107,23 @@ def test_walk_forward_guard_no_edge_when_losing(tmp_path):
     ev = store.evaluate(price_fn, as_of=AS_OF)
     g = walk_forward_guard(ev, split_date="2026-03-01", horizon=30, min_sample=3)
     assert g["edge_claim"] == "no_oos_edge"
+
+
+def test_cli_outcomes_report_demo(tmp_path, capsys):
+    store = tmp_path / "oc.jsonl"
+    rc = main(["outcomes-report", "--demo", "--store", str(store),
+               "--min-sample", "3"])
+    assert rc == 0
+    assert store.exists()
+    out = capsys.readouterr().out
+    report = json.loads(out[: out.index("\n\n")])
+    assert report["walk_forward"]["edge_claim"] == "positive_oos"
+    rv = report["summary"]["rejected_vs_accepted"]
+    assert rv["accepted_underlying"]["avg_return"] > rv["rejected_underlying"]["avg_return"]
+
+
+def test_cli_outcomes_report_insufficient_sample(tmp_path):
+    store = tmp_path / "oc.jsonl"
+    # default min-sample 30 with only 4 OOS demo rows -> no edge claim
+    rc = main(["outcomes-report", "--demo", "--store", str(store)])
+    assert rc == 0

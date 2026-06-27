@@ -65,14 +65,23 @@ Entity graph → 13F/13D/Form-D signal → verification → thesis proxy
 python -m call_options_intel person-intel --limit 15
 python -m call_options_intel person-intel --tickers NVDA CEG TSM
 
-# recent FAST filings — leading person-signals (offline fixtures; --live for SEC)
-python -m call_options_intel early-filings --since 30
-python -m call_options_intel early-filings --since 30 --live
+# recent FAST filings — leading person-signals; --resolve maps the subject→ticker
+python -m call_options_intel early-filings --since 30 --resolve
+python -m call_options_intel early-filings --since 30 --live --resolve
 
-# build IV-history warmup (run daily) and attach a person-intel panel to a scan
+# build IV-history warmup (run daily); a warmed store feeds a REAL IV rank into scoring
 python -m call_options_intel record-iv --store reports/iv_history.jsonl
-python -m call_options_intel scan --output reports/latest --person-intel
+python -m call_options_intel scan --output reports/latest --person-intel \
+    --iv-history reports/iv_history.jsonl
+
+# multi-horizon outcomes + walk-forward edge guard (demo seeds a synthetic store)
+python -m call_options_intel outcomes-report --demo --min-sample 3
 ```
+
+Statement classification can optionally use an LLM (extract/classify only, never
+the final word) via `ANTHROPIC_API_KEY` (env only); without it, a transparent
+keyword model is used. Subject→ticker resolution and the LLM path are both
+off-by-default and degrade gracefully.
 
 Building blocks (all offline, deterministic, additive, never trade):
 - **Entity graph** (`config/entity_graph.yml`) — confidence levels, facts vs

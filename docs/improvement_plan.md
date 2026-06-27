@@ -133,10 +133,21 @@ the new sub-package. Branch/PR only — no `main` push, no secrets in the diff.
   - person-intel **research-vs-trade panel** wired into `scan --person-intel`
     (separate `<stem>_person_intel.md`/`.json` artifact; the base scan is
     unchanged). A full ADV/IAPD live fetch remains a stub (context-only).
-- **Phase 3 (next):** flip the warmed-up IV rank into the live options scoring
-  weights; LLM-assisted statement classification (extract/classify only,
-  human-in-the-loop); an out-of-sample walk-forward report once enough paper
-  outcomes have accumulated; live 13D/Form-D document subject→ticker resolution.
+- **Phase 3 (done):**
+  - 13D/G/Form-4 **subject→ticker resolution** (`edgar_fast.resolve_subject`):
+    extract a check-digit-valid CUSIP from the document and map it; never guesses
+    (`early-filings --resolve`).
+  - **Optional LLM statement classifier** (`llm_classify.py`): injectable,
+    extract/classify only, `ANTHROPIC_API_KEY` from env (never logged), keyword
+    fallback; results stay advisory.
+  - **Warmed-up IV rank wired into live options scoring** (`scan --iv-history`):
+    real IV percentile replaces the realised-vol proxy once a ticker is warmed up;
+    threaded additively (default None = unchanged behaviour).
+  - **Outcomes walk-forward report** (`outcomes-report`): multi-horizon summary +
+    a guard that refuses an edge claim without a sufficient out-of-sample fold.
+- **Phase 4 (next):** real per-horizon historical pricing for `outcomes-report`
+  (free source); live ADV/IAPD fetch; accumulate real paper outcomes to a true
+  out-of-sample edge report; widen the curated CUSIP map.
 
 ## Acceptance
 

@@ -277,6 +277,69 @@ def cmd_record_iv(args) -> int:
     return 0
 
 
+def cmd_outcomes_report(args) -> int:
+    """Multi-horizon outcome summary + walk-forward guard (no edge claim without
+    a sufficient out-of-sample fold)."""
+    import json as _json
+    from .person_intel.outcomes import (
+        OutcomeStore, summarize, walk_forward_guard,
+    )
+    store = OutcomeStore(args.store)
+    if args.demo:
+        price_map = _seed_outcomes_demo(store)
+        price_fn = lambda t, h: price_map.get(t)        # noqa: E731
+        bench_fn = lambda s, h: 0.03                     # noqa: E731
+    else:
+        pipe = _build_pipeline(args)
+        # Free data has no per-horizon history; approximate with current spot for
+        # every horizon (flagged). Real per-horizon pricing is a Phase-3+ item.
+        price_fn = lambda t, h: pipe.market.get_snapshot(t).spot  # noqa: E731
+        bench_fn = None
+    evaluated = store.evaluate(price_fn, bench_fn)
+    report = {
+        "summary": summarize(evaluated),
+        "walk_forward": walk_forward_guard(
+            evaluated, split_date=args.split, horizon=args.horizon,
+            min_sample=args.min_sample),
+    }
+    print(_json.dumps(report, indent=2))
+    print(f"\n{DISCLAIMER}")
+    if not args.demo and report["summary"].get("n"):
+        print("\n⚠️  per-horizon prices approximated by current spot — "
+              "interpret as illustrative only.")
+    return 0
+
+
+def _seed_outcomes_demo(store) -> dict:
+    """Seed a small in-/out-of-sample store (incl. a rejected name) for the demo."""
+    from datetime import datetime, timedelta, timezone
+
+    def iso(days_ago):
+        return (datetime.now(timezone.utc) - timedelta(days=days_ago)).isoformat()
+
+    rows = []
+    for i in range(4):  # in-sample (before 2026-03-01 split), winners
+        rows.append({"recorded_at": iso(190), "ticker": f"IS{i}", "strike": 100,
+                     "entry_spot": 100, "entry_premium": 6.0, "entry_delta": 0.45,
+                     "final_score": 7.5, "source": "13D", "thesis_cluster": "compute",
+                     "regime": "normal", "label": "candidate"})
+    for i in range(4):  # out-of-sample (after split), winners
+        rows.append({"recorded_at": iso(100), "ticker": f"OOS{i}", "strike": 100,
+                     "entry_spot": 100, "entry_premium": 6.0, "entry_delta": 0.45,
+                     "final_score": 7.5, "source": "Form 4", "thesis_cluster": "power_grid",
+                     "regime": "normal", "label": "candidate"})
+    rows.append({"recorded_at": iso(100), "ticker": "BADCO", "strike": 100,
+                 "entry_spot": 100, "entry_premium": 6.0, "entry_delta": 0.45,
+                 "final_score": 2.0, "source": "13F", "thesis_cluster": "compute",
+                 "regime": "normal", "label": "rejected"})
+    store.record_many(rows)
+    # winners up ~25%, the rejected name fell -> system correctly avoided it
+    pm = {f"IS{i}": 125.0 for i in range(4)}
+    pm.update({f"OOS{i}": 125.0 for i in range(4)})
+    pm["BADCO"] = 70.0
+    return pm
+
+
 def cmd_doctor(args) -> int:
     ok = True
     print("CALL-Options Intelligence — health check\n")
@@ -471,6 +534,18 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--resolve", action="store_true",
                     help="resolve each filing's subject company to a ticker")
     sp.set_defaults(func=cmd_early_filings)
+
+    sp = sub.add_parser("outcomes-report",
+                        help="multi-horizon outcomes + walk-forward edge guard")
+    _common(sp)
+    sp.add_argument("--store", default="reports/outcomes.jsonl")
+    sp.add_argument("--demo", action="store_true",
+                    help="seed a synthetic in/out-of-sample store and report on it")
+    sp.add_argument("--split", default="2026-03-01",
+                    help="walk-forward split date (in- vs out-of-sample)")
+    sp.add_argument("--horizon", type=int, default=30)
+    sp.add_argument("--min-sample", type=int, default=30)
+    sp.set_defaults(func=cmd_outcomes_report)
 
     sp = sub.add_parser("record-iv",
                         help="append ATM IV per ticker to the IV-history store")
