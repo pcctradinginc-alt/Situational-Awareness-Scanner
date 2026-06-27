@@ -67,6 +67,17 @@ def cmd_scan(args) -> int:
         store = SignalStore(args.store)
         store.record(result, horizon_days=args.horizon, only_top=args.top_only)
 
+    if getattr(args, "person_intel", False):
+        from .person_intel.runner import run_person_intel
+        rows = run_person_intel(config=pipe.cfg, fixtures_dir=pipe.fixtures_dir,
+                                today=pipe.today, only_tickers=tickers)
+        written["person_intel_md"] = out_dir / f"{stem_path.name}_person_intel.md"
+        written["person_intel_md"].write_text(
+            gen.person_intel_markdown(rows), encoding="utf-8")
+        written["person_intel_json"] = out_dir / f"{stem_path.name}_person_intel.json"
+        written["person_intel_json"].write_text(
+            gen.person_intel_json(rows), encoding="utf-8")
+
     print(f"\n{DISCLAIMER}\n")
     print(f"Scan ({result.mode}): {len(result.candidates)} candidates, "
           f"{len(result.top)} top, {len(result.watchlist)} watchlist, "
@@ -398,6 +409,8 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--store", default="reports/signals.jsonl")
     sp.add_argument("--horizon", type=int, default=30)
     sp.add_argument("--top-only", action="store_true")
+    sp.add_argument("--person-intel", action="store_true",
+                    help="also write a person-intelligence (research vs trade) panel")
     sp.set_defaults(func=cmd_scan)
 
     sp = sub.add_parser("backtest", help="record / evaluate paper signals")

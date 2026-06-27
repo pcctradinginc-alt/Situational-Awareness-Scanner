@@ -64,6 +64,14 @@ Entity graph → 13F/13D/Form-D signal → verification → thesis proxy
 # research signal vs trade candidate (offline), with falsification per row
 python -m call_options_intel person-intel --limit 15
 python -m call_options_intel person-intel --tickers NVDA CEG TSM
+
+# recent FAST filings — leading person-signals (offline fixtures; --live for SEC)
+python -m call_options_intel early-filings --since 30
+python -m call_options_intel early-filings --since 30 --live
+
+# build IV-history warmup (run daily) and attach a person-intel panel to a scan
+python -m call_options_intel record-iv --store reports/iv_history.jsonl
+python -m call_options_intel scan --output reports/latest --person-intel
 ```
 
 Building blocks (all offline, deterministic, additive, never trade):

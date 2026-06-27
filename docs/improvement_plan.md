@@ -122,14 +122,21 @@ the new sub-package. Branch/PR only — no `main` push, no secrets in the diff.
 
 ## Phasing
 
-- **This PR (Phase 1):** all modules above as additive, tested, offline units +
+- **Phase 1 (done):** all modules above as additive, tested, offline units +
   CLI + doctor + docs. Pipeline behaviour for the existing `scan` is unchanged.
-- **Phase 2 (next):** wire person-intel scores into the main `scan` report as a
-  parallel "research" panel; live EDGAR adapters for 13D/G/Form-4/Form-D and an
-  ADV/IAPD adapter; IV-history store to replace the realised-vol IV proxy.
-- **Phase 3:** LLM-assisted statement classification (extract/classify only,
-  human-in-the-loop), and an out-of-sample walk-forward report once enough
-  paper outcomes have accumulated.
+- **Phase 2 (done):**
+  - `person_intel/edgar_fast.py` — free, off-by-default EDGAR adapter for the FAST
+    filings (Form 4 / SC 13D-G / Form D); injectable HTTP layer (offline fixtures
+    / live SEC), CLI `early-filings`.
+  - `person_intel/iv_history.py` — persistent IV-history store; real IV percentile
+    after a warmup, else the realised-vol proxy fallback; CLI `record-iv`.
+  - person-intel **research-vs-trade panel** wired into `scan --person-intel`
+    (separate `<stem>_person_intel.md`/`.json` artifact; the base scan is
+    unchanged). A full ADV/IAPD live fetch remains a stub (context-only).
+- **Phase 3 (next):** flip the warmed-up IV rank into the live options scoring
+  weights; LLM-assisted statement classification (extract/classify only,
+  human-in-the-loop); an out-of-sample walk-forward report once enough paper
+  outcomes have accumulated; live 13D/Form-D document subject→ticker resolution.
 
 ## Acceptance
 

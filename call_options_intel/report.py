@@ -228,6 +228,56 @@ class ReportGenerator:
         L.append("")
         return L
 
+    # ── person-intelligence panel (separate artifact) ──────────────────
+    def person_intel_markdown(self, rows: list) -> str:
+        """Render the research-vs-trade panel (thesis ≠ trade). `rows` are
+        person_intel.runner.PersonIntelRow."""
+        L: list[str] = []
+        L.append(f"# {self.cfg.get('title', 'CALL-Options Intelligence')} — "
+                 "Person-Intelligence")
+        L.append("")
+        L.append("> " + "  \n> ".join(self.disclaimers))
+        L.append("")
+        L.append("**Research** = a tracked person/entity actually did/said X "
+                 "(verified) mapping to a public proxy.  ")
+        L.append("**Trade** = research GATED by market timing + options quality, "
+                 "CAPPED by verification. A strong thesis is **not** a trade.")
+        L.append("")
+        if not rows:
+            L.append("_No person-linked candidates this run._")
+            return "\n".join(L)
+        L.append("| Ticker | Research | R | Trade | T | Cluster | Held by |")
+        L.append("|---|---|---|---|---|---|---|")
+        for row in rows:
+            s = row.score
+            held = ", ".join(row.held_by) or "—"
+            L.append(f"| {s.ticker} | {s.final_research_score:.2f} | "
+                     f"{s.research_label} | {s.final_trade_candidate_score:.2f} | "
+                     f"{s.trade_label} | {row.dominant_cluster or '—'} | {held} |")
+        L.append("")
+        L.append("## Falsification & counter-arguments")
+        L.append("")
+        for row in rows:
+            s = row.score
+            L.append(f"### {s.ticker} — research {s.final_research_score:.2f} "
+                     f"({s.research_label}) · trade {s.final_trade_candidate_score:.2f} "
+                     f"({s.trade_label})")
+            L.append(f"- **Falsification**: {s.falsification}")
+            if s.reasons_for:
+                L.append("- **For**: " + "; ".join(dedupe(s.reasons_for)[:5]))
+            L.append("- **Against**: " + "; ".join(dedupe(s.reasons_against)[:5]))
+            if s.needs_human_review:
+                L.append("- ⚠️ **needs human review** (weak/unverifiable evidence)")
+            L.append("")
+        return "\n".join(L)
+
+    def person_intel_json(self, rows: list) -> str:
+        return json.dumps([{
+            **r.score.as_dict(), "held_by": r.held_by,
+            "dominant_cluster": r.dominant_cluster,
+            "path_confidence": r.path_confidence,
+        } for r in rows], indent=2, default=str)
+
     # ── csv ─────────────────────────────────────────────────────────────
     def to_csv(self, r: ScanResult) -> str:
         buf = io.StringIO()
