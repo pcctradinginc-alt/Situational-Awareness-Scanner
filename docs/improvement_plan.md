@@ -205,6 +205,15 @@ the new sub-package. Branch/PR only — no `main` push, no secrets in the diff.
     the monitor enriches a fresh 13F alert with the top moves and degrades to the
     event-level alert when the table can't be fetched.
     Tests: `tests/test_coi_person_holdings_diff.py`.
+  - **Documented network graph:** `config/entity_graph.yml` gains well-reported
+    Founders-Fund/Thiel portfolio companies (Anduril, SpaceX, Stripe — all PRIVATE,
+    flagged) with fact-graded fund-exposure edges. `person_intel/network.py`
+    summarises a principal's **fact-only** reachable network (public ticker vs
+    private name + recurring thesis themes) via `fact_path_weight` (ignores
+    hypothesis edges, so Aschenbrenner does NOT inherit Thiel's network through the
+    ideological-alignment hypothesis). The digest prints a "Documented network
+    context" line; private names are explicitly second-order, never tradeable.
+    Tests: `tests/test_coi_person_network.py`.
 
 ## Acceptance
 

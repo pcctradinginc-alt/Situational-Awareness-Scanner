@@ -56,6 +56,39 @@ def _subject_str(a: PersonAlert) -> str:
 
 
 # ── markdown digest ─────────────────────────────────────────────────────────
+def _network_context_md(lines: list, result: MonitorResult) -> None:
+    """One context line per principal that appears in this run's signals."""
+    principals = []
+    for a in result.alerts:
+        if a.principal in ("thiel", "aschenbrenner") and a.principal not in principals:
+            principals.append(a.principal)
+    for s in result.statements:
+        if s.principal in ("thiel", "aschenbrenner") and s.principal not in principals:
+            principals.append(s.principal)
+    if not principals:
+        return
+    try:
+        from .entities import load_graph
+        from .network import network_summary
+        graph = load_graph(None)
+    except Exception:                                # pragma: no cover
+        return
+    label = {"thiel": "Thiel", "aschenbrenner": "Aschenbrenner"}
+    emitted = False
+    for p in principals:
+        line = network_summary(graph, p).context_line()
+        if line:
+            if not emitted:
+                lines.append("**Documented network context** "
+                             "(public reporting; private names are second-order, "
+                             "not tradeable):")
+                lines.append("")
+                emitted = True
+            lines.append(f"- _{label.get(p, p)} network_ — {line}")
+    if emitted:
+        lines.append("")
+
+
 def _statement_block_md(lines: list, statements: list) -> None:
     if not statements:
         return
@@ -95,6 +128,7 @@ def render_markdown(result: MonitorResult) -> str:
     lines.append("")
     lines.append(f"> {DISCLAIMER}")
     lines.append("")
+    _network_context_md(lines, result)
 
     # split principal-linked (the real radar) from network/derived
     principal = [a for a in result.alerts if a.path_weight >= 0.75]
