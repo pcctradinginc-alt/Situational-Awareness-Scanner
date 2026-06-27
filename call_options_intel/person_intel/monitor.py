@@ -173,6 +173,7 @@ class PersonAlert:
     headline: str = ""
     why_it_matters: str = ""
     falsification: str = ""
+    position_changes: list = field(default_factory=list)  # 13F new/add/trim/exit
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -369,9 +370,55 @@ class PersonMonitor:
             alert = self.build_alert(ref, resolve=resolve, as_of=as_of)
             if alert.path_weight < min_path_weight:
                 continue
+            if resolve and ref.filing_type in (FilingType.FORM_13F_HR,
+                                               FilingType.FORM_13F_HR_A):
+                self._enrich_13f_changes(alert, ref)
             alerts.append(alert)
         alerts.sort(key=lambda a: a.sort_key)
         return alerts
+
+    def _enrich_13f_changes(self, alert: PersonAlert, ref: FastFilingRef) -> None:
+        """Best-effort: turn a new 13F-HR into a position-level diff vs the prior
+        quarter. Degrades silently to the event-level alert on any failure."""
+        try:
+            from .holdings_diff import (
+                diff_infotables, fetch_infotable_xml, summarize_changes,
+            )
+            prior = self._prior_13f(ref)
+            cur_xml = fetch_infotable_xml(self.client.fetcher, ref.cik,
+                                          ref.accession)
+            if not cur_xml or prior is None:
+                return
+            prior_xml = fetch_infotable_xml(self.client.fetcher, prior.cik,
+                                            prior.accession) or ""
+            changes = diff_infotables(cur_xml, prior_xml, self.mapper)
+            if not changes:
+                return
+            alert.position_changes = [c.__dict__ for c in changes]
+            summary = summarize_changes(changes)
+            if summary:
+                alert.why_it_matters += f" Position changes: {summary}."
+        except Exception as exc:                        # pragma: no cover
+            logger.warning("13F diff enrichment failed (%s): %s",
+                           ref.accession, exc)
+
+    def _prior_13f(self, ref: FastFilingRef) -> Optional[FastFilingRef]:
+        """The 13F-HR immediately preceding `ref` for the same filer (CIK)."""
+        same = [r for r in self.client.recent_filings(ref.cik, ref.entity)
+                if r.filing_type in (FilingType.FORM_13F_HR,
+                                     FilingType.FORM_13F_HR_A)]
+        same.sort(key=lambda r: r.filing_date, reverse=True)
+        seen_current = False
+        for r in same:
+            if seen_current:
+                return r
+            if r.accession == ref.accession:
+                seen_current = True
+        # current not found in list (defensive): take the newest that isn't ref
+        for r in same:
+            if r.accession != ref.accession:
+                return r
+        return None
 
 
 # ── orchestration ───────────────────────────────────────────────────────────

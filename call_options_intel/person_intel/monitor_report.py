@@ -118,6 +118,17 @@ def render_markdown(result: MonitorResult) -> str:
             lines.append(f"- **Subject (hypothesis until verified):** "
                          f"{_subject_str(a)}")
             lines.append(f"- **Why it matters:** {a.why_it_matters}")
+            if a.position_changes:
+                lines.append("- **Position changes (new/add/trim/exit):**")
+                for c in a.position_changes[:8]:
+                    t = c.get("ticker") or f"{c.get('issuer_name', '')[:24]} "\
+                        f"(CUSIP {c.get('cusip')})"
+                    pc = c.get("pct_change")
+                    pcs = "" if pc is None else f" {pc:+.0%}"
+                    rv = " ⚠review" if c.get("needs_human_review") else ""
+                    note = f" — {c['instrument_note']}" if c.get("instrument_note") else ""
+                    lines.append(f"    - {c.get('action', '').upper()} "
+                                 f"**{t}**{pcs}{rv}{note}")
             if a.falsification:
                 lines.append(f"- **Falsification:** {a.falsification}")
             if a.url:
@@ -170,9 +181,28 @@ def _alert_card_html(a: PersonAlert) -> str:
           <span style="font-size:11px;color:#8E8E93;">
             (filing = fact · subject = hypothesis until verified)</span></div>
         <div style="font-size:13px;color:#EBEBF5;line-height:1.5;margin-top:10px;">{a.why_it_matters}</div>
-        {fals}{src}
+        {_position_changes_html(a)}{fals}{src}
       </td></tr>
     </table>"""
+
+
+def _position_changes_html(a: PersonAlert) -> str:
+    if not a.position_changes:
+        return ""
+    rows = []
+    for c in a.position_changes[:8]:
+        t = c.get("ticker") or f"CUSIP {c.get('cusip')}"
+        pc = c.get("pct_change")
+        pcs = "" if pc is None else f" {pc:+.0%}"
+        color = {"new": "#34C759", "add": "#34C759",
+                 "trim": "#FF9500", "exit": "#FF3B30"}.get(c.get("action"), "#8E8E93")
+        rv = " ⚠" if c.get("needs_human_review") else ""
+        rows.append(f'<span style="color:{color};font-size:12px;">'
+                    f'{c.get("action", "").upper()} <strong>{t}</strong>{pcs}{rv}</span>')
+    inner = " &nbsp;·&nbsp; ".join(rows)
+    return (f'<div style="margin-top:10px;padding:8px 12px;background:#0A0A0A;'
+            f'border-radius:8px;font-size:12px;color:#8E8E93;">'
+            f'<strong style="color:#EBEBF5;">Position changes:</strong> {inner}</div>')
 
 
 def _statement_card_html(s) -> str:

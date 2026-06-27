@@ -196,6 +196,15 @@ the new sub-package. Branch/PR only — no `main` push, no secrets in the diff.
     `MonitorResult.total_new = filing + statement`. Injectable fetcher
     (offline fixture / live RSS via `feedparser`), off-toggle
     `include_statements`. Tests: `tests/test_coi_person_statement_feed.py`.
+  - **Live 13F position-diff:** `person_intel/holdings_diff.py` turns a new
+    13F-HR into a CUSIP-level diff vs the prior quarter (new / add / trim / exit
+    per name) — reusing the typed info-table parser (CALL/PUT stays
+    `direction_unknown`) and the person CUSIP→ticker mapper (unmapped =
+    `needs_human_review`, never guessed). `fetch_infotable_xml` navigates the
+    accession `index.json` to locate the holdings table (case-sensitive path);
+    the monitor enriches a fresh 13F alert with the top moves and degrades to the
+    event-level alert when the table can't be fetched.
+    Tests: `tests/test_coi_person_holdings_diff.py`.
 
 ## Acceptance
 
