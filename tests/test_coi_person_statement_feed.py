@@ -128,3 +128,85 @@ def test_include_statements_toggle(cfg, tmp_path):
                     state_path=tmp_path / "seen.json", include_statements=False,
                     persist=False)
     assert r.statement_count == 0
+
+
+# ── v2 polish: html-strip · stopwords · media threshold · de-dup ────────────
+from call_options_intel.person_intel.proxy_map import load_proxy_map as _lpm
+from call_options_intel.person_intel.statement_feed import (
+    StatementFeedMonitor, _strip_html,
+)
+
+
+def _rss(*items):
+    return "<rss><channel>" + "".join(items) + "</channel></rss>"
+
+
+def _item(title, desc, link, date="Wed, 24 Jun 2026 09:00:00 GMT"):
+    return (f"<item><title>{title}</title><description>{desc}</description>"
+            f"<link>{link}</link><pubDate>{date}</pubDate></item>")
+
+
+class _Raw:
+    def __init__(self, raw):
+        self.raw = raw
+    def for_feed(self, fixture):
+        return self.raw
+    def get(self, url):
+        return self.raw
+
+
+def _media_feed():
+    return {"principal": "thiel", "speaker": "Peter Thiel", "source": "news",
+            "tier": "media", "require_name_match": True, "fixture": "x.xml"}
+
+
+def _mon(raw, **kw):
+    f = _Raw(raw)
+    return StatementFeedMonitor(_lpm(None), fetcher=f, fixture_fetcher=f, **kw)
+
+
+def test_strip_html_removes_tags_and_entities():
+    out = _strip_html('Compute &amp; power <a href="http://x">link</a>  here')
+    assert "<" not in out and "&amp;" not in out
+    assert "Compute & power" in out and "link" in out
+
+
+def test_excerpt_has_no_html():
+    raw = _rss(_item(
+        "Peter Thiel on compute and data centers",
+        'Thiel: gigawatt data centers and power grid <a href="http://n/1">[link]</a>',
+        "http://news/1"))
+    sigs = _mon(raw, media_min_clusters=1).collect(
+        [_media_feed()], since_days=400, as_of=AS_OF)
+    assert sigs
+    assert "<a" not in sigs[0].excerpt and "href" not in sigs[0].excerpt
+
+
+def test_gossip_stopword_dropped():
+    raw = _rss(_item(
+        "Powerful Miami men on roster of secret society run by Peter Thiel",
+        "society gossip power players", "http://news/2"))
+    # names Thiel and trips 'power', but it's gossip -> dropped
+    assert _mon(raw, media_min_clusters=1).collect(
+        [_media_feed()], since_days=400, as_of=AS_OF) == []
+
+
+def test_media_breadth_filters_weak_relevance():
+    raw = _rss(_item("Peter Thiel mentioned compute once",
+                     "a single compute mention", "http://news/3"))
+    # one thesis cluster only -> below the media breadth bar (>=2) -> dropped
+    assert _mon(raw, media_min_clusters=2).collect(
+        [_media_feed()], since_days=400, as_of=AS_OF) == []
+
+
+def test_near_duplicate_stories_collapse():
+    raw = _rss(
+        _item("Peter Thiel boosts compute, power grid and data centers - Yahoo",
+              "compute power grid data centers nuclear", "http://news/a"),
+        _item("Peter Thiel boosts compute, power grid and data centers - Yahoo Canada",
+              "compute power grid data centers nuclear", "http://news/b"),
+    )
+    sigs = _mon(raw, media_min_clusters=1).collect(
+        [_media_feed()], since_days=400, as_of=AS_OF)
+    # same speaker + date + dominant cluster -> one survivor
+    assert len(sigs) == 1
