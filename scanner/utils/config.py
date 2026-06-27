@@ -122,7 +122,7 @@ class Config:
 
     # ── PRE-FILTER AUTO-THRESHOLD ────────────────────────────────
     PRE_FILTER_THRESHOLD_INITIAL  = 2.0   # Warmup: kaum Filing-Daten
-    PRE_FILTER_THRESHOLD_ACTIVE   = 5.0   # Aktiv: regelmäßige 13F-Daten vorhanden
+    PRE_FILTER_THRESHOLD_ACTIVE   = 6.5   # Aktiv: nur STARKE Setups an Claude (Kostenbremse)
     PRE_FILTER_FILING_COUNT_LIMIT = 50    # Ab dieser Anzahl gespeicherter Holdings → aktiver Threshold
 
     # ── RATE LIMITS & CACHE ─────────────────────────────────────

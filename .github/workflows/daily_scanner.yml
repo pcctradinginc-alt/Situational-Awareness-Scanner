@@ -2,8 +2,10 @@ name: Daily SA Scanner
 
 on:
   schedule:
+    # Cost-reduced: one Claude run per weekday (08:00 CEST). The afternoon run
+    # was dropped to halve Claude usage; edgar_monitor still catches intraday
+    # new 13F filings, and person_intel_monitor runs free twice daily.
     - cron: '0 6 * * 1-5'
-    - cron: '0 13 * * 1-5'
   workflow_dispatch:
     inputs:
       no_claude:
