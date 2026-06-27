@@ -36,4 +36,7 @@ __all__ = [
     "person_scoring",
     "fills",
     "outcomes",
+    "monitor",
+    "monitor_report",
+    "statement_feed",
 ]

@@ -82,7 +82,28 @@ entities:
     name: "Palantir Technologies"
     type: portfolio_company
     tags: [national_security_ai_race, automation_robotics]
-    notes: "Ticker PLTR. Thiel personal + Founders Fund exposure."
+    notes: "Ticker PLTR (PUBLIC). Thiel personal + Founders Fund exposure."
+  # Documented Founders Fund / Thiel network companies. These are PRIVATE (no
+  # public ticker) — they map the network and seed SECOND-ORDER public proxies
+  # via the thesis clusters; they are NEVER reported as a tradeable investment.
+  - id: anduril
+    name: "Anduril Industries"
+    type: portfolio_company
+    aliases: ["Anduril"]
+    tags: [national_security_ai_race, automation_robotics]
+    notes: "PRIVATE. Defense-AI; Founders Fund a lead investor (widely reported)."
+  - id: spacex
+    name: "Space Exploration Technologies (SpaceX)"
+    type: portfolio_company
+    aliases: ["SpaceX"]
+    tags: [automation_robotics, national_security_ai_race]
+    notes: "PRIVATE. Founders Fund early investor (widely reported). Satellites/launch."
+  - id: stripe
+    name: "Stripe, Inc."
+    type: portfolio_company
+    aliases: ["Stripe"]
+    tags: []
+    notes: "PRIVATE. Founders Fund / Thiel early investor (widely reported)."
   - id: qqq
     name: "Invesco QQQ Trust"
     type: index_proxy
@@ -146,6 +167,26 @@ relations:
     confidence: confirmed
     is_fact: true
     evidence: "Form 4 insider filings; Palantir co-founder/chairman history."
+
+  # ── documented network portfolio exposure (public reporting) ────────
+  - source: founders_fund_v
+    target: anduril
+    kind: fund_exposure
+    confidence: high
+    is_fact: true
+    evidence: "Founders Fund repeatedly reported as a lead Anduril investor."
+  - source: founders_fund_iv
+    target: spacex
+    kind: fund_exposure
+    confidence: high
+    is_fact: true
+    evidence: "Founders Fund early SpaceX investor (widely reported)."
+  - source: founders_fund_iv
+    target: stripe
+    kind: fund_exposure
+    confidence: medium
+    is_fact: true
+    evidence: "Founders Fund / Thiel early Stripe backer (public reporting)."
 
   # ── hypotheses (reasoned, NOT confirmed) ────────────────────────────
   - source: thiel

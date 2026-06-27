@@ -248,6 +248,45 @@ def cmd_early_filings(args) -> int:
     return 0
 
 
+def cmd_person_monitor(args) -> int:
+    """Live, dedup'd person-signal monitor (the twice-daily radar).
+
+    Collects recent EDGAR filings for the tracked Thiel / Aschenbrenner vehicles,
+    de-duplicates against a persistent store and reports ONLY the new signals.
+    With --email it sends a digest *only when there is a new signal*.
+    """
+    from .person_intel.monitor_report import monitor_and_notify, render_markdown
+    from .person_intel.monitor import run_monitor
+    cfg = AppConfig(config_dir=Path(args.config_dir) if args.config_dir else CONFIG_DIR)
+    mode = "live" if getattr(args, "live", False) else cfg.mode
+    fixtures = getattr(args, "fixtures_dir", None) or DEFAULT_FIXTURES
+
+    if args.dry_run:
+        # report without persisting the dedup store or writing artifacts
+        result = run_monitor(config=cfg, mode=mode, since_days=args.since,
+                             state_path=args.state, fixtures_dir=fixtures,
+                             resolve=not args.no_resolve,
+                             min_path_weight=args.min_weight, persist=False)
+        print(f"\n{DISCLAIMER}\n")
+        print(render_markdown(result))
+        return 0
+
+    summary = monitor_and_notify(
+        config=cfg, mode=mode, since_days=args.since, state_path=args.state,
+        fixtures_dir=fixtures, resolve=not args.no_resolve,
+        send_email=args.email, min_path_weight=args.min_weight)
+    print(f"\n{DISCLAIMER}\n")
+    print(f"PERSON-MONITOR — mode={summary['mode']} · "
+          f"new={summary['total_new']} "
+          f"({summary['new_count']} filing / {summary['statement_count']} statement) · "
+          f"principal-linked={summary['principal_count']} · "
+          f"emailed={summary['emailed']}")
+    print(f"  digest: {summary['artifacts']['digest_md']}")
+    if summary["total_new"] == 0:
+        print("  (no new signals — no email; nothing to report)")
+    return 0
+
+
 def cmd_record_iv(args) -> int:
     """Append today's ATM IV per ticker to the IV-history store (warmup builder)."""
     from .scoring import _atm_iv
@@ -380,6 +419,24 @@ def cmd_doctor(args) -> int:
         _line("proxy falsification complete", not pm.warnings,
               "; ".join(pm.warnings) if pm.warnings else "every cluster has one")
         ok = ok and cover and not pm.warnings
+
+        # live person-signal monitor: tracked principals must have CIKs to watch
+        from .person_intel.monitor import PRINCIPALS, SeenStore  # noqa: F401
+        tracked_ciks = [m for m in (cfg.investors.get("managers", []) or [])
+                        if m.get("cik")]
+        principals_present = all(p in g.entities for p in PRINCIPALS)
+        _line("person-monitor principals", principals_present,
+              ", ".join(PRINCIPALS))
+        _line("person-monitor tracked CIKs", bool(tracked_ciks),
+              f"{len(tracked_ciks)} managers with a CIK to watch")
+        ok = ok and principals_present and bool(tracked_ciks)
+
+        # conviction / statement feeds (the "what they SAY" signal class)
+        from .config_loader import load_yaml as _ly
+        stmt_cfg = _ly("statement_sources", cfg.config_dir)
+        feeds = stmt_cfg.get("feeds", []) or []
+        _line("statement feeds configured", bool(feeds),
+              f"{len(feeds)} feeds (essays + news)")
     except Exception as exc:  # pragma: no cover - defensive
         _line("person-intel configs", False, str(exc))
         ok = False
@@ -544,6 +601,27 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--resolve", action="store_true",
                     help="resolve each filing's subject company to a ticker")
     sp.set_defaults(func=cmd_early_filings)
+
+    sp = sub.add_parser("person-monitor",
+                        help="live dedup'd Thiel/Aschenbrenner signal radar "
+                             "(emails only on a NEW signal)")
+    sp.add_argument("--config-dir")
+    sp.add_argument("--fixtures-dir")
+    sp.add_argument("--live", action="store_true",
+                    help="query SEC EDGAR (free) instead of offline fixtures")
+    sp.add_argument("--since", type=int, default=45,
+                    help="lookback window in days (default 45)")
+    sp.add_argument("--state", default="data/person_intel/seen_filings.json",
+                    help="dedup/history store path")
+    sp.add_argument("--email", action="store_true",
+                    help="send the digest IF (and only if) there is a new signal")
+    sp.add_argument("--min-weight", type=float, default=0.0,
+                    help="drop alerts below this principal-path weight (0..1)")
+    sp.add_argument("--no-resolve", action="store_true",
+                    help="skip CUSIP subject resolution (fewer SEC requests)")
+    sp.add_argument("--dry-run", action="store_true",
+                    help="report without persisting state or sending email")
+    sp.set_defaults(func=cmd_person_monitor)
 
     sp = sub.add_parser("outcomes-report",
                         help="multi-horizon outcomes + walk-forward edge guard")
