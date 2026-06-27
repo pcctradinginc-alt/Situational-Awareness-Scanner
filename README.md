@@ -106,6 +106,17 @@ merely adjacent smart money. Runs automatically via
 [`.github/workflows/person_intel_monitor.yml`](.github/workflows/person_intel_monitor.yml)
 at 06:00 + 14:00 UTC (German morning / afternoon across DST).
 
+The radar carries **two signal classes** (both dedup'd, both can trigger the
+email):
+- **Filings — what they DID** (the SEC feed above), and
+- **Conviction — what they SAY**: public first-party essays
+  (situational-awareness.ai, forourposterity.com) and name-matched news RSS, via
+  [`config/statement_sources.yml`](config/statement_sources.yml). A statement is
+  classified into a thesis cluster and yields **second-order, derived candidates**
+  (e.g. an Aschenbrenner power/compute essay → `VST, CEG, GEV`) — explicitly a
+  *watchlist hypothesis*, **never** a confirmed investment, always
+  `needs_human_review`, discovery-only (short excerpt + hash, never full text).
+
 Statement classification can optionally use an LLM (extract/classify only, never
 the final word) via `ANTHROPIC_API_KEY` (env only); without it, a transparent
 keyword model is used. Subject→ticker resolution and the LLM path are both

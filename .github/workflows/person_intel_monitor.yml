@@ -87,7 +87,7 @@ jobs:
           import json
           from pathlib import Path
           f = Path('data/person_intel/last_run.json')
-          print(json.loads(f.read_text()).get('new_count', 0) if f.exists() else 0)
+          print(json.loads(f.read_text()).get('total_new', 0) if f.exists() else 0)
           ")
           echo "new_count=$NEW" >> $GITHUB_OUTPUT
           echo "New person-signals: $NEW"

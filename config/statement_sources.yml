@@ -1,0 +1,63 @@
+# Public statement / essay / news feeds for CONVICTION discovery.
+# ----------------------------------------------------------------
+# These are first-party essays (the person's own site) and public news-search
+# RSS feeds — all public and legally fetchable. They feed the same twice-daily,
+# dedup'd person-monitor as a SECOND signal class: a *conviction* signal.
+#
+# Hard rules (mirror person_intel/statements.py):
+#   * DISCOVERY ONLY — we store url + short excerpt + cluster classification +
+#     a content hash, NEVER full third-party text.
+#   * A statement is ADVISORY (always needs_human_review); the keyword/LLM
+#     classifier extracts, it never makes the final call.
+#   * Any ticker DERIVED from a statement's thesis cluster is a SECOND-ORDER
+#     HYPOTHESIS (watchlist), never a confirmed investment.
+#   * Official/primary sources outrank media; `require_name_match` gates fuzzy
+#     news feeds so an article must actually name the person to count.
+#
+# Live fetch is OFF by default (offline mode reads the bundled `fixture`).
+# `tier` ∈ {official, primary, media, repost}.
+
+meta:
+  enabled: true
+  note: >
+    First-party essay feeds attribute to the speaker directly (official tier);
+    Google-News search feeds require a name match and are media tier.
+
+feeds:
+  # ── Aschenbrenner — first-party essays (his own sites = him) ─────────
+  - principal: aschenbrenner
+    speaker: "Leopold Aschenbrenner"
+    source: "Situational Awareness — situational-awareness.ai"
+    url: "https://situational-awareness.ai/feed/"
+    tier: official
+    require_name_match: false
+    fixture: "aschenbrenner_situational_awareness.xml"
+  - principal: aschenbrenner
+    speaker: "Leopold Aschenbrenner"
+    source: "For Our Posterity — forourposterity.com"
+    url: "https://www.forourposterity.com/rss/"
+    tier: official
+    require_name_match: false
+    fixture: ""
+
+  # ── public news search (must name the person) ───────────────────────
+  - principal: aschenbrenner
+    speaker: "Leopold Aschenbrenner"
+    source: "Google News — Leopold Aschenbrenner"
+    url: "https://news.google.com/rss/search?q=%22Leopold+Aschenbrenner%22&hl=en-US"
+    tier: media
+    require_name_match: true
+    fixture: ""
+  - principal: thiel
+    speaker: "Peter Thiel"
+    source: "Google News — Peter Thiel investment"
+    url: "https://news.google.com/rss/search?q=%22Peter+Thiel%22+(invest+OR+fund+OR+stake)&hl=en-US"
+    tier: media
+    require_name_match: true
+    fixture: ""
+
+# How many top thesis-cluster proxies to surface as DERIVED second-order
+# candidates per statement (hypothesis / watchlist only).
+derivation:
+  max_candidates_per_statement: 3
+  min_cluster_intensity: 0.25

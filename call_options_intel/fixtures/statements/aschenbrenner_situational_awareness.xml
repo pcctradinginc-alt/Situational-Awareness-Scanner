@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Situational Awareness</title>
+    <link>https://situational-awareness.ai/</link>
+    <description>Leopold Aschenbrenner — essays</description>
+    <item>
+      <title>The Trillion-Dollar Cluster: Compute, Power and the Grid</title>
+      <link>https://situational-awareness.ai/the-trillion-dollar-cluster/</link>
+      <pubDate>Wed, 24 Jun 2026 09:00:00 GMT</pubDate>
+      <description>The binding constraint on the decade ahead is not algorithms but
+        compute and the power to run it. Training the next frontier models will
+        require gigawatt-scale data centers, an unprecedented build-out of the
+        electricity grid, natural gas and nuclear generation, advanced cooling,
+        and a semiconductor supply chain that can keep pace. Energy is the new
+        oil; the AI build-out is fundamentally an industrial-power story.</description>
+    </item>
+    <item>
+      <title>Older note — national security and the AI race</title>
+      <link>https://situational-awareness.ai/from-gpt-4-to-agi/</link>
+      <pubDate>Mon, 02 Mar 2026 09:00:00 GMT</pubDate>
+      <description>An earlier essay on the national-security implications of the
+        frontier-model race and export controls on advanced chips.</description>
+    </item>
+  </channel>
+</rss>

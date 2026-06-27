@@ -56,18 +56,41 @@ def _subject_str(a: PersonAlert) -> str:
 
 
 # ── markdown digest ─────────────────────────────────────────────────────────
+def _statement_block_md(lines: list, statements: list) -> None:
+    if not statements:
+        return
+    lines.append("## Conviction / statement signals (what they SAY — derived, "
+                 "second-order)")
+    lines.append("")
+    for s in statements:
+        cands = ", ".join(s.derived_candidates) or "—"
+        lines.append(f"### {s.speaker} · «{s.dominant_cluster}»")
+        lines.append("")
+        lines.append(f"- **Statement (discovery, advisory):** {s.headline}")
+        lines.append(f"- **Source:** {s.source} ({s.tier}) · {s.date}"
+                     + (f" ({s.age_days}d ago)" if s.age_days is not None else ""))
+        lines.append(f"- **Excerpt:** {s.excerpt}")
+        lines.append(f"- **Derived candidates (HYPOTHESIS / watchlist):** {cands}")
+        if s.falsification:
+            lines.append(f"- **Falsification:** {s.falsification}")
+        if s.url:
+            lines.append(f"- **Link:** {s.url}")
+        lines.append("")
+
+
 def render_markdown(result: MonitorResult) -> str:
-    if not result.alerts:
+    if result.total_new == 0:
         return (f"# Person-Intel Monitor — no new signals\n\n"
                 f"_{result.run_at} · mode={result.mode}_\n\n"
-                f"No new EDGAR person-signals for the tracked Thiel / "
-                f"Aschenbrenner vehicles.\n")
+                f"No new EDGAR filings or conviction statements for the tracked "
+                f"Thiel / Aschenbrenner vehicles.\n")
 
+    n = result.total_new
     lines: list[str] = []
-    lines.append(f"# Person-Intel Monitor — {result.new_count} new signal"
-                 f"{'s' if result.new_count != 1 else ''}")
+    lines.append(f"# Person-Intel Monitor — {n} new signal{'s' if n != 1 else ''}")
     lines.append("")
     lines.append(f"_{result.run_at} · mode={result.mode} · "
+                 f"{result.new_count} filing / {result.statement_count} statement · "
                  f"{result.principal_count} directly principal-linked_")
     lines.append("")
     lines.append(f"> {DISCLAIMER}")
@@ -103,6 +126,7 @@ def render_markdown(result: MonitorResult) -> str:
 
     _block("Principal-linked signals (Thiel / Aschenbrenner vehicles)", principal)
     _block("Network / derived (second-order — adjacent smart money)", network)
+    _statement_block_md(lines, result.statements)
     return "\n".join(lines)
 
 
@@ -151,9 +175,48 @@ def _alert_card_html(a: PersonAlert) -> str:
     </table>"""
 
 
+def _statement_card_html(s) -> str:
+    badge = {"thiel": "THIEL", "aschenbrenner": "ASCHENBRENNER"}.get(
+        s.principal, "NETWORK")
+    badge_color = {"THIEL": "#FF9500", "ASCHENBRENNER": "#AF52DE"}.get(
+        badge, "#8E8E93")
+    cands = ", ".join(s.derived_candidates) or "—"
+    fals = (f'<div style="margin-top:8px;font-size:12px;color:#FF6B6B;">'
+            f'<strong>Falsification:</strong> {s.falsification}</div>'
+            if s.falsification else "")
+    src = (f'<div style="margin-top:8px;font-size:11px;color:#636366;">'
+           f'<a href="{s.url}" style="color:#636366;">{s.source} ↗</a></div>'
+           if s.url else "")
+    return f"""
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:16px;">
+      <tr><td style="background:#1C1C1E;border-radius:14px;padding:18px 20px;">
+        <table width="100%"><tr>
+          <td>
+            <span style="display:inline-block;background:{badge_color}22;border:1px solid {badge_color};
+                  border-radius:6px;padding:3px 9px;font-size:10px;font-weight:700;
+                  color:{badge_color};letter-spacing:.5px;">{badge}</span>
+            <span style="display:inline-block;background:#5856D622;border:1px solid #5856D6;
+                  border-radius:6px;padding:3px 9px;font-size:10px;font-weight:700;
+                  color:#5856D6;letter-spacing:.5px;margin-left:6px;">CONVICTION</span>
+          </td>
+          <td style="text-align:right;font-size:11px;color:#636366;">{s.date} · {s.tier}</td>
+        </tr></table>
+        <div style="font-size:15px;font-weight:700;color:#FFFFFF;margin-top:10px;">{s.headline}</div>
+        <div style="font-size:13px;color:#8E8E93;margin-top:6px;line-height:1.5;">{s.excerpt}</div>
+        <div style="background:#FF950011;border-left:3px solid #FF9500;border-radius:0 8px 8px 0;
+              padding:8px 12px;margin-top:10px;font-size:13px;color:#EBEBF5;">
+          <strong>Derived candidates:</strong> {cands}<br>
+          <span style="font-size:11px;color:#8E8E93;">
+            (HYPOTHESIS / watchlist — second-order, not a confirmed investment)</span></div>
+        {fals}{src}
+      </td></tr>
+    </table>"""
+
+
 def render_email_html(result: MonitorResult, run_label: str) -> str:
     cards = "".join(_alert_card_html(a) for a in result.alerts)
-    n = result.new_count
+    cards += "".join(_statement_card_html(s) for s in result.statements)
+    n = result.total_new
     return f"""<!DOCTYPE html>
 <html><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
@@ -186,7 +249,7 @@ def send_person_email(result: MonitorResult, run_label: str) -> bool:
     from email.mime.multipart import MIMEMultipart
     from email.mime.text import MIMEText
 
-    if not result.alerts:
+    if result.total_new == 0:
         logger.info("no new person-signals — no email sent")
         return False
     gmail_user = os.environ.get("GMAIL_USER", "")
@@ -197,12 +260,14 @@ def send_person_email(result: MonitorResult, run_label: str) -> bool:
                        "missing) — skipping send")
         return False
 
-    n = result.new_count
+    n = result.total_new
     subjects = []
     for a in result.alerts[:3]:
         tag = a.subject_ticker or _principal_badge(a)
         subjects.append(f"{tag}:{a.filing_type}")
-    head = ", ".join(subjects)
+    for s in result.statements[:2]:
+        subjects.append(f"{_principal_badge(s)}:«{s.dominant_cluster}»")
+    head = ", ".join(subjects[:4])
 
     msg = MIMEMultipart("alternative")
     msg["Subject"] = (f"📡 Person-Intel: {n} new Thiel/Aschenbrenner signal"
@@ -210,7 +275,9 @@ def send_person_email(result: MonitorResult, run_label: str) -> bool:
     msg["From"] = f"Person-Intel Radar <{gmail_user}>"
     msg["To"] = to_email
 
-    plain_lines = [f"Person-Intel Radar — {n} new signal(s)", run_label, ""]
+    plain_lines = [f"Person-Intel Radar — {n} new signal(s) "
+                   f"({result.new_count} filing / {result.statement_count} statement)",
+                   run_label, ""]
     for a in result.alerts:
         plain_lines += [
             f"[{_principal_badge(a)}] {a.category}",
@@ -218,6 +285,12 @@ def send_person_email(result: MonitorResult, run_label: str) -> bool:
             f"  Subject (hypothesis): {_subject_str(a)}",
             f"  {a.why_it_matters}",
             f"  {a.url}" if a.url else "", ""]
+    for s in result.statements:
+        plain_lines += [
+            f"[{_principal_badge(s)}] CONVICTION «{s.dominant_cluster}»",
+            f"  {s.headline}",
+            f"  Derived (hypothesis): {', '.join(s.derived_candidates) or '—'}",
+            f"  {s.url}" if s.url else "", ""]
     msg.attach(MIMEText("\n".join(plain_lines), "plain"))
     msg.attach(MIMEText(render_email_html(result, run_label), "html"))
 
@@ -242,12 +315,15 @@ def write_artifacts(result: MonitorResult,
     (d / "last_run.json").write_text(
         json.dumps(result.to_dict(), indent=2), encoding="utf-8")
     # append-only history (the historical signal archive)
-    if result.alerts:
+    if result.alerts or result.statements:
         hist = d / "history.jsonl"
         with hist.open("a", encoding="utf-8") as fh:
             for a in result.alerts:
-                fh.write(json.dumps({"logged_at": result.run_at, **a.to_dict()})
-                         + "\n")
+                fh.write(json.dumps({"logged_at": result.run_at,
+                                     "type": "filing", **a.to_dict()}) + "\n")
+            for s in result.statements:
+                fh.write(json.dumps({"logged_at": result.run_at,
+                                     "type": "statement", **s.to_dict()}) + "\n")
     return {"digest_md": str(d / "last_digest.md"),
             "last_run_json": str(d / "last_run.json")}
 
@@ -260,24 +336,28 @@ def monitor_and_notify(config: Optional[AppConfig] = None, *,
                        artifact_dir: str | Path | None = None,
                        as_of: Optional[date] = None, resolve: bool = True,
                        send_email: bool = False,
+                       include_statements: bool = True,
                        min_path_weight: float = 0.0) -> dict:
     """Run one monitor pass, write artifacts, and email ONLY on a new signal.
 
-    Returns a summary dict (suitable for a CI step to gate on ``new_count``).
+    Returns a summary dict (suitable for a CI step to gate on ``total_new``).
     """
     result = run_monitor(
         config=config, mode=mode, since_days=since_days, state_path=state_path,
         fixtures_dir=fixtures_dir, as_of=as_of, resolve=resolve,
-        min_path_weight=min_path_weight, persist=True)
+        min_path_weight=min_path_weight, include_statements=include_statements,
+        persist=True)
 
     artifacts = write_artifacts(result, artifact_dir)
     run_label = datetime.now(timezone.utc).strftime("%d %b %Y · %H:%M UTC")
     emailed = False
-    if send_email and result.new_count > 0:
+    if send_email and result.total_new > 0:
         emailed = send_person_email(result, run_label)
 
     return {
         "new_count": result.new_count,
+        "statement_count": result.statement_count,
+        "total_new": result.total_new,
         "principal_count": result.principal_count,
         "mode": result.mode,
         "emailed": emailed,

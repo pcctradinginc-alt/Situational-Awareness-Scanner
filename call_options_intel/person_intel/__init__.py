@@ -38,4 +38,5 @@ __all__ = [
     "outcomes",
     "monitor",
     "monitor_report",
+    "statement_feed",
 ]

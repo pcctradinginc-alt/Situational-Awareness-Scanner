@@ -277,11 +277,12 @@ def cmd_person_monitor(args) -> int:
         send_email=args.email, min_path_weight=args.min_weight)
     print(f"\n{DISCLAIMER}\n")
     print(f"PERSON-MONITOR — mode={summary['mode']} · "
-          f"new={summary['new_count']} · "
+          f"new={summary['total_new']} "
+          f"({summary['new_count']} filing / {summary['statement_count']} statement) · "
           f"principal-linked={summary['principal_count']} · "
           f"emailed={summary['emailed']}")
     print(f"  digest: {summary['artifacts']['digest_md']}")
-    if summary["new_count"] == 0:
+    if summary["total_new"] == 0:
         print("  (no new signals — no email; nothing to report)")
     return 0
 
@@ -429,6 +430,13 @@ def cmd_doctor(args) -> int:
         _line("person-monitor tracked CIKs", bool(tracked_ciks),
               f"{len(tracked_ciks)} managers with a CIK to watch")
         ok = ok and principals_present and bool(tracked_ciks)
+
+        # conviction / statement feeds (the "what they SAY" signal class)
+        from .config_loader import load_yaml as _ly
+        stmt_cfg = _ly("statement_sources", cfg.config_dir)
+        feeds = stmt_cfg.get("feeds", []) or []
+        _line("statement feeds configured", bool(feeds),
+              f"{len(feeds)} feeds (essays + news)")
     except Exception as exc:  # pragma: no cover - defensive
         _line("person-intel configs", False, str(exc))
         ok = False

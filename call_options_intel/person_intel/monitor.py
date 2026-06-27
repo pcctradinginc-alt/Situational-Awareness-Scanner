@@ -377,18 +377,30 @@ class PersonMonitor:
 # ── orchestration ───────────────────────────────────────────────────────────
 @dataclass
 class MonitorResult:
-    new_count: int
+    new_count: int                # NEW filing alerts (what they DID)
     alerts: list[PersonAlert]
     mode: str
     run_at: str
     principal_count: int          # alerts directly linked to a principal vehicle
+    statements: list = field(default_factory=list)  # NEW conviction signals (what they SAY)
+
+    @property
+    def statement_count(self) -> int:
+        return len(self.statements)
+
+    @property
+    def total_new(self) -> int:
+        return self.new_count + self.statement_count
 
     def to_dict(self) -> dict:
         return {
             "run_at": self.run_at, "mode": self.mode,
             "new_count": self.new_count,
+            "statement_count": self.statement_count,
+            "total_new": self.total_new,
             "principal_count": self.principal_count,
             "alerts": [a.to_dict() for a in self.alerts],
+            "statements": [s.to_dict() for s in self.statements],
         }
 
 
@@ -397,8 +409,10 @@ def run_monitor(config: Optional[AppConfig] = None, *, mode: Optional[str] = Non
                 fixtures_dir: str | Path | None = None,
                 as_of: Optional[date] = None, resolve: bool = True,
                 min_path_weight: float = 0.0,
+                include_statements: bool = True,
                 persist: bool = True) -> MonitorResult:
-    """Run one monitor pass: collect → dedup → (optionally) persist.
+    """Run one monitor pass: collect filings + conviction statements → dedup →
+    (optionally) persist.
 
     Does NOT send email — that is the caller's decision (see
     :func:`monitor_and_notify`). Returns the new alerts so callers can render
@@ -420,12 +434,30 @@ def run_monitor(config: Optional[AppConfig] = None, *, mode: Optional[str] = Non
     alerts = monitor.new_alerts(store, since_days=since_days, as_of=as_of,
                                 resolve=resolve, min_path_weight=min_path_weight)
 
-    if persist and alerts:
+    # second signal class: public conviction statements (what they SAY)
+    statements: list = []
+    if include_statements:
+        try:
+            from .statement_feed import load_statement_monitor
+            sm, feeds = load_statement_monitor(
+                cfg.config_dir, cfg.data_sources, run_mode, fixtures)
+            for s in sm.collect(feeds, since_days=since_days, as_of=as_of):
+                if store.is_new(s.content_hash):
+                    statements.append(s)
+        except Exception as exc:                        # pragma: no cover
+            logger.warning("statement collection failed: %s", exc)
+
+    if persist and (alerts or statements):
+        stamp = (as_of or date.today()).isoformat()
         for a in alerts:
             store.seen[a.accession] = {
-                "first_seen": (as_of or date.today()).isoformat(),
-                "entity": a.entity, "cik": a.cik, "form": a.form_raw,
-                "filing_date": a.filing_date,
+                "first_seen": stamp, "entity": a.entity, "cik": a.cik,
+                "form": a.form_raw, "filing_date": a.filing_date,
+            }
+        for s in statements:
+            store.seen[s.content_hash] = {
+                "first_seen": stamp, "kind": "statement",
+                "speaker": s.speaker, "source": s.source, "date": s.date,
             }
         store.save()
 
@@ -433,4 +465,4 @@ def run_monitor(config: Optional[AppConfig] = None, *, mode: Optional[str] = Non
     return MonitorResult(
         new_count=len(alerts), alerts=alerts, mode=run_mode,
         run_at=datetime.now(timezone.utc).isoformat(),
-        principal_count=principal_count)
+        principal_count=principal_count, statements=statements)

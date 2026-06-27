@@ -183,6 +183,19 @@ the new sub-package. Branch/PR only — no `main` push, no secrets in the diff.
   - Tests: `tests/test_coi_person_monitor.py` — collection/typing, role honesty,
     sourced-vs-unguessed subject, principal linkage, **dedup fires once**, dry-run
     persists nothing, digest fact/hypothesis split, email-skipped-when-unconfigured.
+  - **Second signal class — conviction (what they SAY):**
+    `person_intel/statement_feed.py` + `config/statement_sources.yml` turn public
+    first-party essays (situational-awareness.ai, forourposterity.com) and
+    name-matched news RSS into conviction signals — reusing the discovery-only
+    `statements.py` (url + short excerpt + hash + advisory cluster classification,
+    never full text) and `proxy_map` to derive **second-order candidates**
+    (e.g. a power/compute essay → VST/CEG/GEV) that are HYPOTHESIS/watchlist only,
+    never confirmed investments, always `needs_human_review`. They flow through the
+    **same `SeenStore` dedup** (namespaced `stmt:` keys) and the same email — so a
+    new essay can trigger the radar just like a new filing.
+    `MonitorResult.total_new = filing + statement`. Injectable fetcher
+    (offline fixture / live RSS via `feedparser`), off-toggle
+    `include_statements`. Tests: `tests/test_coi_person_statement_feed.py`.
 
 ## Acceptance
 
