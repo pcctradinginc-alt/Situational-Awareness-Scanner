@@ -23,6 +23,7 @@ opt-in); ``feedparser`` (already a dependency) parses the feed.
 from __future__ import annotations
 
 import logging
+import re
 from dataclasses import asdict, dataclass, field
 from datetime import date, datetime, timezone
 from pathlib import Path
@@ -30,9 +31,36 @@ from typing import Optional, Protocol
 
 from ..config_loader import load_yaml
 from .proxy_map import ProxyMap, classify_clusters, load_proxy_map
-from .statements import MAX_EXCERPT_CHARS, SourceTier, _hash, _normalise_url
+from .statements import (
+    MAX_EXCERPT_CHARS, SourceTier, StatementRef, _hash, _normalise_url,
+    collapse_to_authoritative,
+)
 
 logger = logging.getLogger("coi.person.statement_feed")
+
+# Non-investment / gossip terms — if a media headline is *about* one of these,
+# it is dropped as noise even when it names the person and trips a keyword.
+DEFAULT_NOISE_STOPWORDS = (
+    "secret society", "gossip", "dating", "girlfriend", "boyfriend", "wedding",
+    "divorce", "party", "yacht", "mansion", "lawsuit", "feud", "vacation",
+    "birthday", "red carpet", "gala", "socialite",
+)
+
+_HTML_TAG_RE = re.compile(r"<[^>]+>")
+_WS_RE = re.compile(r"\s+")
+
+
+def _strip_html(text: str) -> str:
+    """Strip HTML tags + unescape entities + collapse whitespace.
+
+    RSS descriptions (esp. Google News) embed ``<a href=…>`` markup that would
+    otherwise pollute the excerpt and the email."""
+    import html as _html
+    if not text:
+        return ""
+    no_tags = _HTML_TAG_RE.sub(" ", text)
+    return _WS_RE.sub(" ", _html.unescape(no_tags)).strip()
+
 
 PRINCIPAL_NAMES = {
     "thiel": ("Peter Thiel", ("thiel", "peter thiel")),
@@ -197,12 +225,20 @@ class StatementFeedMonitor:
 
     def __init__(self, proxy_map: ProxyMap, fetcher: FeedFetcher,
                  fixture_fetcher: Optional[FixtureFeedFetcher] = None,
-                 max_candidates: int = 3, min_intensity: float = 0.25):
+                 max_candidates: int = 3, min_intensity: float = 0.25,
+                 media_min_clusters: int = 2,
+                 noise_stopwords: Optional[tuple[str, ...]] = None):
         self.proxy_map = proxy_map
         self.fetcher = fetcher
         self.fixture_fetcher = fixture_fetcher
         self.max_candidates = max_candidates
         self.min_intensity = min_intensity
+        # media/news feeds are noisier than first-party essays -> a media story
+        # must touch at least this many distinct thesis clusters to count (the
+        # per-cluster intensity is normalised, so BREADTH is the honest signal).
+        self.media_min_clusters = max(1, media_min_clusters)
+        self.noise_stopwords = tuple(
+            s.lower() for s in (noise_stopwords or DEFAULT_NOISE_STOPWORDS))
 
     # derive SECOND-ORDER candidates from the dominant cluster ----------------
     def _derived_candidates(self, dominant: str) -> list[str]:
@@ -228,16 +264,21 @@ class StatementFeedMonitor:
                       ) -> Optional[StatementSignal]:
         principal = str(feed.get("principal", "")).lower()
         pname, name_keys = PRINCIPAL_NAMES.get(principal, (feed.get("speaker", ""), ()))
-        title = (getattr(entry, "title", "") or "").strip()
-        summary = (getattr(entry, "summary", "")
-                   or getattr(entry, "description", "") or "").strip()
+        title = _strip_html(getattr(entry, "title", "") or "")
+        summary = _strip_html(getattr(entry, "summary", "")
+                              or getattr(entry, "description", "") or "")
         blob = f"{title}. {summary}"
+        low = blob.lower()
+        tier = SourceTier.parse(feed.get("tier", "media"))
 
         # fuzzy media feeds must actually name the person
         if feed.get("require_name_match", False) and name_keys:
-            low = blob.lower()
             if not any(k in low for k in name_keys):
                 return None
+
+        # drop gossip / non-investment stories even if they name the person
+        if any(sw in low for sw in self.noise_stopwords):
+            return None
 
         url = (getattr(entry, "link", "") or "").strip()
         iso = _parse_date(entry)
@@ -251,10 +292,15 @@ class StatementFeedMonitor:
         dominant = max(scores, key=scores.get)
         if scores.get(dominant, 0.0) < self.min_intensity:
             return None
+        # media/news is noisier than a first-party essay: require BREADTH —
+        # the story must touch several thesis clusters, not trip one keyword.
+        if tier in (SourceTier.MEDIA, SourceTier.REPOST):
+            breadth = sum(1 for v in scores.values() if v > 0)
+            if breadth < self.media_min_clusters:
+                return None
 
         derived = self._derived_candidates(dominant)
         fals = self.proxy_map.falsification_for(dominant) or ""
-        tier = SourceTier.parse(feed.get("tier", "media"))
 
         headline = f"{pname}: “{title}” → cluster «{dominant}»"
         why = (f"Conviction signal (what they SAY): a {tier.value}-tier "
@@ -291,10 +337,28 @@ class StatementFeedMonitor:
                     continue
                 seen_hashes.add(sig.content_hash)
                 out.append(sig)
+        out = self._collapse_duplicates(out)
         # most recent first; official tier before media on ties
         out.sort(key=lambda s: (s.age_days if s.age_days is not None else 999,
                                 SourceTier.parse(s.tier).rank))
         return out
+
+    def _collapse_duplicates(self, signals: list[StatementSignal]
+                             ) -> list[StatementSignal]:
+        """Collapse the same story syndicated across outlets to one ref, keeping
+        the most authoritative source — reuses ``collapse_to_authoritative``.
+
+        The story key is (speaker, date, dominant cluster), so "… Yahoo Finance"
+        and "… Yahoo Finance Canada" published the same day fold into one."""
+        if len(signals) < 2:
+            return signals
+        refs = [StatementRef(
+            url=s.url, source=s.source, tier=SourceTier.parse(s.tier),
+            date=s.date, excerpt=s.excerpt, content_hash=s.content_hash,
+            thesis_clusters={s.dominant_cluster: 1.0}, speaker=s.speaker)
+            for s in signals]
+        survivors = {r.content_hash for r in collapse_to_authoritative(refs)}
+        return [s for s in signals if s.content_hash in survivors]
 
 
 def load_statement_monitor(config_dir, data_sources_cfg: dict, mode: str,
@@ -303,18 +367,20 @@ def load_statement_monitor(config_dir, data_sources_cfg: dict, mode: str,
     cfg = load_yaml("statement_sources", Path(config_dir) if config_dir else None)
     feeds = cfg.get("feeds", []) or []
     deriv = cfg.get("derivation", {}) or {}
+    stopwords = cfg.get("noise_stopwords") or None
+    common = dict(
+        max_candidates=int(deriv.get("max_candidates_per_statement", 3)),
+        min_intensity=float(deriv.get("min_cluster_intensity", 0.25)),
+        media_min_clusters=int(deriv.get("media_min_clusters", 2)),
+        noise_stopwords=tuple(stopwords) if stopwords else None)
     proxy_map = load_proxy_map(config_dir)
     if mode == "live":
         ua = ((data_sources_cfg or {}).get("edgar_13f", {})
               .get("user_agent", "SA-Scanner research (info@pcctradinginc.com)"))
         monitor = StatementFeedMonitor(
-            proxy_map, fetcher=UrllibFeedFetcher(user_agent=ua),
-            max_candidates=int(deriv.get("max_candidates_per_statement", 3)),
-            min_intensity=float(deriv.get("min_cluster_intensity", 0.25)))
+            proxy_map, fetcher=UrllibFeedFetcher(user_agent=ua), **common)
     else:
         ff = FixtureFeedFetcher(Path(fixtures_dir))
         monitor = StatementFeedMonitor(
-            proxy_map, fetcher=ff, fixture_fetcher=ff,
-            max_candidates=int(deriv.get("max_candidates_per_statement", 3)),
-            min_intensity=float(deriv.get("min_cluster_intensity", 0.25)))
+            proxy_map, fetcher=ff, fixture_fetcher=ff, **common)
     return monitor, feeds

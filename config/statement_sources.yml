@@ -60,4 +60,22 @@ feeds:
 # candidates per statement (hypothesis / watchlist only).
 derivation:
   max_candidates_per_statement: 3
-  min_cluster_intensity: 0.25
+  min_cluster_intensity: 0.25           # first-party essays (official/primary)
+  media_min_clusters: 2                 # media/news must touch >=2 thesis clusters
+
+# Gossip / non-investment headline terms. A story *about* one of these is dropped
+# as noise even when it names the person (override the built-in default list).
+noise_stopwords:
+  - "secret society"
+  - gossip
+  - dating
+  - girlfriend
+  - wedding
+  - divorce
+  - yacht
+  - mansion
+  - lawsuit
+  - feud
+  - party
+  - socialite
+  - red carpet
