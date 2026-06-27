@@ -18,7 +18,7 @@ from __future__ import annotations
 import json
 import logging
 from dataclasses import dataclass, field
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Callable, Optional
 
@@ -33,6 +33,8 @@ BENCHMARKS = ("QQQ", "SOXX")
 PriceFn = Callable[[str, int], Optional[float]]
 # benchmark_ret_fn(symbol, horizon_days) -> benchmark RETURN over that horizon
 BenchmarkFn = Callable[[str, int], Optional[float]]
+# price_at(ticker, target_date) -> close on/before that date (date-aware path)
+PriceAtFn = Callable[[str, date], Optional[float]]
 
 
 @dataclass
@@ -75,9 +77,19 @@ class OutcomeStore:
 
     # ── evaluate across horizons ────────────────────────────────────────
     def evaluate(
-        self, price_fn: PriceFn, benchmark_fn: Optional[BenchmarkFn] = None,
-        as_of: Optional[date] = None,
+        self, price_fn: Optional[PriceFn] = None,
+        benchmark_fn: Optional[BenchmarkFn] = None,
+        as_of: Optional[date] = None, price_at: Optional[PriceAtFn] = None,
     ) -> list[dict]:
+        """Annotate matured signals with realised returns.
+
+        Two pricing modes:
+          * ``price_at(ticker, date)`` — DATE-AWARE: uses the close at
+            ``recorded_date + horizon`` and computes benchmark returns from the
+            same provider. This is the realistic path (Phase 4).
+          * ``price_fn(ticker, horizon)`` — the simpler injectable path (tests /
+            current-spot approximation), with an optional ``benchmark_fn``.
+        """
         as_of = as_of or date.today()
         results: list[dict] = []
         for rec in self.load():
@@ -90,14 +102,28 @@ class OutcomeStore:
             for h in HORIZONS:
                 if age < h:
                     continue                         # not matured at this horizon
-                px = price_fn(rec["ticker"], h)
+                target = rec_date + timedelta(days=h)
+                if price_at is not None:
+                    px = price_at(rec["ticker"], target)
+                elif price_fn is not None:
+                    px = price_fn(rec["ticker"], h)
+                else:
+                    px = None
                 if px is None or not entry_spot:
                     continue
                 und_ret = (px - entry_spot) / entry_spot
                 opt_ret = SignalStore._option_proxy_return(rec, px)
                 benches: dict[str, Optional[float]] = {}
                 excess: dict[str, Optional[float]] = {}
-                if benchmark_fn:
+                if price_at is not None:
+                    for sym in BENCHMARKS:
+                        b_entry = price_at(sym, rec_date)
+                        b_now = price_at(sym, target)
+                        b = ((b_now - b_entry) / b_entry
+                             if (b_entry and b_now) else None)
+                        benches[sym] = (round(b, 4) if b is not None else None)
+                        excess[sym] = (round(und_ret - b, 4) if b is not None else None)
+                elif benchmark_fn:
                     for sym in BENCHMARKS:
                         b = benchmark_fn(sym, h)
                         benches[sym] = (round(b, 4) if b is not None else None)

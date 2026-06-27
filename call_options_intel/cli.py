@@ -285,17 +285,27 @@ def cmd_outcomes_report(args) -> int:
         OutcomeStore, summarize, walk_forward_guard,
     )
     store = OutcomeStore(args.store)
+    price_fn = bench_fn = price_at = None
+    approx = False
     if args.demo:
         price_map = _seed_outcomes_demo(store)
         price_fn = lambda t, h: price_map.get(t)        # noqa: E731
         bench_fn = lambda s, h: 0.03                     # noqa: E731
+    elif args.live or args.historical:
+        # date-aware REAL per-horizon pricing (Stooq live or offline CSV fixtures)
+        from .person_intel.historical import HistoricalPriceProvider
+        fixtures = getattr(args, "fixtures_dir", None) or DEFAULT_FIXTURES
+        prov = HistoricalPriceProvider(
+            mode=("live" if args.live else "offline"), fixtures_dir=fixtures)
+        price_at = prov.make_price_at()
     else:
         pipe = _build_pipeline(args)
-        # Free data has no per-horizon history; approximate with current spot for
-        # every horizon (flagged). Real per-horizon pricing is a Phase-3+ item.
+        # No per-horizon history available -> approximate with current spot for
+        # every horizon (flagged). Pass --historical/--live for real pricing.
         price_fn = lambda t, h: pipe.market.get_snapshot(t).spot  # noqa: E731
-        bench_fn = None
-    evaluated = store.evaluate(price_fn, bench_fn)
+        approx = True
+    evaluated = store.evaluate(price_fn=price_fn, benchmark_fn=bench_fn,
+                               price_at=price_at)
     report = {
         "summary": summarize(evaluated),
         "walk_forward": walk_forward_guard(
@@ -304,9 +314,9 @@ def cmd_outcomes_report(args) -> int:
     }
     print(_json.dumps(report, indent=2))
     print(f"\n{DISCLAIMER}")
-    if not args.demo and report["summary"].get("n"):
+    if approx and report["summary"].get("n"):
         print("\n⚠️  per-horizon prices approximated by current spot — "
-              "interpret as illustrative only.")
+              "pass --historical or --live for real per-horizon pricing.")
     return 0
 
 
@@ -541,6 +551,8 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--store", default="reports/outcomes.jsonl")
     sp.add_argument("--demo", action="store_true",
                     help="seed a synthetic in/out-of-sample store and report on it")
+    sp.add_argument("--historical", action="store_true",
+                    help="real per-horizon pricing from offline historical CSV fixtures")
     sp.add_argument("--split", default="2026-03-01",
                     help="walk-forward split date (in- vs out-of-sample)")
     sp.add_argument("--horizon", type=int, default=30)
