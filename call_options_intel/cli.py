@@ -221,6 +221,35 @@ def cmd_early_filings(args) -> int:
     return 0
 
 
+def cmd_record_iv(args) -> int:
+    """Append today's ATM IV per ticker to the IV-history store (warmup builder)."""
+    from .scoring import _atm_iv
+    from .person_intel.iv_history import IVHistoryStore
+    pipe = _build_pipeline(args)
+    universe = pipe.universe_builder.build()
+    tickers = _split(args.tickers)
+    if tickers:
+        from .universe import UniverseBuilder
+        universe = UniverseBuilder.filter_tickers(universe, tickers)
+    store = IVHistoryStore(args.store)
+    iv_by_ticker: dict[str, float] = {}
+    for entry in universe:
+        snap = pipe.market.get_snapshot(entry.ticker)
+        contracts = pipe.options.get_call_contracts(
+            entry.ticker, snap.spot, snap.hist_vol_annual)
+        atm = _atm_iv(contracts)
+        if atm:
+            iv_by_ticker[entry.ticker] = atm
+    n = store.record_many(iv_by_ticker)
+    print(f"Recorded {n} ATM-IV observations -> {store.path}")
+    warm = [t for t in iv_by_ticker if store.rank(t, iv_by_ticker[t],
+            warmup_min_obs=args.warmup).warmed_up]
+    print(f"Warmed-up tickers (>= {args.warmup} obs): {len(warm)}"
+          + (f" — {', '.join(sorted(warm)[:10])}" if warm else
+             " (keep recording daily to warm up IV rank)"))
+    return 0
+
+
 def cmd_doctor(args) -> int:
     ok = True
     print("CALL-Options Intelligence — health check\n")
@@ -409,6 +438,14 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--since", type=int, default=30, help="lookback days")
     sp.add_argument("--limit", type=int, default=25)
     sp.set_defaults(func=cmd_early_filings)
+
+    sp = sub.add_parser("record-iv",
+                        help="append ATM IV per ticker to the IV-history store")
+    _common(sp)
+    sp.add_argument("--tickers", nargs="*")
+    sp.add_argument("--store", default="reports/iv_history.jsonl")
+    sp.add_argument("--warmup", type=int, default=20)
+    sp.set_defaults(func=cmd_record_iv)
 
     sp = sub.add_parser("doctor", help="health-check the install")
     sp.add_argument("--config-dir")
