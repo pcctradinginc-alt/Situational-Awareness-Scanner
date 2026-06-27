@@ -1,0 +1,112 @@
+name: Person-Intel Monitor (Thiel / Aschenbrenner)
+
+# Twice-daily radar for NEW Thiel / Aschenbrenner investment signals.
+# Times are chosen so both runs land in German morning / afternoon across DST:
+#   06:00 UTC  → 07:00 CET / 08:00 CEST  (morning)
+#   14:00 UTC  → 15:00 CET / 16:00 CEST  (afternoon)
+# It pulls the FREE SEC EDGAR submissions feed for every tracked vehicle,
+# de-duplicates against data/person_intel/seen_filings.json and emails ONLY when
+# a genuinely new filing-signal appears. EDGAR needs no key; email is optional
+# (Gmail secrets) and is skipped gracefully if unconfigured.
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+    - cron: '0 14 * * *'
+  workflow_dispatch:
+    inputs:
+      since_days:
+        description: 'Lookback window in days'
+        type: string
+        default: '14'
+      no_email:
+        description: 'Skip email (write digest only)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scanner-state          # share the state-commit lock with the other jobs
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    env:
+      PYTHONPATH: ${{ github.workspace }}
+      TZ: UTC
+      PYTHONUNBUFFERED: "1"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Create state directory
+        run: mkdir -p data/person_intel
+
+      - name: Pull latest changes
+        run: |
+          git config --global user.email "scanner@github-actions.local"
+          git config --global user.name "SA Scanner Bot"
+          git pull --rebase origin main || true
+
+      - name: Run person-intel monitor (live SEC, email only on NEW signal)
+        id: monitor
+        env:
+          GMAIL_USER:         ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          NOTIFY_EMAIL:       ${{ secrets.NOTIFY_EMAIL }}
+        run: |
+          SINCE="${{ inputs.since_days }}"
+          SINCE="${SINCE:-14}"
+          EMAIL_FLAG="--email"
+          if [ "${{ inputs.no_email }}" = "true" ]; then EMAIL_FLAG=""; fi
+
+          python -m call_options_intel person-monitor \
+            --live --since "$SINCE" $EMAIL_FLAG \
+            --state data/person_intel/seen_filings.json
+
+          # surface the new-signal count for the commit message
+          NEW=$(python -c "
+          import json
+          from pathlib import Path
+          f = Path('data/person_intel/last_run.json')
+          print(json.loads(f.read_text()).get('new_count', 0) if f.exists() else 0)
+          ")
+          echo "new_count=$NEW" >> $GITHUB_OUTPUT
+          echo "New person-signals: $NEW"
+
+      - name: Commit state
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: |
+            Person-Intel Monitor | New signals: ${{ steps.monitor.outputs.new_count }}
+          file_pattern: 'data/person_intel/'
+          commit_user_name: SA Scanner Bot
+          commit_user_email: scanner@github-actions.local
+          skip_dirty_check: false
+          push_options: '--force-with-lease'
+
+      - name: Upload debug on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: person-intel-debug-${{ github.run_number }}
+          path: data/person_intel/
+          retention-days: 7

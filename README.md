@@ -78,6 +78,34 @@ python -m call_options_intel scan --output reports/latest --person-intel \
 python -m call_options_intel outcomes-report --demo --min-sample 3
 ```
 
+#### 📡 Live person-signal radar (`person-monitor`)
+The twice-daily **radar**: it pulls the recent EDGAR feed for every tracked
+Thiel / Aschenbrenner vehicle, **de-duplicates against a persistent store**
+(`data/person_intel/seen_filings.json`) so each filing fires exactly once, and
+— with `--email` — sends a digest **only when there is a genuinely new signal**.
+
+```bash
+# offline dry-run (fixtures): show what the radar would report, persist nothing
+python -m call_options_intel person-monitor --dry-run --since 45
+
+# live SEC (free, no key); email ONLY on a new signal (Gmail secrets via env)
+python -m call_options_intel person-monitor --live --since 14 --email
+
+# keep only confirmed-vehicle signals (drop adjacent-network noise)
+python -m call_options_intel person-monitor --live --min-weight 0.75
+```
+
+Each alert keeps **facts and hypotheses typed apart**: the *filing* is a fact
+(accession + SEC URL); the derived *subject ticker* is asserted only when a
+check-digit-valid CUSIP maps with confidence (e.g. a Thiel SC 13D/A → `PLTR`),
+otherwise it stays `needs_human_review` — never guessed. A Form D is flagged as
+a **private / second-order** lead (no public ticker), and every mapped name
+carries its thesis-cluster **falsification condition**. Filings are graded by the
+controlled-path weight from a principal, so a confirmed Thiel vehicle outranks
+merely adjacent smart money. Runs automatically via
+[`.github/workflows/person_intel_monitor.yml`](.github/workflows/person_intel_monitor.yml)
+at 06:00 + 14:00 UTC (German morning / afternoon across DST).
+
 Statement classification can optionally use an LLM (extract/classify only, never
 the final word) via `ANTHROPIC_API_KEY` (env only); without it, a transparent
 keyword model is used. Subject→ticker resolution and the LLM path are both

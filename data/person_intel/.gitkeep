@@ -1,0 +1,4 @@
+# Person-intel monitor state (git-versioned signal archive)
+# seen_filings.json — accession-level dedup
+# history.jsonl     — append-only alert log
+# last_digest.md/.json — latest run output

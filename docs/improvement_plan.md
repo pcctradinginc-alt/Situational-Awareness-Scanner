@@ -157,6 +157,32 @@ the new sub-package. Branch/PR only — no `main` push, no secrets in the diff.
   - Remaining: live ADV/IAPD fetch; accumulate real paper outcomes to a genuine
     out-of-sample edge report; broaden Tier-A CUSIP coverage from an authoritative
     source; richer 13D/Form-D HTML parsing.
+- **Phase 5 (done) — the live twice-daily radar:**
+  - `person_intel/monitor.py` — `PersonMonitor` collects the recent EDGAR feed
+    for every tracked Thiel/Aschenbrenner CIK (reusing the injectable
+    `EdgarFastClient`: offline fixtures by default, live SEC on opt-in), classifies
+    each filing into a typed signal category (insider / new stake / passive stake /
+    private placement / quarterly 13F) with its early-vs-confirmation role, and
+    grades it by the controlled-path weight from a principal.
+  - **`SeenStore`** — append-only JSON dedup keyed by SEC accession number (the
+    git-versioned *historical signal archive*). A filing fires **exactly once**,
+    which is the basis for *email only on a NEW signal*.
+  - **Fact vs hypothesis stays typed:** the filing is a fact (accession + URL); the
+    subject ticker is asserted only when a CUSIP maps with confidence (e.g. Thiel
+    SC 13D/A → PLTR), else `needs_human_review`. Form D = private/second-order lead.
+  - `person_intel/monitor_report.py` — Markdown + Apple-style HTML digest that
+    separates facts from hypotheses and prints each cluster's falsification;
+    `send_person_email` (Gmail SMTP, **credentials from env only, never logged**)
+    sends **only when `new_count > 0`**; `monitor_and_notify` is the entrypoint.
+  - CLI `person-monitor` (`--live/--since/--email/--min-weight/--dry-run`);
+    `doctor` validates principals + tracked CIKs.
+  - `.github/workflows/person_intel_monitor.yml` runs 06:00 + 14:00 UTC (German
+    morning/afternoon across DST), live SEC (keyless), emails only on a new signal,
+    commits state under `data/person_intel/`. Email is optional and degrades
+    gracefully if Gmail secrets are absent.
+  - Tests: `tests/test_coi_person_monitor.py` — collection/typing, role honesty,
+    sourced-vs-unguessed subject, principal linkage, **dedup fires once**, dry-run
+    persists nothing, digest fact/hypothesis split, email-skipped-when-unconfigured.
 
 ## Acceptance
 
