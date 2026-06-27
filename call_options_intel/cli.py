@@ -43,7 +43,8 @@ def _build_pipeline(args) -> Pipeline:
     thesis_dir = getattr(args, "thesis_dir", None)
     thesis_paths = [thesis_dir] if thesis_dir else None
     return Pipeline(config=cfg, mode=mode, fixtures_dir=fixtures,
-                    thesis_paths=thesis_paths)
+                    thesis_paths=thesis_paths,
+                    iv_history=getattr(args, "iv_history", None))
 
 
 # ── commands ───────────────────────────────────────────────────────────────
@@ -426,6 +427,8 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--top-only", action="store_true")
     sp.add_argument("--person-intel", action="store_true",
                     help="also write a person-intelligence (research vs trade) panel")
+    sp.add_argument("--iv-history",
+                    help="IV-history store path; uses a real IV rank once warmed")
     sp.set_defaults(func=cmd_scan)
 
     sp = sub.add_parser("backtest", help="record / evaluate paper signals")

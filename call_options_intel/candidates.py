@@ -19,7 +19,9 @@ from .models import (
     OptionCandidate, OptionContract, RejectedCandidate, TickerEvaluation,
     UniverseEntry,
 )
-from .scoring import SignalEngine, _atm_iv, _clamp, iv_richness_assessment
+from .scoring import (
+    SignalEngine, _atm_iv, _clamp, _richness_str, iv_richness_assessment,
+)
 
 logger = logging.getLogger("coi.candidates")
 
@@ -36,7 +38,7 @@ class CandidateGenerator:
     def generate(
         self, ev: TickerEvaluation, entry: UniverseEntry,
         contracts: list[OptionContract], hist_vol: Optional[float],
-        earnings_in_days: Optional[int] = None,
+        earnings_in_days: Optional[int] = None, iv_rank: Optional[float] = None,
     ) -> tuple[list[OptionCandidate], list[RejectedCandidate]]:
         candidates: list[OptionCandidate] = []
         rejected: list[RejectedCandidate] = []
@@ -108,7 +110,8 @@ class CandidateGenerator:
                 continue
 
             cand = self._build_candidate(
-                ev, entry, c, zone, hist_vol, atm_iv, is_event, earnings_in_days)
+                ev, entry, c, zone, hist_vol, atm_iv, is_event, earnings_in_days,
+                iv_rank)
             candidates.append(cand)
 
         candidates.sort(key=lambda x: x.final_score, reverse=True)
@@ -116,9 +119,9 @@ class CandidateGenerator:
 
     # ── per-contract scoring ───────────────────────────────────────────
     def _build_candidate(self, ev, entry, c, zone, hist_vol, atm_iv,
-                         is_event, earnings_in_days) -> OptionCandidate:
+                         is_event, earnings_in_days, iv_rank=None) -> OptionCandidate:
         opt_score, opt_for, opt_against, opt_pen = self._contract_options_score(
-            c, zone, hist_vol, atm_iv)
+            c, zone, hist_vol, atm_iv, iv_rank)
 
         bd_components = {
             "thesis": ev.breakdown.thesis,
@@ -182,7 +185,7 @@ class CandidateGenerator:
             confidence_label=bd.confidence_label, paper_recommendation=paper,
         )
 
-    def _contract_options_score(self, c, zone, hist_vol, atm_iv):
+    def _contract_options_score(self, c, zone, hist_vol, atm_iv, iv_rank=None):
         reasons_for: list[str] = []
         reasons_against: list[str] = []
         penalties: dict[str, float] = {}
@@ -224,19 +227,22 @@ class CandidateGenerator:
         elif zone == "longer_dated_otm" and c.dte < self.dte.get("preferred_min", 60):
             reasons_against.append("aggressive OTM strike on short tenor")
 
-        # IV richness (per contract vs realised) — shared, configurable mapping
-        richness, iv_pct, band = iv_richness_assessment(c.iv, hist_vol, self.risk)
+        # IV richness: real IV percentile once warmed up, else realised-vol proxy.
+        richness, iv_pct, band = iv_richness_assessment(
+            c.iv, hist_vol, self.risk, iv_rank)
+        rich = _richness_str(richness, iv_pct)
+        ivs = f"{c.iv:.0%} " if c.iv else ""
         if band == "extreme":
             s -= 2.0
             penalties["extreme_iv"] = self.penalty_cfg.get("extreme_iv", 0.8)
-            reasons_against.append(f"IV {c.iv:.0%} very rich ({richness:.2f}x realised)")
+            reasons_against.append(f"IV {ivs}very rich ({rich})")
         elif band == "elevated":
             s -= 1.0
-            reasons_against.append(f"IV {c.iv:.0%} elevated ({richness:.2f}x realised)")
+            reasons_against.append(f"IV {ivs}elevated ({rich})")
         elif band == "mild":
-            reasons_against.append(f"IV {c.iv:.0%} somewhat rich ({richness:.2f}x realised)")
+            reasons_against.append(f"IV {ivs}somewhat rich ({rich})")
         elif band == "fair":
-            reasons_for.append(f"IV {c.iv:.0%} fair ({richness:.2f}x realised)")
+            reasons_for.append(f"IV {ivs}fair ({rich})")
         return round(_clamp(s), 2), reasons_for, reasons_against, penalties
 
     # ── helpers ─────────────────────────────────────────────────────────
