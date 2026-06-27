@@ -19,14 +19,23 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 from dataclasses import dataclass
 from datetime import date, datetime
 from pathlib import Path
-from typing import Callable, Optional, Protocol
+from typing import Optional, Protocol
 
-from .filings import FilingType, SignalRole, classify_form, filing_meta
+from .cusip_map import CusipMapper, is_valid_cusip
+from .filings import (
+    FilingType, SignalRole, classify_form, filing_meta, parse_form_d_xml,
+)
 
 logger = logging.getLogger("coi.person.edgar_fast")
+
+# 9-char CUSIP token; we validate the check digit before trusting any match.
+_CUSIP_TOKEN_RE = re.compile(r"\b([0-9A-Z]{9})\b")
+_ISSUER_LABEL_RE = re.compile(
+    r"Name of Issuer\s*[:)]?\s*\n?\s*([A-Z0-9][^\n<]{2,80})", re.IGNORECASE)
 
 EARLY_FORMS = {
     FilingType.FORM_4, FilingType.SC_13D, FilingType.SC_13D_A,
@@ -58,15 +67,24 @@ class UrllibFetcher:
 
 @dataclass
 class FixtureFetcher:
-    """Offline fetch — maps a submissions URL to a bundled JSON file."""
+    """Offline fetch — maps SEC URLs to bundled files.
+
+      .../submissions/CIK##########.json -> <fixtures>/edgar_submissions/<file>
+      .../Archives/.../<doc>             -> <fixtures>/edgar_documents/<doc-basename>
+    """
     fixtures_dir: Path
 
     def get(self, url: str) -> Optional[str]:
-        # .../submissions/CIK##########.json  ->  <fixtures>/edgar_submissions/<file>
-        name = url.rstrip("/").split("/")[-1]
-        path = Path(self.fixtures_dir) / "edgar_submissions" / name
+        u = url.rstrip("/")
+        name = u.split("/")[-1]
+        if "/submissions/" in u:
+            path = Path(self.fixtures_dir) / "edgar_submissions" / name
+        elif "/Archives/" in u:
+            path = Path(self.fixtures_dir) / "edgar_documents" / name
+        else:
+            return None
         if not path.exists():
-            logger.info("no submissions fixture for %s", name)
+            logger.info("no fixture for %s", name)
             return None
         return path.read_text(encoding="utf-8")
 
@@ -94,6 +112,41 @@ class FastFilingRef:
 
 def _norm_cik10(cik: str) -> str:
     return str(cik).strip().lstrip("0").rjust(10, "0")
+
+
+# ── subject resolution (Phase 3) ────────────────────────────────────────────
+@dataclass
+class ResolvedFiling:
+    ref: FastFilingRef
+    subject_issuer: Optional[str]
+    cusip: Optional[str]
+    mapped_ticker: Optional[str]
+    mapping_confidence: float
+    needs_human_review: bool
+    detail: str = ""
+
+
+def extract_cusip(text: str) -> Optional[str]:
+    """First check-digit-valid CUSIP token in the document text, if any."""
+    if not text:
+        return None
+    # prefer a token that appears right after a 'CUSIP' label
+    for m in re.finditer(r"CUSIP[^0-9A-Z]{0,12}([0-9A-Z]{9})", text, re.IGNORECASE):
+        tok = m.group(1).upper()
+        if is_valid_cusip(tok):
+            return tok
+    for m in _CUSIP_TOKEN_RE.finditer(text):
+        tok = m.group(1).upper()
+        if is_valid_cusip(tok):
+            return tok
+    return None
+
+
+def extract_issuer(text: str) -> Optional[str]:
+    if not text:
+        return None
+    m = _ISSUER_LABEL_RE.search(text)
+    return m.group(1).strip() if m else None
 
 
 class EdgarFastClient:
@@ -145,6 +198,41 @@ class EdgarFastClient:
         Form D) — the leading person-signals (vs 13F confirmation)."""
         return [r for r in self.recent_filings(cik, entity_name)
                 if r.filing_type in EARLY_FORMS]
+
+    def fetch_document(self, ref: FastFilingRef) -> Optional[str]:
+        return self.fetcher.get(ref.url) if ref.url else None
+
+    def resolve_subject(self, ref: FastFilingRef, mapper: CusipMapper,
+                        doc_text: Optional[str] = None) -> ResolvedFiling:
+        """Resolve a fast filing to the PUBLIC subject ticker (13D/G/Form 4) via
+        its document's CUSIP, or surface the private issuer (Form D).
+
+        Never guesses: an unmapped/uncertain subject stays needs_human_review.
+        """
+        text = doc_text if doc_text is not None else (self.fetch_document(ref) or "")
+
+        if ref.filing_type in (FilingType.FORM_D, FilingType.FORM_D_A):
+            fd = parse_form_d_xml(text) if text else None
+            issuer = fd.issuer_name if fd else None
+            return ResolvedFiling(
+                ref=ref, subject_issuer=issuer, cusip=None, mapped_ticker=None,
+                mapping_confidence=0.0, needs_human_review=True,
+                detail="private placement — no public ticker (issuer is the offeror)")
+
+        cusip = extract_cusip(text)
+        issuer = extract_issuer(text)
+        if not cusip:
+            return ResolvedFiling(
+                ref=ref, subject_issuer=issuer, cusip=None, mapped_ticker=None,
+                mapping_confidence=0.0, needs_human_review=True,
+                detail="no valid CUSIP found in document")
+        res = mapper.map_cusip(cusip, issuer or "")
+        return ResolvedFiling(
+            ref=ref, subject_issuer=issuer, cusip=cusip,
+            mapped_ticker=res.mapped_ticker, mapping_confidence=res.confidence,
+            needs_human_review=res.needs_human_review,
+            detail=f"{ref.filing_type.value} subject via CUSIP "
+                   f"({res.mapping_source})")
 
 
 class FastFilingMonitor:

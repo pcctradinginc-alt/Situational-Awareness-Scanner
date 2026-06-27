@@ -223,12 +223,27 @@ def cmd_early_filings(args) -> int:
             print("(offline; pass --live to query SEC EDGAR — free, descriptive "
                   "User-Agent from config/data_sources.yml, no key)")
         return 0
+    mapper = None
+    if getattr(args, "resolve", False):
+        from .person_intel.cusip_map import load_mapper
+        mapper = load_mapper(cfg.config_dir)
     print(f"FAST filings (last {args.since}d) — leading person-signals vs 13F:\n")
-    print(f"{'DATE':12s} {'FORM':10s} {'ROLE':<12s} {'AGE':>4s}  ENTITY")
+    hdr = f"{'DATE':12s} {'FORM':10s} {'ROLE':<12s} {'AGE':>4s}  ENTITY"
+    print(hdr + ("  → SUBJECT" if mapper else ""))
     for r in feed[: args.limit]:
         age = r.age_days()
-        print(f"{r.filing_date:12s} {r.form:10s} {r.role.value:<12s} "
-              f"{(age if age is not None else '?'):>4}  {r.entity}")
+        line = (f"{r.filing_date:12s} {r.form:10s} {r.role.value:<12s} "
+                f"{(age if age is not None else '?'):>4}  {r.entity}")
+        if mapper:
+            res = client.resolve_subject(r, mapper)
+            if res.mapped_ticker:
+                tag = "" if not res.needs_human_review else " (review)"
+                line += f"  → {res.mapped_ticker} ({res.mapping_confidence:.2f}){tag}"
+            elif res.subject_issuer:
+                line += f"  → {res.subject_issuer} (no ticker)"
+            else:
+                line += "  → (unresolved)"
+        print(line)
     return 0
 
 
@@ -450,6 +465,8 @@ def build_parser() -> argparse.ArgumentParser:
                     help="query SEC EDGAR (free) instead of offline fixtures")
     sp.add_argument("--since", type=int, default=30, help="lookback days")
     sp.add_argument("--limit", type=int, default=25)
+    sp.add_argument("--resolve", action="store_true",
+                    help="resolve each filing's subject company to a ticker")
     sp.set_defaults(func=cmd_early_filings)
 
     sp = sub.add_parser("record-iv",
