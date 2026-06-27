@@ -1,0 +1,162 @@
+# Entity graph — tracked people and the vehicles that carry their signal.
+# ----------------------------------------------------------------------
+# Goal A. FACTS and HYPOTHESES are typed separately (`is_fact`), and every
+# relation carries its own `confidence`. Person-scoring discounts a signal by
+# the confidence of the controlled-entity PATH it travels through, so a position
+# held by a CONFIRMED controlled vehicle counts more than one held by a merely
+# HYPOTHESISED affiliate.
+#
+# `evidence` is a SHORT pointer (filer note / public-record description) — never
+# stored full third-party text. CIKs mirror config/investors_13f.yml (verified
+# against SEC EDGAR submissions API 2026-06-25).
+#
+# confidence ∈ {confirmed, high, medium, low, speculative}
+# type       ∈ {person, fund, management_company, growth_fund,
+#               portfolio_company, index_proxy}
+
+entities:
+  # ── Aschenbrenner universe ──────────────────────────────────────────
+  - id: aschenbrenner
+    name: "Leopold Aschenbrenner"
+    type: person
+    aliases: ["Leopold Aschenbrenner"]
+    tags: [frontier_model_race, national_security_ai_race, compute_scarcity]
+    notes: "Author of 'Situational Awareness — The Decade Ahead'."
+  - id: sa_lp
+    name: "Situational Awareness LP"
+    type: fund
+    cik: "0002045724"
+    aliases: ["Situational Awareness", "SA LP"]
+    files: [13F-HR]
+    tags: [compute_scarcity, frontier_model_race, ai_data_centers]
+  - id: sa_partners_lp
+    name: "Situational Awareness Partners LP"
+    type: fund
+    cik: "0002038540"
+    files: [13F-HR]
+    tags: [compute_scarcity, frontier_model_race]
+
+  # ── Thiel network ───────────────────────────────────────────────────
+  - id: thiel
+    name: "Peter Thiel"
+    type: person
+    cik: "0001211060"
+    files: [Form 4, SC 13D, SC 13G]
+    tags: [national_security_ai_race, automation_robotics, frontier_model_race]
+    notes: "Personal insider trades (e.g. Palantir) are the most timely signal."
+  - id: thiel_macro
+    name: "Thiel Macro LLC"
+    type: fund
+    cik: "0001562087"
+    aliases: ["Thiel Capital", "Thiel Capital LLC", "Thiel Macro"]
+    files: [13F-HR]
+    tags: [national_security_ai_race]
+  - id: founders_fund_iv
+    name: "Founders Fund IV Management LLC"
+    type: management_company
+    cik: "0001616081"
+    files: [13F-HR]
+    tags: [automation_robotics, national_security_ai_race]
+  - id: founders_fund_v
+    name: "Founders Fund V Management LLC"
+    type: management_company
+    cik: "0001697733"
+    aliases: ["Founders Fund", "Founders Fund V"]
+    files: [13F-HR, SC 13G]
+    tags: [automation_robotics, frontier_model_race]
+  - id: mithril
+    name: "Mithril LP"
+    type: growth_fund
+    cik: "0001552273"
+    files: [SC 13D, SC 13G, Form 4]
+    tags: [automation_robotics]
+  - id: mithril_ii
+    name: "Mithril II LP"
+    type: growth_fund
+    cik: "0001669609"
+    files: [SC 13D, SC 13G, Form 4]
+    tags: [automation_robotics]
+
+  # ── Portfolio company & benchmark proxies ───────────────────────────
+  - id: palantir
+    name: "Palantir Technologies"
+    type: portfolio_company
+    tags: [national_security_ai_race, automation_robotics]
+    notes: "Ticker PLTR. Thiel personal + Founders Fund exposure."
+  - id: qqq
+    name: "Invesco QQQ Trust"
+    type: index_proxy
+    notes: "Nasdaq-100 benchmark for outcome attribution."
+  - id: soxx
+    name: "iShares Semiconductor ETF"
+    type: index_proxy
+    notes: "Semis benchmark for outcome attribution."
+
+relations:
+  # ── facts (sourced) ─────────────────────────────────────────────────
+  - source: aschenbrenner
+    target: sa_lp
+    kind: founder_manager
+    confidence: confirmed
+    is_fact: true
+    evidence: "13F-HR filer named after his thesis; public reporting."
+  - source: sa_lp
+    target: sa_partners_lp
+    kind: affiliated_entity
+    confidence: high
+    is_fact: true
+    evidence: "Sister entity; both file 13F-HR (2026-05-18)."
+  - source: thiel
+    target: thiel_macro
+    kind: controls
+    confidence: confirmed
+    is_fact: true
+    evidence: "Thiel public-equity vehicle; 13F-HR filer."
+  - source: thiel
+    target: founders_fund_iv
+    kind: cofounded
+    confidence: confirmed
+    is_fact: true
+    evidence: "Founders Fund co-founder; vintage IV management co."
+  - source: thiel
+    target: founders_fund_v
+    kind: cofounded
+    confidence: confirmed
+    is_fact: true
+    evidence: "Founders Fund co-founder; vintage V management co."
+  - source: founders_fund_iv
+    target: founders_fund_v
+    kind: successor_vintage
+    confidence: high
+    is_fact: true
+  - source: thiel
+    target: mithril
+    kind: cofounded
+    confidence: confirmed
+    is_fact: true
+    evidence: "Thiel co-founded Mithril; growth fund (13D/G + Form 4)."
+  - source: mithril
+    target: mithril_ii
+    kind: successor_vintage
+    confidence: high
+    is_fact: true
+  - source: thiel
+    target: palantir
+    kind: personal_holding
+    confidence: confirmed
+    is_fact: true
+    evidence: "Form 4 insider filings; Palantir co-founder/chairman history."
+
+  # ── hypotheses (reasoned, NOT confirmed) ────────────────────────────
+  - source: thiel
+    target: aschenbrenner
+    kind: ideological_alignment
+    confidence: medium
+    is_fact: false
+    evidence: "Thematic overlap (AI national-security race); no control link."
+  - source: founders_fund_v
+    target: palantir
+    kind: fund_exposure
+    confidence: medium
+    is_fact: false
+    evidence: "Plausible continued exposure; verify via filings, not assumed."

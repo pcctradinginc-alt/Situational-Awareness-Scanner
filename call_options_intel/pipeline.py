@@ -37,12 +37,21 @@ class Pipeline:
         fixtures_dir: str | Path | None = None,
         thesis_paths: Optional[list[str]] = None,
         today: Optional[date] = None,
+        iv_history=None,
     ):
         self.cfg = config or AppConfig()
         self.mode = mode or self.cfg.mode
         self.fixtures_dir = Path(fixtures_dir) if fixtures_dir else DEFAULT_FIXTURES
         self.today = today or date.today()
         self.thesis_paths = thesis_paths
+
+        # Optional IV-history store: once a ticker is warmed up, its real IV
+        # percentile replaces the realised-vol proxy in options scoring.
+        self.iv_store = None
+        if iv_history is not None:
+            from .person_intel.iv_history import IVHistoryStore
+            self.iv_store = (iv_history if hasattr(iv_history, "rank")
+                             else IVHistoryStore(iv_history))
 
         self.universe_builder = UniverseBuilder(self.cfg.universe)
         self.thesis_analyzer = ThesisAnalyzer()
@@ -98,6 +107,14 @@ class Pipeline:
                 "note": "calm/normal favours buying calls; elevated/stress = "
                         "richer IV, prefer spreads or wait."}
 
+    # ── IV rank (post-warmup) ──────────────────────────────────────────
+    def _iv_rank(self, ticker: str, contracts) -> Optional[float]:
+        if not self.iv_store:
+            return None
+        from .scoring import _atm_iv
+        r = self.iv_store.rank(ticker, _atm_iv(contracts))
+        return r.rank if r.warmed_up else None
+
     # ── catalysts ──────────────────────────────────────────────────────
     def _catalysts(self, ticker: str, change, earnings_days: dict[str, int]) -> list[str]:
         out: list[str] = []
@@ -134,9 +151,10 @@ class Pipeline:
                 entry.ticker, snap.spot, snap.hist_vol_annual)
             change = changes.get(entry.ticker)
             catalysts = self._catalysts(entry.ticker, change, earnings_days)
+            iv_rank = self._iv_rank(entry.ticker, contracts)
 
             ev = self.engine.evaluate_ticker(
-                entry, thesis_vec, snap, change, contracts, catalysts)
+                entry, thesis_vec, snap, change, contracts, catalysts, iv_rank)
             result.evaluations.append(ev)
 
             if "no_market_data" in (snap.data_flags or []):
@@ -148,7 +166,8 @@ class Pipeline:
                 result.watchlist.append(ev)
 
             cands, rejected = self.candidate_gen.generate(
-                ev, entry, contracts, snap.hist_vol_annual, earnings_days.get(entry.ticker))
+                ev, entry, contracts, snap.hist_vol_annual,
+                earnings_days.get(entry.ticker), iv_rank)
             result.candidates.extend(cands)
             result.rejected_contracts.extend(rejected)
 
@@ -188,9 +207,11 @@ class Pipeline:
             entry.ticker, snap.spot, snap.hist_vol_annual)
         change = changes.get(entry.ticker)
         catalysts = self._catalysts(entry.ticker, change, earnings_days)
+        iv_rank = self._iv_rank(entry.ticker, contracts)
         ev = self.engine.evaluate_ticker(
-            entry, thesis_vec, snap, change, contracts, catalysts)
+            entry, thesis_vec, snap, change, contracts, catalysts, iv_rank)
         cands, rejected = self.candidate_gen.generate(
-            ev, entry, contracts, snap.hist_vol_annual, earnings_days.get(entry.ticker))
+            ev, entry, contracts, snap.hist_vol_annual,
+            earnings_days.get(entry.ticker), iv_rank)
         return {"evaluation": ev, "candidates": cands, "rejected": rejected,
                 "snapshot": snap, "n_contracts": len(contracts)}

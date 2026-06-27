@@ -43,7 +43,8 @@ def _build_pipeline(args) -> Pipeline:
     thesis_dir = getattr(args, "thesis_dir", None)
     thesis_paths = [thesis_dir] if thesis_dir else None
     return Pipeline(config=cfg, mode=mode, fixtures_dir=fixtures,
-                    thesis_paths=thesis_paths)
+                    thesis_paths=thesis_paths,
+                    iv_history=getattr(args, "iv_history", None))
 
 
 # ── commands ───────────────────────────────────────────────────────────────
@@ -66,6 +67,17 @@ def cmd_scan(args) -> int:
     if args.record:
         store = SignalStore(args.store)
         store.record(result, horizon_days=args.horizon, only_top=args.top_only)
+
+    if getattr(args, "person_intel", False):
+        from .person_intel.runner import run_person_intel
+        rows = run_person_intel(config=pipe.cfg, fixtures_dir=pipe.fixtures_dir,
+                                today=pipe.today, only_tickers=tickers)
+        written["person_intel_md"] = out_dir / f"{stem_path.name}_person_intel.md"
+        written["person_intel_md"].write_text(
+            gen.person_intel_markdown(rows), encoding="utf-8")
+        written["person_intel_json"] = out_dir / f"{stem_path.name}_person_intel.json"
+        written["person_intel_json"].write_text(
+            gen.person_intel_json(rows), encoding="utf-8")
 
     print(f"\n{DISCLAIMER}\n")
     print(f"Scan ({result.mode}): {len(result.candidates)} candidates, "
@@ -168,6 +180,176 @@ def cmd_explain(args) -> int:
     return 0
 
 
+def cmd_person_intel(args) -> int:
+    """Run the offline person-intelligence layer (entity→evidence→proxy→score)."""
+    from .person_intel.runner import run_person_intel
+    cfg = AppConfig(config_dir=Path(args.config_dir) if args.config_dir else CONFIG_DIR)
+    fixtures = getattr(args, "fixtures_dir", None) or DEFAULT_FIXTURES
+    rows = run_person_intel(config=cfg, fixtures_dir=fixtures,
+                            only_tickers=_split(args.tickers))
+    if not rows:
+        print("No person-linked candidates (no tracked holdings / proxies match).")
+        return 0
+    print(f"\n{DISCLAIMER}\n")
+    print("PERSON-INTELLIGENCE — research signal vs trade candidate (thesis ≠ trade)\n")
+    print(f"{'TICKER':7s} {'RESEARCH':>8s} {'label':<8s} {'TRADE':>6s} {'label':<10s} "
+          f"{'CLUSTER':<14s} HELD-BY / FALSIFICATION")
+    for r in rows[: args.limit]:
+        s = r.score
+        held = ", ".join(r.held_by) or "—"
+        print(f"{s.ticker:7s} {s.final_research_score:8.2f} {s.research_label:<8s} "
+              f"{s.final_trade_candidate_score:6.2f} {s.trade_label:<10s} "
+              f"{r.dominant_cluster:<14s} {held}")
+        print(f"        ↳ falsify: {s.falsification}")
+    print("\nResearch = people did/said X (verified) mapping to a public proxy.")
+    print("Trade    = research GATED by market timing + options quality, CAPPED by "
+          "verification. A strong thesis is not a trade.")
+    return 0
+
+
+def cmd_early_filings(args) -> int:
+    """Recent FAST EDGAR filings (Form 4 / 13D-G / Form D) — leading person-signals."""
+    from .person_intel.edgar_fast import FastFilingMonitor, load_fast_client
+    cfg = AppConfig(config_dir=Path(args.config_dir) if args.config_dir else CONFIG_DIR)
+    mode = "live" if getattr(args, "live", False) else cfg.mode
+    fixtures = getattr(args, "fixtures_dir", None) or DEFAULT_FIXTURES
+    client = load_fast_client(cfg.data_sources, mode, fixtures)
+    managers = cfg.investors.get("managers", []) or []
+    feed = FastFilingMonitor(client).feed(managers, since_days=args.since)
+    print(f"\n{DISCLAIMER}\n")
+    if not feed:
+        where = "live SEC EDGAR" if mode == "live" else "offline submissions fixtures"
+        print(f"No fast filings in the last {args.since}d ({where}).")
+        if mode != "live":
+            print("(offline; pass --live to query SEC EDGAR — free, descriptive "
+                  "User-Agent from config/data_sources.yml, no key)")
+        return 0
+    mapper = None
+    if getattr(args, "resolve", False):
+        from .person_intel.cusip_map import load_mapper
+        mapper = load_mapper(cfg.config_dir)
+    print(f"FAST filings (last {args.since}d) — leading person-signals vs 13F:\n")
+    hdr = f"{'DATE':12s} {'FORM':10s} {'ROLE':<12s} {'AGE':>4s}  ENTITY"
+    print(hdr + ("  → SUBJECT" if mapper else ""))
+    for r in feed[: args.limit]:
+        age = r.age_days()
+        line = (f"{r.filing_date:12s} {r.form:10s} {r.role.value:<12s} "
+                f"{(age if age is not None else '?'):>4}  {r.entity}")
+        if mapper:
+            res = client.resolve_subject(r, mapper)
+            if res.mapped_ticker:
+                tag = "" if not res.needs_human_review else " (review)"
+                line += f"  → {res.mapped_ticker} ({res.mapping_confidence:.2f}){tag}"
+            elif res.subject_issuer:
+                line += f"  → {res.subject_issuer} (no ticker)"
+            else:
+                line += "  → (unresolved)"
+        print(line)
+    return 0
+
+
+def cmd_record_iv(args) -> int:
+    """Append today's ATM IV per ticker to the IV-history store (warmup builder)."""
+    from .scoring import _atm_iv
+    from .person_intel.iv_history import IVHistoryStore
+    pipe = _build_pipeline(args)
+    universe = pipe.universe_builder.build()
+    tickers = _split(args.tickers)
+    if tickers:
+        from .universe import UniverseBuilder
+        universe = UniverseBuilder.filter_tickers(universe, tickers)
+    store = IVHistoryStore(args.store)
+    iv_by_ticker: dict[str, float] = {}
+    for entry in universe:
+        snap = pipe.market.get_snapshot(entry.ticker)
+        contracts = pipe.options.get_call_contracts(
+            entry.ticker, snap.spot, snap.hist_vol_annual)
+        atm = _atm_iv(contracts)
+        if atm:
+            iv_by_ticker[entry.ticker] = atm
+    n = store.record_many(iv_by_ticker)
+    print(f"Recorded {n} ATM-IV observations -> {store.path}")
+    warm = [t for t in iv_by_ticker if store.rank(t, iv_by_ticker[t],
+            warmup_min_obs=args.warmup).warmed_up]
+    print(f"Warmed-up tickers (>= {args.warmup} obs): {len(warm)}"
+          + (f" — {', '.join(sorted(warm)[:10])}" if warm else
+             " (keep recording daily to warm up IV rank)"))
+    return 0
+
+
+def cmd_outcomes_report(args) -> int:
+    """Multi-horizon outcome summary + walk-forward guard (no edge claim without
+    a sufficient out-of-sample fold)."""
+    import json as _json
+    from .person_intel.outcomes import (
+        OutcomeStore, summarize, walk_forward_guard,
+    )
+    store = OutcomeStore(args.store)
+    price_fn = bench_fn = price_at = None
+    approx = False
+    if args.demo:
+        price_map = _seed_outcomes_demo(store)
+        price_fn = lambda t, h: price_map.get(t)        # noqa: E731
+        bench_fn = lambda s, h: 0.03                     # noqa: E731
+    elif args.live or args.historical:
+        # date-aware REAL per-horizon pricing (Stooq live or offline CSV fixtures)
+        from .person_intel.historical import HistoricalPriceProvider
+        fixtures = getattr(args, "fixtures_dir", None) or DEFAULT_FIXTURES
+        prov = HistoricalPriceProvider(
+            mode=("live" if args.live else "offline"), fixtures_dir=fixtures)
+        price_at = prov.make_price_at()
+    else:
+        pipe = _build_pipeline(args)
+        # No per-horizon history available -> approximate with current spot for
+        # every horizon (flagged). Pass --historical/--live for real pricing.
+        price_fn = lambda t, h: pipe.market.get_snapshot(t).spot  # noqa: E731
+        approx = True
+    evaluated = store.evaluate(price_fn=price_fn, benchmark_fn=bench_fn,
+                               price_at=price_at)
+    report = {
+        "summary": summarize(evaluated),
+        "walk_forward": walk_forward_guard(
+            evaluated, split_date=args.split, horizon=args.horizon,
+            min_sample=args.min_sample),
+    }
+    print(_json.dumps(report, indent=2))
+    print(f"\n{DISCLAIMER}")
+    if approx and report["summary"].get("n"):
+        print("\n⚠️  per-horizon prices approximated by current spot — "
+              "pass --historical or --live for real per-horizon pricing.")
+    return 0
+
+
+def _seed_outcomes_demo(store) -> dict:
+    """Seed a small in-/out-of-sample store (incl. a rejected name) for the demo."""
+    from datetime import datetime, timedelta, timezone
+
+    def iso(days_ago):
+        return (datetime.now(timezone.utc) - timedelta(days=days_ago)).isoformat()
+
+    rows = []
+    for i in range(4):  # in-sample (before 2026-03-01 split), winners
+        rows.append({"recorded_at": iso(190), "ticker": f"IS{i}", "strike": 100,
+                     "entry_spot": 100, "entry_premium": 6.0, "entry_delta": 0.45,
+                     "final_score": 7.5, "source": "13D", "thesis_cluster": "compute",
+                     "regime": "normal", "label": "candidate"})
+    for i in range(4):  # out-of-sample (after split), winners
+        rows.append({"recorded_at": iso(100), "ticker": f"OOS{i}", "strike": 100,
+                     "entry_spot": 100, "entry_premium": 6.0, "entry_delta": 0.45,
+                     "final_score": 7.5, "source": "Form 4", "thesis_cluster": "power_grid",
+                     "regime": "normal", "label": "candidate"})
+    rows.append({"recorded_at": iso(100), "ticker": "BADCO", "strike": 100,
+                 "entry_spot": 100, "entry_premium": 6.0, "entry_delta": 0.45,
+                 "final_score": 2.0, "source": "13F", "thesis_cluster": "compute",
+                 "regime": "normal", "label": "rejected"})
+    store.record_many(rows)
+    # winners up ~25%, the rejected name fell -> system correctly avoided it
+    pm = {f"IS{i}": 125.0 for i in range(4)}
+    pm.update({f"OOS{i}": 125.0 for i in range(4)})
+    pm["BADCO"] = 70.0
+    return pm
+
+
 def cmd_doctor(args) -> int:
     ok = True
     print("CALL-Options Intelligence — health check\n")
@@ -179,6 +361,28 @@ def cmd_doctor(args) -> int:
         _line("config warning", False, w)  # informational; does not fail doctor
     _line("universe tickers", bool(cfg.universe.get("tickers")),
           f"{len(cfg.universe.get('tickers', []))} tickers")
+
+    # person-intelligence configs (Goals A/D/F)
+    try:
+        from .person_intel.entities import load_graph
+        from .person_intel.cusip_map import load_mapper
+        from .person_intel.proxy_map import load_proxy_map, THESIS_CLUSTERS
+        g = load_graph(cfg.config_dir)
+        _line("entity graph", bool(g.entities),
+              f"{len(g.entities)} entities, {len(g.facts())} facts, "
+              f"{len(g.hypotheses())} hypotheses")
+        m = load_mapper(cfg.config_dir)
+        _line("cusip map", bool(m.explicit), f"{len(m.explicit)} curated CUSIPs")
+        pm = load_proxy_map(cfg.config_dir)
+        cover = all(c in pm.clusters for c in THESIS_CLUSTERS)
+        _line("proxy map clusters", cover,
+              f"{len(pm.clusters)} clusters")
+        _line("proxy falsification complete", not pm.warnings,
+              "; ".join(pm.warnings) if pm.warnings else "every cluster has one")
+        ok = ok and cover and not pm.warnings
+    except Exception as exc:  # pragma: no cover - defensive
+        _line("person-intel configs", False, str(exc))
+        ok = False
 
     fx = DEFAULT_FIXTURES
     for sub in ("market/market_fixture.json", "options/options_fixture.json"):
@@ -231,8 +435,9 @@ def _grep_dangerous(root: Path) -> list[str]:
                "place_stock_order", "broker.execute", "live_trade(")
     self_name = Path(__file__).name
     hits = []
-    for f in root.glob("*.py"):
-        if f.name == self_name:
+    # rglob so the whole package (incl. person_intel/) is scanned, not just the top
+    for f in root.rglob("*.py"):
+        if f.name == self_name or "__pycache__" in f.parts:
             continue
         text = f.read_text(encoding="utf-8", errors="ignore").lower()
         for n in needles:
@@ -293,6 +498,10 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--store", default="reports/signals.jsonl")
     sp.add_argument("--horizon", type=int, default=30)
     sp.add_argument("--top-only", action="store_true")
+    sp.add_argument("--person-intel", action="store_true",
+                    help="also write a person-intelligence (research vs trade) panel")
+    sp.add_argument("--iv-history",
+                    help="IV-history store path; uses a real IV rank once warmed")
     sp.set_defaults(func=cmd_scan)
 
     sp = sub.add_parser("backtest", help="record / evaluate paper signals")
@@ -315,6 +524,48 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("ticker")
     sp.add_argument("--thesis-dir")
     sp.set_defaults(func=cmd_explain)
+
+    sp = sub.add_parser("person-intel",
+                        help="person-intelligence: research vs trade (thesis≠trade)")
+    sp.add_argument("--config-dir")
+    sp.add_argument("--fixtures-dir")
+    sp.add_argument("--tickers", nargs="*", help="restrict to these tickers")
+    sp.add_argument("--limit", type=int, default=15)
+    sp.set_defaults(func=cmd_person_intel)
+
+    sp = sub.add_parser("early-filings",
+                        help="recent FAST EDGAR filings (Form 4 / 13D-G / Form D)")
+    sp.add_argument("--config-dir")
+    sp.add_argument("--fixtures-dir")
+    sp.add_argument("--live", action="store_true",
+                    help="query SEC EDGAR (free) instead of offline fixtures")
+    sp.add_argument("--since", type=int, default=30, help="lookback days")
+    sp.add_argument("--limit", type=int, default=25)
+    sp.add_argument("--resolve", action="store_true",
+                    help="resolve each filing's subject company to a ticker")
+    sp.set_defaults(func=cmd_early_filings)
+
+    sp = sub.add_parser("outcomes-report",
+                        help="multi-horizon outcomes + walk-forward edge guard")
+    _common(sp)
+    sp.add_argument("--store", default="reports/outcomes.jsonl")
+    sp.add_argument("--demo", action="store_true",
+                    help="seed a synthetic in/out-of-sample store and report on it")
+    sp.add_argument("--historical", action="store_true",
+                    help="real per-horizon pricing from offline historical CSV fixtures")
+    sp.add_argument("--split", default="2026-03-01",
+                    help="walk-forward split date (in- vs out-of-sample)")
+    sp.add_argument("--horizon", type=int, default=30)
+    sp.add_argument("--min-sample", type=int, default=30)
+    sp.set_defaults(func=cmd_outcomes_report)
+
+    sp = sub.add_parser("record-iv",
+                        help="append ATM IV per ticker to the IV-history store")
+    _common(sp)
+    sp.add_argument("--tickers", nargs="*")
+    sp.add_argument("--store", default="reports/iv_history.jsonl")
+    sp.add_argument("--warmup", type=int, default=20)
+    sp.set_defaults(func=cmd_record_iv)
 
     sp = sub.add_parser("doctor", help="health-check the install")
     sp.add_argument("--config-dir")

@@ -1,0 +1,80 @@
+# CUSIP → ticker map (Goal D).
+# ----------------------------
+# Curated, check-digit-verified CUSIPs for the AI-infra universe. Every entry is
+# resolved WITH a confidence + source; anything not here falls back to a fuzzy
+# name heuristic (always needs_human_review) or returns no match. There is no
+# "match without confidence".
+#
+# All 9-digit CUSIPs below pass the modulus-10 check-digit test (verified
+# 2026-06-26). Re-verify before relying on live data; CUSIPs can be reissued.
+
+mapping_floor: 0.6      # below this confidence -> needs_human_review
+
+cusips:
+  "67066G104": {ticker: NVDA, source: curated_verified, confidence: 0.97}
+  "594918104": {ticker: MSFT, source: curated_verified, confidence: 0.97}
+  "037833100": {ticker: AAPL, source: curated_verified, confidence: 0.97}
+  "11135F101": {ticker: AVGO, source: curated_verified, confidence: 0.97}
+  "595112103": {ticker: MU,   source: curated_verified, confidence: 0.97}
+  "874039100": {ticker: TSM,  source: curated_verified, confidence: 0.95}  # ADR
+  "69608A108": {ticker: PLTR, source: curated_verified, confidence: 0.97}
+  "007903107": {ticker: AMD,  source: curated_verified, confidence: 0.97}
+  "92840M102": {ticker: VST,  source: curated_verified, confidence: 0.97}
+  "21037T109": {ticker: CEG,  source: curated_verified, confidence: 0.97}
+  "040413106": {ticker: ANET, source: curated_verified, confidence: 0.97}
+  "92537N108": {ticker: VRT,  source: curated_verified, confidence: 0.97}
+  # ── widened set (check-digit-validated 2026-06-27; well-documented large caps)
+  "573874104": {ticker: MRVL, source: curated_verified, confidence: 0.95}
+  "038222105": {ticker: AMAT, source: curated_verified, confidence: 0.95}
+  "512807108": {ticker: LRCX, source: curated_verified, confidence: 0.95}
+  "17275R102": {ticker: CSCO, source: curated_verified, confidence: 0.95}
+  "253868103": {ticker: DLR,  source: curated_verified, confidence: 0.95}
+  "02079K305": {ticker: GOOGL, source: curated_verified, confidence: 0.95}
+  "023135106": {ticker: AMZN, source: curated_verified, confidence: 0.95}
+  "30303M102": {ticker: META, source: curated_verified, confidence: 0.95}
+  "629377508": {ticker: NRG,  source: curated_verified, confidence: 0.95}
+  "697435105": {ticker: PANW, source: curated_verified, confidence: 0.95}
+  "22788C105": {ticker: CRWD, source: curated_verified, confidence: 0.95}
+  "833445109": {ticker: SNOW, source: curated_verified, confidence: 0.95}
+  "880770102": {ticker: TER,  source: curated_verified, confidence: 0.95}
+  "N07059210": {ticker: ASML, source: curated_verified, confidence: 0.93}  # CINS
+  "G29183103": {ticker: ETN,  source: curated_verified, confidence: 0.93}  # CINS
+  "46090E103": {ticker: QQQ,  source: curated_verified, confidence: 0.95}  # ETF
+  "92189F676": {ticker: SMH,  source: curated_verified, confidence: 0.93}  # ETF
+  # NOTE: GEV / EQIX / SMCI are intentionally NOT given explicit CUSIPs here —
+  # their numbers could not be authoritatively confirmed in-session, and a wrong
+  # CUSIP key could mis-map another security. They resolve via the name heuristic
+  # below instead (always needs_human_review). Add them once verified.
+
+# Fuzzy fallbacks (issuer-name substring -> ticker). Medium confidence only and
+# ALWAYS flagged for human review — names collide and change.
+name_hints:
+  "nvidia": NVDA
+  "advanced micro": AMD
+  "taiwan semiconductor": TSM
+  "broadcom": AVGO
+  "micron": MU
+  "vistra": VST
+  "constellation energy": CEG
+  "palantir": PLTR
+  "microsoft": MSFT
+  "arista": ANET
+  "vertiv": VRT
+  "marvell": MRVL
+  "applied materials": AMAT
+  "lam research": LRCX
+  "cisco": CSCO
+  "digital realty": DLR
+  "alphabet": GOOGL
+  "amazon": AMZN
+  "meta platforms": META
+  "nrg energy": NRG
+  "palo alto": PANW
+  "crowdstrike": CRWD
+  "snowflake": SNOW
+  "teradyne": TER
+  "asml": ASML
+  "eaton": ETN
+  "ge vernova": GEV
+  "equinix": EQIX
+  "super micro": SMCI

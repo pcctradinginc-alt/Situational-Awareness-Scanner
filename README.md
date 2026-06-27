@@ -50,11 +50,70 @@ python -m call_options_intel update-13f
 python -m call_options_intel backtest demo --store reports/signals.jsonl
 ```
 
+### Person-Intelligence-Layer 🆕 (`call_options_intel/person_intel/`)
+Tracks the **people** behind the thesis (Aschenbrenner / Situational Awareness LP,
+Thiel / Founders Fund / Thiel Capital / Mithril), not just the AI-infra narrative.
+Strict, auditable dataflow — **thesis ≠ trade**:
+
+```
+Entity graph → 13F/13D/Form-D signal → verification → thesis proxy
+             → market/options timing → final_research_score vs final_trade_candidate_score
+```
+
+```bash
+# research signal vs trade candidate (offline), with falsification per row
+python -m call_options_intel person-intel --limit 15
+python -m call_options_intel person-intel --tickers NVDA CEG TSM
+
+# recent FAST filings — leading person-signals; --resolve maps the subject→ticker
+python -m call_options_intel early-filings --since 30 --resolve
+python -m call_options_intel early-filings --since 30 --live --resolve
+
+# build IV-history warmup (run daily); a warmed store feeds a REAL IV rank into scoring
+python -m call_options_intel record-iv --store reports/iv_history.jsonl
+python -m call_options_intel scan --output reports/latest --person-intel \
+    --iv-history reports/iv_history.jsonl
+
+# multi-horizon outcomes + walk-forward edge guard (demo seeds a synthetic store)
+python -m call_options_intel outcomes-report --demo --min-sample 3
+```
+
+Statement classification can optionally use an LLM (extract/classify only, never
+the final word) via `ANTHROPIC_API_KEY` (env only); without it, a transparent
+keyword model is used. Subject→ticker resolution and the LLM path are both
+off-by-default and degrade gracefully.
+
+Building blocks (all offline, deterministic, additive, never trade):
+- **Entity graph** (`config/entity_graph.yml`) — confidence levels, facts vs
+  hypotheses, path-confidence discounting.
+- **Filing taxonomy** — 13F-HR/A vs SC 13D/A vs SC 13G/A vs Form 4 vs Form D/A,
+  plus a **non-EDGAR ADV/IAPD** adapter; 13F instrument typing
+  (Common/CALL/PUT/ADR/ETF) where options are `direction_unknown`, and a
+  verification status (`verified` … `not_verifiable_via_13f` … `rejected_noise`).
+- **CUSIP map** (`config/cusip_map.yml`) — `mapped_ticker` + `confidence` +
+  `mapping_source` + `needs_human_review`, with check-digit validation. No match
+  without confidence.
+- **Statement layer** — discovery-only (URL + hash + source + date + short
+  excerpt, **never** full text), official > media, advisory classification.
+- **Thesis proxies** (`config/thesis_proxies.yml`) — 8 clusters (compute,
+  power_grid, nuclear, cooling, networking, defense_ai, export_controls,
+  automation) with private→public 1st/2nd/3rd-order proxies and a **mandatory
+  falsification condition** per cluster.
+- **Conservative options** — fill toward the ask (not mid), theta/vega reprice
+  sim, IV-rank only after warmup, paper-only sizing.
+- **Outcome learning** — append-only (incl. rejected), 7/14/30/60/90/180-day
+  horizons, score/source/thesis/regime buckets, QQQ/SOXX benchmark, and a
+  walk-forward + min-sample guard (no profit claim without out-of-sample evidence).
+
+See [docs/improvement_plan.md](docs/improvement_plan.md).
+
 ### Configuration (no code edits needed)
 `config/ai_infra_universe.yml` (universe), `config/scoring_weights.yml` (weights &
 penalties), `config/risk_thresholds.yml` (DTE/strike/liquidity/IV guardrails),
 `config/data_sources.yml` (providers & offline/live mode),
-`config/investors_13f.yml` (tracked managers), `config/report_settings.yml`.
+`config/investors_13f.yml` (tracked managers), `config/report_settings.yml`,
+`config/entity_graph.yml` · `config/cusip_map.yml` · `config/thesis_proxies.yml`
+(person-intelligence layer).
 
 ### Interpreting scores
 - **final_score (0–10)** = weighted positives − risk penalty (≥6.5 top, ≥4.5 watchlist).

@@ -31,23 +31,36 @@ def _clamp(x: float, lo: float = 0.0, hi: float = 10.0) -> float:
     return max(lo, min(hi, x))
 
 
-def iv_richness_assessment(iv, hist_vol, risk_cfg):
-    """Assess how rich a call's IV is vs realised vol.
+def iv_richness_assessment(iv, hist_vol, risk_cfg, iv_rank=None):
+    """Assess how rich a call's IV is.
 
     Returns (richness, iv_pct, band) where band ∈ {fair, mild, elevated,
-    extreme} or (None, None, None) when inputs are missing. iv_pct maps richness
-    via a configurable slope: iv_pct = 50 + slope*(richness-1). With slope=100 a
-    call priced 30% over realised vol (richness 1.30) reaches the "expensive"
-    band — far tighter than the previous 1.6x trigger.
+    extreme} or (None, None, None) when inputs are missing.
+
+    When ``iv_rank`` (a real 0..100 IV percentile from accumulated history, i.e.
+    POST-warmup) is supplied it takes precedence over the realised-vol proxy: the
+    band is read straight off the percentile. Otherwise iv_pct is derived from the
+    realised-vol proxy: iv_pct = 50 + slope*(richness-1).
     """
+    iv_cfg = (risk_cfg or {}).get("iv", {})
+    exp_p = iv_cfg.get("expensive_percentile", 80)
+    ext_p = iv_cfg.get("extreme_percentile", 92)
+    if iv_rank is not None:
+        richness = (iv / hist_vol) if (iv and hist_vol and hist_vol > 0) else None
+        if iv_rank >= ext_p:
+            band = "extreme"
+        elif iv_rank >= exp_p:
+            band = "elevated"
+        elif iv_rank <= 40:
+            band = "fair"
+        else:
+            band = "mild"
+        return richness, iv_rank, band
     if not iv or not hist_vol or hist_vol <= 0:
         return None, None, None
     richness = iv / hist_vol
-    iv_cfg = (risk_cfg or {}).get("iv", {})
     slope = iv_cfg.get("richness_to_percentile_slope", 100)
     iv_pct = max(0.0, min(100.0, 50.0 + slope * (richness - 1.0)))
-    exp_p = iv_cfg.get("expensive_percentile", 80)
-    ext_p = iv_cfg.get("extreme_percentile", 92)
     fair_max = iv_cfg.get("fair_richness_max", 1.15)
     if iv_pct >= ext_p:
         band = "extreme"
@@ -58,6 +71,15 @@ def iv_richness_assessment(iv, hist_vol, risk_cfg):
     else:
         band = "mild"
     return richness, iv_pct, band
+
+
+def _richness_str(richness, iv_pct) -> str:
+    """Honest short label: realised-vol multiple if known, else the IV rank."""
+    if richness is not None:
+        return f"{richness:.2f}x realised"
+    if iv_pct is not None:
+        return f"IV-rank {iv_pct:.0f}/100"
+    return "n/a"
 
 
 class SignalEngine:
@@ -152,8 +174,12 @@ class SignalEngine:
         return round(_clamp(s), 2), reasons_for, penalties
 
     def score_options_env(self, contracts: list[OptionContract],
-                          hist_vol: Optional[float]):
-        """Aggregate options-environment quality (liquidity + IV richness)."""
+                          hist_vol: Optional[float], iv_rank: Optional[float] = None):
+        """Aggregate options-environment quality (liquidity + IV richness).
+
+        ``iv_rank`` (post-warmup real IV percentile) overrides the realised-vol
+        proxy when supplied; default None keeps the original proxy behaviour.
+        """
         reasons_for: list[str] = []
         reasons_against: list[str] = []
         penalties: dict[str, float] = {}
@@ -188,20 +214,22 @@ class SignalEngine:
                 penalties["wide_spread"] = self.penalty_cfg.get("wide_spread", 1.0)
                 reasons_against.append(f"wide spreads (median {median_spread:.1%})")
 
-        # IV richness proxy: ATM IV vs realised vol (no IV history needed).
+        # IV richness: real IV percentile once warmed up, else realised-vol proxy.
         atm = _atm_iv(contracts)
-        richness, iv_pct, band = iv_richness_assessment(atm, hist_vol, self.risk_cfg)
+        richness, iv_pct, band = iv_richness_assessment(
+            atm, hist_vol, self.risk_cfg, iv_rank)
+        rich = _richness_str(richness, iv_pct)
         if band == "extreme":
             s -= 2.0
             penalties["extreme_iv"] = self.penalty_cfg.get("extreme_iv", 0.8)
-            reasons_against.append(f"IV very rich vs realised ({richness:.2f}x)")
+            reasons_against.append(f"IV very rich ({rich})")
         elif band == "elevated":
             s -= 1.0
-            reasons_against.append(f"IV elevated vs realised ({richness:.2f}x)")
+            reasons_against.append(f"IV elevated ({rich})")
         elif band == "mild":
-            reasons_against.append(f"IV somewhat rich vs realised ({richness:.2f}x)")
+            reasons_against.append(f"IV somewhat rich ({rich})")
         elif band == "fair":
-            reasons_for.append(f"IV fair vs realised ({richness:.2f}x)")
+            reasons_for.append(f"IV fair ({rich})")
         return round(_clamp(s), 2), reasons_for, reasons_against, penalties
 
     # ── combine ─────────────────────────────────────────────────────────
@@ -256,13 +284,15 @@ class SignalEngine:
         self, entry: UniverseEntry, vector: ThesisVector,
         snap: Optional[MarketSnapshot], change: Optional[Holding13FChange],
         contracts: list[OptionContract], catalysts: list[str],
+        iv_rank: Optional[float] = None,
     ) -> TickerEvaluation:
         thesis_s = self.score_thesis(entry, vector)
         market_s, mfor, magainst, mpen = self.score_market(snap)
         f13_s, ffor, fagainst, fpen = self.score_13f(change)
         cat_s, cfor, cpen = self.score_catalyst(catalysts)
         hist_vol = snap.hist_vol_annual if snap else None
-        opt_s, ofor, oagainst, open_ = self.score_options_env(contracts, hist_vol)
+        opt_s, ofor, oagainst, open_ = self.score_options_env(
+            contracts, hist_vol, iv_rank)
 
         components = {
             "thesis": thesis_s, "thirteen_f": f13_s, "market": market_s,
