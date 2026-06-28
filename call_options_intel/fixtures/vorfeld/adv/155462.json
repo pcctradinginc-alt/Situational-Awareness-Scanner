@@ -1,0 +1,9 @@
+{
+  "crd": "155462",
+  "firm_name": "Founders Fund LLC",
+  "aum": 14000000000,
+  "employees": 95,
+  "control_persons": ["Peter Thiel", "Napoleon Ta", "Jane Doe (new GP)"],
+  "private_funds": ["Founders Fund VII", "Founders Fund Growth III", "FF Compute SPV I"],
+  "main_office": "1 Letterman Drive, San Francisco, CA"
+}

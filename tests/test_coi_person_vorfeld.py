@@ -17,47 +17,48 @@ def _fx():
 
 
 def _adv_prior():
-    return {"firm_name": "Thiel Macro LLC", "aum": 10_000_000_000,
-            "control_persons": ["Peter Thiel"],
-            "private_funds": ["Thiel Macro Master Fund", "Thiel Macro Offshore"],
-            "main_office": "9200 Sunset Blvd, Los Angeles, CA"}
+    return {"firm_name": "Founders Fund LLC", "aum": 10_000_000_000,
+            "control_persons": ["Peter Thiel", "Napoleon Ta"],
+            "private_funds": ["Founders Fund VII", "Founders Fund Growth III"],
+            "main_office": "1 Letterman Drive, San Francisco, CA"}
 
 
 # ── baseline behaviour ───────────────────────────────────────────────────────
 def test_first_sight_is_baseline_only():
     snap = SnapshotStore(path=None)
     sigs = AdvIapdAdapter(_fx(), _fx()).changes(
-        [{"crd": "157432", "principal": "thiel"}], snap, AS_OF)
+        [{"crd": "155462", "principal": "thiel"}], snap, AS_OF)
     assert sigs == []                              # first sight: no alert
-    assert snap.get("adv:157432") is not None      # but baseline stored
+    assert snap.get("adv:155462") is not None      # but baseline stored
 
 
 # ── ADV / IAPD ───────────────────────────────────────────────────────────────
 def test_adv_detects_aum_control_and_fund_changes():
     snap = SnapshotStore(path=None)
-    snap.set("adv:157432", _adv_prior())
+    snap.set("adv:155462", _adv_prior())
     sigs = AdvIapdAdapter(_fx(), _fx()).changes(
-        [{"crd": "157432", "principal": "thiel"}], snap, AS_OF)
+        [{"crd": "155462", "principal": "thiel"}], snap, AS_OF)
     kinds = {s.kind for s in sigs}
     assert "aum_change" in kinds                    # 10B -> 12.5B = +25%
     assert "new_control_person" in kinds
     assert "new_private_fund" in kinds
     fund = next(s for s in sigs if s.kind == "new_private_fund")
-    assert "TM Compute SPV" in fund.detail
+    assert "FF Compute SPV I" in fund.detail
     assert all(s.needs_human_review for s in sigs)
-    assert all(s.content_hash.startswith("adv:157432:") for s in sigs)
+    assert all(s.content_hash.startswith("adv:155462:") for s in sigs)
 
 
 def test_adv_small_aum_move_not_reported():
     snap = SnapshotStore(path=None)
     prior = _adv_prior()
-    prior["aum"] = 12_000_000_000                   # 12.0B -> 12.5B = +4% < 10%
-    prior["control_persons"] = ["Peter Thiel", "Jane Doe (new CCO)"]
-    prior["private_funds"] = ["Thiel Macro Master Fund", "Thiel Macro Offshore",
-                              "TM Compute SPV"]
-    snap.set("adv:157432", prior)
+    prior["aum"] = 13_000_000_000                   # 13.0B -> 14.0B = +7.7% < 10%
+    # align the other fields with the fixture so ONLY aum could differ
+    prior["control_persons"] = ["Peter Thiel", "Napoleon Ta", "Jane Doe (new GP)"]
+    prior["private_funds"] = ["Founders Fund VII", "Founders Fund Growth III",
+                              "FF Compute SPV I"]
+    snap.set("adv:155462", prior)
     sigs = AdvIapdAdapter(_fx(), _fx()).changes(
-        [{"crd": "157432", "principal": "thiel"}], snap, AS_OF)
+        [{"crd": "155462", "principal": "thiel"}], snap, AS_OF)
     assert [s for s in sigs if s.kind == "aum_change"] == []
 
 
@@ -113,7 +114,7 @@ def test_vorfeld_flows_through_monitor(tmp_path):
     snap = tmp_path / "snap.json"
     # seed prior state so the bundled fixtures register as CHANGES
     snap.write_text(json.dumps({
-        "adv:157432": _adv_prior(),
+        "adv:155462": _adv_prior(),
         "jobs:andurilindustries": {"ids": ["5510003"]},
         "dom:https_foundersfund_com": {"hash": "OLD", "title": "old"},
         "dom:https_situational_awareness_ai": {"hash": "OLD", "title": "old"},

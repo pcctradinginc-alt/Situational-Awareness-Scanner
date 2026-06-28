@@ -32,14 +32,18 @@ edgar_fts:
 # before live use (offline fixtures do not depend on them).
 
 # ADV / IAPD adviser change-detection (AUM, control persons, private funds, office).
+# CRDs VERIFIED on adviserinfo.sec.gov (2026-06-28). NOTE: "Thiel Macro LLC" is
+# NOT a registered investment adviser (no ADV/CRD) — it files 13F and is covered
+# by the per-CIK filing feed, so it is intentionally absent here.
 adv_iapd:
   enabled: true
   advisers:
-    - { name: "Thiel Macro LLC",        crd: "157432", principal: thiel,         verify: true }
-    - { name: "Founders Fund Management", crd: "131699", principal: thiel,        verify: true }
-    - { name: "Mithril Capital Management", crd: "156003", principal: thiel,      verify: true }
+    - { name: "Founders Fund LLC",            crd: "155462", principal: thiel, verify: false }  # adviserinfo.sec.gov/firm/summary/155462
+    - { name: "Mithril Capital Management LLC", crd: "164135", principal: thiel, verify: false }  # adviserinfo.sec.gov/firm/summary/164135
+    - { name: "Thiel Bio, L.L.C.",            crd: "324760", principal: thiel, verify: false }  # adviserinfo.sec.gov/firm/summary/324760 (longevity/biotech)
 
 # Public job boards (Greenhouse/Lever) — NEW roles as a hiring/theme proxy.
+# Tokens VERIFIED (2026-06-28): job-boards.greenhouse.io/andurilindustries · jobs.lever.co/palantir
 job_postings:
   enabled: true
   companies:

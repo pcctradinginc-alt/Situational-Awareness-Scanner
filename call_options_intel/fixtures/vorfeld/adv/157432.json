@@ -1,9 +1,0 @@
-{
-  "crd": "157432",
-  "firm_name": "Thiel Macro LLC",
-  "aum": 12500000000,
-  "employees": 18,
-  "control_persons": ["Peter Thiel", "Jane Doe (new CCO)"],
-  "private_funds": ["Thiel Macro Master Fund", "Thiel Macro Offshore", "TM Compute SPV"],
-  "main_office": "9200 Sunset Blvd, Los Angeles, CA"
-}
