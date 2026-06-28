@@ -1,0 +1,31 @@
+# Early-signal VORFELD sources — discovery BEFORE the market prices it in.
+# ----------------------------------------------------------------------
+# EDGAR Full-Text Search (efts.sec.gov) queries the tracked NAMES across ALL
+# filers, so it catches filings by entities we do NOT yet track — new LPs,
+# affiliates, fund vehicles. A hit by an unknown CIK is a NEW-ENTITY discovery.
+#
+# Free, keyless, SEC-primary only (NEVER media). Live fetch is OFF by default
+# (offline mode reads the bundled fixtures); enable via the monitor's live mode.
+
+edgar_fts:
+  enabled: true
+  since_days: 30
+  # leading filing types only — 13D/G/A (>5% stakes), Form D (private rounds),
+  # Form 4 (insider). 13F is the lagged confirmation and stays in the per-CIK feed.
+  forms: ["SC 13D", "SC 13D/A", "SC 13G", "SC 13G/A", "D", "D/A", "4"]
+  # Each term is matched as a quoted phrase. `principal` lets a name-matched
+  # filing carry a floor of person-directness (named in the filing, control
+  # UNCONFIRMED → needs_human_review), never an assumed control link.
+  terms:
+    - { q: "Peter Thiel",            principal: thiel }
+    - { q: "Thiel Capital",          principal: thiel }
+    - { q: "Thiel Macro",            principal: thiel }
+    - { q: "Founders Fund",          principal: thiel }
+    - { q: "Mithril",                principal: thiel }
+    - { q: "Leopold Aschenbrenner",  principal: aschenbrenner }
+    - { q: "Situational Awareness",  principal: aschenbrenner }
+
+# ── Not yet wired (documented for the next iteration) ───────────────────────
+# adv_iapd:        SEC IA/ADV dataset change-detection per adviser CRD
+# job_postings:    Greenhouse/Lever public job-board JSON as a hiring/theme proxy
+# domain_watch:    cert-transparency / new fund-website detection

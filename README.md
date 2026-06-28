@@ -124,6 +124,17 @@ the *weakest link*. The digest/email lead with a Trade-Candidates section; a Thi
 SC 13D/A → `PLTR` (fresh + liquid) passes, while an unresolved Form 4, a stale 13F,
 or a private Form D do not.
 
+**Vorfeld discovery — earlier than the market, and beyond the filers we already
+know.** Besides the per-CIK feed (which only sees tracked filers), the radar runs
+**EDGAR Full-Text Search** (`person_intel/edgar_fts.py`, `config/early_sources.yml`)
+over the tracked *names* (Peter Thiel, Founders Fund, Mithril, Leopold
+Aschenbrenner, Situational Awareness, …) across **all** filers. A hit by a CIK we
+do **not** yet track is a **NEW-ENTITY discovery** — a new LP / affiliate / fund
+vehicle — surfaced in its own digest section with the filing that named the
+principal (control link *unconfirmed* → `needs_human_review`, never assumed). FTS
+is SEC-primary only (never media), keyless and free; its hits flow through the same
+taxonomy → three-axis gate as every other filing.
+
 The radar carries **two signal classes** (both dedup'd, both can trigger the
 email):
 - **Filings — what they DID** (the SEC feed above), and

@@ -99,6 +99,25 @@ def _trade_candidates_md(lines: list, result: MonitorResult) -> None:
     lines.append("")
 
 
+def _new_entities_md(lines: list, result: MonitorResult) -> None:
+    """Vorfeld discoveries: filers not yet in the tracked graph (EDGAR FTS)."""
+    new = [a for a in result.alerts if a.is_new_entity]
+    if not new:
+        return
+    lines.append("## 🆕 NEW ENTITIES discovered (EDGAR full-text search)")
+    lines.append("")
+    lines.append("_Filers that NAME a tracked principal but are not yet in the "
+                 "entity graph — verify the control link, then add the CIK._")
+    lines.append("")
+    for a in new:
+        lines.append(f"- **{a.entity}** (CIK {a.cik}) · {a.filing_type} · "
+                     f"named via “{a.matched_term}” → {a.principal.upper()}"
+                     + (f" · {a.age_days}d ago" if a.age_days is not None else ""))
+        if a.url:
+            lines.append(f"    - {a.url}")
+    lines.append("")
+
+
 def _network_context_md(lines: list, result: MonitorResult) -> None:
     """One context line per principal that appears in this run's signals."""
     principals = []
@@ -174,6 +193,7 @@ def render_markdown(result: MonitorResult) -> str:
     lines.append(f"> {DISCLAIMER}")
     lines.append("")
     _trade_candidates_md(lines, result)
+    _new_entities_md(lines, result)
     _network_context_md(lines, result)
 
     # split principal-linked (the real radar) from network/derived

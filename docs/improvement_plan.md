@@ -232,6 +232,29 @@ the new sub-package. Branch/PR only — no `main` push, no secrets in the diff.
   failure). Digest/email lead with a Trade-Candidates section. Tests:
   `tests/test_coi_person_triple_score.py` (11) + monitor wiring tests.
 
+- **Phase 7 (in progress) — early-signal VORFELD sources:**
+  Make discovery *earlier than the market* and beyond already-tracked filers.
+  - **EDGAR Full-Text Search** (`person_intel/edgar_fts.py` + `config/early_sources.yml`):
+    queries the tracked NAMES (Thiel / Founders Fund / Mithril / Aschenbrenner /
+    Situational Awareness) over ALL filers via the free keyless
+    `efts.sec.gov/LATEST/search-index`, reduces each hit to the same
+    `FastFilingRef` the pipeline already types/scores, and dedups. Injectable
+    (offline fixtures / live), SEC-primary only — never media.
+  - **NEW-ENTITY discovery:** an FTS hit by a CIK NOT in the entity graph is
+    flagged `is_new_entity` (a new LP/affiliate/fund vehicle); the filing names a
+    principal, so person-directness gets a 0.5 floor but stays
+    `needs_human_review` (control UNCONFIRMED). Surfaced in a dedicated digest
+    section "🆕 NEW ENTITIES discovered". This is the "neue Entitäten /
+    CIK-Verknüpfungen / Fund-Namen / neue SEC-File-Numbers" path.
+  - Wired into the monitor as a PRIMARY path (merged + deduped with the per-CIK
+    feed, triple-scored). Expanded `statement_sources.yml` with first-party fund
+    feeds (Founders Fund, Mithril) + a podcast/transcript slot; media stays
+    secondary. `doctor` reports the FTS terms. Tests:
+    `tests/test_coi_person_edgar_fts.py` (8).
+  - **Remaining (next):** live ADV/IAPD change-detection per adviser CRD;
+    job-postings (Greenhouse/Lever public JSON) as a hiring/theme proxy;
+    domain/cert-transparency fund-website watch.
+
 ## Acceptance
 
 Tests green; repo paper-only; clear Entity→Signal→Evidence→Candidate dataflow;

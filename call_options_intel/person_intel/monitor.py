@@ -177,6 +177,9 @@ class PersonAlert:
     falsification: str = ""
     position_changes: list = field(default_factory=list)  # 13F new/add/trim/exit
     triple: dict = field(default_factory=dict)            # 3-axis score + gate
+    discovered_via: str = "cik_feed"      # cik_feed | edgar_fts
+    is_new_entity: bool = False           # filer not yet in the tracked graph
+    matched_term: str = ""                # FTS term that surfaced it
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -195,12 +198,15 @@ class PersonMonitor:
 
     def __init__(self, client: EdgarFastClient, graph: EntityGraph,
                  mapper: CusipMapper, proxy_map: ProxyMap,
-                 managers: list[dict]):
+                 managers: list[dict], fts_client=None,
+                 fts_terms: Optional[list[dict]] = None):
         self.client = client
         self.graph = graph
         self.mapper = mapper
         self.proxy_map = proxy_map
         self.managers = managers or []
+        self.fts_client = fts_client          # EdgarFTSClient | None (vorfeld)
+        self.fts_terms = fts_terms or []
 
     # principal linkage ------------------------------------------------------
     def _principal_link(self, cik: str, name: str) -> tuple[str, float, str]:
@@ -272,10 +278,23 @@ class PersonMonitor:
 
     # alert construction -----------------------------------------------------
     def build_alert(self, ref: FastFilingRef, *, resolve: bool,
-                    as_of: Optional[date] = None) -> PersonAlert:
+                    as_of: Optional[date] = None, discovered_via: str = "cik_feed",
+                    matched_term: str = "",
+                    discovery_principal: str = "") -> PersonAlert:
         principal, weight, ent_id = self._principal_link(ref.cik, ref.entity)
+        # FTS discovery: the filer is not in the tracked graph, but the filing
+        # TEXT names a tracked principal. That is real (if unconfirmed) person-
+        # directness — floor the path weight and ALWAYS flag it for review.
+        is_new_entity = False
+        if discovered_via == "edgar_fts" and not ent_id:
+            is_new_entity = True
+            if discovery_principal:
+                principal = discovery_principal
+                weight = max(weight, 0.5)        # named-in-filing, control unconfirmed
         category, kind = _CATEGORY.get(
             ref.filing_type, (ref.filing_type.value, "filing"))
+        if is_new_entity:
+            category = f"NEW ENTITY · {category}"
         meta = filing_meta(ref.filing_type)
 
         subj = {"subject_ticker": None, "subject_issuer": None,
@@ -298,6 +317,12 @@ class PersonMonitor:
         headline = f"{ref.entity}: {category} → {subject_tag}"
         why = self._why(meta.role, kind, principal_name, weight,
                         subj["is_private"])
+        needs_review = subj["needs_human_review"] or is_new_entity
+        if is_new_entity:
+            why = (f"NEW ENTITY discovered via EDGAR full-text search for "
+                   f"“{matched_term}” — filer {ref.entity} (CIK {ref.cik}) is NOT "
+                   f"yet tracked. Names {principal_name} in the filing; control "
+                   f"link UNCONFIRMED → verify and add to the entity graph. ") + why
 
         return PersonAlert(
             entity=ref.entity, entity_id=ent_id, cik=ref.cik,
@@ -310,10 +335,12 @@ class PersonMonitor:
             subject_ticker=subj["subject_ticker"],
             subject_issuer=subj["subject_issuer"],
             subject_confidence=subj["subject_confidence"],
-            needs_human_review=subj["needs_human_review"],
+            needs_human_review=needs_review,
             is_private=subj["is_private"], is_fact=True,
             headline=headline, why_it_matters=why,
             falsification=self._falsification_for(subj["subject_ticker"]),
+            discovered_via=discovered_via, is_new_entity=is_new_entity,
+            matched_term=matched_term,
         )
 
     @staticmethod
@@ -368,6 +395,7 @@ class PersonMonitor:
         as_of = as_of or date.today()
         fresh = [r for r in self._recent_relevant(since_days, as_of)
                  if store.is_new(r.accession)]
+        seen_acc = {r.accession for r in fresh}
         alerts: list[PersonAlert] = []
         for ref in fresh:
             alert = self.build_alert(ref, resolve=resolve, as_of=as_of)
@@ -377,8 +405,36 @@ class PersonMonitor:
                                                FilingType.FORM_13F_HR_A):
                 self._enrich_13f_changes(alert, ref)
             alerts.append(alert)
+
+        # VORFELD: EDGAR full-text-search discoveries (incl. NEW entities)
+        for hit in self._fts_discoveries(since_days, as_of):
+            ref = hit.ref
+            if not ref.accession or ref.accession in seen_acc:
+                continue
+            if not store.is_new(ref.accession):
+                continue
+            seen_acc.add(ref.accession)
+            alert = self.build_alert(
+                ref, resolve=resolve, as_of=as_of, discovered_via="edgar_fts",
+                matched_term=hit.matched_term,
+                discovery_principal=hit.principal)
+            if alert.path_weight < min_path_weight:
+                continue
+            alerts.append(alert)
+
         alerts.sort(key=lambda a: a.sort_key)
         return alerts
+
+    def _fts_discoveries(self, since_days: int, as_of: date) -> list:
+        """Run the configured full-text queries (no-op without an FTS client)."""
+        if not self.fts_client or not self.fts_terms:
+            return []
+        try:
+            return self.fts_client.discover(
+                self.fts_terms, since_days=since_days, as_of=as_of)
+        except Exception as exc:                        # pragma: no cover
+            logger.warning("FTS discovery failed: %s", exc)
+            return []
 
     def _enrich_13f_changes(self, alert: PersonAlert, ref: FastFilingRef) -> None:
         """Best-effort: turn a new 13F-HR into a position-level diff vs the prior
@@ -567,7 +623,26 @@ def run_monitor(config: Optional[AppConfig] = None, *, mode: Optional[str] = Non
     proxy_map = load_proxy_map(cfg.config_dir)
     managers = cfg.investors.get("managers", []) or []
 
-    monitor = PersonMonitor(client, graph, mapper, proxy_map, managers)
+    # VORFELD: EDGAR full-text-search discovery (new filings + NEW entities)
+    fts_client = None
+    fts_terms: list = []
+    try:
+        from ..config_loader import load_yaml
+        es = (load_yaml("early_sources", cfg.config_dir) or {}).get("edgar_fts", {})
+        if es.get("enabled"):
+            from .edgar_fts import load_fts_client
+            fts_client = load_fts_client(cfg.data_sources, run_mode, fixtures)
+            fts_terms = es.get("terms", []) or []
+            # apply the global forms filter to any term that didn't set its own
+            default_forms = es.get("forms")
+            if default_forms:
+                fts_terms = [{**t, "forms": t.get("forms", default_forms)}
+                             if isinstance(t, dict) else t for t in fts_terms]
+    except Exception as exc:                            # pragma: no cover
+        logger.warning("early_sources/FTS not loaded: %s", exc)
+
+    monitor = PersonMonitor(client, graph, mapper, proxy_map, managers,
+                            fts_client=fts_client, fts_terms=fts_terms)
     store = SeenStore.load(state_path)
     alerts = monitor.new_alerts(store, since_days=since_days, as_of=as_of,
                                 resolve=resolve, min_path_weight=min_path_weight)

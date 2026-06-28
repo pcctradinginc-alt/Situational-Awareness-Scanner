@@ -439,6 +439,12 @@ def cmd_doctor(args) -> int:
         _line("statement feeds configured", bool(feeds),
               f"{len(feeds)} feeds (essays + news)")
 
+        # vorfeld: EDGAR full-text-search discovery terms
+        es = (_ly("early_sources", cfg.config_dir) or {}).get("edgar_fts", {})
+        _line("EDGAR FTS discovery", bool(es.get("enabled")),
+              f"{len(es.get('terms', []))} name terms (new-entity discovery)"
+              if es.get("enabled") else "disabled")
+
         # three-axis trade gate (person · freshness · tradeability)
         from .person_intel.triple_score import GateThresholds
         gt = GateThresholds.from_config(cfg.scoring)
