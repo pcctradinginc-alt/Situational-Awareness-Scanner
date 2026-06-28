@@ -610,13 +610,19 @@ def monitor_and_notify(config: Optional[AppConfig] = None, *,
                        as_of: Optional[date] = None, resolve: bool = True,
                        send_email: bool = False,
                        include_statements: bool = True,
-                       min_path_weight: float = 0.0) -> dict:
-    """Run one monitor pass, write artifacts, and email ONLY on a new signal.
+                       min_path_weight: float = 0.0,
+                       record_outcomes: bool = False,
+                       outcome_store_path: str | Path | None = None) -> dict:
+    """Run one monitor pass, write artifacts, email ONLY on a new signal, and
+    (optionally) RECORD every new signal — incl. rejects — to the outcome store.
 
     Returns a summary dict (suitable for a CI step to gate on ``total_new``).
     """
+    cfg = config or AppConfig()
+    run_mode = mode or cfg.mode
+    fixtures = fixtures_dir
     result = run_monitor(
-        config=config, mode=mode, since_days=since_days, state_path=state_path,
+        config=cfg, mode=run_mode, since_days=since_days, state_path=state_path,
         fixtures_dir=fixtures_dir, as_of=as_of, resolve=resolve,
         min_path_weight=min_path_weight, include_statements=include_statements,
         persist=True)
@@ -627,6 +633,21 @@ def monitor_and_notify(config: Optional[AppConfig] = None, *,
     if send_email and result.total_new > 0:
         emailed = send_person_email(result, run_label)
 
+    recorded = 0
+    if record_outcomes and result.total_new > 0:
+        try:
+            from ..pipeline import DEFAULT_FIXTURES
+            from .outcome_recorder import make_pipeline_snapshot_fn, record_run, DEFAULT_STORE
+            from .proxy_map import load_proxy_map
+            fx = fixtures or DEFAULT_FIXTURES
+            snap_fn = make_pipeline_snapshot_fn(cfg, run_mode, fx)
+            recorded = record_run(
+                result, load_proxy_map(cfg.config_dir),
+                store_path=(outcome_store_path or DEFAULT_STORE),
+                snapshot_fn=snap_fn, as_of=as_of)
+        except Exception as exc:                        # pragma: no cover
+            logger.warning("outcome recording failed: %s", exc)
+
     return {
         "new_count": result.new_count,
         "statement_count": result.statement_count,
@@ -635,5 +656,6 @@ def monitor_and_notify(config: Optional[AppConfig] = None, *,
         "principal_count": result.principal_count,
         "mode": result.mode,
         "emailed": emailed,
+        "outcomes_recorded": recorded,
         "artifacts": artifacts,
     }

@@ -189,9 +189,17 @@ Building blocks (all offline, deterministic, additive, never trade):
   public proxy per private theme" section.
 - **Conservative options** — fill toward the ask (not mid), theta/vega reprice
   sim, IV-rank only after warmup, paper-only sizing.
-- **Outcome learning** — append-only (incl. rejected), 7/14/30/60/90/180-day
-  horizons, score/source/thesis/regime buckets, QQQ/SOXX benchmark, and a
-  walk-forward + min-sample guard (no profit claim without out-of-sample evidence).
+- **Outcome learning — filled in real operation** (`person_intel/outcome_recorder.py`).
+  Every monitor run records ONE row per new signal — filings, statements, vorfeld,
+  **including the gate's REJECTS** — with the full decision context (when · source ·
+  latency · principal/path · ticker/proxy · spot · option chain
+  strike/premium/delta/IV/DTE/spread · the three score axes · top/watch/reject) to
+  an append-only store (`data/person_intel/outcomes.jsonl`, committed across runs).
+  `outcomes-report` then matures them at 7/14/30/60/90/180 days vs the underlying +
+  QQQ/SOXX, bucketed by score/source/thesis/regime, behind a **walk-forward +
+  min-sample guard** — no profit is claimed without an out-of-sample fold. Recording
+  rejects is deliberate: it measures what the system correctly *avoided*.
+  (`person-monitor --record-outcomes`; the workflow records + matures every run.)
 
 See [docs/improvement_plan.md](docs/improvement_plan.md).
 
