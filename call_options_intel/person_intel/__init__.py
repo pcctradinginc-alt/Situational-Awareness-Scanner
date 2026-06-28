@@ -39,4 +39,7 @@ __all__ = [
     "monitor",
     "monitor_report",
     "statement_feed",
+    "holdings_diff",
+    "network",
+    "triple_score",
 ]

@@ -50,6 +50,8 @@ from .edgar_fast import (
 from .entities import EntityGraph, load_graph
 from .filings import FilingType, SignalRole, filing_meta
 from .proxy_map import ProxyMap, load_proxy_map
+from .statements import SourceTier
+from .triple_score import GateThresholds, TripleInput, TripleScorer
 
 logger = logging.getLogger("coi.person.monitor")
 
@@ -174,6 +176,7 @@ class PersonAlert:
     why_it_matters: str = ""
     falsification: str = ""
     position_changes: list = field(default_factory=list)  # 13F new/add/trim/exit
+    triple: dict = field(default_factory=dict)            # 3-axis score + gate
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -421,6 +424,85 @@ class PersonMonitor:
         return None
 
 
+# ── three-axis scoring (person · freshness · tradeability) ──────────────────
+# first-party statements carry real person-directness; reported media less so.
+_STMT_TIER_PATH = {
+    SourceTier.OFFICIAL: 0.9, SourceTier.PRIMARY: 0.75,
+    SourceTier.MEDIA: 0.35, SourceTier.REPOST: 0.2,
+}
+
+
+def _make_tradeability_fn(cfg: AppConfig, mode: str, fixtures):
+    """A memoised ticker→(market_timing, options_quality) provider backed by the
+    existing pipeline engine (offline fixtures / live yfinance). Returns None if
+    the pipeline cannot be built; per-ticker failures return None (→ tradeability
+    stays conservatively low)."""
+    try:
+        from ..pipeline import Pipeline
+        pipe = Pipeline(config=cfg, mode=("live" if mode == "live" else "offline"),
+                        fixtures_dir=fixtures)
+    except Exception as exc:                            # pragma: no cover
+        logger.warning("tradeability pipeline unavailable: %s", exc)
+        return None
+    cache: dict[str, Optional[tuple[float, float]]] = {}
+
+    def fn(ticker: Optional[str]) -> Optional[tuple[float, float]]:
+        if not ticker:
+            return None
+        if ticker in cache:
+            return cache[ticker]
+        res: Optional[tuple[float, float]] = None
+        try:
+            snap = pipe.market.get_snapshot(ticker)
+            contracts = pipe.options.get_call_contracts(
+                ticker, snap.spot, snap.hist_vol_annual)
+            mt, *_ = pipe.engine.score_market(snap)
+            oq, *_ = pipe.engine.score_options_env(contracts, snap.hist_vol_annual)
+            res = (float(mt), float(oq))
+        except Exception:
+            res = None
+        cache[ticker] = res
+        return res
+    return fn
+
+
+def _score_alert(alert: PersonAlert, scorer: TripleScorer, fn) -> None:
+    has_ticker = bool(alert.subject_ticker) and not alert.needs_human_review
+    mt = oq = None
+    if has_ticker and fn:
+        r = fn(alert.subject_ticker)
+        if r:
+            mt, oq = r
+    try:
+        role = SignalRole(alert.role)
+    except ValueError:
+        role = None
+    inp = TripleInput(
+        ticker=alert.subject_ticker if has_ticker else None,
+        path_weight=alert.path_weight, verified=not alert.needs_human_review,
+        is_primary_source=True, role=role, age_days=alert.age_days,
+        has_public_ticker=has_ticker, is_private=alert.is_private,
+        market_timing=mt, options_quality=oq)
+    alert.triple = scorer.score(inp).to_dict()
+
+
+def _score_statement(s, scorer: TripleScorer, fn) -> None:
+    tier = SourceTier.parse(s.tier)
+    cand = s.derived_candidates[0] if s.derived_candidates else None
+    mt = oq = None
+    if cand and fn:
+        r = fn(cand)
+        if r:
+            mt, oq = r
+    inp = TripleInput(
+        ticker=cand, path_weight=_STMT_TIER_PATH.get(tier, 0.3),
+        verified=tier in (SourceTier.OFFICIAL, SourceTier.PRIMARY),
+        is_primary_source=tier in (SourceTier.OFFICIAL, SourceTier.PRIMARY),
+        source_tier=tier, age_days=s.age_days,
+        has_public_ticker=bool(cand), market_timing=mt, options_quality=oq)
+    s.triple = scorer.score(inp).to_dict()
+
+
 # ── orchestration ───────────────────────────────────────────────────────────
 @dataclass
 class MonitorResult:
@@ -438,6 +520,14 @@ class MonitorResult:
     @property
     def total_new(self) -> int:
         return self.new_count + self.statement_count
+
+    @property
+    def trade_candidates(self) -> list:
+        """Alerts/statements whose three-axis gate passed (all axes good enough)."""
+        out = [a for a in self.alerts if a.triple.get("gate_pass")]
+        out += [s for s in self.statements if s.triple.get("gate_pass")]
+        return sorted(out, key=lambda x: x.triple.get("final_trade_score", 0.0),
+                      reverse=True)
 
     def to_dict(self) -> dict:
         return {
@@ -457,6 +547,7 @@ def run_monitor(config: Optional[AppConfig] = None, *, mode: Optional[str] = Non
                 as_of: Optional[date] = None, resolve: bool = True,
                 min_path_weight: float = 0.0,
                 include_statements: bool = True,
+                score_tradeability: bool = True,
                 persist: bool = True) -> MonitorResult:
     """Run one monitor pass: collect filings + conviction statements → dedup →
     (optionally) persist.
@@ -493,6 +584,16 @@ def run_monitor(config: Optional[AppConfig] = None, *, mode: Optional[str] = Non
                     statements.append(s)
         except Exception as exc:                        # pragma: no cover
             logger.warning("statement collection failed: %s", exc)
+
+    # three-axis score + hard AND-gate on every signal (person · freshness ·
+    # tradeability) — a trade-candidate needs ALL THREE good enough.
+    scorer = TripleScorer(GateThresholds.from_config(getattr(cfg, "scoring", None)))
+    trade_fn = (_make_tradeability_fn(cfg, run_mode, fixtures)
+                if score_tradeability else None)
+    for a in alerts:
+        _score_alert(a, scorer, trade_fn)
+    for s in statements:
+        _score_statement(s, scorer, trade_fn)
 
     if persist and (alerts or statements):
         stamp = (as_of or date.today()).isoformat()

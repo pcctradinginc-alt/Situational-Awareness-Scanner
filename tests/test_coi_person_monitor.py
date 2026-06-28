@@ -185,6 +185,38 @@ def test_notify_writes_artifacts_no_email(cfg, tmp_path):
     assert (tmp_path / "art" / "history.jsonl").exists()
 
 
+def test_triple_score_attached_and_gates(cfg, tmp_path):
+    r = run_monitor(config=cfg, mode="offline", since_days=120, as_of=AS_OF,
+                    state_path=tmp_path / "seen.json", persist=False)
+    # every alert carries the three-axis score + gate verdict
+    for a in r.alerts:
+        assert {"person_signal", "freshness", "tradeability", "gate_pass",
+                "final_trade_score"} <= set(a.triple)
+    # the Thiel SC 13D/A -> PLTR (fresh, liquid in fixtures) clears all 3 axes
+    pltr = next(a for a in r.alerts if a.subject_ticker == "PLTR")
+    assert pltr.triple["gate_pass"] is True
+    # an unresolved Form 4 (no ticker) can never be tradeable -> gate fails
+    form4 = next(a for a in r.alerts if a.filing_type == "Form 4")
+    assert form4.triple["gate_pass"] is False
+    assert "tradeability" in form4.triple["failing_axes"]
+    # trade_candidates only contains gate-passers
+    assert all(x.triple["gate_pass"] for x in r.trade_candidates)
+    assert any(getattr(x, "subject_ticker", None) == "PLTR"
+               for x in r.trade_candidates)
+
+
+def test_no_tradeability_means_no_trade_candidates(cfg, tmp_path):
+    # without the options/market pipeline, tradeability cannot be confirmed ->
+    # nothing clears the gate (honest: no liquid call verified)
+    r = run_monitor(config=cfg, mode="offline", since_days=120, as_of=AS_OF,
+                    state_path=tmp_path / "seen.json", score_tradeability=False,
+                    persist=False)
+    assert r.trade_candidates == []
+    for a in r.alerts:
+        assert a.triple["tradeability"]["value"] in (0.0, None) or \
+               a.triple["tradeability"]["value"] <= 4.0
+
+
 def test_no_new_signals_renders_clean(cfg, tmp_path):
     sp = tmp_path / "seen.json"
     monitor_and_notify(config=cfg, mode="offline", since_days=120, as_of=AS_OF,

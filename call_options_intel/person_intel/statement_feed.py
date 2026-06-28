@@ -131,6 +131,7 @@ class StatementSignal:
     signal_kind: str = "conviction_statement"
     headline: str = ""
     why_it_matters: str = ""
+    triple: dict = field(default_factory=dict)   # 3-axis score + gate
 
     def to_dict(self) -> dict:
         return asdict(self)

@@ -46,3 +46,12 @@ gates:
   top_candidate_min_score: 6.5    # eligible for "Top CALL candidates"
   watchlist_min_score: 4.5        # "good thesis, wait for entry"
   reject_below_score: 0.0         # everything else still reported as rejected
+
+# Person-radar THREE-AXIS gate (person_intel/triple_score.py). A tradeable
+# candidate may only emerge when ALL THREE axes clear their own bar — a hard
+# AND, never a sum that lets one strong axis paper over a weak one. Each 0..10.
+person_gates:
+  person_signal: 5.0    # how DIRECTLY it hangs on Leo/Thiel/SA LP/Founders Fund
+  freshness:     5.0    # how EARLY it is relative to the market
+  tradeability:  5.0    # is a liquid call/spread derivable NOW
+  watch:         4.0    # below the gate but worth watching
