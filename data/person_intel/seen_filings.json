@@ -1,6 +1,13 @@
 {
-  "count": 8,
+  "count": 9,
   "seen": {
+    "0001794988-26-000004": {
+      "cik": "0001794988",
+      "entity": "FIAM Global Founders Fund, LP",
+      "filing_date": "2026-06-26",
+      "first_seen": "2026-06-28",
+      "form": "D/A"
+    },
     "stmt:0ee9f386480d6269": {
       "date": "2026-05-31",
       "first_seen": "2026-06-27",
@@ -58,5 +65,5 @@
       "speaker": "Leopold Aschenbrenner"
     }
   },
-  "updated_at": "2026-06-27T14:30:16.794102+00:00"
+  "updated_at": "2026-06-28T08:37:41.673680+00:00"
 }
