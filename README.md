@@ -138,11 +138,15 @@ taxonomy → three-axis gate as every other filing.
 **Non-filing vorfeld change-detection** (`person_intel/vorfeld.py`,
 `config/early_sources.yml`) adds a third early-signal class — fetch→snapshot→diff
 adapters that react to a *change*, not a level (first sight = baseline):
-**ADV/IAPD** (AUM moves, new control persons / private funds, office moves),
-**job postings** (Greenhouse/Lever — new roles classified into thesis clusters as
-a hiring/theme proxy) and **website/domain watch** (content-hash change of official
-fund pages → new LP/fund footprint). All advisory (`needs_human_review`),
-deduped, triple-scored as CONTEXT, and shown in a "📡 Vorfeld" section.
+**ADV/IAPD** (AUM moves, new control persons / private funds, office moves; CRDs
+verified on adviserinfo.sec.gov), **job postings** (Greenhouse/Lever — new roles
+classified into thesis clusters as a hiring/theme proxy), **website/domain watch**
+(content-hash change of official fund pages → new LP/fund footprint) and
+**Certificate Transparency** (crt.sh — brand-NEW domains/subdomains the moment
+their TLS cert is logged, often the earliest footprint of a forming fund/LP weeks
+before any filing; new domains are classified into a thesis cluster and
+recency-gated). All advisory (`needs_human_review`), deduped, triple-scored as
+CONTEXT, and shown in a "📡 Vorfeld" section.
 
 The radar carries **two filing/statement signal classes** plus the vorfeld class
 above (all dedup'd, all can trigger the email):

@@ -4,8 +4,8 @@ from datetime import date
 
 from call_options_intel.pipeline import DEFAULT_FIXTURES
 from call_options_intel.person_intel.vorfeld import (
-    AdvIapdAdapter, DomainWatchAdapter, FixtureFetcher, JobPostingsAdapter,
-    SnapshotStore, collect_vorfeld,
+    AdvIapdAdapter, CertTransparencyAdapter, DomainWatchAdapter, FixtureFetcher,
+    JobPostingsAdapter, SnapshotStore, collect_vorfeld,
 )
 from call_options_intel.person_intel.monitor import run_monitor
 
@@ -99,6 +99,41 @@ def test_domain_no_change_when_hash_matches():
     assert sigs == []
 
 
+# ── certificate transparency (new domains) ──────────────────────────────────
+_CERT_PATS = [{"q": "foundersfund", "principal": "thiel"}]
+
+
+def test_cert_first_sight_is_baseline_only():
+    snap = SnapshotStore(path=None)
+    sigs = CertTransparencyAdapter(_fx(), _fx()).changes(_CERT_PATS, snap, AS_OF)
+    assert sigs == []                              # baseline, no alert
+    assert snap.get("cert:foundersfund") is not None
+
+
+def test_cert_detects_new_domain():
+    snap = SnapshotStore(path=None)
+    snap.set("cert:foundersfund",
+             {"domains": ["foundersfund.com", "www.foundersfund.com"]})
+    sigs = CertTransparencyAdapter(_fx(), _fx()).changes(_CERT_PATS, snap, AS_OF)
+    assert len(sigs) == 1
+    s = sigs[0]
+    assert s.kind == "new_domain"
+    assert s.entity == "ff-compute-spv.foundersfund.com"
+    assert s.cluster == "compute"                  # classified from the name
+    assert s.needs_human_review is True
+    assert s.source == "cert_transparency"
+
+
+def test_cert_old_domain_outside_window_skipped():
+    # a 1-day recency window excludes the 24-Jun cert relative to 27-Jun
+    snap = SnapshotStore(path=None)
+    snap.set("cert:foundersfund",
+             {"domains": ["foundersfund.com", "www.foundersfund.com"]})
+    sigs = CertTransparencyAdapter(_fx(), _fx(), recent_days=1).changes(
+        _CERT_PATS, snap, AS_OF)
+    assert sigs == []
+
+
 # ── snapshot persistence ─────────────────────────────────────────────────────
 def test_snapshot_roundtrip(tmp_path):
     p = tmp_path / "snap.json"
@@ -118,14 +153,17 @@ def test_vorfeld_flows_through_monitor(tmp_path):
         "jobs:andurilindustries": {"ids": ["5510003"]},
         "dom:https_foundersfund_com": {"hash": "OLD", "title": "old"},
         "dom:https_situational_awareness_ai": {"hash": "OLD", "title": "old"},
+        "cert:foundersfund": {"domains": ["foundersfund.com",
+                                          "www.foundersfund.com"]},
     }))
     res = run_monitor(mode="offline", as_of=AS_OF, since_days=40,
                       state_path=tmp_path / "seen.json",
                       vorfeld_snapshot_path=snap, persist=False)
-    assert res.vorfeld_count >= 5
+    assert res.vorfeld_count >= 6
     assert res.total_new == res.new_count + res.statement_count + res.vorfeld_count
     sources = {v.source for v in res.vorfeld}
-    assert {"adv_iapd", "job_postings", "domain_watch"} <= sources
+    assert {"adv_iapd", "job_postings", "domain_watch",
+            "cert_transparency"} <= sources
     # every vorfeld signal carries the three-axis score
     for v in res.vorfeld:
         assert "gate_pass" in v.triple
