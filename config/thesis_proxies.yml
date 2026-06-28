@@ -1,13 +1,21 @@
-# Thesis clusters → private→public proxy map (Goal F).
-# ---------------------------------------------------
+# Thesis clusters → private→public proxy map (Goal F, ranked).
+# ------------------------------------------------------------
 # Each cluster maps a PRIVATE-market signal (essay theme, Form D placement,
-# venture stake) to PUBLIC proxies graded by:
-#   order    : 1 = pure-play, 2 = major beneficiary, 3 = indirect/diversified
-#   evidence : confirmed | high | medium | low | speculative  (link strength)
+# venture stake) to PUBLIC proxies graded on FOUR auditable dimensions, so the
+# radar answers the real question: a private theme A — which LISTED company B is
+# the most LIQUID, UNDERVALUED, OPTIONABLE proxy?
+#
+#   order      : 1 = pure-play, 2 = major beneficiary, 3 = indirect/diversified
+#   evidence   : confirmed | high | medium | low | speculative  (link strength)
+#   liquidity  : deep | medium | thin     (curated prior; refined LIVE when data is present)
+#   valuation  : cheap | fair | rich      (relative valuation prior; higher cheap = bigger edge)
+#
+# The cluster `edge` ranking combines link-quality × liquidity × options-quality
+# (LIVE when available) × valuation. Options-quality is read live from the
+# pipeline; offline it falls back to the liquidity prior.
 #
 # HARD RULE: every cluster MUST declare a `falsification` condition — the
-# observation that would demote the proxy chain. Evidence levels are deliberately
-# conservative; these are hypotheses to monitor, not certainties.
+# observation that would demote the proxy chain. These are hypotheses to monitor.
 
 clusters:
   compute:
@@ -15,76 +23,76 @@ clusters:
     private_signal: "Essays + Form D rounds for compute/inference startups; GPU pre-buys."
     falsification: "Hyperscaler AI-capex guidance cut >15% q/q, OR GPU lead times normalise below ~8 weeks for two months."
     proxies:
-      - {ticker: NVDA, order: 1, evidence: high,   rationale: "Dominant training/inference GPU."}
-      - {ticker: TSM,  order: 1, evidence: high,   rationale: "Sole advanced-node foundry for AI silicon."}
-      - {ticker: AMD,  order: 2, evidence: medium, rationale: "Second-source accelerators."}
-      - {ticker: AVGO, order: 2, evidence: medium, rationale: "Custom AI ASICs."}
-      - {ticker: MU,   order: 2, evidence: medium, rationale: "HBM memory, supply-constrained."}
-      - {ticker: ASML, order: 2, evidence: high,   rationale: "EUV litho monopoly upstream."}
-      - {ticker: AMAT, order: 3, evidence: low,    rationale: "Broad WFE; diversified."}
-      - {ticker: LRCX, order: 3, evidence: low,    rationale: "Etch/deposition; diversified."}
+      - {ticker: NVDA, order: 1, evidence: high,   liquidity: deep, valuation: rich,  rationale: "Dominant training/inference GPU."}
+      - {ticker: TSM,  order: 1, evidence: high,   liquidity: deep, valuation: fair,  rationale: "Sole advanced-node foundry for AI silicon."}
+      - {ticker: AMD,  order: 2, evidence: medium, liquidity: deep, valuation: fair,  rationale: "Second-source accelerators."}
+      - {ticker: AVGO, order: 2, evidence: medium, liquidity: deep, valuation: rich,  rationale: "Custom AI ASICs."}
+      - {ticker: MU,   order: 2, evidence: medium, liquidity: deep, valuation: cheap, rationale: "HBM memory, supply-constrained."}
+      - {ticker: ASML, order: 2, evidence: high,   liquidity: deep, valuation: fair,  rationale: "EUV litho monopoly upstream."}
+      - {ticker: AMAT, order: 3, evidence: low,    liquidity: deep, valuation: fair,  rationale: "Broad WFE; diversified."}
+      - {ticker: LRCX, order: 3, evidence: low,    liquidity: deep, valuation: fair,  rationale: "Etch/deposition; diversified."}
 
   power_grid:
     description: "Electricity is the binding constraint on AI data-center build-out."
     private_signal: "Aschenbrenner 'power' theme; venture interest in grid/energy."
     falsification: "Data-center interconnection-queue MW declines two consecutive quarters, OR signed power PPAs cancelled."
     proxies:
-      - {ticker: VST,  order: 1, evidence: high,   rationale: "IPP selling power to data centers."}
-      - {ticker: CEG,  order: 1, evidence: high,   rationale: "Largest US nuclear fleet; clean baseload PPAs."}
-      - {ticker: GEV,  order: 1, evidence: medium, rationale: "Grid + generation equipment."}
-      - {ticker: NRG,  order: 2, evidence: medium, rationale: "Retail/generation; data-center exposure."}
-      - {ticker: ETN,  order: 2, evidence: medium, rationale: "Electrical distribution for DCs."}
+      - {ticker: VST,  order: 1, evidence: high,   liquidity: deep,   valuation: fair,  rationale: "IPP selling power to data centers."}
+      - {ticker: CEG,  order: 1, evidence: high,   liquidity: deep,   valuation: fair,  rationale: "Largest US nuclear fleet; clean baseload PPAs."}
+      - {ticker: GEV,  order: 1, evidence: medium, liquidity: deep,   valuation: rich,  rationale: "Grid + generation equipment."}
+      - {ticker: NRG,  order: 2, evidence: medium, liquidity: medium, valuation: cheap, rationale: "Retail/generation; data-center exposure."}
+      - {ticker: ETN,  order: 2, evidence: medium, liquidity: deep,   valuation: rich,  rationale: "Electrical distribution for DCs."}
 
   nuclear:
     description: "Firm clean baseload (existing fleet + SMRs) for 24/7 AI load."
     private_signal: "Nuclear/SMR mentions; restart and PPA deals."
     falsification: "SMR/nuclear PPA cancellations OR NRC licensing delays push first new power beyond ~2030."
     proxies:
-      - {ticker: CEG,  order: 1, evidence: high,   rationale: "Nuclear fleet; data-center PPAs."}
-      - {ticker: VST,  order: 2, evidence: medium, rationale: "Has nuclear assets among generation mix."}
-      - {ticker: GEV,  order: 2, evidence: low,    rationale: "Nuclear/SMR technology optionality."}
+      - {ticker: CEG,  order: 1, evidence: high,   liquidity: deep, valuation: fair, rationale: "Nuclear fleet; data-center PPAs."}
+      - {ticker: VST,  order: 2, evidence: medium, liquidity: deep, valuation: fair, rationale: "Has nuclear assets among generation mix."}
+      - {ticker: GEV,  order: 2, evidence: low,    liquidity: deep, valuation: rich, rationale: "Nuclear/SMR technology optionality."}
 
   cooling:
     description: "Liquid/immersion cooling as rack power density rises past air limits."
     private_signal: "Cooling theme; thermal-startup placements."
     falsification: "Liquid-cooling attach rate for AI racks stalls; air cooling stays adequate at >100 kW/rack."
     proxies:
-      - {ticker: VRT,  order: 1, evidence: high,   rationale: "Thermal/power for data centers."}
-      - {ticker: SMCI, order: 2, evidence: low,    rationale: "Liquid-cooled servers; accounting risk."}
-      - {ticker: ETN,  order: 3, evidence: low,    rationale: "Electrical/thermal adjacency."}
+      - {ticker: VRT,  order: 1, evidence: high,   liquidity: deep,   valuation: rich,  rationale: "Thermal/power for data centers."}
+      - {ticker: SMCI, order: 2, evidence: low,    liquidity: medium, valuation: cheap, rationale: "Liquid-cooled servers; accounting risk."}
+      - {ticker: ETN,  order: 3, evidence: low,    liquidity: deep,   valuation: rich,  rationale: "Electrical/thermal adjacency."}
 
   networking:
     description: "Cluster interconnect: switching silicon, optics, scale-up/scale-out fabric."
     private_signal: "Networking/interconnect theme."
     falsification: "Hyperscalers in-source switching / Ethernet-for-AI attach declines."
     proxies:
-      - {ticker: ANET, order: 1, evidence: high,   rationale: "AI back-end Ethernet switching."}
-      - {ticker: AVGO, order: 2, evidence: high,   rationale: "Switch silicon + optics DSPs."}
-      - {ticker: MRVL, order: 2, evidence: medium, rationale: "Optical DSP / custom interconnect."}
-      - {ticker: CSCO, order: 3, evidence: low,    rationale: "Enterprise networking; diversified."}
+      - {ticker: ANET, order: 1, evidence: high,   liquidity: deep, valuation: rich,  rationale: "AI back-end Ethernet switching."}
+      - {ticker: AVGO, order: 2, evidence: high,   liquidity: deep, valuation: rich,  rationale: "Switch silicon + optics DSPs."}
+      - {ticker: MRVL, order: 2, evidence: medium, liquidity: deep, valuation: fair,  rationale: "Optical DSP / custom interconnect."}
+      - {ticker: CSCO, order: 3, evidence: low,    liquidity: deep, valuation: cheap, rationale: "Enterprise networking; diversified."}
 
   defense_ai:
     description: "AI for national security / defense (Thiel + Founders Fund native)."
     private_signal: "Thiel/Founders Fund defense bets; PLTR insider activity."
     falsification: "US defense AI procurement budget cut OR a major PLTR contract loss/recompete."
     proxies:
-      - {ticker: PLTR, order: 1, evidence: high,   rationale: "Defense/intel AI software; Thiel-native."}
-      - {ticker: PANW, order: 3, evidence: low,    rationale: "Security adjacency; diversified."}
-      - {ticker: CRWD, order: 3, evidence: low,    rationale: "Security adjacency; diversified."}
+      - {ticker: PLTR, order: 1, evidence: high,   liquidity: deep, valuation: rich, rationale: "Defense/intel AI software; Thiel-native."}
+      - {ticker: PANW, order: 3, evidence: low,    liquidity: deep, valuation: fair, rationale: "Security adjacency; diversified."}
+      - {ticker: CRWD, order: 3, evidence: low,    liquidity: deep, valuation: rich, rationale: "Security adjacency; diversified."}
 
   export_controls:
     description: "Chip export controls — a double-edged macro axis; onshoring beneficiaries."
     private_signal: "Export-control / chokepoint theme in essays."
     falsification: "Export controls materially loosened OR broad China carve-outs granted."
     proxies:
-      - {ticker: TSM,  order: 2, evidence: low,    rationale: "US fabs benefit but China demand cut — ambiguous."}
-      - {ticker: AMAT, order: 3, evidence: low,    rationale: "Domestic-capacity equipment; offset by China loss."}
-      - {ticker: LRCX, order: 3, evidence: low,    rationale: "Same double-edge as AMAT."}
+      - {ticker: TSM,  order: 2, evidence: low,    liquidity: deep, valuation: fair, rationale: "US fabs benefit but China demand cut — ambiguous."}
+      - {ticker: AMAT, order: 3, evidence: low,    liquidity: deep, valuation: fair, rationale: "Domestic-capacity equipment; offset by China loss."}
+      - {ticker: LRCX, order: 3, evidence: low,    liquidity: deep, valuation: fair, rationale: "Same double-edge as AMAT."}
 
   automation:
     description: "Physical automation / robotics as labor and reshoring accelerate."
     private_signal: "Automation/robotics theme; Founders Fund robotics bets."
     falsification: "Humanoid/industrial-automation order growth stalls; capex deferred."
     proxies:
-      - {ticker: TER,  order: 1, evidence: medium, rationale: "Test + industrial automation/robotics."}
-      - {ticker: PLTR, order: 2, evidence: low,    rationale: "Autonomy/ops software adjacency."}
+      - {ticker: TER,  order: 1, evidence: medium, liquidity: deep, valuation: fair, rationale: "Test + industrial automation/robotics."}
+      - {ticker: PLTR, order: 2, evidence: low,    liquidity: deep, valuation: rich, rationale: "Autonomy/ops software adjacency."}
