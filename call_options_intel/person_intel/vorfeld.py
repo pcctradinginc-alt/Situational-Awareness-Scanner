@@ -326,6 +326,104 @@ class DomainWatchAdapter:
         return out
 
 
+# ── certificate transparency (brand-new fund domains) ───────────────────────
+def _age_days(iso: str, as_of: date) -> Optional[int]:
+    try:
+        return (as_of - date.fromisoformat(iso[:10])).days
+    except (ValueError, TypeError):
+        return None
+
+
+class CertTransparencyAdapter:
+    """Discover BRAND-NEW domains/subdomains via public Certificate Transparency
+    logs (crt.sh) — often the earliest footprint of a forming fund/LP/project,
+    weeks before any SEC filing or press.
+
+    For each configured name pattern we read every logged certificate, collect
+    the (sub)domains, and emit a ``new_domain`` signal for any domain not in the
+    prior snapshot whose certificate is RECENT. A new cert is weak evidence (could
+    be a vendor/parking/subdomain) → always ``needs_human_review``.
+    """
+    LIVE = "https://crt.sh/?q=%25{q}%25&output=json"
+
+    def __init__(self, fetcher: Fetcher, fixture: Optional[FixtureFetcher] = None,
+                 recent_days: int = 45):
+        self.fetcher = fetcher
+        self.fixture = fixture
+        self.recent_days = recent_days
+
+    @staticmethod
+    def _slug(q: str) -> str:
+        return re.sub(r"[^a-z0-9]+", "_", q.lower()).strip("_")[:60]
+
+    def _fetch(self, q: str) -> list:
+        from urllib.parse import quote
+        raw = (self.fixture.read("cert", f"{self._slug(q)}.json") if self.fixture
+               else self.fetcher.get(self.LIVE.format(q=quote(q))))
+        if not raw:
+            return []
+        try:
+            data = json.loads(raw)
+        except json.JSONDecodeError:
+            return []
+        return data if isinstance(data, list) else []
+
+    @staticmethod
+    def _domains(certs: list) -> dict:
+        """domain → earliest not_before date seen (ISO yyyy-mm-dd)."""
+        out: dict[str, str] = {}
+        for c in certs or []:
+            if not isinstance(c, dict):
+                continue
+            names = set()
+            for line in str(c.get("name_value", "")).splitlines():
+                names.add(line)
+            if c.get("common_name"):
+                names.add(str(c["common_name"]))
+            nb = str(c.get("not_before", ""))[:10]
+            for n in names:
+                d = n.strip().lower().lstrip("*.").strip()
+                if not d or " " in d or "." not in d:
+                    continue
+                if d not in out or (nb and nb < out[d]):
+                    out[d] = nb
+        return out
+
+    def changes(self, patterns: list[dict], snapshot: SnapshotStore,
+                as_of: date) -> list[VorfeldSignal]:
+        out: list[VorfeldSignal] = []
+        for p in patterns or []:
+            q = (p.get("q") if isinstance(p, dict) else str(p)) or ""
+            if not q:
+                continue
+            principal = p.get("principal", "") if isinstance(p, dict) else ""
+            excludes = [str(x).lower() for x in (p.get("exclude", [])
+                        if isinstance(p, dict) else [])]
+            cur = {d: nb for d, nb in self._domains(self._fetch(q)).items()
+                   if not any(x in d for x in excludes)}
+            key = f"cert:{self._slug(q)}"
+            prev = snapshot.get(key)
+            snapshot.set(key, {"domains": sorted(cur)})
+            if prev is None:
+                continue                              # baseline only, no alert
+            prev_domains = set(prev.get("domains", []))
+            for d in sorted(set(cur) - prev_domains):
+                age = _age_days(cur[d], as_of)
+                if age is not None and age > self.recent_days:
+                    continue                          # old domain newly indexed
+                clusters = classify_clusters(d.replace("-", " ").replace(".", " "))
+                dom_cluster = max(clusters, key=clusters.get) if clusters else ""
+                out.append(VorfeldSignal(
+                    source="cert_transparency", principal=principal, entity=d,
+                    kind="new_domain",
+                    headline=f"NEW domain seen in CT logs — {d}",
+                    detail=f"matches “{q}”, first certificate {cur[d] or 'n/a'}",
+                    cluster=dom_cluster, url=f"https://crt.sh/?q={d}",
+                    change_date=as_of.isoformat(), age_days=age,
+                    content_hash=f"cert:{self._slug(q)}:" + _hash(d)))
+        return out
+
+
 # ── orchestration ───────────────────────────────────────────────────────────
 def collect_vorfeld(cfg, mode: str, fixtures_dir, snapshot: SnapshotStore,
                     as_of: date) -> list[VorfeldSignal]:
@@ -349,4 +447,9 @@ def collect_vorfeld(cfg, mode: str, fixtures_dir, snapshot: SnapshotStore,
     if dom.get("enabled"):
         out += DomainWatchAdapter(net, fx).changes(
             dom.get("sites", []), snapshot, as_of)
+    cert = es.get("cert_transparency", {})
+    if cert.get("enabled"):
+        out += CertTransparencyAdapter(
+            net, fx, recent_days=int(cert.get("recent_days", 45))).changes(
+            cert.get("patterns", []), snapshot, as_of)
     return out

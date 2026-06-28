@@ -152,7 +152,7 @@ def _network_context_md(lines: list, result: MonitorResult) -> None:
 
 
 _VORFELD_LABEL = {"adv_iapd": "ADV/IAPD", "job_postings": "Hiring",
-                  "domain_watch": "Website"}
+                  "domain_watch": "Website", "cert_transparency": "New-Domain (CT)"}
 
 
 def _vorfeld_block_md(lines: list, vorfeld: list) -> None:

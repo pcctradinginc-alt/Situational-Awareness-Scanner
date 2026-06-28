@@ -57,5 +57,22 @@ domain_watch:
     - { entity: "Founders Fund",       url: "https://foundersfund.com/",            principal: thiel }
     - { entity: "Situational Awareness", url: "https://situational-awareness.ai/",   principal: aschenbrenner }
 
+# Certificate Transparency (crt.sh) — discover BRAND-NEW domains/subdomains the
+# moment their TLS certificate is logged, often the EARLIEST footprint of a
+# forming fund/LP/project (weeks before any SEC filing or press). A new cert is
+# weak evidence (could be a vendor/parking/subdomain) → every hit is
+# needs_human_review. Patterns are distinctive brand tokens to keep noise low;
+# optional `exclude` drops known-unrelated substrings.
+cert_transparency:
+  enabled: true
+  recent_days: 45                 # only domains whose certificate is newer than this
+  patterns:
+    - { q: "foundersfund",          principal: thiel }
+    - { q: "mithril.com",           principal: thiel }
+    - { q: "valar.com",             principal: thiel }
+    - { q: "clariumcapital",        principal: thiel }
+    - { q: "thielcapital",          principal: thiel }
+    - { q: "situational-awareness", principal: aschenbrenner }
+
 # Persistent snapshot of previous observations (the diff baseline).
 snapshot_path: "data/person_intel/vorfeld_snapshots.json"

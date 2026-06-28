@@ -446,15 +446,16 @@ def cmd_doctor(args) -> int:
               f"{len(es.get('terms', []))} name terms (new-entity discovery)"
               if es.get("enabled") else "disabled")
 
-        # vorfeld non-filing change-detection (ADV/IAPD · jobs · domain)
+        # vorfeld non-filing change-detection (ADV/IAPD · jobs · domain · CT)
         early = _ly("early_sources", cfg.config_dir) or {}
         vf = sum(len((early.get(k, {}) or {}).get(sub, []))
                  for k, sub in (("adv_iapd", "advisers"),
                                 ("job_postings", "companies"),
-                                ("domain_watch", "sites"))
+                                ("domain_watch", "sites"),
+                                ("cert_transparency", "patterns"))
                  if (early.get(k, {}) or {}).get("enabled"))
         _line("vorfeld change-detection", vf > 0,
-              f"{vf} targets (ADV/IAPD · jobs · domain)")
+              f"{vf} targets (ADV/IAPD · jobs · domain · cert-transparency)")
 
         # three-axis trade gate (person · freshness · tradeability)
         from .person_intel.triple_score import GateThresholds

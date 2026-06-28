@@ -264,10 +264,18 @@ the new sub-package. Branch/PR only — no `main` push, no secrets in the diff.
     deduped via the SeenStore, triple-scored (CONTEXT-grade: modest person-signal
     so they rarely auto-trade), and surfaced in a "📡 Vorfeld" digest/email
     section. `MonitorResult.vorfeld`; counts into `total_new`. Tests:
-    `tests/test_coi_person_vorfeld.py` (9).
-  - **Remaining (next):** verify the ADV CRDs / job-board tokens against live
-    sources; richer ADV parsing (SMA/AUM breakdown); cert-transparency for brand-
-    new fund domains; transcript ingestion for the podcast slot.
+    `tests/test_coi_person_vorfeld.py`.
+  - ADV CRDs / job tokens VERIFIED live (adviserinfo.sec.gov / boards): Founders
+    Fund 155462, Mithril 164135, Thiel Bio 324760; Anduril `andurilindustries`,
+    Palantir `palantir`. Thiel Macro removed (not a registered adviser).
+  - **Certificate Transparency** (`CertTransparencyAdapter`, crt.sh): discover
+    BRAND-NEW domains/subdomains the moment their TLS cert is logged — often the
+    earliest footprint of a forming fund/LP, weeks before any filing. Distinctive
+    brand patterns keep noise low; each new domain is `needs_human_review`,
+    classified into a thesis cluster, and recency-gated. Offline demo discovers
+    `ff-compute-spv.foundersfund.com` → cluster `compute`.
+  - **Remaining (next):** richer ADV parsing (SMA/AUM breakdown); podcast/
+    transcript ingestion for the statement-feed primary slot.
 
 ## Acceptance
 
