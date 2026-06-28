@@ -118,6 +118,35 @@ def _new_entities_md(lines: list, result: MonitorResult) -> None:
     lines.append("")
 
 
+def _ranked_proxies_md(lines: list, result: MonitorResult) -> None:
+    """Best public proxy per private theme touched this run (the real edge:
+    private theme A → most liquid/undervalued/optionable listed proxy B)."""
+    rp = getattr(result, "ranked_proxies", {}) or {}
+    if not rp:
+        return
+    lines.append("## 🎯 Best public proxy per private theme")
+    lines.append("")
+    lines.append("_private theme A → the most liquid, undervalued, optionable "
+                 "listed proxy B (edge = link × liquidity × options × valuation)._")
+    lines.append("")
+    for cluster in sorted(rp):
+        ranked = rp[cluster]
+        if not ranked:
+            continue
+        lines.append(f"**«{cluster}»**")
+        for r in ranked:
+            live = "live" if r.get("options_live") else "prior"
+            lines.append(
+                f"- **{r['ticker']}** · edge {r['edge_score']:.1f} "
+                f"(link {r['link']:.2f} · liq {r['liquidity']:.2f} · "
+                f"opt {r['options_quality']:.2f}/{live} · val {r['valuation']:.2f}) "
+                f"— {r.get('rationale', '')}")
+        fals = ranked[0].get("falsification", "")
+        if fals:
+            lines.append(f"  - _falsify:_ {fals}")
+        lines.append("")
+
+
 def _network_context_md(lines: list, result: MonitorResult) -> None:
     """One context line per principal that appears in this run's signals."""
     principals = []
@@ -220,6 +249,7 @@ def render_markdown(result: MonitorResult) -> str:
     lines.append(f"> {DISCLAIMER}")
     lines.append("")
     _trade_candidates_md(lines, result)
+    _ranked_proxies_md(lines, result)
     _new_entities_md(lines, result)
     _network_context_md(lines, result)
 

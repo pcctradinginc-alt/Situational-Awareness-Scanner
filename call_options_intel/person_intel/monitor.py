@@ -594,6 +594,7 @@ class MonitorResult:
     principal_count: int          # alerts directly linked to a principal vehicle
     statements: list = field(default_factory=list)  # NEW conviction signals (what they SAY)
     vorfeld: list = field(default_factory=list)     # NEW non-filing change signals
+    ranked_proxies: dict = field(default_factory=dict)  # cluster -> [RankedProxy dict]
 
     @property
     def statement_count(self) -> int:
@@ -627,6 +628,7 @@ class MonitorResult:
             "alerts": [a.to_dict() for a in self.alerts],
             "statements": [s.to_dict() for s in self.statements],
             "vorfeld": [v.to_dict() for v in self.vorfeld],
+            "ranked_proxies": self.ranked_proxies,
         }
 
 
@@ -732,6 +734,10 @@ def run_monitor(config: Optional[AppConfig] = None, *, mode: Optional[str] = Non
     for v in vorfeld:
         _score_vorfeld(v, scorer, trade_fn, proxy_map)
 
+    # private theme → ranked PUBLIC proxy map for every cluster this run touched
+    ranked_proxies = _rank_relevant_clusters(
+        proxy_map, alerts, statements, vorfeld, trade_fn)
+
     if persist and (alerts or statements or vorfeld):
         stamp = (as_of or date.today()).isoformat()
         for a in alerts:
@@ -756,4 +762,35 @@ def run_monitor(config: Optional[AppConfig] = None, *, mode: Optional[str] = Non
     return MonitorResult(
         new_count=len(alerts), alerts=alerts, mode=run_mode,
         run_at=datetime.now(timezone.utc).isoformat(),
-        principal_count=principal_count, statements=statements, vorfeld=vorfeld)
+        principal_count=principal_count, statements=statements, vorfeld=vorfeld,
+        ranked_proxies=ranked_proxies)
+
+
+def _rank_relevant_clusters(proxy_map: ProxyMap, alerts, statements, vorfeld,
+                            trade_fn) -> dict:
+    """Top-3 ranked public proxies for each thesis cluster the run's signals
+    touch (statement/vorfeld dominant cluster + alert subject's clusters)."""
+    clusters: set[str] = set()
+    for s in statements:
+        if getattr(s, "dominant_cluster", ""):
+            clusters.add(s.dominant_cluster)
+    for v in vorfeld:
+        if getattr(v, "cluster", ""):
+            clusters.add(v.cluster)
+    for a in alerts:
+        if a.subject_ticker:
+            for cn, _ in proxy_map.clusters_for_ticker(a.subject_ticker):
+                clusters.add(cn)
+
+    def opt_fn(ticker):
+        if not trade_fn:
+            return None
+        r = trade_fn(ticker)
+        return (r[1] / 10.0, r[1] / 10.0) if r else None   # options_quality 0..1
+
+    out: dict = {}
+    for cl in sorted(clusters):
+        ranked = proxy_map.best_proxies(cl, top=3, options_fn=opt_fn)
+        if ranked:
+            out[cl] = [rp.to_dict() for rp in ranked]
+    return out

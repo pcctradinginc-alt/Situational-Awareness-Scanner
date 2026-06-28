@@ -243,16 +243,13 @@ class StatementFeedMonitor:
 
     # derive SECOND-ORDER candidates from the dominant cluster ----------------
     def _derived_candidates(self, dominant: str) -> list[str]:
-        c = self.proxy_map.cluster(dominant)
-        if not c or not c.proxies:
-            return []
-        ranked = sorted(c.proxies, key=lambda p: p.quality(), reverse=True)
+        # rank by the composite EDGE (link × liquidity × options × valuation),
+        # so the watchlist is the most liquid/undervalued/optionable proxies —
+        # not merely the best-linked names.
         out: list[str] = []
-        for p in ranked:
-            if p.ticker not in out:
-                out.append(p.ticker)
-            if len(out) >= self.max_candidates:
-                break
+        for r in self.proxy_map.best_proxies(dominant, top=self.max_candidates):
+            if r.ticker not in out:
+                out.append(r.ticker)
         return out
 
     def _raw_for(self, feed: dict) -> Optional[str]:

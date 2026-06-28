@@ -277,6 +277,21 @@ the new sub-package. Branch/PR only — no `main` push, no secrets in the diff.
   - **Remaining (next):** richer ADV parsing (SMA/AUM breakdown); podcast/
     transcript ingestion for the statement-feed primary slot.
 
+- **Phase 8 (done) — ranked private→public proxy map:**
+  Reframe the edge: not "copy the trade" but *private theme A → the most LIQUID,
+  UNDERVALUED, OPTIONABLE listed proxy B*. Each proxy in `config/thesis_proxies.yml`
+  now carries `liquidity` + `valuation` priors; `proxy_map.RankedProxy` /
+  `rank_cluster(options_fn)` score four dimensions — **link** (order×evidence),
+  **liquidity**, **options-quality** (LIVE from the pipeline when available, else
+  the liquidity prior), **valuation** (cheaper = bigger edge) — into an
+  `edge_score` (weights 0.40/0.25/0.20/0.15), each carrying the cluster
+  falsification. Wired: statement derived-candidates now follow the edge ranking;
+  `MonitorResult.ranked_proxies` (top-3 per touched cluster, live options where
+  resolvable); digest "🎯 Best public proxy per private theme" section; CLI
+  `proxies [--cluster …] [--live]`. Demo: in `compute`, TSM (fair) edges NVDA
+  (rich) at equal link; MU climbs on cheap valuation. Tests:
+  `tests/test_coi_person_proxy_rank.py` (8).
+
 ## Acceptance
 
 Tests green; repo paper-only; clear Entity→Signal→Evidence→Candidate dataflow;

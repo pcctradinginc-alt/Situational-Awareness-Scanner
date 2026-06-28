@@ -176,10 +176,17 @@ Building blocks (all offline, deterministic, additive, never trade):
   without confidence.
 - **Statement layer** — discovery-only (URL + hash + source + date + short
   excerpt, **never** full text), official > media, advisory classification.
-- **Thesis proxies** (`config/thesis_proxies.yml`) — 8 clusters (compute,
+- **Ranked thesis proxies** (`config/thesis_proxies.yml`) — 8 clusters (compute,
   power_grid, nuclear, cooling, networking, defense_ai, export_controls,
-  automation) with private→public 1st/2nd/3rd-order proxies and a **mandatory
-  falsification condition** per cluster.
+  automation). The real edge isn't "Leo buys X, I buy X" but *private theme A →
+  which LISTED company B is the most **liquid, undervalued, optionable** proxy?*
+  Each proxy is scored on four auditable dimensions — **link** (1st/2nd/3rd-order ×
+  evidence), **liquidity**, **options-quality** (live from the pipeline when
+  available, else a curated prior), **valuation** (cheaper = bigger edge) — combined
+  into an **edge score** that ranks the proxies, each with a **mandatory
+  falsification condition**. Inspect with `python -m call_options_intel proxies
+  [--cluster compute] [--live]`; the digest leads relevant runs with a "🎯 Best
+  public proxy per private theme" section.
 - **Conservative options** — fill toward the ask (not mid), theta/vega reprice
   sim, IV-rank only after warmup, paper-only sizing.
 - **Outcome learning** — append-only (incl. rejected), 7/14/30/60/90/180-day

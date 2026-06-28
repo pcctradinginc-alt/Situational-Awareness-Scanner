@@ -289,6 +289,35 @@ def cmd_person_monitor(args) -> int:
     return 0
 
 
+def cmd_proxies(args) -> int:
+    """Ranked private→public proxy map: best LISTED proxy per thesis cluster,
+    scored on link · liquidity · options-quality · valuation (+ falsification)."""
+    from .person_intel.proxy_map import load_proxy_map, THESIS_CLUSTERS
+    cfg = AppConfig(config_dir=Path(args.config_dir) if args.config_dir else CONFIG_DIR)
+    pm = load_proxy_map(cfg.config_dir)
+    opt_fn = None
+    if getattr(args, "live", False):
+        from .person_intel.monitor import _make_tradeability_fn
+        fixtures = getattr(args, "fixtures_dir", None) or DEFAULT_FIXTURES
+        tf = _make_tradeability_fn(cfg, "live", fixtures)
+        opt_fn = (lambda t: (lambda r: (r[1] / 10.0, r[1] / 10.0) if r else None)(tf(t))) if tf else None
+    print(f"\n{DISCLAIMER}\n")
+    print("PRIVATE THEME → ranked PUBLIC proxy (edge = link·liquidity·options·valuation)\n")
+    clusters = _split(args.cluster) or list(THESIS_CLUSTERS)
+    for cl in clusters:
+        ranked = pm.best_proxies(cl, top=args.limit, options_fn=opt_fn)
+        if not ranked:
+            continue
+        print(f"«{cl}»")
+        print(f"  {'TICK':5s} {'EDGE':>4s}  {'link':>4s} {'liq':>4s} {'opt':>4s} {'val':>4s}  rationale")
+        for r in ranked:
+            print(f"  {r.ticker:5s} {r.edge_score:4.1f}  {r.link:4.2f} "
+                  f"{r.liquidity:4.2f} {r.options_quality:4.2f} {r.valuation:4.2f}  "
+                  f"{r.rationale}")
+        print(f"  ↳ falsify: {pm.falsification_for(cl)}\n")
+    return 0
+
+
 def cmd_record_iv(args) -> int:
     """Append today's ATM IV per ticker to the IV-history store (warmup builder)."""
     from .scoring import _atm_iv
@@ -648,6 +677,16 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--dry-run", action="store_true",
                     help="report without persisting state or sending email")
     sp.set_defaults(func=cmd_person_monitor)
+
+    sp = sub.add_parser("proxies",
+                        help="ranked private→public proxy map per thesis cluster")
+    sp.add_argument("--config-dir")
+    sp.add_argument("--fixtures-dir")
+    sp.add_argument("--cluster", nargs="*", help="restrict to these clusters")
+    sp.add_argument("--limit", type=int, default=5)
+    sp.add_argument("--live", action="store_true",
+                    help="use live options data for liquidity/options-quality")
+    sp.set_defaults(func=cmd_proxies)
 
     sp = sub.add_parser("outcomes-report",
                         help="multi-horizon outcomes + walk-forward edge guard")
