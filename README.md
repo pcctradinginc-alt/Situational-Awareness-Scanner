@@ -210,6 +210,14 @@ Building blocks (all offline, deterministic, additive, never trade):
   min-sample guard** — no profit is claimed without an out-of-sample fold. Recording
   rejects is deliberate: it measures what the system correctly *avoided*.
   (`person-monitor --record-outcomes`; the workflow records + matures every run.)
+- **Realistic options backtest** (`person_intel/options_sim.py`,
+  `outcomes-report --realistic`) — not a proxy. It walks a long call day-by-day along
+  the real underlying path (offline CSV / live Stooq) + IV path, **Black-Scholes
+  repricing** so theta decay and vega/IV-crush bite, with **conservative fills**
+  (buy→ask, sell→bid) + spread/slippage and daily **exit rules** (IV-crush avoidance ·
+  take-profit · stop-loss · time/DTE-stop, `config/risk_thresholds.yml`). Every trade
+  is judged against the **stock, QQQ, SOXX and "no trade"**. (Demo: rally→+100%
+  take-profit, flat→negative time-stop — the theta drag the proxy ignored.)
 
 See [docs/improvement_plan.md](docs/improvement_plan.md).
 

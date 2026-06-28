@@ -328,6 +328,23 @@ the new sub-package. Branch/PR only — no `main` push, no secrets in the diff.
   HTML both lead with them (with a graceful fallback when no brief is present).
   Tests: `tests/test_coi_person_action_brief.py` (12).
 
+- **Phase 11 (done) — realistic options backtest (not a proxy):**
+  `person_intel/options_sim.py` replaces the first-order `_option_proxy_return`
+  with a **path-based** simulation: it walks a long call day-by-day along the REAL
+  underlying price path (`HistoricalPriceProvider`, offline CSV / live Stooq) and
+  an optional IV path, repricing with Black-Scholes so **theta decay** and
+  **vega / IV-crush** are captured. Frictions: **conservative fills** (buy crosses
+  toward the ASK, sell toward the BID) + spread/slippage. **Exit rules** checked
+  daily in priority order: IV-crush avoidance · take-profit · stop-loss ·
+  time/DTE-stop (`config/risk_thresholds.yml → options_backtest`). Each trade is
+  compared over the same window against the **stock, QQQ, SOXX and "no trade"**.
+  `backtest_signals` aggregates option P&L + exit-reason buckets + vs-benchmark;
+  `outcomes-report --realistic [--live] [--iv-store]` runs it behind the
+  walk-forward guard; the workflow writes `outcomes_realistic.json` each run.
+  Offline demo: rally→take-profit (+100%), crash→stop-loss, flat→time-stop
+  (negative — the theta drag the proxy ignored), IV-collapse→iv_crush exit.
+  Tests: `tests/test_coi_person_options_sim.py` (10).
+
 ## Acceptance
 
 Tests green; repo paper-only; clear Entity→Signal→Evidence→Candidate dataflow;
