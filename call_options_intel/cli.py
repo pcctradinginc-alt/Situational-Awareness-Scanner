@@ -275,14 +275,17 @@ def cmd_person_monitor(args) -> int:
     summary = monitor_and_notify(
         config=cfg, mode=mode, since_days=args.since, state_path=args.state,
         fixtures_dir=fixtures, resolve=not args.no_resolve,
-        send_email=args.email, min_path_weight=args.min_weight)
+        send_email=args.email, min_path_weight=args.min_weight,
+        record_outcomes=getattr(args, "record_outcomes", False),
+        outcome_store_path=getattr(args, "outcome_store", None))
     print(f"\n{DISCLAIMER}\n")
     print(f"PERSON-MONITOR — mode={summary['mode']} · "
           f"new={summary['total_new']} "
           f"({summary['new_count']} filing / {summary['statement_count']} statement / "
           f"{summary.get('vorfeld_count', 0)} vorfeld) · "
           f"principal-linked={summary['principal_count']} · "
-          f"emailed={summary['emailed']}")
+          f"emailed={summary['emailed']} · "
+          f"recorded={summary.get('outcomes_recorded', 0)}")
     print(f"  digest: {summary['artifacts']['digest_md']}")
     if summary["total_new"] == 0:
         print("  (no new signals — no email; nothing to report)")
@@ -382,6 +385,14 @@ def cmd_outcomes_report(args) -> int:
             evaluated, split_date=args.split, horizon=args.horizon,
             min_sample=args.min_sample),
     }
+    if getattr(args, "out", None):
+        Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+        Path(args.out).write_text(_json.dumps(report, indent=2), encoding="utf-8")
+        print(f"outcomes report written -> {args.out} "
+              f"(n={report['summary'].get('n', 0)}, "
+              f"edge_claim={report['walk_forward'].get('edge_claim')})")
+        print(DISCLAIMER)
+        return 0
     print(_json.dumps(report, indent=2))
     print(f"\n{DISCLAIMER}")
     if approx and report["summary"].get("n"):
@@ -492,6 +503,14 @@ def cmd_doctor(args) -> int:
         _line("three-axis trade gate", True,
               f"person>={gt.person_signal} · fresh>={gt.freshness} · "
               f"trade>={gt.tradeability} (hard AND)")
+
+        # outcome-learning store (the real-operation learning substrate)
+        from .person_intel.outcomes import OutcomeStore
+        from .person_intel.outcome_recorder import DEFAULT_STORE
+        n_out = len(OutcomeStore(DEFAULT_STORE).load())
+        _line("outcome store", True,
+              f"{n_out} recorded signals at {DEFAULT_STORE} "
+              f"(matured 7/14/30/60/90/180d via outcomes-report)")
     except Exception as exc:  # pragma: no cover - defensive
         _line("person-intel configs", False, str(exc))
         ok = False
@@ -674,6 +693,10 @@ def build_parser() -> argparse.ArgumentParser:
                     help="drop alerts below this principal-path weight (0..1)")
     sp.add_argument("--no-resolve", action="store_true",
                     help="skip CUSIP subject resolution (fewer SEC requests)")
+    sp.add_argument("--record-outcomes", action="store_true",
+                    help="append every new signal (incl. rejects) to the outcome store")
+    sp.add_argument("--outcome-store", default="data/person_intel/outcomes.jsonl",
+                    help="outcome JSONL store path (committed across runs)")
     sp.add_argument("--dry-run", action="store_true",
                     help="report without persisting state or sending email")
     sp.set_defaults(func=cmd_person_monitor)
@@ -700,6 +723,7 @@ def build_parser() -> argparse.ArgumentParser:
                     help="walk-forward split date (in- vs out-of-sample)")
     sp.add_argument("--horizon", type=int, default=30)
     sp.add_argument("--min-sample", type=int, default=30)
+    sp.add_argument("--out", help="write the report as pure JSON to this path")
     sp.set_defaults(func=cmd_outcomes_report)
 
     sp = sub.add_parser("record-iv",

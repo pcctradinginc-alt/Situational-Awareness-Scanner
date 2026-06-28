@@ -292,6 +292,23 @@ the new sub-package. Branch/PR only — no `main` push, no secrets in the diff.
   (rich) at equal link; MU climbs on cheap valuation. Tests:
   `tests/test_coi_person_proxy_rank.py` (8).
 
+- **Phase 9 (done) — fill the outcome store in real operation:**
+  The architecture (append-only store, rejected candidates, multi-horizon,
+  QQQ/SOXX benchmark, walk-forward guard) existed but was never written to live.
+  `person_intel/outcome_recorder.py` now records ONE row per NEW signal every run
+  — filing alerts, statements, vorfeld, **including gate REJECTS** — capturing the
+  full decision context: when · source · latency · principal/path · ticker/proxy
+  · spot · option chain (strike/premium/delta/IV/DTE/spread) · the three score
+  components · decision (top/watch/reject). The option snapshot comes from an
+  injectable pipeline provider (offline fixtures / live yfinance); a signal with
+  no tradeable proxy is still recorded (audit trail). Store lives under
+  `data/person_intel/outcomes.jsonl` (committed across runs; `reports/*` is
+  gitignored). Wired: `monitor_and_notify(record_outcomes=…)`, CLI
+  `person-monitor --record-outcomes`, and the workflow records each run then runs
+  `outcomes-report --live --out …` to mature 7/14/30/60/90/180-day outcomes with
+  the walk-forward guard. `outcomes-report --out` writes pure JSON; doctor reports
+  the store size. Tests: `tests/test_coi_person_outcome_recording.py` (7).
+
 ## Acceptance
 
 Tests green; repo paper-only; clear Entity→Signal→Evidence→Candidate dataflow;

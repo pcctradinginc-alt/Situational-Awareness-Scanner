@@ -78,9 +78,12 @@ jobs:
           EMAIL_FLAG="--email"
           if [ "${{ inputs.no_email }}" = "true" ]; then EMAIL_FLAG=""; fi
 
+          # record EVERY new signal (incl. rejects) into the append-only outcome
+          # store — the real learning substrate, committed across runs.
           python -m call_options_intel person-monitor \
             --live --since "$SINCE" $EMAIL_FLAG \
-            --state data/person_intel/seen_filings.json
+            --state data/person_intel/seen_filings.json \
+            --record-outcomes --outcome-store data/person_intel/outcomes.jsonl
 
           # surface the new-signal count for the commit message
           NEW=$(python -c "
@@ -91,6 +94,15 @@ jobs:
           ")
           echo "new_count=$NEW" >> $GITHUB_OUTPUT
           echo "New person-signals: $NEW"
+
+      - name: Mature outcomes (7/14/30/60/90/180d) + walk-forward guard
+        continue-on-error: true
+        run: |
+          # date-aware per-horizon pricing via free Stooq; refuses an edge claim
+          # without a sufficient out-of-sample fold. Report-only, never trades.
+          python -m call_options_intel outcomes-report --live \
+            --store data/person_intel/outcomes.jsonl \
+            --out data/person_intel/outcomes_report.json || true
 
       - name: Commit state
         uses: stefanzweifel/git-auto-commit-action@v5

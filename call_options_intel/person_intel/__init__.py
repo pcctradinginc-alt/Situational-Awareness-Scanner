@@ -44,4 +44,5 @@ __all__ = [
     "triple_score",
     "edgar_fts",
     "vorfeld",
+    "outcome_recorder",
 ]
