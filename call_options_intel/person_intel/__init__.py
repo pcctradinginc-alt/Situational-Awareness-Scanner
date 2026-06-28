@@ -45,4 +45,5 @@ __all__ = [
     "edgar_fts",
     "vorfeld",
     "outcome_recorder",
+    "action_brief",
 ]

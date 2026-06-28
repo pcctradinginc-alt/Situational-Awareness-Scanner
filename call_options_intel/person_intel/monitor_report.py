@@ -55,6 +55,23 @@ def _subject_str(a: PersonAlert) -> str:
     return "subject pending review"
 
 
+def _brief_md(lines: list, brief: dict, principal: str = "") -> None:
+    """The extremely action-oriented 5-section brief — the lead of every alert."""
+    if not brief:
+        return
+    pn = {"thiel": "Thiel", "aschenbrenner": "Aschenbrenner"}.get(principal, "Person")
+    rows = [
+        ("🆕 Was ist neu?", brief.get("whats_new")),
+        (f"🔗 Warum {pn}-relevant?", brief.get("why_relevant")),
+        ("⏱️ Warum früh?", brief.get("why_early")),
+        ("🎯 Bester öffentlicher Proxy?", brief.get("best_proxy")),
+        ("🛑 Warum jetzt NICHT handeln?", brief.get("why_not_now")),
+    ]
+    for label, val in rows:
+        if val:
+            lines.append(f"- **{label}** {val}")
+
+
 def _triple_md(triple: dict) -> str:
     if not triple:
         return ""
@@ -195,14 +212,16 @@ def _vorfeld_block_md(lines: list, vorfeld: list) -> None:
     for v in vorfeld:
         src = _VORFELD_LABEL.get(v.source, v.source)
         princ = v.principal.upper() if v.principal else "—"
-        lines.append(f"- **[{src}]** {v.headline} · {princ}"
-                     + (f" · cluster «{v.cluster}»" if v.cluster else ""))
-        if v.detail:
-            lines.append(f"    - {v.detail}")
+        lines.append(f"#### [{src}] {princ}"
+                     + (f" · «{v.cluster}»" if v.cluster else ""))
+        _brief_md(lines, v.brief, v.principal)
+        if not v.brief:
+            lines.append(f"- {v.headline}" + (f" — {v.detail}" if v.detail else ""))
         if v.triple:
-            lines.append(f"    - 3-axis: {_triple_md(v.triple)}")
+            lines.append(f"- 3-axis: {_triple_md(v.triple)}")
         if v.url:
-            lines.append(f"    - {v.url}")
+            lines.append(f"- {v.url}")
+        lines.append("")
     lines.append("")
 
 
@@ -213,14 +232,12 @@ def _statement_block_md(lines: list, statements: list) -> None:
                  "second-order)")
     lines.append("")
     for s in statements:
-        cands = ", ".join(s.derived_candidates) or "—"
         lines.append(f"### {s.speaker} · «{s.dominant_cluster}»")
         lines.append("")
-        lines.append(f"- **Statement (discovery, advisory):** {s.headline}")
+        _brief_md(lines, s.brief, s.principal)
         lines.append(f"- **Source:** {s.source} ({s.tier}) · {s.date}"
                      + (f" ({s.age_days}d ago)" if s.age_days is not None else ""))
         lines.append(f"- **Excerpt:** {s.excerpt}")
-        lines.append(f"- **Derived candidates (HYPOTHESIS / watchlist):** {cands}")
         if s.triple:
             lines.append(f"- **3-axis:** {_triple_md(s.triple)}")
         if s.falsification:
@@ -266,15 +283,16 @@ def render_markdown(result: MonitorResult) -> str:
             role = "🟢 EARLY" if a.role == "early" else "🔵 CONFIRMATION"
             lines.append(f"### {_principal_badge(a)} · {a.category}")
             lines.append("")
+            if a.brief:
+                _brief_md(lines, a.brief, a.principal)
+            else:                                     # fallback without a brief
+                lines.append(f"- **Subject (hypothesis until verified):** "
+                             f"{_subject_str(a)}")
+                lines.append(f"- **Why it matters:** {a.why_it_matters}")
             lines.append(f"- **Filer (fact):** {a.entity} "
                          f"(CIK {a.cik}, path {a.path_weight:.2f} · "
-                         f"{a.link_confidence})")
-            lines.append(f"- **Filing:** {a.filing_type} · {role} · "
-                         f"filed {a.filing_date}"
-                         + (f" ({a.age_days}d ago)" if a.age_days is not None else ""))
-            lines.append(f"- **Subject (hypothesis until verified):** "
-                         f"{_subject_str(a)}")
-            lines.append(f"- **Why it matters:** {a.why_it_matters}")
+                         f"{a.link_confidence}) · {a.filing_type} · {role}"
+                         + (f" · {a.age_days}d ago" if a.age_days is not None else ""))
             if a.triple:
                 lines.append(f"- **3-axis:** {_triple_md(a.triple)}")
             if a.position_changes:
@@ -302,6 +320,32 @@ def render_markdown(result: MonitorResult) -> str:
 
 
 # ── email (HTML) ────────────────────────────────────────────────────────────
+def _brief_html(brief: dict, principal: str = "") -> str:
+    """The 5-section action brief, rendered as the lead of an email card."""
+    if not brief:
+        return ""
+    pn = {"thiel": "Thiel", "aschenbrenner": "Aschenbrenner"}.get(principal, "Person")
+    rows = [
+        ("🆕 Neu", brief.get("whats_new"), "#FFFFFF"),
+        (f"🔗 {pn}-Bezug", brief.get("why_relevant"), "#EBEBF5"),
+        ("⏱️ Früh", brief.get("why_early"), "#34C759"),
+        ("🎯 Bester Proxy", brief.get("best_proxy"), "#FF9500"),
+        ("🛑 Nicht jetzt", brief.get("why_not_now"), "#FF6B6B"),
+    ]
+    cells = []
+    for label, val, col in rows:
+        if not val:
+            continue
+        cells.append(
+            f'<tr><td style="padding:4px 0;vertical-align:top;width:108px;">'
+            f'<span style="font-size:11px;color:#8E8E93;font-weight:600;">{label}</span></td>'
+            f'<td style="padding:4px 0 4px 8px;font-size:13px;color:{col};line-height:1.45;">'
+            f'{val}</td></tr>')
+    return (f'<table width="100%" cellpadding="0" cellspacing="0" '
+            f'style="margin-top:10px;background:#0A0A0A;border-radius:10px;'
+            f'padding:6px 12px;">{"".join(cells)}</table>')
+
+
 def _alert_card_html(a: PersonAlert) -> str:
     accent = "#34C759" if a.role == "early" else "#007AFF"
     badge = _principal_badge(a)
@@ -340,7 +384,7 @@ def _alert_card_html(a: PersonAlert) -> str:
           <strong>Subject:</strong> {subj}<br>
           <span style="font-size:11px;color:#8E8E93;">
             (filing = fact · subject = hypothesis until verified)</span></div>
-        <div style="font-size:13px;color:#EBEBF5;line-height:1.5;margin-top:10px;">{a.why_it_matters}</div>
+        {_brief_html(a.brief, a.principal)}
         {_triple_html(a.triple)}{_position_changes_html(a)}{fals}{src}
       </td></tr>
     </table>"""
@@ -398,6 +442,7 @@ def _statement_card_html(s) -> str:
           <strong>Derived candidates:</strong> {cands}<br>
           <span style="font-size:11px;color:#8E8E93;">
             (HYPOTHESIS / watchlist — second-order, not a confirmed investment)</span></div>
+        {_brief_html(s.brief, s.principal)}
         {_triple_html(s.triple)}{fals}{src}
       </td></tr>
     </table>"""
@@ -464,9 +509,7 @@ def _vorfeld_section_html(vorfeld: list) -> str:
         rows.append(
             f'<div style="font-size:13px;color:#EBEBF5;margin-top:8px;">'
             f'<span style="color:#5856D6;font-weight:700;">[{src}]</span> '
-            f'{v.headline}{cl}'
-            + (f'<br><span style="font-size:11px;color:#8E8E93;">{v.detail}</span>'
-               if v.detail else "") + '</div>')
+            f'{v.headline}{cl}</div>' + _brief_html(v.brief, v.principal))
     return (f'<table width="100%" cellpadding="0" cellspacing="0" '
             f'style="margin-bottom:16px;"><tr><td style="background:#1C1C1E;'
             f'border-radius:14px;padding:16px 20px;">'
