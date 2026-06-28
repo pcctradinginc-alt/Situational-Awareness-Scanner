@@ -177,6 +177,7 @@ class PersonAlert:
     falsification: str = ""
     position_changes: list = field(default_factory=list)  # 13F new/add/trim/exit
     triple: dict = field(default_factory=dict)            # 3-axis score + gate
+    brief: dict = field(default_factory=dict)             # 5-section action brief
     discovered_via: str = "cik_feed"      # cik_feed | edgar_fts
     is_new_entity: bool = False           # filer not yet in the tracked graph
     matched_term: str = ""                # FTS term that surfaced it
@@ -738,6 +739,11 @@ def run_monitor(config: Optional[AppConfig] = None, *, mode: Optional[str] = Non
     ranked_proxies = _rank_relevant_clusters(
         proxy_map, alerts, statements, vorfeld, trade_fn)
 
+    # extremely action-oriented 5-section brief per signal (what's new · why
+    # relevant · why early · best proxy · why NOT now), from data we already have.
+    _attach_briefs(alerts, statements, vorfeld, proxy_map, ranked_proxies,
+                   cfg, run_mode, fixtures)
+
     if persist and (alerts or statements or vorfeld):
         stamp = (as_of or date.today()).isoformat()
         for a in alerts:
@@ -764,6 +770,53 @@ def run_monitor(config: Optional[AppConfig] = None, *, mode: Optional[str] = Non
         run_at=datetime.now(timezone.utc).isoformat(),
         principal_count=principal_count, statements=statements, vorfeld=vorfeld,
         ranked_proxies=ranked_proxies)
+
+
+def _attach_briefs(alerts, statements, vorfeld, proxy_map: ProxyMap,
+                   ranked_proxies: dict, cfg, run_mode, fixtures) -> None:
+    """Compute the 5-section action brief for every signal. Best-effort; degrades
+    to a brief without an option snapshot if the pipeline is unavailable."""
+    try:
+        from . import action_brief as ab
+        from .outcome_recorder import make_pipeline_snapshot_fn
+    except Exception:                                   # pragma: no cover
+        return
+    snap_fn = make_pipeline_snapshot_fn(cfg, run_mode, fixtures)
+
+    def snap(ticker):
+        try:
+            return snap_fn(ticker) if (snap_fn and ticker) else None
+        except Exception:                               # pragma: no cover
+            return None
+
+    def cluster_for_ticker(ticker):
+        if not ticker:
+            return ""
+        cl = proxy_map.clusters_for_ticker(ticker)
+        return max(cl, key=lambda kv: kv[1].quality())[0] if cl else ""
+
+    for a in alerts:
+        cluster = cluster_for_ticker(a.subject_ticker)
+        ranked = ranked_proxies.get(cluster, [])
+        try:
+            a.brief = ab.filing_brief(a, snapshot=snap(a.subject_ticker),
+                                      ranked=ranked, cluster=cluster)
+        except Exception:                               # pragma: no cover
+            a.brief = {}
+    for s in statements:
+        ranked = ranked_proxies.get(s.dominant_cluster, [])
+        cand = s.derived_candidates[0] if s.derived_candidates else None
+        try:
+            s.brief = ab.statement_brief(s, snapshot=snap(cand), ranked=ranked)
+        except Exception:                               # pragma: no cover
+            s.brief = {}
+    for v in vorfeld:
+        ranked = ranked_proxies.get(v.cluster, [])
+        top = ranked[0]["ticker"] if ranked else None
+        try:
+            v.brief = ab.vorfeld_brief(v, snapshot=snap(top), ranked=ranked)
+        except Exception:                               # pragma: no cover
+            v.brief = {}
 
 
 def _rank_relevant_clusters(proxy_map: ProxyMap, alerts, statements, vorfeld,

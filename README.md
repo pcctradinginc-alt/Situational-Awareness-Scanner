@@ -124,6 +124,16 @@ the *weakest link*. The digest/email lead with a Trade-Candidates section; a Thi
 SC 13D/A → `PLTR` (fresh + liquid) passes, while an unresolved Form 4, a stale 13F,
 or a private Form D do not.
 
+**Action-oriented alerts (not "ticker + score").** Every alert in the digest/email
+leads with a five-part brief (`person_intel/action_brief.py`): **Was ist neu?** ·
+**Warum Leo/Thiel-relevant?** (direct / confirmed vehicle / indirect / media /
+theme-fit) · **Warum früh?** (direct EDGAR event ahead of 13F / FTS / fresh
+first-party / CT-log domain) · **Bester öffentlicher Proxy?** (a liquid CALL with
+strike/DTE/IV, a debit SPREAD when IV is rich, the ranked proxy, an ETF, or just a
+WATCHLIST) · **Warum jetzt NICHT handeln?** (IV rich → vega/crush, spread wide,
+needs-review, already-lagged, gate not passed, check earnings). All derived from the
+three-axis gate, the option snapshot and the ranked proxy map.
+
 **Vorfeld discovery — earlier than the market, and beyond the filers we already
 know.** Besides the per-CIK feed (which only sees tracked filers), the radar runs
 **EDGAR Full-Text Search** (`person_intel/edgar_fts.py`, `config/early_sources.yml`)

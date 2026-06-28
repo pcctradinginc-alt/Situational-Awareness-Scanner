@@ -121,6 +121,7 @@ class VorfeldSignal:
     content_hash: str = ""      # namespaced dedup key
     needs_human_review: bool = True
     triple: dict = field(default_factory=dict)
+    brief: dict = field(default_factory=dict)    # 5-section action brief
 
     def to_dict(self) -> dict:
         return asdict(self)

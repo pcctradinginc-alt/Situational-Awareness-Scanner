@@ -309,6 +309,25 @@ the new sub-package. Branch/PR only — no `main` push, no secrets in the diff.
   the walk-forward guard. `outcomes-report --out` writes pure JSON; doctor reports
   the store size. Tests: `tests/test_coi_person_outcome_recording.py` (7).
 
+- **Phase 10 (done) — action-oriented alerts (not "ticker + score"):**
+  `person_intel/action_brief.py` turns every scored signal into a five-section
+  brief, rendered as the LEAD of each digest/email entry:
+  1. **Was ist neu?** (new filing / position / statement / entity / proxy)
+  2. **Warum Leo/Thiel-relevant?** (direct ownership · confirmed vehicle ·
+     indirect/named · media hint · theme-fit) — from path-weight + flags.
+  3. **Warum früh?** (direct EDGAR event ahead of 13F · FTS-discovered · fresh
+     first-party · CT-log domain · vs lagged 13F) — from role + freshness.
+  4. **Bester öffentlicher Proxy?** (a liquid CALL with strike/DTE/IV · a debit
+     SPREAD when IV is rich · stock if options thin · the ranked proxy · a broad
+     ETF · or WATCHLIST) — from the option snapshot + ranked proxy map.
+  5. **Warum jetzt NICHT handeln?** (IV rich → vega/crush · spread wide · private
+     · needs_human_review · already-lagged · gate not passed · check earnings) —
+     from the triple gate's failing axes + the snapshot.
+  Briefs are attached in `run_monitor` (`PersonAlert/StatementSignal/
+  VorfeldSignal.brief`) using the option snapshot + ranked proxies; markdown and
+  HTML both lead with them (with a graceful fallback when no brief is present).
+  Tests: `tests/test_coi_person_action_brief.py` (12).
+
 ## Acceptance
 
 Tests green; repo paper-only; clear Entity→Signal→Evidence→Candidate dataflow;
