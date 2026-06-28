@@ -25,7 +25,33 @@ edgar_fts:
     - { q: "Leopold Aschenbrenner",  principal: aschenbrenner }
     - { q: "Situational Awareness",  principal: aschenbrenner }
 
-# ── Not yet wired (documented for the next iteration) ───────────────────────
-# adv_iapd:        SEC IA/ADV dataset change-detection per adviser CRD
-# job_postings:    Greenhouse/Lever public job-board JSON as a hiring/theme proxy
-# domain_watch:    cert-transparency / new fund-website detection
+# ── Non-filing VORFELD change-detection (person_intel/vorfeld.py) ───────────
+# Each diffs a current state vs a persistent snapshot; the FIRST sighting only
+# sets a baseline (no alert), deltas fire thereafter. All free/public; media is
+# never a source. CRDs / board tokens marked verify=true MUST be confirmed
+# before live use (offline fixtures do not depend on them).
+
+# ADV / IAPD adviser change-detection (AUM, control persons, private funds, office).
+adv_iapd:
+  enabled: true
+  advisers:
+    - { name: "Thiel Macro LLC",        crd: "157432", principal: thiel,         verify: true }
+    - { name: "Founders Fund Management", crd: "131699", principal: thiel,        verify: true }
+    - { name: "Mithril Capital Management", crd: "156003", principal: thiel,      verify: true }
+
+# Public job boards (Greenhouse/Lever) — NEW roles as a hiring/theme proxy.
+job_postings:
+  enabled: true
+  companies:
+    - { name: "Anduril Industries", provider: greenhouse, token: "andurilindustries", principal: thiel }
+    - { name: "Palantir Technologies", provider: lever, token: "palantir", principal: thiel }
+
+# Official website / domain content-hash watch (new fund/LP/product footprint).
+domain_watch:
+  enabled: true
+  sites:
+    - { entity: "Founders Fund",       url: "https://foundersfund.com/",            principal: thiel }
+    - { entity: "Situational Awareness", url: "https://situational-awareness.ai/",   principal: aschenbrenner }
+
+# Persistent snapshot of previous observations (the diff baseline).
+snapshot_path: "data/person_intel/vorfeld_snapshots.json"

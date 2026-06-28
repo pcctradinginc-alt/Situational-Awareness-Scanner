@@ -559,6 +559,31 @@ def _score_statement(s, scorer: TripleScorer, fn) -> None:
     s.triple = scorer.score(inp).to_dict()
 
 
+# vorfeld (ADV/jobs/domain) is CONTEXT: association is config-declared & unverified,
+# so person-directness is modest and these rarely (correctly) become a trade.
+_VORFELD_TIER = {"adv_iapd": SourceTier.PRIMARY}    # else MEDIA-grade proxy
+
+
+def _score_vorfeld(sig, scorer: TripleScorer, fn, proxy_map: ProxyMap) -> None:
+    cand = None
+    if sig.cluster:
+        c = proxy_map.cluster(sig.cluster)
+        if c and c.proxies:
+            cand = max(c.proxies, key=lambda p: p.quality()).ticker
+    mt = oq = None
+    if cand and fn:
+        r = fn(cand)
+        if r:
+            mt, oq = r
+    tier = _VORFELD_TIER.get(sig.source, SourceTier.MEDIA)
+    inp = TripleInput(
+        ticker=cand, path_weight=0.4,          # associated, control UNCONFIRMED
+        verified=False, is_primary_source=(sig.source == "adv_iapd"),
+        source_tier=tier, age_days=sig.age_days,
+        has_public_ticker=bool(cand), market_timing=mt, options_quality=oq)
+    sig.triple = scorer.score(inp).to_dict()
+
+
 # ── orchestration ───────────────────────────────────────────────────────────
 @dataclass
 class MonitorResult:
@@ -568,20 +593,26 @@ class MonitorResult:
     run_at: str
     principal_count: int          # alerts directly linked to a principal vehicle
     statements: list = field(default_factory=list)  # NEW conviction signals (what they SAY)
+    vorfeld: list = field(default_factory=list)     # NEW non-filing change signals
 
     @property
     def statement_count(self) -> int:
         return len(self.statements)
 
     @property
+    def vorfeld_count(self) -> int:
+        return len(self.vorfeld)
+
+    @property
     def total_new(self) -> int:
-        return self.new_count + self.statement_count
+        return self.new_count + self.statement_count + self.vorfeld_count
 
     @property
     def trade_candidates(self) -> list:
-        """Alerts/statements whose three-axis gate passed (all axes good enough)."""
+        """Signals whose three-axis gate passed (all axes good enough)."""
         out = [a for a in self.alerts if a.triple.get("gate_pass")]
         out += [s for s in self.statements if s.triple.get("gate_pass")]
+        out += [v for v in self.vorfeld if v.triple.get("gate_pass")]
         return sorted(out, key=lambda x: x.triple.get("final_trade_score", 0.0),
                       reverse=True)
 
@@ -590,10 +621,12 @@ class MonitorResult:
             "run_at": self.run_at, "mode": self.mode,
             "new_count": self.new_count,
             "statement_count": self.statement_count,
+            "vorfeld_count": self.vorfeld_count,
             "total_new": self.total_new,
             "principal_count": self.principal_count,
             "alerts": [a.to_dict() for a in self.alerts],
             "statements": [s.to_dict() for s in self.statements],
+            "vorfeld": [v.to_dict() for v in self.vorfeld],
         }
 
 
@@ -603,6 +636,8 @@ def run_monitor(config: Optional[AppConfig] = None, *, mode: Optional[str] = Non
                 as_of: Optional[date] = None, resolve: bool = True,
                 min_path_weight: float = 0.0,
                 include_statements: bool = True,
+                include_vorfeld: bool = True,
+                vorfeld_snapshot_path: str | Path | None = None,
                 score_tradeability: bool = True,
                 persist: bool = True) -> MonitorResult:
     """Run one monitor pass: collect filings + conviction statements → dedup →
@@ -660,6 +695,31 @@ def run_monitor(config: Optional[AppConfig] = None, *, mode: Optional[str] = Non
         except Exception as exc:                        # pragma: no cover
             logger.warning("statement collection failed: %s", exc)
 
+    # third signal class: non-filing VORFELD change-detection (ADV/jobs/domain)
+    vorfeld: list = []
+    snapshot = None
+    if include_vorfeld:
+        try:
+            from ..config_loader import load_yaml
+            from .vorfeld import SnapshotStore, collect_vorfeld
+            es = load_yaml("early_sources", cfg.config_dir) or {}
+            # keep the snapshot next to the dedup store, so a test (or any caller)
+            # that points state_path at a temp dir never writes the repo data dir.
+            if vorfeld_snapshot_path:
+                snap_path = vorfeld_snapshot_path
+            elif state_path:
+                snap_path = Path(state_path).parent / "vorfeld_snapshots.json"
+            else:
+                snap_path = es.get("snapshot_path",
+                                   "data/person_intel/vorfeld_snapshots.json")
+            snapshot = SnapshotStore.load(snap_path)
+            for v in collect_vorfeld(cfg, run_mode, fixtures, snapshot,
+                                     as_of or date.today()):
+                if store.is_new(v.content_hash):
+                    vorfeld.append(v)
+        except Exception as exc:                        # pragma: no cover
+            logger.warning("vorfeld collection failed: %s", exc)
+
     # three-axis score + hard AND-gate on every signal (person · freshness ·
     # tradeability) — a trade-candidate needs ALL THREE good enough.
     scorer = TripleScorer(GateThresholds.from_config(getattr(cfg, "scoring", None)))
@@ -669,8 +729,10 @@ def run_monitor(config: Optional[AppConfig] = None, *, mode: Optional[str] = Non
         _score_alert(a, scorer, trade_fn)
     for s in statements:
         _score_statement(s, scorer, trade_fn)
+    for v in vorfeld:
+        _score_vorfeld(v, scorer, trade_fn, proxy_map)
 
-    if persist and (alerts or statements):
+    if persist and (alerts or statements or vorfeld):
         stamp = (as_of or date.today()).isoformat()
         for a in alerts:
             store.seen[a.accession] = {
@@ -682,10 +744,16 @@ def run_monitor(config: Optional[AppConfig] = None, *, mode: Optional[str] = Non
                 "first_seen": stamp, "kind": "statement",
                 "speaker": s.speaker, "source": s.source, "date": s.date,
             }
+        for v in vorfeld:
+            store.seen[v.content_hash] = {
+                "first_seen": stamp, "kind": v.source, "entity": v.entity,
+            }
         store.save()
+        if snapshot is not None:
+            snapshot.save()
 
     principal_count = sum(1 for a in alerts if a.path_weight >= 0.75)
     return MonitorResult(
         new_count=len(alerts), alerts=alerts, mode=run_mode,
         run_at=datetime.now(timezone.utc).isoformat(),
-        principal_count=principal_count, statements=statements)
+        principal_count=principal_count, statements=statements, vorfeld=vorfeld)

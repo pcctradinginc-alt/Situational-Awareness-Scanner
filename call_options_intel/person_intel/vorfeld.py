@@ -1,0 +1,352 @@
+"""
+vorfeld.py
+==========
+Non-filing **early-signal** sources, unified as change-detection adapters. Each
+fetches a current state, diffs it against a persistent snapshot, and emits typed
+:class:`VorfeldSignal` deltas — so the radar reacts to a *change*, not a level.
+
+Three sources (all free, public, legally fetchable; injectable offline/live):
+
+  * **ADV / IAPD** (`AdvIapdAdapter`) — relevant advisers/funds by CRD: AUM moves,
+    new control persons, new private funds, office moves. (The "ADV/IAPD-Änderungen"
+    requirement — NOT an EDGAR filing, a separate adapter, context-grade.)
+  * **Job postings** (`JobPostingsAdapter`) — Greenhouse/Lever public boards of
+    tracked firms/portfolio companies: NEW roles classified into thesis clusters,
+    a hiring proxy for a theme shift.
+  * **Domain / website watch** (`DomainWatchAdapter`) — content-hash change of
+    official fund pages: a new LP/fund name or product page is an early footprint.
+
+Every signal is advisory (`needs_human_review=True`) and CONTEXT-grade: it never
+asserts a confirmed capital move. Media is never a source here. The first time a
+target is seen it only establishes a BASELINE (no alert); deltas fire thereafter.
+"""
+
+from __future__ import annotations
+
+import hashlib
+import json
+import logging
+import re
+from dataclasses import asdict, dataclass, field
+from datetime import date
+from pathlib import Path
+from typing import Optional, Protocol
+
+from .proxy_map import classify_clusters
+
+logger = logging.getLogger("coi.person.vorfeld")
+
+
+# ── injectable HTTP layer ───────────────────────────────────────────────────
+class Fetcher(Protocol):
+    def get(self, url: str) -> Optional[str]: ...
+
+
+@dataclass
+class UrllibFetcher:                                    # pragma: no cover - network
+    user_agent: str = "SA-Scanner research (info@pcctradinginc.com)"
+    timeout_s: int = 15
+
+    def get(self, url: str) -> Optional[str]:
+        import urllib.request
+        req = urllib.request.Request(url, headers={"User-Agent": self.user_agent})
+        try:
+            with urllib.request.urlopen(req, timeout=self.timeout_s) as resp:
+                return resp.read().decode("utf-8", "ignore")
+        except Exception as exc:
+            logger.warning("vorfeld fetch failed (%s): %s", url, exc)
+            return None
+
+
+@dataclass
+class FixtureFetcher:
+    """Offline fetch — maps a target key to ``<fixtures>/vorfeld/<sub>/<key>``."""
+    fixtures_dir: Path
+
+    def read(self, sub: str, name: str) -> Optional[str]:
+        path = Path(self.fixtures_dir) / "vorfeld" / sub / name
+        if not path.exists():
+            logger.info("no vorfeld fixture %s/%s", sub, name)
+            return None
+        return path.read_text(encoding="utf-8")
+
+    def get(self, url: str) -> Optional[str]:           # not URL-keyed offline
+        return None
+
+
+# ── persistent snapshot store (previous observed state) ─────────────────────
+@dataclass
+class SnapshotStore:
+    path: Optional[Path]
+    data: dict = field(default_factory=dict)
+
+    @classmethod
+    def load(cls, path: str | Path | None) -> "SnapshotStore":
+        p = Path(path) if path else None
+        data: dict = {}
+        if p and p.exists():
+            try:
+                data = json.loads(p.read_text(encoding="utf-8"))
+            except (json.JSONDecodeError, OSError):
+                data = {}
+        return cls(path=p, data=data)
+
+    def get(self, key: str) -> Optional[dict]:
+        return self.data.get(key)
+
+    def set(self, key: str, value: dict) -> None:
+        self.data[key] = value
+
+    def save(self) -> None:
+        if not self.path:
+            return
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        self.path.write_text(json.dumps(self.data, indent=2, sort_keys=True),
+                             encoding="utf-8")
+
+
+# ── the signal ──────────────────────────────────────────────────────────────
+@dataclass
+class VorfeldSignal:
+    source: str                 # adv_iapd | job_postings | domain_watch
+    principal: str              # thiel | aschenbrenner | ""
+    entity: str
+    kind: str                   # aum_change | new_control_person | new_role | ...
+    headline: str
+    detail: str = ""
+    cluster: str = ""           # thesis cluster, if classifiable
+    url: str = ""
+    change_date: str = ""
+    age_days: Optional[int] = None
+    content_hash: str = ""      # namespaced dedup key
+    needs_human_review: bool = True
+    triple: dict = field(default_factory=dict)
+
+    def to_dict(self) -> dict:
+        return asdict(self)
+
+
+def _hash(*parts: str) -> str:
+    return hashlib.sha256("|".join(parts).encode("utf-8")).hexdigest()[:16]
+
+
+# ── ADV / IAPD ──────────────────────────────────────────────────────────────
+class AdvIapdAdapter:
+    """Diff an adviser's ADV/IAPD summary vs the prior snapshot.
+
+    Live endpoint (best-effort): ``api.adviserinfo.sec.gov/search/firm/<CRD>``.
+    The fixture/contract shape is a simplified summary dict:
+        {firm_name, aum, employees, control_persons:[...], private_funds:[...],
+         main_office}
+    """
+    LIVE = "https://api.adviserinfo.sec.gov/search/firm/"
+    AUM_PCT = 0.10              # report AUM moves >= 10%
+
+    def __init__(self, fetcher: Fetcher, fixture: Optional[FixtureFetcher] = None):
+        self.fetcher = fetcher
+        self.fixture = fixture
+
+    def _fetch(self, crd: str) -> Optional[dict]:
+        raw = (self.fixture.read("adv", f"{crd}.json") if self.fixture
+               else self.fetcher.get(f"{self.LIVE}{crd}"))
+        if not raw:
+            return None
+        try:
+            return json.loads(raw)
+        except json.JSONDecodeError:
+            return None
+
+    def changes(self, advisers: list[dict], snapshot: SnapshotStore,
+                as_of: date) -> list[VorfeldSignal]:
+        out: list[VorfeldSignal] = []
+        for a in advisers or []:
+            crd = str(a.get("crd", "")).strip()
+            if not crd:
+                continue
+            cur = self._fetch(crd)
+            if not cur:
+                continue
+            key = f"adv:{crd}"
+            name = cur.get("firm_name") or a.get("name", crd)
+            principal = a.get("principal", "")
+            prev = snapshot.get(key)
+            snapshot.set(key, cur)
+            if prev is None:
+                continue                          # baseline only, no alert
+            out.extend(self._diff(crd, name, principal, prev, cur, as_of))
+        return out
+
+    def _diff(self, crd, name, principal, prev, cur, as_of) -> list[VorfeldSignal]:
+        sigs: list[VorfeldSignal] = []
+
+        def sig(kind, headline, detail):
+            return VorfeldSignal(
+                source="adv_iapd", principal=principal, entity=name, kind=kind,
+                headline=headline, detail=detail,
+                url=f"https://adviserinfo.sec.gov/firm/summary/{crd}",
+                change_date=as_of.isoformat(), age_days=0,
+                content_hash=f"adv:{crd}:" + _hash(kind, detail))
+
+        p_aum, c_aum = prev.get("aum"), cur.get("aum")
+        if p_aum and c_aum and p_aum > 0:
+            d = (c_aum - p_aum) / p_aum
+            if abs(d) >= self.AUM_PCT:
+                sigs.append(sig("aum_change",
+                                f"{name}: ADV AUM {d:+.0%}",
+                                f"AUM {p_aum:,.0f} → {c_aum:,.0f}"))
+        for who in set(cur.get("control_persons", [])) - set(prev.get("control_persons", [])):
+            sigs.append(sig("new_control_person",
+                            f"{name}: new control person — {who}", who))
+        for f in set(cur.get("private_funds", [])) - set(prev.get("private_funds", [])):
+            sigs.append(sig("new_private_fund",
+                            f"{name}: new private fund — {f}", f))
+        if prev.get("main_office") and cur.get("main_office") \
+                and prev["main_office"] != cur["main_office"]:
+            sigs.append(sig("office_move",
+                            f"{name}: office moved",
+                            f"{prev['main_office']} → {cur['main_office']}"))
+        return sigs
+
+
+# ── job postings (Greenhouse / Lever) ───────────────────────────────────────
+class JobPostingsAdapter:
+    """Detect NEW roles on public job boards and classify them into thesis
+    clusters — a hiring proxy for a theme shift."""
+    GH = "https://boards-api.greenhouse.io/v1/boards/{token}/jobs"
+    LEVER = "https://api.lever.co/v0/postings/{token}?mode=json"
+
+    def __init__(self, fetcher: Fetcher, fixture: Optional[FixtureFetcher] = None):
+        self.fetcher = fetcher
+        self.fixture = fixture
+
+    def _fetch(self, company: dict) -> list[dict]:
+        token = company.get("token", "")
+        provider = company.get("provider", "greenhouse")
+        raw = (self.fixture.read("jobs", f"{token}.json") if self.fixture
+               else self.fetcher.get(
+                   (self.GH if provider == "greenhouse" else self.LEVER)
+                   .format(token=token)))
+        if not raw:
+            return []
+        try:
+            data = json.loads(raw)
+        except json.JSONDecodeError:
+            return []
+        rows = data.get("jobs", data) if isinstance(data, dict) else data
+        out = []
+        for r in rows or []:
+            if not isinstance(r, dict):
+                continue
+            out.append({
+                "id": str(r.get("id") or r.get("absolute_url") or r.get("title", "")),
+                "title": str(r.get("title") or r.get("text", "")).strip(),
+                "url": str(r.get("absolute_url") or r.get("hostedUrl") or ""),
+            })
+        return out
+
+    def changes(self, companies: list[dict], snapshot: SnapshotStore,
+                as_of: date) -> list[VorfeldSignal]:
+        out: list[VorfeldSignal] = []
+        for c in companies or []:
+            token = c.get("token", "")
+            if not token:
+                continue
+            jobs = self._fetch(c)
+            key = f"jobs:{token}"
+            prev_ids = set((snapshot.get(key) or {}).get("ids", []))
+            cur_ids = [j["id"] for j in jobs]
+            snapshot.set(key, {"ids": cur_ids})
+            if not prev_ids:
+                continue                          # baseline only
+            principal = c.get("principal", "")
+            name = c.get("name", token)
+            for j in jobs:
+                if j["id"] in prev_ids:
+                    continue
+                clusters = classify_clusters(j["title"])
+                dom = max(clusters, key=clusters.get) if clusters else ""
+                out.append(VorfeldSignal(
+                    source="job_postings", principal=principal, entity=name,
+                    kind="new_role", headline=f"{name}: new role — {j['title']}",
+                    detail=j["title"], cluster=dom, url=j["url"],
+                    change_date=as_of.isoformat(), age_days=0,
+                    content_hash=f"job:{token}:" + _hash(j["id"])))
+        return out
+
+
+# ── domain / website watch ──────────────────────────────────────────────────
+class DomainWatchAdapter:
+    """Content-hash change of an official page — a new fund/LP/product footprint.
+
+    Stores ONLY a hash + a short title snippet, never the page body."""
+    _TITLE_RE = re.compile(r"<title[^>]*>(.*?)</title>", re.IGNORECASE | re.DOTALL)
+    _TAG_RE = re.compile(r"<[^>]+>")
+
+    def __init__(self, fetcher: Fetcher, fixture: Optional[FixtureFetcher] = None):
+        self.fetcher = fetcher
+        self.fixture = fixture
+
+    @staticmethod
+    def _slug(url: str) -> str:
+        return re.sub(r"[^a-z0-9]+", "_", url.lower()).strip("_")[:60]
+
+    def _fetch(self, url: str) -> Optional[str]:
+        if self.fixture:
+            return self.fixture.read("domain", f"{self._slug(url)}.html")
+        return self.fetcher.get(url)
+
+    def changes(self, sites: list[dict], snapshot: SnapshotStore,
+                as_of: date) -> list[VorfeldSignal]:
+        out: list[VorfeldSignal] = []
+        for s in sites or []:
+            url = s.get("url", "")
+            if not url:
+                continue
+            body = self._fetch(url)
+            if body is None:
+                continue
+            text = self._TAG_RE.sub(" ", body)
+            text = " ".join(text.split())
+            h = _hash(text)
+            m = self._TITLE_RE.search(body)
+            title = (m.group(1).strip() if m else "")[:120]
+            key = f"dom:{self._slug(url)}"
+            prev = snapshot.get(key)
+            snapshot.set(key, {"hash": h, "title": title})
+            if prev is None:
+                continue                          # baseline only
+            if prev.get("hash") != h:
+                out.append(VorfeldSignal(
+                    source="domain_watch", principal=s.get("principal", ""),
+                    entity=s.get("entity", url), kind="site_change",
+                    headline=f"{s.get('entity', url)}: official page changed",
+                    detail=(f"title now: {title}" if title else "content changed"),
+                    url=url, change_date=as_of.isoformat(), age_days=0,
+                    content_hash=f"dom:{self._slug(url)}:" + h))
+        return out
+
+
+# ── orchestration ───────────────────────────────────────────────────────────
+def collect_vorfeld(cfg, mode: str, fixtures_dir, snapshot: SnapshotStore,
+                    as_of: date) -> list[VorfeldSignal]:
+    """Run every enabled non-filing vorfeld source against its snapshot."""
+    from ..config_loader import load_yaml
+    es = load_yaml("early_sources", getattr(cfg, "config_dir", None)) or {}
+    live = (mode == "live")
+    fx = None if live else FixtureFetcher(Path(fixtures_dir))
+    net = UrllibFetcher() if live else FixtureFetcher(Path(fixtures_dir))
+
+    out: list[VorfeldSignal] = []
+    adv = es.get("adv_iapd", {})
+    if adv.get("enabled"):
+        out += AdvIapdAdapter(net, fx).changes(
+            adv.get("advisers", []), snapshot, as_of)
+    jobs = es.get("job_postings", {})
+    if jobs.get("enabled"):
+        out += JobPostingsAdapter(net, fx).changes(
+            jobs.get("companies", []), snapshot, as_of)
+    dom = es.get("domain_watch", {})
+    if dom.get("enabled"):
+        out += DomainWatchAdapter(net, fx).changes(
+            dom.get("sites", []), snapshot, as_of)
+    return out

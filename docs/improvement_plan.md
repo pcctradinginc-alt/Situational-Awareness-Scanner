@@ -251,9 +251,23 @@ the new sub-package. Branch/PR only — no `main` push, no secrets in the diff.
     feeds (Founders Fund, Mithril) + a podcast/transcript slot; media stays
     secondary. `doctor` reports the FTS terms. Tests:
     `tests/test_coi_person_edgar_fts.py` (8).
-  - **Remaining (next):** live ADV/IAPD change-detection per adviser CRD;
-    job-postings (Greenhouse/Lever public JSON) as a hiring/theme proxy;
-    domain/cert-transparency fund-website watch.
+  - **Non-filing VORFELD change-detection** (`person_intel/vorfeld.py` +
+    `config/early_sources.yml`) — a third signal class, unified as
+    fetch→snapshot→diff adapters (first sight = baseline, deltas fire thereafter):
+    * **ADV/IAPD** (`AdvIapdAdapter`) — per-adviser CRD: AUM moves (≥10%), new
+      control persons, new private funds, office moves. NOT an EDGAR filing.
+    * **Job postings** (`JobPostingsAdapter`) — Greenhouse/Lever public boards:
+      NEW roles classified into thesis clusters (hiring = theme-shift proxy).
+    * **Domain watch** (`DomainWatchAdapter`) — content-hash change of official
+      fund pages (new LP/fund/product footprint); stores only hash + title.
+    All injectable (offline fixtures / live), advisory (`needs_human_review`),
+    deduped via the SeenStore, triple-scored (CONTEXT-grade: modest person-signal
+    so they rarely auto-trade), and surfaced in a "📡 Vorfeld" digest/email
+    section. `MonitorResult.vorfeld`; counts into `total_new`. Tests:
+    `tests/test_coi_person_vorfeld.py` (9).
+  - **Remaining (next):** verify the ADV CRDs / job-board tokens against live
+    sources; richer ADV parsing (SMA/AUM breakdown); cert-transparency for brand-
+    new fund domains; transcript ingestion for the podcast slot.
 
 ## Acceptance
 

@@ -135,8 +135,17 @@ principal (control link *unconfirmed* → `needs_human_review`, never assumed). 
 is SEC-primary only (never media), keyless and free; its hits flow through the same
 taxonomy → three-axis gate as every other filing.
 
-The radar carries **two signal classes** (both dedup'd, both can trigger the
-email):
+**Non-filing vorfeld change-detection** (`person_intel/vorfeld.py`,
+`config/early_sources.yml`) adds a third early-signal class — fetch→snapshot→diff
+adapters that react to a *change*, not a level (first sight = baseline):
+**ADV/IAPD** (AUM moves, new control persons / private funds, office moves),
+**job postings** (Greenhouse/Lever — new roles classified into thesis clusters as
+a hiring/theme proxy) and **website/domain watch** (content-hash change of official
+fund pages → new LP/fund footprint). All advisory (`needs_human_review`),
+deduped, triple-scored as CONTEXT, and shown in a "📡 Vorfeld" section.
+
+The radar carries **two filing/statement signal classes** plus the vorfeld class
+above (all dedup'd, all can trigger the email):
 - **Filings — what they DID** (the SEC feed above), and
 - **Conviction — what they SAY**: public first-party essays
   (situational-awareness.ai, forourposterity.com) and name-matched news RSS, via
