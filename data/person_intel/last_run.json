@@ -1,70 +1,12 @@
 {
-  "run_at": "2026-06-28T08:37:41.674671+00:00",
+  "run_at": "2026-06-28T15:14:50.562885+00:00",
   "mode": "live",
-  "new_count": 1,
+  "new_count": 0,
   "statement_count": 0,
   "vorfeld_count": 0,
-  "total_new": 1,
-  "principal_count": 1,
-  "alerts": [
-    {
-      "entity": "FIAM Global Founders Fund, LP",
-      "entity_id": "founders_fund_v",
-      "cik": "0001794988",
-      "filing_type": "Form D/A",
-      "form_raw": "D/A",
-      "role": "early",
-      "category": "Amended private placement (Form D/A)",
-      "signal_kind": "private_round",
-      "filing_date": "2026-06-26",
-      "age_days": 2,
-      "accession": "0001794988-26-000004",
-      "url": "https://www.sec.gov/Archives/edgar/data/1794988/000179498826000004/primary_doc.xml",
-      "principal": "thiel",
-      "path_weight": 1.0,
-      "link_confidence": "principal",
-      "subject_ticker": null,
-      "subject_issuer": "FIAM Global Founders Fund, LP",
-      "subject_confidence": 0.0,
-      "needs_human_review": true,
-      "is_private": true,
-      "is_fact": true,
-      "headline": "FIAM Global Founders Fund, LP: Amended private placement (Form D/A) \u2192 FIAM Global Founders Fund, LP",
-      "why_it_matters": "EARLY signal (days-fast); filer is a confirmed vehicle of Peter Thiel (path 1.00). A private-market footprint that NEVER appears in 13F \u2014 verify the public proxy separately. No public ticker \u2014 treat as a derived/second-order lead, not a direct investment.",
-      "falsification": "",
-      "position_changes": [],
-      "triple": {
-        "ticker": null,
-        "person_signal": {
-          "value": 7.0,
-          "reason": "path-directness 1.00; unverified \u00d70.6; primary source +1"
-        },
-        "freshness": {
-          "value": 8.14,
-          "reason": "early filing (lead 9), age 2d \u2192 recency \u00d70.90"
-        },
-        "tradeability": {
-          "value": 0.0,
-          "reason": "private / no public ticker \u2014 not tradeable"
-        },
-        "gate_pass": false,
-        "failing_axes": [
-          "tradeability"
-        ],
-        "final_trade_score": 0.0,
-        "label": "NO-TRADE",
-        "reasons": [
-          "gate FAILED \u2014 not a trade: weak tradeability",
-          "person_signal: path-directness 1.00; unverified \u00d70.6; primary source +1",
-          "freshness: early filing (lead 9), age 2d \u2192 recency \u00d70.90",
-          "tradeability: private / no public ticker \u2014 not tradeable"
-        ]
-      },
-      "discovered_via": "edgar_fts",
-      "is_new_entity": false,
-      "matched_term": "Founders Fund"
-    }
-  ],
+  "total_new": 0,
+  "principal_count": 0,
+  "alerts": [],
   "statements": [],
   "vorfeld": []
 }
