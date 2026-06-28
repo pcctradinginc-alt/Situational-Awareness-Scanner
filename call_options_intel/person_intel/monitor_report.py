@@ -55,7 +55,50 @@ def _subject_str(a: PersonAlert) -> str:
     return "subject pending review"
 
 
+def _triple_md(triple: dict) -> str:
+    if not triple:
+        return ""
+    p = triple.get("person_signal", {}).get("value")
+    f = triple.get("freshness", {}).get("value")
+    t = triple.get("tradeability", {}).get("value")
+    verdict = triple.get("label", "")
+    fmt = lambda v: "–" if v is None else f"{v:.1f}"        # noqa: E731
+    tail = ""
+    if not triple.get("gate_pass") and triple.get("failing_axes"):
+        tail = f" · weak: {', '.join(triple['failing_axes'])}"
+    return (f"Person **{fmt(p)}** · Freshness **{fmt(f)}** · "
+            f"Tradeability **{fmt(t)}** → _{verdict}_{tail}")
+
+
 # ── markdown digest ─────────────────────────────────────────────────────────
+def _trade_candidates_md(lines: list, result: MonitorResult) -> None:
+    """Top section: signals where ALL THREE axes cleared the gate."""
+    cands = result.trade_candidates
+    if not cands:
+        return
+    lines.append("## ✅ TRADE-CANDIDATES — all three axes pass the gate")
+    lines.append("")
+    lines.append("_A tradeable call/spread is only proposed when person-signal, "
+                 "freshness AND tradeability are each good enough._")
+    lines.append("")
+    for x in cands:
+        tri = x.triple
+        is_stmt = hasattr(x, "derived_candidates")
+        tkr = (tri.get("ticker")
+               or (x.derived_candidates[0] if is_stmt and x.derived_candidates
+                   else "?"))
+        src = ("conviction statement (Denkbewegung)" if is_stmt
+               else f"{x.filing_type} (Kapitalbewegung)")
+        who = _principal_badge(x)
+        lines.append(f"- **{tkr}** · score {tri.get('final_trade_score', 0):.1f} "
+                     f"· {who} · via {src}")
+        lines.append(f"    - {_triple_md(tri)}")
+        if is_stmt:
+            lines.append("    - ⚠ derived/second-order (HYPOTHESIS) — corroborate "
+                         "with a filing before sizing")
+    lines.append("")
+
+
 def _network_context_md(lines: list, result: MonitorResult) -> None:
     """One context line per principal that appears in this run's signals."""
     principals = []
@@ -104,6 +147,8 @@ def _statement_block_md(lines: list, statements: list) -> None:
                      + (f" ({s.age_days}d ago)" if s.age_days is not None else ""))
         lines.append(f"- **Excerpt:** {s.excerpt}")
         lines.append(f"- **Derived candidates (HYPOTHESIS / watchlist):** {cands}")
+        if s.triple:
+            lines.append(f"- **3-axis:** {_triple_md(s.triple)}")
         if s.falsification:
             lines.append(f"- **Falsification:** {s.falsification}")
         if s.url:
@@ -128,6 +173,7 @@ def render_markdown(result: MonitorResult) -> str:
     lines.append("")
     lines.append(f"> {DISCLAIMER}")
     lines.append("")
+    _trade_candidates_md(lines, result)
     _network_context_md(lines, result)
 
     # split principal-linked (the real radar) from network/derived
@@ -152,6 +198,8 @@ def render_markdown(result: MonitorResult) -> str:
             lines.append(f"- **Subject (hypothesis until verified):** "
                          f"{_subject_str(a)}")
             lines.append(f"- **Why it matters:** {a.why_it_matters}")
+            if a.triple:
+                lines.append(f"- **3-axis:** {_triple_md(a.triple)}")
             if a.position_changes:
                 lines.append("- **Position changes (new/add/trim/exit):**")
                 for c in a.position_changes[:8]:
@@ -215,7 +263,7 @@ def _alert_card_html(a: PersonAlert) -> str:
           <span style="font-size:11px;color:#8E8E93;">
             (filing = fact · subject = hypothesis until verified)</span></div>
         <div style="font-size:13px;color:#EBEBF5;line-height:1.5;margin-top:10px;">{a.why_it_matters}</div>
-        {_position_changes_html(a)}{fals}{src}
+        {_triple_html(a.triple)}{_position_changes_html(a)}{fals}{src}
       </td></tr>
     </table>"""
 
@@ -272,12 +320,64 @@ def _statement_card_html(s) -> str:
           <strong>Derived candidates:</strong> {cands}<br>
           <span style="font-size:11px;color:#8E8E93;">
             (HYPOTHESIS / watchlist — second-order, not a confirmed investment)</span></div>
-        {fals}{src}
+        {_triple_html(s.triple)}{fals}{src}
       </td></tr>
     </table>"""
 
 
+def _triple_html(triple: dict) -> str:
+    if not triple:
+        return ""
+    def chip(label, comp, ok):
+        v = comp.get("value")
+        vs = "–" if v is None else f"{v:.1f}"
+        col = "#34C759" if ok else "#FF9500"
+        return (f'<span style="display:inline-block;margin-right:6px;font-size:11px;'
+                f'color:{col};">{label} {vs}</span>')
+    p = triple.get("person_signal", {})
+    f = triple.get("freshness", {})
+    t = triple.get("tradeability", {})
+    fa = set(triple.get("failing_axes", []))
+    verdict = triple.get("label", "")
+    vcol = "#34C759" if triple.get("gate_pass") else "#8E8E93"
+    return (f'<div style="margin-top:8px;font-size:11px;">'
+            f'{chip("Person", p, "person_signal" not in fa)}'
+            f'{chip("Fresh", f, "freshness" not in fa)}'
+            f'{chip("Trade", t, "tradeability" not in fa)}'
+            f'<span style="color:{vcol};font-weight:700;">→ {verdict}</span></div>')
+
+
+def _trade_candidates_banner_html(result: MonitorResult) -> str:
+    cands = result.trade_candidates
+    if not cands:
+        return ""
+    rows = []
+    for x in cands:
+        tri = x.triple
+        is_stmt = hasattr(x, "derived_candidates")
+        tkr = (tri.get("ticker")
+               or (x.derived_candidates[0] if is_stmt and x.derived_candidates
+                   else "?"))
+        src = "statement" if is_stmt else x.filing_type
+        rows.append(
+            f'<div style="font-size:14px;color:#EBEBF5;margin-top:6px;">'
+            f'<strong style="color:#34C759;">{tkr}</strong> '
+            f'· score {tri.get("final_trade_score", 0):.1f} '
+            f'<span style="color:#8E8E93;font-size:12px;">'
+            f'({_principal_badge(x)} · via {src})</span></div>')
+    return (f'<table width="100%" cellpadding="0" cellspacing="0" '
+            f'style="margin-bottom:16px;"><tr><td style="background:#0E2A14;'
+            f'border:1px solid #34C759;border-radius:14px;padding:16px 20px;">'
+            f'<div style="font-size:12px;color:#34C759;letter-spacing:1px;'
+            f'text-transform:uppercase;font-weight:700;">✅ Trade-Candidates — '
+            f'all three axes pass</div>{"".join(rows)}'
+            f'<div style="font-size:11px;color:#8E8E93;margin-top:8px;">'
+            f'Person-signal · Freshness · Tradeability each cleared the gate.</div>'
+            f'</td></tr></table>')
+
+
 def render_email_html(result: MonitorResult, run_label: str) -> str:
+    banner = _trade_candidates_banner_html(result)
     cards = "".join(_alert_card_html(a) for a in result.alerts)
     cards += "".join(_statement_card_html(s) for s in result.statements)
     n = result.total_new
@@ -295,7 +395,7 @@ def render_email_html(result: MonitorResult, run_label: str) -> str:
     <div style="font-size:13px;color:#636366;margin-top:4px;">
       {run_label} · {result.principal_count} principal-linked</div>
   </td></tr>
-  <tr><td>{cards}</td></tr>
+  <tr><td>{banner}{cards}</td></tr>
   <tr><td style="padding:18px 0 0 0;border-top:1px solid #1C1C1E;">
     <div style="font-size:11px;color:#3A3A3C;text-align:center;line-height:1.6;">
       Sources: SEC EDGAR (Form 4 / SC 13D-G / Form D / 13F-HR). A filing is a fact;<br>

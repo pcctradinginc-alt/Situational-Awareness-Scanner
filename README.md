@@ -106,6 +106,24 @@ merely adjacent smart money. Runs automatically via
 [`.github/workflows/person_intel_monitor.yml`](.github/workflows/person_intel_monitor.yml)
 at 06:00 + 14:00 UTC (German morning / afternoon across DST).
 
+**Three-axis trade gate (the sharpened question).** The radar does not ask
+"which AI-infra call looks good?" but *"which publicly tradeable stock/option best
+reflects a NEW, VERIFIABLE capital- or conviction-move by Aschenbrenner / Thiel —
+before it is broadly priced in?"* Every signal therefore carries **three
+orthogonal scores** (`person_intel/triple_score.py`):
+- **Person-signal** — how *directly* it hangs on Leo / Thiel / SA LP / Founders Fund
+  (controlled-path directness × verification × primary source);
+- **Freshness/latency** — how *early* it is vs the market (a leading Form 4/13D or a
+  fresh first-party essay scores high; a 44-day-old 13F is already priced → low);
+- **Tradeability** — is a liquid **call/spread derivable now** (a resolved *public*
+  ticker with liquid options + acceptable timing; private/unmapped/no-options ⇒ 0).
+
+A **TRADE-CANDIDATE** is proposed only when **all three clear their gate** — a hard
+AND (`config/scoring_weights.yml → person_gates`), never a sum; the final score is
+the *weakest link*. The digest/email lead with a Trade-Candidates section; a Thiel
+SC 13D/A → `PLTR` (fresh + liquid) passes, while an unresolved Form 4, a stale 13F,
+or a private Form D do not.
+
 The radar carries **two signal classes** (both dedup'd, both can trigger the
 email):
 - **Filings — what they DID** (the SEC feed above), and

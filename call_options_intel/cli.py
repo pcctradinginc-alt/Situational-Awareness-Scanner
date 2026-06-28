@@ -269,6 +269,7 @@ def cmd_person_monitor(args) -> int:
                              min_path_weight=args.min_weight, persist=False)
         print(f"\n{DISCLAIMER}\n")
         print(render_markdown(result))
+        print(f"\nTrade-candidates (all 3 axes pass): {len(result.trade_candidates)}")
         return 0
 
     summary = monitor_and_notify(
@@ -437,6 +438,13 @@ def cmd_doctor(args) -> int:
         feeds = stmt_cfg.get("feeds", []) or []
         _line("statement feeds configured", bool(feeds),
               f"{len(feeds)} feeds (essays + news)")
+
+        # three-axis trade gate (person · freshness · tradeability)
+        from .person_intel.triple_score import GateThresholds
+        gt = GateThresholds.from_config(cfg.scoring)
+        _line("three-axis trade gate", True,
+              f"person>={gt.person_signal} · fresh>={gt.freshness} · "
+              f"trade>={gt.tradeability} (hard AND)")
     except Exception as exc:  # pragma: no cover - defensive
         _line("person-intel configs", False, str(exc))
         ok = False

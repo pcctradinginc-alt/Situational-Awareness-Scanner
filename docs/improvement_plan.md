@@ -215,6 +215,23 @@ the new sub-package. Branch/PR only — no `main` push, no secrets in the diff.
     context" line; private names are explicitly second-order, never tradeable.
     Tests: `tests/test_coi_person_network.py`.
 
+- **Phase 6 (done) — the three-axis trade gate (sharpened goal):**
+  Reframe the decision from "which AI-infra call looks good?" to "which publicly
+  tradeable instrument best reflects a NEW, VERIFIABLE capital/conviction move by
+  Aschenbrenner/Thiel before it is broadly priced?" `person_intel/triple_score.py`
+  scores every signal on three ORTHOGONAL axes (each 0..10):
+  - **person_signal** — controlled-path directness × verification × primary source;
+  - **freshness** — leading filing/fresh statement decayed by age (stale 13F → low);
+  - **tradeability** — resolved PUBLIC ticker + liquid options + timing
+    (private/unmapped/no-options ⇒ 0).
+  A **hard AND-gate** (`config/scoring_weights.yml → person_gates`) yields a
+  TRADE-CANDIDATE only when all three clear their bar; `final_trade_score` is the
+  weakest link. Wired into the monitor (each alert/statement gets `.triple`;
+  `MonitorResult.trade_candidates`), with a Pipeline-backed tradeability provider
+  (offline fixtures / live yfinance, memoised, degrades to conservative on
+  failure). Digest/email lead with a Trade-Candidates section. Tests:
+  `tests/test_coi_person_triple_score.py` (11) + monitor wiring tests.
+
 ## Acceptance
 
 Tests green; repo paper-only; clear Entity→Signal→Evidence→Candidate dataflow;
