@@ -232,6 +232,43 @@ the new sub-package. Branch/PR only — no `main` push, no secrets in the diff.
   failure). Digest/email lead with a Trade-Candidates section. Tests:
   `tests/test_coi_person_triple_score.py` (11) + monitor wiring tests.
 
+- **Phase 7 (in progress) — early-signal VORFELD sources:**
+  Make discovery *earlier than the market* and beyond already-tracked filers.
+  - **EDGAR Full-Text Search** (`person_intel/edgar_fts.py` + `config/early_sources.yml`):
+    queries the tracked NAMES (Thiel / Founders Fund / Mithril / Aschenbrenner /
+    Situational Awareness) over ALL filers via the free keyless
+    `efts.sec.gov/LATEST/search-index`, reduces each hit to the same
+    `FastFilingRef` the pipeline already types/scores, and dedups. Injectable
+    (offline fixtures / live), SEC-primary only — never media.
+  - **NEW-ENTITY discovery:** an FTS hit by a CIK NOT in the entity graph is
+    flagged `is_new_entity` (a new LP/affiliate/fund vehicle); the filing names a
+    principal, so person-directness gets a 0.5 floor but stays
+    `needs_human_review` (control UNCONFIRMED). Surfaced in a dedicated digest
+    section "🆕 NEW ENTITIES discovered". This is the "neue Entitäten /
+    CIK-Verknüpfungen / Fund-Namen / neue SEC-File-Numbers" path.
+  - Wired into the monitor as a PRIMARY path (merged + deduped with the per-CIK
+    feed, triple-scored). Expanded `statement_sources.yml` with first-party fund
+    feeds (Founders Fund, Mithril) + a podcast/transcript slot; media stays
+    secondary. `doctor` reports the FTS terms. Tests:
+    `tests/test_coi_person_edgar_fts.py` (8).
+  - **Non-filing VORFELD change-detection** (`person_intel/vorfeld.py` +
+    `config/early_sources.yml`) — a third signal class, unified as
+    fetch→snapshot→diff adapters (first sight = baseline, deltas fire thereafter):
+    * **ADV/IAPD** (`AdvIapdAdapter`) — per-adviser CRD: AUM moves (≥10%), new
+      control persons, new private funds, office moves. NOT an EDGAR filing.
+    * **Job postings** (`JobPostingsAdapter`) — Greenhouse/Lever public boards:
+      NEW roles classified into thesis clusters (hiring = theme-shift proxy).
+    * **Domain watch** (`DomainWatchAdapter`) — content-hash change of official
+      fund pages (new LP/fund/product footprint); stores only hash + title.
+    All injectable (offline fixtures / live), advisory (`needs_human_review`),
+    deduped via the SeenStore, triple-scored (CONTEXT-grade: modest person-signal
+    so they rarely auto-trade), and surfaced in a "📡 Vorfeld" digest/email
+    section. `MonitorResult.vorfeld`; counts into `total_new`. Tests:
+    `tests/test_coi_person_vorfeld.py` (9).
+  - **Remaining (next):** verify the ADV CRDs / job-board tokens against live
+    sources; richer ADV parsing (SMA/AUM breakdown); cert-transparency for brand-
+    new fund domains; transcript ingestion for the podcast slot.
+
 ## Acceptance
 
 Tests green; repo paper-only; clear Entity→Signal→Evidence→Candidate dataflow;

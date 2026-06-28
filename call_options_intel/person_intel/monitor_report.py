@@ -99,6 +99,25 @@ def _trade_candidates_md(lines: list, result: MonitorResult) -> None:
     lines.append("")
 
 
+def _new_entities_md(lines: list, result: MonitorResult) -> None:
+    """Vorfeld discoveries: filers not yet in the tracked graph (EDGAR FTS)."""
+    new = [a for a in result.alerts if a.is_new_entity]
+    if not new:
+        return
+    lines.append("## 🆕 NEW ENTITIES discovered (EDGAR full-text search)")
+    lines.append("")
+    lines.append("_Filers that NAME a tracked principal but are not yet in the "
+                 "entity graph — verify the control link, then add the CIK._")
+    lines.append("")
+    for a in new:
+        lines.append(f"- **{a.entity}** (CIK {a.cik}) · {a.filing_type} · "
+                     f"named via “{a.matched_term}” → {a.principal.upper()}"
+                     + (f" · {a.age_days}d ago" if a.age_days is not None else ""))
+        if a.url:
+            lines.append(f"    - {a.url}")
+    lines.append("")
+
+
 def _network_context_md(lines: list, result: MonitorResult) -> None:
     """One context line per principal that appears in this run's signals."""
     principals = []
@@ -130,6 +149,32 @@ def _network_context_md(lines: list, result: MonitorResult) -> None:
             lines.append(f"- _{label.get(p, p)} network_ — {line}")
     if emitted:
         lines.append("")
+
+
+_VORFELD_LABEL = {"adv_iapd": "ADV/IAPD", "job_postings": "Hiring",
+                  "domain_watch": "Website"}
+
+
+def _vorfeld_block_md(lines: list, vorfeld: list) -> None:
+    if not vorfeld:
+        return
+    lines.append("## 📡 Vorfeld change-signals (ADV/IAPD · hiring · website)")
+    lines.append("")
+    lines.append("_Non-filing early context (change-detected). Advisory / "
+                 "second-order — corroborate with a filing._")
+    lines.append("")
+    for v in vorfeld:
+        src = _VORFELD_LABEL.get(v.source, v.source)
+        princ = v.principal.upper() if v.principal else "—"
+        lines.append(f"- **[{src}]** {v.headline} · {princ}"
+                     + (f" · cluster «{v.cluster}»" if v.cluster else ""))
+        if v.detail:
+            lines.append(f"    - {v.detail}")
+        if v.triple:
+            lines.append(f"    - 3-axis: {_triple_md(v.triple)}")
+        if v.url:
+            lines.append(f"    - {v.url}")
+    lines.append("")
 
 
 def _statement_block_md(lines: list, statements: list) -> None:
@@ -168,12 +213,14 @@ def render_markdown(result: MonitorResult) -> str:
     lines.append(f"# Person-Intel Monitor — {n} new signal{'s' if n != 1 else ''}")
     lines.append("")
     lines.append(f"_{result.run_at} · mode={result.mode} · "
-                 f"{result.new_count} filing / {result.statement_count} statement · "
+                 f"{result.new_count} filing / {result.statement_count} statement / "
+                 f"{result.vorfeld_count} vorfeld · "
                  f"{result.principal_count} directly principal-linked_")
     lines.append("")
     lines.append(f"> {DISCLAIMER}")
     lines.append("")
     _trade_candidates_md(lines, result)
+    _new_entities_md(lines, result)
     _network_context_md(lines, result)
 
     # split principal-linked (the real radar) from network/derived
@@ -220,6 +267,7 @@ def render_markdown(result: MonitorResult) -> str:
     _block("Principal-linked signals (Thiel / Aschenbrenner vehicles)", principal)
     _block("Network / derived (second-order — adjacent smart money)", network)
     _statement_block_md(lines, result.statements)
+    _vorfeld_block_md(lines, result.vorfeld)
     return "\n".join(lines)
 
 
@@ -376,10 +424,33 @@ def _trade_candidates_banner_html(result: MonitorResult) -> str:
             f'</td></tr></table>')
 
 
+def _vorfeld_section_html(vorfeld: list) -> str:
+    if not vorfeld:
+        return ""
+    rows = []
+    for v in vorfeld:
+        src = _VORFELD_LABEL.get(v.source, v.source)
+        cl = f' · «{v.cluster}»' if v.cluster else ""
+        rows.append(
+            f'<div style="font-size:13px;color:#EBEBF5;margin-top:8px;">'
+            f'<span style="color:#5856D6;font-weight:700;">[{src}]</span> '
+            f'{v.headline}{cl}'
+            + (f'<br><span style="font-size:11px;color:#8E8E93;">{v.detail}</span>'
+               if v.detail else "") + '</div>')
+    return (f'<table width="100%" cellpadding="0" cellspacing="0" '
+            f'style="margin-bottom:16px;"><tr><td style="background:#1C1C1E;'
+            f'border-radius:14px;padding:16px 20px;">'
+            f'<div style="font-size:12px;color:#5856D6;letter-spacing:1px;'
+            f'text-transform:uppercase;font-weight:700;">📡 Vorfeld — '
+            f'ADV/IAPD · hiring · website (change-detected, advisory)</div>'
+            f'{"".join(rows)}</td></tr></table>')
+
+
 def render_email_html(result: MonitorResult, run_label: str) -> str:
     banner = _trade_candidates_banner_html(result)
     cards = "".join(_alert_card_html(a) for a in result.alerts)
     cards += "".join(_statement_card_html(s) for s in result.statements)
+    cards += _vorfeld_section_html(result.vorfeld)
     n = result.total_new
     return f"""<!DOCTYPE html>
 <html><head><meta charset="UTF-8">
@@ -455,6 +526,11 @@ def send_person_email(result: MonitorResult, run_label: str) -> bool:
             f"  {s.headline}",
             f"  Derived (hypothesis): {', '.join(s.derived_candidates) or '—'}",
             f"  {s.url}" if s.url else "", ""]
+    for v in result.vorfeld:
+        plain_lines += [
+            f"[VORFELD/{v.source}] {v.headline}",
+            f"  {v.detail}" if v.detail else "",
+            f"  {v.url}" if v.url else "", ""]
     msg.attach(MIMEText("\n".join(plain_lines), "plain"))
     msg.attach(MIMEText(render_email_html(result, run_label), "html"))
 
@@ -479,7 +555,7 @@ def write_artifacts(result: MonitorResult,
     (d / "last_run.json").write_text(
         json.dumps(result.to_dict(), indent=2), encoding="utf-8")
     # append-only history (the historical signal archive)
-    if result.alerts or result.statements:
+    if result.alerts or result.statements or result.vorfeld:
         hist = d / "history.jsonl"
         with hist.open("a", encoding="utf-8") as fh:
             for a in result.alerts:
@@ -488,6 +564,9 @@ def write_artifacts(result: MonitorResult,
             for s in result.statements:
                 fh.write(json.dumps({"logged_at": result.run_at,
                                      "type": "statement", **s.to_dict()}) + "\n")
+            for v in result.vorfeld:
+                fh.write(json.dumps({"logged_at": result.run_at,
+                                     "type": "vorfeld", **v.to_dict()}) + "\n")
     return {"digest_md": str(d / "last_digest.md"),
             "last_run_json": str(d / "last_run.json")}
 
@@ -521,6 +600,7 @@ def monitor_and_notify(config: Optional[AppConfig] = None, *,
     return {
         "new_count": result.new_count,
         "statement_count": result.statement_count,
+        "vorfeld_count": result.vorfeld_count,
         "total_new": result.total_new,
         "principal_count": result.principal_count,
         "mode": result.mode,

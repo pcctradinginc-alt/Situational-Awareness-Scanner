@@ -1,0 +1,61 @@
+# Early-signal VORFELD sources — discovery BEFORE the market prices it in.
+# ----------------------------------------------------------------------
+# EDGAR Full-Text Search (efts.sec.gov) queries the tracked NAMES across ALL
+# filers, so it catches filings by entities we do NOT yet track — new LPs,
+# affiliates, fund vehicles. A hit by an unknown CIK is a NEW-ENTITY discovery.
+#
+# Free, keyless, SEC-primary only (NEVER media). Live fetch is OFF by default
+# (offline mode reads the bundled fixtures); enable via the monitor's live mode.
+
+edgar_fts:
+  enabled: true
+  since_days: 30
+  # leading filing types only — 13D/G/A (>5% stakes), Form D (private rounds),
+  # Form 4 (insider). 13F is the lagged confirmation and stays in the per-CIK feed.
+  forms: ["SC 13D", "SC 13D/A", "SC 13G", "SC 13G/A", "D", "D/A", "4"]
+  # Each term is matched as a quoted phrase. `principal` lets a name-matched
+  # filing carry a floor of person-directness (named in the filing, control
+  # UNCONFIRMED → needs_human_review), never an assumed control link.
+  terms:
+    - { q: "Peter Thiel",            principal: thiel }
+    - { q: "Thiel Capital",          principal: thiel }
+    - { q: "Thiel Macro",            principal: thiel }
+    - { q: "Founders Fund",          principal: thiel }
+    - { q: "Mithril",                principal: thiel }
+    - { q: "Leopold Aschenbrenner",  principal: aschenbrenner }
+    - { q: "Situational Awareness",  principal: aschenbrenner }
+
+# ── Non-filing VORFELD change-detection (person_intel/vorfeld.py) ───────────
+# Each diffs a current state vs a persistent snapshot; the FIRST sighting only
+# sets a baseline (no alert), deltas fire thereafter. All free/public; media is
+# never a source. CRDs / board tokens marked verify=true MUST be confirmed
+# before live use (offline fixtures do not depend on them).
+
+# ADV / IAPD adviser change-detection (AUM, control persons, private funds, office).
+# CRDs VERIFIED on adviserinfo.sec.gov (2026-06-28). NOTE: "Thiel Macro LLC" is
+# NOT a registered investment adviser (no ADV/CRD) — it files 13F and is covered
+# by the per-CIK filing feed, so it is intentionally absent here.
+adv_iapd:
+  enabled: true
+  advisers:
+    - { name: "Founders Fund LLC",            crd: "155462", principal: thiel, verify: false }  # adviserinfo.sec.gov/firm/summary/155462
+    - { name: "Mithril Capital Management LLC", crd: "164135", principal: thiel, verify: false }  # adviserinfo.sec.gov/firm/summary/164135
+    - { name: "Thiel Bio, L.L.C.",            crd: "324760", principal: thiel, verify: false }  # adviserinfo.sec.gov/firm/summary/324760 (longevity/biotech)
+
+# Public job boards (Greenhouse/Lever) — NEW roles as a hiring/theme proxy.
+# Tokens VERIFIED (2026-06-28): job-boards.greenhouse.io/andurilindustries · jobs.lever.co/palantir
+job_postings:
+  enabled: true
+  companies:
+    - { name: "Anduril Industries", provider: greenhouse, token: "andurilindustries", principal: thiel }
+    - { name: "Palantir Technologies", provider: lever, token: "palantir", principal: thiel }
+
+# Official website / domain content-hash watch (new fund/LP/product footprint).
+domain_watch:
+  enabled: true
+  sites:
+    - { entity: "Founders Fund",       url: "https://foundersfund.com/",            principal: thiel }
+    - { entity: "Situational Awareness", url: "https://situational-awareness.ai/",   principal: aschenbrenner }
+
+# Persistent snapshot of previous observations (the diff baseline).
+snapshot_path: "data/person_intel/vorfeld_snapshots.json"

@@ -177,6 +177,9 @@ class PersonAlert:
     falsification: str = ""
     position_changes: list = field(default_factory=list)  # 13F new/add/trim/exit
     triple: dict = field(default_factory=dict)            # 3-axis score + gate
+    discovered_via: str = "cik_feed"      # cik_feed | edgar_fts
+    is_new_entity: bool = False           # filer not yet in the tracked graph
+    matched_term: str = ""                # FTS term that surfaced it
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -195,12 +198,15 @@ class PersonMonitor:
 
     def __init__(self, client: EdgarFastClient, graph: EntityGraph,
                  mapper: CusipMapper, proxy_map: ProxyMap,
-                 managers: list[dict]):
+                 managers: list[dict], fts_client=None,
+                 fts_terms: Optional[list[dict]] = None):
         self.client = client
         self.graph = graph
         self.mapper = mapper
         self.proxy_map = proxy_map
         self.managers = managers or []
+        self.fts_client = fts_client          # EdgarFTSClient | None (vorfeld)
+        self.fts_terms = fts_terms or []
 
     # principal linkage ------------------------------------------------------
     def _principal_link(self, cik: str, name: str) -> tuple[str, float, str]:
@@ -272,10 +278,23 @@ class PersonMonitor:
 
     # alert construction -----------------------------------------------------
     def build_alert(self, ref: FastFilingRef, *, resolve: bool,
-                    as_of: Optional[date] = None) -> PersonAlert:
+                    as_of: Optional[date] = None, discovered_via: str = "cik_feed",
+                    matched_term: str = "",
+                    discovery_principal: str = "") -> PersonAlert:
         principal, weight, ent_id = self._principal_link(ref.cik, ref.entity)
+        # FTS discovery: the filer is not in the tracked graph, but the filing
+        # TEXT names a tracked principal. That is real (if unconfirmed) person-
+        # directness — floor the path weight and ALWAYS flag it for review.
+        is_new_entity = False
+        if discovered_via == "edgar_fts" and not ent_id:
+            is_new_entity = True
+            if discovery_principal:
+                principal = discovery_principal
+                weight = max(weight, 0.5)        # named-in-filing, control unconfirmed
         category, kind = _CATEGORY.get(
             ref.filing_type, (ref.filing_type.value, "filing"))
+        if is_new_entity:
+            category = f"NEW ENTITY · {category}"
         meta = filing_meta(ref.filing_type)
 
         subj = {"subject_ticker": None, "subject_issuer": None,
@@ -298,6 +317,12 @@ class PersonMonitor:
         headline = f"{ref.entity}: {category} → {subject_tag}"
         why = self._why(meta.role, kind, principal_name, weight,
                         subj["is_private"])
+        needs_review = subj["needs_human_review"] or is_new_entity
+        if is_new_entity:
+            why = (f"NEW ENTITY discovered via EDGAR full-text search for "
+                   f"“{matched_term}” — filer {ref.entity} (CIK {ref.cik}) is NOT "
+                   f"yet tracked. Names {principal_name} in the filing; control "
+                   f"link UNCONFIRMED → verify and add to the entity graph. ") + why
 
         return PersonAlert(
             entity=ref.entity, entity_id=ent_id, cik=ref.cik,
@@ -310,10 +335,12 @@ class PersonMonitor:
             subject_ticker=subj["subject_ticker"],
             subject_issuer=subj["subject_issuer"],
             subject_confidence=subj["subject_confidence"],
-            needs_human_review=subj["needs_human_review"],
+            needs_human_review=needs_review,
             is_private=subj["is_private"], is_fact=True,
             headline=headline, why_it_matters=why,
             falsification=self._falsification_for(subj["subject_ticker"]),
+            discovered_via=discovered_via, is_new_entity=is_new_entity,
+            matched_term=matched_term,
         )
 
     @staticmethod
@@ -368,6 +395,7 @@ class PersonMonitor:
         as_of = as_of or date.today()
         fresh = [r for r in self._recent_relevant(since_days, as_of)
                  if store.is_new(r.accession)]
+        seen_acc = {r.accession for r in fresh}
         alerts: list[PersonAlert] = []
         for ref in fresh:
             alert = self.build_alert(ref, resolve=resolve, as_of=as_of)
@@ -377,8 +405,36 @@ class PersonMonitor:
                                                FilingType.FORM_13F_HR_A):
                 self._enrich_13f_changes(alert, ref)
             alerts.append(alert)
+
+        # VORFELD: EDGAR full-text-search discoveries (incl. NEW entities)
+        for hit in self._fts_discoveries(since_days, as_of):
+            ref = hit.ref
+            if not ref.accession or ref.accession in seen_acc:
+                continue
+            if not store.is_new(ref.accession):
+                continue
+            seen_acc.add(ref.accession)
+            alert = self.build_alert(
+                ref, resolve=resolve, as_of=as_of, discovered_via="edgar_fts",
+                matched_term=hit.matched_term,
+                discovery_principal=hit.principal)
+            if alert.path_weight < min_path_weight:
+                continue
+            alerts.append(alert)
+
         alerts.sort(key=lambda a: a.sort_key)
         return alerts
+
+    def _fts_discoveries(self, since_days: int, as_of: date) -> list:
+        """Run the configured full-text queries (no-op without an FTS client)."""
+        if not self.fts_client or not self.fts_terms:
+            return []
+        try:
+            return self.fts_client.discover(
+                self.fts_terms, since_days=since_days, as_of=as_of)
+        except Exception as exc:                        # pragma: no cover
+            logger.warning("FTS discovery failed: %s", exc)
+            return []
 
     def _enrich_13f_changes(self, alert: PersonAlert, ref: FastFilingRef) -> None:
         """Best-effort: turn a new 13F-HR into a position-level diff vs the prior
@@ -503,6 +559,31 @@ def _score_statement(s, scorer: TripleScorer, fn) -> None:
     s.triple = scorer.score(inp).to_dict()
 
 
+# vorfeld (ADV/jobs/domain) is CONTEXT: association is config-declared & unverified,
+# so person-directness is modest and these rarely (correctly) become a trade.
+_VORFELD_TIER = {"adv_iapd": SourceTier.PRIMARY}    # else MEDIA-grade proxy
+
+
+def _score_vorfeld(sig, scorer: TripleScorer, fn, proxy_map: ProxyMap) -> None:
+    cand = None
+    if sig.cluster:
+        c = proxy_map.cluster(sig.cluster)
+        if c and c.proxies:
+            cand = max(c.proxies, key=lambda p: p.quality()).ticker
+    mt = oq = None
+    if cand and fn:
+        r = fn(cand)
+        if r:
+            mt, oq = r
+    tier = _VORFELD_TIER.get(sig.source, SourceTier.MEDIA)
+    inp = TripleInput(
+        ticker=cand, path_weight=0.4,          # associated, control UNCONFIRMED
+        verified=False, is_primary_source=(sig.source == "adv_iapd"),
+        source_tier=tier, age_days=sig.age_days,
+        has_public_ticker=bool(cand), market_timing=mt, options_quality=oq)
+    sig.triple = scorer.score(inp).to_dict()
+
+
 # ── orchestration ───────────────────────────────────────────────────────────
 @dataclass
 class MonitorResult:
@@ -512,20 +593,26 @@ class MonitorResult:
     run_at: str
     principal_count: int          # alerts directly linked to a principal vehicle
     statements: list = field(default_factory=list)  # NEW conviction signals (what they SAY)
+    vorfeld: list = field(default_factory=list)     # NEW non-filing change signals
 
     @property
     def statement_count(self) -> int:
         return len(self.statements)
 
     @property
+    def vorfeld_count(self) -> int:
+        return len(self.vorfeld)
+
+    @property
     def total_new(self) -> int:
-        return self.new_count + self.statement_count
+        return self.new_count + self.statement_count + self.vorfeld_count
 
     @property
     def trade_candidates(self) -> list:
-        """Alerts/statements whose three-axis gate passed (all axes good enough)."""
+        """Signals whose three-axis gate passed (all axes good enough)."""
         out = [a for a in self.alerts if a.triple.get("gate_pass")]
         out += [s for s in self.statements if s.triple.get("gate_pass")]
+        out += [v for v in self.vorfeld if v.triple.get("gate_pass")]
         return sorted(out, key=lambda x: x.triple.get("final_trade_score", 0.0),
                       reverse=True)
 
@@ -534,10 +621,12 @@ class MonitorResult:
             "run_at": self.run_at, "mode": self.mode,
             "new_count": self.new_count,
             "statement_count": self.statement_count,
+            "vorfeld_count": self.vorfeld_count,
             "total_new": self.total_new,
             "principal_count": self.principal_count,
             "alerts": [a.to_dict() for a in self.alerts],
             "statements": [s.to_dict() for s in self.statements],
+            "vorfeld": [v.to_dict() for v in self.vorfeld],
         }
 
 
@@ -547,6 +636,8 @@ def run_monitor(config: Optional[AppConfig] = None, *, mode: Optional[str] = Non
                 as_of: Optional[date] = None, resolve: bool = True,
                 min_path_weight: float = 0.0,
                 include_statements: bool = True,
+                include_vorfeld: bool = True,
+                vorfeld_snapshot_path: str | Path | None = None,
                 score_tradeability: bool = True,
                 persist: bool = True) -> MonitorResult:
     """Run one monitor pass: collect filings + conviction statements → dedup →
@@ -567,7 +658,26 @@ def run_monitor(config: Optional[AppConfig] = None, *, mode: Optional[str] = Non
     proxy_map = load_proxy_map(cfg.config_dir)
     managers = cfg.investors.get("managers", []) or []
 
-    monitor = PersonMonitor(client, graph, mapper, proxy_map, managers)
+    # VORFELD: EDGAR full-text-search discovery (new filings + NEW entities)
+    fts_client = None
+    fts_terms: list = []
+    try:
+        from ..config_loader import load_yaml
+        es = (load_yaml("early_sources", cfg.config_dir) or {}).get("edgar_fts", {})
+        if es.get("enabled"):
+            from .edgar_fts import load_fts_client
+            fts_client = load_fts_client(cfg.data_sources, run_mode, fixtures)
+            fts_terms = es.get("terms", []) or []
+            # apply the global forms filter to any term that didn't set its own
+            default_forms = es.get("forms")
+            if default_forms:
+                fts_terms = [{**t, "forms": t.get("forms", default_forms)}
+                             if isinstance(t, dict) else t for t in fts_terms]
+    except Exception as exc:                            # pragma: no cover
+        logger.warning("early_sources/FTS not loaded: %s", exc)
+
+    monitor = PersonMonitor(client, graph, mapper, proxy_map, managers,
+                            fts_client=fts_client, fts_terms=fts_terms)
     store = SeenStore.load(state_path)
     alerts = monitor.new_alerts(store, since_days=since_days, as_of=as_of,
                                 resolve=resolve, min_path_weight=min_path_weight)
@@ -585,6 +695,31 @@ def run_monitor(config: Optional[AppConfig] = None, *, mode: Optional[str] = Non
         except Exception as exc:                        # pragma: no cover
             logger.warning("statement collection failed: %s", exc)
 
+    # third signal class: non-filing VORFELD change-detection (ADV/jobs/domain)
+    vorfeld: list = []
+    snapshot = None
+    if include_vorfeld:
+        try:
+            from ..config_loader import load_yaml
+            from .vorfeld import SnapshotStore, collect_vorfeld
+            es = load_yaml("early_sources", cfg.config_dir) or {}
+            # keep the snapshot next to the dedup store, so a test (or any caller)
+            # that points state_path at a temp dir never writes the repo data dir.
+            if vorfeld_snapshot_path:
+                snap_path = vorfeld_snapshot_path
+            elif state_path:
+                snap_path = Path(state_path).parent / "vorfeld_snapshots.json"
+            else:
+                snap_path = es.get("snapshot_path",
+                                   "data/person_intel/vorfeld_snapshots.json")
+            snapshot = SnapshotStore.load(snap_path)
+            for v in collect_vorfeld(cfg, run_mode, fixtures, snapshot,
+                                     as_of or date.today()):
+                if store.is_new(v.content_hash):
+                    vorfeld.append(v)
+        except Exception as exc:                        # pragma: no cover
+            logger.warning("vorfeld collection failed: %s", exc)
+
     # three-axis score + hard AND-gate on every signal (person · freshness ·
     # tradeability) — a trade-candidate needs ALL THREE good enough.
     scorer = TripleScorer(GateThresholds.from_config(getattr(cfg, "scoring", None)))
@@ -594,8 +729,10 @@ def run_monitor(config: Optional[AppConfig] = None, *, mode: Optional[str] = Non
         _score_alert(a, scorer, trade_fn)
     for s in statements:
         _score_statement(s, scorer, trade_fn)
+    for v in vorfeld:
+        _score_vorfeld(v, scorer, trade_fn, proxy_map)
 
-    if persist and (alerts or statements):
+    if persist and (alerts or statements or vorfeld):
         stamp = (as_of or date.today()).isoformat()
         for a in alerts:
             store.seen[a.accession] = {
@@ -607,10 +744,16 @@ def run_monitor(config: Optional[AppConfig] = None, *, mode: Optional[str] = Non
                 "first_seen": stamp, "kind": "statement",
                 "speaker": s.speaker, "source": s.source, "date": s.date,
             }
+        for v in vorfeld:
+            store.seen[v.content_hash] = {
+                "first_seen": stamp, "kind": v.source, "entity": v.entity,
+            }
         store.save()
+        if snapshot is not None:
+            snapshot.save()
 
     principal_count = sum(1 for a in alerts if a.path_weight >= 0.75)
     return MonitorResult(
         new_count=len(alerts), alerts=alerts, mode=run_mode,
         run_at=datetime.now(timezone.utc).isoformat(),
-        principal_count=principal_count, statements=statements)
+        principal_count=principal_count, statements=statements, vorfeld=vorfeld)

@@ -1,0 +1,18 @@
+{
+  "hits": {
+    "total": { "value": 1 },
+    "hits": [
+      {
+        "_id": "0002099999-26-000004:primary_doc.xml",
+        "_source": {
+          "ciks": ["0002099999"],
+          "display_names": ["FF VENTURES SPV XII LLC (CIK 0002099999)"],
+          "file_date": "2026-06-25",
+          "form": "D",
+          "root_form": "D",
+          "file_type": "D"
+        }
+      }
+    ]
+  }
+}

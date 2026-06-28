@@ -279,7 +279,8 @@ def cmd_person_monitor(args) -> int:
     print(f"\n{DISCLAIMER}\n")
     print(f"PERSON-MONITOR — mode={summary['mode']} · "
           f"new={summary['total_new']} "
-          f"({summary['new_count']} filing / {summary['statement_count']} statement) · "
+          f"({summary['new_count']} filing / {summary['statement_count']} statement / "
+          f"{summary.get('vorfeld_count', 0)} vorfeld) · "
           f"principal-linked={summary['principal_count']} · "
           f"emailed={summary['emailed']}")
     print(f"  digest: {summary['artifacts']['digest_md']}")
@@ -438,6 +439,22 @@ def cmd_doctor(args) -> int:
         feeds = stmt_cfg.get("feeds", []) or []
         _line("statement feeds configured", bool(feeds),
               f"{len(feeds)} feeds (essays + news)")
+
+        # vorfeld: EDGAR full-text-search discovery terms
+        es = (_ly("early_sources", cfg.config_dir) or {}).get("edgar_fts", {})
+        _line("EDGAR FTS discovery", bool(es.get("enabled")),
+              f"{len(es.get('terms', []))} name terms (new-entity discovery)"
+              if es.get("enabled") else "disabled")
+
+        # vorfeld non-filing change-detection (ADV/IAPD · jobs · domain)
+        early = _ly("early_sources", cfg.config_dir) or {}
+        vf = sum(len((early.get(k, {}) or {}).get(sub, []))
+                 for k, sub in (("adv_iapd", "advisers"),
+                                ("job_postings", "companies"),
+                                ("domain_watch", "sites"))
+                 if (early.get(k, {}) or {}).get("enabled"))
+        _line("vorfeld change-detection", vf > 0,
+              f"{vf} targets (ADV/IAPD · jobs · domain)")
 
         # three-axis trade gate (person · freshness · tradeability)
         from .person_intel.triple_score import GateThresholds

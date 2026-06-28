@@ -40,7 +40,23 @@ feeds:
     require_name_match: false
     fixture: ""
 
-  # ── public news search (must name the person) ───────────────────────
+  # ── first-party fund / network sources (official) ───────────────────
+  - principal: thiel
+    speaker: "Founders Fund"
+    source: "Founders Fund — blog/notes"
+    url: "https://foundersfund.com/feed/"
+    tier: official
+    require_name_match: false
+    fixture: ""
+  - principal: thiel
+    speaker: "Mithril Capital"
+    source: "Mithril Capital — news"
+    url: "https://www.mithril.com/feed/"
+    tier: official
+    require_name_match: false
+    fixture: ""
+
+  # ── public news search (must name the person; MEDIA = secondary only) ─
   - principal: aschenbrenner
     speaker: "Leopold Aschenbrenner"
     source: "Google News — Leopold Aschenbrenner"
@@ -53,6 +69,15 @@ feeds:
     source: "Google News — Peter Thiel investment"
     url: "https://news.google.com/rss/search?q=%22Peter+Thiel%22+(invest+OR+fund+OR+stake)&hl=en-US"
     tier: media
+    require_name_match: true
+    fixture: ""
+  # Podcasts / interviews: first-party transcripts/audio feeds rank PRIMARY when
+  # the speaker is the principal; add a feed URL to activate (off until set).
+  - principal: aschenbrenner
+    speaker: "Leopold Aschenbrenner"
+    source: "Dwarkesh Podcast — Aschenbrenner (transcript/audio)"
+    url: ""
+    tier: primary
     require_name_match: true
     fixture: ""
 
