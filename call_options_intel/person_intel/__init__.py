@@ -46,4 +46,5 @@ __all__ = [
     "vorfeld",
     "outcome_recorder",
     "action_brief",
+    "options_sim",
 ]

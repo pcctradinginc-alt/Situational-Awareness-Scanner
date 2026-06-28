@@ -104,6 +104,12 @@ jobs:
             --store data/person_intel/outcomes.jsonl \
             --out data/person_intel/outcomes_report.json || true
 
+          # REALISTIC options backtest: path-based BS reprice, conservative fills,
+          # theta/vega, exit rules, vs stock/QQQ/SOXX/no-trade (free Stooq history).
+          python -m call_options_intel outcomes-report --realistic --live \
+            --store data/person_intel/outcomes.jsonl \
+            --out data/person_intel/outcomes_realistic.json || true
+
       - name: Commit state
         uses: stefanzweifel/git-auto-commit-action@v5
         with:

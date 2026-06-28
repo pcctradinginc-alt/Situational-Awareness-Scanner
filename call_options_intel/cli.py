@@ -358,6 +358,65 @@ def cmd_outcomes_report(args) -> int:
         OutcomeStore, summarize, walk_forward_guard,
     )
     store = OutcomeStore(args.store)
+
+    # REALISTIC path-based options backtest (conservative fills · theta/vega ·
+    # exit rules · vs stock/QQQ/SOXX/no-trade) — replaces the proxy return.
+    if getattr(args, "realistic", False):
+        from .person_intel.historical import HistoricalPriceProvider
+        from .person_intel.options_sim import ExitRules, backtest_signals
+        from .person_intel.outcomes import walk_forward_guard
+        cfg = AppConfig(config_dir=Path(args.config_dir) if args.config_dir else CONFIG_DIR)
+        fixtures = getattr(args, "fixtures_dir", None) or DEFAULT_FIXTURES
+        prov = HistoricalPriceProvider(
+            mode=("live" if args.live else "offline"), fixtures_dir=fixtures)
+        iv_on = None
+        if getattr(args, "iv_store", None):
+            from .person_intel.iv_history import IVHistoryStore
+            ivs = IVHistoryStore(args.iv_store)
+            iv_on = lambda t, d: ivs.iv_on(t, d) if hasattr(ivs, "iv_on") else None  # noqa: E731
+        rules = ExitRules.from_config(cfg.risk)
+        rows = store.load()
+        sim_summary = backtest_signals(rows, prov.price_on, iv_on=iv_on, rules=rules)
+        # walk-forward guard on the REALISTIC option P&L (one P&L per signal)
+        wf_rows = []
+        for r in rows:
+            if r.get("label") == "rejected":
+                continue
+            from datetime import date as _date
+            try:
+                ed = _date.fromisoformat(str(r.get("recorded_at"))[:10])
+            except Exception:
+                continue
+            s = None
+            if r.get("ticker") and r.get("strike") and r.get("entry_premium") \
+                    and r.get("iv") and r.get("dte"):
+                from .person_intel.options_sim import simulate_option_trade
+                s = simulate_option_trade(
+                    ticker=r["ticker"], entry_date=ed, strike=float(r["strike"]),
+                    dte=int(r["dte"]), entry_iv=float(r["iv"]),
+                    entry_mid=float(r["entry_premium"]), price_on=prov.price_on,
+                    iv_on=iv_on, rules=rules)
+            if s:
+                wf_rows.append({"recorded_at": r["recorded_at"],
+                                "horizon": rules.time_stop_days, "label": "candidate",
+                                "option_proxy_return": s.option_pnl_pct})
+        report = {
+            "realistic_backtest": sim_summary,
+            "walk_forward": walk_forward_guard(
+                wf_rows, split_date=args.split, horizon=rules.time_stop_days,
+                min_sample=args.min_sample),
+        }
+        if getattr(args, "out", None):
+            Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+            Path(args.out).write_text(_json.dumps(report, indent=2), encoding="utf-8")
+            print(f"realistic backtest written -> {args.out} "
+                  f"(n={sim_summary.get('n', 0)}, "
+                  f"edge_claim={report['walk_forward'].get('edge_claim')})")
+        else:
+            print(_json.dumps(report, indent=2))
+        print(f"\n{DISCLAIMER}")
+        return 0
+
     price_fn = bench_fn = price_at = None
     approx = False
     if args.demo:
@@ -724,6 +783,10 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--horizon", type=int, default=30)
     sp.add_argument("--min-sample", type=int, default=30)
     sp.add_argument("--out", help="write the report as pure JSON to this path")
+    sp.add_argument("--realistic", action="store_true",
+                    help="path-based options backtest (conservative fills · theta/vega · "
+                         "exit rules · vs stock/QQQ/SOXX/no-trade) instead of the proxy")
+    sp.add_argument("--iv-store", help="IV-history JSONL for the realistic IV path")
     sp.set_defaults(func=cmd_outcomes_report)
 
     sp = sub.add_parser("record-iv",

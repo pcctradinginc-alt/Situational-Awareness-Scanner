@@ -49,3 +49,18 @@ earnings:
 data_quality:
   min_acceptable: 0.30             # below this -> reject as "insufficient data"
   low_confidence_below: 0.55
+
+# Realistic options backtest (person_intel/options_sim.py) — path-based BS reprice
+# with conservative fills (ask in / bid out), spread/slippage, theta + vega, and
+# daily exit rules. Used by `outcomes-report --realistic`. Report-only; the system
+# never trades.
+options_backtest:
+  take_profit: 1.00          # +100% of premium -> take profit
+  stop_loss: 0.50            # -50% of premium  -> stop loss
+  time_stop_days: 30         # max calendar days held
+  min_dte: 7                 # exit if remaining DTE falls below this (theta/gamma cliff)
+  iv_crush_exit_pts: 0.15    # exit if IV collapses >= this many points vs entry
+  entry_haircut: 0.50        # fraction of half-spread paid crossing toward the ask
+  exit_haircut: 0.50         # fraction of half-spread given crossing toward the bid
+  assumed_spread_pct: 0.06   # bid/ask spread used when only a mid is known
+  risk_free_rate: 0.04
