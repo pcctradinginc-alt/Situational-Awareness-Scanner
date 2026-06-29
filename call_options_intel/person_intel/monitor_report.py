@@ -88,15 +88,31 @@ def _triple_md(triple: dict) -> str:
 
 
 # ── markdown digest ─────────────────────────────────────────────────────────
+def _ev_md(ev: dict) -> str:
+    """One-line forward-EV verdict for a candidate: PASS shows expected P&L,
+    FAIL shows the hard-gate reason (why it is NOT sizeable)."""
+    if not ev:
+        return "💰 EV-Gate: not evaluated"
+    reason = (ev.get("reasons") or ["—"])[0]
+    if ev.get("passed"):
+        return f"💰 EV-Gate ✅ SIZEABLE — {reason}"
+    return f"💰 EV-Gate ⛔ NOT sizeable — {reason}"
+
+
 def _trade_candidates_md(lines: list, result: MonitorResult) -> None:
-    """Top section: signals where ALL THREE axes cleared the gate."""
+    """Top section: signals where all three axes cleared the gate AND, of those,
+    which also clear the forward-EV hard gate (the only sizeable set)."""
     cands = result.trade_candidates
     if not cands:
         return
-    lines.append("## ✅ TRADE-CANDIDATES — all three axes pass the gate")
+    sizeable = result.ev_trade_candidates
+    lines.append(f"## ✅ TRADE-CANDIDATES — {len(sizeable)}/{len(cands)} clear the "
+                 f"EV gate (sizeable)")
     lines.append("")
-    lines.append("_A tradeable call/spread is only proposed when person-signal, "
-                 "freshness AND tradeability are each good enough._")
+    lines.append("_Three axes (person · freshness · tradeability) prove the thesis "
+                 "is real and early; the **forward-EV gate** then proves the actual "
+                 "call pays after fills, theta and exit-rules. Only EV-cleared names "
+                 "are sizeable — the rest are thesis-ready, not trade-ready._")
     lines.append("")
     for x in cands:
         tri = x.triple
@@ -107,9 +123,11 @@ def _trade_candidates_md(lines: list, result: MonitorResult) -> None:
         src = ("conviction statement (Denkbewegung)" if is_stmt
                else f"{x.filing_type} (Kapitalbewegung)")
         who = _principal_badge(x)
-        lines.append(f"- **{tkr}** · score {tri.get('final_trade_score', 0):.1f} "
+        mark = "🟢" if (x.ev or {}).get("passed") else "🟡"
+        lines.append(f"- {mark} **{tkr}** · score {tri.get('final_trade_score', 0):.1f} "
                      f"· {who} · via {src}")
         lines.append(f"    - {_triple_md(tri)}")
+        lines.append(f"    - {_ev_md(x.ev)}")
         if is_stmt:
             lines.append("    - ⚠ derived/second-order (HYPOTHESIS) — corroborate "
                          "with a filing before sizing")
@@ -474,6 +492,7 @@ def _trade_candidates_banner_html(result: MonitorResult) -> str:
     cands = result.trade_candidates
     if not cands:
         return ""
+    sizeable = result.ev_trade_candidates
     rows = []
     for x in cands:
         tri = x.triple
@@ -482,21 +501,29 @@ def _trade_candidates_banner_html(result: MonitorResult) -> str:
                or (x.derived_candidates[0] if is_stmt and x.derived_candidates
                    else "?"))
         src = "statement" if is_stmt else x.filing_type
+        ev = x.ev or {}
+        passed = ev.get("passed")
+        ev_reason = (ev.get("reasons") or ["EV not evaluated"])[0]
+        ev_col = "#34C759" if passed else "#FF9500"
+        ev_tag = "EV ✅ sizeable" if passed else "EV ⛔ not sizeable"
         rows.append(
-            f'<div style="font-size:14px;color:#EBEBF5;margin-top:6px;">'
+            f'<div style="font-size:14px;color:#EBEBF5;margin-top:8px;">'
             f'<strong style="color:#34C759;">{tkr}</strong> '
             f'· score {tri.get("final_trade_score", 0):.1f} '
             f'<span style="color:#8E8E93;font-size:12px;">'
-            f'({_principal_badge(x)} · via {src})</span></div>')
+            f'({_principal_badge(x)} · via {src})</span></div>'
+            f'<div style="font-size:11px;color:{ev_col};margin-top:2px;">'
+            f'{ev_tag} — {ev_reason}</div>')
     return (f'<table width="100%" cellpadding="0" cellspacing="0" '
             f'style="margin-bottom:16px;"><tr><td style="background:#0E2A14;'
             f'border:1px solid #34C759;border-radius:14px;padding:16px 20px;">'
             f'<div style="font-size:12px;color:#34C759;letter-spacing:1px;'
             f'text-transform:uppercase;font-weight:700;">✅ Trade-Candidates — '
-            f'all three axes pass</div>{"".join(rows)}'
+            f'{len(sizeable)}/{len(cands)} clear the EV gate</div>{"".join(rows)}'
             f'<div style="font-size:11px;color:#8E8E93;margin-top:8px;">'
-            f'Person-signal · Freshness · Tradeability each cleared the gate.</div>'
-            f'</td></tr></table>')
+            f'Three axes prove the thesis is real + early; the forward-EV gate '
+            f'proves the call pays after costs. Only EV-cleared names are sizeable.'
+            f'</div></td></tr></table>')
 
 
 def _vorfeld_section_html(vorfeld: list) -> str:

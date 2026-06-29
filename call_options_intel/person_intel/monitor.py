@@ -178,6 +178,7 @@ class PersonAlert:
     position_changes: list = field(default_factory=list)  # 13F new/add/trim/exit
     triple: dict = field(default_factory=dict)            # 3-axis score + gate
     brief: dict = field(default_factory=dict)             # 5-section action brief
+    ev: dict = field(default_factory=dict)                # forward-EV hard-gate verdict
     discovered_via: str = "cik_feed"      # cik_feed | edgar_fts
     is_new_entity: bool = False           # filer not yet in the tracked graph
     matched_term: str = ""                # FTS term that surfaced it
@@ -618,6 +619,15 @@ class MonitorResult:
         return sorted(out, key=lambda x: x.triple.get("final_trade_score", 0.0),
                       reverse=True)
 
+    @property
+    def ev_trade_candidates(self) -> list:
+        """The ONLY sizeable set: triple-gate passers whose ACTUAL option
+        structure also clears the forward-EV hard gate (positive expectancy
+        after fills/theta/exits + liquidity/IV-history/earnings/DTE guards).
+        A triple pass says the thesis is real and early; this says the trade
+        pays. Offline / without IV history this is honestly empty."""
+        return [x for x in self.trade_candidates if (x.ev or {}).get("passed")]
+
     def to_dict(self) -> dict:
         return {
             "run_at": self.run_at, "mode": self.mode,
@@ -642,6 +652,8 @@ def run_monitor(config: Optional[AppConfig] = None, *, mode: Optional[str] = Non
                 include_vorfeld: bool = True,
                 vorfeld_snapshot_path: str | Path | None = None,
                 score_tradeability: bool = True,
+                score_ev: bool = True,
+                iv_store_path: str | Path | None = None,
                 persist: bool = True) -> MonitorResult:
     """Run one monitor pass: collect filings + conviction statements → dedup →
     (optionally) persist.
@@ -765,11 +777,16 @@ def run_monitor(config: Optional[AppConfig] = None, *, mode: Optional[str] = Non
             snapshot.save()
 
     principal_count = sum(1 for a in alerts if a.path_weight >= 0.75)
-    return MonitorResult(
+    result = MonitorResult(
         new_count=len(alerts), alerts=alerts, mode=run_mode,
         run_at=datetime.now(timezone.utc).isoformat(),
         principal_count=principal_count, statements=statements, vorfeld=vorfeld,
         ranked_proxies=ranked_proxies)
+
+    # forward-EV hard gate on the triple-gate passers — the 4th, decisive gate.
+    if score_ev:
+        _attach_ev(result, cfg, run_mode, fixtures, iv_store_path=iv_store_path)
+    return result
 
 
 def _attach_briefs(alerts, statements, vorfeld, proxy_map: ProxyMap,
@@ -817,6 +834,58 @@ def _attach_briefs(alerts, statements, vorfeld, proxy_map: ProxyMap,
             v.brief = ab.vorfeld_brief(v, snapshot=snap(top), ranked=ranked)
         except Exception:                               # pragma: no cover
             v.brief = {}
+
+
+def _attach_ev(result, cfg, run_mode, fixtures, *, iv_store_path=None) -> None:
+    """Run the forward-EV hard gate on every triple-gate passer and attach the
+    decision as ``signal.ev``. Only triple-passers are evaluated (bounded cost);
+    a missing snapshot, wide spread, thin liquidity, DTE out of window, MISSING
+    IV history, or earnings-in-window each HARD-reject before any Monte-Carlo, so
+    offline (no IV history) this is cheap and honestly rejects."""
+    cands = result.trade_candidates
+    if not cands:
+        return
+    try:
+        from ..config_loader import load_yaml
+        from .ev_gate import EvGate, EvGateConfig
+        from .options_sim import ExitRules
+        from .outcome_recorder import make_pipeline_snapshot_fn
+    except Exception:                                   # pragma: no cover
+        return
+    risk = load_yaml("risk_thresholds", getattr(cfg, "config_dir", None)) or {}
+    gate = EvGate(EvGateConfig.from_config(risk), ExitRules.from_config(risk))
+    snap_fn = make_pipeline_snapshot_fn(cfg, run_mode, fixtures)
+
+    iv_store = None
+    if iv_store_path:
+        try:
+            from .iv_history import IVHistoryStore
+            iv_store = IVHistoryStore(Path(iv_store_path))
+        except Exception:                               # pragma: no cover
+            iv_store = None
+
+    def ticker_of(x):
+        return (getattr(x, "subject_ticker", None)
+                or (x.derived_candidates[0]
+                    if getattr(x, "derived_candidates", None) else None)
+                or (x.triple or {}).get("ticker"))
+
+    for x in cands:
+        tkr = ticker_of(x)
+        try:
+            snap = snap_fn(tkr) if (snap_fn and tkr) else None
+        except Exception:                               # pragma: no cover
+            snap = None
+        iv_rank = None
+        if iv_store and snap and tkr and snap.get("iv") is not None:
+            try:
+                iv_rank = iv_store.rank(tkr, float(snap["iv"]))
+            except Exception:                           # pragma: no cover
+                iv_rank = None
+        dec = gate.evaluate(
+            snap, iv_rank=iv_rank, earnings_in_dte=None,
+            final_trade_score=(x.triple or {}).get("final_trade_score"))
+        x.ev = dec.to_dict()
 
 
 def _rank_relevant_clusters(proxy_map: ProxyMap, alerts, statements, vorfeld,

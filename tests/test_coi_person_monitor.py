@@ -217,6 +217,27 @@ def test_no_tradeability_means_no_trade_candidates(cfg, tmp_path):
                a.triple["tradeability"]["value"] <= 4.0
 
 
+def test_ev_gate_is_attached_and_blocks_without_iv_history(cfg, tmp_path):
+    # The forward-EV hard gate runs on every triple-gate passer. Offline there is
+    # no IV history, so EVERY passer is hard-rejected (cannot judge IV richness) →
+    # ev_trade_candidates is honestly EMPTY even though the triple gate passed.
+    r = run_monitor(config=cfg, mode="offline", since_days=120, as_of=AS_OF,
+                    state_path=tmp_path / "seen.json", persist=False)
+    assert r.trade_candidates                       # triple gate still passes some
+    for x in r.trade_candidates:
+        assert x.ev.get("passed") is False
+        assert any("IV history" in reason for reason in x.ev.get("reasons", []))
+    assert r.ev_trade_candidates == []              # nothing is sizeable offline
+
+
+def test_score_ev_false_skips_the_gate(cfg, tmp_path):
+    r = run_monitor(config=cfg, mode="offline", since_days=120, as_of=AS_OF,
+                    state_path=tmp_path / "seen.json", score_ev=False,
+                    persist=False)
+    assert all(x.ev == {} for x in r.trade_candidates)
+    assert r.ev_trade_candidates == []
+
+
 def test_no_new_signals_renders_clean(cfg, tmp_path):
     sp = tmp_path / "seen.json"
     monitor_and_notify(config=cfg, mode="offline", since_days=120, as_of=AS_OF,
