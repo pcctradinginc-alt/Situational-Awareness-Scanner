@@ -399,12 +399,12 @@ def cmd_outcomes_report(args) -> int:
             if s:
                 wf_rows.append({"recorded_at": r["recorded_at"],
                                 "horizon": rules.time_stop_days, "label": "candidate",
-                                "option_proxy_return": s.option_pnl_pct})
+                                "option_pnl_pct": s.option_pnl_pct})
         report = {
             "realistic_backtest": sim_summary,
             "walk_forward": walk_forward_guard(
                 wf_rows, split_date=args.split, horizon=rules.time_stop_days,
-                min_sample=args.min_sample),
+                min_sample=args.min_sample, return_key="option_pnl_pct"),
         }
         if getattr(args, "out", None):
             Path(args.out).parent.mkdir(parents=True, exist_ok=True)

@@ -1,12 +1,13 @@
 """
 options_sim.py
 ==============
-A **realistic** path-based options backtest — not a proxy return.
-
-The old `_option_proxy_return` is a first-order delta/intrinsic approximation. This
-walks a long call **day by day** along the REAL underlying price path (and an IV
-path when available), repricing with Black-Scholes so **theta decay** and
-**vega / IV-crush** are captured, and applies real-world frictions and exits:
+A **realistic** path-based options backtest — and now the ONLY source of option
+performance in the system. The former first-order delta/intrinsic option *proxy*
+return has been removed (it manufactured a false sense of certainty); this is
+what replaced it. It walks a long call **day by day** along the REAL underlying
+price path (and an IV path when available), repricing with Black-Scholes so
+**theta decay** and **vega / IV-crush** are captured, and applies real-world
+frictions and exits:
 
   * **Conservative fills** — buy crosses toward the ASK on entry, sell crosses
     toward the BID on exit (never mid); an assumed/known spread drives slippage.

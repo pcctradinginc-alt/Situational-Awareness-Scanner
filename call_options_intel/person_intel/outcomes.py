@@ -22,8 +22,6 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Callable, Optional
 
-from ..backtest import SignalStore
-
 logger = logging.getLogger("coi.person.outcomes")
 
 HORIZONS = (7, 14, 30, 60, 90, 180)
@@ -112,7 +110,6 @@ class OutcomeStore:
                 if px is None or not entry_spot:
                     continue
                 und_ret = (px - entry_spot) / entry_spot
-                opt_ret = SignalStore._option_proxy_return(rec, px)
                 benches: dict[str, Optional[float]] = {}
                 excess: dict[str, Optional[float]] = {}
                 if price_at is not None:
@@ -131,7 +128,6 @@ class OutcomeStore:
                 results.append({
                     **rec, "horizon": h, "age_days": age, "eval_price": px,
                     "underlying_return": round(und_ret, 4),
-                    "option_proxy_return": (round(opt_ret, 4) if opt_ret is not None else None),
                     "benchmark_returns": benches,
                     "excess_vs_benchmark": excess,
                 })
@@ -167,14 +163,11 @@ def summarize(evaluated: list[dict]) -> dict:
                 and e.get("label") != "rejected"]
         if not rows:
             continue
-        opt = [e["option_proxy_return"] for e in rows
-               if e.get("option_proxy_return") is not None]
         und = [e["underlying_return"] for e in rows
                if e.get("underlying_return") is not None]
         excess_qqq = [e["excess_vs_benchmark"].get("QQQ") for e in rows
                       if e.get("excess_vs_benchmark", {}).get("QQQ") is not None]
         by_horizon[h] = {
-            "option_proxy": _stats(opt),
             "underlying": _stats(und),
             "excess_vs_QQQ": _stats(excess_qqq),
         }
@@ -184,7 +177,7 @@ def summarize(evaluated: list[dict]) -> dict:
         for e in evaluated:
             if e.get("label") == "rejected":
                 continue
-            r = e.get("option_proxy_return")
+            r = e.get("underlying_return")
             if r is None:
                 continue
             out.setdefault(key_fn(e), []).append(r)
@@ -207,22 +200,29 @@ def summarize(evaluated: list[dict]) -> dict:
             "accepted_underlying": _stats(acc),
             "rejected_underlying": _stats(rej),
         },
-        "caveat": ("Option-proxy returns are first-order delta/intrinsic "
-                   "approximations, not realised option P&L. No profitability is "
-                   "claimed without the walk-forward guard below."),
+        "caveat": ("These are UNDERLYING returns (real prices) + benchmarks, NOT "
+                   "option P&L — the delta/intrinsic option proxy has been removed. "
+                   "Option performance is reported ONLY by the realistic path sim "
+                   "(`outcomes-report --realistic`). No profitability is claimed "
+                   "without the walk-forward guard."),
     }
 
 
 # ── walk-forward + minimum-sample guard ─────────────────────────────────────
 def walk_forward_guard(
     evaluated: list[dict], split_date: str, horizon: int = 30,
-    min_sample: int = 30,
+    min_sample: int = 30, return_key: str = "underlying_return",
 ) -> dict:
     """Refuse to assert an edge without an out-of-sample fold of sufficient size.
 
     Signals recorded before ``split_date`` are IN-sample; those on/after are
     OUT-of-sample. We only report an ``edge_claim`` of ``positive_oos`` when the
     OOS fold has at least ``min_sample`` matured signals AND a positive average.
+
+    ``return_key`` selects which return to fold on: ``underlying_return`` (real
+    prices, the default for the non-realistic report) or ``option_pnl_pct`` (the
+    realistic path sim — the ONLY option-performance edge claim). The removed
+    delta/intrinsic proxy is intentionally not an option here.
     """
     try:
         split = datetime.fromisoformat(split_date).date()
@@ -234,7 +234,7 @@ def walk_forward_guard(
         for e in evaluated:
             if e.get("horizon") != horizon or e.get("label") == "rejected":
                 continue
-            r = e.get("option_proxy_return")
+            r = e.get(return_key)
             if r is None:
                 continue
             try:
