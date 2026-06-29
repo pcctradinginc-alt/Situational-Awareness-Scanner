@@ -64,3 +64,23 @@ options_backtest:
   exit_haircut: 0.50         # fraction of half-spread given crossing toward the bid
   assumed_spread_pct: 0.06   # bid/ask spread used when only a mid is known
   risk_free_rate: 0.04
+
+# Forward EV hard-gate (person_intel/ev_gate.py) — the FOURTH, decisive gate. A
+# CALL candidate may only emerge when its actual contract carries a plausibly
+# positive expected value AFTER costs (Monte-Carlo of the real option through the
+# realistic engine: ask-in/bid-out fills, BS theta+vega reprice, daily exit rules)
+# AND no hard data/liquidity/timing guard trips. The liquidity floors and DTE
+# window are READ FROM the `liquidity:` and `dte:` blocks above (single source of
+# truth); only EV-specific knobs live here.
+ev_gate:
+  ev_min: 0.0                         # required mean option P&L after costs (>0 = positive expectancy)
+  n_paths: 1500                       # Monte-Carlo paths (seeded → deterministic)
+  seed: 7
+  require_iv_history: true            # no IV-rank → cannot judge richness → HARD reject
+  block_earnings_in_window: true      # earnings inside the holding window → HARD reject
+  # The thesis is the ONLY directional edge. drift = signal_to_drift_annual_max ×
+  # (final_trade_score / 10). This is an UNVALIDATED PRIOR, not a fitted value —
+  # the accumulating real outcomes + walk-forward backtest are what validate it.
+  # Set to 0.0 to demand an explicitly-supplied, evidence-based catalyst drift.
+  signal_to_drift_annual_max: 0.25
+  default_catalyst_drift_annual: 0.0  # drift used when no signal score is supplied
