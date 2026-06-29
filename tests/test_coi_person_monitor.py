@@ -164,6 +164,30 @@ def test_markdown_separates_fact_from_hypothesis(cfg, store):
     assert "PLTR" in html and "Research/paper only" in html
 
 
+def test_13f_is_declassed_never_a_trade_candidate():
+    # a quarterly 13F is universe/thesis-grade — even if (hypothetically) all
+    # three axes cleared, it must NEVER appear as a trade-candidate.
+    from call_options_intel.person_intel.monitor import MonitorResult, PersonAlert
+    passing = {"gate_pass": True, "final_trade_score": 9.0, "label": "TRADE-CANDIDATE"}
+    a13f = PersonAlert(
+        entity="Founders Fund", entity_id="ff", cik="1", filing_type="13F-HR",
+        form_raw="13F-HR", role="confirmation", category="Quarterly 13F",
+        signal_kind="quarterly_13f", filing_date="2026-06-01", age_days=5,
+        accession="x", url="", principal="thiel", path_weight=1.0,
+        link_confidence="principal", subject_ticker="NVDA", triple=passing)
+    a4 = PersonAlert(
+        entity="Thiel", entity_id="t", cik="2", filing_type="Form 4",
+        form_raw="4", role="early", category="Insider", signal_kind="insider_trade",
+        filing_date="2026-06-20", age_days=1, accession="y", url="",
+        principal="thiel", path_weight=1.0, link_confidence="principal",
+        subject_ticker="PLTR", triple=passing)
+    r = MonitorResult(new_count=2, alerts=[a13f, a4], mode="offline", run_at="t",
+                      principal_count=2)
+    kinds = {x.signal_kind for x in r.trade_candidates}
+    assert "quarterly_13f" not in kinds          # declassed
+    assert "insider_trade" in kinds              # the early Form 4 still qualifies
+
+
 def test_email_skipped_when_unconfigured(cfg, store, monkeypatch):
     monkeypatch.delenv("GMAIL_USER", raising=False)
     monkeypatch.delenv("GMAIL_APP_PASSWORD", raising=False)
@@ -215,6 +239,58 @@ def test_no_tradeability_means_no_trade_candidates(cfg, tmp_path):
     for a in r.alerts:
         assert a.triple["tradeability"]["value"] in (0.0, None) or \
                a.triple["tradeability"]["value"] <= 4.0
+
+
+def test_ev_gate_is_attached_and_blocks_without_iv_history(cfg, tmp_path):
+    # The forward-EV hard gate runs on every triple-gate passer. Offline there is
+    # no IV history, so EVERY passer is hard-rejected (cannot judge IV richness) →
+    # ev_trade_candidates is honestly EMPTY even though the triple gate passed.
+    r = run_monitor(config=cfg, mode="offline", since_days=120, as_of=AS_OF,
+                    state_path=tmp_path / "seen.json", persist=False)
+    assert r.trade_candidates                       # triple gate still passes some
+    for x in r.trade_candidates:
+        assert x.ev.get("passed") is False
+        assert any("IV history" in reason for reason in x.ev.get("reasons", []))
+    assert r.ev_trade_candidates == []              # nothing is sizeable offline
+
+
+def test_score_ev_false_skips_the_gate(cfg, tmp_path):
+    r = run_monitor(config=cfg, mode="offline", since_days=120, as_of=AS_OF,
+                    state_path=tmp_path / "seen.json", score_ev=False,
+                    persist=False)
+    assert all(x.ev == {} for x in r.trade_candidates)
+    assert r.ev_trade_candidates == []
+
+
+def test_iv_store_clears_the_no_iv_history_block(cfg, tmp_path):
+    # feeding a WARMED IV-history store removes the "no IV history" hard-block,
+    # so the EV gate can proceed to the actual expectancy test — the wiring that
+    # lets a live candidate ever clear the gate.
+    from datetime import date as _date, timedelta
+    from call_options_intel.person_intel.iv_history import IVHistoryStore
+    ivp = tmp_path / "iv.jsonl"
+    store = IVHistoryStore(ivp)
+    for t in ("PLTR", "VST"):
+        for i in range(25):                          # >= warmup_min_obs (20)
+            store.record(t, 0.40 + 0.01 * (i % 5),
+                         as_of=_date(2026, 1, 1) + timedelta(days=i))
+    r = run_monitor(config=cfg, mode="offline", since_days=120, as_of=AS_OF,
+                    state_path=tmp_path / "seen.json", iv_store_path=ivp,
+                    persist=False)
+    assert r.trade_candidates
+    for x in r.trade_candidates:
+        reasons = x.ev.get("reasons", [])
+        assert not any("IV history" in reason for reason in reasons)
+
+
+def test_portfolio_risk_property_present_and_empty_is_ok(cfg, tmp_path):
+    # offline nothing clears the EV gate → no sizeable basket → portfolio ok/empty
+    r = run_monitor(config=cfg, mode="offline", since_days=120, as_of=AS_OF,
+                    state_path=tmp_path / "seen.json", persist=False)
+    pr = r.portfolio_risk
+    assert pr["ok"] is True
+    assert pr["n"] == 0
+    assert pr["breaches"] == []
 
 
 def test_no_new_signals_renders_clean(cfg, tmp_path):

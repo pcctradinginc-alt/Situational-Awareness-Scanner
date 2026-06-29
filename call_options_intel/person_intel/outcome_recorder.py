@@ -82,6 +82,10 @@ def make_pipeline_snapshot_fn(cfg, mode: str, fixtures) -> Optional[SnapshotFn]:
         logger.warning("snapshot pipeline unavailable: %s", exc)
         return None
     cache: dict[str, Optional[dict]] = {}
+    try:
+        earnings_days = pipe._earnings_days()           # {ticker: days_to_earnings}
+    except Exception:                                   # pragma: no cover
+        earnings_days = {}
 
     def fn(ticker: Optional[str]) -> Optional[dict]:
         if not ticker:
@@ -106,6 +110,7 @@ def make_pipeline_snapshot_fn(cfg, mode: str, fixtures) -> Optional[SnapshotFn]:
                     "open_interest": c.open_interest,
                     "volume": c.volume,
                     "expiry": c.expiry,
+                    "earnings_days": earnings_days.get(ticker),
                 }
         except Exception:
             snap = None

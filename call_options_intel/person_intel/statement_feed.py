@@ -133,6 +133,7 @@ class StatementSignal:
     why_it_matters: str = ""
     triple: dict = field(default_factory=dict)   # 3-axis score + gate
     brief: dict = field(default_factory=dict)    # 5-section action brief
+    ev: dict = field(default_factory=dict)       # forward-EV hard-gate verdict
 
     def to_dict(self) -> dict:
         return asdict(self)

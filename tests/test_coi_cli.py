@@ -33,6 +33,29 @@ def test_doctor(capsys):
     assert "no live-trading" in out
 
 
+def test_doctor_strict_passes_and_runs_invariants(capsys):
+    rc = main(["doctor", "--strict"])
+    assert rc == 0                                   # invariants hold → exit 0
+    out = capsys.readouterr().out
+    assert "strict: liquidity floors sane" in out
+    assert "strict: EV gate configured" in out
+    assert "strict: no LLM in score decision" in out
+    assert "Result: PASS" in out
+
+
+def test_llm_guard_flags_llm_in_a_decision_module(tmp_path):
+    # the guard must catch an LLM dependency smuggled into a score module
+    from call_options_intel.cli import _llm_in_scoring
+    (tmp_path / "scoring.py").write_text(
+        "import anthropic\n# llm_classify drives the score\n", encoding="utf-8")
+    hits = _llm_in_scoring(tmp_path)
+    assert hits and any("scoring.py" in h for h in hits)
+    # a clean module yields no hits
+    (tmp_path / "scoring.py").write_text("def score(x):\n    return x\n",
+                                         encoding="utf-8")
+    assert _llm_in_scoring(tmp_path) == []
+
+
 def test_explain(capsys):
     rc = main(["explain", "NVDA"])
     assert rc == 0

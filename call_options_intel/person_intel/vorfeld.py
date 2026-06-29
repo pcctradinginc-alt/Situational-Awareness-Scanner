@@ -122,6 +122,7 @@ class VorfeldSignal:
     needs_human_review: bool = True
     triple: dict = field(default_factory=dict)
     brief: dict = field(default_factory=dict)    # 5-section action brief
+    ev: dict = field(default_factory=dict)       # forward-EV hard-gate verdict
 
     def to_dict(self) -> dict:
         return asdict(self)

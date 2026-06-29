@@ -277,7 +277,8 @@ def cmd_person_monitor(args) -> int:
         fixtures_dir=fixtures, resolve=not args.no_resolve,
         send_email=args.email, min_path_weight=args.min_weight,
         record_outcomes=getattr(args, "record_outcomes", False),
-        outcome_store_path=getattr(args, "outcome_store", None))
+        outcome_store_path=getattr(args, "outcome_store", None),
+        iv_store_path=getattr(args, "iv_store", None))
     print(f"\n{DISCLAIMER}\n")
     print(f"PERSON-MONITOR — mode={summary['mode']} · "
           f"new={summary['total_new']} "
@@ -594,9 +595,44 @@ def cmd_doctor(args) -> int:
           "; ".join(bad) if bad else "clean")
     ok = ok and not bad
 
-    print(f"\nResult: {'PASS' if ok else 'WARN — see above'}")
+    # ── strict mode: data invariants + LLM guard; HARD-FAILS CI on violation ──
+    strict = getattr(args, "strict", False)
+    if strict:
+        from .config_loader import load_yaml as _ly
+        risk = _ly("risk_thresholds", cfg.config_dir) or {}
+        liq = risk.get("liquidity", {}) or {}
+        dte = risk.get("dte", {}) or {}
+        evg = risk.get("ev_gate", {}) or {}
+
+        liq_ok = (int(liq.get("min_open_interest", 0)) > 0
+                  and 0 < float(liq.get("max_bid_ask_spread_pct", 0) or 0) < 1
+                  and float(liq.get("min_option_dollar_volume", -1)) >= 0
+                  and float(liq.get("min_premium", -1)) >= 0)
+        _line("strict: liquidity floors sane", liq_ok,
+              f"OI>={liq.get('min_open_interest')} · spread<{liq.get('max_bid_ask_spread_pct')} · "
+              f"$vol>={liq.get('min_option_dollar_volume')} · prem>={liq.get('min_premium')}")
+
+        dte_ok = (int(dte.get("min", 0)) > 0
+                  and int(dte.get("max", 0)) > int(dte.get("min", 0)))
+        _line("strict: DTE window sane", dte_ok, f"[{dte.get('min')}, {dte.get('max')}]")
+
+        ev_ok = ("ev_min" in evg) and int(evg.get("n_paths", 0)) > 0
+        _line("strict: EV gate configured", ev_ok,
+              f"ev_min={evg.get('ev_min')} · n_paths={evg.get('n_paths')}")
+
+        # the LLM must NEVER drive the score/EV decision (extraction / red-team
+        # only — llm_classify stays advisory). Guard the decision modules.
+        llm_hits = _llm_in_scoring(src_root)
+        _line("strict: no LLM in score decision", not llm_hits,
+              "; ".join(llm_hits) if llm_hits else
+              "scoring · candidates · triple_score · ev_gate are LLM-free")
+
+        ok = ok and liq_ok and dte_ok and ev_ok and not llm_hits
+
+    verdict = "PASS" if ok else ("FAIL" if strict else "WARN — see above")
+    print(f"\nResult: {verdict}")
     print(DISCLAIMER)
-    return 0  # doctor reports but never hard-fails CI
+    return 1 if (strict and not ok) else 0  # only --strict hard-fails CI
 
 
 # ── helpers ────────────────────────────────────────────────────────────────
@@ -633,6 +669,29 @@ def _grep_dangerous(root: Path) -> list[str]:
         for n in needles:
             if n in text:
                 hits.append(f"{f.name}:{n}")
+    return hits
+
+
+# decision modules whose SCORE/EV output must never be produced by an LLM —
+# the LLM (person_intel/llm_classify.py) is allowed for advisory text extraction
+# and red-teaming only, never as a non-calibrated trading judge.
+_DECISION_MODULES = ("scoring.py", "candidates.py",
+                     "person_intel/triple_score.py", "person_intel/ev_gate.py",
+                     "person_intel/person_scoring.py")
+
+
+def _llm_in_scoring(root: Path) -> list[str]:
+    """Flag any LLM/Anthropic dependency inside a score/EV decision module."""
+    needles = ("import anthropic", "from anthropic", "llm_classify", "claude")
+    hits = []
+    for rel in _DECISION_MODULES:
+        p = root / rel
+        if not p.exists():
+            continue
+        text = p.read_text(encoding="utf-8", errors="ignore").lower()
+        for n in needles:
+            if n in text:
+                hits.append(f"{rel}:{n}")
     return hits
 
 
@@ -756,6 +815,9 @@ def build_parser() -> argparse.ArgumentParser:
                     help="append every new signal (incl. rejects) to the outcome store")
     sp.add_argument("--outcome-store", default="data/person_intel/outcomes.jsonl",
                     help="outcome JSONL store path (committed across runs)")
+    sp.add_argument("--iv-store",
+                    help="warmed IV-history JSONL → feeds IV-rank into the EV gate "
+                         "(without it the EV gate hard-blocks: no IV history)")
     sp.add_argument("--dry-run", action="store_true",
                     help="report without persisting state or sending email")
     sp.set_defaults(func=cmd_person_monitor)
@@ -799,6 +861,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     sp = sub.add_parser("doctor", help="health-check the install")
     sp.add_argument("--config-dir")
+    sp.add_argument("--strict", action="store_true",
+                    help="enforce data invariants + LLM-in-scoring guard and "
+                         "exit non-zero on any violation (for CI)")
     sp.set_defaults(func=cmd_doctor)
     return p
 
