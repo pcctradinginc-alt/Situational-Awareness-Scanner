@@ -99,6 +99,23 @@ def _ev_md(ev: dict) -> str:
     return f"💰 EV-Gate ⛔ NOT sizeable — {reason}"
 
 
+def _portfolio_risk_md(lines: list, result: MonitorResult) -> None:
+    """Aggregate guardrails over the EV-cleared basket — only shown when there is
+    something to size. A single positive-EV trade is not a robust book."""
+    pr = result.portfolio_risk
+    if not pr or pr.get("n", 0) == 0:
+        return
+    agg = pr.get("aggregates", {})
+    status = "✅ within limits" if pr.get("ok") else "⛔ LIMIT BREACH"
+    lines.append(f"## 🧮 Portfolio risk — {status} ({pr['n']} sizeable)")
+    lines.append("")
+    lines.append(f"_net delta {agg.get('net_delta')} · aggregate vega "
+                 f"{agg.get('aggregate_vega')} · notional {agg.get('total_notional')}_")
+    for b in pr.get("breaches", []):
+        lines.append(f"- ⛔ {b}")
+    lines.append("")
+
+
 def _trade_candidates_md(lines: list, result: MonitorResult) -> None:
     """Top section: signals where all three axes cleared the gate AND, of those,
     which also clear the forward-EV hard gate (the only sizeable set)."""
@@ -284,6 +301,7 @@ def render_markdown(result: MonitorResult) -> str:
     lines.append(f"> {DISCLAIMER}")
     lines.append("")
     _trade_candidates_md(lines, result)
+    _portfolio_risk_md(lines, result)
     _ranked_proxies_md(lines, result)
     _new_entities_md(lines, result)
     _network_context_md(lines, result)

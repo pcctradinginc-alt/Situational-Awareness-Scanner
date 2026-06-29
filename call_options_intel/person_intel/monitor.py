@@ -643,6 +643,25 @@ class MonitorResult:
         pays. Offline / without IV history this is honestly empty."""
         return [x for x in self.trade_candidates if (x.ev or {}).get("passed")]
 
+    @property
+    def portfolio_risk(self) -> dict:
+        """Aggregate guardrails over the EV-cleared basket (count · concentration ·
+        net delta · aggregate vega). A single positive-EV trade is not a robust
+        book. Empty / no positions ⇒ ok. See person_intel/portfolio_risk.py."""
+        from ..config_loader import load_yaml
+        from .portfolio_risk import Position, PortfolioLimits, assess_portfolio
+        positions = []
+        for x in self.ev_trade_candidates:
+            p = (x.ev or {}).get("position")
+            if not p:
+                continue
+            positions.append(Position(
+                ticker=p.get("ticker") or "?", cluster=p.get("cluster", ""),
+                delta=float(p.get("delta") or 0.0), vega=float(p.get("vega") or 0.0),
+                premium=float(p.get("premium") or 0.0)))
+        limits = PortfolioLimits.from_config(load_yaml("risk_thresholds", None))
+        return assess_portfolio(positions, limits)
+
     def to_dict(self) -> dict:
         return {
             "run_at": self.run_at, "mode": self.mode,
@@ -800,7 +819,8 @@ def run_monitor(config: Optional[AppConfig] = None, *, mode: Optional[str] = Non
 
     # forward-EV hard gate on the triple-gate passers — the 4th, decisive gate.
     if score_ev:
-        _attach_ev(result, cfg, run_mode, fixtures, iv_store_path=iv_store_path)
+        _attach_ev(result, cfg, run_mode, fixtures, proxy_map,
+                   iv_store_path=iv_store_path)
     return result
 
 
@@ -851,7 +871,8 @@ def _attach_briefs(alerts, statements, vorfeld, proxy_map: ProxyMap,
             v.brief = {}
 
 
-def _attach_ev(result, cfg, run_mode, fixtures, *, iv_store_path=None) -> None:
+def _attach_ev(result, cfg, run_mode, fixtures, proxy_map=None, *,
+               iv_store_path=None) -> None:
     """Run the forward-EV hard gate on every triple-gate passer and attach the
     decision as ``signal.ev``. Only triple-passers are evaluated (bounded cost);
     a missing snapshot, wide spread, thin liquidity, DTE out of window, MISSING
@@ -907,6 +928,31 @@ def _attach_ev(result, cfg, run_mode, fixtures, *, iv_store_path=None) -> None:
             snap, iv_rank=iv_rank, earnings_in_dte=earnings_in_dte,
             final_trade_score=(x.triple or {}).get("final_trade_score"))
         x.ev = dec.to_dict()
+        # attach a position fingerprint (ticker/cluster/delta/vega/premium) so the
+        # portfolio-risk guardrails can assess the EV-cleared basket as a whole
+        if snap:
+            cluster = ""
+            try:
+                cls = proxy_map.clusters_for_ticker(tkr) if (proxy_map and tkr) else []
+                cluster = max(cls, key=lambda kv: kv[1].quality())[0] if cls else ""
+            except Exception:                           # pragma: no cover
+                cluster = ""
+            vega = 0.0
+            try:
+                from .fills import call_greeks
+                if snap.get("spot") and snap.get("strike") and snap.get("dte") \
+                        and snap.get("iv"):
+                    vega = call_greeks(float(snap["spot"]), float(snap["strike"]),
+                                       int(snap["dte"]), 0.04,
+                                       float(snap["iv"])).vega_per_vol_pt
+            except Exception:                           # pragma: no cover
+                vega = 0.0
+            x.ev["position"] = {
+                "ticker": tkr, "cluster": cluster,
+                "delta": float(snap.get("entry_delta") or 0.0),
+                "vega": round(float(vega), 4),
+                "premium": float(snap.get("entry_premium") or 0.0),
+            }
 
 
 def _rank_relevant_clusters(proxy_map: ProxyMap, alerts, statements, vorfeld,

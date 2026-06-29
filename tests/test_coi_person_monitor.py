@@ -283,6 +283,16 @@ def test_iv_store_clears_the_no_iv_history_block(cfg, tmp_path):
         assert not any("IV history" in reason for reason in reasons)
 
 
+def test_portfolio_risk_property_present_and_empty_is_ok(cfg, tmp_path):
+    # offline nothing clears the EV gate → no sizeable basket → portfolio ok/empty
+    r = run_monitor(config=cfg, mode="offline", since_days=120, as_of=AS_OF,
+                    state_path=tmp_path / "seen.json", persist=False)
+    pr = r.portfolio_risk
+    assert pr["ok"] is True
+    assert pr["n"] == 0
+    assert pr["breaches"] == []
+
+
 def test_no_new_signals_renders_clean(cfg, tmp_path):
     sp = tmp_path / "seen.json"
     monitor_and_notify(config=cfg, mode="offline", since_days=120, as_of=AS_OF,

@@ -47,6 +47,17 @@ market:
 earnings:
   flag_window_days: 10             # earnings within N days -> "event trade" tag
 
+# Portfolio-level guardrails (person_intel/portfolio_risk.py) over the sizeable
+# (EV-cleared) candidates AT ONCE — a single good trade is not a robust book.
+# Thesis cluster is the correlation proxy (same cluster => correlated AI-beta).
+portfolio:
+  max_positions: 5                 # max concurrent proposed positions
+  max_per_cluster: 2               # max positions sharing one thesis cluster
+  max_single_name_weight: 0.40     # share of total premium notional in one name
+  max_cluster_weight: 0.60         # share of total premium notional in one cluster
+  max_net_delta: 300               # Σ delta × 100 × contracts (share-equivalent)
+  max_aggregate_vega: 500          # Σ vega × contracts ($ per vol point)
+
 # Data-quality guardrail: candidates assembled from too many fallbacks are
 # marked low-confidence and penalised.
 data_quality:
