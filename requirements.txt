@@ -1,12 +1,10 @@
-anthropic>=0.34.0
+# call_options_intel — the single productive pipeline (free-data, paper-only).
+# anthropic is OPTIONAL (person_intel/llm_classify.py, advisory extraction only,
+# ANTHROPIC_API_KEY env-gated); everything else runs keyless/offline by default.
 PyYAML>=6.0
 yfinance>=0.2.40
-finnhub-python>=2.4.19
 feedparser>=6.0.11
 requests>=2.31.0
-requests-cache>=1.2.0
 pandas>=2.1.0
 numpy>=1.26.0
-python-dotenv>=1.0.0
-tenacity>=8.2.3
-scikit-learn>=1.4.0
+anthropic>=0.34.0

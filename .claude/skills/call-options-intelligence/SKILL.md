@@ -41,8 +41,9 @@ recommendation. Reports render to Markdown, CSV, JSON and HTML.
 - Missing data must not crash the pipeline — flag and degrade.
 
 ## How it is implemented
-Python package `call_options_intel/` (free-data, self-contained, additive — it
-does not modify or depend on the existing paid-API `scanner/` pipeline):
+Python package `call_options_intel/` — the single productive pipeline (free-data,
+self-contained, paper-only). The earlier paid-API `scanner/` pipeline has been
+removed:
 
 | Module | Role |
 |---|---|

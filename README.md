@@ -11,12 +11,14 @@ durch Kombination von 13F-Monitoring, philosophisch-strategischer These-Analyse
 
 ---
 
-## CALL-Options Intelligence (free-data subsystem) 🆕
+## CALL-Options Intelligence — the pipeline
 
-A self-contained, **free-data, research-only** subsystem lives in
-[`call_options_intel/`](call_options_intel/). It is **additive** — it does not
-modify or depend on the original paid-API pipeline above — and runs fully
-**offline by default** on bundled fixtures (no API keys, no network).
+The system is the **free-data, research-only** package in
+[`call_options_intel/`](call_options_intel/). It runs fully **offline by default**
+on bundled fixtures (no API keys, no network); free live sources (yfinance/Stooq/
+EDGAR/crt.sh) are opt-in. The earlier paid-API `scanner/` pipeline (Tradier /
+Finnhub / Anthropic, `main.py`, GitHub-Pages dashboard) has been **removed** —
+this is now the single productive pipeline.
 
 ### What it does
 Ranks explainable CALL-option candidates on a configurable AI-infrastructure
@@ -256,116 +258,60 @@ if any are ever introduced. Paper/research only. Not investment advice.
 
 ## Architektur
 
+Eine einzige produktive Pipeline: [`call_options_intel/`](call_options_intel/)
+(free-data, paper-only). Die alte bezahlte `scanner/`-Pipeline (Tradier / Finnhub /
+Anthropic, `main.py`, GitHub-Pages-Dashboard) wurde entfernt.
+
 ```
-main.py                         Orchestrierung
-scanner/
-  sources/
-    tradier_client.py           Tradier Vollzugriff (Option Chain, Greeks, IV-Historie)
-    data_fetcher.py             Koordiniert alle Quellen (yfinance, EIA, FRED, Finnhub, RSS)
-    sec_edgar.py                13F-Filing Monitor
-  signals/
-    regime_detector.py          Normal/Stress-Modus Bestimmung
-    contrarian_gate.py          Gegenthesen-Check (verhindert Überzeugungsschleifen)
-    shulman_layer.py            Empirische Validierung + qualitative Extraktion
-    thiel_layer.py              Handlung vs. These + Katechon-Bonus
-  analysis/
-    pre_filter.py               Quick-Score ohne Claude (Token-Ökonomie)
-    scoring_engine.py           Gewichteter Conviction-Score
-    claude_analyzer.py          Anthropic API + Master-Prompt
-  output/
-    trading_card_generator.py   JSON → HTML Trading Card
-    dashboard_generator.py      GitHub Pages Dashboard
-  utils/
-    config.py                   Alle Konstanten und Gewichte
-    state_manager.py            SQLite + Git-Commit Persistenz
-    ticker_mapper.py            CIK → Ticker → Sektor Mapping
-    rate_limiter.py             Pro-API Rate-Limiting
+call_options_intel/
+  pipeline.py            Offline/Live-Orchestrierung des CALL-Scans
+  universe.py            KI-Infra-Universe (config/ai_infra_universe.yml)
+  market_data.py         yfinance/Stooq (frei) + Offline-Fixtures
+  options_data.py        Option-Chain + Greeks (frei / Fixtures)
+  blackscholes.py        BS-Preis / Greeks / Implied-Vol
+  scoring.py             Erklärbarer 0..10-Score (config/scoring_weights.yml)
+  candidates.py          Hard-Filter + gerankte Kandidaten (config/risk_thresholds.yml)
+  report.py / cli.py     Markdown/CSV/JSON · CLI (scan/backtest/explain/doctor/…)
+  person_intel/          Personen-Radar (Thiel / Aschenbrenner)
+    monitor.py           Live dedup'd Filing-Radar → PersonAlert
+    triple_score.py      3-Achsen-Hard-AND-Gate (person · freshness · tradeability)
+    options_sim.py       Realistischer Pfad-Backtest (BS-Reprice, Fills, Exit-Regeln)
+    proxy_map.py         privates Thema → liquider, optionierbarer Public-Proxy
+    vorfeld.py           Nicht-Filing-Frühsignale (ADV · Jobs · Domain · CT-Logs)
+    statement_feed.py    Conviction-Statements (Essays/News, official > media)
+    outcomes.py          Multi-Horizont-Outcomes + Walk-Forward-Guard
+    action_brief.py      5-Sektionen-Handlungs-Brief pro Signal
 ```
 
 ## Setup
 
-### 1. Repository
-
 ```bash
-git clone https://github.com/DEIN-USER/sa-scanner
-cd sa-scanner
-pip install -r requirements.txt
+git clone https://github.com/pcctradinginc-alt/Situational-Awareness-Scanner
+cd Situational-Awareness-Scanner
+pip install -r requirements.txt        # frei; anthropic optional (nur LLM-Extraktion)
+
+python -m call_options_intel doctor    # Selbstcheck inkl. no-live-trading-Guard
+python -m call_options_intel scan      # Offline-Scan auf Fixtures → Markdown/CSV/JSON
+pytest tests/ -q                       # Tests
 ```
 
-### 2. GitHub Secrets
-
-Unter `Settings → Secrets and variables → Actions`:
-
-| Secret | Quelle | Pflicht |
-|--------|--------|---------|
-| `ANTHROPIC_API_KEY` | console.anthropic.com | ✅ |
-| `TRADIER_API_KEY` | tradier.com/user/applications | ✅ |
-| `FINNHUB_API_KEY` | finnhub.io | ✅ |
-| `EIA_API_KEY` | eia.gov/opendata | Empfohlen |
-| `FRED_API_KEY` | fred.stlouisfed.org | Empfohlen |
-
-### 3. GitHub Actions Schreibrechte
-
-`Settings → Actions → General → Workflow permissions → Read and write permissions`
-
-### 4. GitHub Pages
-
-`Settings → Pages → Source → GitHub Actions`
-
-### 5. CIK-Nummern verifizieren
-
-In `scanner/utils/config.py` die `SEC_CIK_TARGETS` über
-[EDGAR Company Search](https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany)
-verifizieren.
-
-### 6. Lokaler Test
-
-```bash
-# Nur Daten fetchen (kein Claude)
-python main.py --no-claude
-
-# Spezifische Ticker
-python main.py --ticker VST PLTR
-
-# Nur EDGAR-Check
-python main.py --edgar-only
-
-# Tests
-pytest tests/ -v
-```
-
-## Gewichtungsstruktur
-
-| Layer | Normal | Stress |
-|-------|--------|--------|
-| SA LP Alignment | 40% | 50% |
-| Thiel (inkl. Philosophical) | 14% | 10% |
-| Shulman-Metriken | 15% | 13% |
-| Multi-Signal-Gate | 4% | 3% |
-| Markt-Regime | 15% | 12% |
-| Contrarian Gate | 12% | 12% |
-
-**Conviction-Schwellenwert:** ≥ 7.5 (Normal) / ≥ 8.0 (Stress)
-
-**Contrarian Gate:** Bei Score < -3.0 wird der Trade blockiert (binäres Gate).
-
-## Kosten
-
-| Quelle | Kosten |
-|--------|--------|
-| Anthropic API (claude-sonnet-4-6) | ~2-3 USD/Monat (Pre-Filter) |
-| Tradier (Vollzugriff) | Laut Plan |
-| Alle anderen Quellen | kostenlos |
+Frei-Live-Quellen (opt-in, **kein API-Key**): yfinance/Stooq (Markt), SEC EDGAR
+(Filings + Full-Text-Search), crt.sh (CT-Logs). Der E-Mail-Radar nutzt Gmail-SMTP —
+Secrets `GMAIL_USER` / `GMAIL_APP_PASSWORD` / `NOTIFY_EMAIL` ausschließlich aus der
+Umgebung. GitHub-Workflows: `call_options_intel_ci.yml` (Tests auf Push/PR) und
+`person_intel_monitor.yml` (Radar 06:00 + 14:00 UTC). `ANTHROPIC_API_KEY` ist
+optional und nur für die advisory LLM-Extraktion (`person_intel/llm_classify.py`).
 
 ## Wichtige Einschränkungen
 
-Das System liefert **Richtungs-Signale**, keine Timing-Garantien.
+Das System liefert **erklärbare Richtungs-Signale**, keine Timing-Garantien.
 
-- Philosophische Signale (Thiel-These) sind Priors, keine Trigger
-- Shulman-Signale liegen 6-12 Monate vor dem Mainstream-Markt
-- IV-Rank ist erst nach 30+ Tagen eigener Datensammlung zuverlässig (Warmup-Phase)
-- Der Contrarian Gate ist der einzige Schutz gegen geschlossene Überzeugungsschleifen
-- Nicht investiere niemals mehr als du bereit bist zu verlieren
+- **These ≠ Trade:** Personen-/These-Signale sind Priors, kein Auslöser allein.
+- Ein CALL-Kandidat entsteht nur, wenn **alle drei Achsen** (person · freshness ·
+  tradeability) ihr Gate passieren — ein hartes AND, keine Summe.
+- IV-Rank ist erst nach 30+ Tagen eigener IV-Historie verlässlich (Warmup-Phase).
+- Optionen können wertlos verfallen (Totalverlust). Niemals mehr riskieren als du
+  bereit bist zu verlieren.
 
 ## Lizenz
 
