@@ -47,26 +47,21 @@ def test_evaluate_only_matured(tmp_path):
     assert len(evaluated) == 1                    # only matured NVDA
     e = evaluated[0]
     assert e["underlying_return"] == 0.2          # 100 -> 120
-    assert e["option_proxy_return"] is not None
-
-
-def test_option_proxy_capped_at_minus_one():
-    rec = {"entry_spot": 100, "entry_premium": 8, "entry_delta": 0.5, "strike": 100}
-    # huge drop -> proxy floored at -1
-    ret = SignalStore._option_proxy_return(rec, now_price=50)
-    assert ret == -1.0
+    # the delta/intrinsic option proxy was removed — only the real underlying remains
+    assert "option_proxy_return" not in e
 
 
 def test_summarize_metrics(tmp_path):
     store = SignalStore(tmp_path / "s.jsonl")
     evaluated = [
-        {"ticker": "A", "final_score": 8, "option_proxy_return": 0.5, "underlying_return": 0.1},
-        {"ticker": "B", "final_score": 6, "option_proxy_return": -0.3, "underlying_return": -0.05},
-        {"ticker": "C", "final_score": 4, "option_proxy_return": -1.0, "underlying_return": -0.2},
+        {"ticker": "A", "final_score": 8, "underlying_return": 0.1},
+        {"ticker": "B", "final_score": 6, "underlying_return": -0.05},
+        {"ticker": "C", "final_score": 4, "underlying_return": -0.2},
     ]
     summary = store.summarize(evaluated)
     assert summary["n"] == 3
-    assert 0 <= summary["option_proxy"]["hit_rate"] <= 1
+    assert 0 <= summary["underlying_return"]["hit_rate"] <= 1
+    assert "option_proxy" not in summary          # proxy performance is gone
     assert "score_buckets" in summary
     assert "caveat" in summary  # no profitability claim without caveat
 

@@ -58,4 +58,4 @@ def test_backtest_demo_then_evaluate(tmp_path, capsys):
     rc = main(["backtest", "demo", "--store", str(store)])
     assert rc == 0
     out = capsys.readouterr().out
-    assert "option_proxy" in out or "no matured" in out
+    assert "underlying_return" in out or "no matured" in out

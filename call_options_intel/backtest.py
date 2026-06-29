@@ -8,11 +8,15 @@ Workflow:
   1. record(scan_result)   -> append each ranked candidate to a JSONL signal
                               store with a timestamp and entry snapshot.
   2. evaluate(price_lookup)-> for matured signals (now >= horizon), compute the
-                              underlying return and a first-order option-proxy
-                              return (delta-leverage, capped at -100%).
-  3. summarize()           -> hit-rate, average return, drawdown proxy, score-
-                              bucket performance, and a buy-the-underlying
-                              benchmark for comparison.
+                              realised UNDERLYING return (real prices only).
+  3. summarize()           -> hit-rate, average return, drawdown proxy and
+                              score-bucket performance on the underlying.
+
+Option P&L is intentionally NOT computed here. The ONLY option-performance source
+is the realistic path simulation (``person_intel/options_sim.py``, surfaced via
+``outcomes-report --realistic``): conservative ask-in/bid-out fills, Black-Scholes
+theta+vega reprice and daily exit rules. The former first-order delta/intrinsic
+option *proxy* has been removed — it manufactured a false sense of certainty.
 
 Everything is deterministic and injectable, so it runs offline in tests.
 """
@@ -97,48 +101,16 @@ class SignalStore:
             if now_price is None or not entry_spot:
                 continue
             underlying_ret = (now_price - entry_spot) / entry_spot
-            opt_ret = self._option_proxy_return(rec, now_price)
             results.append({
                 **rec, "eval_price": now_price, "age_days": age,
                 "underlying_return": round(underlying_ret, 4),
-                "option_proxy_return": (round(opt_ret, 4) if opt_ret is not None else None),
             })
         return results
-
-    @staticmethod
-    def _option_proxy_return(rec: dict, now_price: float) -> Optional[float]:
-        """First-order delta-leverage proxy, capped at -1 (premium is max loss).
-
-        If a premium is known we also blend an intrinsic-value floor so deep
-        moves are not understated. This is a PROXY only — real option P&L depends
-        on theta/vega/IV path which free historical data rarely provides.
-        """
-        entry_spot = rec.get("entry_spot")
-        premium = rec.get("entry_premium")
-        delta = rec.get("entry_delta")
-        strike = rec.get("strike")
-        if not entry_spot or not premium or premium <= 0:
-            return None
-        move = now_price - entry_spot
-        if delta is not None:
-            linear = (delta * move) / premium
-        else:
-            linear = move / premium  # crude
-        # intrinsic floor at expiry-style payoff
-        if strike is not None:
-            intrinsic = max(0.0, now_price - strike)
-            intrinsic_ret = (intrinsic - premium) / premium
-            est = max(linear, intrinsic_ret)
-        else:
-            est = linear
-        return max(-1.0, est)
 
     # ── summarize ────────────────────────────────────────────────────────
     def summarize(self, evaluated: list[dict]) -> dict:
         if not evaluated:
             return {"n": 0, "note": "no matured signals to evaluate"}
-        opt_rets = [e["option_proxy_return"] for e in evaluated
-                    if e.get("option_proxy_return") is not None]
         und_rets = [e["underlying_return"] for e in evaluated
                     if e.get("underlying_return") is not None]
 
@@ -157,7 +129,7 @@ class SignalStore:
 
         buckets = {"high>=7": [], "mid5-7": [], "low<5": []}
         for e in evaluated:
-            r = e.get("option_proxy_return")
+            r = e.get("underlying_return")
             if r is None:
                 continue
             s = e.get("final_score", 0)
@@ -167,10 +139,10 @@ class SignalStore:
 
         return {
             "n": len(evaluated),
-            "option_proxy": _stats(opt_rets),
-            "underlying_benchmark": _stats(und_rets),
+            "underlying_return": _stats(und_rets),
             "score_buckets": bucket_stats,
-            "caveat": ("Option-proxy returns are first-order delta/intrinsic "
-                       "approximations, not realised option P&L. No profitability "
-                       "is claimed."),
+            "caveat": ("UNDERLYING returns (real prices), not option P&L — the "
+                       "delta/intrinsic option proxy was removed. Option performance "
+                       "is reported ONLY by the realistic sim (`outcomes-report "
+                       "--realistic`). No profitability is claimed."),
         }
