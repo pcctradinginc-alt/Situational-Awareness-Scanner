@@ -238,6 +238,27 @@ def test_score_ev_false_skips_the_gate(cfg, tmp_path):
     assert r.ev_trade_candidates == []
 
 
+def test_iv_store_clears_the_no_iv_history_block(cfg, tmp_path):
+    # feeding a WARMED IV-history store removes the "no IV history" hard-block,
+    # so the EV gate can proceed to the actual expectancy test — the wiring that
+    # lets a live candidate ever clear the gate.
+    from datetime import date as _date, timedelta
+    from call_options_intel.person_intel.iv_history import IVHistoryStore
+    ivp = tmp_path / "iv.jsonl"
+    store = IVHistoryStore(ivp)
+    for t in ("PLTR", "VST"):
+        for i in range(25):                          # >= warmup_min_obs (20)
+            store.record(t, 0.40 + 0.01 * (i % 5),
+                         as_of=_date(2026, 1, 1) + timedelta(days=i))
+    r = run_monitor(config=cfg, mode="offline", since_days=120, as_of=AS_OF,
+                    state_path=tmp_path / "seen.json", iv_store_path=ivp,
+                    persist=False)
+    assert r.trade_candidates
+    for x in r.trade_candidates:
+        reasons = x.ev.get("reasons", [])
+        assert not any("IV history" in reason for reason in reasons)
+
+
 def test_no_new_signals_renders_clean(cfg, tmp_path):
     sp = tmp_path / "seen.json"
     monitor_and_notify(config=cfg, mode="offline", since_days=120, as_of=AS_OF,

@@ -682,9 +682,13 @@ def monitor_and_notify(config: Optional[AppConfig] = None, *,
                        include_statements: bool = True,
                        min_path_weight: float = 0.0,
                        record_outcomes: bool = False,
-                       outcome_store_path: str | Path | None = None) -> dict:
+                       outcome_store_path: str | Path | None = None,
+                       iv_store_path: str | Path | None = None) -> dict:
     """Run one monitor pass, write artifacts, email ONLY on a new signal, and
     (optionally) RECORD every new signal — incl. rejects — to the outcome store.
+
+    ``iv_store_path`` feeds a warmed IV-history store into the forward-EV gate so
+    a live candidate can actually clear it (no IV history ⇒ EV gate hard-blocks).
 
     Returns a summary dict (suitable for a CI step to gate on ``total_new``).
     """
@@ -695,7 +699,7 @@ def monitor_and_notify(config: Optional[AppConfig] = None, *,
         config=cfg, mode=run_mode, since_days=since_days, state_path=state_path,
         fixtures_dir=fixtures_dir, as_of=as_of, resolve=resolve,
         min_path_weight=min_path_weight, include_statements=include_statements,
-        persist=True)
+        iv_store_path=iv_store_path, persist=True)
 
     artifacts = write_artifacts(result, artifact_dir)
     run_label = datetime.now(timezone.utc).strftime("%d %b %Y · %H:%M UTC")

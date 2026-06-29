@@ -277,7 +277,8 @@ def cmd_person_monitor(args) -> int:
         fixtures_dir=fixtures, resolve=not args.no_resolve,
         send_email=args.email, min_path_weight=args.min_weight,
         record_outcomes=getattr(args, "record_outcomes", False),
-        outcome_store_path=getattr(args, "outcome_store", None))
+        outcome_store_path=getattr(args, "outcome_store", None),
+        iv_store_path=getattr(args, "iv_store", None))
     print(f"\n{DISCLAIMER}\n")
     print(f"PERSON-MONITOR — mode={summary['mode']} · "
           f"new={summary['total_new']} "
@@ -756,6 +757,9 @@ def build_parser() -> argparse.ArgumentParser:
                     help="append every new signal (incl. rejects) to the outcome store")
     sp.add_argument("--outcome-store", default="data/person_intel/outcomes.jsonl",
                     help="outcome JSONL store path (committed across runs)")
+    sp.add_argument("--iv-store",
+                    help="warmed IV-history JSONL → feeds IV-rank into the EV gate "
+                         "(without it the EV gate hard-blocks: no IV history)")
     sp.add_argument("--dry-run", action="store_true",
                     help="report without persisting state or sending email")
     sp.set_defaults(func=cmd_person_monitor)

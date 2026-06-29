@@ -882,8 +882,14 @@ def _attach_ev(result, cfg, run_mode, fixtures, *, iv_store_path=None) -> None:
                 iv_rank = iv_store.rank(tkr, float(snap["iv"]))
             except Exception:                           # pragma: no cover
                 iv_rank = None
+        # earnings INSIDE the holding window (entry → DTE) → IV-event, hard block
+        earnings_in_dte = None
+        if snap and snap.get("dte") is not None:
+            ed = snap.get("earnings_days")
+            if ed is not None:
+                earnings_in_dte = (0 <= int(ed) <= int(snap["dte"]))
         dec = gate.evaluate(
-            snap, iv_rank=iv_rank, earnings_in_dte=None,
+            snap, iv_rank=iv_rank, earnings_in_dte=earnings_in_dte,
             final_trade_score=(x.triple or {}).get("final_trade_score"))
         x.ev = dec.to_dict()
 
