@@ -164,6 +164,30 @@ def test_markdown_separates_fact_from_hypothesis(cfg, store):
     assert "PLTR" in html and "Research/paper only" in html
 
 
+def test_13f_is_declassed_never_a_trade_candidate():
+    # a quarterly 13F is universe/thesis-grade — even if (hypothetically) all
+    # three axes cleared, it must NEVER appear as a trade-candidate.
+    from call_options_intel.person_intel.monitor import MonitorResult, PersonAlert
+    passing = {"gate_pass": True, "final_trade_score": 9.0, "label": "TRADE-CANDIDATE"}
+    a13f = PersonAlert(
+        entity="Founders Fund", entity_id="ff", cik="1", filing_type="13F-HR",
+        form_raw="13F-HR", role="confirmation", category="Quarterly 13F",
+        signal_kind="quarterly_13f", filing_date="2026-06-01", age_days=5,
+        accession="x", url="", principal="thiel", path_weight=1.0,
+        link_confidence="principal", subject_ticker="NVDA", triple=passing)
+    a4 = PersonAlert(
+        entity="Thiel", entity_id="t", cik="2", filing_type="Form 4",
+        form_raw="4", role="early", category="Insider", signal_kind="insider_trade",
+        filing_date="2026-06-20", age_days=1, accession="y", url="",
+        principal="thiel", path_weight=1.0, link_confidence="principal",
+        subject_ticker="PLTR", triple=passing)
+    r = MonitorResult(new_count=2, alerts=[a13f, a4], mode="offline", run_at="t",
+                      principal_count=2)
+    kinds = {x.signal_kind for x in r.trade_candidates}
+    assert "quarterly_13f" not in kinds          # declassed
+    assert "insider_trade" in kinds              # the early Form 4 still qualifies
+
+
 def test_email_skipped_when_unconfigured(cfg, store, monkeypatch):
     monkeypatch.delenv("GMAIL_USER", raising=False)
     monkeypatch.delenv("GMAIL_APP_PASSWORD", raising=False)

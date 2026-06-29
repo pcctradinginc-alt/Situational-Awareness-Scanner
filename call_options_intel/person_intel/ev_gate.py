@@ -162,6 +162,8 @@ class EvGateConfig:
     max_spread_pct: float = 0.18
     min_open_interest: int = 50
     min_volume: int = 5
+    min_option_dollar_volume: float = 25_000.0  # volume × mid × 100 — real daily flow
+    min_premium: float = 0.20                   # fill-quality / market-breadth floor
     dte_min: int = 30
     dte_max: int = 200
     require_iv_history: bool = True
@@ -187,6 +189,9 @@ class EvGateConfig:
             max_spread_pct=float(liq.get("max_bid_ask_spread_pct", d.max_spread_pct)),
             min_open_interest=int(liq.get("min_open_interest", d.min_open_interest)),
             min_volume=int(liq.get("min_volume", d.min_volume)),
+            min_option_dollar_volume=float(liq.get(
+                "min_option_dollar_volume", d.min_option_dollar_volume)),
+            min_premium=float(liq.get("min_premium", d.min_premium)),
             dte_min=int(dte.get("min", d.dte_min)),
             dte_max=int(dte.get("max", d.dte_max)),
             require_iv_history=bool(ev.get("require_iv_history", d.require_iv_history)),
@@ -253,6 +258,14 @@ class EvGate:
             fails.append(f"open interest {oi} < {c.min_open_interest} (illiquid)")
         if vol is not None and vol < c.min_volume:
             fails.append(f"volume {vol} < {c.min_volume} (illiquid)")
+        if c.min_option_dollar_volume > 0 and vol is not None and prem:
+            dollar_vol = float(vol) * float(prem) * 100.0
+            if dollar_vol < c.min_option_dollar_volume:
+                fails.append(f"option $-volume ${dollar_vol:,.0f} < "
+                             f"${c.min_option_dollar_volume:,.0f} (thin flow)")
+        if c.min_premium > 0 and prem is not None and prem < c.min_premium:
+            fails.append(f"premium {prem:.2f} < {c.min_premium:.2f} "
+                         f"(penny option — poor fill / no market breadth)")
         if dte is not None and (dte < c.dte_min or dte > c.dte_max):
             fails.append(f"DTE {dte} outside tradeable window "
                          f"[{c.dte_min}, {c.dte_max}]")

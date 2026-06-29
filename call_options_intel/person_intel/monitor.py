@@ -82,6 +82,15 @@ _CATEGORY: dict[FilingType, tuple[str, str]] = {
 }
 
 
+# 13F is a lagged (~45d) quarterly CONFIRMATION — universe/thesis-grade only,
+# NEVER a primary CALL trigger (too slow for options timing). Declassed here.
+_UNIVERSE_ONLY_KINDS = {"quarterly_13f"}
+
+
+def _is_universe_only(alert) -> bool:
+    return getattr(alert, "signal_kind", "") in _UNIVERSE_ONLY_KINDS
+
+
 def _confidence_label(weight: float) -> str:
     """Bucket a 0..1 controlled-path weight into an honest tier label."""
     if weight >= 0.95:
@@ -612,8 +621,14 @@ class MonitorResult:
 
     @property
     def trade_candidates(self) -> list:
-        """Signals whose three-axis gate passed (all axes good enough)."""
-        out = [a for a in self.alerts if a.triple.get("gate_pass")]
+        """Signals whose three-axis gate passed (all axes good enough).
+
+        A quarterly **13F is DECLASSED**: it is a lagged (~45d) confirmation that
+        informs the universe/thesis, NEVER a primary CALL trigger (too slow for
+        options timing), so it can never be a trade-candidate even if its axes
+        somehow cleared. Its position-diff still feeds the thesis elsewhere."""
+        out = [a for a in self.alerts
+               if a.triple.get("gate_pass") and not _is_universe_only(a)]
         out += [s for s in self.statements if s.triple.get("gate_pass")]
         out += [v for v in self.vorfeld if v.triple.get("gate_pass")]
         return sorted(out, key=lambda x: x.triple.get("final_trade_score", 0.0),

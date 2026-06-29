@@ -16,11 +16,14 @@ strike_zones:
   slightly_otm: [1.03, 1.12]
   longer_dated_otm: [1.10, 1.30]   # only for high-conviction longer-dated calls
 
-# Liquidity HARD filters (contract rejected if violated).
+# Liquidity HARD filters (contract rejected if violated). Shared single source of
+# truth for both the scan candidate generator and the forward-EV gate (ev_gate.py).
 liquidity:
   min_open_interest: 50
   min_volume: 5
-  max_bid_ask_spread_pct: 0.18     # (ask-bid)/mid; wider = rejected
+  max_bid_ask_spread_pct: 0.18         # (ask-bid)/mid; wider = rejected
+  min_option_dollar_volume: 25000      # volume × mid × 100 — real daily $-flow floor
+  min_premium: 0.20                    # penny-option / fill-quality / market-breadth floor
 
 # Implied-volatility regime handling.
 iv:

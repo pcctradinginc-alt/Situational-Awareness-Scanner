@@ -91,6 +91,23 @@ def test_thin_liquidity_is_hard_rejected():
     assert any("open interest" in r or "volume" in r for r in d.reasons)
 
 
+def test_thin_dollar_volume_is_hard_rejected():
+    # 6 contracts × ~$9 mid × 100 ≈ $5.6k « $25k floor → thin flow
+    d = _gate().evaluate(_clean_snapshot(volume=6, open_interest=5000),
+                         iv_rank=40.0, earnings_in_dte=False,
+                         catalyst_drift_annual=1.0)
+    assert d.passed is False
+    assert any("$-volume" in r for r in d.reasons)
+
+
+def test_penny_option_is_hard_rejected():
+    d = _gate().evaluate(_clean_snapshot(entry_premium=0.10, volume=100000),
+                         iv_rank=40.0, earnings_in_dte=False,
+                         catalyst_drift_annual=1.0)
+    assert d.passed is False
+    assert any("penny option" in r for r in d.reasons)
+
+
 def test_missing_iv_history_is_hard_rejected():
     d = _gate().evaluate(_clean_snapshot(), iv_rank=None, earnings_in_dte=False,
                          catalyst_drift_annual=1.0)
