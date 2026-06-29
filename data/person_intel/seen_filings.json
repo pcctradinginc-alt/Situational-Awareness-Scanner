@@ -1,5 +1,5 @@
 {
-  "count": 9,
+  "count": 48,
   "seen": {
     "0001794988-26-000004": {
       "cik": "0001794988",
@@ -7,6 +7,201 @@
       "filing_date": "2026-06-26",
       "first_seen": "2026-06-28",
       "form": "D/A"
+    },
+    "dom:https_situational_awareness_ai:e0f2c42c733bb5f1": {
+      "entity": "Situational Awareness",
+      "first_seen": "2026-06-29",
+      "kind": "domain_watch"
+    },
+    "job:andurilindustries:0affb8c25559cae5": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:61d1ed493d74652f": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:78ac313233abaca0": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:7a3388247e1a2044": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:954c8ddc65059b6b": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:d832c3f0efad41e4": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:de2c6c5d68a64559": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:f0323135d0a46f7d": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:fa254bcb95385dd3": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:06c036382cc59d7a": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:08004e72962a6859": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:13c42782bd148bc2": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:1e6fc3465895b910": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:26317c7257c36936": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:27644e83a3b8125a": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:3684e4a76cf53f8d": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:3d4088c3c79ab17e": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:496bdb888bf1fccc": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:4b7c5242e66e7639": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:5bf34cde42671f88": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:69ee34cc6da11625": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:6d78daa7164ddd4d": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:7776d9b37965c66c": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:96af22d8fd114052": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:9bf90b4c3df86505": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:a2c437da0442a994": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:a617bf6599f662d4": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:a6d11c01c26ce9f7": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:ae084f8a9eb40415": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:b5a8ce9bd89a860a": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:b9337d692d702773": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:cb6f0f947a1fb932": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:e13d1e37af6bbb1a": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:e9c8e5404bf18bb8": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:edae6241f9d2bfd4": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:ee49097346037625": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:f726d61f69944767": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:fce4baa683581a6d": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-29",
+      "kind": "job_postings"
     },
     "stmt:0ee9f386480d6269": {
       "date": "2026-05-31",
@@ -65,5 +260,5 @@
       "speaker": "Leopold Aschenbrenner"
     }
   },
-  "updated_at": "2026-06-28T08:37:41.673680+00:00"
+  "updated_at": "2026-06-29T16:51:52.277484+00:00"
 }

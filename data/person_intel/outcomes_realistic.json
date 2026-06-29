@@ -1,0 +1,19 @@
+{
+  "realistic_backtest": {
+    "n": 0,
+    "note": "no signals with a complete option snapshot + price history"
+  },
+  "walk_forward": {
+    "horizon": 30,
+    "split_date": "2026-03-01",
+    "min_sample": 30,
+    "in_sample": {
+      "n": 0
+    },
+    "out_of_sample": {
+      "n": 0
+    },
+    "edge_claim": "insufficient_oos_sample",
+    "note": "No profitability is claimed unless edge_claim == 'positive_oos' with n >= min_sample out-of-sample."
+  }
+}

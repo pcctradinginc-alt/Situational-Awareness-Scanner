@@ -2,56 +2,30 @@
   {
     "source": "lesswrong",
     "credibility": 0.85,
-    "title": "White House Will Ad Hoc Decide Who Can Individually Access GPT-5.6",
-    "summary": "<p><a href=\"https://www.axios.com/2026/06/25/trump-administration-openai-gpt-model-release\">We have a new standard policy for releasing frontier AI models.</a> It is not good.</p>\n<p>We are now, it seems, going to have the White House individually, in an opaque ad hoc manner, deciding who can access which frontier AI models when.</p>\n<p>One hopes we will at least transition this into a predictable and formal set of procedures for determining what to do. But we spent years not laying the groundwo",
-    "url": "https://www.lesswrong.com/posts/MkwL4AcbE44yePEQx/white-house-will-ad-hoc-decide-who-can-individually-access",
-    "published": "2026-06-26T14:53:09",
-    "signals": {
-      "thiel": true,
-      "shulman": false,
-      "contrarian": true,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 3,
-    "tickers": [
-      "META",
-      "NVDA",
-      "GOOGL"
-    ],
-    "quality_score": 1.7241,
-    "weighted_relevance": 1.7240976759091209
-  },
-  {
-    "source": "alignment_forum",
-    "credibility": 0.9,
-    "title": "The Case for Model Forensics",
-    "summary": "<p><i><span>If we had a misalignment warning shot, would we be able to tell?</span></i></p><p><span>Suppose an AI company catches their model taking an egregious action, like deleting oversight code that monitors its actions. Should they sound the alarm? A key piece of evidence to determine what to do next \u2013 such as what mitigations to take \u2013 is to understand </span><i><span>why </span></i><span>the model took the action. If the model was just confused (e.g. it may have been trying to reduce lat",
-    "url": "https://www.alignmentforum.org/posts/LCGcD28rSMkMTMvBK/the-case-for-model-forensics",
-    "published": "2026-06-26T15:09:10",
+    "title": "Anthropomorphic Misalignment research needs stronger evidence",
+    "summary": "<p><i><span>This is a distillation of our ICML 2026 Oral position paper, </span></i><a href=\"https://arxiv.org/abs/2606.07612\"><i><span>Position: Anthropomorphic Misalignment Research Needs Stronger Evidence</span></i></a><i><span>. Joint work by Vansh Gupta, Peter Nutter, Samuel Stante, Andreas Krause, Florian Tram\u00e8r, Lukas Fluri, Xin Chen, and Anna Hedstr\u00f6m at ETH Zurich. Code is </span></i><a href=\"https://github.com/peternutter/amr-stronger-evidence-code\"><i><span>here</span></i></a><i><span",
+    "url": "https://www.lesswrong.com/posts/bJcR3yP2avGFuMxyq/anthropomorphic-misalignment-research-needs-stronger-1",
+    "published": "2026-06-28T19:08:21",
     "signals": {
       "thiel": false,
       "shulman": false,
       "contrarian": false,
       "bottleneck_compute": false,
       "bottleneck_energy": true,
-      "salp": false
+      "salp": true
     },
-    "signal_count": 1,
-    "tickers": [
-      "GOOGL"
-    ],
-    "quality_score": 1.3714,
-    "weighted_relevance": 1.3714492162535559
+    "signal_count": 2,
+    "tickers": [],
+    "quality_score": 1.5162,
+    "weighted_relevance": 1.5162473785627093
   },
   {
     "source": "bloomberg_tech",
     "credibility": 0.88,
-    "title": "AI Trade\u2019s Bruising Week Forces Investors to Be More Selective",
-    "summary": "This roller-coaster week for tech stocks from Seoul to New York fueled by extreme investor positioning and worries over chip demand is sending a strong signal: the case for the artificial-intelligence trade is still strong, but the days of everything going up in a straight line appear to be over.",
-    "url": "https://www.bloomberg.com/news/articles/2026-06-26/the-ai-trade-still-works-but-it-s-getting-harder-taking-stock",
-    "published": "2026-06-26T06:13:10",
+    "title": "Chinese Spies, Smuggled Drugs Fuel Takaichi\u2019s Security Push",
+    "summary": "Chinese spies stealing Japanese industrial secrets in boardrooms. Chip smugglers ferrying Nvidia\u2019s prized artificial intelligence semiconductors via Japan. Drug gangs quietly slipping fentanyl across Japan\u2019s borders to a US opioid crisis.",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-28/chinese-spies-smuggled-drugs-fuel-takaichi-s-security-push",
+    "published": "2026-06-28T22:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -61,23 +35,25 @@
       "salp": false
     },
     "signal_count": 1,
-    "tickers": [],
+    "tickers": [
+      "NVDA"
+    ],
     "quality_score": 1.3112,
     "weighted_relevance": 1.3111731766256216
   },
   {
     "source": "lesswrong",
     "credibility": 0.85,
-    "title": "The Case for Model Forensics",
-    "summary": "<p><i><span>If we had a misalignment warning shot, would we be able to tell?</span></i></p><p><span>Suppose an AI company catches their model taking an egregious action, like deleting oversight code that monitors its actions. Should they sound the alarm? A key piece of evidence to determine what to do next \u2013 such as what mitigations to take \u2013 is to understand </span><i><span>why </span></i><span>the model took the action. If the model was just confused (e.g. it may have been trying to reduce lat",
-    "url": "https://www.lesswrong.com/posts/LCGcD28rSMkMTMvBK/the-case-for-model-forensics",
-    "published": "2026-06-26T15:09:10",
+    "title": "What comes with cheap math?",
+    "summary": "<p><i><span>Thanks to conversations with Anson Berns, Gurkenglass, Roman Malov, Sahil, Sam Eisenstat, and others.</span></i></p><p><span>Over the past two months, I've been doing a lot of \"vibe research\" (like vibe coding, but for research). Anson Berns started coming to my </span><a href=\"https://calendar.google.com/calendar/event?action=TEMPLATE&amp;tmeid=YnNwYmtiZWIxc2g0NTN0MXNzNDhscWN1Y2hfMjAyNjA2MTdUMTcwMDAwWiBhYnJhbWRlbXNraUBt&amp;tmsrc=abramdemski%40gmail.com&amp;scp=ALL\" rel=\"noreferrer\"",
+    "url": "https://www.lesswrong.com/posts/gS5skwXeeQdStwsPu/what-comes-with-cheap-math",
+    "published": "2026-06-28T20:13:20",
     "signals": {
       "thiel": false,
       "shulman": false,
-      "contrarian": false,
+      "contrarian": true,
       "bottleneck_compute": false,
-      "bottleneck_energy": true,
+      "bottleneck_energy": false,
       "salp": false
     },
     "signal_count": 1,
@@ -88,32 +64,32 @@
     "weighted_relevance": 1.2232988379545604
   },
   {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "The Governance Inversion Hypothesis: Why More AI Regulation May Produce Less Organisational Control",
-    "summary": "arXiv:2606.26117v1 Announce Type: cross \nAbstract: This paper introduces the Governance Inversion Hypothesis (GIH) to explain a growing paradox in artificial intelligence (AI) governance: under conditions of increasing regulatory expansion and technological complexity, organisations may become more formally governed while simultaneously experiencing a decline in operational control over AI systems. Existing AI governance frameworks generally assume that stronger regulation improves accountabilit",
-    "url": "https://arxiv.org/abs/2606.26117",
-    "published": "2026-06-26T04:00:00",
+    "source": "ft_tech",
+    "credibility": 0.85,
+    "title": "AI fuels record $200bn M&A boom in US power sector",
+    "summary": "Companies in dealmaking blitz as they seek to build the energy infrastructure for data centres",
+    "url": "https://www.ft.com/content/6e15876d-1882-45e2-a13c-16a1327079d7",
+    "published": "2026-06-29T04:00:07",
     "signals": {
       "thiel": false,
       "shulman": false,
-      "contrarian": true,
+      "contrarian": false,
       "bottleneck_compute": false,
-      "bottleneck_energy": false,
+      "bottleneck_energy": true,
       "salp": false
     },
     "signal_count": 1,
     "tickers": [],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
+    "quality_score": 1.2233,
+    "weighted_relevance": 1.2232988379545604
   },
   {
     "source": "arxiv_cs_ai",
     "credibility": 0.8,
-    "title": "Adaptive Evaluation of Out-of-Band Defenses Against Prompt Injection in LLM Agents",
-    "summary": "arXiv:2606.26479v1 Announce Type: cross \nAbstract: Recent work (2024 to 2026) has converged on a strategy for defending tool-using LLM agents against indirect prompt injection: rather than training the model to refuse malicious instructions, enforce security outside the model with a deterministic policy that mediates the agent's actions. Systems such as CaMeL, FIDES, Progent, RTBAS, and FORGE realize this with capabilities, information-flow labels, and reference monitors, and several report near",
-    "url": "https://arxiv.org/abs/2606.26479",
-    "published": "2026-06-26T04:00:00",
+    "title": "FP8 is All You Need (Part 2): Efficient Ozaki-Bailey Style FFT Through Tensor-core Garner Reformulation and Kulisch Escape Route",
+    "summary": "arXiv:2606.23698v2 Announce Type: replace-cross \nAbstract: NVIDIA's Blackwell Ultra (B300) cuts FP64 vector throughput to ~1.3 TFLOPS per GPU, roughly 30x below B200 and well below the level at which bandwidth-limited FP64 workloads stay memory-bound. The Ozaki Scheme II framework recovers FP64-equivalent throughput by routing dense matrix multiply through FP8 tensor cores with a mantissa-sliced Chinese-remainder reconstruction. A companion Part (1) paper covers dense GEMM, batched GEMV, stencil",
+    "url": "https://arxiv.org/abs/2606.23698",
+    "published": "2026-06-29T04:00:00",
     "signals": {
       "thiel": false,
       "shulman": false,
@@ -125,51 +101,6 @@
     "signal_count": 1,
     "tickers": [
       "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "A-Evolve-Training: Autonomous Post-Training of a 30B Model",
-    "summary": "arXiv:2606.20657v2 Announce Type: replace \nAbstract: Post-training a frontier model is normally weeks of human work: proposing data and recipe changes, launching runs, reading evals, deciding what to keep. We report an autonomous system that runs this loop with no human in the loop, post-training a 30B Nemotron across four rounds over multiple weeks. The autonomously produced model reaches a held-out score of 0.86 against the top human submission's 0.87 on the public NVIDIA Nemotron-Reasoning Ch",
-    "url": "https://arxiv.org/abs/2606.20657",
-    "published": "2026-06-26T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA"
-    ],
-    "quality_score": 1.0836,
-    "weighted_relevance": 1.0836141955583654
-  },
-  {
-    "source": "arxiv_cs_ai",
-    "credibility": 0.8,
-    "title": "Statistical Properties of the King Wen Sequence: An Anti-Habituation Structure That Does Not Improve Neural Network Training",
-    "summary": "arXiv:2604.09234v2 Announce Type: replace-cross \nAbstract: The King Wen sequence of the I-Ching (c. 1000 BC) orders 64 hexagrams -- states of a six-dimensional binary space -- in a pattern that has puzzled scholars for three millennia. We present a rigorous statistical characterization of this ordering using Monte Carlo permutation analysis against 100,000 random baselines. We find that the sequence has four statistically significant properties: higher-than-random transition distance (98.2nd per",
-    "url": "https://arxiv.org/abs/2604.09234",
-    "published": "2026-06-26T04:00:00",
-    "signals": {
-      "thiel": false,
-      "shulman": false,
-      "contrarian": false,
-      "bottleneck_compute": true,
-      "bottleneck_energy": false,
-      "salp": false
-    },
-    "signal_count": 1,
-    "tickers": [
-      "NVDA",
-      "RTX"
     ],
     "quality_score": 1.0836,
     "weighted_relevance": 1.0836141955583654
