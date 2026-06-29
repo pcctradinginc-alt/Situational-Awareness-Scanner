@@ -362,11 +362,11 @@ def _brief_html(brief: dict, principal: str = "") -> str:
         return ""
     pn = {"thiel": "Thiel", "aschenbrenner": "Aschenbrenner"}.get(principal, "Person")
     rows = [
-        ("🆕 Neu", brief.get("whats_new"), "#FFFFFF"),
-        (f"🔗 {pn}-Bezug", brief.get("why_relevant"), "#EBEBF5"),
+        ("🆕 Neu", brief.get("whats_new"), "#1C1C1E"),
+        (f"🔗 {pn}-Bezug", brief.get("why_relevant"), "#3A3A3C"),
         ("⏱️ Früh", brief.get("why_early"), "#34C759"),
         ("🎯 Bester Proxy", brief.get("best_proxy"), "#FF9500"),
-        ("🛑 Nicht jetzt", brief.get("why_not_now"), "#FF6B6B"),
+        ("🛑 Nicht jetzt", brief.get("why_not_now"), "#FF3B30"),
     ]
     cells = []
     for label, val, col in rows:
@@ -378,8 +378,8 @@ def _brief_html(brief: dict, principal: str = "") -> str:
             f'<td style="padding:4px 0 4px 8px;font-size:13px;color:{col};line-height:1.45;">'
             f'{val}</td></tr>')
     return (f'<table width="100%" cellpadding="0" cellspacing="0" '
-            f'style="margin-top:10px;background:#0A0A0A;border-radius:10px;'
-            f'padding:6px 12px;">{"".join(cells)}</table>')
+            f'style="margin-top:10px;background:#F2F2F7;border:1px solid #E5E5EA;'
+            f'border-radius:10px;padding:6px 12px;">{"".join(cells)}</table>')
 
 
 def _alert_card_html(a: PersonAlert) -> str:
@@ -391,15 +391,15 @@ def _alert_card_html(a: PersonAlert) -> str:
     review = ("background:#FF3B3011;border-left:3px solid #FF9500;"
               if a.needs_human_review or a.is_private else
               "background:#34C75911;border-left:3px solid #34C759;")
-    fals = (f'<div style="margin-top:8px;font-size:12px;color:#FF6B6B;">'
+    fals = (f'<div style="margin-top:8px;font-size:12px;color:#FF3B30;">'
             f'<strong>Falsification:</strong> {a.falsification}</div>'
             if a.falsification else "")
-    src = (f'<div style="margin-top:8px;font-size:11px;color:#636366;">'
-           f'<a href="{a.url}" style="color:#636366;">SEC source ↗</a></div>'
+    src = (f'<div style="margin-top:8px;font-size:11px;color:#8E8E93;">'
+           f'<a href="{a.url}" style="color:#8E8E93;">SEC source ↗</a></div>'
            if a.url else "")
     return f"""
     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:16px;">
-      <tr><td style="background:#1C1C1E;border-radius:14px;padding:18px 20px;">
+      <tr><td style="background:#FFFFFF;border:1px solid #E5E5EA;border-radius:14px;padding:18px 20px;">
         <table width="100%"><tr>
           <td>
             <span style="display:inline-block;background:{badge_color}22;border:1px solid {badge_color};
@@ -410,13 +410,13 @@ def _alert_card_html(a: PersonAlert) -> str:
                   color:{accent};letter-spacing:.5px;margin-left:6px;">
                   {'EARLY' if a.role == 'early' else 'CONFIRMATION'}</span>
           </td>
-          <td style="text-align:right;font-size:11px;color:#636366;">{a.filing_date}</td>
+          <td style="text-align:right;font-size:11px;color:#8E8E93;">{a.filing_date}</td>
         </tr></table>
-        <div style="font-size:17px;font-weight:700;color:#FFFFFF;margin-top:10px;">{a.category}</div>
+        <div style="font-size:17px;font-weight:700;color:#1C1C1E;margin-top:10px;">{a.category}</div>
         <div style="font-size:13px;color:#8E8E93;margin-top:3px;">
           Filer (fact): {a.entity} · path {a.path_weight:.2f} ({a.link_confidence})</div>
         <div style="{review}border-radius:0 8px 8px 0;padding:8px 12px;margin-top:10px;
-              font-size:13px;color:#EBEBF5;">
+              font-size:13px;color:#3A3A3C;">
           <strong>Subject:</strong> {subj}<br>
           <span style="font-size:11px;color:#8E8E93;">
             (filing = fact · subject = hypothesis until verified)</span></div>
@@ -440,9 +440,9 @@ def _position_changes_html(a: PersonAlert) -> str:
         rows.append(f'<span style="color:{color};font-size:12px;">'
                     f'{c.get("action", "").upper()} <strong>{t}</strong>{pcs}{rv}</span>')
     inner = " &nbsp;·&nbsp; ".join(rows)
-    return (f'<div style="margin-top:10px;padding:8px 12px;background:#0A0A0A;'
-            f'border-radius:8px;font-size:12px;color:#8E8E93;">'
-            f'<strong style="color:#EBEBF5;">Position changes:</strong> {inner}</div>')
+    return (f'<div style="margin-top:10px;padding:8px 12px;background:#F2F2F7;'
+            f'border:1px solid #E5E5EA;border-radius:8px;font-size:12px;color:#8E8E93;">'
+            f'<strong style="color:#1C1C1E;">Position changes:</strong> {inner}</div>')
 
 
 def _statement_card_html(s) -> str:
@@ -451,15 +451,15 @@ def _statement_card_html(s) -> str:
     badge_color = {"THIEL": "#FF9500", "ASCHENBRENNER": "#AF52DE"}.get(
         badge, "#8E8E93")
     cands = ", ".join(s.derived_candidates) or "—"
-    fals = (f'<div style="margin-top:8px;font-size:12px;color:#FF6B6B;">'
+    fals = (f'<div style="margin-top:8px;font-size:12px;color:#FF3B30;">'
             f'<strong>Falsification:</strong> {s.falsification}</div>'
             if s.falsification else "")
-    src = (f'<div style="margin-top:8px;font-size:11px;color:#636366;">'
-           f'<a href="{s.url}" style="color:#636366;">{s.source} ↗</a></div>'
+    src = (f'<div style="margin-top:8px;font-size:11px;color:#8E8E93;">'
+           f'<a href="{s.url}" style="color:#8E8E93;">{s.source} ↗</a></div>'
            if s.url else "")
     return f"""
     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:16px;">
-      <tr><td style="background:#1C1C1E;border-radius:14px;padding:18px 20px;">
+      <tr><td style="background:#FFFFFF;border:1px solid #E5E5EA;border-radius:14px;padding:18px 20px;">
         <table width="100%"><tr>
           <td>
             <span style="display:inline-block;background:{badge_color}22;border:1px solid {badge_color};
@@ -469,12 +469,12 @@ def _statement_card_html(s) -> str:
                   border-radius:6px;padding:3px 9px;font-size:10px;font-weight:700;
                   color:#5856D6;letter-spacing:.5px;margin-left:6px;">CONVICTION</span>
           </td>
-          <td style="text-align:right;font-size:11px;color:#636366;">{s.date} · {s.tier}</td>
+          <td style="text-align:right;font-size:11px;color:#8E8E93;">{s.date} · {s.tier}</td>
         </tr></table>
-        <div style="font-size:15px;font-weight:700;color:#FFFFFF;margin-top:10px;">{s.headline}</div>
+        <div style="font-size:15px;font-weight:700;color:#1C1C1E;margin-top:10px;">{s.headline}</div>
         <div style="font-size:13px;color:#8E8E93;margin-top:6px;line-height:1.5;">{s.excerpt}</div>
         <div style="background:#FF950011;border-left:3px solid #FF9500;border-radius:0 8px 8px 0;
-              padding:8px 12px;margin-top:10px;font-size:13px;color:#EBEBF5;">
+              padding:8px 12px;margin-top:10px;font-size:13px;color:#3A3A3C;">
           <strong>Derived candidates:</strong> {cands}<br>
           <span style="font-size:11px;color:#8E8E93;">
             (HYPOTHESIS / watchlist — second-order, not a confirmed investment)</span></div>
@@ -525,17 +525,17 @@ def _trade_candidates_banner_html(result: MonitorResult) -> str:
         ev_col = "#34C759" if passed else "#FF9500"
         ev_tag = "EV ✅ sizeable" if passed else "EV ⛔ not sizeable"
         rows.append(
-            f'<div style="font-size:14px;color:#EBEBF5;margin-top:8px;">'
-            f'<strong style="color:#34C759;">{tkr}</strong> '
+            f'<div style="font-size:14px;color:#1C1C1E;margin-top:6px;">'
+            f'<strong style="color:#248A3D;">{tkr}</strong> '
             f'· score {tri.get("final_trade_score", 0):.1f} '
             f'<span style="color:#8E8E93;font-size:12px;">'
             f'({_principal_badge(x)} · via {src})</span></div>'
             f'<div style="font-size:11px;color:{ev_col};margin-top:2px;">'
             f'{ev_tag} — {ev_reason}</div>')
     return (f'<table width="100%" cellpadding="0" cellspacing="0" '
-            f'style="margin-bottom:16px;"><tr><td style="background:#0E2A14;'
+            f'style="margin-bottom:16px;"><tr><td style="background:#EAF9EF;'
             f'border:1px solid #34C759;border-radius:14px;padding:16px 20px;">'
-            f'<div style="font-size:12px;color:#34C759;letter-spacing:1px;'
+            f'<div style="font-size:12px;color:#248A3D;letter-spacing:1px;'
             f'text-transform:uppercase;font-weight:700;">✅ Trade-Candidates — '
             f'{len(sizeable)}/{len(cands)} clear the EV gate</div>{"".join(rows)}'
             f'<div style="font-size:11px;color:#8E8E93;margin-top:8px;">'
@@ -552,12 +552,12 @@ def _vorfeld_section_html(vorfeld: list) -> str:
         src = _VORFELD_LABEL.get(v.source, v.source)
         cl = f' · «{v.cluster}»' if v.cluster else ""
         rows.append(
-            f'<div style="font-size:13px;color:#EBEBF5;margin-top:8px;">'
+            f'<div style="font-size:13px;color:#3A3A3C;margin-top:8px;">'
             f'<span style="color:#5856D6;font-weight:700;">[{src}]</span> '
             f'{v.headline}{cl}</div>' + _brief_html(v.brief, v.principal))
     return (f'<table width="100%" cellpadding="0" cellspacing="0" '
-            f'style="margin-bottom:16px;"><tr><td style="background:#1C1C1E;'
-            f'border-radius:14px;padding:16px 20px;">'
+            f'style="margin-bottom:16px;"><tr><td style="background:#FFFFFF;'
+            f'border:1px solid #E5E5EA;border-radius:14px;padding:16px 20px;">'
             f'<div style="font-size:12px;color:#5856D6;letter-spacing:1px;'
             f'text-transform:uppercase;font-weight:700;">📡 Vorfeld — '
             f'ADV/IAPD · hiring · website (change-detected, advisory)</div>'
@@ -573,20 +573,20 @@ def render_email_html(result: MonitorResult, run_label: str) -> str:
     return f"""<!DOCTYPE html>
 <html><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
-<body style="margin:0;padding:0;background:#000;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',Helvetica,sans-serif;">
-<table width="100%" cellpadding="0" cellspacing="0" style="background:#000;padding:20px 0;">
+<body style="margin:0;padding:0;background:#F2F2F7;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',Helvetica,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#F2F2F7;padding:20px 0;">
 <tr><td align="center"><table width="600" style="max-width:600px;width:100%;">
   <tr><td style="padding:0 0 20px 0;">
-    <div style="font-size:12px;color:#636366;letter-spacing:2px;text-transform:uppercase;">
+    <div style="font-size:12px;color:#8E8E93;letter-spacing:2px;text-transform:uppercase;">
       PERSON-INTEL RADAR · THIEL / ASCHENBRENNER</div>
-    <div style="font-size:26px;font-weight:700;color:#FFFFFF;letter-spacing:-.5px;margin-top:4px;">
+    <div style="font-size:26px;font-weight:700;color:#1C1C1E;letter-spacing:-.5px;margin-top:4px;">
       {n} new investment signal{'s' if n != 1 else ''}</div>
-    <div style="font-size:13px;color:#636366;margin-top:4px;">
+    <div style="font-size:13px;color:#8E8E93;margin-top:4px;">
       {run_label} · {result.principal_count} principal-linked</div>
   </td></tr>
   <tr><td>{banner}{cards}</td></tr>
-  <tr><td style="padding:18px 0 0 0;border-top:1px solid #1C1C1E;">
-    <div style="font-size:11px;color:#3A3A3C;text-align:center;line-height:1.6;">
+  <tr><td style="padding:18px 0 0 0;border-top:1px solid #E5E5EA;">
+    <div style="font-size:11px;color:#AEAEB2;text-align:center;line-height:1.6;">
       Sources: SEC EDGAR (Form 4 / SC 13D-G / Form D / 13F-HR). A filing is a fact;<br>
       a derived ticker or second-order target is a hypothesis until verified.<br><br>
       <strong style="color:#FF3B30;">⚠ Research/paper only — not investment advice.</strong>
