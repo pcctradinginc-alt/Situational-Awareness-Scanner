@@ -50,12 +50,20 @@ job_postings:
     - { name: "Anduril Industries", provider: greenhouse, token: "andurilindustries", principal: thiel }
     - { name: "Palantir Technologies", provider: lever, token: "palantir", principal: thiel }
 
-# Official website / domain content-hash watch (new fund/LP/product footprint).
+# Official website / domain watch. Fires only on a NEW fund/LP/product footprint
+# (significance gate), not on cosmetic churn. Per-site overrides:
+#   ignore_titles       — substrings; a change whose new <title> matches is suppressed
+#   footprint_terms     — extra significant terms to watch for this site
+#   alert_on_any_change — restore the legacy "fire on any content change" behaviour
+# situational-awareness.ai is Aschenbrenner's ESSAY: section retitles ("Introduction
+# - SITUATIONAL AWARENESS: The Decade Ahead") are cosmetic and must NOT alert — only
+# a genuine fund/LP footprint should. Hence the ignore_titles whitelist below.
 domain_watch:
   enabled: true
   sites:
     - { entity: "Founders Fund",       url: "https://foundersfund.com/",            principal: thiel }
-    - { entity: "Situational Awareness", url: "https://situational-awareness.ai/",   principal: aschenbrenner }
+    - { entity: "Situational Awareness", url: "https://situational-awareness.ai/",   principal: aschenbrenner,
+        ignore_titles: ["SITUATIONAL AWARENESS", "The Decade Ahead", "Introduction"] }
 
 # Certificate Transparency (crt.sh) — discover BRAND-NEW domains/subdomains the
 # moment their TLS certificate is logged, often the EARLIEST footprint of a

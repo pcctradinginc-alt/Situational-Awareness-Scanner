@@ -276,10 +276,35 @@ class JobPostingsAdapter:
 
 
 # ── domain / website watch ──────────────────────────────────────────────────
-class DomainWatchAdapter:
-    """Content-hash change of an official page — a new fund/LP/product footprint.
+# A site_change should fire on a NEW *footprint* (a fund/LP/SPV/product page
+# appearing), NOT on cosmetic churn — a retitled essay, a rotated date, an
+# analytics nonce. Two guards make that real:
+#   1. SIGNIFICANCE GATE — extract footprint terms (fund vehicles, LP/SPV,
+#      raise/close language) and alert only when a term appears that was not in
+#      the prior snapshot. Permanent page furniture ("capital", a standing fund
+#      name) is in the baseline, so it never re-fires; only NOVELTY does.
+#   2. TITLE IGNORE-LIST — a per-site `ignore_titles` whitelist suppresses a
+#      change whose new <title> matches a known, expected heading (e.g. an essay
+#      that simply got a new section title). Auditable, explicit override.
+# A volatile-text normalization (digits/nonces stripped) makes the change-hash
+# represent structural content, so trivial churn no longer flips it. Sites that
+# genuinely want the old "any content change" behaviour set alert_on_any_change.
+_FOOTPRINT_TERMS = (
+    "new fund", "limited partner", "limited partnership", "general partner",
+    "spv", "special purpose vehicle", "feeder fund", "now raising",
+    "first close", "final close", "fund close", "anchor lp", "anchor investor",
+    "now investing", "introducing", "announcing", "launching", "new vehicle",
+)
+_FUND_NUM_RE = re.compile(r"\bfund\s+(?:[ivxlcdm]{1,7}|\d{1,3})\b", re.IGNORECASE)
+_VOLATILE_RE = re.compile(r"\b[0-9a-f]{16,}\b|\d+")   # hex nonces & digit runs
 
-    Stores ONLY a hash + a short title snippet, never the page body."""
+
+class DomainWatchAdapter:
+    """Change-detect an official page and alert only on a NEW fund/LP/product
+    footprint — not on cosmetic churn.
+
+    Stores ONLY a structural hash, a short title snippet, and the set of
+    footprint terms seen, never the page body."""
     _TITLE_RE = re.compile(r"<title[^>]*>(.*?)</title>", re.IGNORECASE | re.DOTALL)
     _TAG_RE = re.compile(r"<[^>]+>")
 
@@ -296,6 +321,18 @@ class DomainWatchAdapter:
             return self.fixture.read("domain", f"{self._slug(url)}.html")
         return self.fetcher.get(url)
 
+    @staticmethod
+    def _footprint_terms(text_lower: str, extra: list[str]) -> set[str]:
+        vocab = list(_FOOTPRINT_TERMS) + [str(t).lower() for t in (extra or [])]
+        terms = {t for t in vocab if t and t in text_lower}
+        terms.update(m.strip() for m in _FUND_NUM_RE.findall(text_lower))
+        return terms
+
+    @staticmethod
+    def _title_ignored(title: str, ignore: list[str]) -> bool:
+        t = (title or "").lower()
+        return any(str(x).lower() in t for x in (ignore or []) if str(x).strip())
+
     def changes(self, sites: list[dict], snapshot: SnapshotStore,
                 as_of: date) -> list[VorfeldSignal]:
         out: list[VorfeldSignal] = []
@@ -306,24 +343,35 @@ class DomainWatchAdapter:
             body = self._fetch(url)
             if body is None:
                 continue
-            text = self._TAG_RE.sub(" ", body)
-            text = " ".join(text.split())
-            h = _hash(text)
+            text = " ".join(self._TAG_RE.sub(" ", body).split())
+            text_lower = text.lower()
+            terms = self._footprint_terms(text_lower, s.get("footprint_terms", []))
+            # hash on volatile-stripped text → trivial churn no longer flips it
+            h = _hash(_VOLATILE_RE.sub("", text_lower))
             m = self._TITLE_RE.search(body)
             title = (m.group(1).strip() if m else "")[:120]
             key = f"dom:{self._slug(url)}"
             prev = snapshot.get(key)
-            snapshot.set(key, {"hash": h, "title": title})
+            snapshot.set(key, {"hash": h, "title": title, "terms": sorted(terms)})
             if prev is None:
-                continue                          # baseline only
-            if prev.get("hash") != h:
-                out.append(VorfeldSignal(
-                    source="domain_watch", principal=s.get("principal", ""),
-                    entity=s.get("entity", url), kind="site_change",
-                    headline=f"{s.get('entity', url)}: official page changed",
-                    detail=(f"title now: {title}" if title else "content changed"),
-                    url=url, change_date=as_of.isoformat(), age_days=0,
-                    content_hash=f"dom:{self._slug(url)}:" + h))
+                continue                          # baseline only, no alert
+            if self._title_ignored(title, s.get("ignore_titles", [])):
+                continue                          # known/expected heading
+            changed = prev.get("hash") != h
+            new_terms = sorted(terms - set(prev.get("terms", [])))
+            fire = changed and (s.get("alert_on_any_change") or bool(new_terms))
+            if not fire:
+                continue
+            detail = (f"new footprint term(s): {', '.join(new_terms)} · "
+                      if new_terms else "content changed · ")
+            detail += f"title now: {title}" if title else "no title"
+            out.append(VorfeldSignal(
+                source="domain_watch", principal=s.get("principal", ""),
+                entity=s.get("entity", url), kind="site_change",
+                headline=f"{s.get('entity', url)}: official page changed",
+                detail=detail,
+                url=url, change_date=as_of.isoformat(), age_days=0,
+                content_hash=f"dom:{self._slug(url)}:" + h))
         return out
 
 

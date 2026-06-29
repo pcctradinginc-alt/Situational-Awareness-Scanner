@@ -99,6 +99,48 @@ def test_domain_no_change_when_hash_matches():
     assert sigs == []
 
 
+# ── domain watch: significance gate (cosmetic churn must NOT alert) ───────────
+_SA_SITE = {"url": "https://situational-awareness.ai/",
+            "entity": "Situational Awareness", "principal": "aschenbrenner"}
+
+
+def test_domain_cosmetic_change_without_new_footprint_is_suppressed():
+    # repro of the 29-Jun false positive: the essay page's hash changed but it
+    # introduced no fund/LP/product footprint → significance gate must suppress.
+    snap = SnapshotStore(path=None)
+    snap.set("dom:https_situational_awareness_ai",
+             {"hash": "OLDHASH", "title": "old title", "terms": []})
+    sigs = DomainWatchAdapter(_fx(), _fx()).changes([_SA_SITE], snap, AS_OF)
+    assert sigs == []
+
+
+def test_domain_ignore_titles_suppresses_known_heading():
+    # even a legacy snapshot (no `terms`) must not fire when the new title is
+    # an expected/whitelisted essay heading.
+    snap = SnapshotStore(path=None)
+    snap.set("dom:https_situational_awareness_ai", {"hash": "OLDHASH"})
+    site = dict(_SA_SITE, ignore_titles=["SITUATIONAL AWARENESS"])
+    sigs = DomainWatchAdapter(_fx(), _fx()).changes([site], snap, AS_OF)
+    assert sigs == []
+
+
+def test_domain_fires_only_on_new_footprint_term():
+    # a NEW fund footprint vs the prior snapshot DOES fire and names the term.
+    snap = SnapshotStore(path=None)
+    snap.set("dom:https_foundersfund_com",
+             {"hash": "OLDHASH", "title": "old", "terms": []})
+    sigs = DomainWatchAdapter(_fx(), _fx()).changes(
+        [{"url": "https://foundersfund.com/", "entity": "Founders Fund",
+          "principal": "thiel"}], snap, AS_OF)
+    assert len(sigs) == 1
+    assert "fund viii" in sigs[0].detail.lower()
+    # and once that footprint is in the baseline, the same page no longer fires
+    sigs2 = DomainWatchAdapter(_fx(), _fx()).changes(
+        [{"url": "https://foundersfund.com/", "entity": "Founders Fund"}],
+        snap, AS_OF)
+    assert sigs2 == []
+
+
 # ── certificate transparency (new domains) ──────────────────────────────────
 _CERT_PATS = [{"q": "foundersfund", "principal": "thiel"}]
 
