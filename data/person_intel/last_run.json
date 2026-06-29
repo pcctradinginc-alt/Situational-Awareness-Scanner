@@ -1,12 +1,64 @@
 {
-  "run_at": "2026-06-28T15:14:50.562885+00:00",
+  "run_at": "2026-06-29T10:16:04.711876+00:00",
   "mode": "live",
   "new_count": 0,
   "statement_count": 0,
-  "vorfeld_count": 0,
-  "total_new": 0,
+  "vorfeld_count": 1,
+  "total_new": 1,
   "principal_count": 0,
   "alerts": [],
   "statements": [],
-  "vorfeld": []
+  "vorfeld": [
+    {
+      "source": "domain_watch",
+      "principal": "aschenbrenner",
+      "entity": "Situational Awareness",
+      "kind": "site_change",
+      "headline": "Situational Awareness: official page changed",
+      "detail": "title now: Introduction - SITUATIONAL AWARENESS: The Decade Ahead",
+      "cluster": "",
+      "url": "https://situational-awareness.ai/",
+      "change_date": "2026-06-29",
+      "age_days": 0,
+      "content_hash": "dom:https_situational_awareness_ai:e0f2c42c733bb5f1",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "official website changed: title now: Introduction - SITUATIONAL AWARENESS: The Decade Ahead",
+        "why_relevant": "VORFELD change at Situational Awareness, associated with Leopold Aschenbrenner (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "official-page change \u2014 an early product/fund footprint \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      }
+    }
+  ],
+  "ranked_proxies": {}
 }

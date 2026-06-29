@@ -1,5 +1,5 @@
 {
-  "count": 9,
+  "count": 10,
   "seen": {
     "0001794988-26-000004": {
       "cik": "0001794988",
@@ -7,6 +7,11 @@
       "filing_date": "2026-06-26",
       "first_seen": "2026-06-28",
       "form": "D/A"
+    },
+    "dom:https_situational_awareness_ai:e0f2c42c733bb5f1": {
+      "entity": "Situational Awareness",
+      "first_seen": "2026-06-29",
+      "kind": "domain_watch"
     },
     "stmt:0ee9f386480d6269": {
       "date": "2026-05-31",
@@ -65,5 +70,5 @@
       "speaker": "Leopold Aschenbrenner"
     }
   },
-  "updated_at": "2026-06-28T08:37:41.673680+00:00"
+  "updated_at": "2026-06-29T10:16:04.710779+00:00"
 }
