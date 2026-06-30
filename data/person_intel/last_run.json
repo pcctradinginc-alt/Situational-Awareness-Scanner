@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-06-29T16:51:52.278793+00:00",
+  "run_at": "2026-06-30T08:51:46.527532+00:00",
   "mode": "live",
   "new_count": 0,
   "statement_count": 0,
@@ -14,13 +14,13 @@
       "principal": "thiel",
       "entity": "Anduril Industries",
       "kind": "new_role",
-      "headline": "Anduril Industries: new role \u2014 Electromechanical Assembly Technician",
-      "detail": "Electromechanical Assembly Technician",
+      "headline": "Anduril Industries: new role \u2014 Frontend Software Engineer",
+      "detail": "Frontend Software Engineer",
       "cluster": "",
-      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176053007?gh_jid=5176053007",
-      "change_date": "2026-06-29",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5147775007?gh_jid=5147775007",
+      "change_date": "2026-06-30",
       "age_days": 0,
-      "content_hash": "job:andurilindustries:78ac313233abaca0",
+      "content_hash": "job:andurilindustries:e1d8d70deca8c240",
       "needs_human_review": true,
       "triple": {
         "ticker": null,
@@ -52,25 +52,26 @@
         ]
       },
       "brief": {
-        "whats_new": "new job posting: Electromechanical Assembly Technician",
+        "whats_new": "new job posting: Frontend Software Engineer",
         "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
         "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
         "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
         "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
+      },
+      "ev": {}
     },
     {
       "source": "job_postings",
       "principal": "thiel",
       "entity": "Anduril Industries",
       "kind": "new_role",
-      "headline": "Anduril Industries: new role \u2014 Engineering Test Technician",
-      "detail": "Engineering Test Technician",
+      "headline": "Anduril Industries: new role \u2014 Lead Manufacturing Engineer",
+      "detail": "Lead Manufacturing Engineer",
       "cluster": "",
-      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176060007?gh_jid=5176060007",
-      "change_date": "2026-06-29",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176510007?gh_jid=5176510007",
+      "change_date": "2026-06-30",
       "age_days": 0,
-      "content_hash": "job:andurilindustries:de2c6c5d68a64559",
+      "content_hash": "job:andurilindustries:f25736a25088ef59",
       "needs_human_review": true,
       "triple": {
         "ticker": null,
@@ -102,25 +103,26 @@
         ]
       },
       "brief": {
-        "whats_new": "new job posting: Engineering Test Technician",
+        "whats_new": "new job posting: Lead Manufacturing Engineer",
         "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
         "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
         "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
         "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
+      },
+      "ev": {}
     },
     {
       "source": "job_postings",
       "principal": "thiel",
       "entity": "Anduril Industries",
       "kind": "new_role",
-      "headline": "Anduril Industries: new role \u2014 Material Planner",
-      "detail": "Material Planner",
+      "headline": "Anduril Industries: new role \u2014 Mission Software Engineer, Vehicle Software, Communications",
+      "detail": "Mission Software Engineer, Vehicle Software, Communications",
       "cluster": "",
-      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176052007?gh_jid=5176052007",
-      "change_date": "2026-06-29",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176751007?gh_jid=5176751007",
+      "change_date": "2026-06-30",
       "age_days": 0,
-      "content_hash": "job:andurilindustries:d832c3f0efad41e4",
+      "content_hash": "job:andurilindustries:a6a2202c940f8b53",
       "needs_human_review": true,
       "triple": {
         "ticker": null,
@@ -152,25 +154,26 @@
         ]
       },
       "brief": {
-        "whats_new": "new job posting: Material Planner",
+        "whats_new": "new job posting: Mission Software Engineer, Vehicle Software, Communications",
         "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
         "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
         "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
         "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
+      },
+      "ev": {}
     },
     {
       "source": "job_postings",
       "principal": "thiel",
       "entity": "Anduril Industries",
       "kind": "new_role",
-      "headline": "Anduril Industries: new role \u2014 Mechanical Assembly Technician",
-      "detail": "Mechanical Assembly Technician",
+      "headline": "Anduril Industries: new role \u2014 Mission Software Engineer, Vehicle Software, Consensus",
+      "detail": "Mission Software Engineer, Vehicle Software, Consensus",
       "cluster": "",
-      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176057007?gh_jid=5176057007",
-      "change_date": "2026-06-29",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176752007?gh_jid=5176752007",
+      "change_date": "2026-06-30",
       "age_days": 0,
-      "content_hash": "job:andurilindustries:f0323135d0a46f7d",
+      "content_hash": "job:andurilindustries:9539720be53f38d8",
       "needs_human_review": true,
       "triple": {
         "ticker": null,
@@ -202,25 +205,26 @@
         ]
       },
       "brief": {
-        "whats_new": "new job posting: Mechanical Assembly Technician",
+        "whats_new": "new job posting: Mission Software Engineer, Vehicle Software, Consensus",
         "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
         "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
         "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
         "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
+      },
+      "ev": {}
     },
     {
       "source": "job_postings",
       "principal": "thiel",
       "entity": "Anduril Industries",
       "kind": "new_role",
-      "headline": "Anduril Industries: new role \u2014 Mechanical Assembly Technician",
-      "detail": "Mechanical Assembly Technician",
+      "headline": "Anduril Industries: new role \u2014 Platform Engineer / DevOps Engineer / Infrastructure Engineer / Site Reliability Engineer",
+      "detail": "Platform Engineer / DevOps Engineer / Infrastructure Engineer / Site Reliability Engineer",
       "cluster": "",
-      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176055007?gh_jid=5176055007",
-      "change_date": "2026-06-29",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176775007?gh_jid=5176775007",
+      "change_date": "2026-06-30",
       "age_days": 0,
-      "content_hash": "job:andurilindustries:7a3388247e1a2044",
+      "content_hash": "job:andurilindustries:ebea34cc3f180f4c",
       "needs_human_review": true,
       "triple": {
         "ticker": null,
@@ -252,28 +256,29 @@
         ]
       },
       "brief": {
-        "whats_new": "new job posting: Mechanical Assembly Technician",
+        "whats_new": "new job posting: Platform Engineer / DevOps Engineer / Infrastructure Engineer / Site Reliability Engineer",
         "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
         "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
         "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
         "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
+      },
+      "ev": {}
     },
     {
       "source": "job_postings",
       "principal": "thiel",
       "entity": "Anduril Industries",
       "kind": "new_role",
-      "headline": "Anduril Industries: new role \u2014 Military Shipping Lead",
-      "detail": "Military Shipping Lead",
-      "cluster": "defense_ai",
-      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5175411007?gh_jid=5175411007",
-      "change_date": "2026-06-29",
+      "headline": "Anduril Industries: new role \u2014 Principal Workday Engineer, CorporateOS",
+      "detail": "Principal Workday Engineer, CorporateOS",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176555007?gh_jid=5176555007",
+      "change_date": "2026-06-30",
       "age_days": 0,
-      "content_hash": "job:andurilindustries:fa254bcb95385dd3",
+      "content_hash": "job:andurilindustries:471d459cfd2aa5df",
       "needs_human_review": true,
       "triple": {
-        "ticker": "PLTR",
+        "ticker": null,
         "person_signal": {
           "value": 2.4,
           "reason": "path-directness 0.40; unverified \u00d70.6"
@@ -283,8 +288,263 @@
           "reason": "media statement, age 0d \u2192 recency \u00d71.00"
         },
         "tradeability": {
-          "value": 5.25,
-          "reason": "market-timing 3.0; options 7.5"
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Principal Workday Engineer, CorporateOS",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Product Data Engineer",
+      "detail": "Product Data Engineer",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5114654007?gh_jid=5114654007",
+      "change_date": "2026-06-30",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:fb286e419229a056",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Product Data Engineer",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Product Data Engineer",
+      "detail": "Product Data Engineer",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5150089007?gh_jid=5150089007",
+      "change_date": "2026-06-30",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:83ed8329fe100d28",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Product Data Engineer",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Product Data Engineer",
+      "detail": "Product Data Engineer",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5114652007?gh_jid=5114652007",
+      "change_date": "2026-06-30",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:0d487ea510c1561a",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Product Data Engineer",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Product Data Engineer",
+      "detail": "Product Data Engineer",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5123282007?gh_jid=5123282007",
+      "change_date": "2026-06-30",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:8bf2b4d5e5f34361",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Product Data Engineer",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Product Sourcing Engineer, Autonomous Airpower",
+      "detail": "Product Sourcing Engineer, Autonomous Airpower",
+      "cluster": "power_grid",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176745007?gh_jid=5176745007",
+      "change_date": "2026-06-30",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:414fa3449bef912d",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": "VST",
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 5.0,
+          "reason": "market-timing 5.5; options 4.5"
         },
         "gate_pass": false,
         "failing_axes": [
@@ -297,29 +557,30 @@
           "gate FAILED \u2014 not a trade: weak person_signal, freshness",
           "person_signal: path-directness 0.40; unverified \u00d70.6",
           "freshness: media statement, age 0d \u2192 recency \u00d71.00",
-          "tradeability: market-timing 3.0; options 7.5"
+          "tradeability: market-timing 5.5; options 4.5"
         ]
       },
       "brief": {
-        "whats_new": "new job posting: Military Shipping Lead",
+        "whats_new": "new job posting: Product Sourcing Engineer, Autonomous Airpower",
         "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
         "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
-        "best_proxy": "best public proxy \u00abdefense_ai\u00bb: PLTR (edge 7.0, opt/live) \u00b7 alts PANW, CRWD \u00b7 ETF: ITA (defense)",
-        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; IV rich (~64%) \u2014 long premium vulnerable to vega/crush; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
+        "best_proxy": "best public proxy \u00abpower_grid\u00bb: VST (edge 6.1, opt/live) \u00b7 alts CEG, NRG \u00b7 ETF: XLU / VPU (utilities)",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; IV rich (~60%) \u2014 long premium vulnerable to vega/crush; bid/ask spread wide (21%) \u2014 poor fill; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
     },
     {
       "source": "job_postings",
       "principal": "thiel",
       "entity": "Anduril Industries",
       "kind": "new_role",
-      "headline": "Anduril Industries: new role \u2014 Production Test Technician",
-      "detail": "Production Test Technician",
+      "headline": "Anduril Industries: new role \u2014 Product Sourcing Engineer, Connected Warfare",
+      "detail": "Product Sourcing Engineer, Connected Warfare",
       "cluster": "",
-      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176058007?gh_jid=5176058007",
-      "change_date": "2026-06-29",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176781007?gh_jid=5176781007",
+      "change_date": "2026-06-30",
       "age_days": 0,
-      "content_hash": "job:andurilindustries:61d1ed493d74652f",
+      "content_hash": "job:andurilindustries:49a41e212632d9dd",
       "needs_human_review": true,
       "triple": {
         "ticker": null,
@@ -351,25 +612,26 @@
         ]
       },
       "brief": {
-        "whats_new": "new job posting: Production Test Technician",
+        "whats_new": "new job posting: Product Sourcing Engineer, Connected Warfare",
         "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
         "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
         "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
         "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
+      },
+      "ev": {}
     },
     {
       "source": "job_postings",
       "principal": "thiel",
       "entity": "Anduril Industries",
       "kind": "new_role",
-      "headline": "Anduril Industries: new role \u2014 Senior Insider Threat Engineer",
-      "detail": "Senior Insider Threat Engineer",
+      "headline": "Anduril Industries: new role \u2014 Product Sourcing Engineer, Electromagnetic Warfare",
+      "detail": "Product Sourcing Engineer, Electromagnetic Warfare",
       "cluster": "",
-      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5174889007?gh_jid=5174889007",
-      "change_date": "2026-06-29",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176782007?gh_jid=5176782007",
+      "change_date": "2026-06-30",
       "age_days": 0,
-      "content_hash": "job:andurilindustries:0affb8c25559cae5",
+      "content_hash": "job:andurilindustries:66b3febe3be1abc5",
       "needs_human_review": true,
       "triple": {
         "ticker": null,
@@ -401,25 +663,26 @@
         ]
       },
       "brief": {
-        "whats_new": "new job posting: Senior Insider Threat Engineer",
+        "whats_new": "new job posting: Product Sourcing Engineer, Electromagnetic Warfare",
         "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
         "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
         "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
         "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
+      },
+      "ev": {}
     },
     {
       "source": "job_postings",
       "principal": "thiel",
       "entity": "Anduril Industries",
       "kind": "new_role",
-      "headline": "Anduril Industries: new role \u2014 Senior Supply Planner",
-      "detail": "Senior Supply Planner",
+      "headline": "Anduril Industries: new role \u2014 Regional Manager",
+      "detail": "Regional Manager",
       "cluster": "",
-      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176054007?gh_jid=5176054007",
-      "change_date": "2026-06-29",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5174599007?gh_jid=5174599007",
+      "change_date": "2026-06-30",
       "age_days": 0,
-      "content_hash": "job:andurilindustries:954c8ddc65059b6b",
+      "content_hash": "job:andurilindustries:2a18987580c03038",
       "needs_human_review": true,
       "triple": {
         "ticker": null,
@@ -451,25 +714,26 @@
         ]
       },
       "brief": {
-        "whats_new": "new job posting: Senior Supply Planner",
+        "whats_new": "new job posting: Regional Manager",
         "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
         "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
         "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
         "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
+      },
+      "ev": {}
     },
     {
       "source": "job_postings",
       "principal": "thiel",
-      "entity": "Palantir Technologies",
+      "entity": "Anduril Industries",
       "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Deployment Strategist",
-      "detail": "Deployment Strategist",
+      "headline": "Anduril Industries: new role \u2014 Senior Engineering Finance Associate",
+      "detail": "Senior Engineering Finance Associate",
       "cluster": "",
-      "url": "https://jobs.lever.co/palantir/55c68159-62d3-40ed-b4a7-8b586dc99200",
-      "change_date": "2026-06-29",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5158899007?gh_jid=5158899007",
+      "change_date": "2026-06-30",
       "age_days": 0,
-      "content_hash": "job:palantir:cb6f0f947a1fb932",
+      "content_hash": "job:andurilindustries:f93d1d96e3c2b901",
       "needs_human_review": true,
       "triple": {
         "ticker": null,
@@ -501,25 +765,26 @@
         ]
       },
       "brief": {
-        "whats_new": "new job posting: Deployment Strategist",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "whats_new": "new job posting: Senior Engineering Finance Associate",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
         "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
         "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
         "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
+      },
+      "ev": {}
     },
     {
       "source": "job_postings",
       "principal": "thiel",
-      "entity": "Palantir Technologies",
+      "entity": "Anduril Industries",
       "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Deployment Strategist - Spain",
-      "detail": "Deployment Strategist - Spain",
+      "headline": "Anduril Industries: new role \u2014 Senior Manager, M&A People Integration",
+      "detail": "Senior Manager, M&A People Integration",
       "cluster": "",
-      "url": "https://jobs.lever.co/palantir/1f007e36-a620-4d15-bf0b-70dc3f3439d8",
-      "change_date": "2026-06-29",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5175833007?gh_jid=5175833007",
+      "change_date": "2026-06-30",
       "age_days": 0,
-      "content_hash": "job:palantir:9bf90b4c3df86505",
+      "content_hash": "job:andurilindustries:cb9ce99d33b62229",
       "needs_human_review": true,
       "triple": {
         "ticker": null,
@@ -551,25 +816,26 @@
         ]
       },
       "brief": {
-        "whats_new": "new job posting: Deployment Strategist - Spain",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "whats_new": "new job posting: Senior Manager, M&A People Integration",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
         "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
         "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
         "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
+      },
+      "ev": {}
     },
     {
       "source": "job_postings",
       "principal": "thiel",
-      "entity": "Palantir Technologies",
+      "entity": "Anduril Industries",
       "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Forward Deployed Software Engineer - Spain",
-      "detail": "Forward Deployed Software Engineer - Spain",
+      "headline": "Anduril Industries: new role \u2014 Senior Platform Engineer / Senior DevOps Engineer / Senior Infrastructure Engineer / Senior Site Reliability Engineer",
+      "detail": "Senior Platform Engineer / Senior DevOps Engineer / Senior Infrastructure Engineer / Senior Site Reliability Engineer",
       "cluster": "",
-      "url": "https://jobs.lever.co/palantir/53fb4c05-f949-4146-a046-5c063c36a628",
-      "change_date": "2026-06-29",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176778007?gh_jid=5176778007",
+      "change_date": "2026-06-30",
       "age_days": 0,
-      "content_hash": "job:palantir:ee49097346037625",
+      "content_hash": "job:andurilindustries:fafb7931f5dfba15",
       "needs_human_review": true,
       "triple": {
         "ticker": null,
@@ -601,78 +867,29 @@
         ]
       },
       "brief": {
-        "whats_new": "new job posting: Forward Deployed Software Engineer - Spain",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "whats_new": "new job posting: Senior Platform Engineer / Senior DevOps Engineer / Senior Infrastructure Engineer / Senior Site Reliability Engineer",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
         "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
         "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
         "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
-    },
-    {
-      "source": "job_postings",
-      "principal": "thiel",
-      "entity": "Palantir Technologies",
-      "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Forward Deployed Software Engineer, Internship - Commercial",
-      "detail": "Forward Deployed Software Engineer, Internship - Commercial",
-      "cluster": "",
-      "url": "https://jobs.lever.co/palantir/4d29249a-d7e8-4c39-880d-3b35d7b2f6f6",
-      "change_date": "2026-06-29",
-      "age_days": 0,
-      "content_hash": "job:palantir:06c036382cc59d7a",
-      "needs_human_review": true,
-      "triple": {
-        "ticker": null,
-        "person_signal": {
-          "value": 2.4,
-          "reason": "path-directness 0.40; unverified \u00d70.6"
-        },
-        "freshness": {
-          "value": 4.0,
-          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
-        },
-        "tradeability": {
-          "value": 0.0,
-          "reason": "no resolved public ticker \u2014 not tradeable yet"
-        },
-        "gate_pass": false,
-        "failing_axes": [
-          "person_signal",
-          "freshness",
-          "tradeability"
-        ],
-        "final_trade_score": 0.0,
-        "label": "NO-TRADE",
-        "reasons": [
-          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
-          "person_signal: path-directness 0.40; unverified \u00d70.6",
-          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
-          "tradeability: no resolved public ticker \u2014 not tradeable yet"
-        ]
       },
-      "brief": {
-        "whats_new": "new job posting: Forward Deployed Software Engineer, Internship - Commercial",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
-        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
-        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
-        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
+      "ev": {}
     },
     {
       "source": "job_postings",
       "principal": "thiel",
-      "entity": "Palantir Technologies",
+      "entity": "Anduril Industries",
       "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Forward Deployed Software Engineer, New Grad - Commercial",
-      "detail": "Forward Deployed Software Engineer, New Grad - Commercial",
-      "cluster": "",
-      "url": "https://jobs.lever.co/palantir/2e6b0ac8-83e9-4be5-a3aa-cf319f751728",
-      "change_date": "2026-06-29",
+      "headline": "Anduril Industries: new role \u2014 Senior Product Sourcing Engineer, Autonomous Airpower",
+      "detail": "Senior Product Sourcing Engineer, Autonomous Airpower",
+      "cluster": "power_grid",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176743007?gh_jid=5176743007",
+      "change_date": "2026-06-30",
       "age_days": 0,
-      "content_hash": "job:palantir:26317c7257c36936",
+      "content_hash": "job:andurilindustries:eee91f7b29cbf7b7",
       "needs_human_review": true,
       "triple": {
-        "ticker": null,
+        "ticker": "VST",
         "person_signal": {
           "value": 2.4,
           "reason": "path-directness 0.40; unverified \u00d70.6"
@@ -682,358 +899,8 @@
           "reason": "media statement, age 0d \u2192 recency \u00d71.00"
         },
         "tradeability": {
-          "value": 0.0,
-          "reason": "no resolved public ticker \u2014 not tradeable yet"
-        },
-        "gate_pass": false,
-        "failing_axes": [
-          "person_signal",
-          "freshness",
-          "tradeability"
-        ],
-        "final_trade_score": 0.0,
-        "label": "NO-TRADE",
-        "reasons": [
-          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
-          "person_signal: path-directness 0.40; unverified \u00d70.6",
-          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
-          "tradeability: no resolved public ticker \u2014 not tradeable yet"
-        ]
-      },
-      "brief": {
-        "whats_new": "new job posting: Forward Deployed Software Engineer, New Grad - Commercial",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
-        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
-        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
-        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
-    },
-    {
-      "source": "job_postings",
-      "principal": "thiel",
-      "entity": "Palantir Technologies",
-      "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Forward Deployed Software Engineer, New Grad - Commercial",
-      "detail": "Forward Deployed Software Engineer, New Grad - Commercial",
-      "cluster": "",
-      "url": "https://jobs.lever.co/palantir/e500bcf3-19d8-4d3c-b340-4d76e4a55b40",
-      "change_date": "2026-06-29",
-      "age_days": 0,
-      "content_hash": "job:palantir:96af22d8fd114052",
-      "needs_human_review": true,
-      "triple": {
-        "ticker": null,
-        "person_signal": {
-          "value": 2.4,
-          "reason": "path-directness 0.40; unverified \u00d70.6"
-        },
-        "freshness": {
-          "value": 4.0,
-          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
-        },
-        "tradeability": {
-          "value": 0.0,
-          "reason": "no resolved public ticker \u2014 not tradeable yet"
-        },
-        "gate_pass": false,
-        "failing_axes": [
-          "person_signal",
-          "freshness",
-          "tradeability"
-        ],
-        "final_trade_score": 0.0,
-        "label": "NO-TRADE",
-        "reasons": [
-          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
-          "person_signal: path-directness 0.40; unverified \u00d70.6",
-          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
-          "tradeability: no resolved public ticker \u2014 not tradeable yet"
-        ]
-      },
-      "brief": {
-        "whats_new": "new job posting: Forward Deployed Software Engineer, New Grad - Commercial",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
-        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
-        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
-        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
-    },
-    {
-      "source": "job_postings",
-      "principal": "thiel",
-      "entity": "Palantir Technologies",
-      "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Site Reliability Operations Analyst",
-      "detail": "Site Reliability Operations Analyst",
-      "cluster": "",
-      "url": "https://jobs.lever.co/palantir/a00e136e-7a65-4196-be22-cbd523706597",
-      "change_date": "2026-06-29",
-      "age_days": 0,
-      "content_hash": "job:palantir:edae6241f9d2bfd4",
-      "needs_human_review": true,
-      "triple": {
-        "ticker": null,
-        "person_signal": {
-          "value": 2.4,
-          "reason": "path-directness 0.40; unverified \u00d70.6"
-        },
-        "freshness": {
-          "value": 4.0,
-          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
-        },
-        "tradeability": {
-          "value": 0.0,
-          "reason": "no resolved public ticker \u2014 not tradeable yet"
-        },
-        "gate_pass": false,
-        "failing_axes": [
-          "person_signal",
-          "freshness",
-          "tradeability"
-        ],
-        "final_trade_score": 0.0,
-        "label": "NO-TRADE",
-        "reasons": [
-          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
-          "person_signal: path-directness 0.40; unverified \u00d70.6",
-          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
-          "tradeability: no resolved public ticker \u2014 not tradeable yet"
-        ]
-      },
-      "brief": {
-        "whats_new": "new job posting: Site Reliability Operations Analyst",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
-        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
-        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
-        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
-    },
-    {
-      "source": "job_postings",
-      "principal": "thiel",
-      "entity": "Palantir Technologies",
-      "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Software Engineer, Internship",
-      "detail": "Software Engineer, Internship",
-      "cluster": "",
-      "url": "https://jobs.lever.co/palantir/373eb939-6f57-4836-8479-be79a5e07249",
-      "change_date": "2026-06-29",
-      "age_days": 0,
-      "content_hash": "job:palantir:3684e4a76cf53f8d",
-      "needs_human_review": true,
-      "triple": {
-        "ticker": null,
-        "person_signal": {
-          "value": 2.4,
-          "reason": "path-directness 0.40; unverified \u00d70.6"
-        },
-        "freshness": {
-          "value": 4.0,
-          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
-        },
-        "tradeability": {
-          "value": 0.0,
-          "reason": "no resolved public ticker \u2014 not tradeable yet"
-        },
-        "gate_pass": false,
-        "failing_axes": [
-          "person_signal",
-          "freshness",
-          "tradeability"
-        ],
-        "final_trade_score": 0.0,
-        "label": "NO-TRADE",
-        "reasons": [
-          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
-          "person_signal: path-directness 0.40; unverified \u00d70.6",
-          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
-          "tradeability: no resolved public ticker \u2014 not tradeable yet"
-        ]
-      },
-      "brief": {
-        "whats_new": "new job posting: Software Engineer, Internship",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
-        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
-        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
-        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
-    },
-    {
-      "source": "job_postings",
-      "principal": "thiel",
-      "entity": "Palantir Technologies",
-      "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Software Engineer, Internship",
-      "detail": "Software Engineer, Internship",
-      "cluster": "",
-      "url": "https://jobs.lever.co/palantir/7d69cf8a-06fd-4f05-bd84-27149db29c4d",
-      "change_date": "2026-06-29",
-      "age_days": 0,
-      "content_hash": "job:palantir:08004e72962a6859",
-      "needs_human_review": true,
-      "triple": {
-        "ticker": null,
-        "person_signal": {
-          "value": 2.4,
-          "reason": "path-directness 0.40; unverified \u00d70.6"
-        },
-        "freshness": {
-          "value": 4.0,
-          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
-        },
-        "tradeability": {
-          "value": 0.0,
-          "reason": "no resolved public ticker \u2014 not tradeable yet"
-        },
-        "gate_pass": false,
-        "failing_axes": [
-          "person_signal",
-          "freshness",
-          "tradeability"
-        ],
-        "final_trade_score": 0.0,
-        "label": "NO-TRADE",
-        "reasons": [
-          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
-          "person_signal: path-directness 0.40; unverified \u00d70.6",
-          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
-          "tradeability: no resolved public ticker \u2014 not tradeable yet"
-        ]
-      },
-      "brief": {
-        "whats_new": "new job posting: Software Engineer, Internship",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
-        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
-        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
-        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
-    },
-    {
-      "source": "job_postings",
-      "principal": "thiel",
-      "entity": "Palantir Technologies",
-      "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Software Engineer, Internship",
-      "detail": "Software Engineer, Internship",
-      "cluster": "",
-      "url": "https://jobs.lever.co/palantir/bdcfb29f-4f27-42de-933f-7f83a359b9f0",
-      "change_date": "2026-06-29",
-      "age_days": 0,
-      "content_hash": "job:palantir:e13d1e37af6bbb1a",
-      "needs_human_review": true,
-      "triple": {
-        "ticker": null,
-        "person_signal": {
-          "value": 2.4,
-          "reason": "path-directness 0.40; unverified \u00d70.6"
-        },
-        "freshness": {
-          "value": 4.0,
-          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
-        },
-        "tradeability": {
-          "value": 0.0,
-          "reason": "no resolved public ticker \u2014 not tradeable yet"
-        },
-        "gate_pass": false,
-        "failing_axes": [
-          "person_signal",
-          "freshness",
-          "tradeability"
-        ],
-        "final_trade_score": 0.0,
-        "label": "NO-TRADE",
-        "reasons": [
-          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
-          "person_signal: path-directness 0.40; unverified \u00d70.6",
-          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
-          "tradeability: no resolved public ticker \u2014 not tradeable yet"
-        ]
-      },
-      "brief": {
-        "whats_new": "new job posting: Software Engineer, Internship",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
-        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
-        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
-        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
-    },
-    {
-      "source": "job_postings",
-      "principal": "thiel",
-      "entity": "Palantir Technologies",
-      "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Software Engineer, Internship",
-      "detail": "Software Engineer, Internship",
-      "cluster": "",
-      "url": "https://jobs.lever.co/palantir/e27af7ab-41fc-40c9-b31d-02c6cb1c505c",
-      "change_date": "2026-06-29",
-      "age_days": 0,
-      "content_hash": "job:palantir:e9c8e5404bf18bb8",
-      "needs_human_review": true,
-      "triple": {
-        "ticker": null,
-        "person_signal": {
-          "value": 2.4,
-          "reason": "path-directness 0.40; unverified \u00d70.6"
-        },
-        "freshness": {
-          "value": 4.0,
-          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
-        },
-        "tradeability": {
-          "value": 0.0,
-          "reason": "no resolved public ticker \u2014 not tradeable yet"
-        },
-        "gate_pass": false,
-        "failing_axes": [
-          "person_signal",
-          "freshness",
-          "tradeability"
-        ],
-        "final_trade_score": 0.0,
-        "label": "NO-TRADE",
-        "reasons": [
-          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
-          "person_signal: path-directness 0.40; unverified \u00d70.6",
-          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
-          "tradeability: no resolved public ticker \u2014 not tradeable yet"
-        ]
-      },
-      "brief": {
-        "whats_new": "new job posting: Software Engineer, Internship",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
-        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
-        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
-        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
-    },
-    {
-      "source": "job_postings",
-      "principal": "thiel",
-      "entity": "Palantir Technologies",
-      "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Software Engineer, Internship - Defense Tech",
-      "detail": "Software Engineer, Internship - Defense Tech",
-      "cluster": "defense_ai",
-      "url": "https://jobs.lever.co/palantir/8bcf4f33-0a79-4248-bbfd-49ac4be9dd8e",
-      "change_date": "2026-06-29",
-      "age_days": 0,
-      "content_hash": "job:palantir:b5a8ce9bd89a860a",
-      "needs_human_review": true,
-      "triple": {
-        "ticker": "PLTR",
-        "person_signal": {
-          "value": 2.4,
-          "reason": "path-directness 0.40; unverified \u00d70.6"
-        },
-        "freshness": {
-          "value": 4.0,
-          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
-        },
-        "tradeability": {
-          "value": 5.25,
-          "reason": "market-timing 3.0; options 7.5"
+          "value": 5.0,
+          "reason": "market-timing 5.5; options 4.5"
         },
         "gate_pass": false,
         "failing_axes": [
@@ -1046,127 +913,30 @@
           "gate FAILED \u2014 not a trade: weak person_signal, freshness",
           "person_signal: path-directness 0.40; unverified \u00d70.6",
           "freshness: media statement, age 0d \u2192 recency \u00d71.00",
-          "tradeability: market-timing 3.0; options 7.5"
+          "tradeability: market-timing 5.5; options 4.5"
         ]
       },
       "brief": {
-        "whats_new": "new job posting: Software Engineer, Internship - Defense Tech",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "whats_new": "new job posting: Senior Product Sourcing Engineer, Autonomous Airpower",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
         "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
-        "best_proxy": "best public proxy \u00abdefense_ai\u00bb: PLTR (edge 7.0, opt/live) \u00b7 alts PANW, CRWD \u00b7 ETF: ITA (defense)",
-        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; IV rich (~64%) \u2014 long premium vulnerable to vega/crush; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
+        "best_proxy": "best public proxy \u00abpower_grid\u00bb: VST (edge 6.1, opt/live) \u00b7 alts CEG, NRG \u00b7 ETF: XLU / VPU (utilities)",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; IV rich (~60%) \u2014 long premium vulnerable to vega/crush; bid/ask spread wide (21%) \u2014 poor fill; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
     },
     {
       "source": "job_postings",
       "principal": "thiel",
-      "entity": "Palantir Technologies",
+      "entity": "Anduril Industries",
       "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Software Engineer, Internship - Defense Tech",
-      "detail": "Software Engineer, Internship - Defense Tech",
-      "cluster": "defense_ai",
-      "url": "https://jobs.lever.co/palantir/a483f41b-0da9-42ea-8ed6-cbf6eb93cc6d",
-      "change_date": "2026-06-29",
-      "age_days": 0,
-      "content_hash": "job:palantir:13c42782bd148bc2",
-      "needs_human_review": true,
-      "triple": {
-        "ticker": "PLTR",
-        "person_signal": {
-          "value": 2.4,
-          "reason": "path-directness 0.40; unverified \u00d70.6"
-        },
-        "freshness": {
-          "value": 4.0,
-          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
-        },
-        "tradeability": {
-          "value": 5.25,
-          "reason": "market-timing 3.0; options 7.5"
-        },
-        "gate_pass": false,
-        "failing_axes": [
-          "person_signal",
-          "freshness"
-        ],
-        "final_trade_score": 0.0,
-        "label": "NO-TRADE",
-        "reasons": [
-          "gate FAILED \u2014 not a trade: weak person_signal, freshness",
-          "person_signal: path-directness 0.40; unverified \u00d70.6",
-          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
-          "tradeability: market-timing 3.0; options 7.5"
-        ]
-      },
-      "brief": {
-        "whats_new": "new job posting: Software Engineer, Internship - Defense Tech",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
-        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
-        "best_proxy": "best public proxy \u00abdefense_ai\u00bb: PLTR (edge 7.0, opt/live) \u00b7 alts PANW, CRWD \u00b7 ETF: ITA (defense)",
-        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; IV rich (~64%) \u2014 long premium vulnerable to vega/crush; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
-    },
-    {
-      "source": "job_postings",
-      "principal": "thiel",
-      "entity": "Palantir Technologies",
-      "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Software Engineer, Internship - Defense Tech",
-      "detail": "Software Engineer, Internship - Defense Tech",
-      "cluster": "defense_ai",
-      "url": "https://jobs.lever.co/palantir/f17e98d0-046a-4e6e-9d65-ed0b12dd0ff7",
-      "change_date": "2026-06-29",
-      "age_days": 0,
-      "content_hash": "job:palantir:4b7c5242e66e7639",
-      "needs_human_review": true,
-      "triple": {
-        "ticker": "PLTR",
-        "person_signal": {
-          "value": 2.4,
-          "reason": "path-directness 0.40; unverified \u00d70.6"
-        },
-        "freshness": {
-          "value": 4.0,
-          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
-        },
-        "tradeability": {
-          "value": 5.25,
-          "reason": "market-timing 3.0; options 7.5"
-        },
-        "gate_pass": false,
-        "failing_axes": [
-          "person_signal",
-          "freshness"
-        ],
-        "final_trade_score": 0.0,
-        "label": "NO-TRADE",
-        "reasons": [
-          "gate FAILED \u2014 not a trade: weak person_signal, freshness",
-          "person_signal: path-directness 0.40; unverified \u00d70.6",
-          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
-          "tradeability: market-timing 3.0; options 7.5"
-        ]
-      },
-      "brief": {
-        "whats_new": "new job posting: Software Engineer, Internship - Defense Tech",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
-        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
-        "best_proxy": "best public proxy \u00abdefense_ai\u00bb: PLTR (edge 7.0, opt/live) \u00b7 alts PANW, CRWD \u00b7 ETF: ITA (defense)",
-        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; IV rich (~64%) \u2014 long premium vulnerable to vega/crush; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
-    },
-    {
-      "source": "job_postings",
-      "principal": "thiel",
-      "entity": "Palantir Technologies",
-      "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Software Engineer, Internship - Infrastructure",
-      "detail": "Software Engineer, Internship - Infrastructure",
+      "headline": "Anduril Industries: new role \u2014 Senior Product Sourcing Engineer, Connected Warfare",
+      "detail": "Senior Product Sourcing Engineer, Connected Warfare",
       "cluster": "",
-      "url": "https://jobs.lever.co/palantir/b229baac-494b-4a0d-9a13-2e38806e06f3",
-      "change_date": "2026-06-29",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176779007?gh_jid=5176779007",
+      "change_date": "2026-06-30",
       "age_days": 0,
-      "content_hash": "job:palantir:a617bf6599f662d4",
+      "content_hash": "job:andurilindustries:7e7fc38c96c13b09",
       "needs_human_review": true,
       "triple": {
         "ticker": null,
@@ -1198,25 +968,26 @@
         ]
       },
       "brief": {
-        "whats_new": "new job posting: Software Engineer, Internship - Infrastructure",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "whats_new": "new job posting: Senior Product Sourcing Engineer, Connected Warfare",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
         "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
         "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
         "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
+      },
+      "ev": {}
     },
     {
       "source": "job_postings",
       "principal": "thiel",
-      "entity": "Palantir Technologies",
+      "entity": "Anduril Industries",
       "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Software Engineer, Internship - Infrastructure",
-      "detail": "Software Engineer, Internship - Infrastructure",
+      "headline": "Anduril Industries: new role \u2014 Senior Supplier Industrialization Engineer, Casting",
+      "detail": "Senior Supplier Industrialization Engineer, Casting",
       "cluster": "",
-      "url": "https://jobs.lever.co/palantir/f221738b-e97c-4ce3-a12a-17ada2b855e4",
-      "change_date": "2026-06-29",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176762007?gh_jid=5176762007",
+      "change_date": "2026-06-30",
       "age_days": 0,
-      "content_hash": "job:palantir:7776d9b37965c66c",
+      "content_hash": "job:andurilindustries:5152c43c68f07147",
       "needs_human_review": true,
       "triple": {
         "ticker": null,
@@ -1248,25 +1019,26 @@
         ]
       },
       "brief": {
-        "whats_new": "new job posting: Software Engineer, Internship - Infrastructure",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "whats_new": "new job posting: Senior Supplier Industrialization Engineer, Casting",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
         "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
         "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
         "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
+      },
+      "ev": {}
     },
     {
       "source": "job_postings",
       "principal": "thiel",
-      "entity": "Palantir Technologies",
+      "entity": "Anduril Industries",
       "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Software Engineer, Internship - Production Infrastructure",
-      "detail": "Software Engineer, Internship - Production Infrastructure",
+      "headline": "Anduril Industries: new role \u2014 Senior Supplier Industrialization Engineer, Composites",
+      "detail": "Senior Supplier Industrialization Engineer, Composites",
       "cluster": "",
-      "url": "https://jobs.lever.co/palantir/373367a9-3160-49d8-b7af-2efec062fad1",
-      "change_date": "2026-06-29",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176761007?gh_jid=5176761007",
+      "change_date": "2026-06-30",
       "age_days": 0,
-      "content_hash": "job:palantir:b9337d692d702773",
+      "content_hash": "job:andurilindustries:791c3fa374e91639",
       "needs_human_review": true,
       "triple": {
         "ticker": null,
@@ -1298,25 +1070,26 @@
         ]
       },
       "brief": {
-        "whats_new": "new job posting: Software Engineer, Internship - Production Infrastructure",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "whats_new": "new job posting: Senior Supplier Industrialization Engineer, Composites",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
         "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
         "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
         "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
+      },
+      "ev": {}
     },
     {
       "source": "job_postings",
       "principal": "thiel",
-      "entity": "Palantir Technologies",
+      "entity": "Anduril Industries",
       "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Software Engineer, Internship - Production Infrastructure",
-      "detail": "Software Engineer, Internship - Production Infrastructure",
+      "headline": "Anduril Industries: new role \u2014 Senior Supplier Industrialization Engineer, Electrical",
+      "detail": "Senior Supplier Industrialization Engineer, Electrical",
       "cluster": "",
-      "url": "https://jobs.lever.co/palantir/37964982-9b4c-471e-a1d8-fb8f45d7f116",
-      "change_date": "2026-06-29",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176763007?gh_jid=5176763007",
+      "change_date": "2026-06-30",
       "age_days": 0,
-      "content_hash": "job:palantir:a6d11c01c26ce9f7",
+      "content_hash": "job:andurilindustries:9990544dce11c103",
       "needs_human_review": true,
       "triple": {
         "ticker": null,
@@ -1348,25 +1121,26 @@
         ]
       },
       "brief": {
-        "whats_new": "new job posting: Software Engineer, Internship - Production Infrastructure",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "whats_new": "new job posting: Senior Supplier Industrialization Engineer, Electrical",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
         "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
         "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
         "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
+      },
+      "ev": {}
     },
     {
       "source": "job_postings",
       "principal": "thiel",
-      "entity": "Palantir Technologies",
+      "entity": "Anduril Industries",
       "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Software Engineer, Internship - Production Infrastructure",
-      "detail": "Software Engineer, Internship - Production Infrastructure",
+      "headline": "Anduril Industries: new role \u2014 Senior Supplier Industrialization Engineer, Electrical (Active Clearance)",
+      "detail": "Senior Supplier Industrialization Engineer, Electrical (Active Clearance)",
       "cluster": "",
-      "url": "https://jobs.lever.co/palantir/3ab9e715-1ea9-4c6c-ad50-7340eac14e86",
-      "change_date": "2026-06-29",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176765007?gh_jid=5176765007",
+      "change_date": "2026-06-30",
       "age_days": 0,
-      "content_hash": "job:palantir:69ee34cc6da11625",
+      "content_hash": "job:andurilindustries:c6743391be7961c2",
       "needs_human_review": true,
       "triple": {
         "ticker": null,
@@ -1398,25 +1172,26 @@
         ]
       },
       "brief": {
-        "whats_new": "new job posting: Software Engineer, Internship - Production Infrastructure",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "whats_new": "new job posting: Senior Supplier Industrialization Engineer, Electrical (Active Clearance)",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
         "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
         "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
         "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
+      },
+      "ev": {}
     },
     {
       "source": "job_postings",
       "principal": "thiel",
-      "entity": "Palantir Technologies",
+      "entity": "Anduril Industries",
       "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Software Engineer, New Grad",
-      "detail": "Software Engineer, New Grad",
+      "headline": "Anduril Industries: new role \u2014 Senior Supplier Industrialization Engineer, Propulsion Engines",
+      "detail": "Senior Supplier Industrialization Engineer, Propulsion Engines",
       "cluster": "",
-      "url": "https://jobs.lever.co/palantir/94984771-0704-446c-88c6-91ce748f6d92",
-      "change_date": "2026-06-29",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176757007?gh_jid=5176757007",
+      "change_date": "2026-06-30",
       "age_days": 0,
-      "content_hash": "job:palantir:1e6fc3465895b910",
+      "content_hash": "job:andurilindustries:91ff530ead88cd95",
       "needs_human_review": true,
       "triple": {
         "ticker": null,
@@ -1448,25 +1223,26 @@
         ]
       },
       "brief": {
-        "whats_new": "new job posting: Software Engineer, New Grad",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "whats_new": "new job posting: Senior Supplier Industrialization Engineer, Propulsion Engines",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
         "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
         "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
         "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
+      },
+      "ev": {}
     },
     {
       "source": "job_postings",
       "principal": "thiel",
-      "entity": "Palantir Technologies",
+      "entity": "Anduril Industries",
       "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Software Engineer, New Grad",
-      "detail": "Software Engineer, New Grad",
+      "headline": "Anduril Industries: new role \u2014 Senior Supplier Industrialization Engineer, Propulsion Engines",
+      "detail": "Senior Supplier Industrialization Engineer, Propulsion Engines",
       "cluster": "",
-      "url": "https://jobs.lever.co/palantir/c34b424e-caf2-455a-b104-ae1096ccca29",
-      "change_date": "2026-06-29",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176753007?gh_jid=5176753007",
+      "change_date": "2026-06-30",
       "age_days": 0,
-      "content_hash": "job:palantir:a2c437da0442a994",
+      "content_hash": "job:andurilindustries:0177145866522f64",
       "needs_human_review": true,
       "triple": {
         "ticker": null,
@@ -1498,172 +1274,26 @@
         ]
       },
       "brief": {
-        "whats_new": "new job posting: Software Engineer, New Grad",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "whats_new": "new job posting: Senior Supplier Industrialization Engineer, Propulsion Engines",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
         "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
         "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
         "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
-    },
-    {
-      "source": "job_postings",
-      "principal": "thiel",
-      "entity": "Palantir Technologies",
-      "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Software Engineer, New Grad - Defense",
-      "detail": "Software Engineer, New Grad - Defense",
-      "cluster": "defense_ai",
-      "url": "https://jobs.lever.co/palantir/0a838e66-1ab0-4fc4-b4d3-4671c0352278",
-      "change_date": "2026-06-29",
-      "age_days": 0,
-      "content_hash": "job:palantir:6d78daa7164ddd4d",
-      "needs_human_review": true,
-      "triple": {
-        "ticker": "PLTR",
-        "person_signal": {
-          "value": 2.4,
-          "reason": "path-directness 0.40; unverified \u00d70.6"
-        },
-        "freshness": {
-          "value": 4.0,
-          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
-        },
-        "tradeability": {
-          "value": 5.25,
-          "reason": "market-timing 3.0; options 7.5"
-        },
-        "gate_pass": false,
-        "failing_axes": [
-          "person_signal",
-          "freshness"
-        ],
-        "final_trade_score": 0.0,
-        "label": "NO-TRADE",
-        "reasons": [
-          "gate FAILED \u2014 not a trade: weak person_signal, freshness",
-          "person_signal: path-directness 0.40; unverified \u00d70.6",
-          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
-          "tradeability: market-timing 3.0; options 7.5"
-        ]
       },
-      "brief": {
-        "whats_new": "new job posting: Software Engineer, New Grad - Defense",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
-        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
-        "best_proxy": "best public proxy \u00abdefense_ai\u00bb: PLTR (edge 7.0, opt/live) \u00b7 alts PANW, CRWD \u00b7 ETF: ITA (defense)",
-        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; IV rich (~64%) \u2014 long premium vulnerable to vega/crush; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
+      "ev": {}
     },
     {
       "source": "job_postings",
       "principal": "thiel",
-      "entity": "Palantir Technologies",
+      "entity": "Anduril Industries",
       "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Software Engineer, New Grad - Defense",
-      "detail": "Software Engineer, New Grad - Defense",
-      "cluster": "defense_ai",
-      "url": "https://jobs.lever.co/palantir/18d901fc-93bb-4d18-9f04-c72031e20d79",
-      "change_date": "2026-06-29",
-      "age_days": 0,
-      "content_hash": "job:palantir:27644e83a3b8125a",
-      "needs_human_review": true,
-      "triple": {
-        "ticker": "PLTR",
-        "person_signal": {
-          "value": 2.4,
-          "reason": "path-directness 0.40; unverified \u00d70.6"
-        },
-        "freshness": {
-          "value": 4.0,
-          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
-        },
-        "tradeability": {
-          "value": 5.25,
-          "reason": "market-timing 3.0; options 7.5"
-        },
-        "gate_pass": false,
-        "failing_axes": [
-          "person_signal",
-          "freshness"
-        ],
-        "final_trade_score": 0.0,
-        "label": "NO-TRADE",
-        "reasons": [
-          "gate FAILED \u2014 not a trade: weak person_signal, freshness",
-          "person_signal: path-directness 0.40; unverified \u00d70.6",
-          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
-          "tradeability: market-timing 3.0; options 7.5"
-        ]
-      },
-      "brief": {
-        "whats_new": "new job posting: Software Engineer, New Grad - Defense",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
-        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
-        "best_proxy": "best public proxy \u00abdefense_ai\u00bb: PLTR (edge 7.0, opt/live) \u00b7 alts PANW, CRWD \u00b7 ETF: ITA (defense)",
-        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; IV rich (~64%) \u2014 long premium vulnerable to vega/crush; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
-    },
-    {
-      "source": "job_postings",
-      "principal": "thiel",
-      "entity": "Palantir Technologies",
-      "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Software Engineer, New Grad - Defense",
-      "detail": "Software Engineer, New Grad - Defense",
-      "cluster": "defense_ai",
-      "url": "https://jobs.lever.co/palantir/f362d7aa-360d-4059-ab38-f482742693b3",
-      "change_date": "2026-06-29",
-      "age_days": 0,
-      "content_hash": "job:palantir:496bdb888bf1fccc",
-      "needs_human_review": true,
-      "triple": {
-        "ticker": "PLTR",
-        "person_signal": {
-          "value": 2.4,
-          "reason": "path-directness 0.40; unverified \u00d70.6"
-        },
-        "freshness": {
-          "value": 4.0,
-          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
-        },
-        "tradeability": {
-          "value": 5.25,
-          "reason": "market-timing 3.0; options 7.5"
-        },
-        "gate_pass": false,
-        "failing_axes": [
-          "person_signal",
-          "freshness"
-        ],
-        "final_trade_score": 0.0,
-        "label": "NO-TRADE",
-        "reasons": [
-          "gate FAILED \u2014 not a trade: weak person_signal, freshness",
-          "person_signal: path-directness 0.40; unverified \u00d70.6",
-          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
-          "tradeability: market-timing 3.0; options 7.5"
-        ]
-      },
-      "brief": {
-        "whats_new": "new job posting: Software Engineer, New Grad - Defense",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
-        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
-        "best_proxy": "best public proxy \u00abdefense_ai\u00bb: PLTR (edge 7.0, opt/live) \u00b7 alts PANW, CRWD \u00b7 ETF: ITA (defense)",
-        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; IV rich (~64%) \u2014 long premium vulnerable to vega/crush; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
-    },
-    {
-      "source": "job_postings",
-      "principal": "thiel",
-      "entity": "Palantir Technologies",
-      "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Software Engineer, New Grad - Infrastructure",
-      "detail": "Software Engineer, New Grad - Infrastructure",
+      "headline": "Anduril Industries: new role \u2014 Senior Supply Chain Manufacutring Engineer, Propulsion Engines",
+      "detail": "Senior Supply Chain Manufacutring Engineer, Propulsion Engines",
       "cluster": "",
-      "url": "https://jobs.lever.co/palantir/4abf26b4-795c-420a-bf22-1ab98db268b4",
-      "change_date": "2026-06-29",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176756007?gh_jid=5176756007",
+      "change_date": "2026-06-30",
       "age_days": 0,
-      "content_hash": "job:palantir:f726d61f69944767",
+      "content_hash": "job:andurilindustries:d8a3baf78c22e26c",
       "needs_human_review": true,
       "triple": {
         "ticker": null,
@@ -1695,25 +1325,26 @@
         ]
       },
       "brief": {
-        "whats_new": "new job posting: Software Engineer, New Grad - Infrastructure",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "whats_new": "new job posting: Senior Supply Chain Manufacutring Engineer, Propulsion Engines",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
         "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
         "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
         "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
+      },
+      "ev": {}
     },
     {
       "source": "job_postings",
       "principal": "thiel",
-      "entity": "Palantir Technologies",
+      "entity": "Anduril Industries",
       "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Software Engineer, New Grad - Infrastructure",
-      "detail": "Software Engineer, New Grad - Infrastructure",
+      "headline": "Anduril Industries: new role \u2014 Senior Test Site Manager",
+      "detail": "Senior Test Site Manager",
       "cluster": "",
-      "url": "https://jobs.lever.co/palantir/7d75bed5-45d8-4876-840a-2d92ea79c98d",
-      "change_date": "2026-06-29",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5090257007?gh_jid=5090257007",
+      "change_date": "2026-06-30",
       "age_days": 0,
-      "content_hash": "job:palantir:5bf34cde42671f88",
+      "content_hash": "job:andurilindustries:67c8b632cd3e0e6f",
       "needs_human_review": true,
       "triple": {
         "ticker": null,
@@ -1745,25 +1376,26 @@
         ]
       },
       "brief": {
-        "whats_new": "new job posting: Software Engineer, New Grad - Infrastructure",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "whats_new": "new job posting: Senior Test Site Manager",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
         "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
         "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
         "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
+      },
+      "ev": {}
     },
     {
       "source": "job_postings",
       "principal": "thiel",
-      "entity": "Palantir Technologies",
+      "entity": "Anduril Industries",
       "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Software Engineer, New Grad - Production Infrastructure",
-      "detail": "Software Engineer, New Grad - Production Infrastructure",
+      "headline": "Anduril Industries: new role \u2014 Software Engineer",
+      "detail": "Software Engineer",
       "cluster": "",
-      "url": "https://jobs.lever.co/palantir/15844944-fb69-4b57-9531-e988650b20c6",
-      "change_date": "2026-06-29",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5168961007?gh_jid=5168961007",
+      "change_date": "2026-06-30",
       "age_days": 0,
-      "content_hash": "job:palantir:3d4088c3c79ab17e",
+      "content_hash": "job:andurilindustries:81274c60944f41c8",
       "needs_human_review": true,
       "triple": {
         "ticker": null,
@@ -1795,25 +1427,26 @@
         ]
       },
       "brief": {
-        "whats_new": "new job posting: Software Engineer, New Grad - Production Infrastructure",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "whats_new": "new job posting: Software Engineer",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
         "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
         "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
         "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
+      },
+      "ev": {}
     },
     {
       "source": "job_postings",
       "principal": "thiel",
-      "entity": "Palantir Technologies",
+      "entity": "Anduril Industries",
       "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Software Engineer, New Grad - Production Infrastructure",
-      "detail": "Software Engineer, New Grad - Production Infrastructure",
+      "headline": "Anduril Industries: new role \u2014 Software Engineer, Training Platform",
+      "detail": "Software Engineer, Training Platform",
       "cluster": "",
-      "url": "https://jobs.lever.co/palantir/4d5a144e-87ea-45e2-a68c-3fad590629af",
-      "change_date": "2026-06-29",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5175168007?gh_jid=5175168007",
+      "change_date": "2026-06-30",
       "age_days": 0,
-      "content_hash": "job:palantir:ae084f8a9eb40415",
+      "content_hash": "job:andurilindustries:e4c1ee2a4073763f",
       "needs_human_review": true,
       "triple": {
         "ticker": null,
@@ -1845,25 +1478,26 @@
         ]
       },
       "brief": {
-        "whats_new": "new job posting: Software Engineer, New Grad - Production Infrastructure",
-        "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "whats_new": "new job posting: Software Engineer, Training Platform",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
         "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
         "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
         "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
+      },
+      "ev": {}
     },
     {
       "source": "job_postings",
       "principal": "thiel",
-      "entity": "Palantir Technologies",
+      "entity": "Anduril Industries",
       "kind": "new_role",
-      "headline": "Palantir Technologies: new role \u2014 Software Engineer, New Grad - Production Infrastructure",
-      "detail": "Software Engineer, New Grad - Production Infrastructure",
+      "headline": "Anduril Industries: new role \u2014 Sr. Systems Integration & Test Engineer",
+      "detail": "Sr. Systems Integration & Test Engineer",
       "cluster": "",
-      "url": "https://jobs.lever.co/palantir/e1a6c138-98bf-45e2-97f7-2c70371cc38a",
-      "change_date": "2026-06-29",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176523007?gh_jid=5176523007",
+      "change_date": "2026-06-30",
       "age_days": 0,
-      "content_hash": "job:palantir:fce4baa683581a6d",
+      "content_hash": "job:andurilindustries:bdbe0c73e5451eec",
       "needs_human_review": true,
       "triple": {
         "ticker": null,
@@ -1895,54 +1529,463 @@
         ]
       },
       "brief": {
-        "whats_new": "new job posting: Software Engineer, New Grad - Production Infrastructure",
+        "whats_new": "new job posting: Sr. Systems Integration & Test Engineer",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Staff Global Sourcing Manager, Optics",
+      "detail": "Staff Global Sourcing Manager, Optics",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176339007?gh_jid=5176339007",
+      "change_date": "2026-06-30",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:4c0da5a1f0efc6f5",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Staff Global Sourcing Manager, Optics",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Staffing Operations Analyst",
+      "detail": "Staffing Operations Analyst",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5171330007?gh_jid=5171330007",
+      "change_date": "2026-06-30",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:cc61d76182a9fe9e",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Staffing Operations Analyst",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Staff Platform Engineer / Staff Site Reliability Engineer",
+      "detail": "Staff Platform Engineer / Staff Site Reliability Engineer",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176769007?gh_jid=5176769007",
+      "change_date": "2026-06-30",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:55eeb48f006a48b6",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Staff Platform Engineer / Staff Site Reliability Engineer",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Staff Software Engineer",
+      "detail": "Staff Software Engineer",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176538007?gh_jid=5176538007",
+      "change_date": "2026-06-30",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:857068b80d56f531",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Staff Software Engineer",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Technical Operations Specialist, Discovery",
+      "detail": "Technical Operations Specialist, Discovery",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5139198007?gh_jid=5139198007",
+      "change_date": "2026-06-30",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:63383b99044a2b8c",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Technical Operations Specialist, Discovery",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Test Engineer",
+      "detail": "Test Engineer",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5134497007?gh_jid=5134497007",
+      "change_date": "2026-06-30",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:d9671cf3cb0ed4e0",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Test Engineer",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 UAS Integration & Flight Controller Technician",
+      "detail": "UAS Integration & Flight Controller Technician",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5112902007?gh_jid=5112902007",
+      "change_date": "2026-06-30",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:041d8e4886568569",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: UAS Integration & Flight Controller Technician",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Palantir Technologies",
+      "kind": "new_role",
+      "headline": "Palantir Technologies: new role \u2014 Privacy and Civil Liberties Software Engineer, Internship",
+      "detail": "Privacy and Civil Liberties Software Engineer, Internship",
+      "cluster": "",
+      "url": "https://jobs.lever.co/palantir/09846827-b931-4a9f-bd64-c3bb8860187b",
+      "change_date": "2026-06-30",
+      "age_days": 0,
+      "content_hash": "job:palantir:08ff54d856d5943d",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Privacy and Civil Liberties Software Engineer, Internship",
         "why_relevant": "VORFELD change at Palantir Technologies, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
         "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
         "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
         "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      }
+      },
+      "ev": {}
     }
   ],
   "ranked_proxies": {
-    "defense_ai": [
+    "power_grid": [
       {
-        "ticker": "PLTR",
-        "cluster": "defense_ai",
+        "ticker": "VST",
+        "cluster": "power_grid",
         "order": 1,
         "link": 0.8,
-        "liquidity": 0.75,
-        "options_quality": 0.75,
-        "valuation": 0.3,
-        "edge_score": 7.03,
-        "options_live": true,
-        "rationale": "Defense/intel AI software; Thiel-native.",
-        "falsification": "US defense AI procurement budget cut OR a major PLTR contract loss/recompete."
-      },
-      {
-        "ticker": "PANW",
-        "cluster": "defense_ai",
-        "order": 3,
-        "link": 0.099,
-        "liquidity": 0.65,
-        "options_quality": 0.65,
+        "liquidity": 0.45,
+        "options_quality": 0.45,
         "valuation": 0.6,
-        "edge_score": 4.22,
+        "edge_score": 6.12,
         "options_live": true,
-        "rationale": "Security adjacency; diversified.",
-        "falsification": "US defense AI procurement budget cut OR a major PLTR contract loss/recompete."
+        "rationale": "IPP selling power to data centers.",
+        "falsification": "Data-center interconnection-queue MW declines two consecutive quarters, OR signed power PPAs cancelled."
       },
       {
-        "ticker": "CRWD",
-        "cluster": "defense_ai",
-        "order": 3,
-        "link": 0.099,
-        "liquidity": 0.35,
-        "options_quality": 0.35,
-        "valuation": 0.3,
-        "edge_score": 2.42,
+        "ticker": "CEG",
+        "cluster": "power_grid",
+        "order": 1,
+        "link": 0.8,
+        "liquidity": 0.45,
+        "options_quality": 0.45,
+        "valuation": 0.6,
+        "edge_score": 6.12,
         "options_live": true,
-        "rationale": "Security adjacency; diversified.",
-        "falsification": "US defense AI procurement budget cut OR a major PLTR contract loss/recompete."
+        "rationale": "Largest US nuclear fleet; clean baseload PPAs.",
+        "falsification": "Data-center interconnection-queue MW declines two consecutive quarters, OR signed power PPAs cancelled."
+      },
+      {
+        "ticker": "NRG",
+        "cluster": "power_grid",
+        "order": 2,
+        "link": 0.363,
+        "liquidity": 0.45,
+        "options_quality": 0.45,
+        "valuation": 1.0,
+        "edge_score": 4.98,
+        "options_live": true,
+        "rationale": "Retail/generation; data-center exposure.",
+        "falsification": "Data-center interconnection-queue MW declines two consecutive quarters, OR signed power PPAs cancelled."
       }
     ]
   }

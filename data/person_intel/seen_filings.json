@@ -1,5 +1,5 @@
 {
-  "count": 48,
+  "count": 86,
   "seen": {
     "0001794988-26-000004": {
       "cik": "0001794988",
@@ -13,9 +13,59 @@
       "first_seen": "2026-06-29",
       "kind": "domain_watch"
     },
+    "job:andurilindustries:0177145866522f64": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:041d8e4886568569": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
     "job:andurilindustries:0affb8c25559cae5": {
       "entity": "Anduril Industries",
       "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:0d487ea510c1561a": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:2a18987580c03038": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:414fa3449bef912d": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:471d459cfd2aa5df": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:49a41e212632d9dd": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:4c0da5a1f0efc6f5": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:5152c43c68f07147": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:55eeb48f006a48b6": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
       "kind": "job_postings"
     },
     "job:andurilindustries:61d1ed493d74652f": {
@@ -23,9 +73,29 @@
       "first_seen": "2026-06-29",
       "kind": "job_postings"
     },
+    "job:andurilindustries:63383b99044a2b8c": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:66b3febe3be1abc5": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:67c8b632cd3e0e6f": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
     "job:andurilindustries:78ac313233abaca0": {
       "entity": "Anduril Industries",
       "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:791c3fa374e91639": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
       "kind": "job_postings"
     },
     "job:andurilindustries:7a3388247e1a2044": {
@@ -33,9 +103,74 @@
       "first_seen": "2026-06-29",
       "kind": "job_postings"
     },
+    "job:andurilindustries:7e7fc38c96c13b09": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:81274c60944f41c8": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:83ed8329fe100d28": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:857068b80d56f531": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:8bf2b4d5e5f34361": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:91ff530ead88cd95": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:9539720be53f38d8": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
     "job:andurilindustries:954c8ddc65059b6b": {
       "entity": "Anduril Industries",
       "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:9990544dce11c103": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:a6a2202c940f8b53": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:bdbe0c73e5451eec": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:c6743391be7961c2": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:cb9ce99d33b62229": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:cc61d76182a9fe9e": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
       "kind": "job_postings"
     },
     "job:andurilindustries:d832c3f0efad41e4": {
@@ -43,9 +178,39 @@
       "first_seen": "2026-06-29",
       "kind": "job_postings"
     },
+    "job:andurilindustries:d8a3baf78c22e26c": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:d9671cf3cb0ed4e0": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
     "job:andurilindustries:de2c6c5d68a64559": {
       "entity": "Anduril Industries",
       "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:e1d8d70deca8c240": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:e4c1ee2a4073763f": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:ebea34cc3f180f4c": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:eee91f7b29cbf7b7": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
       "kind": "job_postings"
     },
     "job:andurilindustries:f0323135d0a46f7d": {
@@ -53,9 +218,29 @@
       "first_seen": "2026-06-29",
       "kind": "job_postings"
     },
+    "job:andurilindustries:f25736a25088ef59": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:f93d1d96e3c2b901": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
     "job:andurilindustries:fa254bcb95385dd3": {
       "entity": "Anduril Industries",
       "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:fafb7931f5dfba15": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:fb286e419229a056": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
       "kind": "job_postings"
     },
     "job:palantir:06c036382cc59d7a": {
@@ -66,6 +251,11 @@
     "job:palantir:08004e72962a6859": {
       "entity": "Palantir Technologies",
       "first_seen": "2026-06-29",
+      "kind": "job_postings"
+    },
+    "job:palantir:08ff54d856d5943d": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-06-30",
       "kind": "job_postings"
     },
     "job:palantir:13c42782bd148bc2": {
@@ -260,5 +450,5 @@
       "speaker": "Leopold Aschenbrenner"
     }
   },
-  "updated_at": "2026-06-29T16:51:52.277484+00:00"
+  "updated_at": "2026-06-30T08:51:46.526165+00:00"
 }
