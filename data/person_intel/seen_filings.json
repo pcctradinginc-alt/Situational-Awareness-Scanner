@@ -1,5 +1,5 @@
 {
-  "count": 86,
+  "count": 92,
   "seen": {
     "0001794988-26-000004": {
       "cik": "0001794988",
@@ -19,6 +19,11 @@
       "kind": "job_postings"
     },
     "job:andurilindustries:041d8e4886568569": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:08ed83e88395cd7e": {
       "entity": "Anduril Industries",
       "first_seen": "2026-06-30",
       "kind": "job_postings"
@@ -58,12 +63,22 @@
       "first_seen": "2026-06-30",
       "kind": "job_postings"
     },
+    "job:andurilindustries:4d60a18632ee930f": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
     "job:andurilindustries:5152c43c68f07147": {
       "entity": "Anduril Industries",
       "first_seen": "2026-06-30",
       "kind": "job_postings"
     },
     "job:andurilindustries:55eeb48f006a48b6": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:5b9fd1008d4b2bcb": {
       "entity": "Anduril Industries",
       "first_seen": "2026-06-30",
       "kind": "job_postings"
@@ -128,6 +143,11 @@
       "first_seen": "2026-06-30",
       "kind": "job_postings"
     },
+    "job:andurilindustries:8f7626c8109a2c9f": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
     "job:andurilindustries:91ff530ead88cd95": {
       "entity": "Anduril Industries",
       "first_seen": "2026-06-30",
@@ -144,6 +164,11 @@
       "kind": "job_postings"
     },
     "job:andurilindustries:9990544dce11c103": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:a0b553e0be4442ed": {
       "entity": "Anduril Industries",
       "first_seen": "2026-06-30",
       "kind": "job_postings"
@@ -219,6 +244,11 @@
       "kind": "job_postings"
     },
     "job:andurilindustries:f25736a25088ef59": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:f27655916c8af1ed": {
       "entity": "Anduril Industries",
       "first_seen": "2026-06-30",
       "kind": "job_postings"
@@ -450,5 +480,5 @@
       "speaker": "Leopold Aschenbrenner"
     }
   },
-  "updated_at": "2026-06-30T08:51:46.526165+00:00"
+  "updated_at": "2026-06-30T16:20:30.153004+00:00"
 }
