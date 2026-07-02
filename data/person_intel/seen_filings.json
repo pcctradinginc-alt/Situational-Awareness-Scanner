@@ -1,5 +1,5 @@
 {
-  "count": 93,
+  "count": 94,
   "seen": {
     "0001794988-26-000004": {
       "cik": "0001794988",
@@ -353,6 +353,11 @@
       "first_seen": "2026-06-29",
       "kind": "job_postings"
     },
+    "job:palantir:832903d3ab858b74": {
+      "entity": "Palantir Technologies",
+      "first_seen": "2026-07-02",
+      "kind": "job_postings"
+    },
     "job:palantir:96af22d8fd114052": {
       "entity": "Palantir Technologies",
       "first_seen": "2026-06-29",
@@ -485,5 +490,5 @@
       "speaker": "Leopold Aschenbrenner"
     }
   },
-  "updated_at": "2026-07-01T09:25:39.849033+00:00"
+  "updated_at": "2026-07-02T08:37:52.226175+00:00"
 }
