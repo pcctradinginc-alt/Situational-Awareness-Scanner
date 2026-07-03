@@ -18,6 +18,18 @@ def test_record_many_counts(tmp_path):
     assert n == 2
 
 
+def test_record_many_is_idempotent_per_day(tmp_path):
+    # a twice-daily workflow must yield exactly ONE observation per ticker/day,
+    # otherwise the IV rank double-counts calm days.
+    from datetime import date
+    s = IVHistoryStore(tmp_path / "iv.jsonl")
+    d1, d2 = date(2026, 7, 3), date(2026, 7, 4)
+    assert s.record_many({"NVDA": 0.4, "MU": 0.6}, as_of=d1) == 2
+    assert s.record_many({"NVDA": 0.41, "MU": 0.61}, as_of=d1) == 0  # same day
+    assert s.record_many({"NVDA": 0.42}, as_of=d2) == 1              # next day
+    assert s.history("NVDA") == [0.4, 0.42]
+
+
 def test_rank_warmup_then_computed(tmp_path):
     s = IVHistoryStore(tmp_path / "iv.jsonl")
     for v in [0.30 + 0.01 * i for i in range(25)]:

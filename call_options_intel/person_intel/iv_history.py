@@ -44,7 +44,12 @@ class IVHistoryStore:
 
     def record_many(self, iv_by_ticker: dict[str, float],
                     as_of: Optional[date] = None) -> int:
-        return sum(1 for t, iv in iv_by_ticker.items() if self.record(t, iv, as_of))
+        """Record at most ONE observation per (date, ticker) — repeated runs on
+        the same day (e.g. a twice-daily workflow) must not skew the IV rank."""
+        d = (as_of or date.today()).isoformat()
+        seen = {(r.get("date"), r.get("ticker")) for r in self.load()}
+        return sum(1 for t, iv in iv_by_ticker.items()
+                   if (d, t.upper()) not in seen and self.record(t, iv, as_of))
 
     def load(self) -> list[dict]:
         if not self.path.exists():
