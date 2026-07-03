@@ -1,12 +1,78 @@
 {
-  "run_at": "2026-07-03T19:00:26.329597+00:00",
+  "run_at": "2026-07-03T19:10:40.062657+00:00",
   "mode": "live",
-  "new_count": 0,
+  "new_count": 1,
   "statement_count": 0,
   "vorfeld_count": 0,
-  "total_new": 0,
-  "principal_count": 0,
-  "alerts": [],
+  "total_new": 1,
+  "principal_count": 1,
+  "alerts": [
+    {
+      "entity": "Situational Awareness LP",
+      "entity_id": "sa_lp",
+      "cik": "0002045724",
+      "filing_type": "Form 4",
+      "form_raw": "4",
+      "role": "early",
+      "category": "Insider transaction (Form 4)",
+      "signal_kind": "insider_trade",
+      "filing_date": "2026-07-02",
+      "age_days": 1,
+      "accession": "0000935836-26-000339",
+      "url": "https://www.sec.gov/Archives/edgar/data/2045724/000093583626000339/xslF345X06/ownership.xml",
+      "principal": "aschenbrenner",
+      "path_weight": 1.0,
+      "link_confidence": "principal",
+      "subject_ticker": "SHAZ",
+      "subject_issuer": "SharonAI Holdings Inc.",
+      "subject_confidence": 0.95,
+      "needs_human_review": false,
+      "is_private": false,
+      "is_fact": true,
+      "headline": "Situational Awareness LP: Insider transaction (Form 4) \u2192 SHAZ",
+      "why_it_matters": "EARLY signal (days-fast); filer is a confirmed vehicle of Leopold Aschenbrenner (path 1.00). Insider transactions are the fastest, highest-conviction person-signal.",
+      "falsification": "",
+      "position_changes": [],
+      "triple": {
+        "ticker": "SHAZ",
+        "person_signal": {
+          "value": 10.0,
+          "reason": "path-directness 1.00; verified; primary source +1"
+        },
+        "freshness": {
+          "value": 8.57,
+          "reason": "early filing (lead 9), age 1d \u2192 recency \u00d70.95"
+        },
+        "tradeability": {
+          "value": 4.5,
+          "reason": "market-timing 7.5; options 1.5"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak tradeability",
+          "person_signal: path-directness 1.00; verified; primary source +1",
+          "freshness: early filing (lead 9), age 1d \u2192 recency \u00d70.95",
+          "tradeability: market-timing 7.5; options 1.5"
+        ]
+      },
+      "brief": {
+        "whats_new": "Insider transaction (Form 4) \u2192 SHAZ",
+        "why_relevant": "DIRECT: Leopold Aschenbrenner (or a wholly-controlled vehicle) is the filer (path 1.00)",
+        "why_early": "EARLY: direct EDGAR event (Form 4), days-fast \u2014 ahead of the quarterly 13F \u00b7 freshness 8.6/10, 1d old",
+        "best_proxy": "SHAZ: stock or a debit call-SPREAD \u00b7 ~105 strike \u00b7 140d \u00b7 prem ~9.05 \u00b7 IV 111%",
+        "why_not_now": "GATE NOT PASSED; IV rich (~111%) \u2014 long premium vulnerable to vega/crush; bid/ask spread wide (39%) \u2014 poor fill; always check the earnings calendar before buying premium"
+      },
+      "ev": {},
+      "discovered_via": "cik_feed",
+      "is_new_entity": false,
+      "matched_term": ""
+    }
+  ],
   "statements": [],
   "vorfeld": [],
   "ranked_proxies": {}
