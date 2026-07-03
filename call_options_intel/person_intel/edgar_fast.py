@@ -149,6 +149,29 @@ def extract_issuer(text: str) -> Optional[str]:
     return m.group(1).strip() if m else None
 
 
+# Form 4 ownership XML names its subject FIRST-PARTY: <issuerName> and
+# <issuerTradingSymbol> are asserted by the filer inside the SEC document —
+# reading them is sourcing, not guessing. Placeholder symbols ("NONE", "N/A")
+# mean the issuer is unlisted and must stay needs_human_review.
+_F4_SYMBOL_RE = re.compile(
+    r"<issuerTradingSymbol>\s*([A-Za-z][A-Za-z.\-]{0,9})\s*</issuerTradingSymbol>")
+_F4_NAME_RE = re.compile(r"<issuerName>\s*([^<]{1,120}?)\s*</issuerName>")
+_F4_PLACEHOLDER_SYMBOLS = {"NONE", "N/A", "NA", "FALSE", "TRUE"}
+
+
+def extract_form4_issuer(text: str) -> tuple[Optional[str], Optional[str]]:
+    """(trading_symbol, issuer_name) from Form 3/4/5 ownership XML, else Nones."""
+    if not text:
+        return None, None
+    name_m = _F4_NAME_RE.search(text)
+    name = name_m.group(1).strip() if name_m else None
+    sym_m = _F4_SYMBOL_RE.search(text)
+    sym = sym_m.group(1).strip().upper() if sym_m else None
+    if sym in _F4_PLACEHOLDER_SYMBOLS:
+        sym = None
+    return sym, name
+
+
 class EdgarFastClient:
     def __init__(self, user_agent: str = "", fetcher: Optional[Fetcher] = None,
                  base_url: str = "https://data.sec.gov"):
@@ -218,6 +241,28 @@ class EdgarFastClient:
                 ref=ref, subject_issuer=issuer, cusip=None, mapped_ticker=None,
                 mapping_confidence=0.0, needs_human_review=True,
                 detail="private placement — no public ticker (issuer is the offeror)")
+
+        if ref.filing_type is FilingType.FORM_4:
+            sym, issuer_name = extract_form4_issuer(text)
+            if not sym and doc_text is None and "/xsl" in (ref.url or ""):
+                # the submissions API often lists the XSL-styled view as the
+                # primary document; the raw ownership XML lives one level up
+                raw = self.fetcher.get(re.sub(r"/xsl[^/]+/", "/", ref.url)) or ""
+                sym, issuer_name = extract_form4_issuer(raw)
+            if sym:
+                return ResolvedFiling(
+                    ref=ref, subject_issuer=issuer_name, cusip=None,
+                    mapped_ticker=sym, mapping_confidence=0.95,
+                    needs_human_review=False,
+                    detail="Form 4 subject via issuerTradingSymbol "
+                           "(first-party SEC tag in the ownership XML)")
+            if issuer_name:
+                return ResolvedFiling(
+                    ref=ref, subject_issuer=issuer_name, cusip=None,
+                    mapped_ticker=None, mapping_confidence=0.0,
+                    needs_human_review=True,
+                    detail="Form 4 issuer named but no listed trading symbol "
+                           "— likely unlisted; verify manually")
 
         cusip = extract_cusip(text)
         issuer = extract_issuer(text)
