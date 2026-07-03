@@ -1,13 +1,2644 @@
 {
-  "run_at": "2026-07-02T16:02:46.963006+00:00",
+  "run_at": "2026-07-03T08:43:46.330055+00:00",
   "mode": "live",
-  "new_count": 0,
+  "new_count": 1,
   "statement_count": 0,
-  "vorfeld_count": 0,
-  "total_new": 0,
-  "principal_count": 0,
-  "alerts": [],
+  "vorfeld_count": 49,
+  "total_new": 50,
+  "principal_count": 1,
+  "alerts": [
+    {
+      "entity": "Situational Awareness LP",
+      "entity_id": "sa_lp",
+      "cik": "0002045724",
+      "filing_type": "Form 4",
+      "form_raw": "4",
+      "role": "early",
+      "category": "Insider transaction (Form 4)",
+      "signal_kind": "insider_trade",
+      "filing_date": "2026-07-02",
+      "age_days": 1,
+      "accession": "0000935836-26-000339",
+      "url": "https://www.sec.gov/Archives/edgar/data/2045724/000093583626000339/xslF345X06/ownership.xml",
+      "principal": "aschenbrenner",
+      "path_weight": 1.0,
+      "link_confidence": "principal",
+      "subject_ticker": null,
+      "subject_issuer": null,
+      "subject_confidence": 0.0,
+      "needs_human_review": true,
+      "is_private": false,
+      "is_fact": true,
+      "headline": "Situational Awareness LP: Insider transaction (Form 4) \u2192 subject pending review",
+      "why_it_matters": "EARLY signal (days-fast); filer is a confirmed vehicle of Leopold Aschenbrenner (path 1.00). Insider transactions are the fastest, highest-conviction person-signal.",
+      "falsification": "",
+      "position_changes": [],
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 7.0,
+          "reason": "path-directness 1.00; unverified \u00d70.6; primary source +1"
+        },
+        "freshness": {
+          "value": 8.57,
+          "reason": "early filing (lead 9), age 1d \u2192 recency \u00d70.95"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak tradeability",
+          "person_signal: path-directness 1.00; unverified \u00d70.6; primary source +1",
+          "freshness: early filing (lead 9), age 1d \u2192 recency \u00d70.95",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "Insider transaction (Form 4) \u2192 subject pending",
+        "why_relevant": "DIRECT: Leopold Aschenbrenner (or a wholly-controlled vehicle) is the filer (path 1.00)",
+        "why_early": "EARLY: direct EDGAR event (Form 4), days-fast \u2014 ahead of the quarterly 13F \u00b7 freshness 8.6/10, 1d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {},
+      "discovered_via": "cik_feed",
+      "is_new_entity": false,
+      "matched_term": ""
+    }
+  ],
   "statements": [],
-  "vorfeld": [],
-  "ranked_proxies": {}
+  "vorfeld": [
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 2026 Early Career Manufacturing Engineer",
+      "detail": "2026 Early Career Manufacturing Engineer",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176254007?gh_jid=5176254007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:c0f0d9f655771dd2",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: 2026 Early Career Manufacturing Engineer",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Analytics Engineer, Test & Evaluation",
+      "detail": "Analytics Engineer, Test & Evaluation",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/4768437007?gh_jid=4768437007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:90492dc22fb957a9",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Analytics Engineer, Test & Evaluation",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Buyer",
+      "detail": "Buyer",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5163565007?gh_jid=5163565007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:90f102f9c7de5eaa",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Buyer",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Digital Hardware Engineering Lead",
+      "detail": "Digital Hardware Engineering Lead",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5179756007?gh_jid=5179756007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:bd735641cb9b5db7",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Digital Hardware Engineering Lead",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Electrical Hardware Engineer",
+      "detail": "Electrical Hardware Engineer",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5179537007?gh_jid=5179537007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:e81931384691aa9a",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Electrical Hardware Engineer",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Integration and Test Engineer",
+      "detail": "Integration and Test Engineer",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5179798007?gh_jid=5179798007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:031359a5d7d6b143",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Integration and Test Engineer",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Integration and Test Engineer",
+      "detail": "Integration and Test Engineer",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5179794007?gh_jid=5179794007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:730da68e99fec721",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Integration and Test Engineer",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Lead Manufacturing Engineer, Avionics",
+      "detail": "Lead Manufacturing Engineer, Avionics",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5175826007?gh_jid=5175826007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:c1593bbf9023d2bc",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Lead Manufacturing Engineer, Avionics",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Manufacturing Test Technician, Dive-XL",
+      "detail": "Manufacturing Test Technician, Dive-XL",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5174179007?gh_jid=5174179007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:171ffba09c94350f",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Manufacturing Test Technician, Dive-XL",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Mechanical Designer",
+      "detail": "Mechanical Designer",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5179540007?gh_jid=5179540007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:72cd7a0bf16d13d5",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Mechanical Designer",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Micro-electronics Technician",
+      "detail": "Micro-electronics Technician",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5178971007?gh_jid=5178971007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:598096380f0a3e6a",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Micro-electronics Technician",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 PCB Design Engineer, Air Dominance and Strike",
+      "detail": "PCB Design Engineer, Air Dominance and Strike",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5179593007?gh_jid=5179593007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:be7ac49092a6ebeb",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: PCB Design Engineer, Air Dominance and Strike",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Production Scheduler",
+      "detail": "Production Scheduler",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5135863007?gh_jid=5135863007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:2bf1bfcf9c1f191a",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Production Scheduler",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Product Manager, Semantic Layer",
+      "detail": "Product Manager, Semantic Layer",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5178177007?gh_jid=5178177007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:33d63013fdc4377d",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Product Manager, Semantic Layer",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Quality Specialist",
+      "detail": "Quality Specialist",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5175305007?gh_jid=5175305007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:41069508720722b5",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Quality Specialist",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Research Scientist",
+      "detail": "Research Scientist",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5179749007?gh_jid=5179749007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:a7d3f40cfc29f391",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Research Scientist",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Robotics Software Engineer",
+      "detail": "Robotics Software Engineer",
+      "cluster": "automation",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5179580007?gh_jid=5179580007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:3b8cacb68c6a53c9",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": "TER",
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 6.25,
+          "reason": "market-timing 10.0; options 2.5"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: market-timing 10.0; options 2.5"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Robotics Software Engineer",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "best public proxy \u00abautomation\u00bb: PLTR (edge 5.3, opt/live) \u00b7 alts TER \u00b7 ETF: BOTZ / ROBO (robotics)",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Robotics Software Engineer",
+      "detail": "Robotics Software Engineer",
+      "cluster": "automation",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5136146007?gh_jid=5136146007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:570d6fd78b78f512",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": "TER",
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 6.25,
+          "reason": "market-timing 10.0; options 2.5"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: market-timing 10.0; options 2.5"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Robotics Software Engineer",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "best public proxy \u00abautomation\u00bb: PLTR (edge 5.3, opt/live) \u00b7 alts TER \u00b7 ETF: BOTZ / ROBO (robotics)",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Senior Advanced Research Scientist",
+      "detail": "Senior Advanced Research Scientist",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5179750007?gh_jid=5179750007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:de337b51f995ff3b",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Senior Advanced Research Scientist",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Senior BOM Sourcing Engineer",
+      "detail": "Senior BOM Sourcing Engineer",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5179194007?gh_jid=5179194007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:215590b9b775b94f",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Senior BOM Sourcing Engineer",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Senior Deployed Software Engineer",
+      "detail": "Senior Deployed Software Engineer",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5178989007?gh_jid=5178989007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:a85ecbad530ffa46",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Senior Deployed Software Engineer",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Senior Director, Business Development, Precision Engagement Systems",
+      "detail": "Senior Director, Business Development, Precision Engagement Systems",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5170863007?gh_jid=5170863007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:b52cd330cbe6b085",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Senior Director, Business Development, Precision Engagement Systems",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Senior Electrical Engineer, Circuit Design",
+      "detail": "Senior Electrical Engineer, Circuit Design",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5179260007?gh_jid=5179260007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:42798688a5b82c65",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Senior Electrical Engineer, Circuit Design",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Senior Mission Software Engineer",
+      "detail": "Senior Mission Software Engineer",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5178985007?gh_jid=5178985007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:e62191e744a8525c",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Senior Mission Software Engineer",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Senior Mission Software Engineer - Maneuver Dominance",
+      "detail": "Senior Mission Software Engineer - Maneuver Dominance",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5050728007?gh_jid=5050728007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:b160bb4843e3ae4e",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Senior Mission Software Engineer - Maneuver Dominance",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Senior Procurement Engineer, Supply Chain",
+      "detail": "Senior Procurement Engineer, Supply Chain",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5179198007?gh_jid=5179198007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:c363d48bfe1c267e",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Senior Procurement Engineer, Supply Chain",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Senior Robotics Software Engineer, Payload Integration",
+      "detail": "Senior Robotics Software Engineer, Payload Integration",
+      "cluster": "automation",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5175329007?gh_jid=5175329007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:d4bf1336e928d4c6",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": "TER",
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 6.25,
+          "reason": "market-timing 10.0; options 2.5"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: market-timing 10.0; options 2.5"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Senior Robotics Software Engineer, Payload Integration",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "best public proxy \u00abautomation\u00bb: PLTR (edge 5.3, opt/live) \u00b7 alts TER \u00b7 ETF: BOTZ / ROBO (robotics)",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Senior Software Engineer, Cryptography",
+      "detail": "Senior Software Engineer, Cryptography",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5179636007?gh_jid=5179636007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:285c0ad34df7a1dd",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Senior Software Engineer, Cryptography",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Senior Software Engineer, Radar",
+      "detail": "Senior Software Engineer, Radar",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5179751007?gh_jid=5179751007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:cbde67ad1d9deaea",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Senior Software Engineer, Radar",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Senior Technical Program Manager, Lattice Compatibility",
+      "detail": "Senior Technical Program Manager, Lattice Compatibility",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5041965007?gh_jid=5041965007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:ba863fe7fc367453",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Senior Technical Program Manager, Lattice Compatibility",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Senior Technical Sourcer, Hardware (Contract)",
+      "detail": "Senior Technical Sourcer, Hardware (Contract)",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5179169007?gh_jid=5179169007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:2c47367d3aba95a1",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Senior Technical Sourcer, Hardware (Contract)",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Senior Technical Sourcer, Hardware (Contract)",
+      "detail": "Senior Technical Sourcer, Hardware (Contract)",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5179170007?gh_jid=5179170007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:0c88a10416486644",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Senior Technical Sourcer, Hardware (Contract)",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Senior Technical Sourcer, Hardware (Contract)",
+      "detail": "Senior Technical Sourcer, Hardware (Contract)",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5179171007?gh_jid=5179171007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:9e21b9120913fd9d",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Senior Technical Sourcer, Hardware (Contract)",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Senior Technical Sourcer, Hardware (Contract)",
+      "detail": "Senior Technical Sourcer, Hardware (Contract)",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5179175007?gh_jid=5179175007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:90e8f19c248bc93b",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Senior Technical Sourcer, Hardware (Contract)",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Senior Technical Sourcer, Hardware (Contract)",
+      "detail": "Senior Technical Sourcer, Hardware (Contract)",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5179177007?gh_jid=5179177007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:71ee54bfb4e77681",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Senior Technical Sourcer, Hardware (Contract)",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Senior Test & Evaluation Engineer, Titan",
+      "detail": "Senior Test & Evaluation Engineer, Titan",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5109708007?gh_jid=5109708007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:f325365ec218b74d",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Senior Test & Evaluation Engineer, Titan",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Senior Test Pilot",
+      "detail": "Senior Test Pilot",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5176673007?gh_jid=5176673007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:1ef5e3a58747e94c",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Senior Test Pilot",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Software Engineer, Game Development",
+      "detail": "Software Engineer, Game Development",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5178957007?gh_jid=5178957007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:b78fdc896ba70835",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Software Engineer, Game Development",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Staff Robotics Software Engineer",
+      "detail": "Staff Robotics Software Engineer",
+      "cluster": "automation",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5179585007?gh_jid=5179585007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:0c8c4225a033f235",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": "TER",
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 6.25,
+          "reason": "market-timing 10.0; options 2.5"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: market-timing 10.0; options 2.5"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Staff Robotics Software Engineer",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "best public proxy \u00abautomation\u00bb: PLTR (edge 5.3, opt/live) \u00b7 alts TER \u00b7 ETF: BOTZ / ROBO (robotics)",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Staff Software Engineer, Cryptography",
+      "detail": "Staff Software Engineer, Cryptography",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5179641007?gh_jid=5179641007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:164d42e42827c716",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Staff Software Engineer, Cryptography",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 System Administrator (Active Clearance), Intelligence Systems",
+      "detail": "System Administrator (Active Clearance), Intelligence Systems",
+      "cluster": "defense_ai",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5178011007?gh_jid=5178011007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:500b88f31e6ba4c0",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": "PLTR",
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 6.25,
+          "reason": "market-timing 3.5; options 9.0"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: market-timing 3.5; options 9.0"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: System Administrator (Active Clearance), Intelligence Systems",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "best public proxy \u00abdefense_ai\u00bb: PLTR (edge 7.7, opt/live) \u00b7 alts PANW, CRWD \u00b7 ETF: ITA (defense)",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Technical Recruiter, Contract",
+      "detail": "Technical Recruiter, Contract",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/4971311007?gh_jid=4971311007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:0d974964939e5905",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Technical Recruiter, Contract",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Technical Recruiter, Contract",
+      "detail": "Technical Recruiter, Contract",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/4969379007?gh_jid=4969379007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:befa6255b56d736b",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Technical Recruiter, Contract",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Technical Recruiter, Production (Contract)",
+      "detail": "Technical Recruiter, Production (Contract)",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5179634007?gh_jid=5179634007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:fd8820d5fa18d240",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Technical Recruiter, Production (Contract)",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Technical Recruiter, Production (Contract)",
+      "detail": "Technical Recruiter, Production (Contract)",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5179632007?gh_jid=5179632007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:51cfd18de59e6107",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Technical Recruiter, Production (Contract)",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Technical Recruiter, Production (Contract)",
+      "detail": "Technical Recruiter, Production (Contract)",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5179178007?gh_jid=5179178007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:087e9399af2a3f6a",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Technical Recruiter, Production (Contract)",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Technical Recruiter, Production (Contract)",
+      "detail": "Technical Recruiter, Production (Contract)",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5179635007?gh_jid=5179635007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:f314c12e9e122942",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Technical Recruiter, Production (Contract)",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Technical Recruiter, Production (Contract)",
+      "detail": "Technical Recruiter, Production (Contract)",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5179637007?gh_jid=5179637007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:e96edad993d62124",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Technical Recruiter, Production (Contract)",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    },
+    {
+      "source": "job_postings",
+      "principal": "thiel",
+      "entity": "Anduril Industries",
+      "kind": "new_role",
+      "headline": "Anduril Industries: new role \u2014 Wire bonding Technician",
+      "detail": "Wire bonding Technician",
+      "cluster": "",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5178968007?gh_jid=5178968007",
+      "change_date": "2026-07-03",
+      "age_days": 0,
+      "content_hash": "job:andurilindustries:08e4e11062bc3b3d",
+      "needs_human_review": true,
+      "triple": {
+        "ticker": null,
+        "person_signal": {
+          "value": 2.4,
+          "reason": "path-directness 0.40; unverified \u00d70.6"
+        },
+        "freshness": {
+          "value": 4.0,
+          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
+        },
+        "tradeability": {
+          "value": 0.0,
+          "reason": "no resolved public ticker \u2014 not tradeable yet"
+        },
+        "gate_pass": false,
+        "failing_axes": [
+          "person_signal",
+          "freshness",
+          "tradeability"
+        ],
+        "final_trade_score": 0.0,
+        "label": "NO-TRADE",
+        "reasons": [
+          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
+          "person_signal: path-directness 0.40; unverified \u00d70.6",
+          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
+          "tradeability: no resolved public ticker \u2014 not tradeable yet"
+        ]
+      },
+      "brief": {
+        "whats_new": "new job posting: Wire bonding Technician",
+        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
+        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
+        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
+        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
+      },
+      "ev": {}
+    }
+  ],
+  "ranked_proxies": {
+    "automation": [
+      {
+        "ticker": "PLTR",
+        "cluster": "automation",
+        "order": 2,
+        "link": 0.198,
+        "liquidity": 0.9,
+        "options_quality": 0.9,
+        "valuation": 0.3,
+        "edge_score": 5.29,
+        "options_live": true,
+        "rationale": "Autonomy/ops software adjacency.",
+        "falsification": "Humanoid/industrial-automation order growth stalls; capex deferred."
+      },
+      {
+        "ticker": "TER",
+        "cluster": "automation",
+        "order": 1,
+        "link": 0.55,
+        "liquidity": 0.25,
+        "options_quality": 0.25,
+        "valuation": 0.6,
+        "edge_score": 4.22,
+        "options_live": true,
+        "rationale": "Test + industrial automation/robotics.",
+        "falsification": "Humanoid/industrial-automation order growth stalls; capex deferred."
+      }
+    ],
+    "defense_ai": [
+      {
+        "ticker": "PLTR",
+        "cluster": "defense_ai",
+        "order": 1,
+        "link": 0.8,
+        "liquidity": 0.9,
+        "options_quality": 0.9,
+        "valuation": 0.3,
+        "edge_score": 7.7,
+        "options_live": true,
+        "rationale": "Defense/intel AI software; Thiel-native.",
+        "falsification": "US defense AI procurement budget cut OR a major PLTR contract loss/recompete."
+      },
+      {
+        "ticker": "PANW",
+        "cluster": "defense_ai",
+        "order": 3,
+        "link": 0.099,
+        "liquidity": 0.55,
+        "options_quality": 0.55,
+        "valuation": 0.6,
+        "edge_score": 3.77,
+        "options_live": true,
+        "rationale": "Security adjacency; diversified.",
+        "falsification": "US defense AI procurement budget cut OR a major PLTR contract loss/recompete."
+      },
+      {
+        "ticker": "CRWD",
+        "cluster": "defense_ai",
+        "order": 3,
+        "link": 0.099,
+        "liquidity": 0.25,
+        "options_quality": 0.25,
+        "valuation": 0.3,
+        "edge_score": 1.97,
+        "options_live": true,
+        "rationale": "Security adjacency; diversified.",
+        "falsification": "US defense AI procurement budget cut OR a major PLTR contract loss/recompete."
+      }
+    ]
+  }
 }
