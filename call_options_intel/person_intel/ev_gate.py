@@ -167,6 +167,12 @@ class EvGateConfig:
     dte_min: int = 30
     dte_max: int = 200
     require_iv_history: bool = True
+    # pre-warmup fallback: while the IV store is still warming (<20 obs) judge
+    # richness via the CONSERVATIVE realised-vol proxy (IV/RV ratio) instead of
+    # hard-blocking outright — the same transparent proxy the scoring layer uses
+    # pre-warmup. OFF by default; production opts in via risk_thresholds.yml.
+    allow_rv_proxy_prewarmup: bool = False
+    prewarmup_max_iv_over_rv: float = 1.30
     block_earnings_in_window: bool = True
 
     @classmethod
@@ -195,6 +201,10 @@ class EvGateConfig:
             dte_min=int(dte.get("min", d.dte_min)),
             dte_max=int(dte.get("max", d.dte_max)),
             require_iv_history=bool(ev.get("require_iv_history", d.require_iv_history)),
+            allow_rv_proxy_prewarmup=bool(
+                ev.get("allow_rv_proxy_prewarmup", d.allow_rv_proxy_prewarmup)),
+            prewarmup_max_iv_over_rv=float(
+                ev.get("prewarmup_max_iv_over_rv", d.prewarmup_max_iv_over_rv)),
             block_earnings_in_window=bool(
                 ev.get("block_earnings_in_window", d.block_earnings_in_window)))
 
@@ -269,8 +279,22 @@ class EvGate:
         if dte is not None and (dte < c.dte_min or dte > c.dte_max):
             fails.append(f"DTE {dte} outside tradeable window "
                          f"[{c.dte_min}, {c.dte_max}]")
+        richness_note = ""
         if c.require_iv_history and iv_rank is None:
-            fails.append("no IV history — IV-rank unknown, cannot judge richness")
+            hv = snapshot.get("hist_vol")
+            if c.allow_rv_proxy_prewarmup and iv and hv:
+                ratio = float(iv) / float(hv)
+                if ratio > c.prewarmup_max_iv_over_rv:
+                    fails.append(
+                        f"IV {ratio:.2f}× realised vol > "
+                        f"{c.prewarmup_max_iv_over_rv:.2f}× (pre-warmup proxy) — "
+                        f"long premium too rich")
+                else:
+                    richness_note = (f"richness basis: realised-vol PROXY "
+                                     f"(IV {ratio:.2f}× RV, IV store still "
+                                     f"warming — less precise than IV-rank)")
+            else:
+                fails.append("no IV history — IV-rank unknown, cannot judge richness")
         if c.block_earnings_in_window and earnings_in_dte:
             fails.append("earnings inside holding window — IV-event, not a clean trade")
 
@@ -294,9 +318,9 @@ class EvGate:
                  f"(win {ev.win_rate:.0%}, drift {drift:+.0%}/yr) — no positive "
                  f"expectancy; do not size"],
                 ["negative_ev"], ev)
-        return EvDecision(
-            True,
-            [f"EV {ev.ev_pct:+.1%} > min {c.ev_min:+.1%} (win {ev.win_rate:.0%}, "
-             f"p10 {ev.p10:+.0%}/p90 {ev.p90:+.0%}, ~{ev.mean_days:.0f}d hold, "
-             f"drift {drift:+.0%}/yr, {ev.n_paths} paths)"],
-            [], ev)
+        reasons = [f"EV {ev.ev_pct:+.1%} > min {c.ev_min:+.1%} (win {ev.win_rate:.0%}, "
+                   f"p10 {ev.p10:+.0%}/p90 {ev.p90:+.0%}, ~{ev.mean_days:.0f}d hold, "
+                   f"drift {drift:+.0%}/yr, {ev.n_paths} paths)"]
+        if richness_note:
+            reasons.append(richness_note)
+        return EvDecision(True, reasons, [], ev)

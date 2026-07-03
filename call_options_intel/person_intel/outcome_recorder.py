@@ -111,6 +111,9 @@ def make_pipeline_snapshot_fn(cfg, mode: str, fixtures) -> Optional[SnapshotFn]:
                     "volume": c.volume,
                     "expiry": c.expiry,
                     "earnings_days": earnings_days.get(ticker),
+                    # realised vol → pre-warmup IV-richness proxy in the EV gate
+                    "hist_vol": (float(m.hist_vol_annual)
+                                 if m.hist_vol_annual else None),
                 }
         except Exception:
             snap = None

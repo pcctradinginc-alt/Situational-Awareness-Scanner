@@ -814,12 +814,30 @@ def monitor_and_notify(config: Optional[AppConfig] = None, *,
 
     ``iv_store_path`` feeds a warmed IV-history store into the forward-EV gate so
     a live candidate can actually clear it (no IV history ⇒ EV gate hard-blocks).
+    In LIVE mode the store defaults to ``data/person_intel/iv_history.jsonl`` and
+    is warmed automatically on every run (one ATM-IV observation per ticker/day
+    for the whole universe) — no external cron step needed.
 
     Returns a summary dict (suitable for a CI step to gate on ``total_new``).
     """
     cfg = config or AppConfig()
     run_mode = mode or cfg.mode
     fixtures = fixtures_dir
+
+    if run_mode == "live":
+        if iv_store_path is None:
+            iv_store_path = DEFAULT_ARTIFACT_DIR / "iv_history.jsonl"
+        try:
+            from ..pipeline import DEFAULT_FIXTURES
+            from .iv_history import warm_iv_store
+            n = warm_iv_store(cfg, run_mode, fixtures or DEFAULT_FIXTURES,
+                              iv_store_path)
+            logger.info("IV warmup: %d new observation(s) -> %s",
+                        n, iv_store_path)
+        except Exception as exc:                        # pragma: no cover
+            logger.warning("IV warmup failed (EV gate falls back to the "
+                           "realised-vol proxy): %s", exc)
+
     result = run_monitor(
         config=cfg, mode=run_mode, since_days=since_days, state_path=state_path,
         fixtures_dir=fixtures_dir, as_of=as_of, resolve=resolve,
