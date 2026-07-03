@@ -1,5 +1,5 @@
 {
-  "count": 144,
+  "count": 146,
   "seen": {
     "0000935836-26-000339": {
       "cik": "0002045724",
@@ -215,6 +215,11 @@
       "first_seen": "2026-06-30",
       "kind": "job_postings"
     },
+    "job:andurilindustries:713948789867a35f": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-07-03",
+      "kind": "job_postings"
+    },
     "job:andurilindustries:71ee54bfb4e77681": {
       "entity": "Anduril Industries",
       "first_seen": "2026-07-03",
@@ -411,6 +416,11 @@
       "kind": "job_postings"
     },
     "job:andurilindustries:d4bf1336e928d4c6": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-07-03",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:d81fbbe46aea4784": {
       "entity": "Anduril Industries",
       "first_seen": "2026-07-03",
       "kind": "job_postings"
@@ -742,5 +752,5 @@
       "speaker": "Leopold Aschenbrenner"
     }
   },
-  "updated_at": "2026-07-03T08:43:46.328409+00:00"
+  "updated_at": "2026-07-03T15:51:43.861468+00:00"
 }
