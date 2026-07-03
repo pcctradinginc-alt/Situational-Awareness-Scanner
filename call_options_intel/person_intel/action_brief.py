@@ -207,7 +207,8 @@ def vorfeld_brief(v, *, snapshot: Optional[dict], ranked: Optional[list]) -> dic
     kind_label = {
         "aum_change": "ADV AUM change", "new_control_person": "new control person",
         "new_private_fund": "new private fund", "office_move": "office move",
-        "new_role": "new job posting", "site_change": "official website changed",
+        "new_role": "new job posting", "hiring_wave": "hiring wave (aggregated)",
+        "site_change": "official website changed",
         "new_domain": "brand-new domain (CT log)",
     }.get(v.kind, v.kind)
     whats_new = f"{kind_label}: {v.detail or v.headline}"

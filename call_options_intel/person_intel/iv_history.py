@@ -44,7 +44,12 @@ class IVHistoryStore:
 
     def record_many(self, iv_by_ticker: dict[str, float],
                     as_of: Optional[date] = None) -> int:
-        return sum(1 for t, iv in iv_by_ticker.items() if self.record(t, iv, as_of))
+        """Record at most ONE observation per (date, ticker) — repeated runs on
+        the same day (e.g. a twice-daily workflow) must not skew the IV rank."""
+        d = (as_of or date.today()).isoformat()
+        seen = {(r.get("date"), r.get("ticker")) for r in self.load()}
+        return sum(1 for t, iv in iv_by_ticker.items()
+                   if (d, t.upper()) not in seen and self.record(t, iv, as_of))
 
     def load(self) -> list[dict]:
         if not self.path.exists():
@@ -95,3 +100,29 @@ def richness_band(
         return band, rank.rank, "iv_history"
     _, iv_pct, band = iv_richness_assessment(current_iv, hist_vol, risk_cfg)
     return band, iv_pct, "realised_vol_proxy"
+
+
+def warm_iv_store(config, mode: str, fixtures_dir, store_path) -> int:
+    """Record today's ATM IV for the whole pipeline universe into the store —
+    idempotent per (ticker, day) via :meth:`IVHistoryStore.record_many`.
+
+    This is the PRODUCTION warmup path: the live monitor calls it on every run
+    so the IV store fills without any external cron/workflow step. Best-effort:
+    a ticker whose chain cannot be fetched is skipped, never fatal."""
+    from ..pipeline import Pipeline
+    from ..scoring import _atm_iv
+    pipe = Pipeline(config=config, mode=("live" if mode == "live" else "offline"),
+                    fixtures_dir=fixtures_dir)
+    store = IVHistoryStore(store_path)
+    iv_by_ticker: dict[str, float] = {}
+    for entry in pipe.universe_builder.build():
+        try:
+            snap = pipe.market.get_snapshot(entry.ticker)
+            contracts = pipe.options.get_call_contracts(
+                entry.ticker, snap.spot, snap.hist_vol_annual)
+            atm = _atm_iv(contracts)
+            if atm:
+                iv_by_ticker[entry.ticker] = atm
+        except Exception:                               # pragma: no cover
+            continue
+    return store.record_many(iv_by_ticker)

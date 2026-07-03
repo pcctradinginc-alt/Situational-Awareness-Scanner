@@ -644,6 +644,19 @@ class MonitorResult:
         return [x for x in self.trade_candidates if (x.ev or {}).get("passed")]
 
     @property
+    def review_queue(self) -> list:
+        """Principal-linked EARLY filings whose subject is still unresolved —
+        the ONE manual step that unlocks everything downstream: without a
+        verified ticker the tradeability axis stays 0 and the signal can never
+        become a trade-candidate. Sorted closest-to-principal, freshest first."""
+        out = [a for a in self.alerts
+               if a.path_weight >= 0.75 and a.needs_human_review
+               and not a.is_private and not _is_universe_only(a)]
+        return sorted(out, key=lambda a: (-a.path_weight,
+                                          a.age_days if a.age_days is not None
+                                          else 999))
+
+    @property
     def portfolio_risk(self) -> dict:
         """Aggregate guardrails over the EV-cleared basket (count · concentration ·
         net delta · aggregate vega). A single positive-EV trade is not a robust
@@ -661,6 +674,19 @@ class MonitorResult:
                 premium=float(p.get("premium") or 0.0)))
         limits = PortfolioLimits.from_config(load_yaml("risk_thresholds", None))
         return assess_portfolio(positions, limits)
+
+    @property
+    def data_health(self) -> dict:
+        """Live data-quality check over the candidates: a resolved ticker that
+        could not be priced (stale/empty chain, incomplete snapshot) is a PIPELINE
+        failure surfaced as an anomaly — never mistaken for a no-trade. See
+        person_intel/data_health.py."""
+        from .data_health import assess_data_health
+        items = [{"ticker": (getattr(x, "subject_ticker", None)
+                             or (x.triple or {}).get("ticker")),
+                  "ev": x.ev}
+                 for x in self.trade_candidates]
+        return assess_data_health(items)
 
     def to_dict(self) -> dict:
         return {

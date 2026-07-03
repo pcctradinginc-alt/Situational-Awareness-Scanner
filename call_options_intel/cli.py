@@ -299,6 +299,24 @@ def cmd_proxies(args) -> int:
     from .person_intel.proxy_map import load_proxy_map, THESIS_CLUSTERS
     cfg = AppConfig(config_dir=Path(args.config_dir) if args.config_dir else CONFIG_DIR)
     pm = load_proxy_map(cfg.config_dir)
+
+    # empirical validation: keep a cluster→proxy only if it beat the benchmark
+    if getattr(args, "validate", False):
+        import json as _json
+        from .person_intel.historical import HistoricalPriceProvider
+        from .person_intel.proxy_validation import validate_proxies
+        fixtures = getattr(args, "fixtures_dir", None) or DEFAULT_FIXTURES
+        prov = HistoricalPriceProvider(
+            mode=("live" if getattr(args, "live", False) else "offline"),
+            fixtures_dir=fixtures)
+        report = validate_proxies(
+            pm, prov.price_on, lookback_days=getattr(args, "lookback", 180),
+            benchmark=getattr(args, "benchmark", "QQQ"),
+            min_edge=getattr(args, "min_edge", 0.0))
+        print(_json.dumps(report, indent=2))
+        print(f"\n{DISCLAIMER}")
+        return 0
+
     opt_fn = None
     if getattr(args, "live", False):
         from .person_intel.monitor import _make_tradeability_fn
@@ -359,6 +377,29 @@ def cmd_outcomes_report(args) -> int:
         OutcomeStore, summarize, walk_forward_guard,
     )
     store = OutcomeStore(args.store)
+
+    # SCORE CALIBRATION per bucket × horizon (realistic option vs underlying vs
+    # QQQ/SOXX/no-trade). Verdict stays 'insufficient' until enough matured signals.
+    if getattr(args, "calibrate", False):
+        from .person_intel.historical import HistoricalPriceProvider
+        from .person_intel.options_sim import ExitRules
+        from .person_intel.score_calibration import calibrate_by_bucket
+        cfg = AppConfig(config_dir=Path(args.config_dir) if args.config_dir else CONFIG_DIR)
+        fixtures = getattr(args, "fixtures_dir", None) or DEFAULT_FIXTURES
+        prov = HistoricalPriceProvider(
+            mode=("live" if args.live else "offline"), fixtures_dir=fixtures)
+        report = calibrate_by_bucket(
+            store.load(), prov.price_on, base_rules=ExitRules.from_config(cfg.risk),
+            min_sample=args.min_sample)
+        out = getattr(args, "out", None)
+        if out:
+            Path(out).parent.mkdir(parents=True, exist_ok=True)
+            Path(out).write_text(_json.dumps(report, indent=2), encoding="utf-8")
+            print(f"calibration written -> {out}")
+        else:
+            print(_json.dumps(report, indent=2))
+        print(f"\n{DISCLAIMER}")
+        return 0
 
     # REALISTIC path-based options backtest (conservative fills · theta/vega ·
     # exit rules · vs stock/QQQ/SOXX/no-trade) — replaces the proxy return.
@@ -830,6 +871,15 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--limit", type=int, default=5)
     sp.add_argument("--live", action="store_true",
                     help="use live options data for liquidity/options-quality")
+    sp.add_argument("--validate", action="store_true",
+                    help="empirically validate each cluster→proxy vs the benchmark "
+                         "over a lookback window (keep/drop/insufficient)")
+    sp.add_argument("--lookback", type=int, default=180,
+                    help="validation lookback window in days (with --validate)")
+    sp.add_argument("--benchmark", default="QQQ",
+                    help="validation benchmark ticker (with --validate)")
+    sp.add_argument("--min-edge", type=float, default=0.0,
+                    help="required return edge over the benchmark to 'keep'")
     sp.set_defaults(func=cmd_proxies)
 
     sp = sub.add_parser("outcomes-report",
@@ -848,6 +898,9 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--realistic", action="store_true",
                     help="path-based options backtest (conservative fills · theta/vega · "
                          "exit rules · vs stock/QQQ/SOXX/no-trade) instead of the proxy")
+    sp.add_argument("--calibrate", action="store_true",
+                    help="score-bucket × horizon calibration: realistic option vs "
+                         "underlying vs QQQ/SOXX/no-trade ('insufficient' until enough data)")
     sp.add_argument("--iv-store", help="IV-history JSONL for the realistic IV path")
     sp.set_defaults(func=cmd_outcomes_report)
 

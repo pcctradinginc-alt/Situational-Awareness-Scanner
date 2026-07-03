@@ -243,14 +243,21 @@ def test_no_tradeability_means_no_trade_candidates(cfg, tmp_path):
 
 def test_ev_gate_is_attached_and_blocks_without_iv_history(cfg, tmp_path):
     # The forward-EV hard gate runs on every triple-gate passer. Offline there is
-    # no IV history, so EVERY passer is hard-rejected (cannot judge IV richness) →
-    # ev_trade_candidates is honestly EMPTY even though the triple gate passed.
+    # no IV history; with allow_rv_proxy_prewarmup (production config) richness
+    # is judged via the conservative realised-vol proxy instead of a blanket
+    # block — so the candidate is now stopped by the NEXT honest gate (the
+    # fixture tickers have earnings inside the holding window). Nothing is
+    # sizeable, and nothing is blocked for the un-judgeable-richness dead-end.
     r = run_monitor(config=cfg, mode="offline", since_days=120, as_of=AS_OF,
                     state_path=tmp_path / "seen.json", persist=False)
     assert r.trade_candidates                       # triple gate still passes some
     for x in r.trade_candidates:
         assert x.ev.get("passed") is False
-        assert any("IV history" in reason for reason in x.ev.get("reasons", []))
+        reasons = x.ev.get("reasons", [])
+        assert any(("earnings" in reason) or ("pre-warmup proxy" in reason)
+                   for reason in reasons)
+        # the blind "cannot judge richness" dead-end is gone (proxy basis exists)
+        assert not any("IV-rank unknown" in reason for reason in reasons)
     assert r.ev_trade_candidates == []              # nothing is sizeable offline
 
 

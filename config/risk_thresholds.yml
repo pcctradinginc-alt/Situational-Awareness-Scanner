@@ -91,6 +91,11 @@ ev_gate:
   n_paths: 1500                       # Monte-Carlo paths (seeded → deterministic)
   seed: 7
   require_iv_history: true            # no IV-rank → cannot judge richness → HARD reject
+  # while the IV store is warming (<20 obs) judge richness via the CONSERVATIVE
+  # realised-vol proxy (block when IV > 1.30× RV) instead of blocking outright —
+  # the same transparent pre-warmup basis the scoring layer already uses.
+  allow_rv_proxy_prewarmup: true
+  prewarmup_max_iv_over_rv: 1.30
   block_earnings_in_window: true      # earnings inside the holding window → HARD reject
   # The thesis is the ONLY directional edge. drift = signal_to_drift_annual_max ×
   # (final_trade_score / 10). This is an UNVALIDATED PRIOR, not a fitted value —

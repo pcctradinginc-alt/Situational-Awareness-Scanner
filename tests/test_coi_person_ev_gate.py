@@ -116,6 +116,43 @@ def test_missing_iv_history_is_hard_rejected():
     assert d.ev is None             # EV not even computed once a hard gate trips
 
 
+def test_prewarmup_proxy_fair_iv_proceeds_to_ev():
+    # flag ON + IV only modestly above realised vol → richness judged via the
+    # conservative proxy; the gate proceeds to the EV test instead of blocking.
+    g = EvGate(EvGateConfig(n_paths=400, allow_rv_proxy_prewarmup=True))
+    d = g.evaluate(_clean_snapshot(hist_vol=0.42), iv_rank=None,
+                   earnings_in_dte=False, catalyst_drift_annual=1.2)
+    assert d.passed is True
+    assert any("realised-vol PROXY" in r for r in d.reasons)  # basis disclosed
+
+
+def test_prewarmup_proxy_rich_iv_is_hard_rejected():
+    # flag ON but IV 1.5× realised vol → too rich on the proxy basis → block
+    g = EvGate(EvGateConfig(n_paths=400, allow_rv_proxy_prewarmup=True))
+    d = g.evaluate(_clean_snapshot(iv=0.60, hist_vol=0.40), iv_rank=None,
+                   earnings_in_dte=False, catalyst_drift_annual=1.2)
+    assert d.passed is False
+    assert any("pre-warmup proxy" in r for r in d.reasons)
+    assert d.ev is None
+
+
+def test_prewarmup_flag_off_keeps_the_hard_block():
+    # default config: even with hist_vol available, no IV rank → hard block
+    d = _gate().evaluate(_clean_snapshot(hist_vol=0.42), iv_rank=None,
+                         earnings_in_dte=False, catalyst_drift_annual=1.2)
+    assert d.passed is False
+    assert any("IV history" in r for r in d.reasons)
+
+
+def test_prewarmup_proxy_needs_hist_vol():
+    # flag ON but the snapshot has no realised vol → nothing to judge on → block
+    g = EvGate(EvGateConfig(n_paths=400, allow_rv_proxy_prewarmup=True))
+    d = g.evaluate(_clean_snapshot(), iv_rank=None,
+                   earnings_in_dte=False, catalyst_drift_annual=1.2)
+    assert d.passed is False
+    assert any("IV history" in r for r in d.reasons)
+
+
 def test_earnings_in_window_is_hard_rejected():
     d = _gate().evaluate(_clean_snapshot(), iv_rank=40.0, earnings_in_dte=True,
                          catalyst_drift_annual=1.0)
