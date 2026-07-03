@@ -213,9 +213,15 @@ class AdvIapdAdapter:
 # ── job postings (Greenhouse / Lever) ───────────────────────────────────────
 class JobPostingsAdapter:
     """Detect NEW roles on public job boards and classify them into thesis
-    clusters — a hiring proxy for a theme shift."""
+    clusters — a hiring proxy for a theme shift.
+
+    A large batch of new roles in one sweep is ONE event (a hiring wave), not
+    N signals: at ``AGGREGATE_MIN`` or more new roles for a company the adapter
+    emits a single ``hiring_wave`` signal with per-cluster counts instead of
+    flooding the digest with near-identical per-role alerts."""
     GH = "https://boards-api.greenhouse.io/v1/boards/{token}/jobs"
     LEVER = "https://api.lever.co/v0/postings/{token}?mode=json"
+    AGGREGATE_MIN = 4
 
     def __init__(self, fetcher: Fetcher, fixture: Optional[FixtureFetcher] = None):
         self.fetcher = fetcher
@@ -262,9 +268,12 @@ class JobPostingsAdapter:
                 continue                          # baseline only
             principal = c.get("principal", "")
             name = c.get("name", token)
-            for j in jobs:
-                if j["id"] in prev_ids:
-                    continue
+            new_jobs = [j for j in jobs if j["id"] not in prev_ids]
+            if len(new_jobs) >= self.AGGREGATE_MIN:
+                out.append(self._wave_signal(token, name, principal,
+                                             new_jobs, as_of))
+                continue
+            for j in new_jobs:
                 clusters = classify_clusters(j["title"])
                 dom = max(clusters, key=clusters.get) if clusters else ""
                 out.append(VorfeldSignal(
@@ -274,6 +283,37 @@ class JobPostingsAdapter:
                     change_date=as_of.isoformat(), age_days=0,
                     content_hash=f"job:{token}:" + _hash(j["id"])))
         return out
+
+    @staticmethod
+    def _wave_signal(token: str, name: str, principal: str, new_jobs: list[dict],
+                     as_of: date) -> VorfeldSignal:
+        """One aggregated signal for a batch of new roles. The dominant thesis
+        cluster (by role count) carries the proxy mapping; the detail keeps the
+        per-cluster counts and a few sample titles auditable."""
+        cluster_counts: dict[str, int] = {}
+        for j in new_jobs:
+            clusters = classify_clusters(j["title"])
+            if clusters:
+                dom = max(clusters, key=clusters.get)
+                cluster_counts[dom] = cluster_counts.get(dom, 0) + 1
+        dominant = (max(cluster_counts, key=cluster_counts.get)
+                    if cluster_counts else "")
+        themes = ", ".join(
+            f"{k} ×{v}" for k, v in sorted(cluster_counts.items(),
+                                           key=lambda kv: (-kv[1], kv[0])))
+        sample = " · ".join(j["title"] for j in new_jobs[:4])
+        n = len(new_jobs)
+        detail = (f"{n} new roles in one sweep · thesis clusters: "
+                  f"{themes or 'none matched'} · e.g. {sample}")
+        return VorfeldSignal(
+            source="job_postings", principal=principal, entity=name,
+            kind="hiring_wave",
+            headline=f"{name}: hiring wave — {n} new roles",
+            detail=detail, cluster=dominant,
+            url=f"https://boards.greenhouse.io/{token}",
+            change_date=as_of.isoformat(), age_days=0,
+            content_hash=f"job:{token}:" + _hash(*sorted(j["id"]
+                                                         for j in new_jobs)))
 
 
 # ── domain / website watch ──────────────────────────────────────────────────

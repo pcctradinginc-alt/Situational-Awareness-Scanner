@@ -87,6 +87,46 @@ def _triple_md(triple: dict) -> str:
             f"Tradeability **{fmt(t)}** → _{verdict}_{tail}")
 
 
+# ── action summary (the honest headline: act / verify / watch) ──────────────
+def _action_counts(result: MonitorResult) -> tuple[int, int, int]:
+    """(handelbar, prüfen, kontext) — the one split the reader actually needs:
+    EV-cleared trades, principal-linked filings stuck on subject verification,
+    and everything else (watch, don't act)."""
+    n_size = len(result.ev_trade_candidates)
+    n_rev = len(result.review_queue)
+    n_ctx = max(result.total_new - n_size - n_rev, 0)
+    return n_size, n_rev, n_ctx
+
+
+_REVIEW_HOWTO = ("SEC-Link öffnen, Emittent identifizieren, dann Ticker+CUSIP in "
+                 "config/cusip_map.yml eintragen — der nächste Lauf scort das "
+                 "Signal voll durch")
+
+
+def _action_summary_md(lines: list, result: MonitorResult) -> None:
+    n_size, n_rev, n_ctx = _action_counts(result)
+    lines.append(f"## 🧭 Was tun? — {n_size} handelbar · {n_rev} prüfen · "
+                 f"{n_ctx} Kontext")
+    lines.append("")
+    if n_size:
+        for x in result.ev_trade_candidates:
+            tkr = (x.triple or {}).get("ticker") or "?"
+            lines.append(f"- 🟢 **HANDELBAR: {tkr}** — {_ev_md(x.ev)}")
+    else:
+        lines.append("- ⛔ **Heute nichts kaufen** — kein Signal hat alle Gates "
+                     "(3-Achsen + Forward-EV) bestanden.")
+    for a in result.review_queue:
+        age = f" · {a.age_days}d alt" if a.age_days is not None else ""
+        lines.append(f"- 🔍 **PRÜFEN: {a.entity}** · {a.filing_type} "
+                     f"(path {a.path_weight:.2f}){age} — Subjekt unbestätigt.")
+    if n_rev:
+        lines.append(f"    - → {_REVIEW_HOWTO}.")
+    if n_ctx:
+        lines.append(f"- 📡 **{n_ctx}× Kontext** (Vorfeld / Statements / "
+                     "Netzwerk) — beobachten, nicht handeln.")
+    lines.append("")
+
+
 # ── markdown digest ─────────────────────────────────────────────────────────
 def _ev_md(ev: dict) -> str:
     """One-line forward-EV verdict for a candidate: PASS shows expected P&L,
@@ -97,6 +137,21 @@ def _ev_md(ev: dict) -> str:
     if ev.get("passed"):
         return f"💰 EV-Gate ✅ SIZEABLE — {reason}"
     return f"💰 EV-Gate ⛔ NOT sizeable — {reason}"
+
+
+def _data_health_md(lines: list, result: MonitorResult) -> None:
+    """Surface data anomalies (stale/empty chain, incomplete snapshot) — a
+    resolved ticker that can't be priced is a pipeline failure, not a no-trade.
+    Only shown when something is wrong."""
+    dh = result.data_health
+    if not dh or dh.get("ok", True):
+        return
+    lines.append("## ⚠️ Data-quality anomalies — investigate, do NOT trade")
+    lines.append("")
+    lines.append(f"_{dh.get('note', '')}_")
+    for a in dh.get("anomalies", []):
+        lines.append(f"- ⚠️ **{a.get('ticker')}** — {a.get('kind')}: {a.get('detail')}")
+    lines.append("")
 
 
 def _portfolio_risk_md(lines: list, result: MonitorResult) -> None:
@@ -300,8 +355,10 @@ def render_markdown(result: MonitorResult) -> str:
     lines.append("")
     lines.append(f"> {DISCLAIMER}")
     lines.append("")
+    _action_summary_md(lines, result)
     _trade_candidates_md(lines, result)
     _portfolio_risk_md(lines, result)
+    _data_health_md(lines, result)
     _ranked_proxies_md(lines, result)
     _new_entities_md(lines, result)
     _network_context_md(lines, result)
@@ -506,6 +563,42 @@ def _triple_html(triple: dict) -> str:
             f'<span style="color:{vcol};font-weight:700;">→ {verdict}</span></div>')
 
 
+def _action_summary_html(result: MonitorResult) -> str:
+    """The first thing the reader sees: act / verify / watch, one box."""
+    n_size, n_rev, n_ctx = _action_counts(result)
+    rows = []
+    if n_size:
+        for x in result.ev_trade_candidates:
+            tkr = (x.triple or {}).get("ticker") or "?"
+            reason = ((x.ev or {}).get("reasons") or ["—"])[0]
+            rows.append(f'<div style="font-size:14px;color:#248A3D;margin-top:6px;">'
+                        f'🟢 <strong>HANDELBAR: {tkr}</strong> — {reason}</div>')
+    else:
+        rows.append('<div style="font-size:14px;color:#3A3A3C;margin-top:6px;">'
+                    '⛔ <strong>Heute nichts kaufen</strong> — kein Signal hat '
+                    'alle Gates (3-Achsen + Forward-EV) bestanden.</div>')
+    for a in result.review_queue:
+        age = f" · {a.age_days}d alt" if a.age_days is not None else ""
+        rows.append(
+            f'<div style="font-size:14px;color:#B25000;margin-top:6px;">'
+            f'🔍 <strong>PRÜFEN: {a.entity}</strong> · {a.filing_type} '
+            f'(path {a.path_weight:.2f}){age} — Subjekt unbestätigt.</div>')
+    if n_rev:
+        rows.append(f'<div style="font-size:12px;color:#8E8E93;margin-top:2px;">'
+                    f'→ {_REVIEW_HOWTO}.</div>')
+    if n_ctx:
+        rows.append(f'<div style="font-size:13px;color:#8E8E93;margin-top:6px;">'
+                    f'📡 <strong>{n_ctx}× Kontext</strong> (Vorfeld / Statements '
+                    f'/ Netzwerk) — beobachten, nicht handeln.</div>')
+    return (f'<table width="100%" cellpadding="0" cellspacing="0" '
+            f'style="margin-bottom:16px;"><tr><td style="background:#FFFFFF;'
+            f'border:2px solid #1C1C1E;border-radius:14px;padding:16px 20px;">'
+            f'<div style="font-size:12px;color:#1C1C1E;letter-spacing:1px;'
+            f'text-transform:uppercase;font-weight:700;">🧭 Was tun? — '
+            f'{n_size} handelbar · {n_rev} prüfen · {n_ctx} Kontext</div>'
+            f'{"".join(rows)}</td></tr></table>')
+
+
 def _trade_candidates_banner_html(result: MonitorResult) -> str:
     cands = result.trade_candidates
     if not cands:
@@ -565,11 +658,12 @@ def _vorfeld_section_html(vorfeld: list) -> str:
 
 
 def render_email_html(result: MonitorResult, run_label: str) -> str:
-    banner = _trade_candidates_banner_html(result)
+    banner = _action_summary_html(result) + _trade_candidates_banner_html(result)
     cards = "".join(_alert_card_html(a) for a in result.alerts)
     cards += "".join(_statement_card_html(s) for s in result.statements)
     cards += _vorfeld_section_html(result.vorfeld)
     n = result.total_new
+    n_size, n_rev, n_ctx = _action_counts(result)
     return f"""<!DOCTYPE html>
 <html><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
@@ -580,9 +674,9 @@ def render_email_html(result: MonitorResult, run_label: str) -> str:
     <div style="font-size:12px;color:#8E8E93;letter-spacing:2px;text-transform:uppercase;">
       PERSON-INTEL RADAR · THIEL / ASCHENBRENNER</div>
     <div style="font-size:26px;font-weight:700;color:#1C1C1E;letter-spacing:-.5px;margin-top:4px;">
-      {n} new investment signal{'s' if n != 1 else ''}</div>
+      {n_size} handelbar · {n_rev} prüfen · {n_ctx} Kontext</div>
     <div style="font-size:13px;color:#8E8E93;margin-top:4px;">
-      {run_label} · {result.principal_count} principal-linked</div>
+      {run_label} · {n} new signal{'s' if n != 1 else ''} · {result.principal_count} principal-linked</div>
   </td></tr>
   <tr><td>{banner}{cards}</td></tr>
   <tr><td style="padding:18px 0 0 0;border-top:1px solid #E5E5EA;">
@@ -614,6 +708,7 @@ def send_person_email(result: MonitorResult, run_label: str) -> bool:
         return False
 
     n = result.total_new
+    n_size, n_rev, n_ctx = _action_counts(result)
     subjects = []
     for a in result.alerts[:3]:
         tag = a.subject_ticker or _principal_badge(a)
@@ -623,14 +718,26 @@ def send_person_email(result: MonitorResult, run_label: str) -> bool:
     head = ", ".join(subjects[:4])
 
     msg = MIMEMultipart("alternative")
-    msg["Subject"] = (f"📡 Person-Intel: {n} new Thiel/Aschenbrenner signal"
-                      f"{'s' if n != 1 else ''} — {head}")
+    msg["Subject"] = (f"📡 Person-Intel: {n_size} handelbar · {n_rev} prüfen · "
+                      f"{n_ctx} Kontext — {head}")
     msg["From"] = f"Person-Intel Radar <{gmail_user}>"
     msg["To"] = to_email
 
-    plain_lines = [f"Person-Intel Radar — {n} new signal(s) "
-                   f"({result.new_count} filing / {result.statement_count} statement)",
+    plain_lines = [f"Person-Intel Radar — {n_size} handelbar · {n_rev} prüfen · "
+                   f"{n_ctx} Kontext ({n} new signals)",
                    run_label, ""]
+    if not n_size:
+        plain_lines.append("Heute nichts kaufen — kein Signal hat alle Gates "
+                           "bestanden.")
+    for x in result.ev_trade_candidates:
+        tkr = (x.triple or {}).get("ticker") or "?"
+        plain_lines.append(f"HANDELBAR: {tkr} — "
+                           f"{((x.ev or {}).get('reasons') or ['—'])[0]}")
+    for a in result.review_queue:
+        plain_lines.append(f"PRUEFEN: {a.entity} · {a.filing_type} "
+                           f"(path {a.path_weight:.2f}) — Subjekt unbestätigt; "
+                           f"{_REVIEW_HOWTO}.")
+    plain_lines.append("")
     for a in result.alerts:
         plain_lines += [
             f"[{_principal_badge(a)}] {a.category}",
