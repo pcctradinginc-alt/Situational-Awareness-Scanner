@@ -1,65 +1,13 @@
 {
-  "run_at": "2026-07-04T08:17:13.500140+00:00",
+  "run_at": "2026-07-04T15:02:40.868476+00:00",
   "mode": "live",
   "new_count": 0,
   "statement_count": 0,
-  "vorfeld_count": 1,
-  "total_new": 1,
+  "vorfeld_count": 0,
+  "total_new": 0,
   "principal_count": 0,
   "alerts": [],
   "statements": [],
-  "vorfeld": [
-    {
-      "source": "job_postings",
-      "principal": "thiel",
-      "entity": "Anduril Industries",
-      "kind": "new_role",
-      "headline": "Anduril Industries: new role \u2014 Technical Operations Engineer",
-      "detail": "Technical Operations Engineer",
-      "cluster": "",
-      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5180025007?gh_jid=5180025007",
-      "change_date": "2026-07-04",
-      "age_days": 0,
-      "content_hash": "job:andurilindustries:4afc6c5ff97764a5",
-      "needs_human_review": true,
-      "triple": {
-        "ticker": null,
-        "person_signal": {
-          "value": 2.4,
-          "reason": "path-directness 0.40; unverified \u00d70.6"
-        },
-        "freshness": {
-          "value": 4.0,
-          "reason": "media statement, age 0d \u2192 recency \u00d71.00"
-        },
-        "tradeability": {
-          "value": 0.0,
-          "reason": "no resolved public ticker \u2014 not tradeable yet"
-        },
-        "gate_pass": false,
-        "failing_axes": [
-          "person_signal",
-          "freshness",
-          "tradeability"
-        ],
-        "final_trade_score": 0.0,
-        "label": "NO-TRADE",
-        "reasons": [
-          "gate FAILED \u2014 not a trade: weak person_signal, freshness, tradeability",
-          "person_signal: path-directness 0.40; unverified \u00d70.6",
-          "freshness: media statement, age 0d \u2192 recency \u00d71.00",
-          "tradeability: no resolved public ticker \u2014 not tradeable yet"
-        ]
-      },
-      "brief": {
-        "whats_new": "new job posting: Technical Operations Engineer",
-        "why_relevant": "VORFELD change at Anduril Industries, associated with Peter Thiel (non-filing context \u2014 control/intent UNCONFIRMED)",
-        "why_early": "early hiring proxy \u2014 a theme shift before it shows up in results \u00b7 0d old",
-        "best_proxy": "WATCHLIST only \u2014 no sourced, liquid public proxy yet",
-        "why_not_now": "context-grade, not a confirmed capital move; GATE NOT PASSED; data uncertain \u2014 subject/entity needs_human_review (verify first); no confirmed tradeable proxy \u2014 watch, do not size; always check the earnings calendar before buying premium"
-      },
-      "ev": {}
-    }
-  ],
+  "vorfeld": [],
   "ranked_proxies": {}
 }
