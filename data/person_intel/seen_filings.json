@@ -1,5 +1,5 @@
 {
-  "count": 146,
+  "count": 147,
   "seen": {
     "0000935836-26-000339": {
       "cik": "0002045724",
@@ -148,6 +148,11 @@
     "job:andurilindustries:49a41e212632d9dd": {
       "entity": "Anduril Industries",
       "first_seen": "2026-06-30",
+      "kind": "job_postings"
+    },
+    "job:andurilindustries:4afc6c5ff97764a5": {
+      "entity": "Anduril Industries",
+      "first_seen": "2026-07-04",
       "kind": "job_postings"
     },
     "job:andurilindustries:4c0da5a1f0efc6f5": {
@@ -752,5 +757,5 @@
       "speaker": "Leopold Aschenbrenner"
     }
   },
-  "updated_at": "2026-07-03T19:10:40.060908+00:00"
+  "updated_at": "2026-07-04T08:17:13.498422+00:00"
 }
