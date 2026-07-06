@@ -1,0 +1,117 @@
+name: fetch-intensive
+
+# Runs every 15 minutes, but only does real work during 13F filing deadline
+# hot windows (3 days before → 2 days after each deadline).
+# The window check uses stdlib only, so no pip install is needed to skip.
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sa-state-write
+  cancel-in-progress: false
+
+jobs:
+  fetch-intensive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6.0.2
+
+      # stdlib-only check — no pip install needed when outside window.
+      # Deadlines are computed dynamically (open-end): SEC rule = 45 calendar days
+      # after each quarter-end, rolled forward to the next business day if needed.
+      # No hardcoded date list — works indefinitely without maintenance.
+      - name: Check filing deadline window
+        id: window
+        run: |
+          python3 - <<'EOF'
+          import datetime, os
+
+          BEFORE_DAYS = 7   # activate N days before the deadline (SA LP has
+                            # filed up to 3 days early; amendments earlier still)
+          AFTER_DAYS  = 2   # stay active N days after the deadline
+
+          def _next_business_day(d: datetime.date) -> datetime.date:
+              """Roll d forward past weekends (no holiday calendar needed —
+              SEC extends to next business day, which is always Mon if Sat/Sun)."""
+              while d.weekday() >= 5:   # 5 = Saturday, 6 = Sunday
+                  d += datetime.timedelta(days=1)
+              return d
+
+          def _deadlines_around(today: datetime.date, window: int = 10):
+              """Yield (deadline, before, after) for all quarters within `window`
+              years either side of today — effectively infinite coverage."""
+              QUARTER_ENDS = [(3, 31), (6, 30), (9, 30), (12, 31)]
+              for yr in range(today.year - 1, today.year + window + 1):
+                  for month, day in QUARTER_ENDS:
+                      qe = datetime.date(yr, month, day)
+                      dl = _next_business_day(qe + datetime.timedelta(days=45))
+                      yield dl, BEFORE_DAYS, AFTER_DAYS
+
+          today = datetime.date.today()
+          hot = any(
+              (d - datetime.timedelta(days=before)) <= today <= (d + datetime.timedelta(days=after))
+              for d, before, after in _deadlines_around(today)
+          )
+          # Print the nearest upcoming deadline for log visibility
+          upcoming = sorted(
+              d for d, *_ in _deadlines_around(today) if d >= today
+          )
+          print(f"Today: {today}  Hot window: {hot}")
+          if upcoming:
+              print(f"Next deadline: {upcoming[0]}  (window: {upcoming[0] - datetime.timedelta(days=BEFORE_DAYS)} → {upcoming[0] + datetime.timedelta(days=AFTER_DAYS)})")
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              f.write(f"hot={'true' if hot else 'false'}\n")
+          EOF
+
+      - uses: actions/setup-python@v6.2.0
+        if: steps.window.outputs.hot == 'true'
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install
+        if: steps.window.outputs.hot == 'true'
+        run: pip install -r requirements.txt
+
+      - name: Fetch new SEC filings
+        if: steps.window.outputs.hot == 'true'
+        env:
+          SEC_CONTACT_EMAIL: ${{ secrets.SEC_CONTACT_EMAIL || secrets.GMAIL_USER }}
+        run: python -m src.pipeline fetch
+
+      # Fix [K1]: rebuild position model after fetch so alert uses current data,
+      # not the stale position_table.json from the last daily analyze run.
+      - name: Rebuild position model
+        if: steps.window.outputs.hot == 'true'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SEC_CONTACT_EMAIL: ${{ secrets.SEC_CONTACT_EMAIL || secrets.GMAIL_USER }}
+        run: python -m src.pipeline analyze
+
+      - name: Send alert if new events
+        if: steps.window.outputs.hot == 'true'
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST || 'smtp.gmail.com' }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT || '587' }}
+          SMTP_USER: ${{ secrets.SMTP_USER || secrets.GMAIL_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD || secrets.GMAIL_APP_PASSWORD }}
+          SMTP_TO: ${{ secrets.SMTP_TO || secrets.NOTIFY_EMAIL }}
+        run: python -m src.pipeline alert
+
+      - name: Commit updated state
+        if: steps.window.outputs.hot == 'true'
+        run: |
+          git config user.name "sa-tracker-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --quiet && git diff --staged --quiet || \
+            git commit -m "data: intensive-fetch $(date -u +%FT%TZ)"
+          git pull --rebase origin main || (
+            git checkout --ours data/ && git add data/ && git rebase --continue
+          )
+          git push

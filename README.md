@@ -1,199 +1,137 @@
-# Situational Awareness Scanner
+# Situational Awareness Tracker
 
-Automatisiertes CALL-Options Intelligence System basierend auf Aschenbrenners
-„The Decade Ahead". Identifiziert handelbare CALL-Optionen auf KI-Infrastruktur
-durch Kombination von 13F-Monitoring, philosophisch-strategischer These-Analyse
-(Thiel, Shulman) und Marktdaten.
+Automated, EDGAR-first archive and monitor for the public activity of
+**Leopold Aschenbrenner** / **Situational Awareness LP**. Not a trading signal — a
+reproducible archive with instrument-separated 13F analysis.
 
-> ⚠️ **Research / Paper Mode only — kein Live-Trading.** Das System erzeugt
-> ausschließlich erklärbare, gerankte Trade-Kandidaten. Es platziert niemals
-> Orders. Keine Anlageberatung. Optionen können wertlos verfallen (Totalverlust).
+_Last updated: 2026-07-06 · prices via yfinance · Not investment advice._
+
+## Latest 13F summary
+
+| Metric | Value |
+| --- | --- |
+| Latest quarter | Q1 2026 (period ended 2026-03-31) |
+| Reported holdings | 42 |
+| Reported 13F value | $13.7B |
+| **Common stock long exposure** | **$3.9B** |
+| **Options notional exposure** | **$9.8B** _(direction unknown)_ |
+| New / Increased / Reduced / Exited (common) | 10 / 7 / 2 / 18 |
+| Best post-quarter performer | AMD +164.1% |
+| Worst post-quarter performer | PSIX -44.5% |
+> Common stock long exposure and options notional are shown separately on purpose — combining them would let the options book dominate the picture.
+
+## Common stock longs — last 6 quarters
+
+| Ticker | Issuer | Q4 2024 | Q1 2025 | Q2 2025 | Q3 2025 | Q4 2025 | Q1 2026 | QoQ | 3Q | Wt | Px since Q-end | Est. value | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| BE | BLOOM ENERGY CORP | 0 | 0 | 0 | 0 | 10.1M | 6.5M | -35.6% | Mixed | 22.8% | +117.7% | $1.9B | 🔴 Trim |
+| SNDK | SANDISK CORP | 0 | 0 | 0 | 115k | 1.1M | 1.1M | +8.2% | ↑↑↑ | 18.8% | +149.5% | $2.0B | 🟢 Strong Add |
+| CRWV | CoreWeave Inc | 0 | 1.2M | 0 | 4.1M | 6.1M | 7.2M | +17.7% | ↑↑↑ | 14.4% | +9.6% | $617.3M | 🟢 Strong Add |
+| IREN | IREN Limited | 0 | 3.4M | 6.4M | 7.2M | 8.7M | 11.7M | +34.5% | ↑↑↑ | 10.4% | +27.5% | $508.5M | 🟢 Strong Add |
+| CORZ | Core Scientific Inc New | 0 | 4.5M | 8.0M | 20.2M | 28.8M | 26.0M | -9.6% | Mixed | 10.1% | +45.5% | $578.9M | 🟡 Hold |
+| APLD | Applied Digital Corp | 0 | 4.0M | 6.6M | 6.1M | 11.3M | 13.5M | +18.9% | ↑↑↑ | 8.3% | +36.9% | $451.9M | 🟢 Strong Add |
+| RIOT | RIOT PLATFORMS INC | 0 | 0 | 0 | 3.6M | 6.2M | 11.5M | +86.5% | ↑↑↑ | 3.7% | +82.3% | $263.2M | 🟢 Strong Add |
+| CLSK | CLEANSPARK INC | 0 | 0 | 0 | 0 | 1.6M | 12.3M | +648.4% | New + Add | 2.7% | +56.5% | $165.6M | 🟢 New + Add |
+| SEI | SOLARIS ENERGY INFRAS INC | 0 | 0 | 0 | 1.2M | 1.9M | 1.1M | -40.8% | Mixed | 1.6% | +20.1% | $73.7M | 🔴 Trim |
+| TE | T1 ENERGY INC | 0 | 0 | 0 | 0 | 0 | 10.0M | New | New | 1.1% | +98.9% | $87.3M | 🟡 New Buy |
+| BITF | BITFARMS LTD | 0 | 0 | 0 | 0 | 6.9M | 19.9M | +188.2% | New + Add | 1.0% | — | — | 🟢 New + Add |
+| BTDR | BITDEER TECHNOLOGIES GROUP | 0 | 0 | 0 | 930k | 1.8M | 3.4M | +92.4% | ↑↑↑ | 0.8% | +54.3% | $49.6M | 🟢 Strong Add |
+| PSIX | POWER SOLUTIONS INTL INC | 0 | 0 | 0 | 0 | 432k | 432k | +0.0% | Mixed | 0.7% | -44.5% | $15.9M | 🟡 Hold |
+| WHITEFIB | WHITEFIBER INC | 0 | 0 | 0 | 0 | 1.8M | 1.8M | +0.0% | Mixed | 0.5% | — | — | 🟡 Hold |
+| AMD | ADVANCED MICRO DEVICES INC | 0 | 0 | 0 | 0 | 0 | 99k | New | New | 0.5% | +164.1% | $55.0M | 🟡 New Buy |
+| BW | BABCOCK & WILCOX ENTERPRISES | 0 | 0 | 0 | 0 | 1.4M | 1.4M | +0.0% | Mixed | 0.5% | -24.2% | $15.4M | 🟡 Hold |
+| SHAZ | SHARONAI HOLDINGS INC | 0 | 0 | 0 | 0 | 0 | 796k | New | New | 0.5% | +246.6% | $62.7M | 🟡 New Buy |
+| PUMP | PROPETRO HLDG CORP | 0 | 0 | 0 | 0 | 910k | 910k | +0.0% | Mixed | 0.3% | -9.4% | $11.1M | 🟡 Hold |
+| SMH | VANECK ETF TRUST | 0 | 0 | 0 | 0 | 0 | 27k | New | New | 0.3% | +55.3% | $16.4M | 🟡 New Buy |
+| INTC | INTEL CORP | 0 | 0 | 0 | 0 | 1 | 202k | New | New + Add | 0.2% | +155.7% | $24.8M | 🟢 New + Add |
+| TSM | TAIWAN SEMICONDUCTOR MANUFAC | 0 | 0 | 0 | 0 | 0 | 22k | New | New | 0.2% | +33.4% | $10.2M | 🟡 New Buy |
+| HIVE | HIVE DIGITAL TECHNOLOGIES LT | 0 | 0 | 0 | 0 | 0 | 3.4M | New | New | 0.2% | +77.8% | $11.4M | 🟡 New Buy |
+| ASML | ASML HLDG NV N Y REGISTRY | 0 | 0 | 0 | 0 | 0 | 5k | New | New | 0.2% | +35.5% | $8.5M | 🟡 New Buy |
+| MU | MICRON TECHNOLOGY INC | 0 | 0 | 0 | 0 | 0 | 17k | New | New | 0.1% | +173.1% | $17.4M | 🟡 New Buy |
+| GLW | CORNING INC | 0 | 0 | 0 | 0 | 0 | 5k | New | New | 0.0% | +38.0% | $1.0M | 🟡 New Buy |
+| NVDA | NVIDIA CORPORATION | 0 | 0 | 0 | 0 | 0 | 3k | New | New | 0.0% | +12.1% | $562.3K | 🟡 New Buy |
+
+## New common stock positions in latest 13F
+
+| Ticker | Issuer | Sector | Q1 2026 shares | Value | Wt | Px since Q-end |
+| --- | --- | --- | --- | --- | --- | --- |
+| ASML | ASML HLDG NV N Y REGISTRY | Semiconductors | 5k | $6.1M | 0.2% | +35.5% |
+| AMD | ADVANCED MICRO DEVICES INC | Semiconductors | 99k | $20.2M | 0.5% | +164.1% |
+| GLW | CORNING INC | Technology | 5k | $718.3K | 0.0% | +38.0% |
+| HIVE | HIVE DIGITAL TECHNOLOGIES LT | Bitcoin Mining | 3.4M | $6.4M | 0.2% | +77.8% |
+| MU | MICRON TECHNOLOGY INC | Semiconductors | 17k | $5.9M | 0.1% | +173.1% |
+| NVDA | NVIDIA CORPORATION | Semiconductors | 3k | $497.9K | 0.0% | +12.1% |
+| SHAZ | SHARONAI HOLDINGS INC | Technology | 796k | $18.1M | 0.5% | +246.6% |
+| TE | T1 ENERGY INC | Energy Infrastructure | 10.0M | $43.9M | 1.1% | +98.9% |
+| TSM | TAIWAN SEMICONDUCTOR MANUFAC | Semiconductors | 22k | $7.6M | 0.2% | +33.4% |
+| SMH | VANECK ETF TRUST | ETF | 27k | $10.3M | 0.3% | +55.3% |
+
+## Exited common stock positions
+
+| Ticker | Issuer | Q4 2024 | Q1 2025 | Q2 2025 | Q3 2025 | Q4 2025 | Q1 2026 | Last seen value |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| CEG | CONSTELLATION ENERGY CORP | 96k | 183k | 319k | 0 | 0 | 0 | $0 |
+| MOD | MODINE MFG CO | 66k | 717k | 0 | 0 | 0 | 0 | $0 |
+| MRVL | MARVELL TECHNOLOGY INC | 786k | 0 | 0 | 0 | 0 | 0 | $0 |
+| TLN | TALEN ENERGY CORP | 139k | 148k | 0 | 0 | 0 | 0 | $0 |
+| VRT | VERTIV HOLDINGS CO | 455k | 0 | 0 | 0 | 0 | 0 | $0 |
+| VST | VISTRA CORP | 428k | 526k | 1.3M | 1.3M | 0 | 0 | $0 |
+| AVGO | Broadcom Inc | 0 | 700k | 1.2M | 0 | 0 | 0 | $0 |
+| EQT | EQT Corp | 0 | 989k | 2.1M | 1.2M | 2.5M | 0 | $0 |
+| ONTO | Onto Innovation Inc | 0 | 587k | 0 | 0 | 0 | 0 | $0 |
+| COHR | COHERENT CORP | 0 | 0 | 0 | 154k | 480k | 0 | $0 |
+| GLXY | GALAXY DIGITAL INC. | 0 | 0 | 0 | 2.7M | 0 | 0 | $0 |
+| HUT | HUT 8 CORP | 0 | 0 | 0 | 599k | 860k | 0 | $0 |
+| SEAGATE  | SEAGATE TECHNOLOGY HLDNGS PL | 0 | 0 | 0 | 49k | 0 | 0 | $0 |
+| TSEM | TOWER SEMICONDUCTOR LTD | 0 | 0 | 0 | 471k | 723k | 0 | $0 |
+| CIFR | CIPHER MINING INC | 0 | 0 | 0 | 0 | 10.5M | 0 | $0 |
+| KRC | KILROY RLTY CORP | 0 | 0 | 0 | 0 | 1.3M | 0 | $0 |
+| LBRT | LIBERTY ENERGY INC | 0 | 0 | 0 | 0 | 567k | 0 | $0 |
+| LITE | LUMENTUM HLDGS INC | 0 | 0 | 0 | 0 | 1.3M | 0 | $0 |
+
+## Options / puts / calls — notional only
+
+| Underlying | Type | Q4 2024 | Q1 2025 | Q2 2025 | Q3 2025 | Q4 2025 | Q1 2026 | QoQ | Underlying px move | Interpretation risk |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| SMH | PUT | $0 | $0 | $570.1M | $0 | $0 | $2.0B | New | +55.3% | Notional, not premium; long/short direction unknown |
+| NVDA | PUT | $0 | $0 | $0 | $298.5M | $0 | $1.6B | New | +12.1% | Notional, not premium; long/short direction unknown |
+| ORCL | PUT | $0 | $0 | $0 | $0 | $0 | $1.1B | New | -1.2% | Notional, not premium; long/short direction unknown |
+| AVGO | PUT | $0 | $0 | $0 | $75.9M | $0 | $1.0B | New | +20.0% | Notional, not premium; long/short direction unknown |
+| AMD | PUT | $0 | $0 | $0 | $0 | $0 | $969.2M | New | +164.1% | Notional, not premium; long/short direction unknown |
+| MU | PUT | $0 | $0 | $0 | $50.2M | $0 | $583.7M | New | +173.1% | Notional, not premium; long/short direction unknown |
+| TSM | PUT | $0 | $0 | $0 | $75.4M | $0 | $535.1M | New | +33.4% | Notional, not premium; long/short direction unknown |
+| ASML | PUT | $0 | $0 | $0 | $0 | $0 | $494.1M | New | +35.5% | Notional, not premium; long/short direction unknown |
+| MU | CALL | $0 | $0 | $0 | $0 | $0 | $422.3M | New | +173.1% | Notional, not premium; long/short direction unknown |
+| SNDK | CALL | $0 | $0 | $0 | $0 | $0 | $388.8M | New | +149.5% | Notional, not premium; long/short direction unknown |
+| TSM | CALL | $0 | $0 | $0 | $0 | $0 | $354.8M | New | +33.4% | Notional, not premium; long/short direction unknown |
+| INTC | PUT | $0 | $0 | $0 | $0 | $0 | $159.1M | New | +155.7% | Notional, not premium; long/short direction unknown |
+| CRWV | CALL | $0 | $0 | $0 | $316.7M | $774.4M | $140.6M | -81.8% | +9.6% | Notional, not premium; long/short direction unknown |
+| BE | CALL | $0 | $0 | $0 | $0 | $35.5M | $55.3M | +55.9% | +117.7% | Notional, not premium; long/short direction unknown |
+| GLW | PUT | $0 | $0 | $0 | $0 | $0 | $21.0M | New | +38.0% | Notional, not premium; long/short direction unknown |
+| INFY | PUT | $0 | $0 | $0 | $0 | $8.9M | $6.8M | -24.2% | -17.5% | Notional, not premium; long/short direction unknown |
+| INTC | CALL | $0 | $459.6M | $453.3M | $679.0M | $746.8M | $0 | Exit | +155.7% | Notional, not premium; long/short direction unknown |
+| BLOOM ENERGY CORP | CALL | $0 | $0 | $0 | $12.3M | $0 | $0 | +0.0% | — | Notional, not premium; long/short direction unknown |
+| CRWV | PUT | $0 | $0 | $0 | $191.6M | $0 | $0 | +0.0% | +9.6% | Notional, not premium; long/short direction unknown |
+| GDX | PUT | $0 | $0 | $0 | $195.8M | $0 | $0 | +0.0% | -17.9% | Notional, not premium; long/short direction unknown |
+| EQT | CALL | $0 | $0 | $0 | $0 | $37.5M | $0 | Exit | -15.1% | Notional, not premium; long/short direction unknown |
+
+> Options are shown as reported notional exposure. Direction, premium, strike, expiry and true economic exposure are unknown.
+
+## Data quality notes
+
+- 13F reports CUSIPs, not tickers; tickers come from `data/reference/cusip_ticker_overrides.csv`. Unmapped lines show `?`.
+- Prices are best-effort via yfinance; missing prices render as `—`.
+- Estimated value is a mark-to-current of the last reported share count, not realised P&L.
+
+## Methodology
+
+This repository ingests SEC EDGAR (13F, 13D/G, Form D) as the verified layer,
+plus primary-source and media discovery feeds. Each signal is recorded in
+`data/parsed/events.jsonl` with a `source_class`, a `verification_status`
+(`verified` / `open` / `not_verifiable_via_13f`) and a deterministic
+`confidence`.
 
 ---
 
-## CALL-Options Intelligence (free-data subsystem) 🆕
-
-A self-contained, **free-data, research-only** subsystem lives in
-[`call_options_intel/`](call_options_intel/). It is **additive** — it does not
-modify or depend on the original paid-API pipeline above — and runs fully
-**offline by default** on bundled fixtures (no API keys, no network).
-
-### What it does
-Ranks explainable CALL-option candidates on a configurable AI-infrastructure
-universe by combining a structured **thesis vector** (Aschenbrenner / Thiel /
-Shulman themes), **SEC 13F** smart-money accumulation, free **market-data**
-momentum/trend context, free **options-chain** liquidity / IV-regime context, and
-**catalyst** proximity — minus an explicit **risk penalty**. It enforces
-**thesis ≠ trade**: a great thesis with rich IV, a wide spread, no catalyst or a
-contradictory 13F is penalised, not blindly bought.
-
-### Setup
-```bash
-pip install -r requirements.txt        # adds PyYAML; yfinance already present
-python -m call_options_intel doctor    # health check — expect PASS, no keys needed
-```
-
-### CLI
-```bash
-# Full offline scan → Markdown + CSV + JSON (HTML optional)
-python -m call_options_intel scan --output reports/latest --format markdown csv json
-
-# Restrict universe, use the configured universe file, write one format
-python -m call_options_intel scan --tickers NVDA MU AVGO --output reports/core --format markdown
-
-# Free live sources instead of fixtures (yfinance/Stooq/EDGAR)
-python -m call_options_intel scan --live --output reports/live
-
-# Explain one ticker's score; 13F changes; paper-evaluation demo
-python -m call_options_intel explain NVDA
-python -m call_options_intel update-13f
-python -m call_options_intel backtest demo --store reports/signals.jsonl
-```
-
-### Configuration (no code edits needed)
-`config/ai_infra_universe.yml` (universe), `config/scoring_weights.yml` (weights &
-penalties), `config/risk_thresholds.yml` (DTE/strike/liquidity/IV guardrails),
-`config/data_sources.yml` (providers & offline/live mode),
-`config/investors_13f.yml` (tracked managers), `config/report_settings.yml`.
-
-### Interpreting scores
-- **final_score (0–10)** = weighted positives − risk penalty (≥6.5 top, ≥4.5 watchlist).
-- **confidence (high/med/low)** = *data completeness*, not conviction — never size a `low` row.
-- **⚡ event trade** = earnings inside the flag window → IV-driven, expect IV crush.
-- **reasons_against** + **data-quality warning** appear on every candidate.
-
-### Free-data limitations
-Free sources are delayed/incomplete; IV percentile is a realised-vol proxy (no IV
-history store yet); option-proxy backtest returns are first-order delta/intrinsic
-approximations, **not** realised option P&L. No profitability is claimed without
-recorded out-of-sample evidence (`backtest evaluate`).
-
-### Docs
-[Architecture](docs/call_options_intelligence_architecture.md) ·
-[Runbook](docs/runbook_call_options_scanner.md) ·
-[Skill](.claude/skills/call-options-intelligence/SKILL.md) ·
-[Skills overview](SKILLS.md)
-
-### No-live-trading disclaimer
-This subsystem **never** executes trades and contains **no** broker/order code.
-`doctor` actively greps the package for order-execution patterns and fails loudly
-if any are ever introduced. Paper/research only. Not investment advice.
-
----
-
-## Architektur
-
-```
-main.py                         Orchestrierung
-scanner/
-  sources/
-    tradier_client.py           Tradier Vollzugriff (Option Chain, Greeks, IV-Historie)
-    data_fetcher.py             Koordiniert alle Quellen (yfinance, EIA, FRED, Finnhub, RSS)
-    sec_edgar.py                13F-Filing Monitor
-  signals/
-    regime_detector.py          Normal/Stress-Modus Bestimmung
-    contrarian_gate.py          Gegenthesen-Check (verhindert Überzeugungsschleifen)
-    shulman_layer.py            Empirische Validierung + qualitative Extraktion
-    thiel_layer.py              Handlung vs. These + Katechon-Bonus
-  analysis/
-    pre_filter.py               Quick-Score ohne Claude (Token-Ökonomie)
-    scoring_engine.py           Gewichteter Conviction-Score
-    claude_analyzer.py          Anthropic API + Master-Prompt
-  output/
-    trading_card_generator.py   JSON → HTML Trading Card
-    dashboard_generator.py      GitHub Pages Dashboard
-  utils/
-    config.py                   Alle Konstanten und Gewichte
-    state_manager.py            SQLite + Git-Commit Persistenz
-    ticker_mapper.py            CIK → Ticker → Sektor Mapping
-    rate_limiter.py             Pro-API Rate-Limiting
-```
-
-## Setup
-
-### 1. Repository
-
-```bash
-git clone https://github.com/DEIN-USER/sa-scanner
-cd sa-scanner
-pip install -r requirements.txt
-```
-
-### 2. GitHub Secrets
-
-Unter `Settings → Secrets and variables → Actions`:
-
-| Secret | Quelle | Pflicht |
-|--------|--------|---------|
-| `ANTHROPIC_API_KEY` | console.anthropic.com | ✅ |
-| `TRADIER_API_KEY` | tradier.com/user/applications | ✅ |
-| `FINNHUB_API_KEY` | finnhub.io | ✅ |
-| `EIA_API_KEY` | eia.gov/opendata | Empfohlen |
-| `FRED_API_KEY` | fred.stlouisfed.org | Empfohlen |
-
-### 3. GitHub Actions Schreibrechte
-
-`Settings → Actions → General → Workflow permissions → Read and write permissions`
-
-### 4. GitHub Pages
-
-`Settings → Pages → Source → GitHub Actions`
-
-### 5. CIK-Nummern verifizieren
-
-In `scanner/utils/config.py` die `SEC_CIK_TARGETS` über
-[EDGAR Company Search](https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany)
-verifizieren.
-
-### 6. Lokaler Test
-
-```bash
-# Nur Daten fetchen (kein Claude)
-python main.py --no-claude
-
-# Spezifische Ticker
-python main.py --ticker VST PLTR
-
-# Nur EDGAR-Check
-python main.py --edgar-only
-
-# Tests
-pytest tests/ -v
-```
-
-## Gewichtungsstruktur
-
-| Layer | Normal | Stress |
-|-------|--------|--------|
-| SA LP Alignment | 40% | 50% |
-| Thiel (inkl. Philosophical) | 14% | 10% |
-| Shulman-Metriken | 15% | 13% |
-| Multi-Signal-Gate | 4% | 3% |
-| Markt-Regime | 15% | 12% |
-| Contrarian Gate | 12% | 12% |
-
-**Conviction-Schwellenwert:** ≥ 7.5 (Normal) / ≥ 8.0 (Stress)
-
-**Contrarian Gate:** Bei Score < -3.0 wird der Trade blockiert (binäres Gate).
-
-## Kosten
-
-| Quelle | Kosten |
-|--------|--------|
-| Anthropic API (claude-sonnet-4-6) | ~2-3 USD/Monat (Pre-Filter) |
-| Tradier (Vollzugriff) | Laut Plan |
-| Alle anderen Quellen | kostenlos |
-
-## Wichtige Einschränkungen
-
-Das System liefert **Richtungs-Signale**, keine Timing-Garantien.
-
-- Philosophische Signale (Thiel-These) sind Priors, keine Trigger
-- Shulman-Signale liegen 6-12 Monate vor dem Mainstream-Markt
-- IV-Rank ist erst nach 30+ Tagen eigener Datensammlung zuverlässig (Warmup-Phase)
-- Der Contrarian Gate ist der einzige Schutz gegen geschlossene Überzeugungsschleifen
-- Nicht investiere niemals mehr als du bereit bist zu verlieren
-
-## Lizenz
-
-Privat — nicht für kommerzielle Weitergabe.
+⚙️ **Setup, configuration & reproduction:** see [`docs/SETUP.md`](docs/SETUP.md).
+This dashboard is regenerated automatically; do not edit it by hand.

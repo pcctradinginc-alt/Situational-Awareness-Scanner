@@ -1,0 +1,22 @@
+{
+  "person": "Leopold Aschenbrenner",
+  "primary_entity": "Situational Awareness LP",
+  "entities": [
+    {
+      "name": "Situational Awareness LP",
+      "cik": "0002045724",
+      "sec_file_number": "",
+      "state_of_inc": "DE",
+      "former_names": [],
+      "addresses": [
+        "77 FEDERAL STREET, SAN FRANCISCO, CA, 94107"
+      ],
+      "confirmed": true
+    }
+  ],
+  "reporting_persons": [
+    "Leopold Aschenbrenner"
+  ],
+  "last_resolved": "2026-06-08T11:20:18Z",
+  "note": "Run with extra_ciks populated in config.yaml to expand the graph."
+}

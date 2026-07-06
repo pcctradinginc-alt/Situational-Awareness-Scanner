@@ -1,0 +1,83 @@
+# ── Situational Awareness Tracker — configuration ─────────────────────────────
+# All non-secret settings live here. Secrets (SMTP password, X API token) are
+# read from environment variables only. See README §Configuration.
+
+entity:
+  person: "Leopold Aschenbrenner"
+  primary_name: "Situational Awareness LP"
+  # Authoritative SEC identifier (verified on EDGAR).
+  primary_cik: "0002045724"
+  # Additional CIKs to watch. Mark `confirmed: false` until verified — see
+  # data/reference/entity_map.json and src/sources/entity_resolution.py.
+  # 0002047424 = "Situational Awareness LP Nov 2024, a Series of CGF2021 LLC"
+  # (feeder vehicle; verified via EDGAR full-text search, Form D 2024-12-05).
+  extra_ciks: ["0002047424"]
+
+sec:
+  # SEC requires a descriptive User-Agent with contact info, and rate-limits to
+  # ~10 requests/second. Put a real contact address here before running.
+  user_agent: "situational-awareness-tracker (contact: ${SEC_CONTACT_EMAIL})"
+  request_delay_seconds: 0.2          # ~5 req/s, comfortably under the limit
+  # Forms 3/4/5 (Section 16 insider filings) are the earliest per-trade signal:
+  # while SA LP is a >10% owner of an issuer, every transaction must be filed
+  # within 2 business days — vs. 45 days for the quarterly 13F.
+  filing_types: ["13F-HR", "13F-HR/A", "SC 13D", "SC 13D/A", "SC 13G", "SC 13G/A", "D", "D/A",
+                 "3", "3/A", "4", "4/A", "5", "5/A"]
+  # EDGAR full-text search queries — catches filings by OTHER filers that
+  # mention SA LP (PIPE 8-Ks, prospectuses, joint 13D/Gs, feeder Form Ds).
+  fts_queries:
+    - "Situational Awareness LP"
+    - "Leopold Aschenbrenner"
+
+analysis:
+  # How many trailing 13F quarters to load for analysis and position history.
+  # Fix [H2]: was 3 — raises to 6 to use all available data (currently 6 quarters
+  # on disk: Q4 2024 → Q1 2026). Sector-weight QoQ history and exit detection
+  # were silently truncated with 3 quarters.
+  quarters: 6
+  # Status thresholds for the Common Stock "Reported Position Change" traffic light.
+  hold_band_pct: 0.10                 # |QoQ| <= 10% counts as "Hold"
+  trim_threshold_pct: -0.10           # QoQ < -10% counts as "Trim"
+
+llm:
+  # Semantic validation of news signals via Claude Haiku.
+  # Requires ANTHROPIC_API_KEY env var. Falls back to keyword-only if not set.
+  validate_statements: true
+  model: "claude-haiku-4-5-20251001"
+
+prices:
+  source: "yfinance"                  # "yfinance" with automatic "stooq" fallback
+  enabled: true
+
+email:
+  enabled: true                       # SMTP_* env vars configured
+  subject_prefix: "SA Tracker"
+  from_name: "SA Tracker"
+  # Recipients live in the SMTP_TO env var (comma-separated) — never commit addresses.
+
+alert:
+  # Immediate alert email sent when any new high-confidence event is detected.
+  # Uses the same SMTP_* env vars as the digest. Set enabled: true to activate.
+  enabled: true
+  subject_prefix: "SA Alert"
+  # Minimum event confidence (0–1) required to trigger an immediate alert.
+  # SEC-verified filings always have confidence 1.0 and are unaffected.
+  # News/media signals: 0.85+ → immediate alert; below → pending_review.jsonl.
+  min_confidence: 0.85
+  # Confidence floor below which news events are silently dropped (not even queued).
+  min_confidence_queue: 0.5
+  # Which signal types trigger an alert.
+  on_signal_types:
+    - "13f_position"                # new 13F quarterly filing
+    - "ownership_13dg"              # 13D/G beneficial-ownership change (initial)
+    - "ownership_13dg_amendment"    # SC 13D/A or 13G/A — position update (fix [H1])
+    - "insider_trade"               # Form 3/4/5 — per-trade disclosure within 2 business days
+    - "sec_fts_mention"             # other filers' filings mentioning SA LP (PIPE 8-K, prospectus, ...)
+    - "public_statement"            # news / blog mention (invest, sell, announce, highlight)
+
+paths:
+  reference: "data/reference"
+  raw: "data/raw"
+  parsed: "data/parsed"
+  derived: "data/derived"
+  state: "data/state"

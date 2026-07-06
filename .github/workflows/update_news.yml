@@ -1,0 +1,78 @@
+name: news-and-digest
+
+# News discovery runs daily (via alert.yml hourly + filings.yml every 3h).
+# The full digest email is sent once a month on the first Monday at ~09:17 Berlin.
+on:
+  schedule:
+    - cron: "17 7 * * 1"    # Monday 09:17 CEST (summer)
+    - cron: "17 8 * * 1"    # Monday 09:17 CET  (winter)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sa-state-write
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6.0.2
+
+      - name: Guard to first Monday of month, Berlin 09:00
+        id: guard
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "go=true" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          H=$(TZ=Europe/Berlin date +%H)
+          DAY=$(TZ=Europe/Berlin date +%d)
+          echo "Berlin hour: $H  day-of-month: $DAY"
+          # First Monday = day 1-7
+          if [ "$H" = "09" ] && [ "$DAY" -le 7 ]; then
+            echo "go=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "go=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-python@v6.2.0
+        if: steps.guard.outputs.go == 'true'
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install
+        if: steps.guard.outputs.go == 'true'
+        run: pip install -r requirements.txt
+
+      - name: Discover, analyze, digest
+        if: steps.guard.outputs.go == 'true'
+        env:
+          GOOGLE_ALERT_FEEDS: ${{ secrets.GOOGLE_ALERT_FEEDS }}
+          BLOG_FEEDS: ${{ secrets.BLOG_FEEDS }}
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+          SCRAPE_CREATORS_API_KEY: ${{ secrets.SCRAPE_CREATORS_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST || 'smtp.gmail.com' }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT || '587' }}
+          SMTP_USER: ${{ secrets.SMTP_USER || secrets.GMAIL_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD || secrets.GMAIL_APP_PASSWORD }}
+          SMTP_TO: ${{ secrets.SMTP_TO || secrets.NOTIFY_EMAIL }}
+        run: |
+          python -m src.pipeline discover
+          python -m src.pipeline analyze
+          python -m src.pipeline digest
+
+      - name: Commit updated data
+        if: steps.guard.outputs.go == 'true'
+        run: |
+          git config user.name "sa-tracker-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --quiet && git diff --staged --quiet || git commit -m "data: news+digest $(date -u +%FT%TZ)"
+          git pull --rebase origin main || (
+            git checkout --ours data/ && git add data/ && git rebase --continue
+          )
+          git push

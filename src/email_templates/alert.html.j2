@@ -1,0 +1,772 @@
+{# Alert email: News oben (mit Haiku-Analyse + Trade-Signal), 13F unten (mit Haiku-Einordnung + volle Tabelle). #}
+{%- set C = {
+  'page': '#f5f5f7', 'card': '#ffffff', 'text': '#1d1d1f', 'sec': '#6e6e73',
+  'ter': '#86868b', 'line': '#d2d2d7', 'accent': '#0071e3',
+  'green_bg': '#e7f6ec', 'green_tx': '#1d7a3e',
+  'amber_bg': '#fdf3e0', 'amber_tx': '#9a6b00',
+  'red_bg':   '#fdeaea', 'red_tx':   '#b3261e',
+  'gray_bg':  '#eeeef0', 'gray_tx':  '#6e6e73',
+  'blue_bg':  '#e8f0fe', 'blue_tx':  '#1a56db',
+  'dark_bg':  '#1d1d1f', 'dark_tx':  '#f5f5f7',
+  'teal_bg':  '#e3f6f5', 'teal_tx':  '#0d6e6e',
+} -%}
+{%- set FONT = "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif" -%}
+
+{%- macro pill(text, kind) -%}
+{%- set bg = {'green':C.green_bg,'amber':C.amber_bg,'red':C.red_bg,'gray':C.gray_bg,'blue':C.blue_bg,'teal':C.teal_bg}.get(kind,C.gray_bg) -%}
+{%- set tx = {'green':C.green_tx,'amber':C.amber_tx,'red':C.red_tx,'gray':C.gray_tx,'blue':C.blue_tx,'teal':C.teal_tx}.get(kind,C.gray_tx) -%}
+<span style="display:inline-block;background:{{ bg }};color:{{ tx }};font-size:11px;font-weight:600;padding:3px 9px;border-radius:980px;white-space:nowrap;">{{ text }}</span>
+{%- endmacro -%}
+
+{%- macro ticker_chip(t) -%}
+<span style="display:inline-block;background:{{ C.dark_bg }};color:{{ C.dark_tx }};font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;margin-left:4px;">{{ t }}</span>
+{%- endmacro -%}
+
+<!-- preheader -->
+{%- set tldr_longs = (tldr.new_buys or []) + (tldr.strong_adds or []) -%}
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;">
+  {% if news_events %}{{ news_events[0].summary[:80] }}{% endif %}
+  {% if tldr_longs %} · Leo kaufte: {{ tldr_longs[:3]|join(', ') }}{% endif %}
+</div>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+       style="background:{{ C.page }};margin:0;padding:20px 0;">
+<tr><td align="center">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0"
+       style="width:600px;max-width:600px;background:{{ C.card }};border-radius:18px;overflow:hidden;font-family:{{ FONT }};color:{{ C.text }};">
+
+  <!-- ══ HEADER ══ -->
+  <tr><td style="padding:24px 32px 16px 32px;">
+    <div style="font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:{{ C.accent }};">{{ meta.subject_prefix }}</div>
+    <div style="font-size:22px;font-weight:700;letter-spacing:-0.02em;margin-top:4px;">
+      {%- if news_events and tldr.quarter %}News · {{ tldr.quarter }}
+      {%- elif tldr.quarter %}{{ tldr.quarter }} — was hat Leo getan?
+      {%- elif sec_events %}Neues SEC-Filing
+      {%- else %}News-Alert{%- endif %}
+    </div>
+    <div style="font-size:13px;color:{{ C.sec }};margin-top:3px;">{{ meta.person }} · {{ meta.manager }}</div>
+  </td></tr>
+
+  <!-- ══════════════════════════════════════════════════════════
+       OBERER TEIL: NEWS — 3-TIER SIGNAL CARDS
+       alpha_signal     = neues Asset (grüner Akzent)
+       position_update  = bekannte Position, neue Info (amber)
+       context / None   = allgemeine Erwähnung (grau, suppressed from here)
+  ══════════════════════════════════════════════════════════ -->
+  {% if news_events %}
+  <tr><td style="padding:4px 32px 0 32px;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:{{ C.ter }};margin-bottom:12px;">
+      News-Signale ({{ news_events|length }})
+    </div>
+
+    {% for evt in news_events %}
+    {%- set src0 = evt.sources[0] if evt.sources else {} -%}
+    {%- set cat = src0.signal_category or evt.get('signal_category') or '' -%}
+    {%- set tier = evt.signal_tier or '' -%}
+    {%- set quote = src0.llm_quote or '' -%}
+    {%- set inference = src0.llm_inference or '' -%}
+    {%- set action_hint = src0.llm_action_hint or '' -%}
+    {%- set llm_ok = src0.llm_validated or false -%}
+
+    {%- if tier == 'alpha_signal' -%}
+      {%- set card_border = C.green_tx -%}
+      {%- set tier_label = 'NEUES ALPHA' -%}
+      {%- set tier_color = C.green_tx -%}
+      {%- set tier_bg = C.green_bg -%}
+    {%- elif tier == 'position_update' -%}
+      {%- set card_border = C.amber_tx -%}
+      {%- set tier_label = 'POSITIONS-UPDATE' -%}
+      {%- set tier_color = C.amber_tx -%}
+      {%- set tier_bg = C.amber_bg -%}
+    {%- else -%}
+      {%- set card_border = C.line -%}
+      {%- set tier_label = '' -%}
+      {%- set tier_color = C.ter -%}
+      {%- set tier_bg = C.page -%}
+    {%- endif -%}
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+           style="border:1px solid {{ card_border }};border-radius:14px;margin-bottom:12px;overflow:hidden;">
+      <tr><td style="padding:16px 18px;">
+
+        <!-- Row 1: tier pill + category pill + tickers + confidence -->
+        <div style="margin-bottom:10px;">
+          {%- if tier_label %}
+          <span style="display:inline-block;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;
+                       letter-spacing:0.07em;text-transform:uppercase;background:{{ tier_bg }};
+                       color:{{ tier_color }};margin-right:6px;">{{ tier_label }}</span>
+          {%- endif %}
+          {%- if cat == 'invest' %}{{ pill('KAUF', 'green') }}
+          {%- elif cat == 'sell' %}{{ pill('VERKAUF', 'red') }}
+          {%- elif cat == 'announce' %}{{ pill('ANKÜNDIGUNG', 'blue') }}
+          {%- elif cat == 'highlight' %}{{ pill('THESE', 'gray') }}
+          {%- endif %}
+          {%- if evt.ticker_guess %}{% for t in evt.ticker_guess[:3] %}{{ ticker_chip(t) }}{% endfor %}{%- endif %}
+          <span style="font-size:11px;color:{{ C.ter }};margin-left:4px;">
+            {{ '%.0f%%'|format((evt.confidence or 0)*100) }} Konfidenz
+            {%- if llm_ok %} · KI-geprüft{%- endif %}
+          </span>
+        </div>
+
+        <!-- Row 2: headline -->
+        <div style="font-size:15px;font-weight:600;line-height:1.4;color:{{ C.text }};margin-bottom:10px;">
+          {{ evt.summary[:140] }}{% if evt.summary|length > 140 %}…{% endif %}
+        </div>
+
+        <!-- Row 3: 📌 Quelle & Zitat -->
+        {% if quote %}
+        <div style="border-left:3px solid {{ card_border }};padding:8px 12px;margin-bottom:10px;background:{{ C.page }};border-radius:0 8px 8px 0;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:{{ C.ter }};margin-bottom:4px;">📌 Zitat</div>
+          <div style="font-size:13px;font-style:italic;line-height:1.5;color:{{ C.text }};">„{{ quote }}"</div>
+        </div>
+        {% endif %}
+
+        <!-- Row 4: 💡 Rückschluss (only for alpha_signal / position_update) -->
+        {% if inference %}
+        <div style="background:{{ tier_bg }};border-radius:10px;padding:11px 14px;margin-bottom:{% if action_hint %}10px{% else %}0{% endif %};">
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:{{ tier_color }};margin-bottom:4px;">💡 Rückschluss</div>
+          <div style="font-size:13px;line-height:1.55;color:{{ C.text }};">{{ inference }}</div>
+        </div>
+        {% endif %}
+
+        <!-- Row 5: ⚡ Handlungsrichtung (optional, only when LLM provided it) -->
+        {% if action_hint %}
+        <div style="background:{{ C.amber_bg }};border-radius:10px;padding:11px 14px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:{{ C.amber_tx }};margin-bottom:4px;">⚡ Handlungsrichtung</div>
+          <div style="font-size:13px;color:{{ C.amber_tx }};line-height:1.5;">{{ action_hint }}</div>
+          <div style="font-size:10px;color:{{ C.ter }};margin-top:4px;">Kein bestätigter Trade — Einschätzung basiert auf öffentlicher Aussage, nicht auf Filing.</div>
+        </div>
+        {% endif %}
+
+        <!-- source link -->
+        {% if src0.url %}
+        <div style="margin-top:10px;">
+          <a href="{{ src0.url }}"
+             style="font-size:12px;color:{{ C.accent }};text-decoration:none;">Quelle lesen →</a>
+        </div>
+        {% endif %}
+
+      </td></tr>
+    </table>
+    {% endfor %}
+  </td></tr>
+  {% endif %}
+
+  <!-- SEC filing cards — always shown: they are the reason the alert fired.
+       insider_trade (Form 3/4/5) gets the loudest treatment: it is the only
+       per-trade disclosure with 2-business-day latency. -->
+  {% if sec_events %}
+  <tr><td style="padding:20px 32px 0 32px;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:{{ C.ter }};margin-bottom:10px;">SEC Filings</div>
+    {% for evt in sec_events %}
+    {%- set src0 = evt.sources[0] if evt.sources else {} -%}
+    {%- set is_insider = evt.signal_type == 'insider_trade' -%}
+    {%- set is_mention = evt.signal_type == 'sec_fts_mention' -%}
+    {%- set card_bg = C.green_bg if not is_mention else C.blue_bg -%}
+    {%- set card_tx = C.green_tx if not is_mention else C.blue_tx -%}
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+           style="background:{{ card_bg }};border-radius:12px;margin-bottom:8px;{% if is_insider %}border:2px solid {{ C.green_tx }};{% endif %}">
+      <tr><td style="padding:14px 16px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.04em;color:{{ card_tx }};">
+          {%- if is_insider %}⚡ INSIDER-TRADE (FORM 3/4/5) · 2-TAGE-MELDUNG · VERIFIZIERT
+          {%- elif is_mention %}SEC-ERWÄHNUNG DURCH DRITTE · FRÜHINDIKATOR
+          {%- else %}{{ evt.signal_type|upper|replace('_',' ') }} · VERIFIZIERT{%- endif %}
+          {%- if evt.ticker_guess %}{% for t in evt.ticker_guess[:3] %}{{ ticker_chip(t) }}{% endfor %}{%- endif %}
+        </div>
+        <div style="font-size:14px;font-weight:{% if is_insider %}600{% else %}500{% endif %};margin-top:4px;">{{ evt.summary }}</div>
+        {% if is_insider and src0.transactions %}
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;background:#ffffff;border-radius:8px;">
+          {% for t in src0.transactions[:5] %}
+          <tr>
+            <td style="padding:6px 10px;font-size:12px;color:{{ C.text }};">
+              {%- if t.acquired_disposed == 'A' %}<span style="color:{{ C.green_tx }};font-weight:700;">KAUF/ERWERB</span>
+              {%- else %}<span style="color:{{ C.red_tx }};font-weight:700;">VERKAUF/ABGABE</span>{%- endif %}
+              · {{ '{:,.0f}'.format(t.shares or 0) }} Stück
+              {%- if t.price is not none %} @ ${{ t.price }}{%- endif %}
+              · {{ t.code_label }} · {{ t.date }}
+              {%- if t.post_shares is not none %} · Bestand danach: {{ '{:,.0f}'.format(t.post_shares) }}{%- endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+        {% endif %}
+        <div style="font-size:11px;color:{{ C.ter }};margin-top:6px;">
+          {% if evt.as_of %}Datum: {{ evt.as_of }}{% endif %}
+          {% if evt.timestamp %} · Erkannt: {{ evt.timestamp[:16] }}Z{% endif %}
+          {% if evt.latency_str %} · <span style="font-weight:600;">{{ evt.latency_str }}</span>{% endif %}
+        </div>
+        {% if src0.url or src0.accession %}
+        <div style="margin-top:6px;">
+          <a href="{{ src0.url or 'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=' ~ evt.entity_cik ~ '&type=13F' }}"
+             style="font-size:12px;color:{{ C.accent }};text-decoration:none;">Filing auf SEC EDGAR ansehen →</a>
+        </div>
+        {% endif %}
+      </td></tr>
+    </table>
+    {% endfor %}
+  </td></tr>
+  {% endif %}
+
+  <!-- ══════════════════════════════════════════════════════════
+       TRENNLINIE
+  ══════════════════════════════════════════════════════════ -->
+  {% if (news_events or sec_events) and (tldr and (tldr.new_buys or tldr.puts_shorts or tldr.strategy_changes)) %}
+  <tr><td style="padding:20px 32px 0 32px;">
+    <div style="border-top:2px solid {{ C.line }};"></div>
+  </td></tr>
+  {% endif %}
+
+  <!-- ══════════════════════════════════════════════════════════
+       UNTERER TEIL: 13F POSITIONEN
+  ══════════════════════════════════════════════════════════ -->
+  {% if tldr and (tldr.new_buys or tldr.strong_adds or tldr.exits or tldr.puts_shorts or tldr.strategy_changes) %}
+
+  <!-- Section header -->
+  <tr><td style="padding:20px 32px 0 32px;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:{{ C.ter }};">
+      SEC 13F · {{ tldr.quarter }}
+    </div>
+    <div style="font-size:13px;color:{{ C.sec }};margin-top:2px;">Bis zu 45 Tage Verzögerung · Basis aller Portfolioangaben</div>
+  </td></tr>
+
+  <!-- ── KERN-THESIS (LLM-Analyse) ── -->
+  {% if analysis_13f %}
+  <tr><td style="padding:12px 32px 0 32px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+           style="background:{{ C.teal_bg }};border-radius:14px;overflow:hidden;">
+      <tr><td style="padding:16px 18px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:{{ C.teal_tx }};margin-bottom:8px;">Kern-Thesis · KI-Einordnung</div>
+        <div style="font-size:14px;line-height:1.65;color:#1d4040;">{{ analysis_13f }}</div>
+      </td></tr>
+    </table>
+  </td></tr>
+  {% endif %}
+
+  <!-- ── TOP NACHKAUF-SIGNALE (Conviction-Score) ── -->
+  {% if top_signals %}
+  <tr><td style="padding:12px 32px 0 32px;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:{{ C.ter }};margin-bottom:10px;">
+      Top Nachkauf-Signale · Conviction Score
+    </div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+           style="border:1px solid {{ C.line }};border-radius:14px;overflow:hidden;">
+      <tr><td style="padding:4px 0;">
+
+        {% for sig in top_signals %}
+        {%- set score = sig.conviction_score -%}
+        {%- set score_color = '#1d7a3e' if score >= 7.5 else ('#9a6b00' if score >= 6.0 else '#6e6e73') -%}
+        {%- set score_bg = C.green_bg if score >= 7.5 else (C.amber_bg if score >= 6.0 else C.gray_bg) -%}
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+               style="border-bottom:{% if not loop.last %}1px solid {{ C.line }}{% else %}none{% endif %};">
+          <tr><td style="padding:14px 18px;">
+
+            <!-- Row 1: rank · ticker · conviction score pill -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="vertical-align:middle;">
+                  <span style="font-size:11px;color:{{ C.ter }};font-weight:600;">#{{ loop.index }}</span>
+                  <span style="font-size:16px;font-weight:800;margin-left:8px;color:{{ C.text }};">{{ sig.ticker or sig.issuer[:10] }}</span>
+                  <span style="font-size:13px;color:{{ C.sec }};margin-left:6px;">{{ sig.issuer[:35] }}</span>
+                </td>
+                <td align="right" style="vertical-align:middle;white-space:nowrap;">
+                  <span style="display:inline-block;background:{{ score_bg }};color:{{ score_color }};font-size:11px;font-weight:600;padding:3px 9px;border-radius:980px;">
+                    13F {{ score }}/10
+                  </span>
+                </td>
+              </tr>
+            </table>
+
+            <!-- Row 2: pills + metrics -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+              <tr>
+                <td style="vertical-align:middle;">
+                  <!-- Status pill -->
+                  {%- set sk = {'Strong Add':'green','New + Add':'green','New Buy':'amber'}.get(sig.status_label,'gray') -%}
+                  {{ pill(sig.status_label, sk) }}
+                  <!-- Trend pill -->
+                  {%- if sig.three_quarter_trend == 'up_up_up' %}{{ pill('↑↑↑ 3Q', 'green') }}
+                  {%- elif sig.three_quarter_trend == 'new_add' %}{{ pill('Neu + Add', 'green') }}
+                  {%- elif sig.three_quarter_trend == 'new' %}{{ pill('Neu', 'amber') }}{%- endif %}
+                  <!-- Dollar delta + share delta + 13D/G -->
+                  <span style="font-size:12px;color:{{ C.sec }};margin-left:8px;">
+                    {%- set dd = sig.qoq_dollar_delta | default(0) -%}
+                    {%- set sdl = sig.shares_delta_label | default('') -%}
+                    {%- if sig.qoq_share_change_pct is not none -%}
+                      <span style="color:{{ C.green_tx }};font-weight:600;">
+                        {{ '%+.0f%%'|format(sig.qoq_share_change_pct * 100) }} QoQ
+                        &nbsp;({{ dd | usd_compact }} · {{ sdl }} Shares)
+                      </span>
+                    {%- else -%}
+                      <span style="color:{{ C.green_tx }};font-weight:600;">{{ sdl }} · Neue Position · {{ dd | usd_compact }}</span>
+                    {%- endif -%}
+                    {%- if sig.has_13dg %}
+                      &nbsp;{{ pill('13D/G', 'teal') }}
+                    {%- endif %}
+                  </span>
+                </td>
+                <td align="right" style="vertical-align:middle;font-size:12px;color:{{ C.sec }};white-space:nowrap;">
+                  {{ (sig.portfolio_weight_common_stock * 100)|round(1) }}% Portfolio
+                  &nbsp;·&nbsp;
+                  {{ sig.value_latest_usd|usd }}
+                  {%- if sig.price_change_since_quarter_end_pct is not none %}
+                  &nbsp;·&nbsp;
+                  <span style="color:{% if sig.price_change_since_quarter_end_pct > 0 %}{{ C.green_tx }}{% elif sig.price_change_since_quarter_end_pct < 0 %}{{ C.red_tx }}{% else %}{{ C.ter }}{% endif %};">
+                    {{ '%+.0f%%'|format(sig.price_change_since_quarter_end_pct * 100) }} seit 13F
+                  </span>
+                  {%- endif %}
+                </td>
+              </tr>
+            </table>
+
+            <!-- Row 3: Conviction recommendation + Entry score -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+              <tr>
+                <td style="vertical-align:middle;">
+                  <span style="font-size:13px;font-weight:600;color:{{ score_color }};">→ {{ sig.recommendation }}</span>
+                  <span style="font-size:11px;font-weight:400;color:{{ C.ter }};margin-left:6px;">· 13F-Daten bis zu 45 Tage alt</span>
+                </td>
+                <td align="right" style="vertical-align:middle;white-space:nowrap;">
+                  {%- set es = sig.entry_score | default(5) -%}
+                  {%- if es >= 7 -%}{%- set es_bg = C.green_bg -%}{%- set es_tx = C.green_tx -%}
+                  {%- elif es >= 5 -%}{%- set es_bg = C.amber_bg -%}{%- set es_tx = C.amber_tx -%}
+                  {%- else -%}{%- set es_bg = C.red_bg -%}{%- set es_tx = C.red_tx -%}{%- endif -%}
+                  <span style="display:inline-block;background:{{ es_bg }};color:{{ es_tx }};font-size:11px;font-weight:600;padding:3px 9px;border-radius:980px;">
+                    Entry {{ es }}/10
+                  </span>
+                </td>
+              </tr>
+            </table>
+
+            <!-- Row 4: Options context warnings (only when relevant) -->
+            {%- set octx = sig.options_context or {} -%}
+            {%- if octx.call_went_zero and octx.has_active_put %}
+            <div style="margin-top:6px;background:{{ C.amber_bg }};border-radius:8px;padding:7px 12px;font-size:12px;color:{{ C.amber_tx }};font-weight:500;">
+              ⚠ Call-Position glattgestellt · Put aktiv — Netto bearish (lt. 13F)
+            </div>
+            {%- elif octx.call_heavily_reduced and octx.call_reduction_usd %}
+            <div style="margin-top:6px;background:{{ C.gray_bg }};border-radius:8px;padding:7px 12px;font-size:12px;color:{{ C.gray_tx }};">
+              ⓘ Call-Exposure −{{ octx.call_reduction_usd | usd }} reduziert (Gesamt-Exposure gesunken)
+            </div>
+            {%- endif %}
+
+          </td></tr>
+        </table>
+        {% endfor %}
+
+      </td></tr>
+    </table>
+  </td></tr>
+  {% endif %}
+
+  <!-- ── SIGNAL BACKTEST ── -->
+  {% if signal_backtest %}
+  <tr><td style="padding:8px 32px 0 32px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+           style="background:{{ C.gray_bg }};border-radius:12px;overflow:hidden;">
+      <tr><td style="padding:12px 16px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:{{ C.ter }};margin-bottom:8px;">
+          Backtest · {{ signal_backtest.tested_quarter }} → {{ signal_backtest.result_quarter }}
+          <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:10px;"> (High-Conviction Adds aus Vorquartal)</span>
+        </div>
+        <table role="presentation" cellpadding="0" cellspacing="0" style="font-size:13px;width:100%;">
+          <tr>
+            <td style="padding:2px 20px 2px 0;color:{{ C.sec }};">
+              {{ signal_backtest.signal_count }} Signale
+            </td>
+            <td style="padding:2px 20px 2px 0;color:{{ C.sec }};">
+              Hit-Rate <strong style="color:{{ C.text }};">{{ (signal_backtest.hit_rate * 100)|round(0)|int }}%</strong>
+            </td>
+            <td style="padding:2px 20px 2px 0;color:{{ C.sec }};">
+              Median
+              <strong style="color:{%- if signal_backtest.median_return_pct > 0 %}{{ C.green_tx }}{%- elif signal_backtest.median_return_pct < 0 %}{{ C.red_tx }}{%- else %}{{ C.ter }}{%- endif %};">
+                {{ '%+.1f%%'|format(signal_backtest.median_return_pct) }}
+              </strong>
+            </td>
+            <td style="padding:2px 0;color:{{ C.sec }};">
+              Avg
+              <strong style="color:{%- if signal_backtest.avg_return_pct > 0 %}{{ C.green_tx }}{%- elif signal_backtest.avg_return_pct < 0 %}{{ C.red_tx }}{%- else %}{{ C.ter }}{%- endif %};">
+                {{ '%+.1f%%'|format(signal_backtest.avg_return_pct) }}
+              </strong>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4" style="padding-top:5px;font-size:11px;color:{{ C.ter }};">
+              Bestes Signal: <strong>{{ signal_backtest.best }}</strong>
+              &nbsp;·&nbsp; Schlechtestes: <strong>{{ signal_backtest.worst }}</strong>
+            </td>
+          </tr>
+        </table>
+      </td></tr>
+    </table>
+  </td></tr>
+  {% endif %}
+
+  <!-- ── SEKTOR-THEMEN ── -->
+  {% if sector_breakdown %}
+  <tr><td style="padding:8px 32px 0 32px;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:{{ C.ter }};margin-bottom:8px;">
+      Sektor-Themen
+    </div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+           style="border:1px solid {{ C.line }};border-radius:12px;overflow:hidden;">
+      <tr><td style="padding:4px 0;">
+        {% for s in sector_breakdown %}
+        {% if s.portfolio_weight >= 0.01 %}
+        {%- set w_pct = (s.portfolio_weight * 100)|round(1) -%}
+        {%- set bar_w = (s.portfolio_weight * 100)|round(0)|int -%}
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+               style="border-bottom:{% if not loop.last %}1px solid {{ C.line }}{% else %}none{% endif %};">
+          <tr><td style="padding:11px 16px;">
+
+            <!-- Row 1: name + weight bar (100% = full portfolio) + value + QoQ chips -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="vertical-align:middle;width:32%;">
+                  <span style="font-size:13px;font-weight:700;color:{{ C.text }};">{{ s.sector }}</span>
+                </td>
+                <td style="vertical-align:middle;padding:0 10px;">
+                  <div style="background:{{ C.line }};border-radius:4px;height:6px;">
+                    <div style="background:{{ C.accent }};border-radius:4px;height:6px;width:{{ bar_w }}%;"></div>
+                  </div>
+                </td>
+                <td align="right" style="vertical-align:middle;white-space:nowrap;">
+                  <strong style="font-size:14px;color:{{ C.text }};">{{ w_pct }}%</strong>
+                  <span style="font-size:12px;color:{{ C.ter }};margin-left:5px;">{{ s.value_usd|usd }}</span>
+                  {%- if s.qoq_weight_change is not none %}
+                  {%- set dq1 = (s.qoq_weight_change * 100)|round(1) %}
+                  {%- set dq1_color = C.green_tx if dq1 > 0 else (C.red_tx if dq1 < 0 else C.ter) %}
+                  <span style="font-size:11px;font-weight:600;color:{{ dq1_color }};margin-left:8px;">
+                    {{ '%+.1f%%'|format(dq1) }} vs {{ s.qoq_quarter_label }}
+                  </span>
+                  {%- endif %}
+                  {%- if s.prev_qoq_weight_change is not none %}
+                  {%- set dq2 = (s.prev_qoq_weight_change * 100)|round(1) %}
+                  {%- set dq2_color = C.green_tx if dq2 > 0 else (C.red_tx if dq2 < 0 else C.ter) %}
+                  <span style="font-size:11px;color:{{ dq2_color }};margin-left:6px;opacity:0.75;">
+                    {{ '%+.1f%%'|format(dq2) }} vs {{ s.prev_qoq_quarter_label }}
+                  </span>
+                  {%- endif %}
+                </td>
+              </tr>
+            </table>
+
+            <!-- Row 2: add/trim pills (only if any movement) -->
+            {% if s.adds or s.trims %}
+            <div style="margin-top:7px;line-height:1.8;">
+              {% for t in s.adds %}
+              <span style="display:inline-block;background:{{ C.green_bg }};color:{{ C.green_tx }};font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin:1px 3px 1px 0;">↑ {{ t }}</span>
+              {% endfor %}
+              {% for t in s.trims %}
+              <span style="display:inline-block;background:{{ C.red_bg }};color:{{ C.red_tx }};font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin:1px 3px 1px 0;">↓ {{ t }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+
+          </td></tr>
+        </table>
+        {% endif %}
+        {% endfor %}
+      </td></tr>
+    </table>
+  </td></tr>
+  {% endif %}
+
+  <!-- TLDR-Box (Positionsübersicht) -->
+  <tr><td style="padding:12px 32px 0 32px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+           style="background:{{ C.dark_bg }};border-radius:14px;overflow:hidden;">
+      <tr><td style="padding:20px 22px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#86868b;margin-bottom:14px;">Positionsübersicht</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:14px;">
+          {% if tldr.new_buys %}
+          <tr>
+            <td style="color:#86868b;padding:5px 0;width:130px;vertical-align:top;">Neue Käufe</td>
+            <td style="color:#30d158;font-weight:600;padding:5px 0;">{{ tldr.new_buys|join('  ·  ') }}</td>
+          </tr>
+          {% endif %}
+          {% if tldr.strong_adds %}
+          <tr>
+            <td style="color:#86868b;padding:5px 0;vertical-align:top;">Aufgestockt</td>
+            <td style="color:#30d158;font-weight:500;padding:5px 0;">{{ tldr.strong_adds|join('  ·  ') }}</td>
+          </tr>
+          {% endif %}
+          {% if tldr.strategy_changes %}
+          <tr>
+            <td style="color:#86868b;padding:5px 0;vertical-align:top;">Umgebaut</td>
+            <td style="color:#ff9f0a;font-weight:600;padding:5px 0;">{{ tldr.strategy_changes|join('  ·  ') }}
+              <span style="font-size:11px;font-weight:400;color:#636366;margin-left:4px;">Call ↓0 · Put aktiv</span>
+            </td>
+          </tr>
+          {% endif %}
+          {% if tldr.puts_shorts %}
+          <tr>
+            <td style="color:#86868b;padding:5px 0;vertical-align:top;">Put-Optionen</td>
+            <td style="color:#ff453a;font-weight:600;padding:5px 0;">{{ tldr.puts_shorts|join('  ·  ') }}
+              <span style="font-size:11px;font-weight:400;color:#636366;margin-left:4px;">(Richtung lt. 13F unbekannt)</span>
+            </td>
+          </tr>
+          {% endif %}
+          {% if tldr.exits %}
+          <tr>
+            <td style="color:#86868b;padding:5px 0;vertical-align:top;">Verkauft</td>
+            <td style="color:#636366;font-weight:500;padding:5px 0;">{{ tldr.exits|join('  ·  ') }}</td>
+          </tr>
+          {% endif %}
+          {% if tldr.total_value %}
+          <tr><td colspan="2" style="padding-top:12px;border-top:1px solid #3a3a3c;"></td></tr>
+          <tr>
+            <td style="color:#86868b;padding:5px 0;">Portfolio-Wert</td>
+            <td style="color:#f5f5f7;font-weight:500;padding:5px 0;">{{ tldr.total_value|usd }} (Common Stock Long)</td>
+          </tr>
+          {% endif %}
+        </table>
+      </td></tr>
+    </table>
+  </td></tr>
+
+  <!-- ── DETAILLIERTE POSITIONS-ÜBERSICHT NACH SEKTOR ── -->
+  {% if model.common_stock and sector_breakdown %}
+  <tr><td style="padding:16px 32px 0 32px;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:{{ C.ter }};margin-bottom:12px;">Positionen nach Sektor</div>
+
+    {% for s in sector_breakdown %}
+    {% if s.portfolio_weight >= 0.01 %}
+    {%- set srows = model.common_stock | selectattr('sector', 'equalto', s.sector) | list | sort(attribute='value_latest_usd', reverse=True) -%}
+    {%- set sexits = model.exits | selectattr('sector', 'equalto', s.sector) | list -%}
+    {% if srows or sexits %}
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+           style="border:1px solid {{ C.line }};border-radius:12px;overflow:hidden;margin-bottom:10px;">
+
+      <!-- Sector header -->
+      <tr><td colspan="6" style="padding:9px 14px;background:{{ C.gray_bg }};">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+          <tr>
+            <td style="vertical-align:middle;">
+              {%- if s.adds %}<span style="font-size:12px;color:{{ C.green_tx }};font-weight:700;margin-right:6px;">↑</span>
+              {%- elif s.trims %}<span style="font-size:12px;color:{{ C.red_tx }};font-weight:700;margin-right:6px;">↓</span>
+              {%- else %}<span style="font-size:12px;color:{{ C.ter }};margin-right:6px;">—</span>{%- endif %}
+              <span style="font-size:13px;font-weight:700;color:{{ C.text }};">{{ s.sector }}</span>
+            </td>
+            <td align="right" style="vertical-align:middle;white-space:nowrap;">
+              <strong style="font-size:13px;color:{{ C.text }};">{{ (s.portfolio_weight * 100)|round(1) }}%</strong>
+              <span style="font-size:12px;color:{{ C.ter }};margin-left:5px;">{{ s.value_usd|usd }}</span>
+              {%- if s.qoq_weight_change is not none %}
+              {%- set dq1 = (s.qoq_weight_change * 100)|round(1) %}
+              <span style="font-size:11px;font-weight:600;color:{{ C.green_tx if dq1 > 0 else (C.red_tx if dq1 < 0 else C.ter) }};margin-left:8px;">{{ '%+.1f%%'|format(dq1) }} vs {{ s.qoq_quarter_label }}</span>
+              {%- endif %}
+              {%- if s.prev_qoq_weight_change is not none %}
+              {%- set dq2 = (s.prev_qoq_weight_change * 100)|round(1) %}
+              <span style="font-size:11px;color:{{ C.green_tx if dq2 > 0 else (C.red_tx if dq2 < 0 else C.ter) }};margin-left:6px;opacity:0.7;">{{ '%+.1f%%'|format(dq2) }} vs {{ s.prev_qoq_quarter_label }}</span>
+              {%- endif %}
+            </td>
+          </tr>
+        </table>
+      </td></tr>
+
+      <!-- Column headers -->
+      <tr style="background:{{ C.card }};border-top:1px solid {{ C.line }};">
+        <td style="padding:5px 8px 5px 14px;font-size:10px;font-weight:600;color:{{ C.ter }};letter-spacing:0.04em;width:22%;">TICKER</td>
+        <td style="padding:5px 8px;font-size:10px;font-weight:600;color:{{ C.ter }};letter-spacing:0.04em;width:18%;">STATUS</td>
+        <td align="right" style="padding:5px 8px;font-size:10px;font-weight:600;color:{{ C.ter }};letter-spacing:0.04em;width:14%;">QoQ</td>
+        <td align="right" style="padding:5px 8px;font-size:10px;font-weight:600;color:{{ C.ter }};letter-spacing:0.04em;width:18%;">ADD Q1</td>
+        <td align="right" style="padding:5px 8px;font-size:10px;font-weight:600;color:{{ C.ter }};letter-spacing:0.04em;width:10%;">PORT.</td>
+        <td align="right" style="padding:5px 14px 5px 8px;font-size:10px;font-weight:600;color:{{ C.ter }};letter-spacing:0.04em;">WERT</td>
+      </tr>
+
+      {% for r in srows %}
+      {%- set sk = {'strong_add':'green','new_add':'green','new_buy':'amber','hold':'gray','trim':'red'}.get(r.status,'gray') -%}
+      {%- set octx = r.options_context or {} -%}
+      <tr style="border-top:1px solid {{ C.line }};">
+        <td style="padding:8px 6px 8px 14px;">
+          <span style="font-size:13px;font-weight:700;">{{ r.ticker or r.issuer[:8] }}</span>
+          {%- if octx.call_went_zero and octx.has_active_put %}
+          <span style="font-size:10px;font-weight:600;background:{{ C.amber_bg }};color:{{ C.amber_tx }};padding:1px 5px;border-radius:4px;margin-left:4px;">Umgebaut</span>
+          {%- elif octx.call_heavily_reduced %}
+          <span style="font-size:10px;font-weight:600;background:{{ C.amber_bg }};color:{{ C.amber_tx }};padding:1px 5px;border-radius:4px;margin-left:4px;">Call↓</span>
+          {%- elif octx.has_active_call and octx.has_active_put %}
+          <span style="font-size:10px;background:{{ C.blue_bg }};color:{{ C.blue_tx }};padding:1px 5px;border-radius:4px;margin-left:4px;">C+P</span>
+          {%- elif octx.has_active_call %}
+          <span style="font-size:10px;background:{{ C.blue_bg }};color:{{ C.blue_tx }};padding:1px 5px;border-radius:4px;margin-left:4px;">Call</span>
+          {%- elif octx.has_active_put %}
+          <span style="font-size:10px;background:{{ C.red_bg }};color:{{ C.red_tx }};padding:1px 5px;border-radius:4px;margin-left:4px;">Put</span>
+          {%- endif %}
+          <div style="font-size:11px;color:{{ C.ter }};margin-top:1px;">{{ r.issuer[:22] }}</div>
+        </td>
+        <td style="padding:8px 6px;vertical-align:top;padding-top:10px;">{{ pill(r.status_label, sk) }}</td>
+        <td align="right" style="padding:8px 6px;font-size:12px;vertical-align:top;padding-top:10px;">
+          {%- if r.qoq_share_change_pct is none %}<span style="color:{{ C.green_tx }};font-weight:600;">Neu</span>
+          {%- else %}<span style="color:{%- if r.qoq_share_change_pct > 0.01 %}{{ C.green_tx }}{%- elif r.qoq_share_change_pct < -0.01 %}{{ C.red_tx }}{%- else %}{{ C.ter }}{%- endif %};">{{ '%+.0f%%'|format(r.qoq_share_change_pct * 100) }}</span>{%- endif %}
+        </td>
+        <td align="right" style="padding:8px 6px;font-size:12px;vertical-align:top;padding-top:10px;">
+          {%- if r.qoq_dollar_delta and r.qoq_dollar_delta != 0 %}<span style="color:{%- if r.qoq_dollar_delta > 0 %}{{ C.green_tx }}{%- else %}{{ C.red_tx }}{%- endif %};">{{ r.qoq_dollar_delta|usd_compact }}</span>{%- else %}—{%- endif %}
+        </td>
+        <td align="right" style="padding:8px 6px;font-size:12px;color:{{ C.sec }};vertical-align:top;padding-top:10px;">{{ (r.portfolio_weight_common_stock * 100)|round(1) }}%</td>
+        <td align="right" style="padding:8px 14px 8px 6px;font-size:12px;font-weight:600;vertical-align:top;padding-top:10px;">{{ r.value_latest_usd|usd }}</td>
+      </tr>
+      {% endfor %}
+
+      {% for r in sexits %}
+      <tr style="border-top:1px solid {{ C.line }};">
+        <td style="padding:6px 6px 6px 14px;font-size:12px;color:{{ C.ter }};">{{ r.ticker or r.issuer[:10] }}</td>
+        <td style="padding:6px 6px;">{{ pill('Exit', 'gray') }}</td>
+        <td colspan="4" style="padding:6px 14px 6px 6px;font-size:11px;color:{{ C.ter }};">Verkauft · vorher {{ r.value_prev_quarter_usd|usd }}</td>
+      </tr>
+      {% endfor %}
+
+    </table>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+  </td></tr>
+  {% endif %}
+
+  <!-- ── PUT-OPTIONEN (vollständig, nach Notional) ── -->
+  {%- set ns_puts = namespace(total=0, count=0) -%}
+  {%- for opt in model.options if opt.instrument == 'PUT' and opt.notional_latest_usd > 0 -%}
+    {%- set ns_puts.total = ns_puts.total + opt.notional_latest_usd -%}
+    {%- set ns_puts.count = ns_puts.count + 1 -%}
+  {%- endfor -%}
+  {% if ns_puts.count > 0 %}
+  <tr><td style="padding:12px 32px 0 32px;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:{{ C.ter }};margin-bottom:8px;">
+      Put-Optionen · Bearish Exposure ({{ ns_puts.count }} Positionen)
+    </div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+           style="border:1px solid {{ C.line }};border-radius:12px;overflow:hidden;">
+      <tr style="background:{{ C.gray_bg }};">
+        <td style="padding:6px 8px 6px 14px;font-size:10px;font-weight:600;color:{{ C.ter }};letter-spacing:0.04em;">TICKER</td>
+        <td align="right" style="padding:6px 8px;font-size:10px;font-weight:600;color:{{ C.ter }};letter-spacing:0.04em;">NOTIONAL</td>
+        <td align="right" style="padding:6px 14px 6px 8px;font-size:10px;font-weight:600;color:{{ C.ter }};letter-spacing:0.04em;">KURS SEIT 13F</td>
+      </tr>
+      {% for opt in model.options %}
+      {% if opt.instrument == 'PUT' and opt.notional_latest_usd > 0 %}
+      <tr style="border-top:1px solid {{ C.line }};">
+        <td style="padding:8px 8px 8px 14px;">
+          <span style="font-size:13px;font-weight:700;">{{ opt.ticker or opt.underlying[:10] }}</span>
+          <span style="font-size:11px;color:{{ C.ter }};margin-left:6px;">{{ opt.underlying[:25] }}</span>
+        </td>
+        <td align="right" style="padding:8px;font-size:13px;font-weight:600;color:{{ C.red_tx }};">{{ opt.notional_latest_usd|usd }}</td>
+        <td align="right" style="padding:8px 14px 8px 8px;font-size:12px;color:{{ C.sec }};">
+          {%- if opt.underlying_price_move is not none %}<span style="color:{%- if opt.underlying_price_move < 0 %}{{ C.red_tx }}{%- elif opt.underlying_price_move > 0 %}{{ C.green_tx }}{%- else %}{{ C.ter }}{%- endif %};">{{ '%+.0f%%'|format(opt.underlying_price_move * 100) }}</span>{%- else %}—{%- endif %}
+        </td>
+      </tr>
+      {% endif %}
+      {% endfor %}
+      <tr style="border-top:2px solid {{ C.line }};background:{{ C.gray_bg }};">
+        <td style="padding:7px 8px 7px 14px;font-size:11px;font-weight:600;color:{{ C.sec }};">Gesamt-Exposure</td>
+        <td align="right" style="padding:7px 8px;font-size:13px;font-weight:700;color:{{ C.red_tx }};">{{ ns_puts.total|usd }}</td>
+        <td></td>
+      </tr>
+    </table>
+    <div style="font-size:11px;color:{{ C.ter }};margin-top:5px;">Richtung lt. 13F unbekannt · Notional (nicht Prämie) · Long/Short nicht verifizierbar</div>
+  </td></tr>
+  {% endif %}
+
+  <!-- ── CALL-POSITIONEN ── -->
+  {%- set ns_calls = namespace(total=0, count=0) -%}
+  {%- for opt in model.options if opt.instrument == 'CALL' and opt.notional_latest_usd > 0 -%}
+    {%- set ns_calls.total = ns_calls.total + opt.notional_latest_usd -%}
+    {%- set ns_calls.count = ns_calls.count + 1 -%}
+  {%- endfor -%}
+  {% if ns_calls.count > 0 %}
+  <tr><td style="padding:12px 32px 0 32px;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:{{ C.ter }};margin-bottom:8px;">
+      Call-Positionen ({{ ns_calls.count }} aktiv)
+    </div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+           style="border:1px solid {{ C.line }};border-radius:12px;overflow:hidden;">
+      <tr style="background:{{ C.gray_bg }};">
+        <td style="padding:6px 8px 6px 14px;font-size:10px;font-weight:600;color:{{ C.ter }};letter-spacing:0.04em;">TICKER</td>
+        <td align="right" style="padding:6px 8px;font-size:10px;font-weight:600;color:{{ C.ter }};letter-spacing:0.04em;">NOTIONAL Q1</td>
+        <td align="right" style="padding:6px 8px;font-size:10px;font-weight:600;color:{{ C.ter }};letter-spacing:0.04em;">QoQ</td>
+        <td align="right" style="padding:6px 14px 6px 8px;font-size:10px;font-weight:600;color:{{ C.ter }};letter-spacing:0.04em;">KURS SEIT 13F</td>
+      </tr>
+      {% for opt in model.options %}
+      {% if opt.instrument == 'CALL' and opt.notional_latest_usd > 0 %}
+      {%- set qoq_chg = opt.qoq_notional_change_pct -%}
+      {%- set is_reduced = qoq_chg is not none and qoq_chg < -0.3 -%}
+      <tr style="border-top:1px solid {{ C.line }};">
+        <td style="padding:8px 8px 8px 14px;">
+          <span style="font-size:13px;font-weight:700;">{{ opt.ticker or opt.underlying[:10] }}</span>
+          {%- if is_reduced %}
+          <span style="font-size:10px;font-weight:600;background:{{ C.amber_bg }};color:{{ C.amber_tx }};padding:1px 5px;border-radius:4px;margin-left:4px;">reduziert</span>
+          {%- endif %}
+          <span style="font-size:11px;color:{{ C.ter }};margin-left:{% if not is_reduced %}6{% else %}4{% endif %}px;">{{ opt.underlying[:25] }}</span>
+        </td>
+        <td align="right" style="padding:8px;font-size:13px;font-weight:600;color:{{ C.blue_tx }};">{{ opt.notional_latest_usd|usd }}</td>
+        <td align="right" style="padding:8px;font-size:12px;">
+          {%- if qoq_chg is not none %}
+          <span style="color:{%- if qoq_chg > 0 %}{{ C.green_tx }}{%- elif qoq_chg < 0 %}{{ C.red_tx }}{%- else %}{{ C.ter }}{%- endif %};">
+            {{ '%+.0f%%'|format(qoq_chg * 100) }}
+            {%- if opt.notional_prev_usd and is_reduced %} <span style="font-size:10px;color:{{ C.ter }};">(vorher {{ opt.notional_prev_usd|usd }})</span>{%- endif %}
+          </span>
+          {%- else %}<span style="color:{{ C.green_tx }};font-weight:600;">Neu</span>{%- endif %}
+        </td>
+        <td align="right" style="padding:8px 14px 8px 8px;font-size:12px;color:{{ C.sec }};">
+          {%- if opt.underlying_price_move is not none %}<span style="color:{%- if opt.underlying_price_move > 0 %}{{ C.green_tx }}{%- elif opt.underlying_price_move < 0 %}{{ C.red_tx }}{%- else %}{{ C.ter }}{%- endif %};">{{ '%+.0f%%'|format(opt.underlying_price_move * 100) }}</span>{%- else %}—{%- endif %}
+        </td>
+      </tr>
+      {% endif %}
+      {% endfor %}
+      <tr style="border-top:2px solid {{ C.line }};background:{{ C.gray_bg }};">
+        <td style="padding:7px 8px 7px 14px;font-size:11px;font-weight:600;color:{{ C.sec }};">Gesamt-Exposure</td>
+        <td align="right" style="padding:7px 8px;font-size:13px;font-weight:700;color:{{ C.blue_tx }};">{{ ns_calls.total|usd }}</td>
+        <td colspan="2"></td>
+      </tr>
+    </table>
+    <div style="font-size:11px;color:{{ C.ter }};margin-top:5px;">Richtung lt. 13F unbekannt · Notional (nicht Prämie)</div>
+  </td></tr>
+  {% endif %}
+
+  {% endif %}{# end 13F block #}
+
+  <!-- ══ REVIEW QUEUE: niedrig-confidence Signale zur Info ══ -->
+  {% if review_events %}
+  <tr><td style="padding:20px 32px 0 32px;">
+    <div style="border-top:2px dashed {{ C.line }};padding-top:16px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:{{ C.ter }};margin-bottom:4px;">
+        Zur Info — Nicht Actionable
+      </div>
+      <div style="font-size:11px;color:{{ C.ter }};margin-bottom:10px;">
+        Confidence &lt; 0.85 · Manuell prüfen vor einem Trade
+      </div>
+      {% for evt in review_events %}
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+             style="background:#f8f8f8;border:1px solid {{ C.line }};border-radius:8px;margin-bottom:6px;opacity:0.85;">
+        <tr><td style="padding:10px 14px;">
+          <div style="font-size:11px;color:{{ C.ter }};font-weight:600;">
+            {{ evt.source_kind | upper | default('NEWS') }}
+            · Confidence: {{ (evt.confidence * 100) | round(0) | int }}%
+            {%- if evt.latency_str %} · {{ evt.latency_str }}{%- endif %}
+          </div>
+          <div style="font-size:13px;color:{{ C.text }};margin-top:3px;">{{ evt.summary or evt.title or '' }}</div>
+          {% if evt.ticker_guess %}
+          <div style="font-size:11px;color:{{ C.sec }};margin-top:3px;">
+            Ticker-Hinweis: {{ evt.ticker_guess | join(', ') }}
+          </div>
+          {% endif %}
+          {% if evt.url %}
+          <div style="margin-top:4px;">
+            <a href="{{ evt.url }}" style="font-size:11px;color:{{ C.accent }};text-decoration:none;">Quelle →</a>
+          </div>
+          {% endif %}
+        </td></tr>
+      </table>
+      {% endfor %}
+    </div>
+  </td></tr>
+  {% endif %}
+
+  <!-- ══ FOOTER ══ -->
+  <tr><td style="padding:20px 32px 26px 32px;">
+    <div style="border-top:1px solid {{ C.line }};padding-top:14px;font-size:12px;color:{{ C.ter }};line-height:1.6;">
+      <strong style="color:{{ C.sec }};font-weight:500;">Wichtiger Hinweis.</strong>
+      13F-Daten haben bis zu 45 Tage Verzögerung. Short-Positionen, Privatinvestments und intraquartale Trades erscheinen nie im 13F.
+      News-Signale sind ungeprüft bis ein Filing den Ticker bestätigt.
+      KI-Analysen und Trade-Ideen sind <strong>keine Anlageberatung</strong>.
+    </div>
+  </td></tr>
+
+</table>
+</td></tr>
+</table>

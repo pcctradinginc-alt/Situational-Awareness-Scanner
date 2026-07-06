@@ -1,9 +1,0 @@
-{
-  "manager": "Situational Awareness LP",
-  "period": "2025Q3",
-  "holdings": [
-    {"ticker": "NVDA", "shares": 100000, "value_usd": 11000000},
-    {"ticker": "VST",  "shares": 50000,  "value_usd": 4750000},
-    {"ticker": "TSM",  "shares": 30000,  "value_usd": 5400000}
-  ]
-}

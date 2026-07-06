@@ -1,24 +1,14 @@
 __pycache__/
 *.pyc
-*.pyo
+.DS_Store
 .venv/
 venv/
 .env
-*.key
-config_local.py
-data/cache/
-*.cache
-data/scanner.db
-data/historical/raw_*.json
-.DS_Store
+*.tmp
 
-.claude/settings.local.json
+# Raw third-party media must never be committed (copyright + repo size).
+data/raw/media/*
+!data/raw/media/.gitkeep
 
-# Logs are runtime noise EXCEPT the required CALL-options test-run log, which is
-# a committed acceptance artifact.
-logs/*.log
-!logs/test_run_call_options_intelligence.log
-
-# Runtime scan outputs are ignored; the curated example_* artifacts are kept.
-reports/*
-!reports/example_*
+# Keep SEC raw filings (public domain) but ignore the noisy full-text dumps if large.
+# data/raw/sec/   # uncomment to exclude SEC raw entirely and keep only parsed/

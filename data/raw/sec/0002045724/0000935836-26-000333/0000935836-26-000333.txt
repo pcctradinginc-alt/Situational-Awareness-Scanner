@@ -1,0 +1,193 @@
+<SEC-DOCUMENT>0000935836-26-000333.txt : 20260629
+<SEC-HEADER>0000935836-26-000333.hdr.sgml : 20260629
+<ACCEPTANCE-DATETIME>20260629160639
+ACCESSION NUMBER:		0000935836-26-000333
+CONFORMED SUBMISSION TYPE:	3
+PUBLIC DOCUMENT COUNT:		1
+CONFORMED PERIOD OF REPORT:	20260622
+FILED AS OF DATE:		20260629
+DATE AS OF CHANGE:		20260629
+
+REPORTING-OWNER:	
+
+	OWNER DATA:	
+		COMPANY CONFORMED NAME:			Situational Awareness LP
+		CENTRAL INDEX KEY:			0002045724
+		ORGANIZATION NAME:           	
+		STATE OF INCORPORATION:			DE
+		FISCAL YEAR END:			1231
+		LEGAL ENTITY IDENTIFIER:    	254900Q1483NSNRJ0W04
+
+	FILING VALUES:
+		FORM TYPE:		3
+		SEC ACT:		1934 Act
+		SEC FILE NUMBER:	001-43129
+		FILM NUMBER:		261135767
+
+	BUSINESS ADDRESS:	
+		STREET 1:		77 FEDERAL STREET
+		STREET 2:		4TH FLOOR
+		CITY:			SAN FRANCISCO
+		STATE:			CA
+		ZIP:			94107
+		BUSINESS PHONE:		(415) 916-1521
+
+	MAIL ADDRESS:	
+		STREET 1:		77 FEDERAL STREET
+		STREET 2:		4TH FLOOR
+		CITY:			SAN FRANCISCO
+		STATE:			CA
+		ZIP:			94107
+
+ISSUER:		
+
+	COMPANY DATA:	
+		COMPANY CONFORMED NAME:			SharonAI Holdings Inc.
+		CENTRAL INDEX KEY:			0002068385
+		STANDARD INDUSTRIAL CLASSIFICATION:	SERVICES-COMPUTER PROCESSING & DATA PREPARATION [7374]
+		ORGANIZATION NAME:           	06 Technology
+		EIN:				000000000
+		STATE OF INCORPORATION:			DE
+		FISCAL YEAR END:			1231
+
+	BUSINESS ADDRESS:	
+		STREET 1:		745 FIFTH AVENUE, SUITE 500
+		CITY:			NEW YORK
+		STATE:			NY
+		ZIP:			10151
+		BUSINESS PHONE:		949-720-7133
+
+	MAIL ADDRESS:	
+		STREET 1:		745 FIFTH AVENUE, SUITE 500
+		CITY:			NEW YORK
+		STATE:			NY
+		ZIP:			10151
+
+	FORMER COMPANY:	
+		FORMER CONFORMED NAME:	SharonAI Holdings, Inc.
+		DATE OF NAME CHANGE:	20251218
+
+	FORMER COMPANY:	
+		FORMER CONFORMED NAME:	Roth CH Holdings, Inc.
+		DATE OF NAME CHANGE:	20250513
+</SEC-HEADER>
+<DOCUMENT>
+<TYPE>3
+<SEQUENCE>1
+<FILENAME>ownership.xml
+<TEXT>
+<XML>
+<?xml version="1.0"?>
+<ownershipDocument>
+
+    <schemaVersion>X0607</schemaVersion>
+
+    <documentType>3</documentType>
+
+    <periodOfReport>2026-06-22</periodOfReport>
+
+    <noSecuritiesOwned>0</noSecuritiesOwned>
+
+    <issuer>
+        <issuerCik>0002068385</issuerCik>
+        <issuerName>SharonAI Holdings Inc.</issuerName>
+        <issuerTradingSymbol>SHAZ</issuerTradingSymbol>
+        <issuerForeignTradingSymbol></issuerForeignTradingSymbol>
+    </issuer>
+
+    <reportingOwner>
+        <reportingOwnerId>
+            <rptOwnerCik>0002045724</rptOwnerCik>
+            <rptOwnerName>Situational Awareness LP</rptOwnerName>
+        </reportingOwnerId>
+        <reportingOwnerAddress>
+            <rptOwnerNonUSAddressFlag>false</rptOwnerNonUSAddressFlag>
+            <rptOwnerStreet1>77 FEDERAL STREET</rptOwnerStreet1>
+            <rptOwnerStreet2>4TH FLOOR</rptOwnerStreet2>
+            <rptOwnerCity>SAN FRANCISCO</rptOwnerCity>
+            <rptOwnerState>CA</rptOwnerState>
+            <rptOwnerZipCode>94107</rptOwnerZipCode>
+            <rptOwnerStateDescription></rptOwnerStateDescription>
+        </reportingOwnerAddress>
+        <reportingOwnerRelationship>
+            <isDirector>0</isDirector>
+            <isOfficer>0</isOfficer>
+            <isTenPercentOwner>1</isTenPercentOwner>
+            <isOther>0</isOther>
+            <officerTitle></officerTitle>
+            <otherText></otherText>
+        </reportingOwnerRelationship>
+    </reportingOwner>
+
+    <nonDerivativeTable>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Ordinary Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>1696127</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Note</value>
+                    <footnoteId id="F1"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+    </nonDerivativeTable>
+
+    <derivativeTable>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Pre-funded Warrants</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <value>0.0001</value>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F2"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F2"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Class A Ordinary Common Stock</value>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>6374823</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Note</value>
+                    <footnoteId id="F1"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+    </derivativeTable>
+
+    <footnotes>
+        <footnote id="F1">The reporting persons are Situational Awareness LP (&quot;SALP&quot;), SAF AI GP LP (&quot;GP&quot;), Situational Awareness LLC (&quot;SALLC&quot;), Situational Awareness Partners LP (&quot;Fund&quot;), Leopold Aschenbrenner and Carl Shulman. SALP and GP are the investment adviser and general partner, respectively, of Fund. SALLC is the general partner of SALP. Mr. Aschenbrenner is the managing partner and control person of SALP and GP and the manager of SALLC. Mr. Shulman is the co-portfolio manager of Fund. Fund holds these securities directly for the benefit of its investors. SALP, GP, SALLC, Mr. Aschenbrenner and Mr. Shulman may be deemed to indirectly beneficially own the securities due to their relationships with Fund. The reporting persons disclaim beneficial ownership of the securities except to the extent of their respective pecuniary interests therein.</footnote>
+        <footnote id="F2">The pre-funded warrants are exercisable at any time and have no expiration date. The reporting persons may not exercise any portion of the warrants to the extent that doing so would cause the reporting persons to own more than 19.99% of the Issuer's outstanding Class A Ordinary Common Stock. The 19.99% limitation will cease to apply following stockholder approval of the shares of Class A Ordinary Common Stock issuable upon exercise of the pre-funded warrants</footnote>
+    </footnotes>
+
+    <remarks>SALP is filing this Form 3 for itself and the other reporting persons. The reporting persons are filing this Form 3 jointly, but not as a group, and each expressly disclaims membership in a group within the meaning of Rule 13d-5(b) under the Securities Exchange Act of 1934.</remarks>
+
+    <ownerSignature>
+        <signatureName>/s/ Leopold Aschenbrenner, Managing Partner of Situational Awareness LP</signatureName>
+        <signatureDate>2026-06-29</signatureDate>
+    </ownerSignature>
+</ownershipDocument>
+</XML>
+</TEXT>
+</DOCUMENT>
+</SEC-DOCUMENT>

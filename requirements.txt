@@ -1,12 +1,10 @@
-anthropic>=0.34.0
+# Core (required)
+requests>=2.31
 PyYAML>=6.0
+Jinja2>=3.1
+
+# LLM validation (optional). If absent, falls back to keyword-only matching.
+anthropic>=0.100
+
+# Prices (optional but recommended). If absent, price columns degrade to "—".
 yfinance>=0.2.40
-finnhub-python>=2.4.19
-feedparser>=6.0.11
-requests>=2.31.0
-requests-cache>=1.2.0
-pandas>=2.1.0
-numpy>=1.26.0
-python-dotenv>=1.0.0
-tenacity>=8.2.3
-scikit-learn>=1.4.0

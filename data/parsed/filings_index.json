@@ -1,0 +1,109 @@
+{
+  "filings": [
+    {
+      "cik": "0002045724",
+      "accession": "0002045724-26-000008",
+      "form": "13F-HR",
+      "filing_date": "2026-05-18",
+      "report_date": "2026-03-31",
+      "primary_document": "xslForm13F_X02/primary_doc.xml"
+    },
+    {
+      "cik": "0002045724",
+      "accession": "0002045724-26-000002",
+      "form": "13F-HR",
+      "filing_date": "2026-02-11",
+      "report_date": "2025-12-31",
+      "primary_document": "xslForm13F_X02/primary_doc.xml"
+    },
+    {
+      "cik": "0002045724",
+      "accession": "0002045724-25-000008",
+      "form": "13F-HR",
+      "filing_date": "2025-11-14",
+      "report_date": "2025-09-30",
+      "primary_document": "xslForm13F_X02/primary_doc.xml"
+    },
+    {
+      "cik": "0002045724",
+      "accession": "0002045724-25-000006",
+      "form": "13F-HR",
+      "filing_date": "2025-08-14",
+      "report_date": "2025-06-30",
+      "primary_document": "xslForm13F_X02/primary_doc.xml"
+    },
+    {
+      "cik": "0002045724",
+      "accession": "0002045724-25-000002",
+      "form": "13F-HR",
+      "filing_date": "2025-05-14",
+      "report_date": "2025-03-31",
+      "primary_document": "xslForm13F_X02/primary_doc.xml"
+    },
+    {
+      "cik": "0002045724",
+      "accession": "0000935836-25-000120",
+      "form": "13F-HR",
+      "filing_date": "2025-02-12",
+      "report_date": "2024-12-31",
+      "primary_document": "xslForm13F_X02/primary_doc.xml"
+    },
+    {
+      "cik": "0002045724",
+      "accession": "0000935836-25-000638",
+      "form": "SC 13D/A",
+      "filing_date": "2025-10-14",
+      "report_date": "",
+      "primary_document": "xslSCHEDULE_13D_X01/primary_doc.xml"
+    },
+    {
+      "cik": "0002045724",
+      "accession": "0000935836-25-000543",
+      "form": "SC 13D",
+      "filing_date": "2025-08-19",
+      "report_date": "",
+      "primary_document": "xslSCHEDULE_13D_X01/primary_doc.xml"
+    },
+    {
+      "cik": "0002045724",
+      "accession": "0000935836-26-000303",
+      "form": "SC 13G",
+      "filing_date": "2026-05-27",
+      "report_date": "",
+      "primary_document": "xslSCHEDULE_13G_X02/primary_doc.xml"
+    },
+    {
+      "cik": "0002045724",
+      "accession": "0000935836-26-000339",
+      "form": "4",
+      "filing_date": "2026-07-02",
+      "report_date": "2026-06-30",
+      "primary_document": "xslF345X06/ownership.xml"
+    },
+    {
+      "cik": "0002045724",
+      "accession": "0000935836-26-000334",
+      "form": "SC 13G",
+      "filing_date": "2026-06-29",
+      "report_date": "",
+      "primary_document": "xslSCHEDULE_13G_X02/primary_doc.xml"
+    },
+    {
+      "cik": "0002045724",
+      "accession": "0000935836-26-000333",
+      "form": "3",
+      "filing_date": "2026-06-29",
+      "report_date": "2026-06-22",
+      "primary_document": "xslF345X06/ownership.xml"
+    },
+    {
+      "cik": "0002047424",
+      "accession": "0002047424-24-000001",
+      "form": "D",
+      "filing_date": "2024-12-05",
+      "report_date": "",
+      "primary_document": "xslFormDX01/primary_doc.xml"
+    }
+  ],
+  "updated": "2026-07-06T19:11:32Z"
+}

@@ -1,0 +1,153 @@
+{
+  "available": true,
+  "generated": "2026-07-06",
+  "manager": "Situational Awareness LP",
+  "quarter_labels": [
+    "Q3 2025",
+    "Q4 2025",
+    "Q1 2026"
+  ],
+  "price_source": "yfinance",
+  "summary": {
+    "latest_quarter": "Q1 2026",
+    "report_date": "2026-03-31",
+    "reported_holdings": 2,
+    "reported_13f_value_usd": 2479000000,
+    "common_stock_long_exposure_usd": 879000000,
+    "options_notional_exposure_usd": 1600000000,
+    "new_common_positions": 0,
+    "increased_common_positions": 0,
+    "reduced_common_positions": 0,
+    "exited_common_positions": 0,
+    "largest_add": {
+      "ticker": "BE",
+      "issuer": "Bloom Energy Corp"
+    },
+    "largest_trim": null,
+    "best_performer": null,
+    "worst_performer": null
+  },
+  "common_stock": [
+    {
+      "cusip": "093712107",
+      "ticker": "BE",
+      "issuer": "Bloom Energy Corp",
+      "sector": "Power",
+      "instrument_type": "COMMON_STOCK",
+      "shares_by_quarter": [
+        5000000,
+        6000000,
+        6500000
+      ],
+      "values_by_quarter": [
+        600000000,
+        780000000,
+        879000000
+      ],
+      "shares_latest": 6500000,
+      "value_latest_usd": 879000000,
+      "value_prev_quarter_usd": 780000000,
+      "qoq_dollar_delta": 67615385,
+      "qoq_dollar_delta_m": 67.6,
+      "portfolio_weight_common_stock": 1.0,
+      "qoq_share_change_pct": 0.08333333333333333,
+      "three_quarter_trend": "up_up_up",
+      "has_13dg": false,
+      "price_at_quarter_end": null,
+      "price_at_prev_quarter_end": null,
+      "intra_quarter_return_pct": null,
+      "current_price": null,
+      "price_change_since_quarter_end_pct": null,
+      "estimated_current_value": null,
+      "estimated_value_change_since_quarter_end": null,
+      "shares_prev": 6000000,
+      "shares_delta": 500000,
+      "shares_delta_label": "+500k",
+      "status": "strong_add",
+      "status_icon": "🟢",
+      "status_label": "Strong Add",
+      "data_quality": {
+        "cusip_ticker_mapping": "manual",
+        "price_source": "unavailable"
+      },
+      "options_context": {}
+    }
+  ],
+  "new_buys": [],
+  "exits": [],
+  "options": [
+    {
+      "underlying": "Nvidia Corp",
+      "ticker": "NVDA",
+      "instrument": "PUT",
+      "notional_by_quarter": [
+        1200000000,
+        1600000000,
+        1600000000
+      ],
+      "notional_latest_usd": 1600000000,
+      "notional_prev_usd": 1600000000,
+      "qoq_notional_change_pct": 0.0,
+      "underlying_price_move": null,
+      "interpretation_risk": "Notional, not premium; long/short direction unknown"
+    }
+  ],
+  "options_context": {
+    "NVDA": {
+      "has_active_put": true,
+      "has_active_call": false,
+      "call_went_zero": false,
+      "call_heavily_reduced": false,
+      "call_reduction_usd": 0,
+      "call_reduction_pct": 0.0
+    }
+  },
+  "top_signals": [
+    {
+      "ticker": "BE",
+      "issuer": "Bloom Energy Corp",
+      "status_label": "Strong Add",
+      "has_13dg": false,
+      "portfolio_weight_common_stock": 1.0,
+      "value_latest_usd": 879000000,
+      "qoq_dollar_delta": 67615385,
+      "qoq_share_change_pct": 0.08333333333333333,
+      "three_quarter_trend": "up_up_up",
+      "price_change_since_quarter_end_pct": null,
+      "conviction_score": 7.5,
+      "entry_score": 5,
+      "recommendation": "High Conviction",
+      "options_context": {}
+    }
+  ],
+  "signal_backtest": {},
+  "sector_breakdown": [
+    {
+      "sector": "Power",
+      "value_usd": 879000000,
+      "tickers": [
+        "BE"
+      ],
+      "adds": [
+        "BE"
+      ],
+      "trims": [],
+      "exits": [],
+      "portfolio_weight": 1.0,
+      "portfolio_weight_by_quarter": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "quarter_labels": [
+        "Q3 2025",
+        "Q4 2025",
+        "Q1 2026"
+      ],
+      "qoq_weight_change": 0.0,
+      "prev_qoq_weight_change": 0.0,
+      "qoq_quarter_label": "Q4 2025",
+      "prev_qoq_quarter_label": "Q3 2025"
+    }
+  ]
+}

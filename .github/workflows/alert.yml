@@ -1,0 +1,84 @@
+name: alert
+
+# Runs every 30 minutes (public repo → Actions minutes are free). Polls SEC
+# EDGAR (submissions + full-text search) AND curated news RSS, then sends an
+# immediate alert email if new high-confidence signals are found.
+# Worst-case detection latency for a Form 4 / 13D/G / FTS mention: ~30 min.
+# State (data/state/alert_state.json) is committed back so duplicate alerts
+# are never sent across runs.
+on:
+  schedule:
+    - cron: "12,42 * * * *"  # every 30 min (staggered away from :00 bursts)
+  workflow_dispatch:         # also triggerable manually from the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sa-state-write
+  cancel-in-progress: false
+
+jobs:
+  alert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6.0.2
+
+      - uses: actions/setup-python@v6.2.0
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install
+        run: pip install -r requirements.txt
+
+      # SEC EDGAR first — Form 4 / 13D/G / FTS mentions are the highest-value
+      # signals and become alertable events directly (no LLM needed).
+      - name: Fetch new SEC filings + full-text mentions
+        env:
+          SEC_CONTACT_EMAIL: ${{ secrets.SEC_CONTACT_EMAIL || secrets.GMAIL_USER }}
+        run: python -m src.pipeline fetch
+
+      # Rebuild the position model only when fetch actually parsed something
+      # new — keeps the 30-min cadence cheap (no yfinance/LLM calls otherwise).
+      - name: Rebuild position model if new filings arrived
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SEC_CONTACT_EMAIL: ${{ secrets.SEC_CONTACT_EMAIL || secrets.GMAIL_USER }}
+        run: |
+          if [ -n "$(git status --porcelain -- data/parsed)" ]; then
+            python -m src.pipeline analyze
+          else
+            echo "No new parsed filings — skipping analyze."
+          fi
+
+      - name: Discover new signals
+        env:
+          GOOGLE_ALERT_FEEDS: ${{ secrets.GOOGLE_ALERT_FEEDS }}
+          BLOG_FEEDS: ${{ secrets.BLOG_FEEDS }}
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+          SCRAPE_CREATORS_API_KEY: ${{ secrets.SCRAPE_CREATORS_API_KEY }}
+          SEC_CONTACT_EMAIL: ${{ secrets.SEC_CONTACT_EMAIL || secrets.GMAIL_USER }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python -m src.pipeline discover
+
+      - name: Send alert if new events exist
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST || 'smtp.gmail.com' }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT || '587' }}
+          SMTP_USER: ${{ secrets.SMTP_USER || secrets.GMAIL_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD || secrets.GMAIL_APP_PASSWORD }}
+          SMTP_TO: ${{ secrets.SMTP_TO || secrets.NOTIFY_EMAIL }}
+        run: python -m src.pipeline alert
+
+      - name: Commit updated state
+        run: |
+          git config user.name "sa-tracker-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --quiet && git diff --staged --quiet || \
+            git commit -m "data: alert-check $(date -u +%FT%TZ)"
+          git pull --rebase origin main || (
+            git checkout --ours data/ && git add data/ && git rebase --continue
+          )
+          git push

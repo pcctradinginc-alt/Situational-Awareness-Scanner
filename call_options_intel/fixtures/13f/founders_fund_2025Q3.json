@@ -1,9 +1,0 @@
-{
-  "manager": "Founders Fund",
-  "period": "2025Q3",
-  "holdings": [
-    {"ticker": "PLTR", "shares": 200000, "value_usd": 12000000},
-    {"ticker": "NVDA", "shares": 80000,  "value_usd": 8800000},
-    {"ticker": "AVGO", "shares": 20000,  "value_usd": 3400000}
-  ]
-}
