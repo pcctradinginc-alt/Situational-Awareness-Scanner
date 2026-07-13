@@ -5,18 +5,29 @@
     {
       "name": "Situational Awareness LP",
       "cik": "0002045724",
-      "sec_file_number": "",
+      "sec_file_number": "001-43129",
       "state_of_inc": "DE",
       "former_names": [],
       "addresses": [
         "77 FEDERAL STREET, SAN FRANCISCO, CA, 94107"
       ],
       "confirmed": true
+    },
+    {
+      "name": "Situational Awareness LP Nov 2024 a Series of CGF2021 LLC",
+      "cik": "0002047424",
+      "sec_file_number": "021-531218",
+      "state_of_inc": "DE",
+      "former_names": [],
+      "addresses": [
+        "2093 PHILADELPHIA PIKE, CLAYMONT, DE, 19703"
+      ],
+      "confirmed": false
     }
   ],
   "reporting_persons": [
     "Leopold Aschenbrenner"
   ],
-  "last_resolved": "2026-06-08T11:20:18Z",
+  "last_resolved": "2026-07-13T09:47:51Z",
   "note": "Run with extra_ciks populated in config.yaml to expand the graph."
 }
