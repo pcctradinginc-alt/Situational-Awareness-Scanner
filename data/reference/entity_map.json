@@ -28,6 +28,6 @@
   "reporting_persons": [
     "Leopold Aschenbrenner"
   ],
-  "last_resolved": "2026-08-17T07:16:24Z",
+  "last_resolved": "2026-08-24T07:20:50Z",
   "note": "Run with extra_ciks populated in config.yaml to expand the graph."
 }
