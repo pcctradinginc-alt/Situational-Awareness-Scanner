@@ -135,7 +135,15 @@
       "filing_date": "2026-08-28",
       "report_date": "",
       "primary_document": "xslSCHEDULE_13D_X02/primary_doc.xml"
+    },
+    {
+      "cik": "0002045724",
+      "accession": "0000935836-26-000494",
+      "form": "4",
+      "filing_date": "2026-09-17",
+      "report_date": "2026-09-15",
+      "primary_document": "xslF345X06/form4.xml"
     }
   ],
-  "updated": "2026-08-29T01:09:16Z"
+  "updated": "2026-09-17T21:21:46Z"
 }
