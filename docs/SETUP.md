@@ -146,6 +146,21 @@ signal is detected, instead of waiting for the next scheduled digest.
 - A news / blog mention matches an investment, sell, announce, or highlight
   keyword — only if the item clears `alert.min_confidence` (default 0.5).
 
+**One email per newly opened position** (`alert.only_new_positions: true`,
+the default). Before sending, every event above is resolved to the position
+it is about and checked against the ledger of already-reported positions
+(`reported_positions` in `data/state/alert_state.json`, seeded from the
+current 13F holdings and all earlier alerts). An email goes out only if the
+position is not on the ledger yet:
+- Repeat coverage of the same purchase — other publishers, reworded
+  headlines, a different ticker guess — is recorded but not emailed.
+- 13D/G amendments, Form 4s, adds, trims and exits of a known position are
+  not emailed; a new 13F is emailed only if it contains an unreported position.
+- A position the latest 13F shows as fully exited is released from the
+  ledger, so a later re-entry is reported again.
+
+Set `alert.only_new_positions: false` to get an email for every new event.
+
 **Signal categories detected:**
 | Category | Example matched phrases |
 | --- | --- |

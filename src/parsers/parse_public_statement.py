@@ -82,6 +82,7 @@ Respond ONLY with valid JSON:
   "signal_tier": "alpha_signal" | "position_update" | "context" | "unrelated",
   "action": "buy" | "sell" | "highlight" | "announce" | "unrelated",
   "ticker": "<TICKER>" | null,
+  "company": "<name of the company the position is in>" | null,
   "confidence": 0.0–1.0,
   "reason": "<one sentence explaining this tier classification>",
   "quote": "<the most salient quote or core statement from the article, max 120 chars>",
@@ -97,6 +98,7 @@ Rules:
 - For "context": is_relevant = false (no alert needed), but still set signal_tier to "context".
 - confidence: 0.9+ only for explicit position statements. 0.7–0.85 for strong implication. \
   Below 0.65 → is_relevant = false.
+- A company that appears in the known list — by ticker OR by name — is NEVER an alpha_signal.
 - Return only the JSON object — no markdown, no explanation outside it.\
 """
 
@@ -263,6 +265,7 @@ def extract_statement_with_llm(
             candidate["llm_quote"] = cached.get("llm_quote", "")
             candidate["llm_inference"] = cached.get("llm_inference", "")
             candidate["llm_action_hint"] = cached.get("llm_action_hint", "")
+            candidate["llm_company"] = cached.get("llm_company", "")
             candidate["llm_analysis"] = candidate["llm_inference"]
             candidate["llm_trade_signal"] = candidate["llm_action_hint"]
             if cached.get("ticker_extra"):
@@ -336,6 +339,7 @@ def extract_statement_with_llm(
     candidate["llm_quote"] = result.get("quote") or ""
     candidate["llm_inference"] = result.get("inference") or ""
     candidate["llm_action_hint"] = result.get("action_hint") or ""
+    candidate["llm_company"] = result.get("company") or ""
 
     # Keep backward compat fields
     candidate["llm_analysis"] = candidate["llm_inference"]
@@ -363,6 +367,7 @@ def extract_statement_with_llm(
             "llm_quote": candidate.get("llm_quote", ""),
             "llm_inference": candidate.get("llm_inference", ""),
             "llm_action_hint": candidate.get("llm_action_hint", ""),
+            "llm_company": candidate.get("llm_company", ""),
         }
         _save_llm_cache(cache_path)
 

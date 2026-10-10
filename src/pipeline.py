@@ -74,6 +74,22 @@ def latest_tickers(cfg: Config, model: dict) -> set[str]:
     return out
 
 
+def known_position_labels(model: dict) -> set[str]:
+    """Active holdings as "TICKER (Issuer)" labels for the LLM whitelist.
+
+    Includes holdings whose CUSIP has no ticker mapping (label is the issuer
+    name alone) — without them the classifier calls every article about such a
+    holding a brand-new position.
+    """
+    out: set[str] = set()
+    for r in model.get("common_stock", []) + model.get("options", []):
+        name = r.get("issuer") or r.get("underlying") or ""
+        ticker = r.get("ticker") or ""
+        if ticker or name:
+            out.add(f"{ticker} ({name})" if ticker and name else ticker or name)
+    return out
+
+
 def exited_tickers(model: dict) -> set[str]:
     """Return tickers that were fully exited in the latest 13F quarter."""
     out: set[str] = set()
@@ -215,7 +231,7 @@ def step_discover(cfg: Config) -> None:
     # Falls back to empty set if no position model exists yet (first run).
     try:
         _model = read_json(cfg.paths.derived / "position_table.json") or {}
-        _active_tickers = latest_tickers(cfg, _model)
+        _active_tickers = known_position_labels(_model)
         _exited_tickers = exited_tickers(_model)
     except Exception:
         _active_tickers = set()
@@ -273,6 +289,7 @@ def step_discover(cfg: Config) -> None:
                 "llm_inference": stmt.get("llm_inference", ""),
                 "llm_action_hint": stmt.get("llm_action_hint", ""),
                 "llm_reason": stmt.get("llm_reason", ""),
+                "llm_company": stmt.get("llm_company", ""),
                 "signal_category": stmt.get("signal_category", ""),
                 "llm_validated": stmt.get("llm_validated", False),
             }],

@@ -60,6 +60,12 @@ alert:
   # Uses the same SMTP_* env vars as the digest. Set enabled: true to activate.
   enabled: true
   subject_prefix: "SA Alert"
+  # Only email when a position is opened that has not been reported before.
+  # Each event is matched (ticker / CUSIP / issuer name / headline) against the
+  # ledger of reported positions in data/state/alert_state.json; repeat
+  # articles, amendments, adds, trims and exits are recorded but not emailed.
+  # Set to false to get one email per new event again.
+  only_new_positions: true
   # Minimum event confidence (0–1) required to trigger an immediate alert.
   # SEC-verified filings always have confidence 1.0 and are unaffected.
   # News/media signals: 0.85+ → immediate alert; below → pending_review.jsonl.

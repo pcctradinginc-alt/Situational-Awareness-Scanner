@@ -47,7 +47,7 @@ def _enrich_events(events: list[dict]) -> list[dict]:
     return events
 
 
-def render(cfg: Config, new_events: list[dict], model: dict | None = None, tldr: dict | None = None, review_events: list[dict] | None = None) -> str:
+def render(cfg: Config, new_events: list[dict], model: dict | None = None, tldr: dict | None = None, review_events: list[dict] | None = None, new_positions: list[str] | None = None) -> str:
     meta = {
         "person": cfg.person,
         "manager": cfg.primary_name,
@@ -75,6 +75,7 @@ def render(cfg: Config, new_events: list[dict], model: dict | None = None, tldr:
         review_events=_enrich_events(list(review_events or [])),
         model=model or {},
         tldr=tldr or {},
+        new_positions=new_positions or [],
         analysis_13f=(model or {}).get("llm_13f_analysis", ""),
         top_signals=(model or {}).get("top_signals", []),
         signal_backtest=(model or {}).get("signal_backtest"),
@@ -83,9 +84,13 @@ def render(cfg: Config, new_events: list[dict], model: dict | None = None, tldr:
     )
 
 
-def subject(cfg: Config, new_events: list[dict], tldr: dict | None = None) -> str:
+def subject(cfg: Config, new_events: list[dict], tldr: dict | None = None,
+            new_positions: list[str] | None = None) -> str:
     prefix = cfg.raw.get("alert", {}).get("subject_prefix", "SA Alert")
     tldr = tldr or {}
+    if new_positions:
+        more = f" +{len(new_positions) - 4}" if len(new_positions) > 4 else ""
+        return f"{prefix} · Neue Position: {', '.join(new_positions[:4])}{more}"
     quarter = tldr.get("quarter", "")
     new_buys = tldr.get("new_buys", [])
     puts = tldr.get("puts_shorts", [])

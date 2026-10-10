@@ -4,6 +4,10 @@ State is persisted in data/state/alert_state.json so that re-runs never
 re-send an alert for the same event. This file is committed back to the repo
 by the GitHub Actions workflow so state survives across runs.
 
+With ``alert.only_new_positions`` (default) an email is sent only when an event
+opens a position that is not yet on the reported-positions ledger (see
+reported_positions.py) — not for every article about a position already known.
+
 The alert email is built around a human-readable TLDR ("Leo bought X, shorted Y")
 derived from the latest parsed 13F model, followed by a deduplicated news section.
 """
@@ -18,6 +22,7 @@ from pathlib import Path
 from .config import Config
 from . import events as evts
 from .render import render_alert
+from .reported_positions import Ledger, active_refs, ref_from_event
 from .utils import get_logger, read_json, utc_now_iso, write_json
 
 log = get_logger("alert")
@@ -45,14 +50,19 @@ def _load_state(cfg: Config) -> dict:
     }
 
 
-def _cleanup_state(state: dict) -> None:
-    """Remove alerted_event_ids entries older than _CLEANUP_DAYS."""
+def _cleanup_state(state: dict, live_ids: set[str] = frozenset()) -> None:
+    """Remove alerted_event_ids entries older than _CLEANUP_DAYS.
+
+    IDs in ``live_ids`` (events still in events.jsonl) are never purged —
+    otherwise the event would look new again and be re-alerted after 60 days.
+    """
     cutoff = datetime.now(timezone.utc) - timedelta(days=_CLEANUP_DAYS)
     ts_map: dict[str, str] = state.get("alerted_event_ids_ts", {})
 
     # Purge timestamp map
     stale = [eid for eid, ts in ts_map.items()
-             if datetime.fromisoformat(ts.replace("Z", "+00:00")) < cutoff]
+             if eid not in live_ids
+             and datetime.fromisoformat(ts.replace("Z", "+00:00")) < cutoff]
     for eid in stale:
         del ts_map[eid]
 
@@ -67,7 +77,7 @@ def _cleanup_state(state: dict) -> None:
 
 
 def _save_state(cfg: Config, state: dict) -> None:
-    _cleanup_state(state)
+    _cleanup_state(state, {e.get("event_id") for e in evts.load_events(cfg)})
     write_json(cfg.paths.state / _STATE_FILE, state)
 
 
@@ -216,7 +226,7 @@ def _queue_for_review(cfg: Config, evt: dict) -> None:
         append_jsonl(path, {**evt, "queued_at": utc_now_iso()})
 
 
-def get_new_alertable_events(cfg: Config, state: dict) -> list[dict]:
+def get_new_alertable_events(cfg: Config, state: dict, dedupe: bool = True) -> list[dict]:
     """Return events not yet alerted that clear the confidence threshold.
 
     For public_statement events the signal_tier is checked:
@@ -260,7 +270,154 @@ def get_new_alertable_events(cfg: Config, state: dict) -> list[dict]:
 
         new.append(evt)
 
-    return _deduplicate_news(new)
+    return _deduplicate_news(new) if dedupe else new
+
+
+def _opens_position(evt: dict) -> bool:
+    """True if the event, by its own content, reports a position being opened."""
+    sig = evt.get("signal_type")
+    if sig == "public_statement":
+        tier = evt.get("signal_tier")
+        src = (evt.get("sources") or [{}])[0]
+        return tier == "alpha_signal" or (tier is None and src.get("signal_category") == "invest")
+    if sig == "sec_fts_mention":
+        # Operating companies have a ticker; ETF trusts and the fund's own
+        # Form D feeder vehicles do not, and they are not positions.
+        return bool(evt.get("ticker_guess"))
+    return True  # 13D/G, Form 3/4/5: new only if the issuer is not on the ledger
+
+
+def _load_ledger(cfg: Config, state: dict, model: dict) -> Ledger:
+    """Return the reported-positions ledger, seeding it on first use.
+
+    The seed is everything the user has already been told about: the current
+    13F holdings plus every position-opening event that was alerted before the
+    ledger existed.
+    """
+    if "reported_positions" in state:
+        return Ledger(state["reported_positions"])
+    ledger = Ledger()
+    now = utc_now_iso()
+    for ref in active_refs(model):
+        ledger.add(ref, via="seed_13f", now=now)
+    alerted = set(state.get("alerted_event_ids", []))
+    seeded = [e for e in evts.load_events(cfg)
+              if e.get("event_id") in alerted and e.get("signal_type") != "13f_position"
+              and _opens_position(e)]
+    # SEC filings first: they carry the exact issuer name the news is matched against.
+    seeded.sort(key=lambda e: e.get("signal_type") == "public_statement")
+    for evt in seeded:
+        ref = ref_from_event(evt)
+        if ref.identified or ref.headline:
+            ledger.add(ref, via="seed_event", now=now, event_id=evt["event_id"])
+    state["reported_positions"] = ledger.entries
+    log.info("Seeded reported-positions ledger with %d position(s).", len(ledger.entries))
+    return ledger
+
+
+def _select_new_positions(
+    events: list[dict], ledger: Ledger, model: dict,
+) -> tuple[list[dict], list[dict], list[tuple]]:
+    """Split candidate events into (send, suppress) by checking the ledger.
+
+    Returns ``(send, suppress, opened)`` where ``opened`` holds one
+    ``(ref, via, event_id)`` per position that is not on the ledger yet. Events
+    that are neither sent nor suppressed (a 13F whose position model has not
+    been rebuilt yet) stay pending for the next run.
+    """
+    send: list[dict] = []
+    suppress: list[dict] = []
+    opened: list[tuple] = []
+    batch = Ledger()  # positions opened by earlier events of this same run
+
+    def _order(evt: dict) -> tuple:
+        sig = evt.get("signal_type")
+        return (0 if sig == "13f_position" else 2 if sig == "public_statement" else 1,
+                -float(evt.get("confidence", 0)))
+
+    for evt in sorted(events, key=_order):
+        if evt.get("signal_type") == "13f_position":
+            report_date = (model.get("summary") or {}).get("report_date") or ""
+            if not model.get("available") or report_date < (evt.get("as_of") or ""):
+                continue  # model not rebuilt for this filing yet — retry next run
+            fresh = [r for r in active_refs(model) if not ledger.find(r) and not batch.find(r)]
+            for ref in fresh:
+                batch.add(ref, via="13f", now="")
+                opened.append((ref, "13f", evt["event_id"]))
+            (send if fresh else suppress).append(evt)
+            continue
+
+        ref = ref_from_event(evt)
+        if not _opens_position(evt) or ledger.find(ref):
+            suppress.append(evt)
+            continue
+        via = "news" if evt.get("signal_type") == "public_statement" else "sec"
+        if batch.find(ref):
+            suppress.append(evt)  # second report of a position opened in this run
+        else:
+            send.append(evt)
+        if ref.identified or ref.headline:
+            batch.add(ref, via=via, now="")
+            opened.append((ref, via, evt["event_id"]))
+    return send, suppress, opened
+
+
+def _mark_alerted(state: dict, event_ids: set[str], now_ts: str) -> None:
+    state["alerted_event_ids"] = list(set(state.get("alerted_event_ids", [])) | event_ids)
+    ts_map: dict = state.setdefault("alerted_event_ids_ts", {})
+    for eid in event_ids:
+        ts_map.setdefault(eid, now_ts)
+
+
+def _check_new_positions(cfg: Config, state: dict, model: dict | None) -> int:
+    """Alert only when a position is opened that has not been reported before."""
+    if model is None:
+        model = _load_position_model(cfg)
+    ledger = _load_ledger(cfg, state, model)
+    released = ledger.release_exited(model)
+    if released:
+        log.info("Ledger: released exited position(s): %s", ", ".join(released))
+
+    candidates = get_new_alertable_events(cfg, state, dedupe=False)
+    send, suppress, opened = _select_new_positions(candidates, ledger, model)
+    # Review-queue items never trigger an email; they ride along as an appendix
+    # unless they are about a position that is already known.
+    review = get_review_queue_events(cfg, state)
+    review_new = [e for e in review if not ledger.find(ref_from_event(e))]
+    review_known = [e for e in review if e not in review_new]
+
+    now_ts = utc_now_iso()
+    handled = {e["event_id"] for e in suppress + review_known}
+    if handled:
+        _mark_alerted(state, handled, now_ts)
+        log.info("%d event(s) suppressed — position already reported or not a new position.",
+                 len(handled))
+
+    if not send:
+        log.info("No newly opened position.")
+        _save_state(cfg, state)
+        return 0
+
+    send_ids = {e["event_id"] for e in send}
+    labels: list[str] = []
+    for ref, _via, eid in opened:
+        if eid in send_ids and ref.label not in labels:
+            labels.append(ref.label)
+    log.info("New position(s): %s", ", ".join(labels) or f"{len(send)} event(s)")
+
+    tldr = _build_tldr(model)
+    html = render_alert.render(cfg, send, model=model, tldr=tldr,
+                               review_events=review_new, new_positions=labels)
+    subj = render_alert.subject(cfg, send, tldr=tldr, new_positions=labels)
+    if _send(cfg, subj, html):
+        _mark_alerted(state, send_ids | {e["event_id"] for e in review_new}, now_ts)
+        for ref, via, eid in opened:
+            ledger.add(ref, via=via, now=now_ts, event_id=eid)
+        state["last_sent_at"] = now_ts
+        log.info("Ledger now holds %d reported position(s).", len(ledger.entries))
+
+    _save_state(cfg, state)
+    return len(send)
 
 
 def _save_preview(cfg: Config, html: str) -> Path:
@@ -315,6 +472,9 @@ def check_and_alert(cfg: Config, model: dict | None = None) -> int:
     """
     state = _load_state(cfg)
     state["last_run_at"] = utc_now_iso()
+
+    if _alert_cfg(cfg).get("only_new_positions", True):
+        return _check_new_positions(cfg, state, model)
 
     new_events = get_new_alertable_events(cfg, state)
     review_events = get_review_queue_events(cfg, state)

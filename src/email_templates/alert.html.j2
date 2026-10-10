@@ -25,6 +25,7 @@
 <!-- preheader -->
 {%- set tldr_longs = (tldr.new_buys or []) + (tldr.strong_adds or []) -%}
 <div style="display:none;max-height:0;overflow:hidden;opacity:0;">
+  {% if new_positions %}Neue Position: {{ new_positions[:3]|join(', ') }} · {% endif %}
   {% if news_events %}{{ news_events[0].summary[:80] }}{% endif %}
   {% if tldr_longs %} · Leo kaufte: {{ tldr_longs[:3]|join(', ') }}{% endif %}
 </div>
@@ -39,7 +40,8 @@
   <tr><td style="padding:24px 32px 16px 32px;">
     <div style="font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:{{ C.accent }};">{{ meta.subject_prefix }}</div>
     <div style="font-size:22px;font-weight:700;letter-spacing:-0.02em;margin-top:4px;">
-      {%- if news_events and tldr.quarter %}News · {{ tldr.quarter }}
+      {%- if new_positions %}Neue Position: {{ new_positions[:4]|join(', ') }}{% if new_positions|length > 4 %} +{{ new_positions|length - 4 }}{% endif %}
+      {%- elif news_events and tldr.quarter %}News · {{ tldr.quarter }}
       {%- elif tldr.quarter %}{{ tldr.quarter }} — was hat Leo getan?
       {%- elif sec_events %}Neues SEC-Filing
       {%- else %}News-Alert{%- endif %}
